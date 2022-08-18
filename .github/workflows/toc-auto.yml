@@ -1,0 +1,30 @@
+# This is a basic workflow that is manually triggered
+
+name: Manual workflow
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      name:
+        # Friendly description to be shown in the UI instead of 'name'
+        # description: 'Person to greet'
+        # Default value if no value is explicitly provided
+        default: 'update toc'
+        # Input has to be provided for the workflow to run
+        required: true
+
+name: TOC Generator
+jobs:
+  generateTOC:
+    name: TOC Generator
+    runs-on: ubuntu-latest
+    steps:
+      - uses: technote-space/toc-generator@v4.0.0
+        with:
+           TARGET_PATHS: PatchNotes/Altibase_7.1/kor/Altibase_7_1_0_7_9_Patch_Notes.md
+           TOC_TITLE: #### Table of Contents
+           MAX_HEADER_LEVEL: 3
+           COMMIT_MESSAGE: update toc
