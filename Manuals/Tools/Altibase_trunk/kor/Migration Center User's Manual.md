@@ -53,13 +53,13 @@
     - [PSM 변환 규칙](#psm-%EB%B3%80%ED%99%98-%EA%B7%9C%EC%B9%99)
     - [표현 변환 규칙](#%ED%91%9C%ED%98%84-%EB%B3%80%ED%99%98-%EA%B7%9C%EC%B9%99)
   - [F.부록: FAQ](#f%EB%B6%80%EB%A1%9D-faq)
-    - [Common](#common)
-    - [Oracle](#oracle)
+    - [DBMS 공통](#dbms-공통)
+    - [Oracle](#oracle-1)
     - [MS-SQL](#ms-sql)
-    - [Altibase](#altibase)
-    - [Informix](#informix)
-    - [MySQL](#mysql)
-    - [TimesTen](#timesten)
+    - [Altibase](#altibase-1)
+    - [Informix](#informix-1)
+    - [MySQL](#mysql-1)
+    - [TimesTen](#timesten-1)
 
 Altibase® Tools & Utilities
 
@@ -8122,7 +8122,7 @@ CREATE VIEW v_r40022 AS SELECT **SUBSTR(SYS_CONTEXT('USERENV', 'INSTANCE_NAME'),
 
 ## F.부록: FAQ
 
-### Common
+### DBMS 공통
 
 #### 데이터 이관 중에 OutOfMemoryError가 발생한다.
 
@@ -8473,51 +8473,49 @@ Reconcile 단계 - DDL Editing에서 해당 테이블의 Destination DDL로부�
 
 #### 중복된 외래키의 이관이 실패한다.
 
-##### 원인
-
-MS-SQL에서 외래키가 중복 생성되어 있는 경우, Altibase에서는 이를 허용하지 않기
-때문에 중복된 외래키 중 하나만 이관된다.
-
-##### 해결방법
-
-Run 단계 수행 후 생성된 리포트의 Missing 탭에서 이관에 실패한 외래키를 확인할 수
-있다.
+> ##### 원인
+>
+> MS-SQL에서 외래키가 중복 생성되어 있는 경우, Altibase에서는 이를 허용하지 않기
+> 때문에 중복된 외래키 중 하나만 이관된다.
+>
+> ##### 해결방법
+>
+> Run 단계 수행 후 생성된 리포트의 Missing 탭에서 이관에 실패한 외래키를 확인할 수
+> 있다.
 
 #### 오류 메세지 'The server selected protocol version TLS10 is not accepted by client preferences'와 함께 서버 접속이 실패한다.
 
-##### 원인
+> ##### 원인
+>
+> Migration Center를 구동하는데 사용한 Java Runtime Environment (JRE) 의 기본 TLS 버전이 1.2 이상으로 변경되었는데, MS-SQL 서버에서 해당 TLS 버전을 지원하지 않아서 발생한 오류이다.
+>
+> ##### 해결방법
+>
+> $JAVA_HOME/jre/lib/security/java.security 파일의 jdk.tls.disabledAlgorithms 항목에서 TLSv1, TLSv1.1을 제거하면 이전 버전의 TLS를 사용 가능하다. java.security.org가 수정 전 파일이고, java.security가 수정된 파일이다.
+>
+> ```bash
+> $ diff java.security.org java.security
+> 720c720
+> < jdk.tls.disabledAlgorithms=SSLv3, TLSv1, TLSv1.1, RC4, DES, MD5withRSA, \
+> ---
+> > jdk.tls.disabledAlgorithms=SSLv3, RC4, DES, MD5withRSA, \
+> ```
+>
+> TLS 1.2 이상 버전을 의무적으로 사용해야 한다면, 아래 사이트를 참조하여 Windows, MS-SQL 서버, MS-SQL JDBC 드라이버 파일을 업데이트 해야 한다.
+>
+> https://support.microsoft.com/en-us/topic/kb3135244-tls-1-2-support-for-microsoft-sql-server-e4472ef8-90a9-13c1-e4d8-44aad198cdbe
 
-Migration Center를 구동하는데 사용한 Java Runtime Environment (JRE) 의 기본 TLS 버전이 1.2 이상으로 변경되었는데, MS-SQL 서버에서 해당 TLS 버전을 지원하지 않아서 발생한 오류이다.
+#### Java 11 이상에서 Migration Center를 실행하고 JRE 10 이하 버전 용 Microsoft JDBC 드라이버를 사용하면 Unable to connect to DB. javax/xml/bind/DatatypeConverter 에러가 발생한다.
 
-##### 해결방법
-
-$JAVA_HOME/jre/lib/security/java.security 파일의 jdk.tls.disabledAlgorithms 항목에서 TLSv1, TLSv1.1을 제거하면 이전 버전의 TLS를 사용 가능하다. java.security.org가 수정 전 파일이고, java.security가 수정된 파일이다.
-
-```bash
-$ diff java.security.org java.security
-720c720
-< jdk.tls.disabledAlgorithms=SSLv3, TLSv1, TLSv1.1, RC4, DES, MD5withRSA, \
----
-> jdk.tls.disabledAlgorithms=SSLv3, RC4, DES, MD5withRSA, \
-```
-
-TLS 1.2 이상 버전을 의무적으로 사용해야 한다면, 아래 사이트를 참조하여 Windows, MS-SQL 서버, MS-SQL JDBC 드라이버 파일을 업데이트 해야 한다.
-
-https://support.microsoft.com/en-us/topic/kb3135244-tls-1-2-support-for-microsoft-sql-server-e4472ef8-90a9-13c1-e4d8-44aad198cdbe
-
-#### Java 11 이상에서 Migration Center를 실행하고 JRE 10 이하 버전 용 Microsoft JDBC 드라이버를 사용하면 Unable to connect to DB 에러가 발생한다.
-
-Java 11 이상에서 Migration Center를 실행하면 기본 JRE 버전이 11jre11버전이 아닌 드라이버 파일(e.x. mssql-jdbc-6.2.2.jre7.jar)을 이용하여 접속할 때, Unable to connect to DB 에러가 발생한다.
-
-###### 원인
-
-JRE 10 이하 버전 용 Microsoft JDBC 드라이버에서 javax.xml.bind 모듈을 참조하여 발생하는 에러이다. Java 11 이상에서 javax.xml.bind 모듈이 제거되었다. 
-
-###### 해결 방법
-
-Migration Center를 실행하는 Java 버전에 해당하는 Microsoft JDBC 드라이버 파일을 사용한다. 
-
-예) mssql-jdbc-7.2.2.jre11.jar
+> **원인**
+>
+> JRE 10 이하 버전 용 Microsoft JDBC 드라이버에서 javax.xml.bind 모듈을 참조하여 발생하는 에러이다. Java 11 이상에서 javax.xml.bind 모듈이 제거되었다. 
+>
+> **해결 방법**
+>
+> Migration Center를 실행하는 Java 버전에 해당하는 Microsoft JDBC 드라이버 파일을 사용한다. 
+>
+> 예) mssql-jdbc-7.2.2.***jre11***.jar
 
 ### Altibase
 
