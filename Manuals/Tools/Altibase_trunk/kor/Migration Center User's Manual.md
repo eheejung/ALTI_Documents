@@ -8154,7 +8154,9 @@ OutOfMemoryError에서 출력한 에러 메시지에 따라 아래와 같이 3�
     > 설정할 수 있다.
 
 - `<PermGen space>`
+
   1. 실행 파일(migcenter.bat 또는 migcenter.sh)을 편집기로 연다.
+
   2. JVM 내 permanent generation space의 최대 크기를 정하는 옵셥 `-XX:MaxPermSize`의 값을 기존 값보다 크게 설정한다.
 
 - `<Metaspace>`
