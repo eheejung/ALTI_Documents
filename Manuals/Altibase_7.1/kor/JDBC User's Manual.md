@@ -2248,23 +2248,23 @@ ResultSet 객체를 통한 업데이트 허용 여부를 결정하는 옵션이�
   byte[] br;
   byte[] bb = new byte[48];
   for(byte i = 0; i < bb.length;i++) bb[i] = i;
-
+  
   sCon.setAutoCommit(false);
-
+  
   sStmt.executeUpdate("insert into Varbinary_Tab values(null)");
   sCon.commit();
-
+  
   sPreStmt = sCon.prepareStatement("update Varbinary_Tab set VARBINARY_VAL=?");
   sPreStmt.setObject(1, bb, java.sql.Types.VARBINARY);
   sPreStmt.executeUpdate();
-
+  
   sRS = sStmt.executeQuery("Select VARBINARY_VAL from Varbinary_Tab");
   sRS.next();
   br = sRS.getBytes(1);
-
+  
   sCon.commit();
   sCon.setAutoCommit(true); -> (1)
-
+  
   ```
 
 
@@ -3857,7 +3857,75 @@ JDBC 4.2 API를 준수하는 Altibase 7.1 JDBC 드라이버(Altibase42.jar)에�
 | unwrap(Class<T> iface)                                     | 4.0      |    O     |                                                                          |                                                      |
 | isWrapperFor(Class<?> iface)                               | 4.0      |    O     |                                                                          |                                                      |
 
+<table style="border-collapse: collapse; width: 100%; height: 72px;" border="1">
+<tbody>
+<tr style="height: 18px;">
+<td style="width: 33%; height: 18px;">인터페이스</td>
+<td style="width: 9%; text-align: center; height: 18px;">JDBC API 버전</td>
+<td style="width: 7.18963%; text-align: center; height: 18px;">지원 여부</td>
+<td style="width: 34.5978%; height: 18px;">설명</td>
+<td style="width: 23.9727%; text-align: left; height: 18px;">예외 처리</td>
+</tr>
+<tr style="height: 36px;">
+<td style="width: 33%; height: 36px;">unwrap(Class iface)</td>
+<td style="width: 9%; height: 36px; text-align: center;">4.0</td>
+<td style="width: 7.18963%; height: 36px; text-align: center;">O</td>
+<td style="width: 34.5978%; height: 36px;">&nbsp;</td>
+<td style="width: 23.9727%; height: 36px;">&nbsp;</td>
+</tr>
+<tr style="height: 16px;">
+<td style="width: 33%; height: 18px;">isWrapperFor(Class&lt;?&gt; iface)</td>
+<td style="width: 9%; height: 18px; text-align: center;">4.0</td>
+<td style="width: 7.18963%; height: 18px; text-align: center;">O</td>
+<td style="width: 34.5978%; height: 18px;">&nbsp;</td>
+<td style="width: 23.9727%; height: 18px;">&nbsp;</td>
+
+
+
+<table style="border-collapse: collapse; width: 100%;" border="1">
+<tbody>
+<tr style="height: 18px;">
+<td style="width: 40%; height: 18px;">인터페이스</td>
+<td style="width: 10.509%; text-align: center; height: 18px;">JDBC API 버전</td>
+<td style="width: 7.18963%; text-align: center; height: 18px;">지원 여부</td>
+<td style="width: 34.5978%; height: 18px;">설명</td>
+<td style="width: 23.9727%; text-align: left; height: 18px;">예외 처리</td>
+</tr>
+<tr>
+<td style="width: 40%;" align="left">createBlob()</td>
+<td style="width: 10.509%;" align="center">4.0</td>
+<td style="width: 7.18963%;" align="center">X</td>
+<td style="width: 34.5978%;" align="left">Connection 단계에서의 lob 객체 생성 지원 안함</td>
+<td style="width: 23.9727%;" align="left">SQLFeatureNotSupported</td>
+</tr>
+<tr>
+<td style="width: 40%;" align="left">createClob()</td>
+<td style="width: 10.509%;" align="center">4.0</td>
+<td style="width: 7.18963%;" align="center">X</td>
+<td style="width: 34.5978%;" align="left">Connection 단계에서의 lob 객체 생성 지원 안함</td>
+<td style="width: 23.9727%;" align="left">SQLFeatureNotSupported</td>
+</tr>
+<tr>
+<td style="width: 40%;" align="left">createNClob()</td>
+<td style="width: 10.509%;" align="center">4.0</td>
+<td style="width: 7.18963%;" align="center">X</td>
+<td style="width: 34.5978%;" align="left">Clob 객체에 대한 다국어 처리 지원 안함</td>
+<td style="width: 23.9727%;" align="left">SQLFeatureNotSupported</td>
+</tr>
+<tr>
+<td style="width: 40%;" align="left">createSQLXML()</td>
+<td style="width: 10.509%;" align="center">4.0</td>
+<td style="width: 7.18963%;" align="center">X</td>
+<td style="width: 34.5978%;" align="left">SQLXML 타입 미지원</td>
+<td style="width: 23.9727%;" align="left">SQLFeatureNotSupported</td>
+</tr>
+</tbody>
+</table>
+
+
+
 다음은 Altibase JDBC 드라이버에서 java.sql.Wrapper 인터페이스를 구현한 클래스 목록이다.
+
 - Altibase42Connection
 - AltibaseStatement
 - AltibaseResultSet
@@ -4011,12 +4079,12 @@ JDBC 4.2 API를 준수하는 Altibase 7.1 JDBC 드라이버(Altibase42.jar)에�
 
 ### javax.sql.CommonDataSource
 | 인터페이스명                                   | Specification Version | 지원여부  | Details                            |      예외 처리                  |
-|:------------------------------------------------------------|:----------:|:----------:|:--------------------------------------------------------------------------|:------------------------------------------------------|
+|-----------------------------------------------|----------|----------|------------------------------------|--------------------------------|
 | getParentLogger()                             | 4.1      |    O     |                                    |                                |
 
 ### java.sql.DatabaseMetaData
 | 인터페이스명                                                                                                   | Specification Version | 지원여부  | Details                            |      예외 처리                                        |
-|:------------------------------------------------------------|:----------:|:----------:|:--------------------------------------------------------------------------|:------------------------------------------------------|
+|---------------------------------------------------------------------------------------------------------------|----------|----------|------------------------------------|------------------------------------------------------|
 | getRowIdLifetime()                                                                                            | 4.0      |    X     | RowID 미지원                     | SQLFeatureNotSupported 예외 발생                      |
 | getSchemas(String catalog, String schemaPattern)                                                              | 4.0      |    O     |                                    |                                                      |
 | supportsStoredFunctionsUsingCallSyntax()                                                                      | 4.0      |    X     | False 리턴                       |                                                      |
