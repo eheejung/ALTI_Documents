@@ -8261,11 +8261,11 @@ JVM에서 64-bit libXrender.so 파일을 요청했지만, OS에 해당 패키지
 
 ###### 원인
 
-bat, sh에서 설정된 최대 메모리 할당값(-Xmx) 자바 옵션이 시스템에서 할당 가능한 메모리보다 더 큰 경우 발생 가능한 오류이다. 특히 Windows O/S 32bit에서 자주 리포팅되는 오류이다. 
+bat, sh에서 설정된 최대 메모리 할당값(`-Xmx`) 자바 옵션이 시스템에서 할당 가능한 메모리보다 더 큰 경우 발생 가능한 오류이다. 특히 Windows O/S 32bit에서 자주 리포팅되는 오류이다. 
 
 ###### 해결 방법
 
-bat, sh에서 -Xms -Xmx 값을 사용자 환경에 맞춰 변경한 뒤, Migration Center를 재실행한다.
+bat, sh에서 `-Xms -Xmx` 값을 사용자 환경에 맞춰 변경한 뒤, Migration Center를 재실행한다.
 
 ### Oracle
 
@@ -8474,7 +8474,7 @@ https://support.microsoft.com/en-us/topic/kb3135244-tls-1-2-support-for-microsof
 
 Java 11 이상에서 javax.xml.bind 모듈이 제거되었다. 
 
-JRE 10 이하 버전 용 Microsoft JDBC 드라이버에서 `javax.xml.bind`모듈을 참조하여 발생하는 에러이다.
+JRE 10 이하 버전 용 Microsoft JDBC 드라이버에서 javax.xml.bind 모듈을 참조하여 발생하는 에러이다.
 
 ###### 해결 방법
 
