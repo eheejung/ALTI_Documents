@@ -8505,6 +8505,20 @@ TLS 1.2 이상 버전을 의무적으로 사용해야 한다면, 아래 사이�
 
 https://support.microsoft.com/en-us/topic/kb3135244-tls-1-2-support-for-microsoft-sql-server-e4472ef8-90a9-13c1-e4d8-44aad198cdbe
 
+#### Java 11 이상에서 Migration Center를 실행하고 JRE 10 이하 버전 용 Microsoft JDBC 드라이버를 사용하면 Unable to connect to DB 에러가 발생한다.
+
+Java 11 이상에서 Migration Center를 실행하면 기본 JRE 버전이 11jre11버전이 아닌 드라이버 파일(e.x. mssql-jdbc-6.2.2.jre7.jar)을 이용하여 접속할 때, Unable to connect to DB 에러가 발생한다.
+
+###### 원인
+
+JRE 10 이하 버전 용 Microsoft JDBC 드라이버에서 javax.xml.bind 모듈을 참조하여 발생하는 에러이다. Java 11 이상에서 javax.xml.bind 모듈이 제거되었다. 
+
+###### 해결 방법
+
+Migration Center를 실행하는 Java 버전에 해당하는 Microsoft JDBC 드라이버 파일을 사용한다. 
+
+예) mssql-jdbc-7.2.2.jre11.jar
+
 ### Altibase
 
 #### 버전 5.1.5 이하의 Altibase를 이관할 때, 문자가 깨진다.
