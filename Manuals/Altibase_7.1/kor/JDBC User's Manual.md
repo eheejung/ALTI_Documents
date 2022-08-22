@@ -3827,7 +3827,7 @@ SQLSTATE에 반환되는 문자열 값은 클래스를 나타내는 처음 2개�
 |                                       |       | XA close failed                                                                                          | F02      |
 |                                       |       | XA recover failed                                                                                        | F03      |
 
-##6.JDBC 4.2 API References
+## 6.JDBC 4.2 API References
 
 JDBC 4.2 API를 준수하는 Altibase 7.1 JDBC 드라이버(Altibase42.jar)에서 지원하는 기능과 지원하지 않는 기능을 보여주는 표이다.
 
