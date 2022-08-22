@@ -1,6 +1,6 @@
 # This is a basic workflow that is manually triggered
 
-name: Manual workflow
+name: Manual workflow for TOC Generator
 
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
@@ -16,7 +16,6 @@ on:
         # Input has to be provided for the workflow to run
         required: true
 
-name: TOC Generator
 jobs:
   generateTOC:
     name: TOC Generator
