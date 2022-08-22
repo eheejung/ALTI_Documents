@@ -241,15 +241,11 @@ Altibase의 JDBC 드라이버는 JDBC 사양을 대부분 준수하나, 경우�
 
 ### JDBC 드라이버 설치
 
-Altibase 홈페이지 (www.altibase.com )에서 다운로드 받은 Altibase 패키지를
-다운로드 하여 설치한다.
-
-Altibase JDBC 드라이버는 패키지를 설치한 후, \$ALTIBASE_HOME/lib 디렉토리에서
-찾을 수 있다.
+[Altibase 기술지원포털 홈페이지](http://support.altibase.com/kr/product)에서 Altibase 서버 또는 클라이언트 패키지를 다운로드하고 설치하면 \$ALTIBASE_HOME/lib 디렉토리에  Altibase JDBC 드라이버를 찾을 수 있다.
 
 #### 버전 호환성
 
-Altibase 7.1 JDBC는 Type 4 pure Java JDBC 드라이버로써, JDBC 3.0 API 준수한다. Altibase 7.1 JDBC 드라이버를 사용하기 위한 자바 최소 버전은 JRE 1.5이다.
+Altibase 7.1 JDBC는 Type 4 pure Java JDBC 드라이버로서, JDBC 3.0 API를 준수한다. Altibase 7.1 JDBC 드라이버를 사용하기 위한 자바 최소 버전은 JRE 1.5이다.
 
 Altibase 7.1은 JDBC 4.2 API를 부분적으로 지원하는 JDBC 드라이버도 제공한다. 이 드라이버는 Altibase 7.1.0.5.6부터 제공하며 파일 이름은 Altibase42.jar이다. Altibase42.jar는 JRE 1.8 이상에서 사용할 수 있으며 지원하는 JDBC 4.2 API는 [JDBC 4.2 API References](#6jdbc-42-api-references)에서 확인할 수 있다.
 
@@ -261,10 +257,10 @@ Altibase 7.1은 5가지 종류의 JDBC 드라이버를 제공한다.
 Altibase 7.1의 기본 JDBC 드라이버이다.
 
 ##### Altibase7_1.jar
-기본 JDBC 드라이버와 동일하지 드라이버 클래스 이름이 다르다.
+기본 JDBC 드라이버와 동일하지만 드라이버 클래스 이름이 다르다.
 하나의 애플리케이션에서 Altibase 7.1 서버와 또 다른 버전의 Altibase 서버에 동시에 접속할 수 있도록 제공하는 JDBC 드라이버로, 드라이버 클래스 이름은 Altibase7_1.jdbc.driver.AltibaseDriver이다.
 
-다음은 서로 다른 버전의 Altibase 서버에 동시 접속하는 예제이다. 아래 예에서 Altibase.jar는 Altibase 6.5.1 JDBC 드라이버로 가정한다.
+다음은 서로 다른 버전의 Altibase 서버에 동시 접속하는 예제이다. 아래 예에서 Altibase.jar는 Altibase 6.5.1 JDBC 드라이버라고 가정한다.
 
 ~~~java
 // Altibase 7.1   JDBC 드라이버 클래스
@@ -290,10 +286,12 @@ JDBC 4.2 API를 일부 지원하는 JDBC 드라이버와 동일하지만 드라�
 ##### Altibase_t.jar
 JDBC 로깅 기능을 포함한 JDBC 드라이버이다. 이 드라이버의 사용 방법은 [JDBC 로깅](#jdbc-로깅)에서 확인할 수 있다. Altibase_t.jar는 JDBC 3.0 API를 지원하는 JDBC 드라이버를 위한 로깅 드라이버이며 JDBC 4.2 API 일부 지원하는 JDBC 드라이버의 로깅 드라이버는 지원하지 않는다.
 
+##### Altibase 7.1 JDBC 드라이버 종류와 특성
+
 다음은 Altibase 7.1에서 제공하는 JDBC 드라이버 종류와 특성을 정리한 표이다.
 
 |JDBC 드라이버 종류|용도|JDBC API|최소 JRE 버전|드라이버 클래스 이름|
-|:--|:--:|:--:|:--:|:--|
+|:--|:---|:--:|:--:|:--|
 |Altibase.jar |Altibase 7.1의 기본 JDBC 드라이버   | 3.0  |1.5   |Altibase.jdbc.driver.AltibaseDriver   |
 |Altibase7_1.jar   |멀티 버전 접속 용 JDBC 3.0 API 드라이버  |3.0   |1.5   |Altibase7_1.jdbc.driver.AltibaseDriver   |
 |Altibase_t.jar   |JDBC 3.0 API 드라이버 용 로깅 드라이버   |3.0   |1.5   |   |
@@ -304,35 +302,36 @@ JDBC 로깅 기능을 포함한 JDBC 드라이버이다. 이 드라이버의 사
 
 #### JDBC 드라이버 버전 확인
 
-설치된 JDBC 드라이버의 버전과 드라이버가 컴파일된 JDK 버전을 아래와 같이 확인할
-수 있다.
+아래는 Altibase JDBC 드라이버의 버전과 해당 드라이버가 컴파일 된 JDK 버전을 확인하는 명령어이다.
 
-##### JDBC 4.2 API를 부분 지원하는 JDBC 드라이버 버전 확인
-```
-$ java -jar $ALTIBASE_HOME/lib/Altibase42.jar
-Altibase 7.1.0.5.0 with CMP 7.1.7 for JDBC 4.2 compiled with JDK 5, JDK 8(sharding included)
-```
-
-##### JDBC 3.0 API를 지원하는 JDBC 드라이버 버전 확인
-```
+##### JDBC 3.0 API를 지원하는 Altibase 7.1 기본 JDBC 드라이버
+```bash
 $ java -jar $ALTIBASE_HOME/lib/Altibase.jar
 Altibase 7.1.0.5.0 with CMP 7.1.7 for JDBC 3.0 compiled with JDK 5(sharding included)
 ```
 
+##### JDBC 4.2 API를 부분 지원하는 JDBC 드라이버 버전 확인
 
+```bash
+$ java -jar $ALTIBASE_HOME/lib/Altibase42.jar
+Altibase 7.1.0.5.0 with CMP 7.1.7 for JDBC 4.2 compiled with JDK 5, JDK 8(sharding included)
+```
+
+##### 
 
 #### CLASSPATH 설정
 
-Altibase JDBC를 사용하려면 Altibase.jar 또는 Altibase42.jar 파일을 클래스 패스에 추가한다.
+Altibase JDBC를 사용하려면 Altibase.jar 또는 Altibase42.jar 파일을 CLASSPATH 환경변수에 추가해야 한다.
+
 다음은 유닉스/리눅스에서 bash 쉘을 사용하는 환경에서 수행하는 예이다.
 
-##### JDBC 3.0 API 용 JDBC 드라이버
+##### JDBC 3.0 API를 지원하는 Altibase 7.1 기본 JDBC 드라이버
 
-```
+```bash
 $ export CLASSPATH=$ALTIBASE_HOME/lib/Altibase.jar:.:$CLASSPATH
 ```
-##### JDBC 4.2 API를 부분 지원하는 JDBC 드라이버
-```
+##### JDBC 4.2 API를 부분 지원하는 Altibase 7.1 JDBC 드라이버
+```bash
 $ export CLASSPATH=$ALTIBASE_HOME/lib/Altibase42.jar:.:$CLASSPATH
 ```
 
@@ -498,7 +497,7 @@ Altibase에 접속할 때 사용 가능한 연결 속성에 대해 기술한다.
 
 | 기본값    |                                                              |
 | --------- | ------------------------------------------------------------ |
-| 값의 범위 | [ host_name:port_number[/dbname][, host_name:port_number[/dbname] ]* |
+| 값의 범위 | [ host_name:port_number[/dbname] [, host_name:port_number[/dbname] ]* |
 | 필수 여부 | No                                                           |
 | 설정 범위 |                                                              |
 | 설명      | Connection Failover 발생 시 접속할 수 있는 서버들의 리스트이다. <br />사용법은 3장의 "JDBC와 Failover" 절을 참고한다. |
@@ -3687,7 +3686,7 @@ PROJECT ( COLUMN_COUNT: 1, TUPLE_SIZE: 8, COST: 0.01 )
 ```
 
 
----------------------
+
 4.Tips & Recommendation
 ---------------------
 
