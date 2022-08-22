@@ -8128,77 +8128,66 @@ CREATE VIEW v_r40022 AS SELECT **SUBSTR(SYS_CONTEXT('USERENV', 'INSTANCE_NAME'),
 
 ###### 원인
 
-다수의 쓰레드들이 대상 데이터베이스에 배치작업으로 데이터를 삽입하는 과정에서
-메모리가 부족하여 발생할 수 있다.
+다수의 쓰레드들이 대상 데이터베이스에 배치작업으로 데이터를 삽입하는 과정에서 메모리가 부족하여 발생할 수 있다.
 
 ###### 해결 방법
 
-OutOfMemoryError에서 출력한 에러 메시지에 따라 아래와 같이 3가지 경우로 나눌 수
-있다.
+OutOfMemoryError에서 출력한 에러 메시지에 따라 아래와 같이 3가지 경우로 나눌 수 있다.
 
-###### \<Java heap space\>
+- `<Java heap space>`
 
-상황에 따라 아래 작성된 두 가지 방법을 선택해 적용한다.
+  상황에 따라 아래 작성된 두 가지 방법을 선택해 적용한다.
 
-- 메모리 사용량을 낮추도록 성능 프로퍼티 값 변경
-1. 프로젝트를 연다.
+  - 메모리 사용량을 낮추도록 성능 프로퍼티 값 변경
+    1. 프로젝트를 연다.
+    2. 메뉴 `Migration` -\> `Migration Options`를 클릭한다.
+    3. `Batch Size`와 `Thread Count`의 값을 낮춘다.
+  - 프로그램이 사용할 수 있는 최대 메모리 크기 증가
 
-2. 메뉴 “Migration” -\> “Migration Options”를 클릭한다.
+    1. 실행 파일(migcenter.bat 또는 migcenter.sh)을 편집기로 연다.
 
-3. Batch Size와 Thread Count의 값을 낮춘다.
-- 프로그램이 사용할 수 있는 최대 메모리 크기 증가
-1. 실행 파일(migcenter.bat 또는 migcenter.sh)을 편집기로 연다.
+    2. JVM 내 heap 최대 크기를 정하는 옵션 `-Xmx`의 값을 기존 값보다 높게 설정한다.
 
-2. JVM 내 heap 최대 크기를 정하는 옵션 '-Xmx'의 값을 기존 값보다 높게 설정한다.
+       > Note: Windows 32 bit machine에서는 OS dependency로 인해 Xmx 값을 최대 1.5 GB까지
+       > 설정할 수 있다.
 
-> Note: Windows 32 bit machine에서는 OS dependency로 인해 Xmx 값을 최대 1.5 GB까지
-> 설정할 수 있다.
 
-###### \<PermGen space\>
+- `<PermGen space>`
+  1. 실행 파일(migcenter.bat 또는 migcenter.sh)을 편집기로 연다.
+  2. JVM 내 permanent generation space의 최대 크기를 정하는 옵셥 `-XX:MaxPermSize`의 값을 기존 값보다 크게 설정한다.
 
-1. 실행 파일(migcenter.bat 또는 migcenter.sh)을 편집기로 연다.
-2. JVM 내 permanent generation space의 최대 크기를 정하는 옵션
-   '-XX:MaxPermSize'의 값을 기존 값보다 크게 설정한다.
+- `<Metaspace>`
 
-###### \<Metaspace\>
+  사용중인 JVM의 버전이 Java 8 이상인 경우, Metaspace의 공간 부족이 원인일 수 있다. Java 8부터 구현된 Metaspace는 PermGen (permanent generation space)의 대체제이다.
 
-사용중인 JVM의 버전이 Java 8 이상인 경우, Metaspace의 공간 부족이 원인일 수 있다. Java 8부터 구현된 Metaspace는 PermGen (permanent generation space)의 대체제이다.
+  1. 실행 파일(migcenter.bat 또는 migcenter.sh)을 편집기로 연다.
 
-- 실행 파일(migcenter.bat 또는 migcenter.sh)을 편집기로 연다.
-- JVM 내 permanent generation space의 최대 크기를 정하는 옵션 '-XX:MaxPermSize'를
-  metaspace의 최대 크기를 정하는 옵션으로 변경한 뒤, 기존 값보다 높게 수정한다.
-  - 변경 전: -XX:MaxPermSize=128m
-  - 변경 후: -XX:MaxMetaspaceSize=256 m
+  2. JVM 내 permanent generation space의 최대 크기를 정하는 옵션 `-XX:MaxPermSize`를
+     metaspace의 최대 크기를 정하는 옵션으로 변경한 뒤, 기존 값보다 높게 수정한다.
 
-참고
+     - 변경 전 : `-XX:MaxPermSize=128m`
 
-- <https://dzone.com/articles/java-8-permgen-metaspace>
+     - 변경 후 : `-XX:MaxMetaspaceSize=256m`
 
-- <https://www.infoq.com/articles/Java-PERMGEN-Removed>
+- 참고
+  - <https://dzone.com/articles/java-8-permgen-metaspace>
+  - <https://www.infoq.com/articles/Java-PERMGEN-Removed>
 
 #### 데이터 타입이 LOB인 테이블 컬럼의 NOT NULL 제약조건이 이관되지 않는다.
 
 ###### 원인
 
-마이그레이션 센터가 LOB 칼럼의 NOT NULL 제약조건을 임의로 제거하여 발생하는
-현상이다.
+마이그레이션 센터가 LOB 칼럼의 NOT NULL 제약조건을 임의로 제거하여 발생하는 현상이다.
 
-마이그레이션 센터는 파라미터가 포함된 쿼리문(예: insert into tablename
-values(?,?))을 사용해서 대상 DB에 데이터를 삽입한다.
+마이그레이션 센터는 파라미터가 포함된 쿼리문(예: insert into tablename values(?,?))을 사용해서 대상 DB에 데이터를 삽입한다.
 
-Altibase는 다른 컬럼과는 달리 LOB 컬럼에 데이터를 입력할 경우에는 먼저 데이터를
-null로 초기화한 다음, LOB Locator를 통해 데이터를 받아서 입력하는 두 단계로
-처리한다. 따라서 해당 컬럼에 NOT NULL 제약조건이 있다면 데이터를 null로 초기화할
-수 없어서 insert가 실패하게 된다.
+Altibase는 다른 컬럼과는 달리 LOB 컬럼에 데이터를 입력할 경우에는 먼저 데이터를 null로 초기화한 다음, LOB Locator를 통해 데이터를 받아서 입력하는 두 단계로 처리한다. 따라서 해당 컬럼에 NOT NULL 제약조건이 있다면 데이터를 null로 초기화할 수 없어서 insert가 실패하게 된다.
 
-이런 제약 때문에, 마이그레이션 센터는 LOB 칼럼의 NOT NULL 제약조건을 임의로
-제거해서 마이그레이션을 수행한다.
+이런 제약 때문에, 마이그레이션 센터는 LOB 칼럼의 NOT NULL 제약조건을 임의로 제거해서 마이그레이션을 수행한다.
 
-이러한 내용은 아래 매뉴얼에서 확인할 수 있다. (General Reference - 1. 자료형 -
-LOB 데이타 타입 - 제한사항)
+이러한 내용은 아래 매뉴얼에서 확인할 수 있다. (General Reference - 1. 자료형 - LOB 데이타 타입 - 제한사항)
 
-오라클은 커밋 시에만 제약 조건에 대한 검사를 수행하기 때문에, 위와 같은
-조건에서도 데이터를 삽입할 수 있다.
+오라클은 커밋 시에만 제약 조건에 대한 검사를 수행하기 때문에, 위와 같은 조건에서도 데이터를 삽입할 수 있다.
 
 ###### 해결 방법
 
@@ -8206,13 +8195,33 @@ LOB 데이타 타입 - 제한사항)
 
 #### Database 문자 집합 관련 주의사항
 
-기본적으로 원본 데이터베이스와 대상 데이터베이스의 DB 문자 집합을 동일하게
-지정하여 사용하기를 권장한다.  
-만약 특수한 상황 때문에 문자 집합을 다르게 지정해야 한다면, 각각의 DB 문자 집합
-호환 여부를 꼭 확인해야 한다. 호환되지 않는 문자 집합 간의 이관을 강제 수행할
-경우, 데이터가 깨지게 된다.
+기본적으로 원본 데이터베이스와 대상 데이터베이스의 DB 문자 집합을 동일하게 지정하여 사용하기를 권장한다. 
 
-###### 예제
+만약 특수한 상황 때문에 문자 집합을 다르게 지정해야 한다면, 각각의 DB 문자 집합 호환 여부를 꼭 확인해야 한다. 호환되지 않는 문자 집합 간의 이관을 강제 수행할 경우, 데이터가 깨지게 된다.
+
+> 사례 1 : 원본 데이터베이스 KSC5601에서 대상 데이터베이스 UTF8  `이관 가능`
+
+KSC5601 한글 데이터는 UTF8로 표기될 수 있다. 따라서 각각의 문자 집합은 서로 호환된다. 
+
+Note: 데이터 길이가 더 길어질 수 있으므로 테이블 객체 이관 시 문자형 타입 컬럼은 사이즈를 늘려야 한다.
+
+> 사례 2 : 원본 데이터베이스 KSC5601에서 대상 데이터베이스 GB231280 `이관 불가능`
+
+KSC5601 한글 데이터는 GB231280으로 표기될 수 없다. 따라서 각각의 문자 집합은 서로 호환되지 않는다. 이러한 조건에서 꼭 데이터 이관이 필요한 경우, 대상 데이터베이스의 테이블 컬럼 데이터타입 CHAR, VARCHAR를 모두 NCHAR, NVARCHAR로 변경한 뒤, 데이터 이관을 수행해야 한다.
+
+###### JDBC & 마이그레이션 센터의 문자 집합 처리 과정
+
+1. 원본 데이터베이스로부터 데이터를 fetch할 때, char 데이터를 원본 데이터베이스 DB 문자 집합 포맷으로 가져와 바이트 배열에 저장한다.
+
+2. 바이트 배열에 저장된 데이터를 UTF-16 형태로 변환하여 Java 기본 타입인 String 객체에 저장한다.
+
+3. 대상 데이터베이스에 데이터를 삽입하는 PreparedStatement 객체에 setString 함수로 해당 String 객체를 전달한다.
+
+4. JDBC 드라이버 내부에서 대상 데이터베이스의 DB 문자 집합에 맞춰 데이터를 변환하고 삽입한다.
+
+
+
+예제
 
 1. 원본 데이터베이스 KSC5601에서 대상 데이터베이스 UTF8:  
    이관 가능  
@@ -8271,11 +8280,9 @@ JVM에서 64-bit libXrender.so 파일을 요청했지만, OS에 해당 패키지
 장비의 비트 값에 맞는 JRE를 새로 설치한 뒤, JAVA_HOME을 해당 위치로 변경한다.
 데비안 계열의 리눅스는 아래와 같은 명령어를 실행하여 패키지를 설치한다.
 
-```
-sudo apt-get install libXrender1
-```
+`sudo apt-get install libXrender1`
 
-##### 참고
+###### 참고
 
 - http://www.jmeter-archive.org/Bug-in-running-Jmeter-on-Ubuntu-12-04-td5722692.html
 - https://www.spigotmc.org/threads/bungeecord-not-starting-up-on-java-8.24652/ 
@@ -8307,8 +8314,8 @@ bat, sh에서 -Xms -Xmx 값을 사용자 환경에 맞춰 변경한 뒤, Migrati
 
 ###### 원인
 
-한글 환경에서는 'Fetch data from source database has been failed. 스트림이 이미
-종료되었습니다.'라는 메시지로 출력되기도 한다.
+한글 환경에서는 `Fetch data from source database has been failed. 스트림이 이미
+종료되었습니다.`라는 메시지로 출력되기도 한다.
 
 LONG 또는 LONG RAW 컬럼과 LOB 컬럼이 함께 들어있는 테이블은 데이터 이관 중
 문제가 발생할 수 있다. 아래는 Oracle JDBC Developer's Guide  ([link](https://docs.oracle.com/cd/E11882_01/java.112/e16548/jstreams.htm#JJDBC28411))에서 발췌한 내용이다.
@@ -8361,7 +8368,7 @@ Reconcile 단계를 수행할 때, 마이그레이션 센터는 사용자가 접
 프로그램이 사용할 수 있는 최대 메모리 크기를 키운다.
 
 1. 실행 파일(migcenter.bat 또는 migcenter.sh)을 편집기로 연다.
-2. JVM 내 heap 최대 크기를 정하는 옵션 '-Xmx'의 값을 기존 값보다 크게 수정한다.
+2. JVM 내 heap 최대 크기를 정하는 옵션 `-Xmx`의 값을 기존 값보다 크게 수정한다.
 
 ###### 참고
 
@@ -8392,6 +8399,7 @@ Common 절의 OutOfMemoryError 항목 참조.
 
 원본 데이터베이스가 Oracle 9i, 10인 경우 Oracle JDBC 드라이버 호환성 오류로 인해 build 단계에서 아래와 같은 NullPointerException이 발생할 수 있다.
 
+```
 Fail to retrieve Source DDL: java.lang.NullPointerException
 at oracle.jdbc.driver.T4C8Oall.getNumRows(T4C8Oall.java:1046)
 at oracle.jdbc.driver.T4CPreparedStatement.executeForRows(T4CPreparedStatement.java:1047)
@@ -8401,6 +8409,7 @@ at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStat
 at oracle.jdbc.driver.OraclePreparedStatement.executeQuery(OraclePreparedStatement.java:3652)
 at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeQuery(OraclePreparedStatementWrapper.java:1207)
 at com.altibase.migLib.meta.SrcDbMeta_Oracle_9_0_0_0.getSrcDdlDbmsMetaData(SrcDbMeta_Oracle_9_0_0_0.java:2251)
+```
 
 ###### 원인
 
@@ -8416,26 +8425,20 @@ MigrationCenter의 Oracle용 JDBC 드라이버 파일을 사용중인 Oracle DBM
 
 ###### 원인
 
-연결정보 등록 중 “Test” 버튼을 눌렀을 때, 오류 메시지와 함께 접속에 실패한다.
+연결정보 등록 중 `Test` 버튼을 눌렀을 때, 오류 메시지와 함께 접속에 실패한다.
 
-MS-SQL 연결정보를 등록할 때, “Test” 버튼을 누르면 아래와 같은 오류 메시지가
-출력될 수 있다.
+MS-SQL 연결정보를 등록할 때, `Test` 버튼을 누르면 아래와 같은 오류 메시지가 출력될 수 있다.
 
-- “Migration Center can support MS-SQL user who has a single schema only.”
+- `Migration Center can support MS-SQL user who has a single schema only.`
 
-- “User doesn't have appropriate schema in target database.”
+- `User doesn't have appropriate schema in target database.`
 
-연결정보의 사용자가 가진 스키마 관계가 Altibase와 호환 불가능한 상태이기 때문에,
-등록이 허용되지 않는다.
+연결정보의 사용자가 가진 스키마 관계가 Altibase와 호환 불가능한 상태이기 때문에, 등록이 허용되지 않는다.
 
-MS-SQL은 Altibase와 사용자와 스키마 간의 관계가 다르다. Altibase는 각 사용자에게
-하나의 스키마가 할당되며, 데이터베이스 객체가 해당 스키마에 종속되는 구조이다.
-이에 반해 MS-SQL은 한 사용자가 복수의 스키마를 소유할 수 있으며, 각 스키마에
-데이터베이스 객체가 종속된다. 이러한 차이로 인해 마이그레이션 센터는 MS-SQL
+MS-SQL은 Altibase와 사용자와 스키마 간의 관계가 다르다. Altibase는 각 사용자에게 하나의 스키마가 할당되며, 데이터베이스 객체가 해당 스키마에 종속되는 구조이다. 이에 반해 MS-SQL은 한 사용자가 복수의 스키마를 소유할 수 있으며, 각 스키마에 데이터베이스 객체가 종속된다. 이러한 차이로 인해 마이그레이션 센터는 MS-SQL
 사용자가 하나의 스키마만을 소유한 경우에만 연결정보 등록을 허용한다.
 
-따라서, MS-SQL 사용자가 스키마를 소유하지 않거나 복수의 스키마를 소유한 경우에는
-연결정보를 등록할 수 없다.
+따라서, MS-SQL 사용자가 스키마를 소유하지 않거나 복수의 스키마를 소유한 경우에는 연결정보를 등록할 수 없다.
 
 ###### 해결 방법
 
@@ -8445,43 +8448,33 @@ MS-SQL은 Altibase와 사용자와 스키마 간의 관계가 다르다. Altibas
 
 ###### 원인
 
-장비에 설치된 JVM과 마이그레이션 센터에 내장된 JVM 간의 충돌이 원인으로
-추정된다. 실행파일 migcenter.bat로 마이그레이션 센터를 시작하면 제품에 내장된
-JRE를 통해 실행되는데, 실행 장비의 운영체제가 Windows 이고 이미 JRE이 설치되어
-있을 때 이러한 문제가 발생할 수 있다.
+장비에 설치된 JVM과 마이그레이션 센터에 내장된 JVM 간의 충돌이 원인으로 추정된다. 실행파일 migcenter.bat로 마이그레이션 센터를 시작하면 제품에 내장된 JRE를 통해 실행되는데, 실행 장비의 운영체제가 Windows 이고 이미 JRE이 설치되어 있을 때 이러한 문제가 발생할 수 있다.
 
 ###### 해결 방법
 
-실행 파일 migcenter.bat를 편집기로 열어, 환경변수 JAVA_HOME의 값을 장비에 기존에
-설치된 JRE 위치로 변경해야 한다. 변경할 JRE는 반드시 8 이상이어야
-한다.
+실행 파일 migcenter.bat를 편집기로 열어, 환경변수 JAVA_HOME의 값을 장비에 기존에 설치된 JRE 위치로 변경해야 한다. 변경할 JRE는 반드시 8 이상이어야 한다.
 
 #### 오류 메시지 'Unable to insert (or update) NULL into NOT NULL column.'와 함께 데이터 이관에 실패한다.
 
 ###### 원인
 
-MS-SQL에서 NOT NULL 제약조건이 걸린 테이블 컬럼에 길이가 0인 문자열이 삽입되어
-있기 때문이다.
+MS-SQL에서 NOT NULL 제약조건이 걸린 테이블 컬럼에 길이가 0인 문자열이 삽입되어 있기 때문이다.
 
-Altibase에서는 길이가 0인 문자열은 NULL을 의미하기 때문에, NOT NULL 제약조건이
-걸린 테이블 컬럼에 길이가 0인 문자열을 삽입하는 것을 허용하지 않는다.
+Altibase에서는 길이가 0인 문자열은 NULL을 의미하기 때문에, NOT NULL 제약조건이 걸린 테이블 컬럼에 길이가 0인 문자열을 삽입하는 것을 허용하지 않는다.
 
 ###### 해결 방법
 
-Reconcile 단계 - DDL Editing에서 해당 테이블의 Destination DDL로부터 NOT NULL
-제약 조건을 삭제한 뒤, “Save” 버튼을 클릭하여 저장한다.
+Reconcile 단계 - DDL Editing에서 해당 테이블의 Destination DDL로부터 NOT NULL 제약 조건을 삭제한 뒤, `Save` 버튼을 클릭하여 저장한다.
 
 #### 중복된 외래키의 이관이 실패한다.
 
 ###### 원인
 
-MS-SQL에서 외래키가 중복 생성되어 있는 경우, Altibase에서는 이를 허용하지 않기
-때문에 중복된 외래키 중 하나만 이관된다.
+MS-SQL에서 외래키가 중복 생성되어 있는 경우, Altibase에서는 이를 허용하지 않기 때문에 중복된 외래키 중 하나만 이관된다.
 
 ###### 해결 방법
 
-Run 단계 수행 후 생성된 리포트의 Missing 탭에서 이관에 실패한 외래키를 확인할 수
-있다.
+Run 단계 수행 후 생성된 리포트의 Missing 탭에서 이관에 실패한 외래키를 확인할 수 있다.
 
 #### 오류 메세지 'The server selected protocol version TLS10 is not accepted by client preferences'와 함께 서버 접속이 실패한다.
 
@@ -8491,7 +8484,7 @@ Migration Center를 구동하는데 사용한 Java Runtime Environment (JRE) 의
 
 ###### 해결 방법
 
-$JAVA_HOME/jre/lib/security/java.security 파일의 jdk.tls.disabledAlgorithms 항목에서 TLSv1, TLSv1.1을 제거하면 이전 버전의 TLS를 사용 가능하다. java.security.org가 수정 전 파일이고, java.security가 수정된 파일이다.
+`$JAVA_HOME/jre/lib/security/java.security` 파일의 `jdk.tls.disabledAlgorithms` 항목에서 TLSv1, TLSv1.1을 제거하면 이전 버전의 TLS를 사용 가능하다. `java.security.org`가 수정 전 파일이고, `java.security`가 수정된 파일이다.
 
 ```bash
 $ diff java.security.org java.security
@@ -8511,7 +8504,7 @@ https://support.microsoft.com/en-us/topic/kb3135244-tls-1-2-support-for-microsof
 
 Java 11 이상에서 javax.xml.bind 모듈이 제거되었다. 
 
-JRE 10 이하 버전 용 Microsoft JDBC 드라이버에서 javax.xml.bind 모듈을 참조하여 발생하는 에러이다.
+JRE 10 이하 버전 용 Microsoft JDBC 드라이버에서 `javax.xml.bind`모듈을 참조하여 발생하는 에러이다.
 
 ###### 해결 방법
 
@@ -8527,27 +8520,23 @@ Migration Center를 실행하는 Java 버전에 해당하는 Microsoft JDBC 드�
 
 ###### 원인
 
-버전 5.1.5 이하의 Altibase는 globalization을 지원하지 않아 JDBC가 데이터베이스의
-문자 집합 을 알 수 없다.
+버전 5.1.5 이하의 Altibase는 globalization을 지원하지 않아 JDBC가 데이터베이스의 문자 집합 을 알 수 없다.
 
 ###### 해결 방법
 
-마이그레이션 센터 내 해당 데이터베이스 연결정보의 인코딩 옵션에 대상
-데이터베이스에 설정된 문자 집합 값(예, KSC5601)을 넣어야 한다. Altibase 캐릭터
-셋 확인 방법은 다음과 같다.
+마이그레이션 센터 내 해당 데이터베이스 연결정보의 인코딩 옵션에 대상 데이터베이스에 설정된 문자 집합 값(예, KSC5601)을 넣어야 한다. Altibase 캐릭터 셋 확인 방법은 다음과 같다.
 
 - 4.3.9 \~ 5.1.5 버전:  
-  SELECT VALUE1 FROM V\$PROPERTY WHERE NAME = 'NLS_USE';
+  `SELECT VALUE1 FROM V$PROPERTY WHERE NAME = 'NLS_USE';`
 
 - 5.3.3 버전 이상:  
-  SELECT NLS_CHARACTERSET FROM V\$NLS_PARAMETERS;
+  `SELECT NLS_CHARACTERSET FROM V$NLS_PARAMETERS;`
 
 #### Reconcile 단계의 “Tablespace to Tablespace Mapping”에 특정 테이블스페이스가 나오지 않는다.
 
 ###### 원인
 
-마이그레이션 센터에 접속중인 Altibase의 사용자가 해당 테이블스페이스에 대한 접근
-권한이 없어서 발생한다.
+마이그레이션 센터에 접속중인 Altibase의 사용자가 해당 테이블스페이스에 대한 접근 권한이 없어서 발생한다.
 
 ###### 해결 방법
 
@@ -8581,6 +8570,7 @@ BLOB, byte, nibble 데이터타입을 가진 테이블은 aexport와 iloader를 
 
 예) 
 
+```
 java.sql.SQLException: Encoding or code set not supported.
 at com.informix.util.IfxErrMsg.getSQLException(IfxErrMsg.java:412)
 at com.informix.jdbc.IfxChar.fromIfx(IfxChar.java:235)
@@ -8591,6 +8581,7 @@ at com.informix.jdbc.IfxResultSet.a(IfxResultSet.java:666)
 at com.informix.jdbc.IfxResultSet.b(IfxResultSet.java:638)
 at com.informix.jdbc.IfxResultSet.getString(IfxResultSet.java:724)
 at com.altibase.migLib.run.databinder.DataBinder.getValuesFromSrc(DataBinder.java:445)
+```
 
 ###### 원인
 
@@ -8598,7 +8589,7 @@ Informix DB에 Multi-byte 문자의 바이트가 잘린 채로 입력된 경우 
 
 ###### 해결 방법
 
-Informix 연결 속성에 IFX_USE_STRENC=true 추가한다.
+Informix 연결 속성에 `IFX_USE_STRENC=true` 를 추가한다.
 
 ###### 참고
 
@@ -8610,52 +8601,39 @@ https://m.blog.naver.com/PostView.nhn?blogId=jangkeunna&logNo=70146227929&proxyR
 
 ###### 원인
 
-크기가 1인 데이터를 가져올 때 MySQL JDBC 드라이버가 null 값을 반환하는 것을
-확인하였다면, MySQL JDBC 드라이버 문제로 판단된다.
+크기가 1인 데이터를 가져올 때 MySQL JDBC 드라이버가 null 값을 반환하는 것을 확인하였다면, MySQL JDBC 드라이버 문제로 판단된다.
 
 ###### 해결 방법
 
-드라이버를 5.0.8 버전의 MySQL
-Connector/J([link](https://dev.mysql.com/downloads/connector/j/5.0.html))로
-교체해야 한다. 재시도에서도 같은 현상이 발생하면, 아래의 과정을 통해 Batch
-Execution을 취소한다.
+드라이버를 5.0.8 버전의 MySQL Connector/J([link](https://dev.mysql.com/downloads/connector/j/5.0.html))로 교체해야 한다. 재시도에서도 같은 현상이 발생하면, 아래의 과정을 통해 Batch Execution을 취소한다.
 
 1. 프로젝트를 연다.
 
-2. 메뉴 “Migration” -\> “Migration Options”를 클릭한다.
+2. 메뉴 `Migration` -\> `Migration Options`를 클릭한다.
 
-3. “Batch Execution”의 값을 “No”로 변경한다.
+3. `Batch Execution`의 값을 `No`로 변경한다.
 
 #### 데이터 타입 CHAR, VARCHAR가 NCHAR, NVARCHAR로 변경된다.
 
 ###### 원인
 
-MySQL은 데이터 타입 NCHAR, NVARCHAR을 지원하지 않는다. 대신 CHAR, VARCHAR 컬럼의
-속성으로 국가별 문자 집합(national character set)을 지정할 수 있다. 마이그레이션
-센터는 이 국가별 문자 집합이 지정된 CHAR, VARCHAR 컬럼에 한해서 NCHAR,
-NVARCHAR로 변환한다.
+MySQL은 데이터 타입 NCHAR, NVARCHAR을 지원하지 않는다. 대신 CHAR, VARCHAR 컬럼의 속성으로 국가별 문자 집합(national character set)을 지정할 수 있다. 마이그레이션 센터는 이 국가별 문자 집합이 지정된 CHAR, VARCHAR 컬럼에 한해서 NCHAR, NVARCHAR로 변환한다.
 
 ###### 해결 방법
 
 해당 현상은 정상적인 동작이다.
 
-Note: 기본 DataType Map에서 MySQL의 NVARCHAR가 Altibase의 NVARCHAR(10666)으로
-맵핑되어있다.
+Note: 기본 DataType Map에서 MySQL의 NVARCHAR가 Altibase의 NVARCHAR(10666)으로 맵핑되어있다.
 
-MySQL과 Altibase 간 국가별 문자 집합의 글자 당 바이트 수가 서로 다를 경우, 이에
-대한 고려 없이 이관을 수행하면 제한 바이트 수 초과로 스키마를 생성하지 못하는
-상황이 발생할 수도 있다. 이러한 상황을 피하기 위해, 마이그레이션 센터는
-기본적으로 NVARCHAR의 크기를 고정하였다.
+MySQL과 Altibase 간 국가별 문자 집합의 글자 당 바이트 수가 서로 다를 경우, 이에 대한 고려 없이 이관을 수행하면 제한 바이트 수 초과로 스키마를 생성하지 못하는 상황이 발생할 수도 있다. 이러한 상황을 피하기 위해, 마이그레이션 센터는 기본적으로 NVARCHAR의 크기를 고정하였다.
 
-만약 해당 테이블 컬럼의 데이터 크기가 크지 않다면, 아래와 같은 절차를 수행하여
-원본 데이터베이스의 크기를 그대로 이관할 수 있다.
+만약 해당 테이블 컬럼의 데이터 크기가 크지 않다면, 아래와 같은 절차를 수행하여 원본 데이터베이스의 크기를 그대로 이관할 수 있다.
 
-1. Reconcile 단계: “Data Type Mapping”에서 'NVARCHAR' 행 클릭
+1. Reconcile 단계: `Data Type Mapping`에서 `NVARCHAR` 행 클릭 
 
-2. “Change” 버튼을 클릭
+2. `Change` 버튼을 클릭
 
-3. Destination DB Data Type으로 'NVARCHAR'를 선택하고 Precision을 빈칸으로 둔
-   뒤, 저장한다.
+3. Destination DB Data Type으로 `NVARCHAR`를 선택하고 Precision을 빈칸으로 둔 뒤, 저장한다.
 
 ### TimesTen
 
@@ -8663,28 +8641,21 @@ MySQL과 Altibase 간 국가별 문자 집합의 글자 당 바이트 수가 서
 
 ###### 원인
 
-TimesTen Type 2 JDBC가 native 라이브러리를 로딩하는데 실패하였을 때 출력되는
-메시지이다.
+TimesTen Type 2 JDBC가 native 라이브러리를 로딩하는데 실패하였을 때 출력되는 메시지이다.
 
 ###### 해결 방법
 
-마이그레이션 센터를 실행하려는 장비에 TimesTen 클라이언트 패키지를 설치 한 뒤,
-마이그레이션 센터를 재실행한다. 해당 장비의 운영체제가 리눅스인 경우에는,
-클라이언트 패키지를 설치한 뒤 LD_LIBRARY_PATH에 설치된 클라이언트 패키지의 lib
-디렉토리 경로를 추가해야 한다.
+마이그레이션 센터를 실행하려는 장비에 TimesTen 클라이언트 패키지를 설치 한 뒤, 마이그레이션 센터를 재실행한다. 해당 장비의 운영체제가 리눅스인 경우에는, 클라이언트 패키지를 설치한 뒤 LD_LIBRARY_PATH에 설치된 클라이언트 패키지의 lib 디렉토리 경로를 추가해야 한다.
 
 #### 연결정보 등록 중, “Test” 버튼 클릭 시 오류 메시지 'Problems with loading native library/missing method: \~\\bin\\ttJdbcCS1122.dll: Can't load AMD 64-bit.dll on a IA 32-bit platform'가 출력된다.
 
 ###### 원인
 
-마이그레이션 센터가 사용하고 있는 JRE와 TimesTen 클라이언트 패키지의 비트 수가
-일치하지 않을 때 위의 메시지가 출력된다.
+마이그레이션 센터가 사용하고 있는 JRE와 TimesTen 클라이언트 패키지의 비트 수가 일치하지 않을 때 위의 메시지가 출력된다.
 
 ###### 해결 방법
 
-실행 파일(migcenter.bat 또는 migcenter.sh)을 편집기로 열어 환경변수 JAVA_HOME의
-값을 변경한다. 설치된 TimesTen 클라이언트 패키지의 비트 수에 맞는 JRE의 경로를
-환경변수 JAVA_HOME으로 지정한 뒤, 마이그레이션 센터를 재실행한다.
+실행 파일(migcenter.bat 또는 migcenter.sh)을 편집기로 열어 환경변수 JAVA_HOME의 값을 변경한다. 설치된 TimesTen 클라이언트 패키지의 비트 수에 맞는 JRE의 경로를 환경변수 JAVA_HOME으로 지정한 뒤, 마이그레이션 센터를 재실행한다.
 
 #### 연결정보 등록 중, “Test” 버튼 클릭 시 오류 메시지 'Data source name not found and no default driver specified'가 출력된다.
 
