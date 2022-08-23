@@ -8198,24 +8198,22 @@ OutOfMemoryError에서 출력한 에러 메시지에 따라 아래와 같이 3�
 
   - 메모리 사용량을 낮추도록 성능 프로퍼티 값 변경
     1. 프로젝트를 연다.
-    2. 메뉴 `Migration` -\> `Migration Options`를 클릭한다.
-    3. `Batch Size`와 `Thread Count`의 값을 낮춘다.
+    2. 메뉴 Migration -\> Migration Options를 클릭한다.
+    3. Batch Size와 Thread Count의 값을 낮춘다.
   - 프로그램이 사용할 수 있는 최대 메모리 크기 증가
 
     1. 실행 파일(migcenter.bat 또는 migcenter.sh)을 편집기로 연다.
 
-    2. JVM 내 heap 최대 크기를 정하는 옵션 `-Xmx`의 값을 기존 값보다 높게 설정한다.
+    2. JVM 내 heap 최대 크기를 정하는 옵션 -Xmx의 값을 기존 값보다 높게 설정한다.
 
-       
-
-    > Note: Windows 32 bit machine에서는 OS dependency로 인해 Xmx 값을 최대 1.5 GB까지
-    > 설정할 수 있다.
-
+    
+  > Note: Windows 32 bit machine에서는 OS dependency로 인해 Xmx 값을 최대 1.5 GB까지 설정할 수 있다.
+  
 - `<PermGen space>`
 
   1. 실행 파일(migcenter.bat 또는 migcenter.sh)을 편집기로 연다.
 
-  2. JVM 내 permanent generation space의 최대 크기를 정하는 옵셥 `-XX:MaxPermSize`의 값을 기존 값보다 크게 설정한다.
+  2. JVM 내 permanent generation space의 최대 크기를 정하는 옵셥 -XX:MaxPermSize의 값을 기존 값보다 크게 설정한다.
 
 - `<Metaspace>`
 
@@ -8223,13 +8221,12 @@ OutOfMemoryError에서 출력한 에러 메시지에 따라 아래와 같이 3�
 
   1. 실행 파일(migcenter.bat 또는 migcenter.sh)을 편집기로 연다.
 
-  2. JVM 내 permanent generation space의 최대 크기를 정하는 옵션 `-XX:MaxPermSize`를
+  2. JVM 내 permanent generation space의 최대 크기를 정하는 옵션 -XX:MaxPermSize를
      metaspace의 최대 크기를 정하는 옵션으로 변경한 뒤, 기존 값보다 높게 수정한다.
-
-     - 변경 전 : `-XX:MaxPermSize=128m`
-
-     - 변경 후 : `-XX:MaxMetaspaceSize=256m`
-
+     - 변경 전 : -XX:MaxPermSize=128m
+     
+     - 변경 후 : -XX:MaxMetaspaceSize=256m
+  
 - 참고
   - <https://dzone.com/articles/java-8-permgen-metaspace>
   - <https://www.infoq.com/articles/Java-PERMGEN-Removed>
@@ -8284,16 +8281,11 @@ KSC5601 한글 데이터는 GB231280으로 표기될 수 없다. 따라서 각�
 
 `원인`
 
-Windows 환경에서 마이그레이션 센터를 실행할 때 발생할 수 있는 오류이다. 연결정보
-등록 시 JDBC 드라이버 파일을 선택하던 중, 디렉토리를 변경하면 프로그램이 비정상
-종료되는 문제가 나타날 수 있다. JVM과 Windows 운영체제 사이의 커뮤니케이션
-문제로 인해 발생하는 Java JVM crash이다. 아래 링크를 통해, 오래된 버전의 JVM에서
-발생하는 Java crash 문제를 확인할 수 있다. <http://www.java.com/en/download/help/error_hotspot.xml>
+Windows 환경에서 마이그레이션 센터를 실행할 때 발생할 수 있는 오류이다. 연결정보 등록 시 JDBC 드라이버 파일을 선택하던 중, 디렉토리를 변경하면 프로그램이 비정상 종료되는 문제가 나타날 수 있다. JVM과 Windows 운영체제 사이의 커뮤니케이션 문제로 인해 발생하는 Java JVM crash이다. 아래 링크를 통해, 오래된 버전의 JVM에서 발생하는 Java crash 문제를 확인할 수 있다. <http://www.java.com/en/download/help/error_hotspot.xml>
 
 `해결 방법`
 
-최신 버전의 JRE를 설치하고 migcenter.bat 파일 내의 JAVA_HOME 경로를 수정한 뒤,
-마이그레이션 센터를 재실행한다.
+최신 버전의 JRE를 설치하고 migcenter.bat 파일 내의 JAVA_HOME 경로를 수정한 뒤, 마이그레이션 센터를 재실행한다.
 
 #### CLI 모드로 실행 시, UnsatisfiedLinkError: /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libawt_xawt.so: libXrender.so.1: cannot open shared object file: No such file or directory 발생
 
@@ -8325,7 +8317,7 @@ bat, sh에서 설정된 최대 메모리 할당값(`-Xmx`) 자바 옵션이 시�
 
 `해결 방법`
 
-bat, sh에서 `-Xms -Xmx` 값을 사용자 환경에 맞춰 변경한 뒤, Migration Center를 재실행한다.
+bat, sh에서 -Xms -Xmx 값을 사용자 환경에 맞춰 변경한 뒤, Migration Center를 재실행한다.
 
 ### Oracle
 
@@ -8333,8 +8325,7 @@ bat, sh에서 `-Xms -Xmx` 값을 사용자 환경에 맞춰 변경한 뒤, Migra
 
 `원인`
 
-대용량 쿼리 처리 중, 오라클의 임시 테이블스페이스 공간이 부족하여 발생한
-에러이다.
+대용량 쿼리 처리 중, 오라클의 임시 테이블스페이스 공간이 부족하여 발생한 에러이다.
 
 `해결 방법`
 
@@ -8344,24 +8335,15 @@ bat, sh에서 `-Xms -Xmx` 값을 사용자 환경에 맞춰 변경한 뒤, Migra
 
 `원인`
 
-한글 환경에서는 `Fetch data from source database has been failed. 스트림이 이미
-종료되었습니다.`라는 메시지로 출력되기도 한다.
+한글 환경에서는 `Fetch data from source database has been failed. 스트림이 이미 종료되었습니다.`라는 메시지로 출력되기도 한다.
 
-LONG 또는 LONG RAW 컬럼과 LOB 컬럼이 함께 들어있는 테이블은 데이터 이관 중
-문제가 발생할 수 있다. 아래는 Oracle JDBC Developer's Guide  ([link](https://docs.oracle.com/cd/E11882_01/java.112/e16548/jstreams.htm#JJDBC28411))에서 발췌한 내용이다.
+LONG 또는 LONG RAW 컬럼과 LOB 컬럼이 함께 들어있는 테이블은 데이터 이관 중 문제가 발생할 수 있다. 아래는 [Oracle JDBC Developer's Guide](https://docs.oracle.com/cd/E11882_01/java.112/e16548/jstreams.htm#JJDBC28411)에서 발췌한 내용이다.
 
-12. Java Streams in JDBC - Streaming LONG or LONG RAW Columns
+> 12. *Java Streams in JDBC - Streaming LONG or LONG RAW Columns*
+>
+> *Because the column data remains in the communications channel, the streaming mode interferes with all other use of the connection. Any use of the connection, other than reading the column data, will discard the column data from the channel.*
 
-Because the column data remains in the communications channel, the streaming
-mode interferes with all other use of the connection. Any use of the connection,
-other than reading the column data, will discard the column data from the
-channel.
-
-LONG 또는 LONG RAW 컬럼의 데이터 전송은 스트림을 통해 이루어지는데, 이 데이터
-전송 시점에 해당 Connection을 이용한 다른 데이터 타입의 스트림 전송은 방해
-받는다고 기술되어있다. 이는 LONG 또는 LONG RAW 컬럼과 LOB 컬럼이 하나의 테이블
-내에 있을 경우, 해당 테이블의 데이터 이관 성공 여부를 보장할 수 없음을 의미한다.
-또한 위와 같은 이유로 오라클에서는 이러한 구성을 사용하지 않도록 권고하고 있다.
+LONG 또는 LONG RAW 컬럼의 데이터 전송은 스트림을 통해 이루어지는데, 이 데이터 전송 시점에 해당 Connection을 이용한 다른 데이터 타입의 스트림 전송은 방해 받는다고 기술되어있다. 이는 LONG 또는 LONG RAW 컬럼과 LOB 컬럼이 하나의 테이블 내에 있을 경우, 해당 테이블의 데이터 이관 성공 여부를 보장할 수 없음을 의미한다. 또한 위와 같은 이유로 오라클에서는 이러한 구성을 사용하지 않도록 권고하고 있다.
 
 `해결 방법`
 
@@ -8371,21 +8353,13 @@ LONG 또는 LONG RAW 컬럼의 데이터 전송은 스트림을 통해 이루어
 
 `원인`
 
-원본 데이터베이스인 오라클의 이관 객체 목록 중, 전역 임시 테이블(global
-temporary table)이 존재할 경우, 반드시 대상 데이터베이스인 Altibase에 휘발성
-테이블스페이스가 존재해야 한다. 오라클의 전역 임시 테이블은 Altibase의 임시
-테이블로 이관되며, Altibase의 임시 테이블은 휘발성 테이블스페이스에만 저장
-가능하기 때문이다. (매뉴얼 참조: SQL Reference - 3. 데이터 정의어 - CREATE TABLE -설명)
+원본 데이터베이스인 오라클의 이관 객체 목록 중, 전역 임시 테이블(global temporary table)이 존재할 경우, 반드시 대상 데이터베이스인 Altibase에 휘발성 테이블스페이스가 존재해야 한다. 오라클의 전역 임시 테이블은 Altibase의 임시 테이블로 이관되며, Altibase의 임시 테이블은 휘발성 테이블스페이스에만 저장 가능하기 때문이다. (매뉴얼 참조: SQL Reference - 3. 데이터 정의어 - CREATE TABLE -설명)
 
-Reconcile 단계를 수행할 때, 마이그레이션 센터는 사용자가 접근 가능한 Altibase
-테이블스페이스들의 목록을 가져와 데이터베이스 간 테이블스페이스 및 테이블 맵핑을
-시도한다. 이 때, 오라클에 존재하는 전역 임시 테이블과 맵핑할 Altibase의 휘발성
-테이블스페이스가 없을 경우, 이러한 오류가 발생한다.
+Reconcile 단계를 수행할 때, 마이그레이션 센터는 사용자가 접근 가능한 Altibase 테이블스페이스들의 목록을 가져와 데이터베이스 간 테이블스페이스 및 테이블 맵핑을 시도한다. 이 때, 오라클에 존재하는 전역 임시 테이블과 맵핑할 Altibase의 휘발성 테이블스페이스가 없을 경우, 이러한 오류가 발생한다.
 
 `해결 방법`
 
-대상 데이터베이스인 Altibase에 휘발성 테이블스페이스를 생성하고 접근 권한을
-부여한 뒤, 다시 reconcile 단계를 수행한다.
+대상 데이터베이스인 Altibase에 휘발성 테이블스페이스를 생성하고 접근 권한을 부여한 뒤, 다시 reconcile 단계를 수행한다.
 
 #### 데이터 이관 중에 SQLException: Protocol violation(프로토콜 위반)이 발생한다.
 
@@ -8398,7 +8372,7 @@ Reconcile 단계를 수행할 때, 마이그레이션 센터는 사용자가 접
 프로그램이 사용할 수 있는 최대 메모리 크기를 키운다.
 
 1. 실행 파일(migcenter.bat 또는 migcenter.sh)을 편집기로 연다.
-2. JVM 내 heap 최대 크기를 정하는 옵션 `-Xmx`의 값을 기존 값보다 크게 수정한다.
+2. JVM 내 heap 최대 크기를 정하는 옵션 -Xmx의 값을 기존 값보다 크게 수정한다.
 
 `참고`
 
@@ -8410,12 +8384,12 @@ Reconcile 단계를 수행할 때, 마이그레이션 센터는 사용자가 접
 
 대량의 데이터 이관 중에 오라클에서 fetch 또는 bind 관련 SQLException이 여러 건 발생하는 경우가 있다. 이런 경우, 테이블 모드에서 해당 테이블 한 개만 이관해서 성공한다면, OOM으로 인한 오류를 의심해 볼 수 있다.
 
-예) 
-
+~~~java
 Caused by: java.sql.SQLException: Fail to convert to internal representation
 at oracle.jdbc.driver.CharCommonAccessor.getBigDecimal(CharCommonAccessor.java:414)
 
 Invalid column type: getCLOB not implemented for class oracle.jdbc.driver.T4CVarcharAccessor
+~~~
 
 `원인`
 
@@ -8455,9 +8429,9 @@ MigrationCenter의 Oracle용 JDBC 드라이버 파일을 사용중인 Oracle DBM
 
 `원인`
 
-연결정보 등록 중 `Test` 버튼을 눌렀을 때, 오류 메시지와 함께 접속에 실패한다.
+연결정보 등록 중 Test 버튼을 눌렀을 때, 오류 메시지와 함께 접속에 실패한다.
 
-MS-SQL 연결정보를 등록할 때, `Test` 버튼을 누르면 아래와 같은 오류 메시지가 출력될 수 있다.
+MS-SQL 연결정보를 등록할 때, Test 버튼을 누르면 아래와 같은 오류 메시지가 출력될 수 있다.
 
 - `Migration Center can support MS-SQL user who has a single schema only.`
 
@@ -8514,19 +8488,14 @@ Migration Center를 구동하는데 사용한 Java Runtime Environment (JRE) 의
 
 `해결 방법`
 
-`$JAVA_HOME/jre/lib/security/java.security` 파일의 `jdk.tls.disabledAlgorithms` 항목에서 TLSv1, TLSv1.1을 제거하면 이전 버전의 TLS를 사용 가능하다. `java.security.org`가 수정 전 파일이고, `java.security`가 수정된 파일이다.
+$JAVA_HOME/jre/lib/security/java.security 파일의 jdk.tls.disabledAlgorithms 항목에서 TLSv1, TLSv1.1을 제거하면 이전 버전의 TLS를 사용 가능하다. 
 
-```bash
-$ diff java.security.org java.security
-720c720
-< jdk.tls.disabledAlgorithms=SSLv3, TLSv1, TLSv1.1, RC4, DES, MD5withRSA, \
----
-> jdk.tls.disabledAlgorithms=SSLv3, RC4, DES, MD5withRSA, \
-```
+~~~java
+//jdk.tls.disabledAlgorithms=SSLv3, TLSv1, TLSv1.1, RC4, DES, MD5withRSA, 
+jdk.tls.disabledAlgorithms=SSLv3, RC4, DES, MD5withRSA, 
+~~~
 
-TLS 1.2 이상 버전을 의무적으로 사용해야 한다면, 아래 사이트를 참조하여 Windows, MS-SQL 서버, MS-SQL JDBC 드라이버 파일을 업데이트 해야 한다.
-
-https://support.microsoft.com/en-us/topic/kb3135244-tls-1-2-support-for-microsoft-sql-server-e4472ef8-90a9-13c1-e4d8-44aad198cdbe
+TLS 1.2 이상 버전을 의무적으로 사용해야 한다면, [KB3135244 - TLS 1.2 support for Microsoft SQL Server](https://support.microsoft.com/en-us/topic/kb3135244-tls-1-2-support-for-microsoft-sql-server-e4472ef8-90a9-13c1-e4d8-44aad198cdbe)를 참조하여 Windows, MS-SQL 서버, MS-SQL JDBC 드라이버 파일을 업데이트 해야 한다.
 
 #### 마이그레이션 센터를 실행하는 자바 버전과 맞지 않은 JDBC 드라이버를 사용하면 Unable to connect to DB. javax/xml/bind/DatatypeConverter 에러가 발생할 수 있다.
 
@@ -8542,7 +8511,7 @@ JRE 10 이하 버전의 JDBC 드라이버에서 javax.xml.bind 모듈을 참조�
 
 예) mssql-jdbc-7.2.2.***jre11***.jar
 
-
+<br/>
 
 ### Altibase
 
@@ -8598,13 +8567,13 @@ BLOB, byte, nibble 데이터타입을 가진 테이블은 aexport와 iloader를 
 
 프로젝트를 열고 메뉴 Migration - Migration Option을 클릭하여 Batch Execution을 'No'로 선택한 뒤, 데이터 이관을 수행한다.
 
+<br/>
+
 ### Informix
 
 #### 데이터 이관 중에 Informix JDBC Driver에서 java.sql.SQLException: Encoding or code set not supported. 발생
 
 데이터 이관 중에 Informix에서 fetch 중에 아래와 같은 SQLException이 발생하였다. Informix DB에 Multi-byte 문자의 바이트가 잘린 채로 입력된 경우 이 값을 조회할 때 발생하는 exception이다.
-
-예) 
 
 ```
 java.sql.SQLException: Encoding or code set not supported.
@@ -8625,11 +8594,13 @@ Informix DB에 Multi-byte 문자의 바이트가 잘린 채로 입력된 경우 
 
 `해결 방법`
 
-Informix 연결 속성에 `IFX_USE_STRENC=true` 를 추가한다.
+Informix 연결 속성에 IFX_USE_STRENC=true 를 추가한다.
 
 `참고`
 
 https://m.blog.naver.com/PostView.nhn?blogId=jangkeunna&logNo=70146227929&proxyReferer=https%3A%2F%2Fwww.google.co.kr%2F
+
+<br/>
 
 ### MySQL
 
@@ -8645,9 +8616,9 @@ https://m.blog.naver.com/PostView.nhn?blogId=jangkeunna&logNo=70146227929&proxyR
 
 1. 프로젝트를 연다.
 
-2. 메뉴 `Migration` -\> `Migration Options`를 클릭한다.
+2. 메뉴 Migration -\> Migration Options를 클릭한다.
 
-3. `Batch Execution`의 값을 `No`로 변경한다.
+3. Batch Execution의 값을 No로 변경한다.
 
 #### 데이터 타입 CHAR, VARCHAR가 NCHAR, NVARCHAR로 변경된다.
 
@@ -8665,11 +8636,13 @@ MySQL과 Altibase 간 국가별 문자 집합의 글자 당 바이트 수가 서
 
 만약 해당 테이블 컬럼의 데이터 크기가 크지 않다면, 아래와 같은 절차를 수행하여 원본 데이터베이스의 크기를 그대로 이관할 수 있다.
 
-1. Reconcile 단계: `Data Type Mapping`에서 `NVARCHAR` 행 클릭 
+1. Reconcile 단계: Data Type Mapping에서 NVARCHAR 행 클릭 
 
-2. `Change` 버튼을 클릭
+2. Change 버튼을 클릭
 
-3. Destination DB Data Type으로 `NVARCHAR`를 선택하고 Precision을 빈칸으로 둔 뒤, 저장한다.
+3. Destination DB Data Type으로 NVARCHAR를 선택하고 Precision을 빈칸으로 둔 뒤, 저장한다.
+
+<br/>
 
 ### TimesTen
 
