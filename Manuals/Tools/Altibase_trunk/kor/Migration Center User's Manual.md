@@ -1,3 +1,34 @@
+# Migration Center User's Manual
+
+Release 7.9
+
+Altibase® Tools & Utilities
+
+<br/>
+
+<br/>
+
+<br/><br/><br/><br/>
+
+Copyright ⓒ 2001\~2021 Altibase Corp. All Rights Reserved.
+
+본 문서의 저작권은 ㈜알티베이스에 있습니다. 이 문서에 대하여 당사의 동의 없이
+무단으로 복제 또는 전용할 수 없습니다.
+
+**㈜알티베이스**
+
+08378 서울시 구로구 디지털로 306 대륭포스트타워Ⅱ 10층
+
+전화: 02-2082-1114 팩스: 02-2082-1099
+
+고객서비스포털: <http://support.altibase.com>
+
+homepage: [http://www.altibase.com](http://www.altibase.com/)
+
+![](media/MigrationCenter/e5cfb3761673686d093a3b00c062fe7a.png)
+
+# 목차
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -61,31 +92,16 @@
     - [MySQL](#mysql-1)
     - [TimesTen](#timesten-1)
 
-Altibase® Tools & Utilities
 
-Migration Center User's Manual
 ==============================
 
-![](media/MigrationCenter/e5cfb3761673686d093a3b00c062fe7a.png)
+
 
 Altibase Tools & Utilities Migration Center User's Manual
 
 Release 7.9
 
-Copyright ⓒ 2001\~2021 Altibase Corp. All Rights Reserved.
 
-본 문서의 저작권은 ㈜알티베이스에 있습니다. 이 문서에 대하여 당사의 동의 없이
-무단으로 복제 또는 전용할 수 없습니다.
-
-**㈜알티베이스**
-
-08378 서울시 구로구 디지털로 306 대륭포스트타워Ⅱ 10층
-
-전화: 02-2082-1114 팩스: 02-2082-1099
-
-고객서비스포털: <http://support.altibase.com>
-
-homepage: [http://www.altibase.com](http://www.altibase.com/)
 
 서문
 ----
@@ -2441,13 +2457,15 @@ AS SELECT * FROM t1
 
 > 이 규칙은 Altibase 6.3.1.0.0 이전 버전에서 적용된다. 
 
-###### 타입
-`TODO`
+`타입`
 
-###### 설명
+TODO
+
+###### `설명`
 ‘INSTEAD OF’는 수동으로 변환해야 한다.
 
-###### 원본 SQL 문장
+`원본 SQL 문장`
+
 ~~~sql
 CREATE OR REPLACE TRIGGER log_attendance
 INSTEAD OF INSERT ON attendance_view FOR EACH ROW
@@ -2457,7 +2475,8 @@ BEGIN
  END IF;
 END;
 ~~~
-###### 변환된 SQL 문장
+`변환된 SQL 문장`
+
 ~~~sql
 CREATE OR REPLACE TRIGGER log_attendance
 INSTEAD OF /* [TODO] RULE-12002 : 'INSTEAD OF' must be converted manually */ INSERT ON attendance_view FOR EACH ROW
@@ -2471,13 +2490,16 @@ END;
 
 #### RULE-12003
 
-###### 타입
-`TODO`
+`타입`
 
-###### 설명
+TODO
+
+`설명`
+
 여러 개의 이벤트를 지원하는 트리거는 수동으로 변환해야 한다.
 
-###### 원본 SQL 문장
+`원본 SQL 문장`
+
 ~~~sql
 CREATE OR REPLACE TRIGGER trig1
 BEFORE INSERT OR DELETE ON t1
@@ -2486,8 +2508,8 @@ BEGIN
 END;
 ~~~
 
+`변환된 SQL 문장`
 
-###### 변환된 SQL 문장
 ~~~sql
 CREATE OR REPLACE TRIGGER trig1
 BEFORE INSERT OR DELETE ON t1 /* [TODO] RULE-12003 : Triggers supporting multiple events must be converted manually */
@@ -2499,15 +2521,18 @@ END;
 
 #### RULE-12004
 
-> 이 규칙은 Altibase 6.3.1.0.0 이전 버전에서 적용된다. 
+> 이 규칙은 Altibase 6.3.1 이전 버전에서 적용된다. 
 
-###### 타입
-`TODO`
+`타입`
 
-###### 설명
+TODO
+
+`설명`
+
 저장 프로시저 블록 앞에 DECLARE가 있거나 생략된 경우, AS 또는 IS로 대체 또는 삽입되어야 한다.
 
-###### 원본 SQL 문장
+`원본 SQL 문장`
+
 ~~~sql
 CREATE OR REPLACE TRIGGER trig1
 BEFORE INSERT ON t1
@@ -2515,7 +2540,8 @@ BEGIN
 NULL;
 END;
 ~~~
-###### 변환된 SQL 문장
+`변환된 SQL 문장`
+
 ~~~sql
 CREATE OR REPLACE TRIGGER trig1
 BEFORE INSERT ON t1
@@ -2524,50 +2550,39 @@ NULL;
 END;
 ~~~
 
-
-- 버전 범위: Altibase 6.3.1.0.0 \~ 6.5.1.3.7 이하
+>  이 규칙이 적용되는 Altibase 서버 버전은 아래와 같다.
+>
+> - Altibase 6.3.1
+> - Altibase 6.5.1
+>   - Altibase 6.5.1.0.0 ~ 6.5.1.3.7 이하
 
 ###### 타입 
 `TODO`
 
 ###### 설명
-저장 프로시저 블록의 선언부 앞에 있는 DECLARE는 AS 또는 IS로
-  대체되어야 한다.
+저장 프로시저 블록의 선언부 앞에 있는 DECLARE는 AS 또는 IS로 대체되어야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE TRIGGER trig1
+BEFORE INSERT ON t1
+DECLARE
+v1 NUMBER := 1;
+BEGIN
+NULL;
+END;
 ~~~
-  CREATE OR REPLACE TRIGGER trig1
-
-  BEFORE INSERT ON t1
-
-  **DECLARE**
-
-  v1 NUMBER := 1;
-
-  BEGIN
-
-  NULL;
-
-  END;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE TRIGGER trig1
+BEFORE INSERT ON t1
+DECLARE /* [TODO] RULE-12004 : 'AS' or 'IS' must replace 'DECLARE' that starts the declarative part of the block */
+v1 NUMBER := 1;
+BEGIN
+NULL;
+END;
 ~~~
-  CREATE OR REPLACE TRIGGER trig1
 
-  BEFORE INSERT ON t1
-
-  **DECLARE /\* [TODO] RULE-12004 : 'AS' or 'IS' must replace 'DECLARE' that
-  starts the declarative part of the block \*/**
-
-  v1 NUMBER := 1;
-
-  BEGIN
-
-  NULL;
-
-  END;
 
 #### RULE-12005
 
@@ -2579,30 +2594,21 @@ END;
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE TRIGGER trig1
+BEFORE CREATE ON DATABASE
+BEGIN
+NULL;
+END;
 ~~~
-  CREATE OR REPLACE TRIGGER trig1
-
-  **BEFORE CREATE ON DATABASE**
-
-  BEGIN
-
-  NULL;
-
-  END;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE TRIGGER trig1
+BEFORE CREATE ON DATABASE /* [TODO] RULE-12005 : Non DML trigger must be converted manually */
+BEGIN
+NULL;
+END;
 ~~~
-  CREATE OR REPLACE TRIGGER trig1
 
-  **BEFORE CREATE ON DATABASE /\* [TODO] RULE-12005 : Non DML trigger must be
-  converted manually \*/**
-
-  BEGIN
-
-  NULL;
-
-  END;
 
 #### RULE-12007
 
@@ -2614,31 +2620,20 @@ END;
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE TRIGGER trig1
+INSTEAD OF DELETE ON NESTED TABLE t1 OF v1
+BEGIN
+NULL;
+END;
 ~~~
-  CREATE OR REPLACE TRIGGER trig1
-
-  INSTEAD OF DELETE ON **NESTED TABLE t1 OF v1**
-
-  BEGIN
-
-  NULL;
-
-  END;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE TRIGGER trig1
+INSTEAD OF DELETE ON NESTED TABLE t1 OF v1 /* [TODO] RULE-12007 : Nested table must be converted manually */
+BEGIN
+NULL;
+END;
 ~~~
-  CREATE OR REPLACE TRIGGER trig1
-
-  INSTEAD OF DELETE ON **NESTED TABLE t1 OF v1 /\* [TODO] RULE-12007 : Nested
-  table must be converted manually \*/**
-
-  BEGIN
-
-  NULL;
-
-  END;
-
 #### RULE-12008
 
 ###### 타입
@@ -2649,23 +2644,16 @@ CALL 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE TRIGGER trig1
+AFTER DELETE ON t1
+CALL testproc1(a1, a2);
 ~~~
-  CREATE OR REPLACE TRIGGER trig1
-
-  AFTER DELETE ON t1
-
-  **CALL testproc1(a1, a2);**
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE TRIGGER trig1
+AFTER DELETE ON t1
+CALL testproc1(a1, a2) /* [TODO] RULE-12008 : CALL routine clause must be converted manually */;
 ~~~
-  CREATE OR REPLACE TRIGGER trig1
-
-  AFTER DELETE ON t1
-
-  **CALL testproc1(a1, a2) /\* [TODO] RULE-12008 : CALL routine clause must be
-  converted manually \*/;**
-
 #### RULE-12009
 
 ###### 타입
@@ -2676,35 +2664,22 @@ CALL 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE TRIGGER trig1
+INSTEAD OF DELETE ON NESTED TABLE t1 OF v1
+REFERENCING PARENT AS parent FOR EACH ROW
+BEGIN
+NULL;
+END;
 ~~~
-  CREATE OR REPLACE TRIGGER trig1
-
-  INSTEAD OF DELETE ON NESTED TABLE t1 OF v1
-
-  REFERENCING **PARENT AS parent** FOR EACH ROW
-
-  BEGIN
-
-  NULL;
-
-  END;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE TRIGGER trig1
+INSTEAD OF DELETE ON NESTED TABLE t1 OF v1
+REFERENCING PARENT AS parent /* [TODO] RULE-12009 : Parent value of the current row cannot be specified */ FOR EACH ROW
+BEGIN
+NULL;
+END;
 ~~~
-  CREATE OR REPLACE TRIGGER trig1
-
-  INSTEAD OF DELETE ON NESTED TABLE t1 OF v1
-
-  REFERENCING **PARENT AS parent /\* [TODO] RULE-12009 : Parent value of the
-  current row cannot be specified \*/** FOR EACH ROW
-
-  BEGIN
-
-  NULL;
-
-  END;
-
 #### RULE-12010
 
 ###### 타입
@@ -2715,35 +2690,23 @@ CALL 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 
-  CREATE OR REPLACE TRIGGER trig1
 ~~~sql
+CREATE OR REPLACE TRIGGER 
+AFTER DELETE ON t1
+FOLLOWS trig2
+BEGIN
+NULL;
+END;
 ~~~
-  AFTER DELETE ON t1
-
-  **FOLLOWS trig2**
-
-  BEGIN
-
-  NULL;
-
-  END;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE TRIGGER 
+AFTER DELETE ON t1
+FOLLOWS trig2 /* [TODO] RULE-12010 : Trigger ordering clause must be converted manually */
+BEGIN
+NULL;
+END;
 ~~~
-  CREATE OR REPLACE TRIGGER trig1
-
-  AFTER DELETE ON t1
-
-  **FOLLOWS trig2 /\* [TODO] RULE-12010 : Trigger ordering clause must be
-  converted manually \*/**
-
-  BEGIN
-
-  NULL;
-
-  END;
-
 #### RULE-12011
 
 ###### 타입
@@ -8397,7 +8360,7 @@ Oracle JDBC driver 내부적으로 OOM 발생 이후 다양한 오동작이 가�
 
 `해결 방법`
 
-Common 절의 OutOfMemoryError 항목 참조.
+[DBMS 공통](#dbms-공통)에서 [OutOfMemoryError 항목](#데이터-이관-중에-outofmemoryerror가-발생한다) 참조.
 
 #### 빌드 단계에서 NullPointerException 이 발생할 수 있다.
 
