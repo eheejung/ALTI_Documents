@@ -2245,7 +2245,7 @@ Altibase버전에 적용됨을 의미한다.
 
 - 설명: 'WITH CHECK OPTION'이 제거되었다.
 
-- 원본 SQL 문장:
+- ###### 원본 SQL 문장:
   
   CREATE OR REPLACE VIEW v1
   
@@ -2262,6 +2262,38 @@ Altibase버전에 적용됨을 의미한다.
   **/\* WITH CHECK OPTION \*/ /\* [REMOVED] RULE-11001 : 'WITH CHECK OPTION' is
   removed \*/**;
 
+
+
+#### RULE-11001
+
+###### 타입
+
+`REMOVED`
+
+###### 설명
+
+'WITH CHECK OPTION'이 제거되었다.
+
+###### 원본 SQL 문장
+
+```sql
+CREATE OR REPLACE VIEW v1
+AS 
+SELECT * FROM t1
+WITH CHECK OPTION;
+```
+
+###### 변환된 SQL 문장
+
+```sql
+CREATE OR REPLACE VIEW v1
+AS 
+SELECT * FROM t1
+/* WITH CHECK OPTION */ /* [REMOVED] RULE-11001 : 'WITH CHECK OPTION' is removed */;
+```
+
+
+
 #### RULE-11002
 
 - 타입: REMOVED
@@ -2270,13 +2302,25 @@ Altibase버전에 적용됨을 의미한다.
 
 - 원본 SQL 문장:
   
+  ```sql
+  CREATE OR REPLACE VIEW v1 
+  (a1 UNIQUE)
+  AS SELECT c1 FROM t1;
+  ```
+
   CREATE OR REPLACE VIEW v1
   
   (a1 **UNIQUE**)
   
   AS SELECT c1 FROM t1;
-
+  
 - 변환된 SQL 문장:
+  
+  ```sql
+  CREATE OR REPLACE VIEW v1
+  (a1 /* UNIQUE */ /* [REMOVED] RULE-11002 : Inline constraints are removed*/)
+  AS SELECT c1 FROM t1;
+  ```
   
   CREATE OR REPLACE VIEW v1
   
@@ -8468,13 +8512,13 @@ TLS 1.2 이상 버전을 의무적으로 사용해야 한다면, 아래 사이�
 
 https://support.microsoft.com/en-us/topic/kb3135244-tls-1-2-support-for-microsoft-sql-server-e4472ef8-90a9-13c1-e4d8-44aad198cdbe
 
-#### Java 11 이상에서 Migration Center를 실행하고 JRE 10 이하 버전 용 Microsoft JDBC 드라이버를 사용하면 Unable to connect to DB. javax/xml/bind/DatatypeConverter 에러가 발생한다.
+#### Migration Center를 실행하는 Java 버전에 맞지 않은 Microsoft JDBC 드라이버를 사용하면 Unable to connect to DB. javax/xml/bind/DatatypeConverter 에러가 발생할 수 있다.
+
+Java 11 이상에서 Migration Center를 실행하고 JRE 10 이하 버전의 Microsoft JDBC 드라이버를 사용하면 Unable to connect to DB. javax/xml/bind/DatatypeConverter 에러가 발생한다.
 
 ###### 원인
 
-Java 11 이상에서 javax.xml.bind 모듈이 제거되었다. 
-
-JRE 10 이하 버전 용 Microsoft JDBC 드라이버에서 javax.xml.bind 모듈을 참조하여 발생하는 에러이다.
+JRE 10 이하 버전의 Microsoft JDBC 드라이버에서 javax.xml.bind 모듈을 참조하여 발생하는 에러이다. javax.xml.bind 모듈은 Java 11 이상에서 제거되었다. 
 
 ###### 해결 방법
 
