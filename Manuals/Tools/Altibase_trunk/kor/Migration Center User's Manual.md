@@ -2308,12 +2308,6 @@ SELECT * FROM t1
   AS SELECT c1 FROM t1;
   ```
 
-  CREATE OR REPLACE VIEW v1
-  
-  (a1 **UNIQUE**)
-  
-  AS SELECT c1 FROM t1;
-  
 - 변환된 SQL 문장:
   
   ```sql
@@ -2321,13 +2315,6 @@ SELECT * FROM t1
   (a1 /* UNIQUE */ /* [REMOVED] RULE-11002 : Inline constraints are removed*/)
   AS SELECT c1 FROM t1;
   ```
-  
-  CREATE OR REPLACE VIEW v1
-  
-  (a1 **/\* UNIQUE \*/ /\* [REMOVED] RULE-11002 : Inline constraints are removed
-  \*/**)
-  
-  AS SELECT c1 FROM t1;
 
 #### RULE-11003
 
@@ -8512,17 +8499,17 @@ TLS 1.2 이상 버전을 의무적으로 사용해야 한다면, 아래 사이�
 
 https://support.microsoft.com/en-us/topic/kb3135244-tls-1-2-support-for-microsoft-sql-server-e4472ef8-90a9-13c1-e4d8-44aad198cdbe
 
-#### Migration Center를 실행하는 Java 버전에 맞지 않은 Microsoft JDBC 드라이버를 사용하면 Unable to connect to DB. javax/xml/bind/DatatypeConverter 에러가 발생할 수 있다.
+#### Migration Center를 실행하는 Java 버전과 맞지 않은 JDBC 드라이버를 사용하면 Unable to connect to DB. javax/xml/bind/DatatypeConverter 에러가 발생할 수 있다.
 
-Java 11 이상에서 Migration Center를 실행하고 JRE 10 이하 버전의 Microsoft JDBC 드라이버를 사용하면 Unable to connect to DB. javax/xml/bind/DatatypeConverter 에러가 발생한다.
+Java 11 이상에서 Migration Center를 실행하고 JRE 10 이하 버전의 JDBC 드라이버를 사용하면 Unable to connect to DB. javax/xml/bind/DatatypeConverter 에러가 발생한다.
 
 ###### 원인
 
-JRE 10 이하 버전의 Microsoft JDBC 드라이버에서 javax.xml.bind 모듈을 참조하여 발생하는 에러이다. javax.xml.bind 모듈은 Java 11 이상에서 제거되었다. 
+JRE 10 이하 버전의 JDBC 드라이버에서 javax.xml.bind 모듈을 참조하여 발생하는 에러이다. javax.xml.bind 모듈은 Java 11 이상에서 제거되었다. 
 
 ###### 해결 방법
 
-Migration Center를 실행하는 Java 버전에 해당하는 Microsoft JDBC 드라이버 파일을 사용한다. 
+Migration Center를 실행하는 Java 버전에 해당하는 JDBC 드라이버 파일을 사용한다. 
 
 예) mssql-jdbc-7.2.2.***jre11***.jar
 
