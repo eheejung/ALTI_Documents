@@ -2457,15 +2457,13 @@ AS SELECT * FROM t1
 
 > 이 규칙은 Altibase 6.3.1.0.0 이전 버전에서 적용된다. 
 
-`타입`
+###### 타입
+`TODO`
 
-TODO
-
-###### `설명`
+###### 설명
 ‘INSTEAD OF’는 수동으로 변환해야 한다.
 
-`원본 SQL 문장`
-
+###### 원본 SQL 문장
 ~~~sql
 CREATE OR REPLACE TRIGGER log_attendance
 INSTEAD OF INSERT ON attendance_view FOR EACH ROW
@@ -2475,8 +2473,7 @@ BEGIN
  END IF;
 END;
 ~~~
-`변환된 SQL 문장`
-
+###### 변환된 SQL 문장
 ~~~sql
 CREATE OR REPLACE TRIGGER log_attendance
 INSTEAD OF /* [TODO] RULE-12002 : 'INSTEAD OF' must be converted manually */ INSERT ON attendance_view FOR EACH ROW
@@ -2490,16 +2487,13 @@ END;
 
 #### RULE-12003
 
-`타입`
+###### 타입
+`TODO`
 
-TODO
-
-`설명`
-
+###### 설명
 여러 개의 이벤트를 지원하는 트리거는 수동으로 변환해야 한다.
 
-`원본 SQL 문장`
-
+###### 원본 SQL 문장
 ~~~sql
 CREATE OR REPLACE TRIGGER trig1
 BEFORE INSERT OR DELETE ON t1
@@ -2508,8 +2502,8 @@ BEGIN
 END;
 ~~~
 
-`변환된 SQL 문장`
 
+###### 변환된 SQL 문장
 ~~~sql
 CREATE OR REPLACE TRIGGER trig1
 BEFORE INSERT OR DELETE ON t1 /* [TODO] RULE-12003 : Triggers supporting multiple events must be converted manually */
@@ -2521,18 +2515,17 @@ END;
 
 #### RULE-12004
 
-> 이 규칙은 Altibase 6.3.1 이전 버전에서 적용된다. 
+> 이 규칙은 트리거의 블록 선언부에 사용DECLARE 절에 관한 것으로 Altibase 서버 버전에 따라 다르게 적용된다. 
 
-`타입`
+###### 타입
+`TODO`
 
-TODO
+###### 설명
+***Altibase 6.1.1 이하 버전에 적용되는 규칙***
 
-`설명`
+- 저장 프로시저 블록에 DECLARE가 있으면 AS 또는 IS로 변경하고 생략된 경우 AS 또는 IS를 추가해야 한다.
 
-저장 프로시저 블록 앞에 DECLARE가 있거나 생략된 경우, AS 또는 IS로 대체 또는 삽입되어야 한다.
-
-`원본 SQL 문장`
-
+###### 원본 SQL 문장
 ~~~sql
 CREATE OR REPLACE TRIGGER trig1
 BEFORE INSERT ON t1
@@ -2540,8 +2533,7 @@ BEGIN
 NULL;
 END;
 ~~~
-`변환된 SQL 문장`
-
+###### 변환된 SQL 문장
 ~~~sql
 CREATE OR REPLACE TRIGGER trig1
 BEFORE INSERT ON t1
@@ -2550,17 +2542,9 @@ NULL;
 END;
 ~~~
 
->  이 규칙이 적용되는 Altibase 서버 버전은 아래와 같다.
->
-> - Altibase 6.3.1
-> - Altibase 6.5.1
->   - Altibase 6.5.1.0.0 ~ 6.5.1.3.7 이하
+***Altibase 6.3.1 / Altibase 6.5.1.0.0 ~ 6.5.1.3.7 / Altibase 7.1.0.0.0 ~ 7.1.0.0.5 에 적용되는 규칙***
 
-###### 타입 
-`TODO`
-
-###### 설명
-저장 프로시저 블록의 선언부 앞에 있는 DECLARE는 AS 또는 IS로 대체되어야 한다.
+- 저장 프로시저 블록의 선언부 앞에 있는 DECLARE는 AS 또는 IS로 대체되어야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
@@ -2582,6 +2566,35 @@ BEGIN
 NULL;
 END;
 ~~~
+
+***Altibase 6.5.1.3.8 이상 / Altibase 6.5.1.0.0 ~ 6.5.1.3.7 / Altibase 7.1.0.0.6 이상에 적용되는 규칙***
+
+- ...블라블라
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+BEFORE INSERT ON t1
+DECLARE
+v1 NUMBER := 1;
+BEGIN
+NULL;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+BEFORE INSERT ON t1
+DECLARE /* [TODO] RULE-12004 : 'AS' or 'IS' must replace 'DECLARE' that starts the declarative part of the block */
+v1 NUMBER := 1;
+BEGIN
+NULL;
+END;
+~~~
+
 
 
 #### RULE-12005
@@ -2717,240 +2730,561 @@ REFERENCING절에 생략된 row가 추가되었다.
 
 ###### 원본 SQL 문장
 
-  CREATE OR REPLACE TRIGGER trig1
-
-  AFTER INSERT ON t1 FOR EACH ROW
-
-  BEGIN
-
-  **:new**.c1 := SYSDATE;
-
-  END;
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+AFTER INSERT ON t1 FOR EACH ROW
+BEGIN
+:new.c1 := SYSDATE;
+END;
+~~~
 
 ###### 변환된 SQL 문장
-
-  CREATE OR REPLACE TRIGGER trig1
-
-  AFTER INSERT ON t1
-
-  **REFERENCING NEW AS new** FOR EACH ROW
-
-  DECLARE
-
-  BEGIN
-
-  **:new**.c1 := SYSDATE;
-
-  END;
-
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+AFTER INSERT ON t1
+ /* add */REFERENCING NEW AS new FOR EACH ROW
+BEGIN
+:new.c1 := SYSDATE;
+END;
+~~~
 #### RULE-12012
 
-###### 타입 `CONVERTED`
+###### 타입
+`CONVERTED`
 
 ###### 설명
-Altibase 예약어에 해당하는 지역(Local) 식별자는 변환시 접미사가
-  추가되었다.
+Altibase 예약어에 해당하는 지역(Local) 식별자는 변환시 접미사가 추가되었다.
 
 ###### 원본 SQL 문장
-
-  CREATE OR REPLACE TRIGGER trig1
-
-  AFTER UPDATE ON t1
-
-  REFERENCING NEW AS **new** OLD AS **old** FOR EACH ROW
-
-  BEGIN
-
-  NULL;
-
-  END;
-
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+AFTER UPDATE ON t1
+REFERENCING NEW AS new OLD AS old FOR EACH ROW
+BEGIN
+NULL;
+END;
+~~~
 ###### 변환된 SQL 문장
-
-  CREATE OR REPLACE TRIGGER trig1
-
-  AFTER UPDATE ON t1
-
-  REFERENCING NEW AS **new_POC** OLD AS **old_POC** FOR EACH ROW
-
-  BEGIN
-
-  NULL;
-
-  END;
-
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+AFTER UPDATE ON t1
+REFERENCING NEW AS new_POC /* new -> new_POC */ OLD AS old_POC /* old -> old_POC */ FOR EACH ROW
+BEGIN
+NULL;
+END;
+~~~
 #### RULE-12013
 
-###### 타입 `REMOVED`
+###### 타입
+`REMOVED`
 
 ###### 설명
 트리거 에디션 절이 제거되었다.
 
 ###### 원본 SQL 문장
-
-  CREATE OR REPLACE TRIGGER trig1
-
-  AFTER DELETE ON t1
-
-  **CROSSEDITION**
-
-  BEGIN
-
-  NULL;
-
-  END;
-
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+AFTER DELETE ON t1
+CROSSEDITION
+BEGIN
+NULL;
+END;
+~~~
 ###### 변환된 SQL 문장
-
-  CREATE OR REPLACE TRIGGER trig1
-
-  AFTER DELETE ON t1
-
-  **/\* CROSSEDITION \*/ /\* [REMOVED] RULE-12013 : Trigger edition clause is
-  removed \*/**
-
-  BEGIN
-
-  NULL;
-
-  END;
-
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+AFTER DELETE ON t1
+/* CROSSEDITION */ /* [REMOVED] RULE-12013 : Trigger edition clause is removed */
+BEGIN
+NULL;
+END;
+~~~
 #### RULE-12014
 
-###### 타입 `REMOVED`
+###### 타입
+`REMOVED`
 
 ###### 설명
 ENABLE이 제거되었다.
 
 ###### 원본 SQL 문장
-
-  CREATE OR REPLACE TRIGGER trig1
-
-  AFTER INSERT ON t1
-
-  **ENABLE**
-
-  BEGIN
-
-  NULL;
-
-  END;
-
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+AFTER INSERT ON t1
+ENABLE
+BEGIN
+NULL;
+END;
+~~~
 ###### 변환된 SQL 문장
-
-  CREATE OR REPLACE TRIGGER trig1
-
-  AFTER INSERT ON t1
-
-  **/\* ENABLE \*/ /\* [REMOVED] RULE-12014 : ENABLE is removed \*/**
-
-  BEGIN
-
-  NULL;
-
-  END;
-
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+AFTER INSERT ON t1
+/* ENABLE */ /* [REMOVED] RULE-12014 : ENABLE is removed */
+BEGIN
+NULL;
+END;
+~~~
 #### RULE-12015
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
 ###### 설명
 DISABLE은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 
-  CREATE OR REPLACE TRIGGER trig1
-
-  AFTER DELETE ON t1
-
-  **DISABLE**
-
-  BEGIN
-
-  NULL;
-
-  END;
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+AFTER DELETE ON t1
+DISABLE
+BEGIN
+NULL;
+END;
+~~~
 
 ###### 변환된 SQL 문장
 
-  CREATE OR REPLACE TRIGGER trig1
-
-  AFTER DELETE ON t1
-
-  **DISABLE /\* [TODO] RULE-12015 : DISABLE must be converted manually \*/**
-
-  BEGIN
-
-  NULL;
-
-  END;
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+AFTER DELETE ON t1
+DISABLE /* [TODO] RULE-12015 : DISABLE must be converted manually */
+BEGIN
+NULL;
+END;
+~~~
 
 #### RULE-12016
 
-###### 타입 `CONVERTED`
+###### 타입
+`CONVERTED`
 
 ###### 설명
 REFERENCING절에서 정의된 row를 참조하는 별칭 앞 콜론(:)이 제거되었다.
 
 ###### 원본 SQL 문장
-
-  CREATE OR REPLACE TRIGGER trig1
-
-  BEFORE INSERT ON t1 FOR EACH ROW
-
-  BEGIN
-
-  DBMS_OUTPUT.PUT_LINE(:new.c1);
-
-  END;
-
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+BEFORE INSERT ON t1 FOR EACH ROW
+BEGIN
+DBMS_OUTPUT.PUT_LINE(:new.c1);
+END;
+~~~
 ###### 변환된 SQL 문장
-
-  CREATE OR REPLACE TRIGGER trig1
-
-  BEFORE INSERT ON t1 FOR EACH ROW
-
-  BEGIN
-
-  DBMS_OUTPUT.PUT_LINE(new.c1);
-
-  END;
-
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+BEFORE INSERT ON t1 FOR EACH ROW
+BEGIN
+DBMS_OUTPUT.PUT_LINE(new.c1); /* :new -> new */
+END;
+~~~
 #### RULE-12017
 
-###### 타입 `REMOVED`
+###### 타입
+`REMOVED`
 
 ###### 설명
 CREATE TRIGGER문에서 PL/SQL block 끝의 trigger label 이름이 제거되었다.
 
 ###### 원본 SQL 문장
-
-  CREATE OR REPLACE TRIGGER trig1
-
-  AFTER INSERT ON t1
-
-  BEGIN
-
-  NULL;
-
-  END trig1;
-
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+AFTER INSERT ON t1
+BEGIN
+NULL;
+END trig1;
+~~~
 ###### 변환된 SQL 문장
-
-  CREATE OR REPLACE TRIGGER trig1
-
-  AFTER INSERT ON t1
-
-  BEGIN
-
-  NULL;
-
-  END /\* trig1 \*/ /\* [REMOVED] RULE-12017 : The trigger label name at the end
-  of body has been removed \*/;
-
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+AFTER INSERT ON t1
+BEGIN
+NULL;
+END /* trig1 */ /* [REMOVED] RULE-12017 : The trigger label name at the end of body has been removed */;
+~~~
 ### 함수 변환 규칙
 
 #### RULE-13001
+
+> *이 규칙은 Altibase 6.3.1 이전 버전에서 적용된다.* 
+
+###### 타입
+`TODO`
+
+###### 설명
+AS LANGUAGE 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+~~~sql
+CREATE OR REPLACE FUNCTION func1
+RETURN VARCHAR2
+AS LANGUAGE JAVA
+NAME 'test.quote() return java.lang.String';
+~~~
+###### 변환된 SQL 문장
+~~~sql
+CREATE OR REPLACE FUNCTION func1
+RETURN VARCHAR2
+AS LANGUAGE JAVA
+NAME 'test.quote() return java.lang.String'/* [TODO] RULE-13001 : AS LANGUAGE clause must be converted manually */;
+~~~
+#### RULE-13002
+
+###### 타입
+`REMOVED`
+
+###### 설명
+AUTHID 절(호출자 권한 절)이 제거되었다.
+
+###### 원본 SQL 문장
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER
+AUTHID CURRENT_USER
+IS
+BEGIN
+RETURN a1;
+END;
+~~~
+###### 변환된 SQL 문장
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER
+/* AUTHID CURRENT_USER */ /* [REMOVED] RULE-13002 : The invoker rights clause is removed */
+IS
+BEGIN
+RETURN a1;
+END;
+~~~
+#### RULE-13003
+
+###### 타입
+`REMOVED`
+
+###### 설명
+PARALLEL_ENABLE 절이 제거되었다.
+
+###### 원본 SQL 문장
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER
+PARALLEL_ENABLE
+IS
+BEGIN
+RETURN a1;
+END;
+~~~
+###### 변환된 SQL 문장
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER
+/* PARALLEL_ENABLE */ /* [REMOVED] RULE-13003 : PARALLEL_ENABLE clause is removed */
+IS
+BEGIN
+RETURN a1;
+END;
+~~~
+#### RULE-13004
+
+###### 타입
+`REMOVED`
+
+###### 설명
+RESULT_CACHE 절이 제거되었다.
+
+###### 원본 SQL 문장
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER
+RESULT_CACHE RELIES_ON(t1, t2)
+IS
+BEGIN
+RETURN a1;
+END;
+~~~
+###### 변환된 SQL 문장
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER
+/* RESULT_CACHE RELIES_ON(t1, t2) */ /* [REMOVED] RULE-13004 : RESULT_CACHE clause is removed */
+IS
+BEGIN
+RETURN a1;
+END;
+~~~
+#### RULE-13005
+
+###### 타입
+`REMOVED`
+
+###### 설명
+DETERMINISTIC이 제거되었다.
+
+###### 원본 SQL 문장
+~~~sql
+CREATE OR REPLACE FUNCTION tfunc1(a1 NUMBER)
+RETURN NUMBER
+DETERMINISTIC
+IS
+BEGIN
+RETURN a1;
+END;
+~~~
+###### 변환된 SQL 문장
+~~~sql
+CREATE OR REPLACE FUNCTION tfunc1(a1 NUMBER)
+RETURN NUMBER
+/* DETERMINISTIC */ /* [REMOVED] RULE-13005 : 'DETERMINISTIC' is removed */
+IS
+BEGIN
+RETURN a1;
+END;
+~~~
+#### RULE-13006
+
+###### 타입
+`TODO`
+
+###### 설명
+PIPELINED는 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+~~~sql
+CREATE FUNCTION getCityList RETURN tripLog_pkg.nt_city PIPELINED AS
+BEGIN
+FOR i IN 1..tripLog_pkg.v_cityList.LAST LOOP
+PIPE ROW(tripLog_pkg.v_cityList(i));
+END LOOP;
+RETURN;
+END;
+~~~
+###### 변환된 SQL 문장
+~~~sql
+CREATE FUNCTION getCityList RETURN tripLog_pkg.nt_city PIPELINED /* [TODO] RULE-13006 : The keyword PIPELINED must be converted manually */ AS
+BEGIN
+FOR i IN 1..tripLog_pkg.v_cityList.LAST LOOP
+PIPE ROW(tripLog_pkg.v_cityList(i));
+END LOOP;
+RETURN;
+END;
+~~~
+#### RULE-13007
+
+###### 타입
+`TODO`
+
+###### 설명
+PIPELINED USING 또는 AGGRAGATE USING 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+~~~sql
+CREATE OR REPLACE FUNCTION func1
+RETURN NUMBER
+AGGREGATE USING implementation_type;
+~~~
+###### 변환된 SQL 문장
+~~~sql
+CREATE OR REPLACE FUNCTION func1
+RETURN NUMBER
+AGGREGATE USING implementation_type/* [TODO] RULE-13007 : PIPELINED USING or AGGRAGATE USING clause must be converted manually */;
+~~~
+#### RULE-13008
+
+> *이 규칙은 Altibase 6.3.1 이상에서 적용된다.* 
+
+###### 타입
+`TODO`
+
+###### 설명
+WITH CONTEXT 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+~~~sql
+CREATE OR REPLACE FUNCTION func1
+RETURN NUMBER IS
+LANGUAGE C LIBRARY lib1 WITH CONTEXT PARAMETERS(CONTEXT);
+~~~
+###### 변환된 SQL 문장
+~~~sql
+CREATE OR REPLACE FUNCTION func1
+RETURN NUMBER IS
+LANGUAGE C LIBRARY lib1 WITH CONTEXT /* [TODO] RULE-13008 : WITH CONTEXT clause must be converted manually */PARAMETERS(CONTEXT);
+~~~
+#### RULE-13009
+
+> *이 규칙은 Altibase 6.3.1 이상에서 적용된다.* 
+
+###### 타입
+`TODO`
+
+###### 설명
+AGENT IN 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+~~~sql
+CREATE OR REPLACE FUNCTION func1
+RETURN NUMBER IS
+LANGUAGE C LIBRARY lib1 AGENT IN(EXTPROC);
+~~~
+###### 변환된 SQL 문장
+~~~sql
+CREATE OR REPLACE FUNCTION func1
+RETURN NUMBER IS
+LANGUAGE C LIBRARY lib1 AGENT IN(EXTPROC)/* [TODO] RULE-13009 : AGENT IN clause must be converted manually */;
+~~~
+#### RULE-13010
+
+###### 타입
+`REMOVED`
+
+###### 설명
+ACCESSIBLE BY 절은 제거되었다.
+
+###### 원본 SQL 문장
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER
+ACCESSIBLE BY (TRIGGER trig1)
+IS
+BEGIN
+RETURN a1;
+END;
+~~~
+###### 변환된 SQL 문장
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER
+/* ACCESSIBLE BY (TRIGGER trig1) */ /* [REMOVED] RULE-13010 : The ACCESSIBLE BY clause is removed */
+IS
+BEGIN
+RETURN a1;
+END;
+~~~
+#### RULE-13011
+
+> *이 규칙은 Altibase 6.3.1 이상에서 적용된다.*
+
+###### 타입 `TODO`
+
+###### 설명
+JAVA 함수 호출은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 VARCHAR2)
+RETURN VARCHAR2 IS
+LANGUAGE JAVA NAME
+'com.altibase.ex.empMgr.addEmp(java.lang.String)';
+~~~
+###### 변환된 SQL 문장
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 VARCHAR2)
+RETURN VARCHAR2 IS
+LANGUAGE JAVA NAME
+'com.altibase.ex.empMgr.addEmp(java.lang.String)' /* [TODO] RULE-13011 : Java call specification must be converted manually */;
+~~~
+#### RULE-13012
+
+> *이 규칙은 Altibase 6.3.1 이상에서 적용된다.*
+
+###### 타입
+`TODO`
+
+###### 설명
+CONTEXT와 SELF 매개변수는 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 VARCHAR2)
+RETURN NUMBER AS
+LANGUAGE C LIBRARY lib1
+PARAMETERS(a1, a1 LENGTH, SELF);
+~~~
+###### 변환된 SQL 문장
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 VARCHAR2)
+RETURN NUMBER AS
+LANGUAGE C LIBRARY lib1
+PARAMETERS(a1, a1 LENGTH, SELF)/* [TODO] RULE-13012 : The external parameter CONTEXT and SELF should be manually converted */);;
+~~~
+#### RULE-13013
+
+> *이 규칙은 Altibase 6.3.1 이상에서 적용된다.*
+
+###### 타입
+`TODO`
+
+###### 설명
+INDICATOR, LENGTH, MAXLEN을 제외한 속성은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 VARCHAR2)
+RETURN NUMBER AS
+LANGUAGE C LIBRARY lib1
+PARAMETERS(a1, a1 CHARSETID, a1 CHARSETFORM);
+~~~
+###### 변환된 SQL 문장
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 VARCHAR2)
+RETURN NUMBER AS
+LANGUAGE C LIBRARY lib1
+PARAMETERS(a1, a1 CHARSETID /* [TODO] RULE-13013 : The property except for INDICATOR, LENGTH, MAXLEN must be converted manually */, a1 CHARSETFORM /* [TODO] RULE-13013 : The properties should be manually converted except INDICATOR, LENGTH, and MAXLEN */);
+~~~
+#### RULE-13014
+
+> *이 규칙은 Altibase 6.3.1 이상에서 적용된다.*
+
+###### 타입
+`TODO`
+
+###### 설명
+BY REFERENCE 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER AS
+LANGUAGE C LIBRARY lib1
+PARAMETERS(a1 BY REFERENCE);
+~~~
+###### 변환된 SQL 문장
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER AS
+LANGUAGE C LIBRARY lib1
+PARAMETERS(a1 BY REFERENCE /* [TODO] RULE-13014 : BY REFERENCE clause must be converted manually */);
+~~~
+#### RULE-13015
+
+> *이 규칙은 Altibase 6.3.1 이상에서 적용된다.*
+
+###### 타입
+`TODO`
+
+###### 설명
+매개변수의 외부 데이터 타입은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER AS
+LANGUAGE C LIBRARY lib1
+PARAMETERS(a1 OCINUMBER);
+~~~
+###### 변환된 SQL 문장
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER AS
+LANGUAGE C LIBRARY lib1
+PARAMETERS(a1 OCINUMBER /* [TODO] RULE-13015 : External data type of the parameters should be manually converted */);
+~~~
+
+
+### 프로시저 변환 규칙
+
+#### RULE-14001
 
 - 버전 범위: Altibase 6.3.1.0.0 이전
 
@@ -2961,506 +3295,8 @@ CREATE TRIGGER문에서 PL/SQL block 끝의 trigger label 이름이 제거되었
 AS LANGUAGE 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
-  CREATE OR REPLACE FUNCTION func1
-
-  RETURN VARCHAR2
-
-  **AS LANGUAGE JAVA**
-
-  **NAME 'test.quote() return java.lang.String';**
-
-###### 변환된 SQL 문장
-
-  CREATE OR REPLACE FUNCTION func1
-
-  RETURN VARCHAR2
-
-  AS LANGUAGE JAVA
-
-  NAME 'test.quote() return java.lang.String' **/\* [TODO] RULE-13001 : AS
-  LANGUAGE clause must be converted manually \*/**;
-
-#### RULE-13002
-
-###### 타입 `REMOVED`
-
-###### 설명
-AUTHID 절(호출자 권한 절)이 제거되었다.
-
-###### 원본 SQL 문장
-
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-
-  RETURN NUMBER
-
-  **AUTHID CURRENT_USER**
-
-  IS
-
-  BEGIN
-
-  RETURN a1;
-
-  END;
-
-###### 변환된 SQL 문장
-
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-
-  RETURN NUMBER
-
-  **/\* AUTHID CURRENT_USER \*/ /\* [REMOVED] RULE-13002 : The invoker rights
-  clause is removed \*/**
-
-  IS
-
-  BEGIN
-
-  RETURN a1;
-
-  END;
-
-#### RULE-13003
-
-###### 타입 `REMOVED`
-
-###### 설명
-PARALLEL_ENABLE 절이 제거되었다.
-
-###### 원본 SQL 문장
-
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-
-  RETURN NUMBER
-
-  **PARALLEL_ENABLE**
-
-  IS
-
-  BEGIN
-
-  RETURN a1;
-
-  END;
-
-###### 변환된 SQL 문장
-
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-
-  RETURN NUMBER
-
-  **/\* PARALLEL_ENABLE \*/ /\* [REMOVED] RULE-13003 : PARALLEL_ENABLE clause is
-  removed \*/**
-
-  IS
-
-  BEGIN
-
-  RETURN a1;
-
-  END;
-
-#### RULE-13004
-
-###### 타입 `REMOVED`
-
-###### 설명
-RESULT_CACHE 절이 제거되었다.
-
-###### 원본 SQL 문장
-
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-
-  RETURN NUMBER
-
-  **RESULT_CACHE RELIES_ON(t1, t2)**
-
-  IS
-
-  BEGIN
-
-  RETURN a1;
-
-  END;
-
-###### 변환된 SQL 문장
-
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-
-  RETURN NUMBER
-
-  **/\* RESULT_CACHE RELIES_ON(t1, t2) \*/ /\* [REMOVED] RULE-13004 : RESULT_CACHE
-  clause is removed \*/**
-
-  IS
-
-  BEGIN
-
-  RETURN a1;
-
-  END;
-
-#### RULE-13005
-
-###### 타입 `REMOVED`
-
-###### 설명
-DETERMINISTIC이 제거되었다.
-
-###### 원본 SQL 문장
-
-  CREATE OR REPLACE FUNCTION tfunc1(a1 NUMBER)
-
-  RETURN NUMBER
-
-  **DETERMINISTIC**
-
-  IS
-
-  BEGIN
-
-  RETURN a1;
-
-  END;
-
-###### 변환된 SQL 문장
-
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-
-  RETURN NUMBER
-
-  **/\* DETERMINISTIC \*/ /\* [REMOVED] RULE-13005 : 'DETERMINISTIC' is removed
-  \*/**
-
-  IS
-
-  BEGIN
-
-  RETURN a1;
-
-  END;
-
-#### RULE-13006
-
-###### 타입 `TODO`
-
-###### 설명
-PIPELINED는 수동으로 변환해야 한다.
-
-###### 원본 SQL 문장
-
-  CREATE FUNCTION getCityList RETURN tripLog_pkg.nt_city PIPELINED AS
-
-  BEGIN
-
-  FOR i IN 1..tripLog_pkg.v_cityList.LAST LOOP
-
-  PIPE ROW(tripLog_pkg.v_cityList(i));
-
-  END LOOP;
-
-  RETURN;
-
-  END;
-
-###### 변환된 SQL 문장
-
-  CREATE FUNCTION getCityList RETURN tripLog_pkg.nt_city **PIPELINED /\* [TODO]
-  RULE-13006 : The keyword PIPELINED must be converted manually \*/** AS
-
-  BEGIN
-
-  FOR i IN 1 .. tripLog_pkg.v_cityList.LAST LOOP
-
-  PIPE ROW(tripLog_pkg.v_cityList(i)) /\* [TODO] RULE-32012 : The PIPE ROW
-  statement must be converted manually \*/;
-
-  END LOOP;
-
-  RETURN;
-
-  END;
-
-#### RULE-13007
-
-###### 타입 `TODO`
-
-###### 설명
-PIPELINED USING 또는 AGGRAGATE USING 절은 수동으로 변환해야 한다.
-
-###### 원본 SQL 문장
-
-  CREATE OR REPLACE FUNCTION func1
-
-  RETURN NUMBER
-
-  **AGGREGATE USING implementation_type;**
-
-###### 변환된 SQL 문장
-
-  CREATE OR REPLACE FUNCTION func1
-
-  RETURN NUMBER
-
-  AGGREGATE USING implementation_type **/\* [TODO] RULE-13007 : PIPELINED USING or
-  AGGRAGATE USING clause must be converted manually \*/**;
-
-#### RULE-13008
-
-- 버전 범위: Altibase 6.3.1.0.0 이상
-
-###### 타입 `TODO`
-
-###### 설명
-WITH CONTEXT 절은 수동으로 변환해야 한다.
-
-###### 원본 SQL 문장
-
-  CREATE OR REPLACE FUNCTION func1
-
-  RETURN NUMBER IS
-
-  LANGUAGE C LIBRARY lib1 **WITH CONTEXT** PARAMETERS(CONTEXT);
-
-###### 변환된 SQL 문장
-
-  CREATE OR REPLACE FUNCTION func1
-
-  RETURN NUMBER IS
-
-  LANGUAGE C LIBRARY lib1 **WITH CONTEXT /\* [TODO] RULE-13008 : WITH CONTEXT
-  clause must be converted manually \*/** PARAMETERS(CONTEXT);
-
-#### RULE-13009
-
-- 버전 범위: Altibase 6.3.1.0.0 이상
-
-###### 타입 `TODO`
-
-###### 설명
-AGENT IN 절은 수동으로 변환해야 한다.
-
-###### 원본 SQL 문장
-
-  CREATE OR REPLACE FUNCTION func1
-
-  RETURN NUMBER IS
-
-  LANGUAGE C LIBRARY lib1 **AGENT IN(EXTPROC)**;
-
-###### 변환된 SQL 문장
-
-  CREATE OR REPLACE FUNCTION func1
-
-  RETURN NUMBER IS
-
-  LANGUAGE C LIBRARY lib1 **AGENT IN(EXTPROC) /\* [TODO] RULE-13009 : AGENT IN
-  clause must be converted manually \*/**;
-
-#### RULE-13010
-
-###### 타입 `REMOVED`
-
-###### 설명
-ACCESSIBLE BY 절은 제거되었다.
-
-###### 원본 SQL 문장
-
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-
-  RETURN NUMBER
-
-  **ACCESSIBLE BY (TRIGGER trig1)**
-
-  IS
-
-  BEGIN
-
-  RETURN a1;
-
-  END;
-
-###### 변환된 SQL 문장
-
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-
-  RETURN NUMBER
-
-  **/\* ACCESSIBLE BY (TRIGGER trig1) \*/ /\* [REMOVED] RULE-13010 : The
-  ACCESSIBLE BY clause is removed \*/**
-
-  IS
-
-  BEGIN
-
-  RETURN a1;
-
-  END;
-
-#### RULE-13011
-
-- 버전 범위: Altibase 6.3.1.0.0 이상
-
-###### 타입 `TODO`
-
-###### 설명
-JAVA 함수 호출은 수동으로 변환해야 한다.
-
-###### 원본 SQL 문장
-
-  CREATE OR REPLACE FUNCTION func1(a1 VARCHAR2)
-
-  RETURN VARCHAR2 IS
-
-  **LANGUAGE JAVA NAME**
-
-  **'com.altibase.ex.empMgr.addEmp(java.lang.String)'**;
-
-###### 변환된 SQL 문장
-
-  CREATE OR REPLACE FUNCTION func1(a1 VARCHAR2)
-
-  RETURN VARCHAR2 IS
-
-  **LANGUAGE JAVA NAME**
-
-  **'com.altibase.ex.empMgr.addEmp(java.lang.String)' /\* [TODO] RULE-13011 : Java
-  call specification must be converted manually \*/;**
-
-#### RULE-13012
-
-- 버전 범위: Altibase 6.3.1.0.0 이상
-
-###### 타입 `TODO`
-
-###### 설명
-CONTEXT와 SELF 매개변수는 수동으로 변환해야 한다.
-
-###### 원본 SQL 문장
-
-  CREATE OR REPLACE FUNCTION func1(a1 VARCHAR2)
-
-  RETURN NUMBER AS
-
-  LANGUAGE C LIBRARY lib1
-
-  PARAMETERS(a1, a1 LENGTH, **SELF**);
-
-###### 변환된 SQL 문장
-
-  CREATE OR REPLACE FUNCTION func1(a1 VARCHAR2)
-
-  RETURN NUMBER AS
-
-  LANGUAGE C LIBRARY lib1
-
-  PARAMETERS(a1, a1 LENGTH, **SELF /\* [TODO] RULE-13012 : The external parameter
-  CONTEXT and SELF should be manually converted \*/**);
-
-#### RULE-13013
-
-- 버전 범위: Altibase 6.3.1.0.0 이상
-
-###### 타입 `TODO`
-
-###### 설명
-INDICATOR, LENGTH, MAXLEN을 제외한 속성은 수동으로 변환해야 한다.
-
-###### 원본 SQL 문장
-
-  CREATE OR REPLACE FUNCTION func1(a1 VARCHAR2)
-
-  RETURN NUMBER AS
-
-  LANGUAGE C LIBRARY lib1
-
-  PARAMETERS(a1, a1 **CHARSETID**, a1 **CHARSETFORM**);
-
-###### 변환된 SQL 문장
-
-  CREATE OR REPLACE FUNCTION func1(a1 VARCHAR2)
-
-  RETURN NUMBER AS
-
-  LANGUAGE C LIBRARY lib1
-
-  PARAMETERS(a1, a1 **CHARSETID /\* [TODO] RULE-13013 : The property except for
-  INDICATOR, LENGTH, MAXLEN must be converted manually \*/**, a1 **CHARSETFORM /\*
-  [TODO] RULE-13013 : The properties should be manually converted except
-  INDICATOR, LENGTH, and MAXLEN \*/**);
-
-#### RULE-13014
-
-- 버전 범위: Altibase 6.3.1.0.0 이상
-
-###### 타입 `TODO`
-
-###### 설명
-BY REFERENCE 절은 수동으로 변환해야 한다.
-
-###### 원본 SQL 문장
-
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-
-  RETURN NUMBER AS
-
-  LANGUAGE C LIBRARY lib1
-
-  PARAMETERS(a1 **BY REFERENCE**);
-
-###### 변환된 SQL 문장
-
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-
-  RETURN NUMBER AS
-
-  LANGUAGE C LIBRARY lib1
-
-  PARAMETERS(a1 **BY REFERENCE /\* [TODO] RULE-13014 : BY REFERENCE clause must be
-  converted manually \*/**);
-
-#### RULE-13015
-
-- 버전 범위: Altibase 6.3.1.0.0 이상
-
-###### 타입 `TODO`
-
-###### 설명 매개변수의 외부 데이터 타입은 수동으로 변환해야 한다.
-
-###### 원본 SQL 문장
-
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-
-  RETURN NUMBER AS
-
-  LANGUAGE C LIBRARY lib1
-
-  PARAMETERS(a1 OCINUMBER)**;**
-
-###### 변환된 SQL 문장
-
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-
-  RETURN NUMBER AS
-
-  LANGUAGE C LIBRARY lib
-
-  PARAMETERS(a1 **OCINUMBER /\* [TODO] RULE-13015 : External data type of the
-  parameters should be manually converted \*/**);
-
-### 프로시저 변환 규칙
-
-#### RULE-14001
-
-- 버전 범위: Altibase 6.3.1.0.0 이전
-
-###### 타입 `TODO`
-
-###### 설명 AS LANGUAGE 절은 수동으로 변환해야 한다.
-
-###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
 
   AS LANGUAGE JAVA
@@ -3468,7 +3304,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   NAME 'test.quote() return java.lang.String';
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1(a1 INUMBER)
 
   AS LANGUAGE JAVA
@@ -3478,12 +3315,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 #### RULE-14002
 
-###### 타입 `REMOVED`
+###### 타입
+`REMOVED`
 
-###### 설명 AUTHID 절이 제거되었다.
+###### 설명
+AUTHID 절이 제거되었다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
 
   **AUTHID DEFINER**
@@ -3497,7 +3337,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   END;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
 
   **/\* AUTHID DEFINER \*/ /\* [REMOVED] RULE-14002 : AUTHID clause is removed
@@ -3515,12 +3356,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 - 버전 범위: Altibase 6.3.1.0.0 이상
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 WITH CONTEXT 절은 수동으로 변환해야 한다.
+###### 설명
+WITH CONTEXT 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1 AS
 
   LANGUAGE C LIBRARY lib1 **WITH CONTEXT;**
@@ -3533,12 +3377,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   clause must be converted manually \*/;**
 
 #### RULE-14004
-
+~~~sql
+~~~
 - 버전 범위: Altibase 6.3.1.0.0 이상
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 AGENT IN 절은 수동으로 변환해야 한다.
+###### 설명
+AGENT IN 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 
@@ -3547,7 +3394,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   LANGUAGE C LIBRARY lib1 **AGENT IN(EXTPROC)**;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1 AS
 
   LANGUAGE C LIBRARY lib1 **AGENT IN(EXTPROC) /\* [TODO] RULE-14004 : AGENT IN
@@ -3555,12 +3403,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 #### RULE-14005
 
-###### 타입 `REMOVED`
+###### 타입
+`REMOVED`
 
-###### 설명 ACCESSIBLE BY절이 제거되었다.
+###### 설명
+ACCESSIBLE BY절이 제거되었다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1
 
   **ACCESSIBLE BY (TRIGGER trig1)**
@@ -3574,7 +3425,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   END;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1
 
   **/\* ACCESSIBLE BY (TRIGGER trig1) \*/ /\* [REMOVED] RULE-14005 : The
@@ -3592,12 +3444,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 - 버전 범위: Altibase 6.3.1.0.0 이상
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 JAVA 함수 호출은 수동으로 변환해야 한다.
+###### 설명
+JAVA 함수 호출은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1(a1 VARCHAR2) AS
 
   **LANGUAGE JAVA NAME**
@@ -3605,7 +3460,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   **'com.altibase.ex.empMgr.addEmp(java.lang.String)'**;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1(a1 VARCHAR2) AS
 
   **LANGUAGE JAVA NAME**
@@ -3619,12 +3475,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 - 버전 범위: Altibase 6.3.1.0.0 이상
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 CONTEXT와 SELF 매개변수는 수동으로 변환해야 한다.
+###### 설명
+CONTEXT와 SELF 매개변수는 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
 
   LANGUAGE C LIBRARY lib1
@@ -3632,7 +3491,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   PARAMETERS(a1, a1 LENGTH, **SELF**);
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
 
   LANGUAGE C LIBRARY lib1
@@ -3649,7 +3509,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 ###### 설명 INDICATOR, LENGTH, MAXLEN을 제외한 속성은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
 
   LANGUAGE C LIBRARY lib1
@@ -3657,7 +3518,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   PARAMETERS(a1, a1 **CHARSETID**, a1 **CHARSETFORM**);
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
 
   LANGUAGE C LIBRARY lib1
@@ -3671,12 +3533,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 - 버전 범위: Altibase 6.3.1.0.0 이상
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 BY REFERENCE 절은 수동으로 변환해야 한다.
+###### 설명
+BY REFERENCE 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
 
   LANGUAGE C LIBRARY lib1
@@ -3684,7 +3549,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   PARAMETERS(a1 **BY REFERENCE**);
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
 
   LANGUAGE C LIBRARY lib1
@@ -3696,12 +3562,14 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 - 버전 범위: Altibase 6.3.1.0.0 이상
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
 ###### 설명 매개변수의 외부 데이터 타입은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
 
   LANGUAGE C LIBRARY lib1
@@ -3709,7 +3577,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   PARAMETERS(a1 OCINUMBER);
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
 
   LANGUAGE C LIBRARY lib1
@@ -3721,12 +3590,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 #### RULE-15004
 
-###### 타입 `REMOVED`
+###### 타입
+`REMOVED`
 
-###### 설명 칼럼 별칭 절과 서브쿼리 사이의 모든 절이 제거되었다.
+###### 설명
+칼럼 별칭 절과 서브쿼리 사이의 모든 절이 제거되었다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE MATERIALIZED VIEW mview1
 
   **ORGANIZATION HEAP PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255**
@@ -3758,7 +3630,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   AS SELECT \* FROM t1;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE MATERIALIZED VIEW mview1
 
   **/\* ORGANIZATION HEAP PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255**
@@ -3795,19 +3668,23 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 #### RULE-16001
 
-###### 타입 `REMOVED`
+###### 타입
+`REMOVED`
 
-###### 설명 AUTHID 절이 제거되었다.
+###### 설명
+AUTHID 절이 제거되었다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PACKAGE empMgr_pkg AUTHID CURRENT_USER AS PROCEDURE
   delete(p_id INTEGER);
 
   END;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PACKAGE empMgr_pkg **/\* AUTHID CURRENT_USER \*/ /\* [REMOVED]
   RULE-16001 : The invoker rights clause is removed \*/** AS PROCEDURE delete(p_id
   INTEGER);
@@ -3816,12 +3693,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 #### RULE-16002
 
-###### 타입 `REMOVED`
+###### 타입
+`REMOVED`
 
-###### 설명 ACCESSIBLE BY 절이 제거되었다.
+###### 설명
+ACCESSIBLE BY 절이 제거되었다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PACKAGE pkg1
 
   **ACCESSIBLE BY (TRIGGER trig1)**
@@ -3831,7 +3711,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   END;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PACKAGE pkg1
 
   **/\* ACCESSIBLE BY (TRIGGER trig1) \*/ /\* [REMOVED] RULE-16002 : The
@@ -3845,12 +3726,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 #### RULE-17001
 
-###### 타입 `REMOVED`
+###### 타입
+`REMOVED`
 
-###### 설명 AGENT 절이 제거되었다.
+###### 설명
+AGENT 절이 제거되었다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE LIBRARY lib1 AS
 
   '\${ORACLE_HOME}/lib/test_lib.so' **AGENT 'test.rule.no_17001.com'**;
@@ -3866,16 +3750,19 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 ###### 타입 `REMOVED`
 
-###### 설명 UNTRUSTED가 제거되었다.
+###### 설명
+UNTRUSTED가 제거되었다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE LIBRARY lib1 **UNTRUSTED**
 
   AS '\${ORACLE_HOME}/lib/test_lib.so';
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE LIBRARY lib1 **/\* UNTRUSTED \*/ /\* [REMOVED] RULE-17002 :
   The keyword UNTRUSTED is removed \*/**
 
@@ -3885,19 +3772,23 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 #### RULE-20001
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 Flashback 쿼리 절은 수동으로 변환해야 한다.
+###### 설명
+Flashback 쿼리 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1 AS
 
   SELECT \* FROM t1 CROSS JOIN t2 **VERSIONS BETWEEN TIMESTAMP MINVALUE AND
   MAXVALUE**;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1
 
   AS
@@ -3913,7 +3804,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 ###### 설명 DBLink 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1
 
   AS
@@ -3921,7 +3813,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   SELECT \* FROM t1@remote;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1
 
   AS
@@ -3933,12 +3826,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 - 버전 범위: Altibase 6.5.1.0.0 이전
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 GROUPING SET 절은 수동으로 변환해야 한다.
+###### 설명
+GROUPING SET 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1
 
   AS
@@ -3950,7 +3846,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   GROUP BY **GROUPING SETS((c1, c2, c3, c4), (c1, c2, c3), (c3, c4));**
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW r1
 
   AS
@@ -3966,20 +3863,24 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 - 버전 범위: Altibase 6.3.1.0.0 이전
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 CONNECT BY 뒤의 START WITH 절은 수동으로 변환해야 한다.
+###### 설명
+CONNECT BY 뒤의 START WITH 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 
-  CREATE OR REPLACE VIEW v1
+~~~sql
+~~~  CREATE OR REPLACE VIEW v1
 
   AS
 
   SELECT c1, c2, c3, c4 FROM t1 CONNECT BY c1 = c2 **START WITH c1 = c4;**
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1
 
   AS
@@ -3992,12 +3893,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 - 버전 범위: Altibase 6.3.1.0.0 이전 버전
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 NOCYCLE을 변환하려면 IGNORE LOOP를 뒤따라오는 조건 이후에 두어야 한다.
+###### 설명
+NOCYCLE을 변환하려면 IGNORE LOOP를 뒤따라오는 조건 이후에 두어야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1
 
   AS
@@ -4007,7 +3911,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   FROM t1 CONNECT BY NOCYCLE c1 = c2 START WITH c1 = c4;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1
 
   AS
@@ -4020,12 +3925,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 #### RULE-20011
 
-###### 타입 `CONVERTED`
+###### 타입
+`CONVERTED`
 
-###### 설명 힌트가 제거되었다.
+###### 설명
+힌트가 제거되었다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1
 
   AS
@@ -4033,7 +3941,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   SELECT **/\*+ORDERED \*/** \* FROM t1;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1
 
   AS
@@ -4044,12 +3953,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 - 버전 범위: Altibase 6.1.1.0.0 이전
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 PIVOT절을 확인해야 한다.
+###### 설명
+PIVOT절을 확인해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW xmlView
 
   AS
@@ -4063,7 +3975,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   ORDER BY dname;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW xmlView
 
   AS
@@ -4081,12 +3994,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 - 버전 범위: Altibase 6.5.1.0.0 이전
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 UNPIVOT절을 확인해야 한다.
+###### 설명
+UNPIVOT절을 확인해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1
 
   AS
@@ -4098,7 +4014,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   ORDER BY c1, c2;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1
 
   AS
@@ -4112,12 +4029,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 #### RULE-20014
 
-###### 타입 `CONVERTED`
+###### 타입
+`CONVERTED`
 
-###### 설명 스키마명이 제거되었다.
+###### 설명
+스키마명이 제거되었다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE **testuser1**.proc1(a1 NUMBER)
 
   AS
@@ -4137,7 +4057,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   END;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
 
   AS
@@ -4160,12 +4081,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 - 버전 범위: Altibase 6.3.1.0.0 이전 버전
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 RETURNING 절은 수동으로 변환해야 한다.
+###### 설명
+RETURNING 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE FUNCTION deleteMenu(p_menuName IN VARCHAR2) RETURN INTEGER
 
   AS
@@ -4184,7 +4108,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   END;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE FUNCTION deleteMenu(p_menuName IN VARCHAR(32000))
 
   RETURN INTEGER
@@ -4207,12 +4132,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 #### RULE-20016
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 CONNECT_BY_ISCYCLE 의사 칼럼은 수동으로 변환해야 한다.
+###### 설명
+CONNECT_BY_ISCYCLE 의사 칼럼은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1
 
   AS
@@ -4234,7 +4162,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   CONNECT BY PRIOR c2 = c3 AND LEVEL \<= 4;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1
 
   AS
@@ -4260,12 +4189,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 - 버전 범위: Altibase 6.3.1.1.7 이전 버전
 
-###### 타입 `REMOVED`
+###### 타입
+`REMOVED`
 
-###### 설명 'NULLS FIRST'와 'NULLS LAST'가 제거되었다.
+###### 설명
+'NULLS FIRST'와 'NULLS LAST'가 제거되었다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1
 
   AS
@@ -4279,7 +4211,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   ORDER BY c1 **NULLS FIRST**;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1
 
   AS
@@ -4296,12 +4229,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 #### RULE-20019
 
-###### 타입 `REMOVED`
+###### 타입
+`REMOVED`
 
-###### 설명 부질의 제약 절이 제거되었다.
+###### 설명
+부질의 제약 절이 제거되었다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1
 
   AS
@@ -4309,7 +4245,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   SELECT \* FROM (SELECT \* FROM t2 **WITH READ ONLY**) t1;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1
 
   AS
@@ -4319,12 +4256,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 #### RULE-20020
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 CROSS 또는 NATURAL INNER 조인 절은 수동으로 변환해야 한다.
+###### 설명
+CROSS 또는 NATURAL INNER 조인 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1
 
   AS
@@ -4332,7 +4272,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   SELECT \* FROM (SELECT \* FROM t1) CROSS JOIN t2;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1
 
   AS
@@ -4342,12 +4283,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 #### RULE-20021
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 조인에서 사용하는 USING 절은 수동으로 변환해야 한다.
+###### 설명
+조인에서 사용하는 USING 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1
 
   AS
@@ -4355,7 +4299,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   SELECT c1, c2 FROM t1 JOIN t2 USING(c1, c2);
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1
 
   AS
@@ -4365,12 +4310,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 #### RULE-20022
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 NATURAL Outer 조인 절은 수동으로 변환해야 한다.
+###### 설명
+NATURAL Outer 조인 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE VIEW sales_view
 
   AS
@@ -4380,7 +4328,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   ORDER BY datetime;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE VIEW sales_view AS
 
   SELECT \* FROM log_guest **NATURAL FULL OUTER JOIN log_sales /\* [TODO]
@@ -4390,12 +4339,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 #### RULE-20023
 
-###### 타입 `CONVERTED`
+###### 타입
+`CONVERTED`
 
-###### 설명 UNIQUE가 변환되었다.
+###### 설명
+UNIQUE가 변환되었다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1
 
   AS
@@ -4403,7 +4355,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   SELECT **UNIQUE** c1 FROM t1;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1
 
   AS
@@ -4412,14 +4365,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 #### RULE-20028
 
-###### 타입 `CONVERTED`
+###### 타입
+`CONVERTED`
 
-###### 설명 큰 따옴표가 제거되었다. 단, reconcile "Unacceptable Name" 단계에서 
-  이름에 큰 따옴표가 필요한 객체에 대해 "Use Double-quoted Identifier" 옵션을 선택하면, 
-  해당 이름의 따옴표는 제거되지 않는다. 
+###### 설명
+큰 따옴표가 제거되었다. 단, reconcile "Unacceptable Name" 단계에서 이름에 큰 따옴표가 필요한 객체에 대해 "Use Double-quoted Identifier" 옵션을 선택하면, 해당 이름의 따옴표는 제거되지 않는다. 
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW "USER1"."V1" ("A1")
 
   AS
@@ -4435,7 +4389,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   SELECT "no" "A1" FROM "T3" WHERE "C6" = '2';
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW USER1.V1(A1)
 
   AS
@@ -4452,13 +4407,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 #### RULE-20029
 
-###### 타입 `CONVERTED`
+###### 타입
+`CONVERTED`
 
-###### 설명 Altibase 예약어에 해당하는 글로벌 식별자(global identifier)는 접미사가
-  추가되어 변환되었다.
+###### 설명
+Altibase 예약어에 해당하는 글로벌 식별자(global identifier)는 접미사가 추가되어 변환되었다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE PROCEDURE open(p_objName VARCHAR2, p_objType VARCHAR2)
 
   AS
@@ -4482,7 +4439,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   END;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE PROCEDURE open_POC(p_objName VARCHAR2, p_objType VARCHAR2)
 
   AS
@@ -4509,19 +4467,23 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 - 버전 범위: Altibase 6.5.1.0.0 이상 버전
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 GROUPING SETS 절과 함께 사용된 Window 함수는 수동으로 변환해야 한다.
+###### 설명
+GROUPING SETS 절과 함께 사용된 Window 함수는 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1 AS SELECT c1, c2, SUM(c3), **RANK() OVER(ORDER BY
   c1)**
 
   FROM t1 **GROUP BY GROUPING SETS(c1, c2)**;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1 AS SELECT c1, c2, SUM(c3**), RANK() OVER(ORDER BY c1)
   /\* [TODO] RULE-20030 : Window functions with the GROUPING SETS clause must be
   convert manually. \*/** FROM t1 GROUP BY GROUPING SETS(c1, c2);
@@ -4530,12 +4492,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 - 버전 범위: Altibase 6.5.1.0.0 이상 버전
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 복수의 GROUPING SETS절은 수동으로 변환해야 한다.
+###### 설명
+복수의 GROUPING SETS절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE VIEW mgr_view
 
   AS
@@ -4545,7 +4510,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   **GROUPING SETS(job), GROUPING SETS(mgr, deptno), GROUPING SETS(comm)**;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE VIEW mgr_view
 
   AS
@@ -4557,12 +4523,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 #### RULE-20043
 
-###### 타입 `REMOVED`
+###### 타입
+`REMOVED`
 
-###### 설명 EDITIONING, EDITIONABLE, NONEDITIONABLE은 제거되었다.
+###### 설명
+EDITIONING, EDITIONABLE, NONEDITIONABLE은 제거되었다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE **EDITIONABLE** PROCEDURE proc1 AS
 
   BEGIN
@@ -4572,7 +4541,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   END;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE **/\* EDITIONABLE \*/ /\* [REMOVED] RULE-20043 : The
   EDITIONING, EDITIONABLE, and NONEDITIONABLE properties have been removed \*/**
   PROCEDURE proc1 AS
@@ -4585,12 +4555,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 #### RULE-20044
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 파티션의 키 값을 명시한 질의는 수동으로 변환해야 한다.
+###### 설명
+파티션의 키 값을 명시한 질의는 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1 AS
 
   SELECT \*
@@ -4598,7 +4571,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   FROM t1 PARTITION **FOR ('QA', 'RND')**;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1 AS
 
   SELECT \*
@@ -4611,12 +4585,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 - 버전 범위: Altibase 6.3.1.0.0 이상
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 WITH절에서 부질의 컬럼의 별칭은 수동으로 변환해야 한다.
+###### 설명
+WITH절에서 부질의 컬럼의 별칭은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1 AS
 
   WITH t1**(c1, c2)** AS (SELECT \* FROM TABLE(func1))
@@ -4624,7 +4601,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   SELECT \* FROM t1;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1 AS
 
   WITH t1**(c1, c2) /\* [TODO] RULE-20045 : The column alias for subquery in the
@@ -4636,12 +4614,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 - 버전 범위: Altibase 6.1.1.0.0 이상
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 PIVOT절의 XML은 수동으로 변환해야 한다.
+###### 설명
+PIVOT절의 XML은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1 AS
 
   SELECT \*
@@ -4649,7 +4630,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   FROM t1 PIVOT **XML** (SUM(c1) FOR c2 IN (ANY));
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1 AS
 
   SELECT \*
@@ -4661,12 +4643,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 - 버전 범위: Altibase 6.1.1.0.0 이상
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 pivot_in_clause에 선언된 ANY 또는 부질의는 수동으로 변환해야 한다.
+###### 설명
+pivot_in_clause에 선언된 ANY 또는 부질의는 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1 AS
 
   SELECT \*
@@ -4674,7 +4659,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   FROM t1 PIVOT XML (SUM(c1) FOR c2 IN (**ANY**));
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1 AS
 
   SELECT \*
@@ -4684,12 +4670,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 #### RULE-20048
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 SAMPLE절은 수동으로 변환해야 한다.
+###### 설명
+SAMPLE절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1 AS
 
   SELECT \*
@@ -4697,7 +4686,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   FROM t1 **SAMPLE(50);**
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1 AS
 
   SELECT \*
@@ -4707,12 +4697,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 #### RULE-20049
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 ROW LIMITING절은 LIMIT절로 변환되어야 한다.
+###### 설명
+ROW LIMITING절은 LIMIT절로 변환되어야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1 AS
 
   SELECT \*
@@ -4720,7 +4713,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   FROM t1 **OFFSET 1 ROW**;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1 AS
 
   SELECT \*
@@ -4730,12 +4724,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 #### RULE-20050
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 FOR UPDATE절에서 SKIP LOCKED는 수동으로 변환해야 한다.
+###### 설명
+FOR UPDATE절에서 SKIP LOCKED는 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1 AS
 
   v1 NUMBER := 1;
@@ -4761,7 +4758,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   END;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1 AS
 
   v1 NUMBER := 1;
@@ -4789,12 +4787,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 #### RULE-20051
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 FOR UPDATE절 내 OF ... 컬럼 절은 수동으로 변환해야 한다.
+###### 설명
+FOR UPDATE절 내 OF ... 컬럼 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1 AS
 
   v1 NUMBER := 1;
@@ -4820,7 +4821,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   END;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1 AS
 
   v1 NUMBER := 1;
@@ -4848,12 +4850,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 #### RULE-20052
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 질의의 파티션 절은 수동으로 변환해야 한다.
+###### 설명
+질의의 파티션 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1 AS
 
   SELECT \*
@@ -4861,7 +4866,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   FROM t1 LEFT OUTER JOIN t2 **PARTITION BY (10)** ON t1.c2 = t2.c2;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1 AS
 
   SELECT \*
@@ -4873,12 +4879,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 - 버전 범위: Altibase 6.3.1.0.0 이상
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 MERGE 구문에서 WHERE 절은 수동으로 변환해야 한다.
+###### 설명
+MERGE 구문에서 WHERE 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1 AS
 
   BEGIN
@@ -4890,7 +4899,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   END;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1 AS
 
   BEGIN
@@ -4904,12 +4914,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 #### RULE-20054
 
-###### 타입 `REMOVED`
+###### 타입
+`REMOVED`
 
-###### 설명 에러 로깅 절은 제거되었다.
+###### 설명
+에러 로깅 절은 제거되었다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1 AS
 
   BEGIN
@@ -4919,7 +4932,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   END;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1 AS
 
   BEGIN
@@ -4933,12 +4947,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 - 버전 범위: Altibase 6.3.1.0.0 이상
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 MERGE 구문에서 DELETE WHERE 절은 수동으로 변환해야 한다..
+###### 설명
+MERGE 구문에서 DELETE WHERE 절은 수동으로 변환해야 한다..
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1 AS
 
   BEGIN
@@ -4950,7 +4967,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   END;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1 AS
 
   BEGIN
@@ -4965,13 +4983,16 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 #### RULE-20056
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 레코드 타입 변수 삽입은 수동으로 변환해야 한다.
+###### 설명
+레코드 타입 변수 삽입은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 
-  CREATE OR REPLACE PROCEDURE proc1(a1 t1%ROWTYPE) AS
+~~~sql
+~~~  CREATE OR REPLACE PROCEDURE proc1(a1 t1%ROWTYPE) AS
 
   BEGIN
 
@@ -4980,7 +5001,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   END;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1(a1 t1%ROWTYPE) AS
 
   BEGIN
@@ -4992,12 +5014,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 #### RULE-20057
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 조건부 삽입 절은 수동으로 변환해야 한다.
+###### 설명
+조건부 삽입 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1 AS
 
   BEGIN
@@ -5011,7 +5036,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   END;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1 AS
 
   BEGIN
@@ -5027,12 +5053,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 #### RULE-20058
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 WHERE절의 CURRENT OF 절은 수동으로 변환해야 한다.
+###### 설명
+WHERE절의 CURRENT OF 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1 AS
 
   c1 NUMBER;
@@ -5062,7 +5091,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   END;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1 AS
 
   c1 NUMBER;
@@ -5096,12 +5126,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 - 버전 범위: Altibase 6.5.1.0.0 이전
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 TABLE 함수는 수동으로 변환해야 한다.
+###### 설명
+TABLE 함수는 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1 AS
 
   SELECT \*
@@ -5109,7 +5142,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   FROM **TABLE(func1('ALTIBASE'));**
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1 AS
 
   SELECT \*
@@ -5122,10 +5156,12 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 ###### 타입
 `TODO`
 
-###### 설명 DML(삽입, 삭제, 갱신)에 사용된 TABLE함수는 수동으로 변환해야 한다.
+###### 설명
+DML(삽입, 삭제, 갱신)에 사용된 TABLE함수는 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1 AS
 
   BEGIN
@@ -5135,7 +5171,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   END;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1 AS
 
   BEGIN
@@ -5153,10 +5190,12 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 ###### 타입
 `TODO`
 
-###### 설명 (+) 연산자는 수동으로 변환해야 한다.
+###### 설명
+(+) 연산자는 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1 AS
 
   SELECT t1.c1, t1_c2.c2
@@ -5164,7 +5203,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   FROM t1, TABLE(t1.c2) **(+)** t1_c2;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1 AS
 
   SELECT t1.c1, t1_c2.c2
@@ -5179,10 +5219,12 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 ###### 타입
 `TODO`
 
-###### 설명 TABLE 함수의 인자인 컬렉션 표현은 사용자 정의 함수이어야 한다.
+###### 설명
+TABLE 함수의 인자인 컬렉션 표현은 사용자 정의 함수이어야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1 AS
 
   SELECT \*
@@ -5190,7 +5232,8 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
   FROM TABLE(**SELECT c2 FROM t1**);
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1 AS
 
   SELECT \*
@@ -5208,13 +5251,15 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 ONLY절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1 AS
 
   SELECT \* FROM **ONLY(v2);**
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1 AS
 
   SELECT \* FROM **ONLY(v2) /\* [TODO] RULE-20062 : ONLY Clause must be converted
@@ -5229,7 +5274,8 @@ ONLY절은 수동으로 변환해야 한다.
 SET절의 레코드 타입 변수는 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1(a1 t1%ROWTYPE) AS
 
   BEGIN
@@ -5239,13 +5285,15 @@ SET절의 레코드 타입 변수는 수동으로 변환해야 한다.
   END**;**
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE PROCEDURE proc1 AS
 
   BEGIN
 
   UPDATE t1 SET **ROW = a1 /\* [TODO] RULE-20063 : Record variable in SET clause
-  must be converted manually \*/** WHERE c1 = a1.c1;
+  ~~~sql
+~~~must be converted manually \*/** WHERE c1 = a1.c1;
 
   END;
 
@@ -5258,7 +5306,8 @@ SET절의 레코드 타입 변수는 수동으로 변환해야 한다.
 서브 파티션은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
+~~~sql
+  ~~~
   CREATE OR REPLACE VIEW v1 AS
 
   SELECT \*
@@ -5266,7 +5315,8 @@ SET절의 레코드 타입 변수는 수동으로 변환해야 한다.
   FROM t1 **SUBPARTITION FOR ('HDB', 'HDB DA')**;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE VIEW v1 AS
 
   SELECT \*
@@ -5667,7 +5717,8 @@ NOT NULL 제약조건은 제거되었다.
   END;
 
 ###### 변환된 SQL 문장
-
+~~~sql
+~~~
   CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
 
   RETURN NUMBER
