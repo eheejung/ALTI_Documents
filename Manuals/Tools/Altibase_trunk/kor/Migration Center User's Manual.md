@@ -2322,7 +2322,7 @@ AS SELECT c1 FROM t1;
 
 ```sql
 CREATE OR REPLACE VIEW v1 
-(c1, CONSTRAINT v1_uk UNIQUE(c1) /* [TODO] RULE-11003 : Out of line constraint must be converted manually */)  
+(c1, CONSTRAINT v1_uk UNIQUE(c1) /* [TODO] RULE-11003 : Out of line constraint must be converted manually */)
 AS SELECT c1 FROM t1;
 ```
 
@@ -2455,7 +2455,7 @@ AS SELECT * FROM t1
 
 #### RULE-12002
 
-> 이 규칙은 Altibase 6.3.1.0.0 이전 버전에서 적용된다. 
+> *이 규칙은 Altibase 6.3.1 이전 버전에 적용된다.* 
 
 ###### 타입
 `TODO`
@@ -2468,9 +2468,9 @@ AS SELECT * FROM t1
 CREATE OR REPLACE TRIGGER log_attendance
 INSTEAD OF INSERT ON attendance_view FOR EACH ROW
 BEGIN
- IF :NEW.cnt < 2 THEN
-  INSERT INTO daily_log VALUES(:NEW.id, CURRENT_TIMESTAMP);
- END IF;
+IF :NEW.cnt < 2 THEN
+INSERT INTO daily_log VALUES(:NEW.id, CURRENT_TIMESTAMP);
+END IF;
 END;
 ~~~
 ###### 변환된 SQL 문장
@@ -2478,9 +2478,9 @@ END;
 CREATE OR REPLACE TRIGGER log_attendance
 INSTEAD OF /* [TODO] RULE-12002 : 'INSTEAD OF' must be converted manually */ INSERT ON attendance_view FOR EACH ROW
 BEGIN
- IF :NEW.cnt < 2 THEN
-  INSERT INTO daily_log VALUES(:NEW.id, CURRENT_TIMESTAMP);
- END IF;
+IF :NEW.cnt < 2 THEN
+INSERT INTO daily_log VALUES(:NEW.id, CURRENT_TIMESTAMP);
+END IF;
 END;
 ~~~
 
@@ -2498,7 +2498,7 @@ END;
 CREATE OR REPLACE TRIGGER trig1
 BEFORE INSERT OR DELETE ON t1
 BEGIN
- NULL;
+NULL;
 END;
 ~~~
 
@@ -2508,14 +2508,14 @@ END;
 CREATE OR REPLACE TRIGGER trig1
 BEFORE INSERT OR DELETE ON t1 /* [TODO] RULE-12003 : Triggers supporting multiple events must be converted manually */
 BEGIN
- NULL;
+NULL;
 END;
 ~~~
 
 
 #### RULE-12004
 
-> 이 규칙은 트리거의 블록 선언부에 사용DECLARE 절에 관한 것으로 Altibase 서버 버전에 따라 다르게 적용된다. 
+이 규칙은 저장 프로시저 블록에 사용된DECLARE 절에 관한 것으로 Altibase 서버 버전에 따라 다르게 적용된다. 
 
 ###### 타입
 `TODO`
@@ -2523,7 +2523,7 @@ END;
 ###### 설명
 ***Altibase 6.1.1 이하 버전에 적용되는 규칙***
 
-- 저장 프로시저 블록에 DECLARE가 있으면 AS 또는 IS로 변경하고 생략된 경우 AS 또는 IS를 추가해야 한다.
+- 저장 프로시저 블록 앞에 DECLARE가 있으면 AS 또는 IS로 변경하고 생략된 경우 AS 또는 IS를 추가해야 한다.
 
   > Altibase 6.1.1 이하 버전에서 DECLARE는 지원하지 않으며 AS 또는 IS 이 필수 구문이다. 
 
@@ -2544,9 +2544,9 @@ NULL;
 END;
 ~~~
 
-***Altibase 6.3.1 / Altibase 6.5.1.0.0 ~ 6.5.1.3.7 / Altibase 7.1.0.0.0 ~ 7.1.0.0.5 에 적용되는 규칙***
+***Altibase 6.3.1 / Altibase 6.5.1.0.0 ~ 6.5.1.3.7***
 
-- 저저장 프로시저 블록에 DECLARE가 있으면 AS 또는 IS로 변경하고 생략된 경우 그대로 적용한다.
+- 저장 프로시저 블록의 선언부 앞에 DECLARE가 있으면 AS 또는 IS로 변경하고 생략된 경우 그대로 적용한다.
 
   > 해당 버전에서 DECLARE는 지원하지 않으며 AS 또는 IS 는 선택적으로 사용하는 구문이다.
 
@@ -2570,38 +2570,6 @@ BEGIN
 NULL;
 END;
 ~~~
-
-***Altibase 6.5.1.3.8 이상 / Altibase 6.5.1.0.0 ~ 6.5.1.3.7 / Altibase 7.1.0.0.6 이상에 적용되는 규칙***
-
-- ...블라블라
-
-  > 해당 버전에서 DECLARE, AS, IS 모두 선택적으로 사용하는 구문이다.
-
-###### 원본 SQL 문장
-
-~~~sql
-CREATE OR REPLACE TRIGGER trig1
-BEFORE INSERT ON t1
-DECLARE
-v1 NUMBER := 1;
-BEGIN
-NULL;
-END;
-~~~
-
-###### 변환된 SQL 문장
-
-~~~sql
-CREATE OR REPLACE TRIGGER trig1
-BEFORE INSERT ON t1
-DECLARE /* [TODO] RULE-12004 : 'AS' or 'IS' must replace 'DECLARE' that starts the declarative part of the block */
-v1 NUMBER := 1;
-BEGIN
-NULL;
-END;
-~~~
-
-
 
 #### RULE-12005
 
@@ -2748,7 +2716,7 @@ END;
 ~~~sql
 CREATE OR REPLACE TRIGGER trig1
 AFTER INSERT ON t1
- /* add */REFERENCING NEW AS new FOR EACH ROW
+REFERENCING NEW AS new FOR EACH ROW
 BEGIN
 :new.c1 := SYSDATE;
 END;
@@ -2774,7 +2742,7 @@ END;
 ~~~sql
 CREATE OR REPLACE TRIGGER trig1
 AFTER UPDATE ON t1
-REFERENCING NEW AS new_POC /* new -> new_POC */ OLD AS old_POC /* old -> old_POC */ FOR EACH ROW
+REFERENCING NEW AS new_POC OLD AS old_POC FOR EACH ROW
 BEGIN
 NULL;
 END;
@@ -2882,7 +2850,7 @@ END;
 CREATE OR REPLACE TRIGGER trig1
 BEFORE INSERT ON t1 FOR EACH ROW
 BEGIN
-DBMS_OUTPUT.PUT_LINE(new.c1); /* :new -> new */
+DBMS_OUTPUT.PUT_LINE(new.c1);
 END;
 ~~~
 #### RULE-12017
@@ -3171,7 +3139,9 @@ END;
 
 > *이 규칙은 Altibase 6.3.1 이상에서 적용된다.*
 
-###### 타입 `TODO`
+###### 타입
+
+`TODO`
 
 ###### 설명
 JAVA 함수 호출은 수동으로 변환해야 한다.
@@ -3292,7 +3262,7 @@ PARAMETERS(a1 OCINUMBER /* [TODO] RULE-13015 : External data type of the paramet
 
 #### RULE-14001
 
-- 버전 범위: Altibase 6.3.1.0.0 이전
+> *이 규칙은 Altibase 6.3.1 이전 버전에 적용된다.*
 
 ###### 타입
 `TODO`
@@ -3302,23 +3272,16 @@ AS LANGUAGE 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
+AS LANGUAGE JAVA
+NAME 'test.quote() return java.lang.String';
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
-
-  AS LANGUAGE JAVA
-
-  NAME 'test.quote() return java.lang.String';
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
+AS LANGUAGE JAVA
+NAME 'test.quote() return java.lang.String'/* [TODO] RULE-14001 : AS LANGUAGE clause must be converted manually */;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1(a1 INUMBER)
-
-  AS LANGUAGE JAVA
-
-  NAME 'test.quote() return java.lang.String' **/\* [TODO] RULE-14001 : AS
-  LANGUAGE clause must be converted manually \*/**;
-
 #### RULE-14002
 
 ###### 타입
@@ -3329,38 +3292,25 @@ AUTHID 절이 제거되었다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
+AUTHID DEFINER
+IS
+BEGIN
+NULL;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
-
-  **AUTHID DEFINER**
-
-  IS
-
-  BEGIN
-
-  NULL;
-
-  END;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
+/* AUTHID DEFINER */ /* [REMOVED] RULE-14002 : AUTHID clause is removed */
+IS
+BEGIN
+NULL;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
-
-  **/\* AUTHID DEFINER \*/ /\* [REMOVED] RULE-14002 : AUTHID clause is removed
-  \*/**
-
-  IS
-
-  BEGIN
-
-  NULL;
-
-  END;
-
 #### RULE-14003
 
-- 버전 범위: Altibase 6.3.1.0.0 이상
+> *이 규칙은 Altibase 6.3.1 이상 버전에 적용된다.*
 
 ###### 타입
 `TODO`
@@ -3370,22 +3320,18 @@ WITH CONTEXT 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+LANGUAGE C LIBRARY lib1 WITH CONTEXT;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1 AS
-
-  LANGUAGE C LIBRARY lib1 **WITH CONTEXT;**
-
 ###### 변환된 SQL 문장
 
-  CREATE OR REPLACE PROCEDURE proc1 AS
-
-  LANGUAGE C LIBRARY lib1 **WITH CONTEXT /\* [TODO] RULE-14003 : WITH CONTEXT
-  clause must be converted manually \*/;**
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+LANGUAGE C LIBRARY lib1 WITH CONTEXT /* [TODO] RULE-14003 : WITH CONTEXT clause must be converted manually */;
+~~~
 
 #### RULE-14004
-~~~sql
-~~~
-- 버전 범위: Altibase 6.3.1.0.0 이상
+> *이 규칙은 Altibase 6.3.1 이상 버전에 적용된다.* 
 
 ###### 타입
 `TODO`
@@ -3395,18 +3341,16 @@ AGENT IN 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 
-  CREATE OR REPLACE PROCEDURE proc1 AS
-
-  LANGUAGE C LIBRARY lib1 **AGENT IN(EXTPROC)**;
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+LANGUAGE C LIBRARY lib1 AGENT IN(EXTPROC);
+~~~
 
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+LANGUAGE C LIBRARY lib1 AGENT IN(EXTPROC)/* [TODO] RULE-14004 : AGENT IN clause must be converted manually */;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1 AS
-
-  LANGUAGE C LIBRARY lib1 **AGENT IN(EXTPROC) /\* [TODO] RULE-14004 : AGENT IN
-  clause must be converted manually \*/**;
-
 #### RULE-14005
 
 ###### 타입
@@ -3417,38 +3361,27 @@ ACCESSIBLE BY절이 제거되었다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1
+ACCESSIBLE BY (TRIGGER trig1)
+IS
+BEGIN
+NULL;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1
-
-  **ACCESSIBLE BY (TRIGGER trig1)**
-
-  IS
-
-  BEGIN
-
-  NULL;
-
-  END;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1
+/* ACCESSIBLE BY (TRIGGER trig1) */ /* [REMOVED] RULE-14005 : The ACCESSIBLE BY clause is removed */
+IS
+BEGIN
+NULL;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1
 
-  **/\* ACCESSIBLE BY (TRIGGER trig1) \*/ /\* [REMOVED] RULE-14005 : The
-  ACCESSIBLE BY clause is removed \*/**
-
-  IS
-
-  BEGIN
-
-  NULL;
-
-  END;
 
 #### RULE-14006
 
-- 버전 범위: Altibase 6.3.1.0.0 이상
+> *이 규칙은 Altibase 6.3.1 이상 버전에 적용된다.*
 
 ###### 타입
 `TODO`
@@ -3458,28 +3391,20 @@ JAVA 함수 호출은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 VARCHAR2) AS
+LANGUAGE JAVA NAME
+'com.altibase.ex.empMgr.addEmp(java.lang.String)';
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1(a1 VARCHAR2) AS
-
-  **LANGUAGE JAVA NAME**
-
-  **'com.altibase.ex.empMgr.addEmp(java.lang.String)'**;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 VARCHAR2) AS
+LANGUAGE JAVA NAME
+'com.altibase.ex.empMgr.addEmp(java.lang.String)';   
+/* [TODO] RULE-14006 : Java call specification should be converted manually */
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1(a1 VARCHAR2) AS
-
-  **LANGUAGE JAVA NAME**
-
-  **'com.altibase.ex.empMgr.addEmp(java.lang.String)';**
-
-  **/\* [TODO] RULE-14006 : Java call specification should be converted manually
-  \*/**
-
 #### RULE-14007
 
-- 버전 범위: Altibase 6.3.1.0.0 이상
+> *이 규칙은 Altibase 6.3.1 이상 버전에 적용된다.*
 
 ###### 타입
 `TODO`
@@ -3489,55 +3414,47 @@ CONTEXT와 SELF 매개변수는 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
+LANGUAGE C LIBRARY lib1
+PARAMETERS(a1, a1 LENGTH, SELF);
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
-
-  LANGUAGE C LIBRARY lib1
-
-  PARAMETERS(a1, a1 LENGTH, **SELF**);
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
+LANGUAGE C LIBRARY lib1
+PARAMETERS(a1, a1 LENGTH, /* [TODO] RULE-14007 : The parameters CONTEXT and SELF should be manually converted */);
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
 
-  LANGUAGE C LIBRARY lib1
-
-  PARAMETERS(a1, a1 LENGTH, **SELF /\* [TODO] RULE-14007 : The parameters CONTEXT
-  and SELF should be manually converted \*/**);
 
 #### RULE-14008
 
-- 버전 범위: Altibase 6.3.1.0.0 이상
+> *이 규칙은 Altibase 6.3.1 이상 버전에 적용된다.*
 
-###### 타입 `TODO`
+###### 타입
 
-###### 설명 INDICATOR, LENGTH, MAXLEN을 제외한 속성은 수동으로 변환해야 한다.
+`TODO`
+
+###### 설명
+
+INDICATOR, LENGTH, MAXLEN을 제외한 속성은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
+LANGUAGE C LIBRARY lib1
+PARAMETERS(a1, a1 CHARSETID, a1 CHARSETFORM);
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
 
-  LANGUAGE C LIBRARY lib1
-
-  PARAMETERS(a1, a1 **CHARSETID**, a1 **CHARSETFORM**);
 
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
+LANGUAGE C LIBRARY lib1
+PARAMETERS(a1, a1 CHARSETID /* [TODO] RULE-14008 : The property except for INDICATOR, LENGTH, MAXLEN must be converted manually */, a1 CHARSETFORM /* [TODO] RULE-14008 : The property except for INDICATOR, LENGTH, MAXLEN must be converted manually */);
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
-
-  LANGUAGE C LIBRARY lib1
-
-  PARAMETERS(a1, a1 **CHARSETID /\* [TODO] RULE-14008 : The property except for
-  INDICATOR, LENGTH, MAXLEN must be converted manually \*/**, a1 **CHARSETFORM /\*
-  [TODO] RULE-14008 : The property except for INDICATOR, LENGTH, MAXLEN must be
-  converted manually \*/**);
-
 #### RULE-14009
 
-- 버전 범위: Altibase 6.3.1.0.0 이상
+> *이 규칙은 Altibase 6.3.1 이상 버전에 적용된다.*
 
 ###### 타입
 `TODO`
@@ -3547,50 +3464,42 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
+LANGUAGE C LIBRARY lib1
+PARAMETERS(a1 BY REFERENCE);
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
-
-  LANGUAGE C LIBRARY lib1
-
-  PARAMETERS(a1 **BY REFERENCE**);
-
 ###### 변환된 SQL 문장
 ~~~sql
+CRETE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
+LANGUAGE C LIBRARY lib1
+PARAMETERS(a1 BY REFERENCE /* [TODO] RULE-14009 : BY REFERENCE clause must be converted manually */);
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
 
-  LANGUAGE C LIBRARY lib1
-
-  PARAMETERS(a1 **BY REFERENCE /\* [TODO] RULE-14009 : BY REFERENCE clause must be
-  converted manually \*/**);
 
 #### RULE-14010
 
-- 버전 범위: Altibase 6.3.1.0.0 이상
+> *이 규칙은 Altibase 6.3.1 이상 버전에 적용된다.*
 
 ###### 타입
 `TODO`
 
-###### 설명 매개변수의 외부 데이터 타입은 수동으로 변환해야 한다.
+###### 설명
+
+매개변수의 외부 데이터 타입은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREAT OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
+LANGUAGE C LIBRARY lib1
+PARAMETERS(a1 OCINUMBER);
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
-
-  LANGUAGE C LIBRARY lib1
-
-  PARAMETERS(a1 OCINUMBER);
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREAT OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
+LANGUAGE C LIBRARY lib1
+PARAMETERS(a1 OCINUMBER /* [TODO] RULE-14010 : External data type of the parameters should be manually converted */);
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
 
-  LANGUAGE C LIBRARY lib1
-
-  PARAMETERS(a1 OCINUMBER /\* [TODO] RULE-14010 : External data type of the
-  parameters should be manually converted \*/);
 
 ### Materialized View 변환 규칙
 
@@ -3604,72 +3513,40 @@ BY REFERENCE 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE MATERIALIZED VIEW mview1
+ORGANIZATION HEAP PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255
+NOCOMPRESS LOGGING
+STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+TABLESPACE test
+BUILD IMMEDIATE
+USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255
+STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+TABLESPACE tbs1
+REFRESH FAST ON DEMAND
+WITH PRIMARY KEY USING DEFAULT LOCAL ROLLBACK SEGMENT
+USING ENFORCED CONSTRAINTS FOR UPDATE DISABLE QUERY REWRITE
+AS SELECT * FROM t1;
 ~~~
-  CREATE MATERIALIZED VIEW mview1
-
-  **ORGANIZATION HEAP PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255**
-
-  **NOCOMPRESS LOGGING**
-
-  **STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645**
-
-  **PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)**
-
-  **TABLESPACE test**
-
-  **BUILD IMMEDIATE**
-
-  **USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255**
-
-  **STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645**
-
-  **PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)**
-
-  **TABLESPACE tbs1**
-
-  **REFRESH FAST ON DEMAND**
-
-  **WITH PRIMARY KEY USING DEFAULT LOCAL ROLLBACK SEGMENT**
-
-  **USING ENFORCED CONSTRAINTS FOR UPDATE DISABLE QUERY REWRITE**
-
-  AS SELECT \* FROM t1;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE MATERIALIZED VIEW mview1
+/* ORGANIZATION HEAP PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255
+NOCOMPRESS LOGGING
+STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+TABLESPACE test
+BUILD IMMEDIATE
+USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255
+STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+TABLESPACE tbs1
+REFRESH FAST ON DEMAND
+WITH PRIMARY KEY USING DEFAULT LOCAL ROLLBACK SEGMENT
+USING ENFORCED CONSTRAINTS FOR UPDATE DISABLE QUERY REWRITE */ /* [REMOVED] RULE-15004 : All clauses between column alias clause and subquery are removed */
+AS SELECT * FROM t1;
 ~~~
-  CREATE MATERIALIZED VIEW mview1
-
-  **/\* ORGANIZATION HEAP PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255**
-
-  **NOCOMPRESS LOGGING**
-
-  **STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645**
-
-  **PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)**
-
-  **TABLESPACE test**
-
-  **BUILD IMMEDIATE**
-
-  **USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255**
-
-  **STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645**
-
-  **PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)**
-
-  **TABLESPACE tbs1**
-
-  **REFRESH FAST ON DEMAND**
-
-  **WITH PRIMARY KEY USING DEFAULT LOCAL ROLLBACK SEGMENT**
-
-  **USING ENFORCED CONSTRAINTS FOR UPDATE DISABLE QUERY REWRITE \*/ /\* [REMOVED]
-  RULE-15004 : All clauses between column alias clause and subquery are removed
-  \*/**
-
-  AS SELECT \* FROM t1;
-
 ### 패키지 변환 규칙
 
 #### RULE-16001
@@ -3682,21 +3559,16 @@ AUTHID 절이 제거되었다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE PACKAGE empMgr_pkg AUTHID CURRENT_USER 
+AS PROCEDURE delete(p_id INTEGER);
+END;
 ~~~
-  CREATE OR REPLACE PACKAGE empMgr_pkg AUTHID CURRENT_USER AS PROCEDURE
-  delete(p_id INTEGER);
-
-  END;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE PACKAGE empMgr_pkg /* AUTHID CURRENT_USER */ /* [REMOVED] RULE-16001 : The invoker rights clause is removed */ 
+AS PROCEDURE delete(p_id INTEGER);
+END;
 ~~~
-  CREATE OR REPLACE PACKAGE empMgr_pkg **/\* AUTHID CURRENT_USER \*/ /\* [REMOVED]
-  RULE-16001 : The invoker rights clause is removed \*/** AS PROCEDURE delete(p_id
-  INTEGER);
-
-  END;
-
 #### RULE-16002
 
 ###### 타입
@@ -3707,26 +3579,19 @@ ACCESSIBLE BY 절이 제거되었다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE PACKAGE pkg1
+ACCESSIBLE BY (TRIGGER trig1)
+AS
+END;
 ~~~
-  CREATE OR REPLACE PACKAGE pkg1
-
-  **ACCESSIBLE BY (TRIGGER trig1)**
-
-  AS
-
-  END;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE PACKAGE pkg1
+/* ACCESSIBLE BY (TRIGGER trig1) */ /* [REMOVED] RULE-16002 : The ACCESSIBLE BY clause is removed */
+AS
+END;
 ~~~
-  CREATE OR REPLACE PACKAGE pkg1
 
-  **/\* ACCESSIBLE BY (TRIGGER trig1) \*/ /\* [REMOVED] RULE-16002 : The
-  ACCESSIBLE BY clause is removed \*/**
-
-  AS
-
-  END;
 
 ### 라이브러리 변환 규칙
 
@@ -3740,40 +3605,33 @@ AGENT 절이 제거되었다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE LIBRARY lib1 AS
+'${ORACLE_HOME}/lib/test_lib.so' AGENT 'test.rule.no_17001.com';
 ~~~
-  CREATE OR REPLACE LIBRARY lib1 AS
-
-  '\${ORACLE_HOME}/lib/test_lib.so' **AGENT 'test.rule.no_17001.com'**;
-
 ###### 변환된 SQL 문장
 
-  CREATE OR REPLACE LIBRARY lib1 AS
-
-  '\${ORACLE_HOME}/lib/test_lib.so' **/\* AGENT 'test.rule.no_17001.com' \*/ /\*
-  [REMOVED] RULE-17001 : Agent clause is removed \*/**;
+~~~sql
+CREATE OR REPLACE LIBRARY lib1 AS
+'${ORACLE_HOME}/lib/test_lib.so' /* AGENT 'test.rule.no_17001.com' */ /* [REMOVED] RULE-17001 : Agent clause is removed */;
+~~~
 
 #### RULE-17002
 
-###### 타입 `REMOVED`
+###### 타입
+
+`REMOVED`
 
 ###### 설명
 UNTRUSTED가 제거되었다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE LIBRARY lib1 UNTRUSTED AS '${ORACLE_HOME}/lib/test_lib.so';
 ~~~
-  CREATE OR REPLACE LIBRARY lib1 **UNTRUSTED**
-
-  AS '\${ORACLE_HOME}/lib/test_lib.so';
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE LIBRARY lib1 /* UNTRUSTED */ /* [REMOVED] RULE-17002 : The keyword UNTRUSTED is removed */ AS '${ORACLE_HOME}/lib/test_lib.so';
 ~~~
-  CREATE OR REPLACE LIBRARY lib1 **/\* UNTRUSTED \*/ /\* [REMOVED] RULE-17002 :
-  The keyword UNTRUSTED is removed \*/**
-
-  AS '\${ORACLE_HOME}/lib/test_lib.so';
-
 ### DML문 변환 규칙
 
 #### RULE-20001
@@ -3786,51 +3644,41 @@ Flashback 쿼리 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT * FROM t1 CROSS JOIN t2 VERSIONS BETWEEN TIMESTAMP MINVALUE AND MAXVALUE;
 ~~~
-  CREATE OR REPLACE VIEW v1 AS
-
-  SELECT \* FROM t1 CROSS JOIN t2 **VERSIONS BETWEEN TIMESTAMP MINVALUE AND
-  MAXVALUE**;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT * FROM t1 CROSS JOIN t2 VERSIONS BETWEEN TIMESTAMP MINVALUE AND MAXVALUE/* [TODO] RULE-20001 : Flashback query clause must converted manually */;
 ~~~
-  CREATE OR REPLACE VIEW v1
-
-  AS
-
-  SELECT \* FROM t1 CROSS JOIN t2 **VERSIONS BETWEEN TIMESTAMP MINVALUE AND
-  MAXVALUE /\* [TODO] RULE-20001 : Flashback query clause must converted manually
-  \*/**;
-
 #### RULE-20006
 
-###### 타입 `TODO`
+###### 타입
 
-###### 설명 DBLink 절은 수동으로 변환해야 한다.
+`TODO`
+
+###### 설명
+
+DBLink 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT * FROM t1@remote;
 ~~~
-  CREATE OR REPLACE VIEW v1
-
-  AS
-
-  SELECT \* FROM t1@remote;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT * FROM t1@remote /* [TODO] RULE-20006 : DBlink must be converted manually */;
 ~~~
-  CREATE OR REPLACE VIEW v1
 
-  AS
-
-  SELECT \* FROM t1@**remote /\* [TODO] RULE-20006 : DBlink must be converted
-  manually \*/**;
 
 #### RULE-20007
 
-- 버전 범위: Altibase 6.5.1.0.0 이전
+> *이 규칙은 Altibase 6.5.1 이전 버전에 적용된다.*
 
 ###### 타입
 `TODO`
@@ -3840,34 +3688,25 @@ GROUPING SET 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT c1, c2, c3, c4, SUM( c5 )
+FROM t1
+GROUP BY GROUPING SETS((c1, c2, c3, c4), (c1, c2, c3), (c3, c4));
 ~~~
-  CREATE OR REPLACE VIEW v1
-
-  AS
-
-  SELECT c1, c2, c3, c4, SUM( c5 )
-
-  FROM t1
-
-  GROUP BY **GROUPING SETS((c1, c2, c3, c4), (c1, c2, c3), (c3, c4));**
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT c1, c2, c3, c4, SUM( c5 )
+FROM t1
+GROUP BY GROUPING SETS((c1, c2, c3, c4), (c1, c2, c3), (c3, c4))/* [TODO] RULE-20007 : GROUPING SETS clause must be converted manually */;
 ~~~
-  CREATE OR REPLACE VIEW r1
 
-  AS
-
-  SELECT c1, c2, c3, c4, SUM(c5)
-
-  FROM t1
-
-  GROUP BY **GROUPING SETS( (c1, c2, c3, c4), (c1, c2, c3), (c3, c4) ) /\* [TODO]
-  RULE-20007 : GROUPING SETS clause must be converted manually \*/**;
 
 #### RULE-20009
 
-- 버전 범위: Altibase 6.3.1.0.0 이전
+> *이 규칙은 Altibase 6.3.1 이전 버전에 적용된다.*
 
 ###### 타입
 `TODO`
@@ -3878,26 +3717,21 @@ CONNECT BY 뒤의 START WITH 절은 수동으로 변환해야 한다.
 ###### 원본 SQL 문장
 
 ~~~sql
-~~~  CREATE OR REPLACE VIEW v1
-
-  AS
-
-  SELECT c1, c2, c3, c4 FROM t1 CONNECT BY c1 = c2 **START WITH c1 = c4;**
+CREATE OR REPLACE VIEW v1
+AS
+SELECT c1, c2, c3, c4 FROM t1 CONNECT BY c1 = c2 START WITH c1 = c4;
+~~~
 
 ###### 변환된 SQL 문장
+
 ~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT c1, c2, c3, c4 FROM t1 CONNECT BY c1 = c2 START WITH c1 = c4 /* [TODO] RULE-20009 : START WITH clause after CONNECT BY clause must be converted manually */;
 ~~~
-  CREATE OR REPLACE VIEW v1
-
-  AS
-
-  SELECT c1, c2, c3, c4 FROM t1 CONNECT BY c1 = c2 **START WITH c1 = c4 /\* [TODO]
-  RULE-20009 : START WITH clause after CONNECT BY clause must be converted
-  manually \*/;**
-
 #### RULE-20010
 
-- 버전 범위: Altibase 6.3.1.0.0 이전 버전
+> *이 규칙은 Altibase 6.3.1 이전 버전에 적용된다.*
 
 ###### 타입
 `TODO`
@@ -3907,28 +3741,18 @@ NOCYCLE을 변환하려면 IGNORE LOOP를 뒤따라오는 조건 이후에 두�
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT c1, c2, c3, c4
+FROM t1 CONNECT BY NOCYCLE c1 = c2 START WITH c1 = c4;
 ~~~
-  CREATE OR REPLACE VIEW v1
-
-  AS
-
-  SELECT c1, c2, c3, c4
-
-  FROM t1 CONNECT BY NOCYCLE c1 = c2 START WITH c1 = c4;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT c1, c2, c3, c4
+FROM t1 CONNECT BY NOCYCLE /* [TODO] RULE-20010 : To convert 'NOCYCLE', 'IGNORE LOOP' should come after the following condition */ c1 = c2 START WITH c1 = c4;
 ~~~
-  CREATE OR REPLACE VIEW v1
-
-  AS
-
-  SELECT c1, c2, c3, c4
-
-  FROM t1 CONNECT BY NOCYCLE **/\* [TODO] RULE-20010 : To convert 'NOCYCLE',
-  'IGNORE LOOP' should come after the following condition \*/** c1 = c2 START WITH
-  c1 = c4;
-
 #### RULE-20011
 
 ###### 타입
@@ -3939,25 +3763,19 @@ NOCYCLE을 변환하려면 IGNORE LOOP를 뒤따라오는 조건 이후에 두�
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT /*+ORDERED */ * FROM t1;
 ~~~
-  CREATE OR REPLACE VIEW v1
-
-  AS
-
-  SELECT **/\*+ORDERED \*/** \* FROM t1;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT * FROM t1;
 ~~~
-  CREATE OR REPLACE VIEW v1
-
-  AS
-
-  SELECT \* FROM t1;
-
 #### RULE-20012
 
-- 버전 범위: Altibase 6.1.1.0.0 이전
+> *이 규칙은 Altibase 6.1.1 이전 버전에 적용된다.*
 
 ###### 타입
 `TODO`
@@ -3967,38 +3785,25 @@ PIVOT절을 확인해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW xmlView
+AS
+SELECT *
+FROM (SELECT d.dname, e.sex FROM departments d, employees e WHERE d.dno = e.dno)
+PIVOT XML (COUNT(*) FOR sex IN (ANY))
+ORDER BY dname;
 ~~~
-  CREATE OR REPLACE VIEW xmlView
-
-  AS
-
-  SELECT \*
-
-  FROM (SELECT d.dname, e.sex FROM departments d, employees e WHERE d.dno = e.dno)
-
-  **PIVOT XML (COUNT(\*) FOR sex IN (ANY))**
-
-  ORDER BY dname;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW xmlView
+AS
+SELECT *
+FROM (SELECT d.dname, e.sex FROM departments d, employees e WHERE d.dno = e.dno)
+PIVOT XML (COUNT(*) FOR sex IN (ANY)) /* [TODO] RULE-20012 : PIVOT clause must be reviewed */
+ORDER BY dname;
 ~~~
-  CREATE OR REPLACE VIEW xmlView
-
-  AS
-
-  SELECT \*
-
-  FROM (SELECT d.dname, e.sex FROM departments d, employees e WHERE d.dno = e.dno)
-
-  **PIVOT XML (COUNT(\*) FOR sex IN (ANY)) /\* [TODO] RULE-20012 : PIVOT clause
-  must be reviewed \*/**
-
-  ORDER BY dname;
-
 #### RULE-20013
 
-- 버전 범위: Altibase 6.5.1.0.0 이전
+> *이 규칙은 Altibase 6.5.1 이전 버전에 적용된다.*
 
 ###### 타입
 `TODO`
@@ -4008,31 +3813,20 @@ UNPIVOT절을 확인해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT * FROM t1
+UNPIVOT (c5 FOR c2 IN (c3 AS 'no', c4 AS 'name'))
+ORDER BY c1, c2;
 ~~~
-  CREATE OR REPLACE VIEW v1
-
-  AS
-
-  SELECT \* FROM t1
-
-  UNPIVOT (c5 FOR c2 IN (c3 AS 'no', c4 AS 'name'))
-
-  ORDER BY c1, c2;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT * FROM t1
+UNPIVOT (c5 FOR c2 IN (c3 AS 'no', c4 AS 'name')) /* [TODO] RULE-20013 : UNPIVOT clause must be reviewed */
+ORDER BY c1, c2;
 ~~~
-  CREATE OR REPLACE VIEW v1
-
-  AS
-
-  SELECT \* FROM t1
-
-  UNPIVOT (c5 FOR c2 IN (c3 AS 'no', c4 AS 'name')) **/\* [TODO] RULE-20013 :
-  UNPIVOT clause must be reviewed \*/**
-
-  ORDER BY c1, c2;
-
 #### RULE-20014
 
 ###### 타입
@@ -4043,49 +3837,31 @@ UNPIVOT절을 확인해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE testuser1.proc1(a1 NUMBER)
+AS
+BEGIN
+INSERT INTO testuser1.t1 VALUES(1, 2, 3);
+UPDATE testuser2.t1 SET c1 =3, c2 = c2 + 4, c3 = 9 WHERE c4 = 12;
+DELETE FROM TESTUSER1.t1 WHERE c4 = 12;
+SELECT * INTO :cur1, :cur2 FROM "TEST_USER1".t1;
+SELECT * INTO :cur1, :cur2 FROM "Test_User1".t1;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE **testuser1**.proc1(a1 NUMBER)
-
-  AS
-
-  BEGIN
-
-  INSERT INTO **testuser1**.t1 VALUES(1, 2, 3);
-
-  UPDATE testuser2.t1 SET c1 =3, c2 = c2 + 4, c3 = 9 WHERE c4 = 12;
-
-  DELETE FROM **TESTUSER1**.t1 WHERE c4 = 12;
-
-  SELECT \* INTO :cur1, :cur2 FROM "**TEST_USER1**".t1;
-
-  SELECT \* INTO :cur1, :cur2 FROM "Test_User1".t1;
-
-  END;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
+AS
+BEGIN
+INSERT INTO t1 VALUES(1, 2, 3);
+UPDATE testuser2.t1 SET c1 =3, c2 = c2 + 4, c3 = 9 WHERE c4 = 12;
+DELETE FROM t1 WHERE C4 = 12;
+SELECT * INTO :cur1, :cur2 FROM t1;
+SELECT * INTO :cur1, :cur2 FROM "Test_User1".t1;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
-
-  AS
-
-  BEGIN
-
-  INSERT INTO t1 VALUES(1, 2, 3);
-
-  UPDATE testuser2.t1 SET c1 =3, c2 = c2 + 4, c3 = 9 WHERE c4 = 12;
-
-  DELETE FROM t1 WHERE C4 = 12;
-
-  SELECT \* INTO :cur1, :cur2 FROM t1;
-
-  SELECT \* INTO :cur1, :cur2 FROM "Test_User1".t1;
-
-  END;
-
 #### RULE-20015
 
-- 버전 범위: Altibase 6.3.1.0.0 이전 버전
+> *이 규칙은 Altibase 6.3.1 이전 버전에 적용된다.*
 
 ###### 타입
 `TODO`
@@ -4095,47 +3871,27 @@ RETURNING 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE FUNCTION deleteMenu(p_menuName IN VARCHAR2) RETURN INTEGER
+AS
+v_totalCnt INTEGER;
+BEGIN
+SELECT COUNT(*) INTO v_totalCnt FROM menus;
+DELETE FROM menus WHERE name = p_menuName RETURNING v_totalCnt - COUNT(*) INTO v_totalCnt;
+RETURN v_totalCnt;
+END;
 ~~~
-  CREATE FUNCTION deleteMenu(p_menuName IN VARCHAR2) RETURN INTEGER
-
-  AS
-
-  v_totalCnt INTEGER;
-
-  BEGIN
-
-  SELECT COUNT(\*) INTO v_totalCnt FROM menus;
-
-  DELETE FROM menus WHERE name = p_menuName **RETURNING v_totalCnt - COUNT(\*)
-  INTO v_totalCnt;**
-
-  RETURN v_totalCnt;
-
-  END;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE FUNCTION deleteMenu(p_menuName IN VARCHAR(32000))
+RETURN INTEGER
+AS
+v_totalCnt INTEGER;
+BEGIN
+SELECT COUNT(*) INTO v_totalCnt FROM menus;
+DELETE FROM menus WHERE name = p_menuName RETURNING v_totalCnt - COUNT(*) INTO v_totalCnt; /* [TODO] RULE-20015 : The RETURNING clause must be converted manually */;
+RETURN v_totalCnt;
+END;
 ~~~
-  CREATE FUNCTION deleteMenu(p_menuName IN VARCHAR(32000))
-
-  RETURN INTEGER
-
-  AS
-
-  v_totalCnt INTEGER;
-
-  BEGIN
-
-  SELECT COUNT(\*) INTO v_totalCnt FROM menus;
-
-  DELETE FROM menus WHERE name = p_menuName **RETURNING v_totalCnt - COUNT(\*)
-  INTO v_totalCnt; /\* [TODO] RULE-20015 : The RETURNING clause must be converted
-  manually \*/;**
-
-  RETURN v_totalCnt;
-
-  END;
-
 #### RULE-20016
 
 ###### 타입
@@ -4146,54 +3902,33 @@ CONNECT_BY_ISCYCLE 의사 칼럼은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT c1,
+CONNECT_BY_ISCYCLE "IsCycle",
+LEVEL,
+SYS_CONNECT_BY_PATH(c1, '/') "Path"
+FROM t1
+WHERE LEVEL <= 3
+START WITH c2 = 100
+CONNECT BY PRIOR c2 = c3 AND LEVEL <= 4;
 ~~~
-  CREATE OR REPLACE VIEW v1
-
-  AS
-
-  SELECT c1,
-
-  CONNECT_BY_ISCYCLE "IsCycle",
-
-  LEVEL,
-
-  SYS_CONNECT_BY_PATH(c1, '/') "Path"
-
-  FROM t1
-
-  WHERE LEVEL \<= 3
-
-  START WITH c2 = 100
-
-  CONNECT BY PRIOR c2 = c3 AND LEVEL \<= 4;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT c1,
+CONNECT_BY_ISCYCLE "IsCycle" /* [TODO] RULE-20016 : The CONNECT_BY_ISCYCLE pseudocolumn must be converted manually */,
+LEVEL,
+SYS_CONNECT_BY_PATH(c1, '/') "Path"
+FROM t1
+WHERE LEVEL <= 3
+START WITH c2 = 100
+CONNECT BY PRIOR c2 = c3 AND LEVEL <= 4;
 ~~~
-  CREATE OR REPLACE VIEW v1
-
-  AS
-
-  SELECT c1,
-
-  CONNECT_BY_ISCYCLE "IsCycle" **/\* [TODO] RULE-20016 : The CONNECT_BY_ISCYCLE
-  pseudocolumn must be converted manually \*/**,
-
-  LEVEL,
-
-  SYS_CONNECT_BY_PATH(c1, '/') "Path"
-
-  FROM t1
-
-  WHERE LEVEL \<= 3
-
-  START WITH c2 = 100
-
-  CONNECT BY PRIOR c2 = c3 AND LEVEL \<= 4;
-
 #### RULE-20017
 
-- 버전 범위: Altibase 6.3.1.1.7 이전 버전
+> *이 규칙은 Altibase 6.3.1.1.7 이전 버전에 적용된다.*
 
 ###### 타입
 `REMOVED`
@@ -4203,36 +3938,22 @@ CONNECT_BY_ISCYCLE 의사 칼럼은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT c1,
+RANK() OVER (ORDER BY c1 NULLS LAST)
+FROM t1
+ORDER BY c1 NULLS FIRST;
 ~~~
-  CREATE OR REPLACE VIEW v1
-
-  AS
-
-  SELECT c1,
-
-  RANK() OVER (ORDER BY c1 **NULLS LAST**)
-
-  FROM t1
-
-  ORDER BY c1 **NULLS FIRST**;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT c1,
+RANK() OVER (ORDER BY c1 /* NULLS LAST */ /* [REMOVED] RULE-20017 : 'NULLS FIRST' and 'NULLS LAST' are  removed */)
+FROM t1
+ORDER BY c1 /* NULLS LAST */ /* [REMOVED] RULE-20017 : 'NULLS FIRST' and 'NULLS LAST' are removed */;
 ~~~
-  CREATE OR REPLACE VIEW v1
-
-  AS
-
-  SELECT c1,
-
-  RANK() OVER (ORDER BY c1 **/\* NULLS LAST \*/ /\* [REMOVED] RULE-20017 : 'NULLS
-  FIRST' and 'NULLS LAST' are removed \*/**)
-
-  FROM t1
-
-  ORDER BY c1 **/\* NULLS LAST \*/ /\* [REMOVED] RULE-20017 : 'NULLS FIRST' and
-  'NULLS LAST' are removed \*/**;
-
 #### RULE-20019
 
 ###### 타입
@@ -4243,23 +3964,16 @@ CONNECT_BY_ISCYCLE 의사 칼럼은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT * FROM (SELECT * FROM t2 WITH READ ONLY) t1;
 ~~~
-  CREATE OR REPLACE VIEW v1
-
-  AS
-
-  SELECT \* FROM (SELECT \* FROM t2 **WITH READ ONLY**) t1;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT * FROM (SELECT * FROM t2 /* WITH READ ONLY */ /* [REMOVED] RULE-20019 : Restriction clause is removed */) t1;
 ~~~
-  CREATE OR REPLACE VIEW v1
-
-  AS
-
-  SELECT \* FROM (SELECT \* FROM t2 **/\* WITH READ ONLY \*/ /\* [REMOVED]
-  RULE-20019 : Restriction clause is removed \*/**) t1;
-
 #### RULE-20020
 
 ###### 타입
@@ -4270,23 +3984,16 @@ CROSS 또는 NATURAL INNER 조인 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT * FROM (SELECT * FROM t1) CROSS JOIN t2;
 ~~~
-  CREATE OR REPLACE VIEW v1
-
-  AS
-
-  SELECT \* FROM (SELECT \* FROM t1) CROSS JOIN t2;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT * FROM (SELECT * FROM t1) CROSS JOIN t2 /* [TODO] RULE-20020 : A CROSS or NATURAL INNER join must be converted manually */;
 ~~~
-  CREATE OR REPLACE VIEW v1
-
-  AS
-
-  SELECT \* FROM (SELECT \* FROM t1) CROSS JOIN t2 **/\* [TODO] RULE-20020 : A
-  CROSS or NATURAL INNER join must be converted manually \*/**;
-
 #### RULE-20021
 
 ###### 타입
@@ -4297,22 +4004,19 @@ CROSS 또는 NATURAL INNER 조인 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT c1, c2 FROM t1 JOIN t2 USING(c1, c2);
 ~~~
-  CREATE OR REPLACE VIEW v1
 
-  AS
-
-  SELECT c1, c2 FROM t1 JOIN t2 USING(c1, c2);
 
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT c1, c2 FROM t1 JOIN t2 USING(c1, c2) /* [TODO] RULE-20021 : USING clause in a join must be converted manually */;
 ~~~
-  CREATE OR REPLACE VIEW v1
 
-  AS
-
-  SELECT c1, c2 FROM t1 JOIN t2 USING(c1, c2**) /\* [TODO] RULE-20021 : USING
-  clause in a join must be converted manually \*/**;
 
 #### RULE-20022
 
@@ -4324,25 +4028,17 @@ NATURAL Outer 조인 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE VIEW sales_view
+AS
+SELECT * FROM log_guest NATURAL FULL OUTER JOIN log_sales
+ORDER BY datetime;
 ~~~
-  CREATE VIEW sales_view
-
-  AS
-
-  SELECT \* FROM log_guest NATURAL **FULL OUTER JOIN log_sales**
-
-  ORDER BY datetime;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE VIEW sales_view AS
+SELECT * FROM log_guest NATURAL FULL OUTER JOIN log_sales /* [TODO] RULE-20022 : NATURAL type outer join clause must be converted manually */
+ORDER BY datetime;
 ~~~
-  CREATE VIEW sales_view AS
-
-  SELECT \* FROM log_guest **NATURAL FULL OUTER JOIN log_sales /\* [TODO]
-  RULE-20022 : NATURAL type outer join clause must be converted manually \*/**
-
-  ORDER BY datetime;
-
 #### RULE-20023
 
 ###### 타입
@@ -4353,22 +4049,16 @@ UNIQUE가 변환되었다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT UNIQUE c1 FROM t1;
 ~~~
-  CREATE OR REPLACE VIEW v1
-
-  AS
-
-  SELECT **UNIQUE** c1 FROM t1;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT DISTINCT c1 FROM t1;
 ~~~
-  CREATE OR REPLACE VIEW v1
-
-  AS
-
-  SELECT **DISTINCT** c1 FROM t1;
-
 #### RULE-20028
 
 ###### 타입
@@ -4379,38 +4069,24 @@ UNIQUE가 변환되었다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW "USER1"."V1" ("A1")
+AS
+SELECT "CODE" "A1" FROM "T1"
+UNION ALL
+SELECT code A1 FROM T2
+UNION ALL
+SELECT "no" "A1" FROM "T3" WHERE "C6" = '2';
 ~~~
-  CREATE OR REPLACE VIEW "USER1"."V1" ("A1")
-
-  AS
-
-  SELECT "CODE" "A1" FROM "T1"
-
-  UNION ALL
-
-  SELECT code A1 FROM T2
-
-  UNION ALL
-
-  SELECT "no" "A1" FROM "T3" WHERE "C6" = '2';
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW USER1.V1(A1)
+AS
+SELECT CODE A1 FROM T1
+UNION ALL
+SELECT code A1 FROM T2
+UNION ALL
+SELECT no A1 FROM T3 WHERE C6 = '2';
 ~~~
-  CREATE OR REPLACE VIEW USER1.V1(A1)
-
-  AS
-
-  SELECT CODE A1 FROM T1
-
-  UNION ALL
-
-  SELECT code A1 FROM T2
-
-  UNION ALL
-
-  SELECT no A1 FROM T3 WHERE C6 = '2';
-
 #### RULE-20029
 
 ###### 타입
@@ -4421,57 +4097,37 @@ Altibase 예약어에 해당하는 글로벌 식별자(global identifier)는 접
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE PROCEDURE open(p_objName VARCHAR2, p_objType VARCHAR2)
+AS
+v_ddl VARCHAR2(200) := 'CREATE ' || p_objType || ' ' || p_objName;
+BEGIN
+CASE p_objType
+WHEN 'TABLE' THEN v_ddl := v_ddl || ' (c1 INTEGER)';
+WHEN 'VIEW' THEN v_ddl := v_ddl || ' AS SELECT * FROM dual';
+END CASE;
+DBMS_OUTPUT.PUT_LINE(v_ddl);
+EXECUTE IMMEDIATE v_ddl;
+END;
 ~~~
-  CREATE PROCEDURE open(p_objName VARCHAR2, p_objType VARCHAR2)
-
-  AS
-
-  v_ddl VARCHAR2(200) := 'CREATE ' \|\| p_objType \|\| ' ' \|\| p_objName;
-
-  BEGIN
-
-  CASE p_objType
-
-  WHEN 'TABLE' THEN v_ddl := v_ddl \|\| ' (c1 INTEGER)';
-
-  WHEN 'VIEW' THEN v_ddl := v_ddl \|\| ' AS SELECT \* FROM dual';
-
-  END CASE;
-
-  DBMS_OUTPUT.PUT_LINE(v_ddl);
-
-  EXECUTE IMMEDIATE v_ddl;
-
-  END;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE PROCEDURE open_POC(p_objName VARCHAR2, p_objType VARCHAR2) 
+AS
+v_ddl VARCHAR2(200) := 'CREATE' || p_objType || ' ' || p_objName;
+BEGIN
+CASE p_objType
+WHEN 'TABLE' THEN v_ddl := v_ddl || ' (c1 INTEGER)';
+WHEN 'VIEW' THEN v_ddl := v_ddl || ' AS SELECT * FROM dual';
+END CASE;
+DBMS_OUTPUT.PUT_LINE(v_ddl);
+EXECUTE IMMEDIATE v_ddl;
+END;
 ~~~
-  CREATE PROCEDURE open_POC(p_objName VARCHAR2, p_objType VARCHAR2)
 
-  AS
-
-  v_ddl VARCHAR2(200) := 'CREATE' \|\| p_objType \|\| ' ' \|\| p_objName;
-
-  BEGIN
-
-  CASE p_objType
-
-  WHEN 'TABLE' THEN v_ddl := v_ddl \|\| ' (c1 INTEGER)';
-
-  WHEN 'VIEW' THEN v_ddl := v_ddl \|\| ' AS SELECT \* FROM dual';
-
-  END CASE;
-
-  DBMS_OUTPUT.PUT_LINE(v_ddl);
-
-  EXECUTE IMMEDIATE v_ddl;
-
-  END;
 
 #### RULE-20030
 
-- 버전 범위: Altibase 6.5.1.0.0 이상 버전
+> *이 규칙은 Altibase 6.5.1 이상 버전에 적용된다.*
 
 ###### 타입
 `TODO`
@@ -4481,22 +4137,16 @@ GROUPING SETS 절과 함께 사용된 Window 함수는 수동으로 변환해야
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1 AS SELECT c1, c2, SUM(c3), RANK() OVER(ORDER BY c1)
+FROM t1 GROUP BY GROUPING SETS(c1, c2);
 ~~~
-  CREATE OR REPLACE VIEW v1 AS SELECT c1, c2, SUM(c3), **RANK() OVER(ORDER BY
-  c1)**
-
-  FROM t1 **GROUP BY GROUPING SETS(c1, c2)**;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1 AS SELECT c1, c2, SUM(c3**), RANK() OVER(ORDER BY c1) /* [TODO] RULE-20030 : Window functions with the GROUPING SETS clause must be convert manually. */** FROM t1 GROUP BY GROUPING SETS(c1, c2);
 ~~~
-  CREATE OR REPLACE VIEW v1 AS SELECT c1, c2, SUM(c3**), RANK() OVER(ORDER BY c1)
-  /\* [TODO] RULE-20030 : Window functions with the GROUPING SETS clause must be
-  convert manually. \*/** FROM t1 GROUP BY GROUPING SETS(c1, c2);
-
 #### RULE-20031
 
-- 버전 범위: Altibase 6.5.1.0.0 이상 버전
+> *이 규칙은 Altibase 6.5.1 이상 버전에 적용된다.*
 
 ###### 타입
 `TODO`
@@ -4506,27 +4156,18 @@ GROUPING SETS 절과 함께 사용된 Window 함수는 수동으로 변환해야
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE VIEW mgr_view
+AS
+SELECT mgr, job, comm, deptno, SUM(sal) FROM emp GROUP BY
+GROUPING SETS(job), GROUPING SETS(mgr, deptno), GROUPING SETS(comm);
 ~~~
-  CREATE VIEW mgr_view
-
-  AS
-
-  SELECT mgr, job, comm, deptno, SUM(sal) FROM emp GROUP BY
-
-  **GROUPING SETS(job), GROUPING SETS(mgr, deptno), GROUPING SETS(comm)**;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE VIEW mgr_view
+AS
+SELECT mgr, job, comm, deptno, SUM(sal) FROM emp GROUP BY
+GROUPING SETS(job), GROUPING SETS(mgr, deptno), GROUPING SETS(comm) /* [TODO] RULE-20031 : Multiple GROUPING SETS clauses must be converted manually. */;
 ~~~
-  CREATE VIEW mgr_view
-
-  AS
-
-  SELECT mgr, job, comm, deptno, SUM(sal) FROM emp GROUP BY
-
-  GROUPING **SETS(job), GROUPING SETS(mgr, deptno), GROUPING SETS(comm) /\* [TODO]
-  RULE-20031 : Multiple GROUPING SETS clauses must be converted manually. \*/;**
-
 #### RULE-20043
 
 ###### 타입
@@ -4537,28 +4178,18 @@ EDITIONING, EDITIONABLE, NONEDITIONABLE은 제거되었다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE EDITIONABLE PROCEDURE proc1 AS
+BEGIN
+NULL;
+END;
 ~~~
-  CREATE OR REPLACE **EDITIONABLE** PROCEDURE proc1 AS
-
-  BEGIN
-
-  NULL;
-
-  END;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE /* EDITIONABLE */ /* [REMOVED] RULE-20043 : The EDITIONING, EDITIONABLE, and NONEDITIONABLE properties have been removed */ PROCEDURE proc1 AS
+BEGIN
+NULL;
+END;
 ~~~
-  CREATE OR REPLACE **/\* EDITIONABLE \*/ /\* [REMOVED] RULE-20043 : The
-  EDITIONING, EDITIONABLE, and NONEDITIONABLE properties have been removed \*/**
-  PROCEDURE proc1 AS
-
-  BEGIN
-
-  NULL;
-
-  END;
-
 #### RULE-20044
 
 ###### 타입
@@ -4569,27 +4200,19 @@ EDITIONING, EDITIONABLE, NONEDITIONABLE은 제거되었다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM t1 PARTITION FOR ('QA', 'RND');
 ~~~
-  CREATE OR REPLACE VIEW v1 AS
-
-  SELECT \*
-
-  FROM t1 PARTITION **FOR ('QA', 'RND')**;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM t1 PARTITION FOR ('QA', 'RND') /* [TODO] RULE-20052 : Query partition clause must be converted manually */ /* [TODO] RULE-20044 : The partition extension clause specifying key value must be converted manually */;
 ~~~
-  CREATE OR REPLACE VIEW v1 AS
-
-  SELECT \*
-
-  FROM t1 PARTITION **FOR ('QA', 'RND') /\* [TODO] RULE-20052 : Query partition
-  clause must be converted manually \*/ /\* [TODO] RULE-20044 : The partition
-  extension clause specifying key value must be converted manually \*/**;
-
 #### RULE-20045
 
-- 버전 범위: Altibase 6.3.1.0.0 이상
+> *이 규칙은 Altibase 6.3.1 이상 버전에 적용된다.*
 
 ###### 타입
 `TODO`
@@ -4599,26 +4222,19 @@ WITH절에서 부질의 컬럼의 별칭은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1 AS
+WITH t1(c1, c2) AS (SELECT * FROM TABLE(func1))
+SELECT * FROM t1;
 ~~~
-  CREATE OR REPLACE VIEW v1 AS
-
-  WITH t1**(c1, c2)** AS (SELECT \* FROM TABLE(func1))
-
-  SELECT \* FROM t1;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1 AS
+WITH t1(c1, c2) /* [TODO] RULE-20045 : The column alias for subquery in the with clause must be converted manually */ AS (SELECT * FROM TABLE(func1))
+SELECT * FROM t1;
 ~~~
-  CREATE OR REPLACE VIEW v1 AS
-
-  WITH t1**(c1, c2) /\* [TODO] RULE-20045 : The column alias for subquery in the
-  with clause must be converted manually \*/** AS (SELECT \* FROM TABLE(func1))
-
-  SELECT \* FROM t1;
-
 #### RULE-20046
 
-- 버전 범위: Altibase 6.1.1.0.0 이상
+> *이 규칙은 Altibase 6.1.1 이상 버전에 적용된다.*
 
 ###### 타입
 `TODO`
@@ -4628,26 +4244,19 @@ PIVOT절의 XML은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM t1 PIVOT XML (SUM(c1) FOR c2 IN (ANY));
 ~~~
-  CREATE OR REPLACE VIEW v1 AS
-
-  SELECT \*
-
-  FROM t1 PIVOT **XML** (SUM(c1) FOR c2 IN (ANY));
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM t1 PIVOT XML /* [TODO] RULE-20046 : The XML keyword of the pivot clause must be converted manually */ (SUM(c1) FOR c2 IN (ANY));
 ~~~
-  CREATE OR REPLACE VIEW v1 AS
-
-  SELECT \*
-
-  FROM t1 PIVOT **XML /\* [TODO] RULE-20046 : The XML keyword of the pivot clause
-  must be converted manually \*/** (SUM(c1) FOR c2 IN (ANY));
-
 #### RULE-20047
 
-- 버전 범위: Altibase 6.1.1.0.0 이상
+> *이 규칙은 Altibase 6.1.1 이상 버전에 적용된다.*
 
 ###### 타입
 `TODO`
@@ -4657,23 +4266,16 @@ pivot_in_clause에 선언된 ANY 또는 부질의는 수동으로 변환해야 �
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM t1 PIVOT XML (SUM(c1) FOR c2 IN (ANY));
 ~~~
-  CREATE OR REPLACE VIEW v1 AS
-
-  SELECT \*
-
-  FROM t1 PIVOT XML (SUM(c1) FOR c2 IN (**ANY**));
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM t1 PIVOT XML (SUM(c1) FOR c2 IN (ANY) /* [TODO] RULE-20047 : The ANY keyword or a subquery in the pivot_in_clause must be converted manually */);
 ~~~
-  CREATE OR REPLACE VIEW v1 AS
-
-  SELECT \*
-
-  FROM t1 PIVOT XML (SUM(c1) FOR c2 IN (**ANY**) **/\* [TODO] RULE-20047 : The ANY
-  keyword or a subquery in the pivot_in_clause must be converted manually \*/**);
-
 #### RULE-20048
 
 ###### 타입
@@ -4684,23 +4286,16 @@ SAMPLE절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM t1 SAMPLE(50);
 ~~~
-  CREATE OR REPLACE VIEW v1 AS
-
-  SELECT \*
-
-  FROM t1 **SAMPLE(50);**
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM t1 SAMPLE(50) /* [TODO] RULE-20048 : The sample clause must be converted manually */;
 ~~~
-  CREATE OR REPLACE VIEW v1 AS
-
-  SELECT \*
-
-  FROM t1 **SAMPLE(50) /\* [TODO] RULE-20048 : The sample clause must be converted
-  manually \*/;**
-
 #### RULE-20049
 
 ###### 타입
@@ -4711,23 +4306,16 @@ ROW LIMITING절은 LIMIT절로 변환되어야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM t1 OFFSET 1 ROW;
 ~~~
-  CREATE OR REPLACE VIEW v1 AS
-
-  SELECT \*
-
-  FROM t1 **OFFSET 1 ROW**;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM t1 OFFSET 1 ROW /* [TODO] RULE-20049 : The row limiting clause must be converted to the limit clause */;
 ~~~
-  CREATE OR REPLACE VIEW v1 AS
-
-  SELECT \*
-
-  FROM t1 **OFFSET 1 ROW /\* [TODO] RULE-20049 : The row limiting clause must be
-  converted to the limit clause \*/**;
-
 #### RULE-20050
 
 ###### 타입
@@ -4738,59 +4326,34 @@ FOR UPDATE절에서 SKIP LOCKED는 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+v1 NUMBER := 1;
+CURSOR cur1 IS SELECT c1 FROM t1 FOR UPDATE SKIP LOCKED;
+BEGIN
+OPEN cur1;
+LOOP
+FETCH cur1 INTO v1;
+EXIT WHEN cur1%NOTFOUND;
+DBMS_OUTPUT.PUT_LINE('v1: ' || v1);
+END LOOP;
+CLOSE cur1;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1 AS
-
-  v1 NUMBER := 1;
-
-  CURSOR cur1 IS SELECT c1 FROM t1 FOR UPDATE **SKIP LOCKED**;
-
-  BEGIN
-
-  OPEN cur1;
-
-  LOOP
-
-  FETCH cur1 INTO v1;
-
-  EXIT WHEN cur1%NOTFOUND;
-
-  DBMS_OUTPUT.PUT_LINE('v1: ' \|\| v1);
-
-  END LOOP;
-
-  CLOSE cur1;
-
-  END;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+v1 NUMBER := 1;
+CURSOR cur1 IS SELECT c1 FROM t1 FOR UPDATE SKIP LOCKED /* [TODO] RULE-20050 : SKIP LOCKED in the FOR UPDATE clause must be converted manually */;
+BEGIN
+OPEN cur1;
+LOOP
+FETCH cur1 INTO v1;
+EXIT WHEN cur1%NOTFOUND;
+DBMS_OUTPUT.PUT_LINE('v1: ' || v1);
+END LOOP;
+CLOSE cur1;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1 AS
-
-  v1 NUMBER := 1;
-
-  CURSOR cur1 IS SELECT c1 FROM t1 FOR UPDATE **SKIP LOCKED /\* [TODO] RULE-20050
-  : SKIP LOCKED in the FOR UPDATE clause must be converted manually \*/;**
-
-  BEGIN
-
-  OPEN cur1;
-
-  LOOP
-
-  FETCH cur1 INTO v1;
-
-  EXIT WHEN cur1%NOTFOUND;
-
-  DBMS_OUTPUT.PUT_LINE('v1: ' \|\| v1);
-
-  END LOOP;
-
-  CLOSE cur1;
-
-  END;
-
 #### RULE-20051
 
 ###### 타입
@@ -4801,58 +4364,35 @@ FOR UPDATE절 내 OF ... 컬럼 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+v1 NUMBER := 1;
+CURSOR cur1 IS SELECT c1 FROM t1 FOR UPDATE OF c1;
+BEGIN
+OPEN cur1;
+LOOP
+FETCH cur1 INTO v1;
+EXIT WHEN cur1%NOTFOUND;
+DBMS_OUTPUT.PUT_LINE('v1: ' || v1);
+END LOOP;
+CLOSE cur1;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1 AS
-
-  v1 NUMBER := 1;
-
-  CURSOR cur1 IS SELECT c1 FROM t1 FOR UPDATE **OF c1**;
-
-  BEGIN
-
-  OPEN cur1;
-
-  LOOP
-
-  FETCH cur1 INTO v1;
-
-  EXIT WHEN cur1%NOTFOUND;
-
-  DBMS_OUTPUT.PUT_LINE('v1: ' \|\| v1);
-
-  END LOOP;
-
-  CLOSE cur1;
-
-  END;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+v1 NUMBER := 1;
+CURSOR cur1 IS SELECT c1 FROM t1 FOR UPDATE OF c1 /* [TODO] RULE-20051 : OF ... column clause in the FOR UPDATE clause must be converted manually */;
+BEGIN
+OPEN cur1;
+LOOP
+FETCH cur1 INTO v1;
+EXIT WHEN cur1%NOTFOUND;
+DBMS_OUTPUT.PUT_LINE('v1: ' || v1);
+END LOOP;
+CLOSE cur1;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1 AS
 
-  v1 NUMBER := 1;
-
-  CURSOR cur1 IS SELECT c1 FROM t1 FOR UPDATE **OF c1 /\* [TODO] RULE-20051 : OF
-  ... column clause in the FOR UPDATE clause must be converted manually \*/**;
-
-  BEGIN
-
-  OPEN cur1;
-
-  LOOP
-
-  FETCH cur1 INTO v1;
-
-  EXIT WHEN cur1%NOTFOUND;
-
-  DBMS_OUTPUT.PUT_LINE('v1: ' \|\| v1);
-
-  END LOOP;
-
-  CLOSE cur1;
-
-  END;
 
 #### RULE-20052
 
@@ -4864,26 +4404,19 @@ FOR UPDATE절 내 OF ... 컬럼 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM t1 LEFT OUTER JOIN t2 PARTITION BY (10) ON t1.c2 = t2.c2;
 ~~~
-  CREATE OR REPLACE VIEW v1 AS
-
-  SELECT \*
-
-  FROM t1 LEFT OUTER JOIN t2 **PARTITION BY (10)** ON t1.c2 = t2.c2;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM t1 LEFT OUTER JOIN t2 PARTITION BY (10) /* [TODO] RULE-20052 : Query partition clause must be converted manually */ ON t1.c2 = t2.c2;
 ~~~
-  CREATE OR REPLACE VIEW v1 AS
-
-  SELECT \*
-
-  FROM t1 LEFT OUTER JOIN t2 **PARTITION BY (10) /\* [TODO] RULE-20052 : Query
-  partition clause must be converted manually \*/** ON t1.c2 = t2.c2;
-
 #### RULE-20053
 
-- 버전 범위: Altibase 6.3.1.0.0 이상
+> *이 규칙은 Altibase 6.3.1 이상 버전에 적용된다.*
 
 ###### 타입
 `TODO`
@@ -4893,31 +4426,20 @@ MERGE 구문에서 WHERE 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+MERGE INTO t1 USING t2 ON (t1.c1 = t2.c1)
+WHEN MATCHED THEN UPDATE SET t1.c2 = t2.c2 WHERE t1.c1 = 10;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1 AS
-
-  BEGIN
-
-  MERGE INTO t1 USING t2 ON (t1.c1 = t2.c1)
-
-  WHEN MATCHED THEN UPDATE SET t1.c2 = t2.c2 **WHERE t1.c1 = 10**;
-
-  END;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1 AS
+BEGIN
+MERGE INTO t1 USING t2 ON (t1.c1 = t2.c1)
+WHEN MATCHED THEN UPDATE SET t1.c2 = t2.c2 WHERE t1.c1 = 10 /* [TODO] RULE-20053 : Where clause of MERGE statement must be converted manually */;
+END;
 ~~~
-  CREATE OR REPLACE VIEW v1 AS
-
-  BEGIN
-
-  MERGE INTO t1 USING t2 ON (t1.c1 = t2.c1)
-
-  WHEN MATCHED THEN UPDATE SET t1.c2 = t2.c2 **WHERE t1.c1 = 10 /\* [TODO]
-  RULE-20053 : Where clause of MERGE statement must be converted manually \*/**;
-
-  END;
-
 #### RULE-20054
 
 ###### 타입
@@ -4928,65 +4450,44 @@ MERGE 구문에서 WHERE 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+INSERT INTO t1 VALUES('6.12') LOG ERRORS;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1 AS
-
-  BEGIN
-
-  INSERT INTO t1 VALUES('6.12') **LOG ERRORS**;
-
-  END;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+INSERT INTO t1 VALUES('6.12') /* LOG ERRORS */ /* [REMOVED] RULE-20054 : The error logging clause is removed */;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1 AS
-
-  BEGIN
-
-  INSERT INTO t1 VALUES('6.12') **/\* LOG ERRORS \*/ /\* [REMOVED] RULE-20054 :
-  The error logging clause is removed \*/**;
-
-  END;
-
 #### RULE-20055
 
-- 버전 범위: Altibase 6.3.1.0.0 이상
+> *이 규칙은 Altibase 6.3.1 이상 버전에 적용된다.*
 
 ###### 타입
 `TODO`
 
 ###### 설명
-MERGE 구문에서 DELETE WHERE 절은 수동으로 변환해야 한다..
+MERGE 구문에서 DELETE WHERE 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+MERGE INTO t1 USING t2 ON (t1.c1 = t2.c1)
+WHEN MATCHED THEN UPDATE SET t1.c2 = t2.c2 DELETE t1.c1 = 11;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1 AS
-
-  BEGIN
-
-  MERGE INTO t1 USING t2 ON (t1.c1 = t2.c1)
-
-  WHEN MATCHED THEN UPDATE SET t1.c2 = t2.c2 **DELETE t1.c1 = 11**;
-
-  END;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+MERGE INTO t1 USING t2 ON (t1.c1 = t2.c1)
+WHEN MATCHED THEN UPDATE SET t1.c2 = t2.c2 DELETE WHERE t1.c1 = 11 /* [TODO] RULE-20055 : The DELETE WHERE clause in MERGE statement must be converted manually */
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1 AS
-
-  BEGIN
-
-  MERGE INTO t1 USING t2 ON (t1.c1 = t2.c1)
-
-  WHEN MATCHED THEN UPDATE SET t1.c2 = t2.c2 **DELETE WHERE t1.c1 = 11 /\* [TODO]
-  RULE-20055 : The DELETE WHERE clause in MERGE statement must be converted
-  manually \*/**
-
-  END;
-
 #### RULE-20056
 
 ###### 타입
@@ -4998,25 +4499,19 @@ MERGE 구문에서 DELETE WHERE 절은 수동으로 변환해야 한다..
 ###### 원본 SQL 문장
 
 ~~~sql
-~~~  CREATE OR REPLACE PROCEDURE proc1(a1 t1%ROWTYPE) AS
-
-  BEGIN
-
-  INSERT INTO t1 VALUES **a1**;
-
-  END;
-
-###### 변환된 SQL 문장
-~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 t1%ROWTYPE) AS
+BEGIN
+INSERT INTO t1 VALUES a1;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1(a1 t1%ROWTYPE) AS
+###### 변환된 SQL 문장
 
-  BEGIN
-
-  INSERT INTO t1 VALUES **a1 /\* [TODO] RULE-20056 : Record variable insert must
-  be converted manually \*/**;
-
-  END;
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 t1%ROWTYPE) AS
+BEGIN
+INSERT INTO t1 VALUES a1 /* [TODO] RULE-20056 : Record variable insert must be converted manually */;
+END;
+~~~
 
 #### RULE-20057
 
@@ -5028,35 +4523,22 @@ MERGE 구문에서 DELETE WHERE 절은 수동으로 변환해야 한다..
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+INSERT
+WHEN team = 'UX' THEN INTO emp_ux
+ELSE INTO emp_etc SELECT * FROM employees;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1 AS
-
-  BEGIN
-
-  INSERT
-
-  **WHEN team = 'UX' THEN INTO emp_ux**
-
-  **ELSE INTO emp_etc SELECT \* FROM employees;**
-
-  END;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+INSERT
+WHEN team = 'UX' THEN INTO emp_ux
+ELSE INTO emp_etc SELECT * FROM employees; /* [TODO] RULE-20057 : Conditional insert clause must be converted manually */
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1 AS
-
-  BEGIN
-
-  INSERT
-
-  **WHEN team = 'UX' THEN INTO emp_ux**
-
-  **ELSE INTO emp_etc SELECT \* FROM employees; /\* [TODO] RULE-20057 :
-  Conditional insert clause must be converted manually \*/**
-
-  END;
-
 #### RULE-20058
 
 ###### 타입
@@ -5067,131 +4549,84 @@ WHERE절의 CURRENT OF 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+c1 NUMBER;
+CURSOR cur1 IS SELECT c1 FROM t1 FOR UPDATE;
+BEGIN
+OPEN cur1;
+LOOP
+FETCH cur1 INTO c1;
+IF c1 > 10 THEN
+DELETE FROM t1 WHERE CURRENT OF cur1;
+END IF;
+EXIT WHEN cur1%NOTFOUND;
+END LOOP;
+CLOSE cur1;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1 AS
-
-  c1 NUMBER;
-
-  CURSOR cur1 IS SELECT c1 FROM t1 FOR UPDATE;
-
-  BEGIN
-
-  OPEN cur1;
-
-  LOOP
-
-  FETCH cur1 INTO c1;
-
-  IF c1 \> 10 THEN
-
-  DELETE FROM t1 WHERE **CURRENT OF cur1**;
-
-  END IF;
-
-  EXIT WHEN cur1%NOTFOUND;
-
-  END LOOP;
-
-  CLOSE cur1;
-
-  END;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+c1 NUMBER;
+CURSOR cur1 IS SELECT c1 FROM t1 FOR UPDATE;
+BEGIN
+OPEN cur1;
+LOOP
+FETCH cur1 INTO c1;
+IF c1 > 10 THEN
+DELETE FROM t1 WHERE CURRENT OF cur1 /* [TODO] RULE-20058 : 'CURRENT OF' clause in the WHERE clause must be converted manually */;
+END IF;
+EXIT WHEN cur1%NOTFOUND;
+END LOOP;
+CLOSE cur1;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1 AS
-
-  c1 NUMBER;
-
-  CURSOR cur1 IS SELECT c1 FROM t1 FOR UPDATE;
-
-  BEGIN
-
-  OPEN cur1;
-
-  LOOP
-
-  FETCH cur1 INTO c1;
-
-  IF c1 \> 10 THEN
-
-  DELETE FROM t1 WHERE **CURRENT OF cur1 /\* [TODO] RULE-20058 : 'CURRENT OF'
-  clause in the WHERE clause must be converted manually \*/**;
-
-  END IF;
-
-  EXIT WHEN cur1%NOTFOUND;
-
-  END LOOP;
-
-  CLOSE cur1;
-
-  END;
-
 #### RULE-20059
 
-- 버전 범위: Altibase 6.5.1.0.0 이전
+이 규칙은 TABLE 함수에 관한 것으로 Altibase 서버 버전에 따라 다르게 적용된다. 
 
 ###### 타입
 `TODO`
 
 ###### 설명
-TABLE 함수는 수동으로 변환해야 한다.
+
+***Altibase 6.5.1 이전***
+
+- TABLE 함수는 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM TABLE(func1('ALTIBASE'));
 ~~~
-  CREATE OR REPLACE VIEW v1 AS
-
-  SELECT \*
-
-  FROM **TABLE(func1('ALTIBASE'));**
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM TABLE(func1('ALTIBASE')) /* [TODO] RULE-20059 : Table function must be converted manually */;
 ~~~
-  CREATE OR REPLACE VIEW v1 AS
+***Altibase 6.5.1 이상***
 
-  SELECT \*
-
-  FROM **TABLE(func1('ALTIBASE')) /\* [TODO] RULE-20059 : Table function must be
-  converted manually \*/**;
-
-- 버전 범위: Altibase 6.5.1.0.0 이상
-
-###### 타입
-`TODO`
-
-###### 설명
-DML(삽입, 삭제, 갱신)에 사용된 TABLE함수는 수동으로 변환해야 한다.
+- DML(삽입, 삭제, 갱신)에 사용된 TABLE 함수는 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+DELETE FROM TABLE(SELECT c2 FROM t1) t WHERE t.c1 = 1;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1 AS
-
-  BEGIN
-
-  DELETE FROM **TABLE(SELECT c2 FROM t1)** t WHERE t.c1 = 1;
-
-  END;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+DELETE FROM TABLE(SELECT c2 FROM t1) t /* [TODO] RULE-20059 : The TABLE function with DML(insert, delete, update) must be converted manually */ WHERE t.c1 = 1;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1 AS
-
-  BEGIN
-
-  DELETE FROM TABLE(SELECT c2 FROM t1) t **/\* [TODO] RULE-20059 : The TABLE
-  function with DML(insert, delete, update) must be converted manually \*/** WHERE
-  t.c1 = 1;
-
-  END;
-
 #### RULE-20060
 
-- 버전 범위: Altibase 6.5.1.0.0 이상
+> *이 규칙은 Altibase 6.5.1 이상 버전에 적용된다.*
 
 ###### 타입
 `TODO`
@@ -5201,26 +4636,19 @@ DML(삽입, 삭제, 갱신)에 사용된 TABLE함수는 수동으로 변환해�
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT t1.c1, t1_c2.c2
+FROM t1, TABLE(t1.c2) (+) t1_c2;
 ~~~
-  CREATE OR REPLACE VIEW v1 AS
-
-  SELECT t1.c1, t1_c2.c2
-
-  FROM t1, TABLE(t1.c2) **(+)** t1_c2;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT t1.c1, t1_c2.c2
+FROM t1, TABLE(t1.c2) (+) /* [TODO] RULE-20060 : The (+) operator must be converted manually */ t1_c2;
 ~~~
-  CREATE OR REPLACE VIEW v1 AS
-
-  SELECT t1.c1, t1_c2.c2
-
-  FROM t1, TABLE(t1.c2) **(+) /\* [TODO] RULE-20060 : The (+) operator must be
-  converted manually \*/** t1_c2;
-
 #### RULE-20061
 
-- 버전 범위: Altibase 6.5.1.0.0 이상
+> *이 규칙은 Altibase 6.5.1 이상 버전에 적용된다.*
 
 ###### 타입
 `TODO`
@@ -5230,24 +4658,16 @@ TABLE 함수의 인자인 컬렉션 표현은 사용자 정의 함수이어야 �
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM TABLE(SELECT c2 FROM t1);
 ~~~
-  CREATE OR REPLACE VIEW v1 AS
-
-  SELECT \*
-
-  FROM TABLE(**SELECT c2 FROM t1**);
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM TABLE(SELECT c2 FROM t1) /* [TODO] RULE-20061 : The collection expression arguments in the TABLE function should be the user-defined function */;
 ~~~
-  CREATE OR REPLACE VIEW v1 AS
-
-  SELECT \*
-
-  FROM TABLE(**SELECT c2 FROM t1**) **/\* [TODO] RULE-20061 : The collection
-  expression arguments in the TABLE function should be the user-defined function
-  \*/;**
-
 #### RULE-20062
 
 ###### 타입
@@ -5258,19 +4678,14 @@ ONLY절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT * FROM ONLY(v2);
 ~~~
-  CREATE OR REPLACE VIEW v1 AS
-
-  SELECT \* FROM **ONLY(v2);**
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT * FROM ONLY(v2) /* [TODO] RULE-20062 : ONLY Clause must be converted manually */;
 ~~~
-  CREATE OR REPLACE VIEW v1 AS
-
-  SELECT \* FROM **ONLY(v2) /\* [TODO] RULE-20062 : ONLY Clause must be converted
-  manually \*/**;
-
 #### RULE-20063
 
 ###### 타입
@@ -5281,28 +4696,18 @@ SET절의 레코드 타입 변수는 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 t1%ROWTYPE) AS
+BEGIN
+UPDATE t1 SET ROW = a1 WHERE c1 = a1.c1;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1(a1 t1%ROWTYPE) AS
-
-  BEGIN
-
-  UPDATE t1 SET **ROW = a1** WHERE c1 = a1.c1;
-
-  END**;**
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+UPDATE t1 SET ROW = a1 /* [TODO] RULE-20063 : Record variable in SET clause must be converted manually */ WHERE c1 = a1.c1;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1 AS
-
-  BEGIN
-
-  UPDATE t1 SET **ROW = a1 /\* [TODO] RULE-20063 : Record variable in SET clause
-  ~~~sql
-~~~must be converted manually \*/** WHERE c1 = a1.c1;
-
-  END;
-
 #### RULE-20065
 
 ###### 타입
@@ -5312,29 +4717,21 @@ SET절의 레코드 타입 변수는 수동으로 변환해야 한다.
 서브 파티션은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-~~~sql
-  ~~~
-  CREATE OR REPLACE VIEW v1 AS
-
-  SELECT \*
-
-  FROM t1 **SUBPARTITION FOR ('HDB', 'HDB DA')**;
+~~~sql  
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM t1 SUBPARTITION FOR ('HDB', 'HDB DA');
+~~~
 
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM t1 SUBPARTITION for ('HDB', 'HDB DA') /* [TODO] RULE-20065 : SUBPARTITION must be converted manually */ /* [TODO] RULE-20044 : The partition extension clause specifying key value must be converted manually */;
 ~~~
-  CREATE OR REPLACE VIEW v1 AS
-
-  SELECT \*
-
-  FROM t1 **SUBPARTITION for ('HDB', 'HDB DA') /\* [TODO] RULE-20065 :
-  SUBPARTITION must be converted manually \*/ /\* [TODO] RULE-20044 : The
-  partition extension clause specifying key value must be converted manually
-  \*/**;
-
 #### RULE-20066
 
-- 버전 범위: Altibase 6.1.1.0.0 이전
+> *이 규칙은 Altibase 6.1.1 이전 버전에 적용된다.*
 
 ###### 타입
 `TODO`
@@ -5344,23 +4741,16 @@ CROSS APPLY 또는 OUTER APPLY 조인은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM t1 CROSS APPLY (SELECT * FROM t2 WHERE t1.c1 = c1);
 ~~~
-  CREATE OR REPLACE VIEW v1 AS
-
-  SELECT \*
-
-  FROM t1 **CROSS APPLY** (SELECT \* FROM t2 WHERE t1.c1 = c1);
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM t1 CROSS APPLY (SELECT * FROM t2 WHERE t1.c1 = c1) /* [TODO] RULE-20066 : CROSS APPLY or OUTER APPLY join must be converted manually */;
 ~~~
-  CREATE OR REPLACE VIEW v1 AS
-
-  SELECT \*
-
-  FROM t1 **CROSS APPLY** (SELECT \* FROM t2 WHERE t1.c1 = c1) **/\* [TODO]
-  RULE-20066 : CROSS APPLY or OUTER APPLY join must be converted manually \*/**;
-
 ### PSM 변환 규칙
 
 #### RULE-30001
@@ -5373,85 +4763,51 @@ CROSS APPLY 또는 OUTER APPLY 조인은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 VARCHAR2)
+RETURN VARCHAR2
+IS
+m_binary_double BINARY_DOUBLE;
+m_number NUMBER(10) := 1234;
+TYPE rt_n IS RECORD (c1 NATURAL);
+TYPE rt_nn IS RECORD (c1 NATURAL);
+TYPE tt_1 IS TABLE OF TIMESTAMP(3) INDEX BY VARCHAR2(10);
+TYPE tt_2 IS TABLE OF TIMESTAMP(3) WITH TIME ZONE INDEX BY VARCHAR2(10);
+BEGIN
+RETURN a1;
+END;
 ~~~
-  CREATE OR REPLACE FUNCTION func1(a1 **VARCHAR2**)
+###### 변환된 SQL 문장
 
-  RETURN **VARCHAR2**
-
-  IS
-
-  m_binary_double **BINARY_DOUBLE**;
-
-  m_number **NUMBER(10)** := 1234;
-
-  TYPE rt_n IS RECORD (c1 **NATURAL**);
-
-  TYPE rt_nn IS RECORD (c1 **NATURAL**);
-
-  TYPE tt_1 IS TABLE OF **TIMESTAMP(3)** INDEX BY **VARCHAR2(10)**;
-
-  TYPE tt_2 IS TABLE OF **TIMESTAMP(3) WITH TIME ZONE** INDEX BY **VARCHAR2(10)**;
-
-  BEGIN
-
-  RETURN a1;
-
-  END;
-
-###### 변환된 SQL 문장 Altibase 7.1.0 미만 버전
 ~~~sql
+-- Altibase 7.1 이전 버전
+CREATE OR REPLACE FUNCTION func1(a1 VARCHAR(65534))
+RETURN VARCHAR(65534)
+IS
+m_binary_double DOUBLE;
+m_number NUMBER := 1234;
+TYPE rt_n IS RECORD (c1 INTEGER);
+TYPE rt_nn IS RECORD (c1 INTEGER);
+TYPE tt_1 IS TABLE OF DATE INDEX BY VARCHAR2(10);
+TYPE tt_2 IS TABLE OF DATE INDEX BY VARCHAR2(10);
+BEGIN
+RETURN a1;
+END;
 ~~~
-  CREATE OR REPLACE FUNCTION func1(a1 **VARCHAR(65534)**)
-
-  RETURN **VARCHAR(65534)**
-
-  IS
-
-  m_binary_double **DOUBLE**;
-
-  m_number **NUMBER (10)**:= 1234;
-
-  TYPE rt_n IS RECORD (c1 **INTEGER**);
-
-  TYPE rt_nn IS RECORD (c1 **INTEGER**);
-
-  TYPE tt_1 IS TABLE OF **DATE** INDEX BY **VARCHAR(10);**
-
-  TYPE tt_2 IS TABLE OF **DATE** INDEX BY **VARCHAR(10);**
-
-  BEGIN
-
-  RETURN a1;
-
-  END;
-
-###### 변환된 SQL 문장  Altibase 7.1.0 이상 버전
 ~~~sql
+-- Altibase 7.1 이상 버전
+CREATE OR REPLACE FUNCTION func1(a1 VARCHAR)
+RETURN VARCHAR
+IS
+m_binary_double DOUBLE;
+m_number NUMBER (10):= 1234;
+TYPE rt_n IS RECORD (c1 INTEGER);
+TYPE rt_nn IS RECORD (c1 INTEGER);
+TYPE tt_1 IS TABLE OF DATE INDEX BY VARCHAR(10);
+TYPE tt_2 IS TABLE OF DATE INDEX BY VARCHAR(10);
+BEGIN
+RETURN a1;
+END;
 ~~~
-  CREATE OR REPLACE FUNCTION func1(a1 **VARCHAR**)
-
-  RETURN **VARCHAR**
-
-  IS
-
-  m_binary_double **DOUBLE;**
-
-  m_number **NUMBER (10)**:= 1234;
-
-  TYPE rt_n IS RECORD (c1 **INTEGER**);
-
-  TYPE rt_nn IS RECORD (c1 **INTEGER**);
-
-  TYPE tt_1 IS TABLE OF **DATE** INDEX BY **VARCHAR(10);**
-
-  TYPE tt_2 IS TABLE OF **DATE** INDEX BY **VARCHAR(10);**
-
-  BEGIN
-
-  RETURN a1;
-
-  END;
-
 #### RULE-30002
 
 ###### 타입
@@ -5462,39 +4818,25 @@ CROSS APPLY 또는 OUTER APPLY 조인은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1
+IS
+v_rowid ROWID;
+v_urowid UROWID;
+BEGIN
+NULL;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1
-
-  IS
-
-  v_rowid **ROWID**;
-
-  v_urowid **UROWID**;
-
-  BEGIN
-
-  NULL;
-
-  END;
 
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1
+IS
+v_rowid ROWID /* [TODO] RULE-30002 : Unsupported data type must be converted manually */;
+v_urowid UROWID /* [TODO] RULE-30002 : Unsupported data type must be converted manually */;
+BEGIN
+NULL;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1
-
-  IS
-
-  v_rowid ROWID **/\* [TODO] RULE-30002 : Unsupported data type must be converted
-  manually \*/**;
-
-  v_urowid UROWID **/\* [TODO] RULE-30002 : Unsupported data type must be
-  converted manually \*/**;
-
-  BEGIN
-
-  NULL;
-
-  END;
 
 #### RULE-30003
 
@@ -5502,101 +4844,57 @@ CROSS APPLY 또는 OUTER APPLY 조인은 수동으로 변환해야 한다.
 `TODO`
 
 ###### 설명
-%TYPE을 참조하는 변수의 데이터 타입이 VARRAY 또는 사용자 정의
-  타입이라면, 수동으로 변환해야 한다.
+%TYPE을 참조하는 변수의 데이터 타입이 VARRAY 또는 사용자 정의 타입이라면, 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE FUNCTION getSeason_thailand(p_date DATE) RETURN VARCHAR2
+AS
+TYPE vt_season IS VARRAY(5) OF INTEGER;
+rainy vt_season := vt_season(6, 7, 8, 9, 10);
+dry rainy%TYPE := vt_season(11, 12, 1, 2);
+v_currSeason VARCHAR2(20) := 'Unknown';
+v_currMonth NUMBER(2);
+BEGIN
+SELECT TO_NUMBER(TO_CHAR(p_date, 'MM')) INTO v_currMonth FROM dual;
+FOR i IN 1..rainy.LAST LOOP
+IF rainy(i) = v_currMonth THEN
+v_currSeason := 'Rainy season';
+END IF;
+END LOOP;
+FOR i IN 1..dry.LAST LOOP
+IF dry(i) = v_currMonth THEN
+v_currSeason := 'Dry season';
+END IF;
+END LOOP;
+RETURN v_currSeason;
+END;
 ~~~
-  CREATE FUNCTION getSeason_thailand(p_date DATE) RETURN VARCHAR2
-
-  AS
-
-  TYPE vt_season IS VARRAY(5) OF INTEGER;
-
-  rainy vt_season := vt_season(6, 7, 8, 9, 10);
-
-  dry **rainy%TYPE** := vt_season(11, 12, 1, 2);
-
-  v_currSeason VARCHAR2(20) := 'Unknown';
-
-  v_currMonth NUMBER(2);
-
-  BEGIN
-
-  SELECT TO_NUMBER(TO_CHAR(p_date, 'MM')) INTO v_currMonth FROM dual;
-
-  FOR i IN 1..rainy.LAST LOOP
-
-  IF rainy(i) = v_currMonth THEN
-
-  v_currSeason := 'Rainy season';
-
-  END IF;
-
-  END LOOP;
-
-  FOR i IN 1..dry.LAST LOOP
-
-  IF dry(i) = v_currMonth THEN
-
-  v_currSeason := 'Dry season';
-
-  END IF;
-
-  END LOOP;
-
-  RETURN v_currSeason;
-
-  END;
 
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE FUNCTION getSeason_thailand(p_date DATE) RETURN VARCHAR2
+AS
+TYPE vt_season IS VARRAY(5) OF INTEGER;
+rainy vt_season := vt_season(6, 7, 8, 9, 10);
+dry rainy%TYPE /* [TODO] RULE-30003 : If the data type of variable referencing the %TYPE were to be a user-defined or VARRAY type, it should be manually converted */ := vt_season(11, 12, 1, 2);
+v_currSeason VARCHAR2(20) := 'Unknown';
+v_currMonth NUMBER(2);
+BEGIN
+SELECT TO_NUMBER(TO_CHAR(p_date, 'MM')) INTO v_currMonth FROM dual;
+FOR i IN 1..rainy.LAST LOOP
+IF rainy(i) = v_currMonth THEN
+v_currSeason := 'Rainy season';
+END IF;
+END LOOP;
+FOR i IN 1..dry.LAST LOOP
+IF dry(i) = v_currMonth THEN
+v_currSeason := 'Dry season';
+END IF;
+END LOOP;
+RETURN v_currSeason;
+END;
 ~~~
-  CREATE FUNCTION getSeason_thailand(p_date DATE) RETURN VARCHAR2
-
-  AS
-
-  TYPE vt_season IS VARRAY(5) OF INTEGER;
-
-  rainy vt_season := vt_season(6, 7, 8, 9, 10);
-
-  **dry rainy%TYPE /\* [TODO] RULE-30003 : If the data type of variable
-  referencing the %TYPE were to be a user-defined or VARRAY type, it should be
-  manually converted \*/** := vt_season(11, 12, 1, 2);
-
-  v_currSeason VARCHAR2(20) := 'Unknown';
-
-  v_currMonth NUMBER(2);
-
-  BEGIN
-
-  SELECT TO_NUMBER(TO_CHAR(p_date, 'MM')) INTO v_currMonth FROM dual;
-
-  FOR i IN 1..rainy.LAST LOOP
-
-  IF rainy(i) = v_currMonth THEN
-
-  v_currSeason := 'Rainy season';
-
-  END IF;
-
-  END LOOP;
-
-  FOR i IN 1..dry.LAST LOOP
-
-  IF dry(i) = v_currMonth THEN
-
-  v_currSeason := 'Dry season';
-
-  END IF;
-
-  END LOOP;
-
-  RETURN v_currSeason;
-
-  END;
-
 #### RULE-30004
 
 ###### 타입
@@ -5607,95 +4905,53 @@ CROSS APPLY 또는 OUTER APPLY 조인은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE FUNCTION getSeason_thailand(p_date DATE) RETURN VARCHAR2
+AS
+TYPE vt_season IS VARRAY(5) OF INTEGER;
+rainy vt_season := vt_season(6, 7, 8, 9, 10);
+dry rainy%TYPE := vt_season(11, 12, 1, 2);
+v_currSeason VARCHAR2(20) := 'Unknown';
+v_currMonth NUMBER(2);
+BEGIN
+SELECT TO_NUMBER(TO_CHAR(p_date, 'MM')) INTO v_currMonth FROM dual;
+FOR i IN 1..rainy.LAST LOOP
+IF rainy(i) = v_currMonth THEN
+v_currSeason := 'Rainy season';
+END IF;
+END LOOP;
+FOR i IN 1..dry.LAST LOOP
+IF dry(i) = v_currMonth THEN
+v_currSeason := 'Dry season';
+END IF;
+END LOOP;
+RETURN v_currSeason;
+END;
 ~~~
-  CREATE FUNCTION getSeason_thailand(p_date DATE) RETURN VARCHAR2
-
-  AS
-
-  TYPE vt_season IS VARRAY(5) OF INTEGER;
-
-  rainy **vt_season** := vt_season(6, 7, 8, 9, 10);
-
-  dry rainy%TYPE := vt_season(11, 12, 1, 2);
-
-  v_currSeason VARCHAR2(20) := 'Unknown';
-
-  v_currMonth NUMBER(2);
-
-  BEGIN
-
-  SELECT TO_NUMBER(TO_CHAR(p_date, 'MM')) INTO v_currMonth FROM dual;
-
-  FOR i IN 1..rainy.LAST LOOP
-
-  IF rainy(i) = v_currMonth THEN
-
-  v_currSeason := 'Rainy season';
-
-  END IF;
-
-  END LOOP;
-
-  FOR i IN 1..dry.LAST LOOP
-
-  IF dry(i) = v_currMonth THEN
-
-  v_currSeason := 'Dry season';
-
-  END IF;
-
-  END LOOP;
-
-  RETURN v_currSeason;
-
-  END;
 
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE FUNCTION getSeason_thailand(p_date DATE) RETURN VARCHAR2
+AS
+TYPE vt_season IS VARRAY(5) OF INTEGER;
+rainy vt_season /* [TODO] RULE-30004 : If the datatype of variable is an VARRAY or user-defined type, the user must convert it manually */ := vt_season(6, 7, 8, 9, 10);
+dry rainy%TYPE:= vt_season(11, 12, 1, 2);
+v_currSeason VARCHAR3(20) := 'Unknown';
+v_currMonth NUMBER(2);
+BEGIN
+SELECT TO_NUMBER(TO_CHAR(p_date, 'MM')) INTO v_currMonth FROM dual;
+FOR i IN 1..rainy.LAST LOOP
+IF rainy(i) = v_currMonth THEN
+v_currSeason := 'Rainy season';
+END IF;
+END LOOP;
+FOR i IN 1..dry.LAST LOOP
+IF dry(i) = v_currMonth THEN
+v_currSeason := 'Dry season';
+END IF;
+END LOOP;
+RETURN v_currSeason;
+END;
 ~~~
-  CREATE FUNCTION getSeason_thailand(p_date DATE) RETURN VARCHAR2
-
-  AS
-
-  TYPE vt_season IS VARRAY(5) OF INTEGER;
-
-  rainy **vt_season /\* [TODO] RULE-30004 : If the datatype of variable is an
-  VARRAY or user-defined type, the user must convert it manually \*/** :=
-  vt_season(6, 7, 8, 9, 10);
-
-  dry rainy%TYPE:= vt_season(11, 12, 1, 2);
-
-  v_currSeason VARCHAR3(20) := 'Unknown';
-
-  v_currMonth NUMBER(2);
-
-  BEGIN
-
-  SELECT TO_NUMBER(TO_CHAR(p_date, 'MM')) INTO v_currMonth FROM dual;
-
-  FOR i IN 1..rainy.LAST LOOP
-
-  IF rainy(i) = v_currMonth THEN
-
-  v_currSeason := 'Rainy season';
-
-  END IF;
-
-  END LOOP;
-
-  FOR i IN 1..dry.LAST LOOP
-
-  IF dry(i) = v_currMonth THEN
-
-  v_currSeason := 'Dry season';
-
-  END IF;
-
-  END LOOP;
-
-  RETURN v_currSeason;
-
-  END;
 
 #### RULE-30005
 
@@ -5707,42 +4963,27 @@ NOT NULL 제약조건은 제거되었다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER
+IS
+v1 PLS_INTEGER NOT NULL;
+BEGIN
+RETURN a1;
+END;
 ~~~
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-
-  RETURN NUMBER
-
-  IS
-
-  v1 PLS_INTEGER NOT NULL;
-
-  BEGIN
-
-  RETURN a1;
-
-  END;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER
+IS
+v1 PLS_INTEGER /*NOT NULL */ /* [REMOVED] RULE-30005 : The NOT NULL constraint is removed */;
+BEGIN
+RETURN a1;
+END;
 ~~~
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-
-  RETURN NUMBER
-
-  IS
-
-  v1 PLS_INTEGER **/\***NOT NULL **\*/ /\* [REMOVED] RULE-30005 : The NOT NULL
-  constraint is removed \*/**;
-
-  BEGIN
-
-  RETURN a1;
-
-  END;
-
 #### RULE-30006
 
-- 버전 범위: Altibase 6.5.1.0.0 이전
+> *이 규칙은 Altibase 6.5.1 이전 버전에 적용된다.*
 
 ###### 타입
 `REMOVED`
@@ -5752,51 +4993,30 @@ NOCOPY는 제거되었다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE PROCEDURE appendSysdate
+(
+p1 IN OUT NOCOPY VARCHAR2
+)
+IS
+v_date VARCHAR2(50);
+BEGIN
+SELECT SYSDATE INTO v_date FROM dual;
+p1 := p1 || v_date;
+END;
 ~~~
-  CREATE PROCEDURE appendSysdate
-
-  (
-
-  p1 IN OUT **NOCOPY** VARCHAR2
-
-  )
-
-  IS
-
-  v_date VARCHAR2(50);
-
-  BEGIN
-
-  SELECT SYSDATE INTO v_date FROM dual;
-
-  p1 := p1 \|\| v_date;
-
-  END;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE PROCEDURE appendSysdate
+(
+p1 IN OUT /* NOCOPY */ /* [REMOVED] RULE-30006 : NOCOPY is removed */ VARCHAR2
+)
+IS
+v_date VARCHAR2(50);
+BEGIN
+SELECT SYSDATE INTO v_date FROM dual;
+p1 := p1 || v_date;
+END;
 ~~~
-  CREATE PROCEDURE appendSysdate
-
-  (
-
-  p1 IN OUT **/\* NOCOPY \*/ /\* [REMOVED] RULE-30006 : NOCOPY is removed \*/
-  VARCHAR2**
-
-  )
-
-  IS
-
-  v_date VARCHAR2(50);
-
-  BEGIN
-
-  SELECT SYSDATE INTO v_date FROM dual;
-
-  p1 := p1 \|\| v_date;
-
-  END;
-
 #### RULE-30008
 
 ###### 타입
@@ -5807,77 +5027,47 @@ Altibase 예약어에 해당하는 지역(Local) 식별자는 변환시 접미�
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE PROCEDURE printDdlReplEnable
+AS
+true INTEGER := 1;
+BEGIN
+DECLARE
+isEnable INTEGER := printDdlReplEnable.true;
+BEGIN
+SELECT value1 INTO isEnable
+FROM v$property WHERE name='REPLICATION_DDL_ENABLE';
+DBMS_OUTPUT.PUT('[Property]REPLICATION_DDL_ENABLE: ');
+IF isEnable = printDdlReplEnable.true THEN
+DBMS_OUTPUT.PUT_LINE('true');
+ELSE
+DBMS_OUTPUT.PUT_LINE('false');
+END IF;
+END;
+END;
+
 ~~~
-  CREATE PROCEDURE printDdlReplEnable
 
-  AS
+###### 변환된 SQL 문장
 
-  **true** INTEGER := 1;
-
-  BEGIN
-
-  DECLARE
-
-  isEnable INTEGER := printDdlReplEnable.**true**;
-
-  BEGIN
-
-  SELECT value1 INTO isEnable
-
-  FROM v\$property WHERE name='REPLICATION_DDL_ENABLE';
-
-  DBMS_OUTPUT.PUT('[Property]REPLICATION_DDL_ENABLE: ');
-
-  IF isEnable = printDdlReplEnable.**true** THEN
-
-  DBMS_OUTPUT.PUT_LINE('true');
-
-  ELSE
-
-  DBMS_OUTPUT.PUT_LINE('false');
-
-  END IF;
-
-  END;
-
-  END;
-
-- 변환된 SQL 문장
 ~~~sql
+CREATE PROCEDURE printDdlReplEnable
+AS
+true_POC INTEGER := 1;
+BEGIN
+DECLARE
+isEnable INTEGER := printDdlReplEnable.true_POC;
+BEGIN
+SELECT value1 INTO isEnable
+FROM v$property WHERE name='REPLICATION_DDL_ENABLE';
+DBMS_OUTPUT.PUT('[Property]REPLICATION_DDL_ENABLE:');
+IF isEnable = printDdlReplEnable.true_POC THEN
+DBMS_OUTPUT.PUT_LINE('true');
+ELSE
+DBMS_OUTPUT.PUT_LINE('false');
+END IF;
+END;
+END;
 ~~~
-  CREATE PROCEDURE printDdlReplEnable
-
-  AS
-
-  **true_POC** INTEGER := 1;
-
-  BEGIN
-
-  DECLARE
-
-  isEnable INTEGER := printDdlReplEnable.**true_POC**;
-
-  BEGIN
-
-  SELECT value1 INTO isEnable
-
-  FROM v\$property WHERE name='REPLICATION_DDL_ENABLE';
-
-  DBMS_OUTPUT.PUT('[Property]REPLICATION_DDL_ENABLE:');
-
-  IF isEnable = printDdlReplEnable.**true_POC** THEN
-
-  DBMS_OUTPUT.PUT_LINE('true');
-
-  ELSE
-
-  DBMS_OUTPUT.PUT_LINE('false');
-
-  END IF;
-
-  END;
-
-  END;
 
 #### RULE-31001
 
@@ -5889,61 +5079,37 @@ Altibase 예약어에 해당하는 지역(Local) 식별자는 변환시 접미�
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
+IS
+BEGIN
+FOR item1 IN (SELECT c1 FROM t1)
+LOOP
+NULL;
+END LOOP;
+FOR item2 IN (SELECT c1 FROM t2)
+LOOP
+NULL;
+END LOOP;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
-
-  IS
-
-  BEGIN
-
-  FOR item1 IN (**SELECT c1 FROM t1**)
-
-  LOOP
-
-  NULL;
-
-  END LOOP;
-
-  FOR item2 IN (**SELECT c1 FROM t2**)
-
-  LOOP
-
-  NULL;
-
-  END LOOP;
-
-  END;
 
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
+IS
+CURSOR O2A_generated_cur_00 IS (SELECT c1 FROM t1);
+CURSOR O2A_generated_cur_01 IS (SELECT c1 FROM t2);
+BEGIN
+FOR item1 IN O2A_generated_cur_00
+LOOP
+NULL;
+END LOOP;
+FOR item2 IN O2A_generated_cur_01
+LOOP
+NULL;
+END LOOP;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
-
-  IS
-
-  **CURSOR O2A_generated_cur_00 IS SELECT c1 FROM t1;**
-
-  **CURSOR O2A_generated_cur_01 IS SELECT c1 FROM t2;**
-
-  BEGIN
-
-  FOR item1 IN **O2A_generated_cur_00**
-
-  LOOP
-
-  NULL;
-
-  END LOOP;
-
-  FOR item2 IN **O2A_generated_cur_01**
-
-  LOOP
-
-  NULL;
-
-  END LOOP;
-
-  END;
 
 #### RULE-31002
 
@@ -5955,54 +5121,33 @@ SUBTYPE 타입 변수는 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER
+IS
+TYPE typ1 IS RECORD ( m1 NUMBER(4) NOT NULL := 99 );
+TYPE typ2 IS REF CURSOR RETURN record_name%TYPE;
+TYPE typ3 IS TABLE OF a1%TYPE NOT NULL;
+TYPE typ4 iS VARYING ARRAY(10) OF INTEGER;
+SUBTYPE subtyp1 IS CHAR(10);
+BEGIN
+RETURN a1;
+END;
 ~~~
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-
-  RETURN NUMBER
-
-  IS
-
-  TYPE typ1 IS RECORD ( m1 NUMBER(4) NOT NULL := 99 );
-
-  TYPE typ2 IS REF CURSOR RETURN record_name%TYPE;
-
-  TYPE typ3 IS TABLE OF a1%TYPE NOT NULL;
-
-  TYPE typ4 iS VARYING ARRAY(10) OF INTEGER;
-
-  **SUBTYPE subtyp1 IS CHAR(10);**
-
-  BEGIN
-
-  RETURN a1;
-
-  END;
 
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER
+IS
+TYPE typ1 IS RECORD ( m1 NUMBER(4) NOT NULL := 99 );
+TYPE typ2 IS REF CURSOR RETURN record_name%TYPE;
+TYPE typ3 IS TABLE OF a1%TYPE NOT NULL;
+TYPE typ4 iS VARYING ARRAY(10) OF INTEGER;
+SUBTYPE subtyp1 IS CHAR(10) /* [TODO] RULE-31002 : SUBTYPE type variable must be converted manually */;
+BEGIN
+RETURN a1;
+END;
 ~~~
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-
-  RETURN NUMBER
-
-  IS
-
-  TYPE typ1 IS RECORD ( m1 NUMBER(4) NOT NULL := 99 );
-
-  TYPE typ2 IS REF CURSOR RETURN record_name%TYPE;
-
-  TYPE typ3 IS TABLE OF a1%TYPE NOT NULL;
-
-  TYPE typ4 iS VARYING ARRAY(10) OF INTEGER;
-
-  **SUBTYPE subtyp1 IS CHAR(10) /\* [TODO] RULE-31002 : SUBTYPE type variable must
-  be converted manually \*/;**
-
-  BEGIN
-
-  RETURN a1;
-
-  END;
 
 #### RULE-31003
 
@@ -6014,50 +5159,30 @@ VARRAY타입 변수는 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE FUNCTION getSeason_korea(p_date DATE) RETURN VARCHAR2 IS
+TYPE vt_season IS VARRAY(4) OF VARCHAR2(20);
+v_seasonList vt_season := vt_season('Winter', 'Spring', 'Summer', 'Fall');
+v_currSeason VARCHAR2(20);
+v_currMonth NUMBER(2);
+BEGIN
+SELECT TO_NUMBER(TO_CHAR(p_date, 'MM')) INTO v_currMonth FROM dual;
+v_currSeason := v_seasonList(FLOOR(MOD(v_currMonth, 12) / 3 + 1));
+RETURN v_currSeason;
+END;
 ~~~
-  CREATE FUNCTION getSeason_korea(p_date DATE) RETURN VARCHAR2 IS
-
-  TYPE **vt_season IS VARRAY(4) OF VARCHAR2(20);**
-
-  v_seasonList vt_season := vt_season('Winter', 'Spring', 'Summer', 'Fall');
-
-  v_currSeason VARCHAR2(20);
-
-  v_currMonth NUMBER(2);
-
-  BEGIN
-
-  SELECT TO_NUMBER(TO_CHAR(p_date, 'MM')) INTO v_currMonth FROM dual;
-
-  v_currSeason := v_seasonList(FLOOR(MOD(v_currMonth, 12) / 3 + 1));
-
-  RETURN v_currSeason;
-
-  END;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE FUNCTION getSeason_korea(p_date DATE) RETURN VARCHAR2 IS
+TYPE vt_season IS VARRAY(4) OF VARCHAR2(20) /* [TODO] RULE-31003 : VARRAY type variable must be converted manually */;
+v_seasonList vt_season:= vt_season('Winter', 'Spring', 'Summer', 'Fall');
+v_currseason VARCHAR2(20);
+v_currMonth NUMBER(2);
+BEGIN
+SELECT TO_NUMBER(TO_CHAR(p_date, 'MM')) INTO v_currMonth FROM dual;
+v_currseason := v_seasonList(FLOOR(MOD(v_currMonth, 12) / 3 + 1));
+RETURN a1v_currseason;
+END;
 ~~~
-  CREATE FUNCTION getSeason_korea(p_date DATE) RETURN VARCHAR2 IS
-
-  TYPE **vt_season IS VARRAY(4) OF VARCHAR2(20) /\* [TODO] RULE-31003 : VARRAY
-  type variable must be converted manually \*/;**
-
-  v_seasonList vt_season:= vt_season('Winter', 'Spring', 'Summer', 'Fall');
-
-  v_currseason VARCHAR2(20);
-
-  v_currMonth NUMBER(2);
-
-  BEGIN
-
-  SELECT TO_NUMBER(TO_CHAR(p_date, 'MM')) INTO v_currMonth FROM dual;
-
-  v_currseason := v_seasonList(FLOOR(MOD(v_currMonth, 12) / 3 + 1));
-
-  RETURN a1v_currseason;
-
-  END;
 
 #### RULE-31004
 
@@ -6065,62 +5190,38 @@ VARRAY타입 변수는 수동으로 변환해야 한다.
 `TODO`
 
 ###### 설명
-CURSOR의 경우 %ROWTYPE 타입 파라미터는 수동으로 변환해야 한다
+CURSOR의 경우 %ROWTYPE 타입 파라미터는 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN t2%ROWTYPE
+IS
+CURSOR cur1
+(
+m1 collection_name%TYPE,
+m2 t1.c3%ROWTYPE
+) RETURN t2%ROWTYPE
+IS SELECT c2, c3 FROM t1 WHERE c1 > 10;
+BEGIN
+RETURN cur1;
+END;
 ~~~
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-
-  RETURN t2%ROWTYPE
-
-  IS
-
-  CURSOR cur1
-
-  (
-
-  m1 collection_name%TYPE,
-
-  m2 t1.c3%ROWTYPE
-
-  ) RETURN t2%ROWTYPE
-
-  IS SELECT c2, c3 FROM t1 WHERE c1 \> 10;
-
-  BEGIN
-
-  RETURN cur1;
-
-  END;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN t2%ROWTYPE
+IS
+CURSOR cur1
+(
+m1 collection_name%TYPE,
+m2 t1.c3%ROWTYPE /* [TODO] RULE-31004 : %ROWTYPE type parameter for CURSOR must be converted manually */
+) RETURN t2%ROWTYPE
+IS SELECT c2, c3 FROM t1 WHERE c1 > 10;
+BEGIN
+RETURN cur1;
+END;
 ~~~
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-
-  RETURN t2%ROWTYPE
-
-  IS
-
-  CURSOR cur1
-
-  (
-
-  m1 collection_name%TYPE,
-
-  m2 t1.c3%ROWTYPE **/\* [TODO] RULE-31004 : %ROWTYPE type parameter for CURSOR
-  must be converted manually \*/**
-
-  ) RETURN t2%ROWTYPE
-
-  IS SELECT c2, c3 FROM t1 WHERE c1 \> 10;
-
-  BEGIN
-
-  RETURN cur1;
-
-  END;
 
 #### RULE-31005
 
@@ -6132,50 +5233,29 @@ CURSOR의 RETURN 절은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER
+IS
+TYPE typ1 IS REF CURSOR RETURN record_name%TYPE;
+CURSOR cur1 ( m1 NUMBER )
+RETURN NUMBER
+IS SELECT c2, c3 FROM t1 WHERE c1 > 10;
+BEGIN
+RETURN a1;
+END;
 ~~~
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-
-  RETURN NUMBER
-
-  IS
-
-  TYPE typ1 IS REF CURSOR RETURN record_name%TYPE;
-
-  CURSOR cur1 ( m1 NUMBER )
-
-  RETURN NUMBER
-
-  IS SELECT c2, c3 FROM t1 WHERE c1 \> 10;
-
-  BEGIN
-
-  RETURN a1;
-
-  END;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER
+IS
+TYPE typ1 IS REF CURSOR RETURN record_name%TYPE /* [TODO] RULE-31005 : RETURN clause of CURSOR must be converted manually */;
+CURSOR cur1 ( m1 NUMBER ) RETURN NUMBER /* [TODO] RULE-31005 : RETURN clause of CURSOR must be converted manually */
+IS SELECT c2, c3 FROM t1 WHERE c1 > 10;
+BEGIN
+RETURN a1;
+END;
 ~~~
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-
-  RETURN NUMBER
-
-  IS
-
-  TYPE typ1 IS REF CURSOR RETURN record_name%TYPE **/\* [TODO] RULE-31005 : RETURN
-  clause of CURSOR must be converted manually \*/**;
-
-  CURSOR cur1 ( m1 NUMBER ) RETURN NUMBER **/\* [TODO] RULE-31005 : RETURN clause
-  of CURSOR must be converted manually \*/**
-
-  IS SELECT c2, c3 FROM t1 WHERE c1 \> 10;
-
-  BEGIN
-
-  RETURN a1;
-
-  END;
-
 #### RULE-31006
 
 ###### 타입
@@ -6186,323 +5266,151 @@ DECLARE섹션 내에 PROCEDURE 또는 FUNCTION을 정의하거나 선언할 수 
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE PROCEDURE util_tblMgr(p_cmd VARCHAR2, p_tblName VARCHAR2) IS
+FUNCTION isTblExist(p_tblName VARCHAR2) RETURN BOOLEAN;
+FUNCTION isTblExist(p_tblName VARCHAR2) RETURN BOOLEAN AS
+v_cnt INTEGER;
+BEGIN
+SELECT COUNT(*) INTO v_cnt FROM user_tables WHERE table_name = p_tblName;
+IF v_cnt > 0 THEN
+RETURN true;
+ELSE
+RETURN false;
+END IF;
+END;
+BEGIN
+CASE p_cmd
+WHEN 'EXIST' THEN
+IF isTblExist(p_tblName) THEN
+DBMS_OUTPUT.PUT_LINE(p_tblName || ' exists.');
+ELSE
+DBMS_OUTPUT.PUT_LINE(p_tblName || ' does not exist.');
+END IF;
+ELSE DBMS_OUTPUT.PUT_LINE('Unknown command: ' || p_cmd);
+END CASE;
+END;
 ~~~
-  CREATE PROCEDURE util_tblMgr(p_cmd VARCHAR2, p_tblName VARCHAR2) IS
-
-  **FUNCTION isTblExist(p_tblName VARCHAR2) RETURN BOOLEAN;**
-
-  **FUNCTION isTblExist(p_tblName VARCHAR2) RETURN BOOLEAN AS**
-
-  **v_cnt INTEGER;**
-
-  **BEGIN**
-
-  **SELECT COUNT(\*) INTO v_cnt FROM user_tables WHERE table_name = p_tblName;**
-
-  **IF v_cnt \> 0 THEN**
-
-  **RETURN true;**
-
-  **ELSE**
-
-  **RETURN false;**
-
-  **END IF;**
-
-  **END;**
-
-  BEGIN
-
-  CASE p_cmd
-
-  WHEN 'EXIST' THEN
-
-  IF isTblExist(p_tblName) THEN
-
-  DBMS_OUTPUT.PUT_LINE(p_tblName \|\| ' exists.');
-
-  ELSE
-
-  DBMS_OUTPUT.PUT_LINE(p_tblName \|\| ' does not exist.');
-
-  END IF;
-
-  ELSE DBMS_OUTPUT.PUT_LINE('Unknown command: ' \|\| p_cmd);
-
-  END CASE;
-
-  END;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE PROCEDURE util_tblMgr(p_cmd VARCHAR2, p_tblName VARCHAR2) IS
+/* FUNCTION isTblExist(p_tblName VARCHAR2) RETURN BOOLEAN; */ /* [REMOVED] RULE-31006 : Cannot define or declare a procedure or function in the declare section */
+/* FUNCTION isTblExist(p_tblName VARCHAR2) RETURN BOOLEAN AS
+v_cnt INTEGER;
+BEGIN
+SELECT COUNT(*) INTO v_cnt FROM user_tables WHERE table_name = p_tblName;
+IF v_cnt > 0 THEN
+RETURN true;
+ELSE
+RETURN false;
+END IF;
+END; */ /* [REMOVED] RULE-31006 : Cannot define or declare a procedure or function in the declare section */
+BEGIN
+CASE p_cmd
+WHEN 'EXIST' THEN
+IF isTblExist(p_tblName) THEN
+DBMS_OUTPUT.PUT_LINE(p_tblName || ' exists.');
+ELSE
+DBMS_OUTPUT.PUT_LINE(p_tblName || ' does not exist.');
+END IF;
+ELSE DBMS_OUTPUT.PUT_LINE('Unknown command: ' || p_cmd);
+END CASE;
+END;
 ~~~
-  CREATE PROCEDURE util_tblMgr(p_cmd VARCHAR2, p_tblName VARCHAR2) IS
-
-  **/\* FUNCTION isTblExist(p_tblName VARCHAR2) RETURN BOOLEAN; \*/ /\* [REMOVED]
-  RULE-31006 : Cannot define or declare a procedure or function in the declare
-  section \*/**
-
-  **/\* FUNCTION isTblExist(p_tblName VARCHAR2) RETURN BOOLEAN AS**
-
-  **v_cnt INTEGER;**
-
-  **BEGIN**
-
-  **SELECT COUNT(\*) INTO v_cnt FROM user_tables WHERE table_name = p_tblName;**
-
-  **IF v_cnt \> 0 THEN**
-
-  **RETURN true;**
-
-  **ELSE**
-
-  **RETURN false;**
-
-  **END IF;**
-
-  **END; \*/ /\* [REMOVED] RULE-31006 : Cannot define or declare a procedure or
-  function in the declare section \*/**
-
-  BEGIN
-
-  CASE p_cmd
-
-  WHEN 'EXIST' THEN
-
-  IF isTblExist(p_tblName) THEN
-
-  DBMS_OUTPUT.PUT_LINE(p_tblName \|\| ' exists.');
-
-  ELSE
-
-  DBMS_OUTPUT.PUT_LINE(p_tblName \|\| ' does not exist.');
-
-  END IF;
-
-  ELSE DBMS_OUTPUT.PUT_LINE('Unknown command: ' \|\| p_cmd);
-
-  END CASE;
-
-  END;
-
 #### RULE-31008
-
+이 규칙은 PRAGMA에 관한 규칙으로 Altibase 서버 버전에 따라 변환 결과가 다르다.
 ###### 타입
 `REMOVED`
 
 ###### 설명
-PRAGMA가 제거되었다. 단 제거할 때 Altibase 6.3.1.0.10 이상 버전에서는 AUTONOMOUS_TRANSACTION을, Altibase 6.5.1.0.0 이상 버전에서는 EXCEPTION_INIT을 제외한다.
+***Altibase 6.3.1.0.9 이하***
+
+- PRAGMA가 제거되었다. 
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE PROCEDURE addShot(p_cnt INTEGER)
+AS
+PRAGMA AUTONOMOUS_TRANSACTION;
+tmp_opt_empty EXCEPTION;
+PRAGMA EXCEPTION_INIT(tmp_opt_empty, 100);
+v_currcnt INTEGER;
+BEGIN
+SELECT shot_cnt INTO v_currcnt FROM tmp_opt;
+v_currcnt := v_currcnt + p_cnt;
+UPDATE tmp_opt SET shot_cnt = v_currcnt WHERE id = 1;
+COMMIT;
+EXCEPTION
+WHEN tmp_opt_empty THEN
+INSERT INTO tmp_opt(id, shot_cnt) VALUES (1, p_cnt + 1);
+COMMIT;
+END;
 ~~~
-  CREATE PROCEDURE addShot(p_cnt INTEGER)
-
-  AS
-
-  **PRAGMA AUTONOMOUS_TRANSACTION;**
-
-  tmp_opt_empty EXCEPTION;
-
-  **PRAGMA EXCEPTION_INIT(tmp_opt_empty, 100);**
-
-  v_currcnt INTEGER;
-
-  BEGIN
-
-  SELECT shot_cnt INTO v_currcnt FROM tmp_opt;
-
-  v_currcnt := v_currcnt + p_cnt;
-
-  UPDATE tmp_opt SET shot_cnt = v_currcnt WHERE id = 1;
-
-  COMMIT;
-
-  EXCEPTION
-
-  WHEN tmp_opt_empty THEN
-
-  INSERT INTO tmp_opt(id, shot_cnt) VALUES (1, p_cnt + 1);
-
-  COMMIT;
-
-  END;
-
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE PROCEDURE addShot(p_cnt INTEGER)
+AS
+/* PRAGMA AUTONOMOUS_TRANSACTION; */ /* [REMOVED] RULE-31008 : PRAGMA is removed */
+tmp_opt_empty EXCEPTION;
+/* PRAGMA EXCEPTION_INIT(tmp_opt_empty, 100); */ /* [REMOVED] RULE-31008 : PRAGMA is removed */
+v_currcnt INTEGER;
+BEGIN
+SELECT shot_cnt INTO v_currcnt FROM tmp_opt;
+v_currcnt := v_currcnt + p_cnt;
+UPDATE tmp_opt SET shot_cnt = v_currcnt WHERE id = 1;
+COMMIT;
+EXCEPTION
+WHEN tmp_opt_empty THEN
+INSERT INTO tmp_opt(id, shot_cnt) VALUES (1, p_cnt + 1);
+COMMIT;
+END;
 ~~~
-  CREATE PROCEDURE addShot(p_cnt INTEGER)
+***Altibase 6.3.1.0.10 이상***
 
-  AS
-
-  **/\* PRAGMA AUTONOMOUS_TRANSACTION; \*/ /\* [REMOVED] RULE-31008 : PRAGMA is
-  removed \*/**
-
-  tmp_opt_empty EXCEPTION;
-
-  **/\* PRAGMA EXCEPTION_INIT(tmp_opt_empty, 100); \*/ /\* [REMOVED] RULE-31008 :
-  PRAGMA is removed \*/**
-
-  v_currcnt INTEGER;
-
-  BEGIN
-
-  SELECT shot_cnt INTO v_currcnt FROM tmp_opt;
-
-  v_currcnt := v_currcnt + p_cnt;
-
-  UPDATE tmp_opt SET shot_cnt = v_currcnt WHERE id = 1;
-
-  COMMIT;
-
-  EXCEPTION
-
-  WHEN tmp_opt_empty THEN
-
-  INSERT INTO tmp_opt(id, shot_cnt) VALUES (1, p_cnt + 1);
-
-  COMMIT;
-
-  END;
-
-###### 원본 SQL 문장Altibase 6.3.1.0.10 이상 버전
-~~~sql
-~~~
-  CREATE PROCEDURE addShot(p_cnt INTEGER)
-
-  AS
-
-  **PRAGMA AUTONOMOUS_TRANSACTION;**
-
-  tmp_opt_empty EXCEPTION;
-
-  **PRAGMA EXCEPTION_INIT(tmp_opt_empty, 100);**
-
-  v_currcnt INTEGER;
-
-  BEGIN
-
-  SELECT shot_cnt INTO v_currcnt FROM tmp_opt;
-
-  v_currcnt := v_currcnt + p_cnt;
-
-  UPDATE tmp_opt SET shot_cnt = v_currcnt WHERE id = 1;
-
-  COMMIT;
-
-  EXCEPTION
-
-  WHEN tmp_opt_empty THEN
-
-  INSERT INTO tmp_opt(id, shot_cnt) VALUES (1, p_cnt + 1);
-
-  COMMIT;
-
-  END;
+- PRAGMA AUTONOMOUS_TRANSACTION는 유지한다.
 
 ###### 변환된 SQL 문장
+
 ~~~sql
+CREATE PROCEDURE addShot(p_cnt INTEGER)
+AS
+PRAGMA AUTONOMOUS_TRANSACTION
+tmp_opt_empty EXCEPTION;
+/* PRAGMA EXCEPTION_INIT(tmp_opt_empty, 100); */ /* [REMOVED] RULE-31008 : PRAGMA is removed */
+v_currcnt INTEGER;
+BEGIN
+SELECT shot_cnt INTO v_currcnt FROM tmp_opt;
+v_currcnt := v_currcnt + p_cnt;
+UPDATE tmp_opt SET shot_cnt = v_currcnt WHERE id = 1;
+COMMIT;
+EXCEPTION
+WHEN tmp_opt_empty THEN
+INSERT INTO tmp_opt(id, shot_cnt) VALUES (1, p_cnt + 1);
+COMMIT;
+END;
 ~~~
-  CREATE PROCEDURE addShot(p_cnt INTEGER)
+***Altibase 6.5.1 이상***
 
-  AS
-
-  **PRAGMA AUTONOMOUS_TRANSACTION**
-
-  tmp_opt_empty EXCEPTION;
-
-  **/\* PRAGMA EXCEPTION_INIT(tmp_opt_empty, 100); \*/ /\* [REMOVED] RULE-31008 :
-  PRAGMA is removed \*/**
-
-  v_currcnt INTEGER;
-
-  BEGIN
-
-  SELECT shot_cnt INTO v_currcnt FROM tmp_opt;
-
-  v_currcnt := v_currcnt + p_cnt;
-
-  UPDATE tmp_opt SET shot_cnt = v_currcnt WHERE id = 1;
-
-  COMMIT;
-
-  EXCEPTION
-
-  WHEN tmp_opt_empty THEN
-
-  INSERT INTO tmp_opt(id, shot_cnt) VALUES (1, p_cnt + 1);
-
-  COMMIT;
-
-  END;
-
-###### 원본 SQL 문장Altibase 6.5.1.0.0 이상 버전
-~~~sql
-~~~
-  CREATE OR REPLACE PROCEDURE addShot(p_cnt INTEGER)
-
-  AS
-
-  **PRAGMA AUTONOMOUS_TRANSACTION;**
-
-  tmp_opt_empty EXCEPTION;
-
-  **PRAGMA EXCEPTION_INIT(tmp_opt_empty, 100);**
-
-  v_currcnt INTEGER;
-
-  BEGIN
-
-  SELECT shot_cnt INTO v_currcnt FROM tmp_opt;
-
-  v_currcnt := v_currcnt + p_cnt;
-
-  UPDATE tmp_opt SET shot_cnt = v_currcnt WHERE id = 1;
-
-  COMMIT;
-
-  EXCEPTION
-
-  WHEN tmp_opt_empty THEN
-
-  INSERT INTO tmp_opt(id, shot_cnt) VALUES (1, p_cnt + 1);
-
-  COMMIT;
-
-  END;
+- PRAGMA AUTONOMOUS_TRANSACTION, PRAGMA EXCEPTION_INIT을 유지한다.
 
 ###### 변환된 SQL 문장
+
 ~~~sql
+CREATE OR REPLACE PROCEDURE addShot(p_cnt INTEGER) AS
+PRAGMA AUTONOMOUS_TRANSACTION;
+tmp_opt_empty EXCEPTION;
+PRAGMA EXCEPTION_INIT(tmp_opt_empty, 100);
+v_currcnt INTEGER;
+BEGIN
+SELECT shot_cnt INTO v_currcnt FROM tmp_opt;
+v_currcnt := v_currcnt + p_cnt;
+UPDATE tmp_opt SET shot_cnt = v_currcnt WHERE id = 1;
+COMMIT;
+EXCEPTION
+WHEN tmp_opt_empty THEN
+INSERT INTO tmp_opt(id, shot_cnt) VALUES (1, p_cnt + 1);
+COMMIT;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE addShot(p_cnt INTEGER) AS
-
-  **PRAGMA AUTONOMOUS_TRANSACTION;**
-
-  tmp_opt_empty EXCEPTION;
-
-  **PRAGMA EXCEPTION_INIT(tmp_opt_empty, 100);**
-
-  v_currcnt INTEGER;
-
-  BEGIN
-
-  SELECT shot_cnt INTO v_currcnt FROM tmp_opt;
-
-  v_currcnt := v_currcnt + p_cnt;
-
-  UPDATE tmp_opt SET shot_cnt = v_currcnt WHERE id = 1;
-
-  COMMIT;
-
-  EXCEPTION
-
-  WHEN tmp_opt_empty THEN
-
-  INSERT INTO tmp_opt(id, shot_cnt) VALUES (1, p_cnt + 1);
-
-  COMMIT;
-
-  END;
 
 #### RULE-31010
 
@@ -6514,55 +5422,33 @@ Collection Constructor는 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE FUNCTION getSeason_korea(p_date DATE) RETURN VARCHAR2
+AS
+TYPE vt_season IS VARRAY(4) OF v_currSeason%TYPE;
+v_seasonList vt_season := vt_season('Winter', 'Spring', 'Summer', 'Fall');
+v_currMonth NUMBER(2);
+v_currSeason VARCHAR2(20);
+BEGIN
+SELECT TO_NUMBER(TO_CHAR(p_date, 'MM')) INTO v_currMonth FROM dual;
+v_currSeason := v_seasonList(FLOOR(MOD(v_currMonth, 12) / 3 + 1));
+RETURN v_currSeason;
+END;
 ~~~
-  CREATE FUNCTION getSeason_korea(p_date DATE) RETURN VARCHAR2
-
-  AS
-
-  TYPE vt_season IS VARRAY(4) OF v_currSeason%TYPE;
-
-  v_seasonList vt_season := **vt_season('Winter', 'Spring', 'Summer', 'Fall')**;
-
-  v_currMonth NUMBER(2);
-
-  v_currSeason VARCHAR2(20);
-
-  BEGIN
-
-  SELECT TO_NUMBER(TO_CHAR(p_date, 'MM')) INTO v_currMonth FROM dual;
-
-  v_currSeason := v_seasonList(FLOOR(MOD(v_currMonth, 12) / 3 + 1));
-
-  RETURN v_currSeason;
-
-  END;
 
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE FUNCTION getSeason_korea(p_date DATE) RETURN VARCHAR(32000)
+AS
+TYPE vt_season IS VARRAY(4) OF v_currSeason%TYPE;
+v_seasonList vt_season:= vt_season('Winter', 'Spring', 'Summer', 'Fall') /* [TODO] RULE-31010 : The collection constructor must be converted manually */;
+v_currMonth NUMBER(38, 0);
+v_currSeason VARCHAR(32000);
+BEGIN
+SELECT TO_NUMBER(TO_CHAR(p_date, 'MM')) INTO v_currMonth FROM dual;
+v_currSeason := v_seasonList(FLOOR(MOD(v_currMonth, 12) / 3 + 1));
+RETURN v_currSeason;
+END;
 ~~~
-  CREATE FUNCTION getSeason_korea(p_date DATE) RETURN VARCHAR(32000)
-
-  AS
-
-  TYPE vt_season IS VARRAY(4) OF v_currSeason%TYPE;
-
-  v_seasonList **vt_season**:= **vt_season('Winter', 'Spring', 'Summer', 'Fall')
-  /\* [TODO] RULE-31010 : The collection constructor must be converted manually
-  \*/;**
-
-  v_currMonth NUMBER(38, 0);
-
-  v_currSeason VARCHAR(32000);
-
-  BEGIN
-
-  SELECT TO_NUMBER(TO_CHAR(p_date, 'MM')) INTO v_currMonth FROM dual;
-
-  v_currSeason := v_seasonList(FLOOR(MOD(v_currMonth, 12) / 3 + 1));
-
-  RETURN v_currSeason;
-
-  END;
 
 #### RULE-31011
 
@@ -6574,42 +5460,27 @@ Associative array의 데이타 타입이 %TYPE 또는 %ROWTYPE으로 정의되�
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE PACKAGE tripLog_pkg AS
+curr_date DATE := SYSDATE;
+TYPE at_city IS TABLE OF curr_date%TYPE INDEX BY VARCHAR2(100);
+v_cityList at_city;
+PROCEDURE addCity(p_city VARCHAR2, p_date DATE);
+PROCEDURE delCity(p_city VARCHAR2);
+PROCEDURE printCityList;
+END;
 ~~~
-  CREATE PACKAGE tripLog_pkg AS
-
-  curr_date DATE := SYSDATE;
-
-  TYPE at_city IS TABLE OF **curr_date%TYPE** INDEX BY VARCHAR2(100);
-
-  v_cityList at_city;
-
-  PROCEDURE addCity(p_city VARCHAR2, p_date DATE);
-
-  PROCEDURE delCity(p_city VARCHAR2);
-
-  PROCEDURE printCityList;
-
-  END;
 
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE PACKAGE tripLog_pkg AS
+curr_date DATE := SYSDATE;
+TYPE at_city IS TABLE OF curr_date%TYPE /* [TODO] RULE-31011 : The %TYPE or %ROWTYPE attribute must be converted manually */ INDEX BY VARCHAR2(100);
+v_cityList at_city;
+PROCEDURE addCity(p_city VARCHAR2, p_date DATE);
+PROCEDURE delCity(p_city VARCHAR2);
+PROCEDURE printCityList;
+END;
 ~~~
-  CREATE PACKAGE tripLog_pkg AS
-
-  curr_date DATE := SYSDATE;
-
-  TYPE at_city IS TABLE OF **curr_date%TYPE /\* [TODO] RULE-31011 : The %TYPE or
-  %ROWTYPE attribute must be converted manually \*/** INDEX BY VARCHAR2(100);
-
-  v_cityList at_city;
-
-  PROCEDURE addCity(p_city VARCHAR2, p_date DATE);
-
-  PROCEDURE delCity(p_city VARCHAR2);
-
-  PROCEDURE printCityList;
-
-  END;
 
 #### RULE-31012
 
@@ -6621,45 +5492,31 @@ Associative array의 인덱스 데이타 타입이 변환되었다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE PACKAGE tripLog_pkg AS
+curr_date DATE := SYSDATE;
+TYPE at_city IS TABLE OF curr_date%TYPE INDEX BY VARCHAR2(100);
+v_cityList at_city;
+PROCEDURE addCity(p_city VARCHAR2, p_date DATE);
+PROCEDURE delCity(p_city VARCHAR2);
+PROCEDURE printCityList;
+END;
 ~~~
-  CREATE PACKAGE tripLog_pkg AS
-
-  curr_date DATE := SYSDATE;
-
-  TYPE at_city IS TABLE OF **curr_date%TYPE INDEX BY VARCHAR2(100)**;
-
-  v_cityList at_city;
-
-  PROCEDURE addCity(p_city VARCHAR2, p_date DATE);
-
-  PROCEDURE delCity(p_city VARCHAR2);
-
-  PROCEDURE printCityList;
-
-  END;
 
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE PACKAGE tripLog_pkg AS
+curr_date DATE := SYSDATE;
+TYPE at_city IS TABLE OF curr_date%TYPE INDEX BY VARCHAR(100);
+v_cityList at_city;
+PROCEDURE addCity(p_city VARCHAR2, p_date DATE);
+PROCEDURE delCity(p_city VARCHAR2);
+PROCEDURE printCityList;
+END;
 ~~~
-  CREATE PACKAGE tripLog_pkg AS
-
-  curr_date DATE := SYSDATE;
-
-  TYPE at_city IS TABLE OF **curr_date%TYPE INDEX BY VARCHAR(100)**;
-
-  v_cityList at_city;
-
-  PROCEDURE addCity(p_city VARCHAR2, p_date DATE);
-
-  PROCEDURE delCity(p_city VARCHAR2);
-
-  PROCEDURE printCityList;
-
-  END;
 
 #### RULE-32001
 
-- 버전 범위: Altibase 6.3.1.0.0 이전 버전
+> *이 규칙은 Altibase 6.3.1 이전 버전에 적용된다.*
 
 ###### 타입
 `REMOVED`
@@ -6669,90 +5526,53 @@ Associative array의 인덱스 데이타 타입이 변환되었다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
+AS
+m1 INTEGER;
+m2 INTEGER;
+m3 INTEGER;
+m4 INTEGER;
+CURSOR cur1 IS
+SELECT c1, c2, c3, c4 FROM t1;
+BEGIN
+OPEN cur1;
+FOR i IN 1 .. 5 LOOP
+FETCH cur1 INTO m1, m2, m3, m4;
+EXIT WHEN cur1%NOTFOUND;
+INSERT INTO t2 VALUES(m1, m2, m3, m4);
+END LOOP;
+COMMIT;
+CLOSE cur1;
+COMMIT;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
-
-  AS
-
-  m1 INTEGER;
-
-  m2 INTEGER;
-
-  m3 INTEGER;
-
-  m4 INTEGER;
-
-  CURSOR cur1 IS
-
-  SELECT c1, c2, c3, c4 FROM t1;
-
-  BEGIN
-
-  OPEN cur1;
-
-  FOR i IN 1 .. 5 LOOP
-
-  FETCH cur1 INTO m1, m2, m3, m4;
-
-  EXIT WHEN cur1%NOTFOUND;
-
-  INSERT INTO t2 VALUES(m1, m2, m3, m4);
-
-  END LOOP;
-
-  **COMMIT**;
-
-  CLOSE cur1;
-
-  COMMIT;
-
-  END;
 
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
+AS
+m1 INTEGER;
+m2 INTEGER;
+m3 INTEGER;
+m4 INTEGER;
+CURSOR cur1 IS
+SELECT c1, c2, c3, c4 FROM t1;
+BEGIN
+OPEN cur1;
+FOR i IN 1 .. 5 LOOP
+FETCH cur1 INTO m1, m2, m3, m4;
+EXIT WHEN cur1%NOTFOUND;
+INSERT INTO t2 VALUES(m1, m2, m3, m4);
+END LOOP;
+/* COMMIT; */ /* [REMOVED] RULE-32001 : Cannot COMMIT while cursor is still open */
+CLOSE cur1;
+COMMIT;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
-
-  AS
-
-  m1 INTEGER;
-
-  m2 INTEGER;
-
-  m3 INTEGER;
-
-  m4 INTEGER;
-
-  CURSOR cur1 IS
-
-  SELECT c1, c2, c3, c4 FROM t1;
-
-  BEGIN
-
-  OPEN cur1;
-
-  FOR i IN 1 .. 5 LOOP
-
-  FETCH cur1 INTO m1, m2, m3, m4;
-
-  EXIT WHEN cur1%NOTFOUND;
-
-  INSERT INTO t2 VALUES(m1, m2, m3, m4);
-
-  END LOOP;
-
-  **/\* COMMIT; \*/ /\* [REMOVED] RULE-32001 : Cannot COMMIT while cursor is still
-  open \*/**
-
-  CLOSE cur1;
-
-  COMMIT;
-
-  END;
 
 #### RULE-32002
 
-- 버전 범위: Altibase 6.3.1.0.0 이전 버전
+> *이 규칙은 Altibase 6.3.1 이전 버전에 적용된다.*
 
 ###### 타입
 `REMOVED`
@@ -6762,90 +5582,51 @@ Associative array의 인덱스 데이타 타입이 변환되었다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE TRIGGER trig1
+BEFORE DELETE ON t1
+DECLARE
+m1 INTEGER;
+m2 INTEGER;
+m3 INTEGER;
+m4 INTEGER;
+CURSOR cur1 IS
+SELECT c1, c2, c3, c4 FROM t1;
+BEGIN
+OPEN cur1;
+FOR i IN 1 .. 5 LOOP
+FETCH cur1 INTO m1, m2, m3, m4;
+EXIT WHEN cur1%NOTFOUND;
+INSERT INTO t2 VALUES(m1, m2, m3, m4);
+END LOOP;
+ROLLBACK;
+CLOSE cur1;
+ROLLBACK;
+END;
 ~~~
-  CREATE OR REPLACE TRIGGER trig1
-
-  BEFORE DELETE ON t1
-
-  DECLARE
-
-  m1 INTEGER;
-
-  m2 INTEGER;
-
-  m3 INTEGER;
-
-  m4 INTEGER;
-
-  CURSOR cur1 IS
-
-  SELECT c1, c2, c3, c4 FROM t1;
-
-  BEGIN
-
-  OPEN cur1;
-
-  FOR i IN 1 .. 5 LOOP
-
-  FETCH cur1 INTO m1, m2, m3, m4;
-
-  EXIT WHEN cur1%NOTFOUND;
-
-  INSERT INTO t2 VALUES(m1, m2, m3, m4);
-
-  END LOOP;
-
-  **ROLLBACK**;
-
-  CLOSE cur1;
-
-  ROLLBACK;
-
-  END;
 
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE TRIGGER trig1
+BEFORE DELETE ON t1
+DECLARE
+m1 INTEGER;
+m2 INTEGER;
+m3 INTEGER;
+m4 INTEGER;
+CURSOR cur1 IS
+SELECT c1, c2, c3, c4 FROM t1;
+BEGIN
+OPEN cur1;
+FOR i IN 1 .. 5 LOOP
+FETCH cur1 INTO m1, m2, m3, m4;
+EXIT WHEN cur1%NOTFOUND;
+INSERT INTO t2 VALUES(m1, m2, m3, m4);
+END LOOP;
+/* ROLLBACK; */ /* [REMOVED] RULE-32002 : Cannot ROLLBACK while cursor is still open */
+CLOSE cur1;
+ROLLBACK;
+END;
 ~~~
-  CREATE OR REPLACE TRIGGER trig1
-
-  BEFORE DELETE ON t1
-
-  DECLARE
-
-  m1 INTEGER;
-
-  m2 INTEGER;
-
-  m3 INTEGER;
-
-  m4 INTEGER;
-
-  CURSOR cur1 IS
-
-  SELECT c1, c2, c3, c4 FROM t1;
-
-  BEGIN
-
-  OPEN cur1;
-
-  FOR i IN 1 .. 5 LOOP
-
-  FETCH cur1 INTO m1, m2, m3, m4;
-
-  EXIT WHEN cur1%NOTFOUND;
-
-  INSERT INTO t2 VALUES(m1, m2, m3, m4);
-
-  END LOOP;
-
-  **/\* ROLLBACK; \*/ /\* [REMOVED] RULE-32002 : Cannot ROLLBACK while cursor is
-  still open \*/**
-
-  CLOSE cur1;
-
-  ROLLBACK;
-
-  END;
 
 #### RULE-32003
 
@@ -6857,30 +5638,21 @@ SET TRANSACTION 구문이 제거되었다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1IS
+BEGIN
+NULL;
+SET TRANSACTION READ ONLY NAME 'Test Rule 13019';
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1IS
-
-  BEGIN
-
-  NULL;
-
-  **SET TRANSACTION READ ONLY NAME 'Test Rule 13019'**;
-
-  END;
 
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1IS
+BEGIN
+NULL;
+/* SET TRANSACTION READ ONLY NAME 'Test Rule 13019'; */ /* [REMOVED] RULE-32003 : The SET TRANSACTION statement is removed */
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1IS
-
-  BEGIN
-
-  NULL;
-
-  **/\* SET TRANSACTION READ ONLY NAME 'Test Rule 13019'; \*/ /\* [REMOVED]
-  RULE-32003 : The SET TRANSACTION statement is removed \*/**
-
-  END;
 
 #### RULE-32006
 
@@ -6892,43 +5664,29 @@ SET TRANSACTION 구문이 제거되었다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE PROCEDURE delEmp
+AS
+TYPE nt_state IS TABLE OF CHAR(1);
+stateList nt_state := nt_state('Q', 'V');
+BEGIN
+FORALL i IN 1..stateList.LAST
+DELETE FROM employees WHERE state=stateList(i);
+END;
 ~~~
-  CREATE PROCEDURE delEmp
 
-  AS
-
-  TYPE nt_state IS TABLE OF CHAR(1);
-
-  stateList nt_state := nt_state('Q', 'V');
-
-  BEGIN
-
-  **FORALL i IN 1..stateList.LAST**
-
-  **DELETE FROM employees WHERE state=stateList(i);**
-
-  END;
 
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE PROCEDURE delEmp
+AS
+TYPE nt_state IS TABLE OF CHAR(1);
+stateList nt_state := nt_state('Q', 'V');
+BEGIN
+FOR i IN 1 .. stateList.LAST LOOP
+DELETE FROM employees WHERE state=stateList(i);
+END LOOP;
+END;
 ~~~
-  CREATE PROCEDURE delEmp
-
-  AS
-
-  TYPE nt_state IS TABLE OF CHAR(1);
-
-  stateList nt_state := nt_state('Q', 'V');
-
-  BEGIN
-
-  **FOR i IN 1 .. stateList.LAST LOOP**
-
-  **DELETE FROM employees WHERE state=stateList(i);**
-
-  **END LOOP;**
-
-  END;
 
 #### RULE-32007
 
@@ -6940,42 +5698,27 @@ SET TRANSACTION 구문이 제거되었다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE PROCEDURE delEmp
+AS
+TYPE nt_state IS TABLE OF CHAR(1);
+stateList nt_state := nt_state('Q', 'V');
+BEGIN
+FORALL i IN INDICES OF stateList
+DELETE FROM employees WHERE state=stateList(i);
+END;
 ~~~
-  CREATE PROCEDURE delEmp
-
-  AS
-
-  TYPE nt_state IS TABLE OF CHAR(1);
-
-  stateList nt_state := nt_state('Q', 'V');
-
-  BEGIN
-
-  FORALL i IN **INDICES OF stateList**
-
-  DELETE FROM employees WHERE state=stateList(i);
-
-  END;
 
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE PROCEDURE delEmp
+AS
+TYPE nt_state IS TABLE OF CHAR(1);
+stateList nt_state:= nt_state('Q', 'V');
+BEGIN
+FORALL i IN INDICES OF stateList
+DELETE FROM employees WHERE state=stateList(i); /* [TODO] RULE-32007 : The FORALL statement must be converted manually */
+END;
 ~~~
-  CREATE PROCEDURE delEmp
-
-  AS
-
-  TYPE nt_state IS TABLE OF CHAR(1);
-
-  stateList nt_state:= nt_state('Q', 'V');
-
-  BEGIN
-
-  FORALL i IN **INDICES OF stateList**
-
-  DELETE FROM employees WHERE state=stateList(i); **/\* [TODO] RULE-32007 : The
-  FORALL statement must be converted manually \*/**
-
-  END;
 
 #### RULE-32008
 
@@ -6987,39 +5730,26 @@ FOR .. LOOP 구문에서 범위 값 앞 뒤에 공백이 추가되었다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE FUNCTION getCityList RETURN tripLog_pkg.nt_city PIPELINED AS
+BEGIN
+FOR i IN 1..tripLog_pkg.v_cityList.LAST LOOP
+PIPE ROW(tripLog_pkg.v_cityList(i));
+END LOOP;
+RETURN;
+END;
 ~~~
-  CREATE FUNCTION getCityList RETURN tripLog_pkg.nt_city PIPELINED AS
-
-  BEGIN
-
-  FOR i IN 1**..**tripLog_pkg.v_cityList.LAST LOOP
-
-  PIPE ROW(tripLog_pkg.v_cityList(i));
-
-  END LOOP;
-
-  RETURN;
-
-  END;
 
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE FUNCTION getCityList
+RETURN tripLog_pkg.nt_city PIPELINED AS
+BEGIN
+FOR i IN 1 .. tripLog_pkg.v_cityList.LAST LOOP
+PIPE ROW(tripLog_pkg.v_cityList(i));
+END LOOP;
+RETURN;
+END
 ~~~
-  CREATE FUNCTION getCityList
-
-  RETURN tripLog_pkg.nt_city PIPELINED AS
-
-  BEGIN
-
-  FOR i IN 1 **..** tripLog_pkg.v_cityList.LAST LOOP
-
-  PIPE ROW(tripLog_pkg.v_cityList(i));
-
-  END LOOP;
-
-  RETURN;
-
-  END;
 
 #### RULE-32009
 
@@ -7031,86 +5761,49 @@ CONTINUE 구문에 있는 조건은 변환되었다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE PROCEDURE showMail(p_from DATE)
+AS
+v_cnt INTEGER;
+v_title VARCHAR2(256);
+v_date DATE;
+BEGIN
+SELECT COUNT(*) INTO v_cnt FROM mailbox;
+IF v_cnt > 0 THEN
+FOR i IN 1..v_cnt LOOP
+SELECT datetime INTO v_date FROM mailbox WHERE id = i;
+IF p_from != SYSDATE THEN
+CONTINUE WHEN v_date < p_from;
+END IF;
+SELECT title INTO v_title FROM mailbox WHERE id = i;
+DBMS_OUTPUT.PUT_LINE('Title: ' || v_title || ', Date: ' || v_date);
+END LOOP;
+END IF;
+END;
 ~~~
-  CREATE PROCEDURE showMail(p_from DATE)
-
-  AS
-
-  v_cnt INTEGER;
-
-  v_title VARCHAR2(256);
-
-  v_date DATE;
-
-  BEGIN
-
-  SELECT COUNT(\*) INTO v_cnt FROM mailbox;
-
-  IF v_cnt \> 0 THEN
-
-  FOR i IN 1..v_cnt LOOP
-
-  SELECT datetime INTO v_date FROM mailbox WHERE id = i;
-
-  IF p_from != SYSDATE THEN
-
-  **CONTINUE WHEN v_date \< p_from;**
-
-  END IF;
-
-  SELECT title INTO v_title FROM mailbox WHERE id = i;
-
-  DBMS_OUTPUT.PUT_LINE('Title: ' \|\| v_title \|\| ', Date: ' \|\| v_date);
-
-  END LOOP;
-
-  END IF;
-
-  END;
 
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE PROCEDURE showMail(p_from DATE)
+AS
+v_cnt INTEGER;
+v_title VARCHAR2(256);
+v_date DATE;
+BEGIN
+SELECT COUNT(*) INTO v_cnt FROM mailbox;
+IF v_cnt > 0 THEN
+FOR i IN 1 .. v_cnt LOOP
+SELECT datetime INTO v_date FROM mailbox WHERE id = i;
+IF p_from != SYSDATE THEN
+IF v_date < p_from THEN
+CONTINUE;
+END IF;
+END IF;
+SELECT title INTO v_title FROM mailbox WHERE id = i;
+SYSTEM_.PRINTLN('Title: ' || v_title || ', Date: ' || v_date);
+END LOOP;
+END IF;
+END;
 ~~~
-  CREATE PROCEDURE showMail(p_from DATE)
-
-  AS
-
-  v_cnt INTEGER;
-
-  v_title VARCHAR2(256);
-
-  v_date DATE;
-
-  BEGIN
-
-  SELECT COUNT(\*) INTO v_cnt FROM mailbox;
-
-  IF v_cnt \> 0 THEN
-
-  FOR i IN 1 .. v_cnt LOOP
-
-  SELECT datetime INTO v_date FROM mailbox WHERE id = i;
-
-  **IF p_from != SYSDATE THEN**
-
-  **IF v_date \< p_from THEN**
-
-  **CONTINUE;**
-
-  **END IF;**
-
-  END IF;
-
-  SELECT title INTO v_title FROM mailbox WHERE id = i;
-
-  SYSTEM_.PRINTLN('Title: ' \|\| v_title \|\| ', Date: ' \|\| v_date);
-
-  END LOOP;
-
-  END IF;
-
-  END;
-
 #### RULE-32010
 
 ###### 타입
@@ -7121,26 +5814,19 @@ CONTINUE 구문에 있는 조건은 변환되었다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+SELECT c2 BULK COLLECT INTO :v_arr FROM t1;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1 AS
-
-  BEGIN
-
-  SELECT c2 BULK COLLECT INTO **:v_arr** FROM t1;
-
-  END;
 
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+SELECT c2 BULK COLLECT INTO :v_arr /* [TODO] RULE-32010 : The host variable must be converted manually */ FROM t1;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1 AS
-
-  BEGIN
-
-  SELECT c2 BULK COLLECT INTO **:v_arr /\* [TODO] RULE-32010 : The host variable
-  must be converted manually \*/** FROM t1;
-
-  END;
 
 #### RULE-32012
 
@@ -7152,46 +5838,29 @@ PIPE ROW 구문은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE FUNCTION getCitiList
+RETURN tripLog_pkg.nt_city PIPELINED
+AS
+BEGIN
+FOR i IN 1..tripLog_pkg.v_cityList.LAST LOOP
+PIPE ROW(tripLog_pkg.v_cityList(i));
+END LOOP;
+RETURN;
+END;
 ~~~
-  CREATE FUNCTION getCitiList
-
-  RETURN tripLog_pkg.nt_city PIPELINED
-
-  AS
-
-  BEGIN
-
-  FOR i IN 1..tripLog_pkg.v_cityList.LAST LOOP
-
-  **PIPE ROW(tripLog_pkg.v_cityList(i));**
-
-  END LOOP;
-
-  RETURN;
-
-  END;
 
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE FUNCTION getCitiList
+RETURN tripLog_pkg.nt_city PIPELINED
+AS
+BEGIN
+FOR i IN 1..tripLog_pkg.v_cityList.LAST LOOP
+PIPE ROW(tripLog_pkg.v_cityList(i)) /* [TODO] RULE-32012 : The PIPE ROW statement must be converted manually */;
+END LOOP;
+RETURN;
+END;
 ~~~
-  CREATE FUNCTION getCitiList
-
-  RETURN tripLog_pkg.nt_city PIPELINED
-
-  AS
-
-  BEGIN
-
-  FOR i IN 1..tripLog_pkg.v_cityList.LAST LOOP
-
-  **PIPE ROW(tripLog_pkg.v_cityList(i)) /\* [TODO] RULE-32012 : The PIPE ROW
-  statement must be converted manually \*/;**
-
-  END LOOP;
-
-  RETURN;
-
-  END;
 
 #### RULE-32013
 
@@ -7203,89 +5872,52 @@ CONTINUE 구문의 label이 변환되었다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE PROCEDURE showMail(p_from DATE)
+AS
+v_cnt INTEGER;
+v_title VARCHAR2(256);
+v_date DATE;
+BEGIN
+SELECT COUNT(*) INTO v_cnt FROM mailbox;
+IF v_cnt > 0 THEN
+<<for_loop>>
+FOR i IN REVERSE 1..v_cnt LOOP
+SELECT datetime INTO v_date FROM mailbox WHERE id = i;
+IF v_date <= p_from THEN
+CONTINUE for_loop;
+END IF;
+SELECT title INTO v_title FROM mailbox WHERE id = i;
+DBMS_OUTPUT.PUT_LINE('Title: ' || v_title || ', Date: ' || v_date);
+END LOOP for_loop;
+END IF;
+END;
 ~~~
-  CREATE PROCEDURE showMail(p_from DATE)
 
-  AS
-
-  v_cnt INTEGER;
-
-  v_title VARCHAR2(256);
-
-  v_date DATE;
-
-  BEGIN
-
-  SELECT COUNT(\*) INTO v_cnt FROM mailbox;
-
-  IF v_cnt \> 0 THEN
-
-  \<\<for_loop\>\>
-
-  FOR i IN REVERSE 1..v_cnt LOOP
-
-  SELECT datetime INTO v_date FROM mailbox WHERE id = i;
-
-  IF v_date \<= p_from THEN
-
-  **CONTINUE for_loop**;
-
-  END IF;
-
-  SELECT title INTO v_title FROM mailbox WHERE id = i;
-
-  DBMS_OUTPUT.PUT_LINE('Title: ' \|\| v_title \|\| ', Date: ' \|\| v_date);
-
-  END LOOP for_loop;
-
-  END IF;
-
-  END;
 
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE PROCEDURE showMail(p_from DATE)
+AS
+v_cnt INTEGER;
+v_title VARCHAR2(256);
+v_date DATE;
+BEGIN
+SELECT COUNT(*) INTO v_cnt FROM mailbox;
+IF v_cnt > 0 THEN
+<<for_loop>>
+FOR i IN REVERSE 1 .. v_cnt LOOP
+SELECT datetime INTO v_date FROM mailbox WHERE id = i;
+IF v_date <= p_from THEN
+GOTO O2A_generated_label_00;
+END IF;
+SELECT title INTO v_title FROM mailbox WHERE id = i;
+SYSTEM_.PRINTLN('Title: ' || v_title || ', Date: ' || v_date);
+<<O2A_generated_label_00>>
+NULL;
+END LOOP for_loop;
+END IF;
+END;
 ~~~
-  CREATE PROCEDURE showMail(p_from DATE)
-
-  AS
-
-  v_cnt INTEGER;
-
-  v_title VARCHAR2(256);
-
-  v_date DATE;
-
-  BEGIN
-
-  SELECT COUNT(\*) INTO v_cnt FROM mailbox;
-
-  IF v_cnt \> 0 THEN
-
-  \<\<for_loop\>\>
-
-  FOR i IN REVERSE 1 .. v_cnt LOOP
-
-  SELECT datetime INTO v_date FROM mailbox WHERE id = i;
-
-  IF v_date \<= p_from THEN
-
-  **GOTO O2A_generated_label_00;**
-
-  END IF;
-
-  SELECT title INTO v_title FROM mailbox WHERE id = i;
-
-  SYSTEM_.PRINTLN('Title: ' \|\| v_title \|\| ', Date: ' \|\| v_date);
-
-  **\<\<O2A_generated_label_00\>\>**
-
-  **NULL;**
-
-  END LOOP for_loop;
-
-  END IF;
-
-  END;
 
 #### RULE-32014
 
@@ -7297,26 +5929,19 @@ SCN(System Change Number)은 트랜잭션으로 할당할 수 없다.
 
 ###### 원본 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+COMMIT FORCE 'ORCL.C50E231F042A.10.5.109239', 143217566;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1 AS
-
-  BEGIN
-
-  COMMIT FORCE 'ORCL.C50E231F042A.10.5.109239', **143217566**;
-
-  END;
 
 ###### 변환된 SQL 문장
 ~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+COMMIT FORCE 'ORCL.C50E231F042A.10.5.109239', 143217566 /* [TODO] RULE-32014 : SCN cannot be assigned to the transaction */;
+END;
 ~~~
-  CREATE OR REPLACE PROCEDURE proc1 AS
-
-  BEGIN
-
-  COMMIT FORCE 'ORCL.C50E231F042A.10.5.109239', **143217566 /\* [TODO] RULE-32014
-  : SCN cannot be assigned to the transaction \*/;**
-
-  END;
 
 #### RULE-32015
 
@@ -7464,7 +6089,7 @@ END;
 ~~~
 #### RULE-32020
 
-> 이 규칙은 Altibase 6.5.1.0.0 이전 버전에 적용된다.
+> *이 규칙은 Altibase 6.5.1 이전 버전에 적용된다.*
 
 ###### 타입
 `TODO`
@@ -7620,7 +6245,7 @@ END;
 
 #### RULE-33002
 
-> 이 규칙은 Altibase 6.3.1.0.0 이상 버전에 적용된다.
+> *이 규칙은 Altibase 6.3.1 이상 버전에 적용된다.*
 
 ###### 타입
 `TODO`
@@ -7652,551 +6277,505 @@ END;
 
 #### RULE-33003
 
-###### 타입 `CONVERTED`
+###### 타입
+`CONVERTED`
 
-###### 설명해당 예외가 변환되었다.
+###### 설명
+해당 예외가 변환되었다.
 
 ###### 원본 SQL 문장
-
-  CREATE OR REPLACE PROCEDURE proc1 AS
-
-  BEGIN
-
-  NULL;
-
-  EXCEPTION
-
-  WHEN **UTL_FILE.INVALID_PATH** THEN
-
-  DBMS_OUTPUT.PUT_LINE('Exception Name: UTL_FILE.INVALID_PATH, Error Code:');
-
-  END;
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+NULL;
+EXCEPTION
+WHEN UTL_FILE.INVALID_PATH THEN
+DBMS_OUTPUT.PUT_LINE('Exception Name: UTL_FILE.INVALID_PATH, Error Code:');
+END;
+~~~
 
 ###### 변환된 SQL 문장
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+NULL;
+EXCEPTION
+WHEN INVALID_PATH THEN
+DBMS_OUTPUT.PUT_LINE('Exception Name: UTL_FILE.INVALID_PATH, Error Code:');
+END;
+~~~
 
-  CREATE OR REPLACE PROCEDURE proc1 AS
-
-  BEGIN
-
-  NULL;
-
-  EXCEPTION
-
-  WHEN **INVALID_PATH** THEN
-
-  DBMS_OUTPUT.PUT_LINE('Exception Name: UTL_FILE.INVALID_PATH, Error Code:');
-
-  END;
 
 ### 표현 변환 규칙
 
 #### RULE-40001
 
-###### 타입 `CONVERTED`
+###### 타입
+`CONVERTED`
 
-###### 설명 내장 패키지가 변환되었다.
+###### 설명
+내장 패키지가 변환되었다.
 
 ###### 원본 SQL 문장
-
-  CREATE OR REPLACE PROCEDURE proc1 AS
-
-  BEGIN
-
-  **DBMS_OUTPUT.PUT('Hello');**
-
-  **DBMS_OUTPUT.PUT_LINE('world!');**
-
-  END;
-
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+DBMS_OUTPUT.PUT('Hello');
+DBMS_OUTPUT.PUT_LINE('world!');
+END;
+~~~
 ###### 변환된 SQL 문장
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+SYSTEM_.PRINT('Hello ');
+SYSTEM_.PRINTLN('world!');
+END;
+~~~
 
-  CREATE OR REPLACE PROCEDURE proc1 AS
-
-  BEGIN
-
-  **SYSTEM_.PRINT('Hello ');**
-
-  **SYSTEM_.PRINTLN('world!');**
-
-  END;
 
 #### RULE-40002
 
-- 버전 범위: Altibase 6.3.1.0.0 이상 버전
+> *이 규칙은 Altibase 6.3.1 이상 버전에 적용된다.*
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 내장 패키지가 Altibase에 설치되었는지 확인하여야 한다.
+###### 설명
+내장 패키지가 Altibase에 설치되었는지 확인하여야 한다.
 
 ###### 원본 SQL 문장
-
-  CREATE OR REPLACE PROCEDURE proc1 AS
-
-  BEGIN
-
-  **DBMS_OUTPUT.NEW_LINE;**
-
-  END;
-
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+DBMS_OUTPUT.NEW_LINE;
+END;
+~~~
 ###### 변환된 SQL 문장
-
-  CREATE OR REPLACE PROCEDURE proc1 AS
-
-  BEGIN
-
-  **DBMS_OUTPUT.NEW_LINE /\* [TODO] RULE-40002 : Confirm the target built-in
-  package is installed at Altibase \*/;**
-
-  END;
-
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+DBMS_OUTPUT.NEW_LINE /* [TODO] RULE-40002 : Confirm the target built-in package is installed at Altibase */;
+END;
+~~~
 #### RULE-40003
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 내장 패키지는 수동으로 변환해야 한다.
+###### 설명
+내장 패키지는 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
-  CREATE OR REPLACE PROCEDURE proc1(p_file FILE_TYPE) AS
-
-  BEGIN
-
-  **UTL_FILE.PUTF(p_file, 'Hello %s!', 'world');**
-
-  END;
-
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1(p_file FILE_TYPE) AS
+BEGIN
+UTL_FILE.PUTF(p_file, 'Hello %s!', 'world');
+END;
+~~~
 ###### 변환된 SQL 문장
-
-  CREATE OR REPLACE PROCEDURE proc1(p_file FILE_TYPE) AS
-
-  BEGIN
-
-  **UTL_FILE.PUTF(p_file, 'Hello %s!', 'world') /\* [TODO] RULE-40003 : The target
-  built-in package must be converted manually \*/;**
-
-  END;
-
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1(p_file FILE_TYPE) AS
+BEGIN
+UTL_FILE.PUTF(p_file, 'Hello %s!', 'world') /* [TODO] RULE-40003 : The target built-in package must be converted manually */;
+END;
+~~~
 #### RULE-40004
 
-###### 타입 `CONVERTED`
+###### 타입
+`CONVERTED`
 
-###### 설명 해당 SQL 함수가 변환되었다.
+###### 설명
+해당 SQL 함수가 변환되었다.
 
 ###### 원본 SQL 문장
-
-  CREATE OR REPLACE VIEW v1 AS
-
-  SELECT **UID** FROM dual;
-
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT UID FROM dual;
+~~~
 ###### 변환된 SQL 문장
-
-  CREATE OR REPLACE VIEW v1 AS
-
-  SELECT **USER_ID()** FROM dual;
-
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT USER_ID() FROM dual;
+~~~
 #### RULE-40005
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 지원하지 않는 함수.
+###### 설명
+지원하지 않는 함수.
 
 ###### 원본 SQL 문장
-
-  CREATE OR REPLACE FUNCTION func1(p1 VARCHAR2)
-
-  RETURN NUMBER AS
-
-  v1 NUMBER := **LENGTHC(p1)**;
-
-  BEGIN
-
-  RETURN v1;
-
-  END;
-
+~~~sql
+CREATE OR REPLACE FUNCTION func1(p1 VARCHAR2)
+RETURN NUMBER AS
+v1 NUMBER := LENGTHC(p1);
+BEGIN
+RETURN v1;
+END;
+~~~
 ###### 변환된 SQL 문장
-
-  CREATE OR REPLACE FUNCTION func1(p1 VARCHAR2)
-
-  RETURN NUMBER AS
-
-  v1 NUMBER := **LENGTHC(p1) /\* [TODO] RULE-40005 : Unsupported function \*/;**
-
-  BEGIN
-
-  RETURN v1;;
-
-  END;
-
+~~~sql
+CREATE OR REPLACE FUNCTION func1(p1 VARCHAR2)
+RETURN NUMBER AS
+v1 NUMBER := LENGTHC(p1) /* [TODO] RULE-40005 : Unsupported function */;
+BEGIN
+RETURN v1;
+END;
+~~~
 #### RULE-40006
 
-###### 타입 `CONVERTED`
+###### 타입
+`CONVERTED`
 
-###### 설명 TRIM 함수의 인자들이 변환되었다.
+###### 설명
+TRIM 함수의 인자들이 변환되었다.
 
 ###### 원본 SQL 문장
-
-  CREATE OR REPLACE VIEW stats AS
-
-  SELECT **TRIM(LEADING 0 FROM total_stats)**
-
-  FROM test_result WHERE date = SYSDATE;
-
+~~~sql
+CREATE OR REPLACE VIEW stats AS
+SELECT TRIM(LEADING 0 FROM total_stats)
+FROM test_result WHERE date = SYSDATE;
+~~~
 ###### 변환된 SQL 문장
-
-  CREATE OR REPLACE VIEW stats AS
-
-  SELECT **LTRIM(total_stats, 0)**
-
-  FROM test_result WHERE date = SYSDATE;
-
+~~~sql
+CREATE OR REPLACE VIEW stats AS
+SELECT LTRIM(total_stats, 0)
+FROM test_result WHERE date = SYSDATE;
+~~~
 #### RULE-40007
 
-###### 타입 `CONVERTED`
+###### 타입
+`CONVERTED`
 
-###### 설명 BIN_TO_NUM 함수의 인자들이 '\|\|'로 연결되어 변환되었다.
+###### 설명
+BIN_TO_NUM 함수의 인자들이 '\|\|'로 연결되어 변환되었다.
 
 ###### 원본 SQL 문장
-
-  CREATE OR REPLACE VIEW status_view AS
-
-  SELECT **BIN_TO_NUM(cp_plan, hp_plan, tv_plan, net_plan)** status
-
-  FROM service_tbl WHERE ym = TO_CHAR(SYSDATE, 'YYYYMM');
-
+~~~sql
+CREATE OR REPLACE VIEW status_view AS
+SELECT BIN_TO_NUM(cp_plan, hp_plan, tv_plan, net_plan) status
+FROM service_tbl WHERE ym = TO_CHAR(SYSDATE, 'YYYYMM');
+~~~
 ###### 변환된 SQL 문장
-
-  CREATE OR REPLACE VIEW status_view AS
-
-  SELECT **BIN_TO_NUM(cp_plan \|\| hp_plan \|\| tv_plan \|\| net_plan)** status
-
-  FROM service_tbl WHERE ym = TO_CHAR(SYSDATE, 'YYYYMM');
-
+~~~sql
+CREATE OR REPLACE VIEW status_view AS
+SELECT BIN_TO_NUM(cp_plan || hp_plan || tv_plan || net_plan) status
+FROM service_tbl WHERE ym = TO_CHAR(SYSDATE, 'YYYYMM');
+~~~
 #### RULE-40008
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 인자로 부질의를 갖는 CAST 함수는 수동으로 변환해야 한다.
+###### 설명
+인자로 부질의를 갖는 CAST 함수는 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
-  CREATE OR REPLACE VIEW v1 AS
-
-  SELECT c1, **CAST(MULTISET(SELECT c1 FROM t2 ORDER BY c2) AS tmp_tbl)**
-
-  FROM t1 ORDER BY c1;
-
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT c1, CAST(MULTISET(SELECT c1 FROM t2 ORDER BY c2) AS tmp_tbl)
+FROM t1 ORDER BY c1;
+~~~
 ###### 변환된 SQL 문장
-
-  CREATE OR REPLACE VIEW v1 AS
-
-  SELECT c1, **CAST(MULTISET(SELECT c1 FROM t2 ORDER BY c2) AS tmp_tbl) /\* [TODO]
-  RULE-40008 : The CAST function containing a subquery as an argument should be
-  manually converted \*/**
-
-  FROM t1 ORDER BY c1;
-
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT c1, CAST(MULTISET(SELECT c1 FROM t2 ORDER BY c2) AS tmp_tbl) /* [TODO] RULE-40008 : The CAST function containing a subquery as an argument should be manually converted */
+FROM t1 ORDER BY c1;
+~~~
 #### RULE-40009
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 복수의 인자를 갖는 DUMP 함수는 수동으로 변환해야 한다.
+###### 설명
+복수의 인자를 갖는 DUMP 함수는 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
-  CREATE OR REPLACE VIEW v1 AS
-
-  SELECT **DUMP(c3, 8, 3, 2)**
-
-  FROM t1 WHERE c3 = 100 ORDER BY c2;
-
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT DUMP(c3, 8, 3, 2)
+FROM t1 WHERE c3 = 100 ORDER BY c2;
+~~~
 ###### 변환된 SQL 문장
-
-  CREATE OR REPLACE VIEW v1 AS
-
-  SELECT **DUMP(c3, 8, 3, 2) /\* [TODO] RULE-40009 : The DUMP function contains
-  multiple arguments should be manually converted \*/**
-
-  FROM t1 WHERE c3 = 100 ORDER BY c2;
-
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT DUMP(c3, 8, 3, 2) /* [TODO] RULE-40009 : The DUMP function contains multiple arguments should be manually converted */
+FROM t1 WHERE c3 = 100 ORDER BY c2;
+~~~
 #### RULE-40010
 
-###### 타입 `CONVERTED`
+###### 타입
+`CONVERTED`
 
-###### 설명 EXTRACT 함수가 변환되었다.
+###### 설명
+EXTRACT 함수가 변환되었다.
 
 ###### 원본 SQL 문장
-
-  CREATE OR REPLACE VIEW rsvStats_year AS
-
-  SELECT **EXTRACT(YEAR FROM rsv_date)** year, COUNT(\*) cnt
-
-  FROM rsv_table GROUP BY **EXTRACT(YEAR FROM rsv_date)**;
+~~~sql
+CREATE OR REPLACE VIEW rsvStats_year AS
+SELECT EXTRACT(YEAR FROM rsv_date) year, COUNT(*) cnt
+FROM rsv_table GROUP BY EXTRACT(YEAR FROM rsv_date);
+~~~
 
 ###### 변환된 SQL 문장
-
-  CREATE OR REPLACE VIEW rsvStats_year AS
-
-  SELECT **EXTRACT(rsv_date, 'YEAR')** year, COUNT(\*) cnt
-
-  FROM rsv_table GROUP BY **EXTRACT(rsv_date, 'YEAR')**;
+~~~sql
+CREATE OR REPLACE VIEW rsvStats_year AS
+SELECT EXTRACT(rsv_date, 'YEAR') year, COUNT(*) cnt
+FROM rsv_table GROUP BY EXTRACT(rsv_date, 'YEAR');
+~~~
 
 #### RULE-40011
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 EXTRACT 함수에서 datetime이 'TIMEZONE'으로 시작하는 경우 수동으로
-  변환해야 한다..
+###### 설명
+EXTRACT 함수에서 datetime이 'TIMEZONE'으로 시작하는 경우 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
-  CREATE VIEW view1 AS
-
-  SELECT EXTRACT(**TIMEZONE_REGION** FROM CURRENT_TIMESTAMP) FROM dual;
+~~~sql
+CREATE VIEW view1 AS
+SELECT EXTRACT(TIMEZONE_REGION FROM CURRENT_TIMESTAMP) FROM dual;
+~~~
 
 ###### 변환된 SQL 문장
-
-  CREATE VIEW view1 AS
-
-  SELECT EXTRACT(**TIMEZONE_REGION /\* [TODO] RULE-40011 : The datetime field
-  prefixed 'TIMEZONE' in the EXTRACT function should be manually converted \*/**
-  FROM CURRENT_TIMESTAMP) FROM dual;
+~~~sql
+CREATE VIEW view1 AS
+SELECT EXTRACT(TIMEZONE_REGION /* [TODO] RULE-40011 : The datetime field prefixed 'TIMEZONE' in the EXTRACT function should be manually converted */ FROM CURRENT_TIMESTAMP) FROM dual;
+~~~
 
 #### RULE-40012
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 XMLType 인스턴스를 인자로 가지는 EXTRACT 함수는 수동으로 변환해야
-  한다..
+###### 설명
+XMLType 인스턴스를 인자로 가지는 EXTRACT 함수는 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
-  CREATE VIEW view1 AS
-
-  SELECT **EXTRACT(emp_into, 'Employee/Name')** emp_name FROM dual;
+~~~sql
+CREATE VIEW view1 AS
+SELECT EXTRACT(emp_into, 'Employee/Name') emp_name FROM dual;
+~~~
 
 ###### 변환된 SQL 문장
-
-  CREATE VIEW view1 AS
-
-  SELECT **EXTRACT(emp_info, 'Employee/Name') /\* [TODO] RULE-40012 : The EXTRACT
-  function containing XMLType instance as parameters should be manually converted
-  \*/** emp_name FROM dual;
+~~~sql
+CREATE VIEW view1 AS
+SELECT EXTRACT(emp_info, 'Employee/Name') /* [TODO] RULE-40012 : The EXTRACT function containing XMLType instance as parameters should be manually converted */ emp_name FROM dual;
+~~~
 
 #### RULE-40013
 
-###### 타입 `CONVERTED`
+###### 타입
+`CONVERTED`
 
-###### 설명 SYS_CONTEXT 함수가 변환되었다.
+###### 설명
+SYS_CONTEXT 함수가 변환되었다.
 
 ###### 원본 SQL 문장
-
-  CREATE VIEW view1 AS
-
-  SELECT SYS_CONTEXT('USERENV', 'SESSION_USER') FROM dual;
+~~~sql
+CREATE VIEW view1 AS
+SELECT SYS_CONTEXT('USERENV', 'SESSION_USER') FROM dual;
+~~~
 
 ###### 변환된 SQL 문장
-
-  CREATE VIEW view1 AS
-
-  SELECT USER_NAME() FROM dual;
+~~~sql
+CREATE VIEW view1 AS
+SELECT USER_NAME() FROM dual;
+~~~
 
 #### RULE-40014
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 CURRENT_TIMESTAMP 함수의 선택적 인자인 정밀도는 수동으로 변환해야
-  한다.
+###### 설명
+CURRENT_TIMESTAMP 함수의 선택적 인자인 정밀도는 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
-  CREATE VIEW view1 AS
-
-  SELECT **CURRENT_TIMESTAMP(0)** FROM dual;
+~~~sql
+CREATE VIEW view1 AS
+SELECT CURRENT_TIMESTAMP(0) FROM dual;
+~~~
 
 ###### 변환된 SQL 문장
-
-  CREATE VIEW view1 AS
-
-  SELECT CURRENT_TIMESTAMP**(0) /\* [TODO] RULE-40014 : The optional argument of
-  the function CURRENT_TIMESTAMP, precision must be converted manually \*/** FROM
-  dual;
+~~~sql
+CREATE VIEW view1 AS
+SELECT CURRENT_TIMESTAMP(0) /* [TODO] RULE-40014 : The optional argument of the function CURRENT_TIMESTAMP, precision must be converted manually */ FROM dual;
+~~~
 
 #### RULE-40015
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 언어를 지정하는 선택적 인자인 nlsparam은 수동으로 변환해야 한다.
+###### 설명
+언어를 지정하는 선택적 인자인 nlsparam은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
-  CREATE VIEW view1 AS
-
-  SELECT TO_CHAR(SYSDATE, 'DL', **'NLS_DATE_LANGUAGE = korean'**) FROM dual;
+~~~sql
+CREATE VIEW view1 AS
+SELECT TO_CHAR(SYSDATE, 'DL', 'NLS_DATE_LANGUAGE = korean') FROM dual;
+~~~
 
 ###### 변환된 SQL 문장
-
-  CREATE VIEW view1 AS
-
-  SELECT TO_CHAR(SYSDATE, 'DL', **'NLS_DATE_LANGUAGE = korean' /\* [TODO]
-  RULE-40015 : The optional argument, nlsparam must be converted manually \*/)**
-  FROM dual;
+~~~sql
+CREATE VIEW view1 AS
+SELECT TO_CHAR(SYSDATE, 'DL', 'NLS_DATE_LANGUAGE = korean' /* [TODO] RULE-40015 : The optional argument, nlsparam must be converted manually */) FROM dual;
+~~~
 
 #### RULE-40016
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 함수 동작에 변화를 줄 수 있는 선택적 인자인 match_param은 수동으로
-  변환해야 한다..
+###### 설명
+함수 동작에 변화를 줄 수 있는 선택적 인자인 match_param은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
-  CREATE VIEW view1 AS
-
-  SELECT REGEXP_SUBSTR(content, '(Name: )(([a-z]+) ([a-z]+))', 1, 1, **'i'**,
-  **3**) "First Name" FROM page_pi;
+~~~sql
+CREATE VIEW view1 AS
+SELECT REGEXP_SUBSTR(content, '(Name: )(([a-z]+) ([a-z]+))', 1, 1, 'i', 3) "First Name" FROM page_pi;
+~~~
 
 ###### 변환된 SQL 문장
-
-  CREATE VIEW view1 AS
-
-  SELECT REGEXP_SUBSTR(content, '(Name: )(([a-z]+) ([a-z]+))', 1, 1, **'i' /\*
-  [TODO] RULE-40016 : The optional argument, match_param must be converted
-  manually \*/, 3**) "First Name" FROM page_pi;
+~~~sql
+CREATE VIEW view1 AS
+SELECT REGEXP_SUBSTR(content, '(Name: )(([a-z]+) ([a-z]+))', 1, 1, 'i' /* [TODO] RULE-40016 : The optional argument, match_param must be converted manually */, 3) "First Name" FROM page_pi;
+~~~
 
 #### RULE-40017
 
-- 버전 범위: Altibase 6.3.1.0.0 이상 버전
+> *이 규칙은 Altibase 6.3.1 이상 버전에 적용된다.*
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 선택적 인자인 subexpr은 수동으로 변환해야 한다.
+###### 설명
+선택적 인자인 subexpr은 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
-  CREATE VIEW view1 AS
-
-  SELECT REGEXP_SUBSTR(content, '(Name: )(([a-z]+) ([a-z]+))', 1, 1, 'i', **4**)
-  "Family Name" FROM page_pi;
-
+~~~sql
+CREATE VIEW view1 AS
+SELECT REGEXP_SUBSTR(content, '(Name: )(([a-z]+) ([a-z]+))', 1, 1, 'i', 4) "Family Name" FROM page_pi;
+~~~
 ###### 변환된 SQL 문장
-
-  CREATE VIEW view1 AS
-
-  SELECT REGEXP_SUBSTR(content, '(Name: )(([a-z]+) ([a-z]+))', 1, 1, 'i', **4 /\*
-  [TODO] RULE-40017 : The optional argument, subexpr must be converted manually
-  \*/**) "Family Name" FROM page_pi;
+~~~sql
+CREATE VIEW view1 AS
+SELECT REGEXP_SUBSTR(content, '(Name: )(([a-z]+) ([a-z]+))', 1, 1, 'i', 4 /* [TODO] RULE-40017 : The optional argument, subexpr must be converted manually */) "Family Name" FROM page_pi;
+~~~
 
 #### RULE-40018
 
-###### 타입 `CONVERTED`
+###### 타입
+`CONVERTED`
 
-###### 설명 MOD 연산자가 함수 형태로 변환되었다.
+###### 설명
+MOD 연산자가 함수 형태로 변환되었다.
 
 ###### 원본 SQL 문장
-
-  CREATE FUNCTION func1(p1 PLS_INTEGER) RETURN PLS_INTEGER AS
-
-  v1 PLS_INTEGER := **p1 MOD 2**;
-
-  BEGIN
-
-  RETURN v1;
-
-  END;
-
+~~~sql
+CREATE FUNCTION func1(p1 PLS_INTEGER) RETURN PLS_INTEGER AS
+v1 PLS_INTEGER := p1 MOD 2;
+BEGIN
+RETURN v1;
+END;
+~~~
 ###### 변환된 SQL 문장
-
-  CREATE FUNCTION func1(p1 PLS_INTEGER) RETURN PLS_INTEGER AS
-
-  v1 PLS_INTEGER := **MOD(p1, 2)**;
-
-  BEGIN
-
-  RETURN v1;
-
-  END;
+~~~sql
+CREATE FUNCTION func1(p1 PLS_INTEGER) RETURN PLS_INTEGER AS
+v1 PLS_INTEGER := MOD(p1, 2);
+BEGIN
+RETURN v1;
+END;
+~~~
 
 #### RULE-40019
 
-###### 타입 `CONVERTED`
+###### 타입
+`CONVERTED`
 
-###### 설명 내장 패키지가 변환되었다.
+###### 설명
+내장 패키지가 변환되었다.
 
 ###### 원본 SQL 문장
-
-  CREATE OR REPLACE PROCEDURE proc1
-
-  AS
-
-  BEGIN
-
-  DBMS_MVIEW.REFRESH('CAL_MONTH_SALES_MV, FWEEK_PSCAT_SALES_MV', 'CF', '', TRUE,
-  FALSE, 0,0,0, FALSE, FALSE);
-
-  END;
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1
+AS
+BEGIN
+DBMS_MVIEW.REFRESH('CAL_MONTH_SALES_MV, FWEEK_PSCAT_SALES_MV', 'CF', '', TRUE, FALSE, 0,0,0, FALSE, FALSE);
+END;
+~~~
 
 ###### 변환된 SQL 문장
-
-  CREATE OR REPLACE PROCEDURE proc1
-
-  AS
-
-  BEGIN
-
-  REFRESH_MATERIALIZED_VIEW(USER_NAME(), 'CAL_MONTH_SALES_MV');
-
-  REFRESH_MATERIALIZED_VIEW(USER_NAME(), 'FWEEK_PSCAT_SALES_MV');
-
-  END;
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1
+AS
+BEGIN
+REFRESH_MATERIALIZED_VIEW(USER_NAME(), 'CAL_MONTH_SALES_MV');
+REFRESH_MATERIALIZED_VIEW(USER_NAME(), 'FWEEK_PSCAT_SALES_MV');
+END;
+~~~
 
 #### RULE-40020
 
-###### 타입 `CONVERTED`
+###### 타입
+`CONVERTED`
 
-###### 설명 WM_CONCAT 함수가 LISTAGG 함수로 변환되었다.
+###### 설명
+WM_CONCAT 함수가 LISTAGG 함수로 변환되었다.
 
 ###### 원본 SQL 문장
-
-  SELECT WM_CONCAT(val) FROM t1;
+~~~sql
+SELECT WM_CONCAT(val) FROM t1;
+~~~
 
 ###### 변환된 SQL 문장
-
-  SELECT LISTAGG(val, ',') WITHIN GROUP(ORDER BY val) FROM t1;
+~~~sql
+SELECT LISTAGG(val, ',') WITHIN GROUP(ORDER BY val) FROM t1;
+~~~
 
 #### RULE-40021
 
-###### 타입 `TODO`
+###### 타입
+`TODO`
 
-###### 설명 SYS_CONTEXT 함수의 파라미터를 수동으로 변환해야 한다.
+###### 설명
+SYS_CONTEXT 함수의 파라미터를 수동으로 변환해야 한다.
 
 ###### 원본 SQL 문장
-
-  CREATE VIEW v_r40021 AS SELECT **SYS_CONTEXT('USERENV', 'INSTANCE_NAME')** FROM
-  dual;
+~~~sql
+CREATE VIEW v_r40021 AS 
+SELECT SYS_CONTEXT('USERENV', 'INSTANCE_NAME') FROM dual;
+~~~
 
 ###### 변환된 SQL 문장
-
-  CREATE VIEW v_r40021 AS SELECT **SYS_CONTEXT('USERENV', 'INSTANCE_NAME') /\*
-  [TODO] RULE-40021 : The parameter in the function 'SYS_CONTEXT' should be
-  converted manually. \*/** FROM dual;
+~~~sql
+CREATE VIEW v_r40021 AS 
+SELECT SYS_CONTEXT('USERENV', 'INSTANCE_NAME') /* [TODO] RULE-40021 : The parameter in the function 'SYS_CONTEXT' should be converted manually.*/ FROM dual;
+~~~
 
 #### RULE-40022
 
-###### 타입 `CONVERTED`
+###### 타입
+`CONVERTED`
 
-###### 설명 반환하는 값의 길이를 나타내는 SYS_CONTEXT 함수의 세번째 인자가
-  SYS_CONTEXT를 둘러싼 SUBSTR 함수로 변환되었다.
+###### 설명
+반환하는 값의 길이를 나타내는 SYS_CONTEXT 함수의 세번째 인자가 SYS_CONTEXT를 둘러싼 SUBSTR 함수로 변환되었다.
 
 ###### 원본 SQL 문장
+~~~sql
+CREATE VIEW v_r40022 AS SELECT SYS_CONTEXT('USERENV', 'INSTANCE_NAME', 100) FROM dual;
+~~~
 
-CREATE VIEW v_r40022 AS SELECT **SYS_CONTEXT('USERENV', 'INSTANCE_NAME', 100)**
-FROM dual;
 
 ###### 변환된 SQL 문장
+~~~sql
+CREATE VIEW v_r40022 AS SELECT SUBSTR(SYS_CONTEXT('USERENV', 'INSTANCE_NAME'), 0, 100) FROM dual;
+~~~
 
-CREATE VIEW v_r40022 AS SELECT **SUBSTR(SYS_CONTEXT('USERENV', 'INSTANCE_NAME'),
-0, 100)** FROM dual;
 
 ## F.부록: FAQ
 
