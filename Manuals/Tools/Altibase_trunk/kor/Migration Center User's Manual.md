@@ -3837,12 +3837,12 @@ ORDER BY c1, c2;
 
 ###### 원본 SQL 문장
 ~~~sql
-CREATE OR REPLACE PROCEDURE testuser1.proc1(a1 NUMBER)
+CREATE OR REPLACE PROCEDURE test_user1.proc1(a1 NUMBER)
 AS
 BEGIN
-INSERT INTO testuser1.t1 VALUES(1, 2, 3);
-UPDATE testuser2.t1 SET c1 =3, c2 = c2 + 4, c3 = 9 WHERE c4 = 12;
-DELETE FROM TESTUSER1.t1 WHERE c4 = 12;
+INSERT INTO test_user1.t1 VALUES(1, 2, 3);
+UPDATE test_user2.t1 SET c1 =3, c2 = c2 + 4, c3 = 9 WHERE c4 = 12;
+DELETE FROM TEST_USER1.t1 WHERE c4 = 12;
 SELECT * INTO :cur1, :cur2 FROM "TEST_USER1".t1;
 SELECT * INTO :cur1, :cur2 FROM "Test_User1".t1;
 END;
@@ -3853,7 +3853,7 @@ CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
 AS
 BEGIN
 INSERT INTO t1 VALUES(1, 2, 3);
-UPDATE testuser2.t1 SET c1 =3, c2 = c2 + 4, c3 = 9 WHERE c4 = 12;
+UPDATE test_user2.t1 SET c1 =3, c2 = c2 + 4, c3 = 9 WHERE c4 = 12;
 DELETE FROM t1 WHERE C4 = 12;
 SELECT * INTO :cur1, :cur2 FROM t1;
 SELECT * INTO :cur1, :cur2 FROM "Test_User1".t1;
