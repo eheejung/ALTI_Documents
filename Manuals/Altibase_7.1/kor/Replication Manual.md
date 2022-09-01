@@ -2603,16 +2603,16 @@ IP 주소가 2개씩 구성된 서버에서 송신자 IP 주소 설정 기능을
 `A 서버`
 
 ```bash
-REPLICATION_SENDER_IP = 192.168.1.11
-REPLICATION_SENDER_IP = 192.168.2.11
+REPLICATION_SENDER_IP = 10.0.0.1
+REPLICATION_SENDER_IP = 20.0.0.1
 REPLICATION_PORT = 30300
 ```
 
 `B 서버`
 
 ~~~bash
-REPLICATION_SENDER_IP = 192.168.1.22
-REPLICATION_SENDER_IP = 192.168.2.22
+REPLICATION_SENDER_IP = 10.0.0.2
+REPLICATION_SENDER_IP = 20.0.0.2
 REPLICATION_PORT = 30300
 ~~~
 
@@ -2623,26 +2623,98 @@ REPLICATION_PORT = 30300
 `A 서버`
 
 ~~~sql
-CREATE REPLICATION rep1 WITH '192.168.1.22', 30300 FROM user1.t1 to user1.t1;
-CREATE REPLICATION rep2 WITH '192.168.2.22', 30300 FROM user1.t2 to user1.t2;  
+CREATE REPLICATION rep1 WITH '10.0.0.2', 30300 FROM user1.t1 to user1.t1;
+CREATE REPLICATION rep2 WITH '20.0.0.2', 30300 FROM user1.t2 to user1.t2;  
 ~~~
 
 `B 서버`
 
 ~~~sql
-CREATE REPLICATION rep1 WITH '192.168.1.11', 30300 FROM user1.t1 to user1.t1;
-CREATE REPLICATION rep2 WITH '192.168.2.11', 30300 FROM user1.t2 to user1.t2;
+CREATE REPLICATION rep1 WITH '10.0.0.1', 30300 FROM user1.t1 to user1.t1;
+CREATE REPLICATION rep2 WITH '20.0.0.1', 30300 FROM user1.t2 to user1.t2;
+~~~
+
+###### 송신자 IP 주소 설정 결과
+
+`망 분리가 된 경우`
+
+A, B 서버가 10.0.0.x 대역끼리 통신하고  20.0.0.x 대역끼리 통신하도록 망 분리가 되어 있는 환경에서 송신자 IP 주소가 설정된 예이다. 
+
+`A 서버`
+
+~~~sql
+iSQL> SELECT REP_NAME, SENDER_IP, SENDER_PORT, PEER_IP, PEER_PORT from V$REPSENDER;
+REP_NAME              SENDER_IP             SENDER_PORT PEER_IP               PEER_PORT   
+------------------------------------------------------------------------------------------------
+REP1                  10.0.0.1              56016       10.0.0.2              30300       
+REP2                  20.0.0.1              56511       20.0.0.2              30300
+2 row selected.
+
+iSQL> SELECT REP_NAME, MY_IP, MY_PORT, PEER_IP, PEER_PORT from V$REPRECEIVER;
+REP_NAME              MY_IP                 MY_PORT     PEER_IP               PEER_PORT   
+------------------------------------------------------------------------------------------------
+REP1                  10.0.0.1              37101       10.0.0.2              39300       
+REP2                  20.0.0.1              37101       20.0.0.2              42016       
+2 rows selected.
+~~~
+
+`B 서버`
+
+~~~sql
+iSQL> SELECT REP_NAME, SENDER_IP, SENDER_PORT, PEER_IP, PEER_PORT from V$REPSENDER;
+REP_NAME              SENDER_IP             SENDER_PORT PEER_IP               PEER_PORT   
+------------------------------------------------------------------------------------------------
+REP1                  192.168.1.146         39300       192.168.1.145         37101       
+REP2                  20.0.0.2              42016       20.0.0.1              37101       
+2 rows selected.
+iSQL> SELECT REP_NAME, MY_IP, MY_PORT, PEER_IP, PEER_PORT from V$REPRECEIVER;
+REP_NAME              MY_IP                 MY_PORT     PEER_IP               PEER_PORT   
+------------------------------------------------------------------------------------------------
+REP1                  192.168.1.146         37106       192.168.1.145         56016       
+REP2                  20.0.0.2              37106       20.0.0.1              56511       
+2 rows selected.
 ~~~
 
 
 
-`망 분리가 된 경우`
-
-A 서버의 192.168.1.11 와 B 서버의 192.168.1.22 가 통신할 수 있고 
-
-B 서버의 192.168.2.11 와 B 서버의 192.168.2.22 가 통신할 수 있게 네트워크 망이 분리되어 있다.
-
 `망 분리가 되지 않은 경우`
+
+A, B 서버의 모든 IP 주소가 서로 통신이 가능한 환경에서 송신자 IP 주소가 설정된 예이다. 
+
+`A 서버`
+
+~~~sql
+iSQL> SELECT REP_NAME, SENDER_IP, SENDER_PORT, PEER_IP, PEER_PORT from V$REPSENDER;
+REP_NAME              SENDER_IP             SENDER_PORT PEER_IP               PEER_PORT   
+------------------------------------------------------------------------------------------------
+REP1                  10.0.0.1              56016       10.0.0.2              30300       
+REP2                  20.0.0.1              56511       20.0.0.2              30300
+2 row selected.
+
+iSQL> SELECT REP_NAME, MY_IP, MY_PORT, PEER_IP, PEER_PORT from V$REPRECEIVER;
+REP_NAME              MY_IP                 MY_PORT     PEER_IP               PEER_PORT   
+------------------------------------------------------------------------------------------------
+REP1                  10.0.0.1              37101       10.0.0.2              39300       
+REP2                  20.0.0.1              37101       20.0.0.2              42016       
+2 rows selected.
+~~~
+
+`B 서버`
+
+~~~sql
+iSQL> SELECT REP_NAME, SENDER_IP, SENDER_PORT, PEER_IP, PEER_PORT from V$REPSENDER;
+REP_NAME              SENDER_IP             SENDER_PORT PEER_IP               PEER_PORT   
+------------------------------------------------------------------------------------------------
+REP1                  192.168.1.146         39300       192.168.1.145         37101       
+REP2                  20.0.0.2              42016       20.0.0.1              37101       
+2 rows selected.
+iSQL> SELECT REP_NAME, MY_IP, MY_PORT, PEER_IP, PEER_PORT from V$REPRECEIVER;
+REP_NAME              MY_IP                 MY_PORT     PEER_IP               PEER_PORT   
+------------------------------------------------------------------------------------------------
+REP1                  192.168.1.146         37106       192.168.1.145         56016       
+REP2                  20.0.0.2              37106       20.0.0.1              56511       
+2 rows selected.
+~~~
 
 
 
@@ -2662,17 +2734,7 @@ REPLICATION_SENDER_IP를 사용하는 예제를 설명한다.
 | 망분리가 되지않아서 REP2의1.11 -> 22.22 연결이 성공한 경우   | iSQL> SELECT REP_NAME, SENDER_IP, SENDER_PORT, PEER_IP, PEER_PORT from **V$REPSENDER**;<br /><br />REP_NAME : REP1 <br />**SENDER_IP : 192.168.1.11** <br />**SENDER_PORT : 13718** <br />PEER_IP : 192.168.2.22 <br />PEER_PORT : 20222 <br />REP_NAME : REP2 <br />**SENDER_IP : 192.168.1.11** <br />**SENDER_PORT : 13720** <br />PEER_IP : 192.168.22.22 <br />PEER_PORT : 20222 <br />iSQL> SELECT REP_NAME, MY_IP, MY_PORT, PEER_IP, PEER_PORT from **V$REPRECEIVER**;<br /><br />REP_NAME : REP1 <br />MY_IP : 192.168.1.11 <br />MY_PORT : 20111 <br />**PEER_IP : 192.168.2.22** <br />**PEER_PORT : 24356**<br />REP_NAME : REP2 <br />MY_IP : 192.168.11.11 <br />MY_PORT : 20111 <br />**PEER_IP : 192.168.2.22** <br />**PEER_PORT : 23456** | iSQL> SELECT REP_NAME, MY_IP, MY_PORT, PEER_IP, PEER_PORT from **V$REPRECEIVER**; <br /><br />REP_NAME : REP1 <br />MY_IP : 192.168.2.22 <br />MY_PORT : 20222 <br />**PEER_IP : 192.168.1.11** <br />**PEER_PORT : 13718**<br />REP_NAME : REP2 <br />MY_IP : 192.168.22.22 <br />MY_PORT : 20222 <br />**PEER_IP : 192.168.1.11** <br />**PEER_PORT : 13720** <br />iSQL> SELECT REP_NAME, SENDER_IP, SENDER_PORT, PEER_IP, PEER_PORT from **V$REPSENDER**;<br /><br />REP_NAME : REP1 <br />**SENDER_IP : 192.168.2.22** **<br />SENDER_PORT : 24356** <br />PEER_IP : 192.168.1.11 <br />PEER_PORT : 20111 <br />REP_NAME : REP2 <br />**SENDER_IP : 192.168.2.22** <br />**SENDER_PORT : 23456** <br />PEER_IP : 192.168.11.11 <br />PEER_PORT : 20111 |
 | 망분리로 인해 REP2의1.11 -> 22.22 연결이 실패한 경우두번째 REPLICATION_SENDER_IP로재접속 한 경우 | iSQL> SELECT REP_NAME, SENDER_IP, SENDER_PORT, PEER_IP, PEER_PORT from **V$REPSENDER**;<br />REP_NAME : REP1 <br />**SENDER_IP : 192.168.1.11** <br />**SENDER_PORT : 13718** <br />PEER_IP : 192.168.2.22 <br />PEER_PORT : 20222 <br />REP_NAME : REP2 <br />**SENDER_IP : 192.168.11.11** <br />**SENDER_PORT : 13720** <br />PEER_IP : 192.168.22.22 <br />PEER_PORT : 20222 <br />iSQL> SELECT REP_NAME, MY_IP, MY_PORT, PEER_IP, PEER_PORT from **V$REPRECEIVER**;<br />REP_NAME : REP1 <br />MY_IP : 192.168.1.11 <br />MY_PORT : 20111 <br />**PEER_IP : 192.168.2.22** **<br />PEER_PORT : 24356**<br />REP_NAME : REP2 <br />MY_IP : 192.168.11.11 <br />MY_PORT : 20111 <br />**PEER_IP : 192.168.22.22** <br />**PEER_PORT : 23456** | iSQL> SELECT REP_NAME, MY_IP, MY_PORT, PEER_IP, PEER_PORT from **V$REPRECEIVER**; <br />REP_NAME : REP1 <br />MY_IP : 192.168.2.22 <br />MY_PORT : 20222 <br />**PEER_IP : 192.168.1.11** <br />**PEER_PORT : 13718**<br />REP_NAME : REP2 <br />MY_IP : 192.168.22.22 <br />MY_PORT : 20222 <br />**PEER_IP : 192.168.11.11** <br />**PEER_PORT : 13720** <br />iSQL> SELECT REP_NAME, SENDER_IP, SENDER_PORT, PEER_IP, PEER_PORT from **V$REPSENDER**;<br />REP_NAME : REP1 <br />**SENDER_IP : 192.168.2.22** **<br />SENDER_PORT : 24356** <br />PEER_IP : 192.168.1.11 <br />PEER_PORT : 20111 <br />REP_NAME : REP2 <br />**SENDER_IP : 192.168.22.22** <br />**SENDER_PORT : 23456** <br />PEER_IP : 192.168.11.11 <br />PEER_PORT : 20111 |
 
-※ REPLICATION_SENDER_IP가 설정되지 않은 경우 sender 소켓의 지역 IP는 OS에서 자동으로 할당한다.
 
-  REPLICATION_SENDER_IP가 여러개인 경우 경우 네트워크 설정에 의존한다.
-
-##### 제약사항
-
- . 이중화 객체 단위로 불가
-
- . TCP 통신만 지원
-
- . 호스트네임 지원하지 않음
 
 ### 이중화 관련 프로퍼티
 
