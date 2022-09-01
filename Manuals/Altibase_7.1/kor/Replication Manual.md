@@ -2590,39 +2590,51 @@ REPLICATION_SENDER_IP 프로퍼티는 모든 이중화 객체에 일괄적으로
 
 ##### 사용 예제
 
-A 서버와 B 서버는 각각 IP 주소가 2개씩 구성되어 있다.
+IP 주소가 2개씩 구성된 서버에서 송신자 IP 주소 설정 기능을 사용하여 이중화 객체를 구성한 예제이다.
 
-`A 서버의 IP 주소`
+###### 각 서버의 IP 주소 구성
 
-192.168.1.11, 192.168.2.11
+`A 서버` : 192.168.1.11, 192.168.2.11
 
-`B 서버의 IP 주소`
+`B 서버` : 192.168.1.22, 192.168.2.22
 
-192.168.1.22, 192.168.2.22 
+###### 각 서버의 REPLICATION_SENDER_IP 설정
+
+`A 서버`
+
+```bash
+REPLICATION_SENDER_IP = 192.168.1.11
+REPLICATION_SENDER_IP = 192.168.2.11
+REPLICATION_PORT = 30300
+```
+
+`B 서버`
+
+~~~bash
+REPLICATION_SENDER_IP = 192.168.1.22
+REPLICATION_SENDER_IP = 192.168.2.22
+REPLICATION_PORT = 30300
+~~~
+
+###### 이중화 객체 생성
+
+이중화 포트는 30300라고 가정한다.
+
+`A 서버`
+
+~~~sql
+CREATE REPLICATION rep1 WITH '192.168.1.22', 30300 FROM user1.t1 to user1.t1;
+CREATE REPLICATION rep2 WITH '192.168.2.22', 30300 FROM user1.t2 to user1.t2;  
+~~~
+
+`B 서버`
+
+~~~sql
+CREATE REPLICATION rep1 WITH '192.168.1.11', 30300 FROM user1.t1 to user1.t1;
+CREATE REPLICATION rep2 WITH '192.168.2.11', 30300 FROM user1.t2 to user1.t2;
+~~~
 
 
-
-REPLICATION_SENDER_IP 설정과 이중화 객체
-
-A 서버와 B 서버는 각각 IP 주소가 2개씩 구성되어 있다.
-
-| A 서버       | B 서버       |
-| ------------ | ------------ |
-| 192.168.1.11 | 192.168.1.22 |
-| 192.168.2.11 | 192.168.2.22 |
-
-각 서버의 REPLICATION_SENDER_IP 설정은 다음과 같다.
-
-| A 서버                                                       | B 서버                                                       |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| REPLICATION_SENDER_IP = 192.168.1.11<br />REPLICATION_SENDER_IP = 192.168.11.11<br/>REPLICATION_PORT = 20111 | REPLICATION_SENDER_IP = 192.168.1.22<br/>REPLICATION_SENDER_IP = 192.168.2.22<br/>REPLICATION_PORT = 20111 |
-
-각 서버의 이중화 객체 생성 문장이다.
-
-| A 서버                                                       | B 서버                                                       |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| CREATE REPLICATION REP1 WITH '192.168.2.22', 20222 <br />   FROM user1.T1 to user1.T1; | CREATE REPLICATION REP1 WITH '192.168.1.11', 20111 <br />    FROM user1.T1 to user1.T1; |
-| CREATE REPLICATION REP2 WITH '192.168.22.22', 20222    <br />  FROM user1.T2 to user1.T2; | CREATE REPLICATION REP2 WITH '192.168.11.11', 20111 <br />   FROM user1.T2 to user1.T2; |
 
 `망 분리가 된 경우`
 
