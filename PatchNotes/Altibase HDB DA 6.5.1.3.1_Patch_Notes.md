@@ -12,7 +12,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Fixed Bugs](#fixed-bugs)
-    - [BUG-49856 트랜잭션 로그 버퍼의 크기를 초과하는 변경 트랜잭션이 발생하면 Altibase 서버가 비정상 종료할 수 있습니다.](bug-49856트랜잭션-로그-버퍼의-크기를-초과하는-변경-트랜잭션이-발생하면-altibase-서버가-비정상-종료할-수-있습니다)
+    - [BUG-49856 트랜잭션 로그 버퍼의 크기를 초과하는 변경 트랜잭션이 발생하면 Altibase 서버가 비정상 종료할 수 있습니다.](#bug-49856트랜잭션-로그-버퍼의-크기를-초과하는-변경-트랜잭션이-발생하면-altibase-서버가-비정상-종료할-수-있습니다)
 - [Changes](#changes)
     - [Version Info](#version-info)
     - [호환성](#%ED%98%B8%ED%99%98%EC%84%B1)
