@@ -2571,7 +2571,7 @@ REP1                                      1
 
    IP 주소는 IPv4, IPv6, IPv6 확장 주소 형태로 입력한다. REPLICATION_SENDER_IP를 추가하여 여러 개의 IP 주소를 입력할 수 있다. 다수의 IP 주소를 입력하면, 이중화 시작 시 IP 주소를 순서대로 검사하며 사용할 수 있는 IP 주소를 선택한다. 수신자와 통신이 실패하면 altibase_rp.log에 에러 메시지를 남기고 다음 IP 주소로 재시도한다.
 
-   *여러 개의 IP 주소 설정 예시*
+   *`여러 개의 IP 주소 설정 예시`*
 
    ~~~bash
    $ vi altibase.properties
