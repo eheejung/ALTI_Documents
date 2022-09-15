@@ -3,22 +3,18 @@
 **Table of Contents** 
 
 - [Altibase 버전 별 지원 플랫폼](#altibase-%EB%B2%84%EC%A0%84-%EB%B3%84-%EC%A7%80%EC%9B%90-%ED%94%8C%EB%9E%AB%ED%8F%BC)
-
   - [Altibase 7.2](#altibase-72)
     - [Altibase 서버 및 클라이언트](#altibase-서버-및-클라이언트)
     - [Adapter for Oracle](#adapter-for-oracle)
-
-
   - [Altibase 7.1](#altibase-71)
     - [Altibase 서버 및 클라이언트](#altibase-서버-및-클라이언트-1)
     - [Adapter for Oracle](#adapter-for-oracle-1)
-
   - [Altibase 6.5.1](#altibase-651)
     - [Altibase 서버 및 클라이언트](#altibase-서버-및-클라이언트-2)
     - [Adapter for Oracle](#adapter-for-oracle-2)
 
 
-  
+
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
