@@ -6,6 +6,8 @@
   - [Altibase 7.2](#altibase-72)
   - [Altibase 7.1](#altibase-71)
   - [Altibase 6.5.1](#altibase-651)
+    - [Altibase 6.5.1 Adapter for Oracle](#altibase-651-adapter-for-oracle)
+  
   
   
 
@@ -16,6 +18,8 @@
 # Altibase 버전 별 지원 플랫폼
 
 ## Altibase 7.2
+
+### Altibase 서버 및 클라이언트
 
 >  Altibase 서버/클라이언트 모두 64-bit 만 지원합니다.<br>Microsoft Windows 는 Altibase 클라이언트만 지원합니다.
 >
@@ -37,9 +41,17 @@
 | **Microsoft Windows (x64)**                                  |                     |                           |                       |
 | Microsoft Windows 2008                                       |          -          |             ●             |                       |
 
+### Adapter for Oracle
 
+- AIX 5.3
+- AIX 6.1
+- Linux
+
+<br/>
 
 ## Altibase 7.1
+
+### Altibase 서버 및 클라이언트
 
 >  Altibase 서버/클라이언트 모두 64-bit 만 지원합니다.<br>Microsoft Windows 는 Altibase 클라이언트만 지원합니다.
 >
@@ -67,9 +79,17 @@
 | **Microsoft Windows (x64)**                                  |                     |                           |                                                          |
 | Microsoft Windows 2008                                       |        **X**        |             ●             | *- Altibase 클라이언트 7.1.0.4.5 이상*                   |
 
+### Adapter for Oracle
 
+- AIX 5.3
+- AIX 6.1
+- Linux
+
+<br/>
 
 ## Altibase 6.5.1
+
+### Altibase 서버 및 클라이언트
 
 > Altibase 서버는 64비트만 지원합니다.
 >
@@ -100,7 +120,7 @@
 |Microsoft Windows 7<br/>Microsoft Windows 8|●|●|●||
 |Microsoft Windows 10|●|●|●|*- Altibase  6.5.1.6.2 이상*|
 
-#### Altibase 6.5.1 Adapter for Oracle
+### Adapter for Oracle
 
 - AIX 5.3
 - AIX 6.1
