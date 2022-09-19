@@ -50,14 +50,14 @@ Migration Center는 소프트웨어 최소 사양을 만족하면 OS 무관하�
 Migration Center는 순수 Java 기반 클라이언트 애플리케이션으로, JAVA Runtime Environment (JRE)에 의존한다. 또한  Migration Center를 GUI 모드로 실행하기 위해 운영 체제의 그래픽 라이브러리에 대한 추가 지원이 필요하다.
 
 | Mode | JRE                      | OS Graphic Library |
-| ---- | ------------------------ | ------------------ |
-| GUI  | Sun 또는 IBM Java 8 이상 | 필수               |
-| CLI  | Sun 또는 IBM Java 8 이상 | 필수 아님          |
+| ---- | ------------------------ | :----------------: |
+| GUI  | Sun 또는 IBM Java 8 이상 |        필수        |
+| CLI  | Sun 또는 IBM Java 8 이상 |     필수 아님      |
 
 ### 호환 가능한 데이터베이스 시스템
 
 | **대상 데이터베이스** | **원본 데이터베이스 종류 및 버전**                           | **대상 데이터베이스 버전** |
-| --------------------- | ------------------------------------------------------------ | -------------------------- |
+| :-------------------- | :----------------------------------------------------------- | :------------------------- |
 | **Altibase**          | - Altibase: 4.3.9 이상<br />- CUBRID: 8.4.1~9.3.5(ISO-8859-1, UTF-8 charset) <br />- Informix: 11.50 <br />- Microsoft SQL Server: 2005 - 2012<br />- Oracle Database: 9i - 11g <br />- Oracle MySQL: 5.0 - 5.7 <br />- Oracle TimesTen: 7.0, 11.2 <br />- Tibero: 4sp1~6 | Altibase 6.5.1 이상        |
 | **Oracle**            | Altibase: 4.3.9 이상                                         | Oracle Database 10g - 11g  |
 
@@ -119,28 +119,28 @@ Migration Center는 아래의 오픈소스 라이브러리에 기반한다. 라�
 
 ### 오픈소스 라이브러리
 
-| Library                    | Open Source License                                          |
-| -------------------------- | ------------------------------------------------------------ |
-| Apache Commons Codec       | Homepage: http://commons.apache.org/codec/ <br>License: Apache License 2.0(http://www.apache.org/licenses/LICENSE-2.0.txt) |
-| Apache Commons Lang        | Homepage: http://commons.apache.org/proper/commons-lang/ <br>License: Apache License 2.0(http://www.apache.org/licenses/LICENSE-2.0.txt) |
-| Apache Commons Mathematics | Homepage: http://commons.apache.org/math/  <br>License: Apache License 2.0(http://www.apache.org/licenses/LICENSE-2.0.txt) |
-| Apache Commons IO          | Homepage: http://commons.apache.org/proper/commons-io/ <br>License: Apache License 2.0(http://www.apache.org/licenses/LICENSE-2.0.txt) |
-| Java Help System           | Homepage: http://javahelp.java.net/ <br>License: GPL linking exception(http://en.wikipedia.org/wiki/GPL_linking_exception) |
-| JDOM                       | Homepage: http://www.jdom.org/ <br>License: Apache-style Open Source License(http://www.jdom.org/docs/faq.html#a0030) |
-| JUniversalChardet          | Homepage: http://wwwarchive.mozilla.org/projects/intl/UniversalCharsetDetection.html <br>License: Mozilla Public License Version 1.1(http://www.mozilla.org/MPL/1.1/) |
-| JGraphT                    | Homepage: http://jgrapht.org/ <br>License: GNU Lesser General Public License(http://jgrapht.org/LGPL.html) |
-| Log4J                      | Homepage: http://logging.apache.org/index.html <br>License: Apache License 2.0(http://www.apache.org/licenses/LICENSE-2.0.txt) |
-| OpenCSV                    | Homepage: http://opencsv.sourceforge.net/ <br>License: Apache License 2.0(http://www.apache.org/licenses/LICENSE-2.0.txt) |
-| Oracle JDBC Driver         | Homepage: [http://www.oracle.com](http://www.oracle.com/) <br>License: OTN(http://www.oracle.com/technetwork/licenses/distribution-license152002.html) |
+| Library                                                      | Open Source License                                          |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| [Apache Commons Codec](http://commons.apache.org/codec/ )    | [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) |
+| [Apache Commons Lang](http://commons.apache.org/proper/commons-lang/) | [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) |
+| [Apache Commons Mathematics](http://commons.apache.org/math/) | [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) |
+| [Apache Commons IO](http://commons.apache.org/proper/commons-io/) | [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) |
+| [Java Help System](http://javahelp.java.net/)                | [GPL linking exception](http://en.wikipedia.org/wiki/GPL_linking_exception) |
+| [JDOM](http://www.jdom.org/)                                 | [Apache-style Open Source License](http://www.jdom.org/docs/faq.html#a0030) |
+| [JUniversalChardet](http://wwwarchive.mozilla.org/projects/intl/UniversalCharsetDetection.html ) | [Mozilla Public License Version 1.1](http://www.mozilla.org/MPL/1.1/) |
+| [JGraphT](http://jgrapht.org/)                               | [GNU Lesser General Public License](http://jgrapht.org/LGPL.html) |
+| [Log4J](http://logging.apache.org/index.html)                | [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) |
+| [OpenCSV](http://opencsv.sourceforge.net/)                   | [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) |
+| [Oracle JDBC Driver](http://www.oracle.com/)                 | [OTN](http://www.oracle.com/technetwork/licenses/distribution-license152002.html) |
 
 ### 로열티 프리 이미지
 
-| Library                  | Royalty-Free Images                                      |
-| ------------------------ | -------------------------------------------------------- |
-| org.eclipse.datatools    | Homepage: [www.eclipse.org](http://www.eclipse.org/)     |
-| asp.net_commercial_free2 | Homepage: [www.asp.net](http://www.asp.net/)             |
-| fugue-icons-3.2.3-src    | Homepage: http://code.google.com/p/fugue-icons-src/      |
-| Silk Icons 1.3           | Homepage: [www.famfamfam.com](http://www.famfamfam.com/) |
+| Library                  | Royalty-Free Images                                 |
+| :----------------------- | :-------------------------------------------------- |
+| org.eclipse.datatools    | [www.eclipse.org](http://www.eclipse.org/)          |
+| asp.net_commercial_free2 | [www.asp.net](http://www.asp.net/)                  |
+| fugue-icons-3.2.3-src    | Homepage: http://code.google.com/p/fugue-icons-src/ |
+| Silk Icons 1.3           | [www.famfamfam.com](http://www.famfamfam.com/)      |
 
 <br/>
 
