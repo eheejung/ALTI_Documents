@@ -7,8 +7,9 @@
 # **Table of Contents** 
 
 - [1. 개요](#1-%EA%B0%9C%EC%9A%94)
-  - [1.1 시스템 요구사항](#11-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD)
-  - [1.2 지원하는 OS 및 플랫폼](#12-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-os-%EB%B0%8F-%ED%94%8C%EB%9E%AB%ED%8F%BC)
+  - [1.1 Altibase Migration Center](11-altibase-migration-center)
+  - [1.2 시스템 요구사항](#12-시스템-요구사항)
+  - [1.3 지원하는 OS 및 플랫폼](#13-%EC%A7%80%EC%9B%90%ED%95%98%EB%8A%94-os-%EB%B0%8F-%ED%94%8C%EB%9E%AB%ED%8F%BC)
 - [2. 릴리즈 정보](#2-%EB%A6%B4%EB%A6%AC%EC%A6%88-%EC%A0%95%EB%B3%B4)
   - [2.1 Altibase Migration Center 7.10](#21-altibase-migration-center-710)
   - [2.2 변경사항](#22-%EB%B3%80%EA%B2%BD%EC%82%AC%ED%95%AD)
@@ -59,7 +60,7 @@ Migration Center는 순수 Java 기반 클라이언트 애플리케이션으로,
 | **대상 데이터베이스** | **원본 데이터베이스 종류 및 버전**                           | **대상 데이터베이스 버전** |
 | :-------------------- | :----------------------------------------------------------- | :------------------------- |
 | **Altibase**          | Altibase: 4.3.9 이상<br />CUBRID: 8.4.1 ~ 9.3.5 (ISO-8859-1, UTF-8 charset) <br/>Informix: 11.50 <br />Microsoft SQL Server: 2005 ~ 2012<br />Oracle Database: 9i ~ 11g <br />Oracle MySQL: 5.0 ~ 5.7 <br />Oracle TimesTen: 7.0, 11.2 <br />Tibero: 4sp1~6 | Altibase 6.5.1 이상        |
-| **Oracle**            | Altibase: 4.3.9 이상                                         | Oracle Database 10g - 11g  |
+| **Oracle**            | Altibase: 4.3.9 이상                                         | Oracle Database 10g ~ 11g  |
 
 <br/>
 
@@ -69,21 +70,21 @@ Migration Center 7.10 의 새로운 기능과 수정된 버그 및 변경 사항
 
 ## 2.1 새로운 기능
 
-#### 원본 데이터베이스로 MySQL 5.6, 5.7 지원
+### 원본 데이터베이스로 MySQL 5.6, 5.7 지원
 
 MySQL 5.6, 5.7 에서 Altibase 서버로 Migration Center를 이용해 데이터베이스 객체 및 데이터 이관할 수 있다. (BUG-49595)
 
-#### OpenJDK18 지원
+### OpenJDK18 지원
 
 OpenJDK 18에서 Migration Center 7.10 호환성 검증을 완료하였다. (TASK-7433)
 
 ## 2.2 수정된 버그
 
-#### BUG-49579 MySQL bit 타입 default 값 변환이 부정확합니다.
+### BUG-49579 MySQL bit 타입 default 값 변환이 부정확합니다.
 
 MySQL에서 BIT 데이터 타입의 기본값이 DEFAULT b'*val*' 형태로 정의된 DDL을 변환한 문장에서 ERR-2100C : Conversion not applicable. 에러가 발생하는 문제를 수정합니다. DEFAULT *`b'val'`* 일 때 DEFAULT *`VARBIT'val'`* 형태로 변환되도록 수정한다.
 
-#### BUG-49731 LOB 데이터의 배치 처리 여부를 설정하는 옵션을 추가합니다.
+### BUG-49731 LOB 데이터의 배치 처리 여부를 설정하는 옵션을 추가합니다.
 
 DB to DB 마이그레이션 옵션에 LOB 데이터의 배치 처리 여부를 설정하는 [`Batch LOB type`](https://github.com/ALTIBASE/Documents/blob/master/Manuals/Tools/Altibase_release/kor/Migration%20Center%20User's%20Manual.md#db-to-db-%EB%A7%88%EC%9D%B4%EA%B7%B8%EB%A0%88%EC%9D%B4%EC%85%98-%EC%98%B5%EC%85%98) 옵션을 추가되었다. 데이터 마이그레이션에서 LOB 데이터의 처리 성능 향상을 위해  이 옵션을 사용할 수 있다.
 
