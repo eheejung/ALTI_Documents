@@ -58,7 +58,7 @@ Migration Center는 순수 Java 기반 클라이언트 애플리케이션으로,
 
 | **대상 데이터베이스** | **원본 데이터베이스 종류 및 버전**                           | **대상 데이터베이스 버전** |
 | :-------------------- | :----------------------------------------------------------- | :------------------------- |
-| **Altibase**          | Altibase: 4.3.9 이상<br />CUBRID: 8.4.1~9.3.5(ISO-8859-1, UTF-8 charset) <br/>Informix: 11.50 <br />Microsoft SQL Server: 2005 - 2012<br />Oracle Database: 9i - 11g <br />Oracle MySQL: 5.0 - 5.7 <br />Oracle TimesTen: 7.0, 11.2 <br />Tibero: 4sp1~6 | Altibase 6.5.1 이상        |
+| **Altibase**          | Altibase: 4.3.9 이상<br />CUBRID: 8.4.1 ~ 9.3.5 (ISO-8859-1, UTF-8 charset) <br/>Informix: 11.50 <br />Microsoft SQL Server: 2005 ~ 2012<br />Oracle Database: 9i ~ 11g <br />Oracle MySQL: 5.0 ~ 5.7 <br />Oracle TimesTen: 7.0, 11.2 <br />Tibero: 4sp1~6 | Altibase 6.5.1 이상        |
 | **Oracle**            | Altibase: 4.3.9 이상                                         | Oracle Database 10g - 11g  |
 
 <br/>
