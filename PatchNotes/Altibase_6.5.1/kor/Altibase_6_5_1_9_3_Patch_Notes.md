@@ -1207,7 +1207,7 @@ Altibase 6.5.1 Adapter for Oracle 지원 OS에 SunOS 10을 추가합니다. Ada
 | :--------------: | :---------------------: | :----------: | :-----------------: | :--------------------------: |
 |    6.5.1.9.3     |          6.3.1          |    8.1.1     |        7.1.3        |            7.4.5             |
 
-> Altibase 7.1 패치 버전별 히스토리는 [Version\_Histories](https://github.com/ALTIBASE/Documents/blob/master/PatchNotes/Altibase_6.5.1/Altibase_6_5_1_Version_Histories.md)에서 확인할 수 있다.
+> Altibase 6.5.1 패치 버전 별 히스토리는 [Version\_Histories](https://github.com/ALTIBASE/Documents/blob/master/PatchNotes/Altibase_6.5.1/Altibase_6_5_1_Version_Histories.md)에서 확인할 수 있다.
 
 ### 호환성
 
