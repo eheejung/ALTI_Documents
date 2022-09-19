@@ -113,13 +113,13 @@ Migration Center 버전
 
 ### 2.2.2 데이터베이스 호환성
 
-| 대상 데이터베이스: Altibase   |                                                              |                          |
-| ----------------------------- | ------------------------------------------------------------ | ------------------------ |
-|                               | **원본 데이터베이스**                                        | **대상 데이터베이스**    |
-|                               | Altibase : Altibase 4.3.9 이상 버전 <br />ORACLE : Oracle 9i ~ 11g <br />MS-SQL : MS-SQL 2005 ~ 2012 <br />MySQL : MySQL 5.0 ~ 5.7 <br />Informix : Informix 11.50 <br />TimesTen : TimesTen 7.0, TimesTen 11.2 <br />CUBRID : CUBRID 8.4.1 ~ 9.3.5 (ISO-8859-1, UTF-8 charset) | Altibase 6.5.1 이상 버전 |
-| **대상 데이터베이스: Oracle** |                                                              |                          |
-|                               | **원본 데이터베이스**                                        | **대상 데이터베이스**    |
-|                               | Altibase 4.3.9 이상 버전                                     | Oracle 10g ~ 11g         |
+|                                 |                                                              |                          |
+| ------------------------------- | ------------------------------------------------------------ | ------------------------ |
+|                                 | **원본 데이터베이스**                                        | **대상 데이터베이스**    |
+| **대상 데이터베이스: Altibase** | Altibase : Altibase 4.3.9 이상 버전 <br />ORACLE : Oracle 9i ~ 11g <br />MS-SQL : MS-SQL 2005 ~ 2012 <br />MySQL : MySQL 5.0 ~ 5.7 <br />Informix : Informix 11.50 <br />TimesTen : TimesTen 7.0, TimesTen 11.2 <br />CUBRID : CUBRID 8.4.1 ~ 9.3.5 (ISO-8859-1, UTF-8 charset) | Altibase 6.5.1 이상 버전 |
+|                                 |                                                              |                          |
+|                                 | **원본 데이터베이스**                                        | **대상 데이터베이스**    |
+| **대상 데이터베이스: Oracle**   | Altibase 4.3.9 이상 버전                                     | Oracle 10g ~ 11g         |
 
 
 
