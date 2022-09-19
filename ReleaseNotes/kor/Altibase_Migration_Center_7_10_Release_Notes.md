@@ -165,5 +165,3 @@ Migration Center 설치 패키지는 두 가지 형태(.zip, .gz) 파일로 제�
 ### 2.6.3 설치
 
 Migration Center User's Manual을 참고한다.
-
-   teset testet
