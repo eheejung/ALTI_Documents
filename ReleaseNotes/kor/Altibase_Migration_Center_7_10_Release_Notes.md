@@ -26,7 +26,7 @@
 
 Migration Center는 데이터베이스 마이그레이션을 위한 도구로서, 사용자가 편리하게 써드파티 데이터베이스를 알티베이스 데이터베이스 또는 외부 파일로 이관하거나 알티베이스 데이터베이스를 오라클 데이터베이스로 이관하도록 한다. 보통 데이터베이스 마이그레이션은 수동으로 진행할 경우 복잡하고 시간이 많이 소요되며 휴먼 에러가 발생하는 불편함이 있다. 이를 효율화하기 위해 Migration Center는 GUI 모드에서 마우스 클릭 몇 번만으로 데이터베이스 마이그레이션을 가능하게 한다. 이에 더하여, 자원 사용을 최적화하기 위해 CLI 모드도 지원한다.
 
-## 1.1 시스템 요구사항
+## 1.2 시스템 요구사항
 
 ### 하드웨어 최소 사양
 
@@ -39,7 +39,7 @@ Migration Center센터를 실행하기 위한 하드웨어의 최소 사양은 �
 | 디스크      |   150MB 이상 여유공간   |   좌동   |
 | 화면 해상도 |  1024 * 768 픽셀 이상   |    -     |
 
-## 1.2 지원하는 OS 및 플랫폼
+## 1.3 지원하는 OS 및 플랫폼
 
 ### 지원 OS
 
@@ -77,8 +77,6 @@ MySQL 5.6, 5.7 에서 Altibase 서버로 Migration Center를 이용해 데이터
 
 OpenJDK 18에서 Migration Center 7.10 호환성 검증을 완료하였다. (TASK-7433)
 
-
-
 ## 2.2 수정된 버그
 
 #### BUG-49579 MySQL bit 타입 default 값 변환이 부정확합니다.
@@ -95,29 +93,29 @@ DB to DB 마이그레이션 옵션에 LOB 데이터의 배치 처리 여부를 �
 
 Migration Center 7.10 에서 삭제되거나 변경된 기능들을 안내한다. 
 
-### 2.2.1 버전 업데이트
+### 2.3.1 버전 업데이트
 
 Migration Center 버전이 7.9 에서 7.10 로 변경되었다.
 
-### 2.2.2 데이터베이스 호환성
+### 2.3.2 데이터베이스 호환성
 
 대상 데이터베이스가 Altibase 일 때, 원본 데이터베이스 MySQL의 지원 버전이 MySQL 5.0 ~ **5.5**에서 MySQL 5.0 ~ **5.7**로 변경되었다. 
 
-### 2.2.3 프로퍼티
+### 2.3.3 프로퍼티
 
 삭제되거나 변경된 프로퍼티는 없다.
 
-### 2.2.4 에러 메시지
+### 2.3.4 에러 메시지
 
 삭제되거나 변경된 에러 메시지는 없다.
 
 <br/>
 
-## 2.3 사용된 오픈소스 라이브러리 / 로열티 프리 이미지
+## 2.4 사용된 오픈소스 라이브러리 / 로열티 프리 이미지
+
+### 2.4.1 오픈소스 라이브러리
 
 Migration Center는 아래의 오픈소스 라이브러리에 기반한다. 라이선스는 텍스트 파일 형식으로 Migration Center와 함께 제공된다.
-
-### 오픈소스 라이브러리
 
 | Library                                                      | Open Source License                                          |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
@@ -133,7 +131,7 @@ Migration Center는 아래의 오픈소스 라이브러리에 기반한다. 라�
 | [OpenCSV](http://opencsv.sourceforge.net/)                   | [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt) |
 | [Oracle JDBC Driver](http://www.oracle.com/)                 | [OTN](http://www.oracle.com/technetwork/licenses/distribution-license152002.html) |
 
-### 로열티 프리 이미지
+### 2.4.2 로열티 프리 이미지
 
 | Library                  | Royalty-Free Images                                 |
 | :----------------------- | :-------------------------------------------------- |
@@ -144,25 +142,27 @@ Migration Center는 아래의 오픈소스 라이브러리에 기반한다. 라�
 
 <br/>
 
-## 2.4 패키지
+## 2.5 패키지
 
-| JRE                      | Archive Name                                             |
-| ------------------------ | -------------------------------------------------------- |
-| Sun 또는 IBM Java 8 이상 | MigrationCenter7.10.zip <br />MigrationCenter7.10.tar.gz |
+Migration Center 설치 패키지는 두 가지 형태(.zip, .gz) 파일로 제공한다.
+
+- MigrationCenter7.10.zip
+
+- MigrationCenter7.10.tar.gz
 
 <br/>
 
-## 2.5 다운로드
+## 2.6 다운로드
 
-### 2.5.1 패키지
+### 2.6.1 패키지
 
 [http://support.altibase.com](http://support.altibase.com/)
 
-### 2.5.2 매뉴얼
+### 2.6.2 매뉴얼
 
 [Migration Center User's Manual](https://github.com/ALTIBASE/Documents/blob/master/Manuals/Tools/kor/Migration%20Center%20User's%20Manual.md)
 
-### 2.5.3 설치
+### 2.6.3 설치
 
 Migration Center User's Manual을 참고한다.
 
