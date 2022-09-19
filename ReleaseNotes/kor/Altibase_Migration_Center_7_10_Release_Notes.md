@@ -18,9 +18,7 @@
 
 
 
-# Altibase Migration Center 7.10 Release Notes
 
-**(Sept. 19, 2022)**
 
 # 1. 개요
 
@@ -32,7 +30,7 @@ Migration Center는 데이터베이스 마이그레이션을 위한 도구로서
 
 ### 하드웨어 최소 사양
 
-마이그레이션 센터를 실행하기 위한 하드웨어의 최소 사양은 아래와 같다. 
+Migration Center센터를 실행하기 위한 하드웨어의 최소 사양은 아래와 같다. 
 
 |             |        GUI 모드         | CLI 모드 |
 | ----------- | :---------------------: | :------: |
@@ -45,40 +43,39 @@ Migration Center는 데이터베이스 마이그레이션을 위한 도구로서
 
 ### 지원 OS
 
-마이그레이션 센터는 소프트웨어 최소 사양을 만족하면 OS 무관하게 실행할 수 있다. 
+Migration Center는 소프트웨어 최소 사양을 만족하면 OS 무관하게 실행할 수 있다. 
 
 ### 소프트웨어 최소 사양
 
-마이그레이션 센터는 순수 Java 기반 클라이언트 애플리케이션으로, JAVA Runtime Environment (JRE)에 의존한다. 또한  Migration Center를 GUI 모드로 실행하기 위해 운영 체제의 그래픽 라이브러리에 대한 추가 지원이 필요하다.
+Migration Center는 순수 Java 기반 클라이언트 애플리케이션으로, JAVA Runtime Environment (JRE)에 의존한다. 또한  Migration Center를 GUI 모드로 실행하기 위해 운영 체제의 그래픽 라이브러리에 대한 추가 지원이 필요하다.
 
 | Mode | JRE                      | OS Graphic Library |
 | ---- | ------------------------ | ------------------ |
 | GUI  | Sun 또는 IBM Java 8 이상 | 필수               |
 | CLI  | Sun 또는 IBM Java 8 이상 | 필수 아님          |
 
-### 호환성 검증을 완료한 JRE 버전
+### 호환 가능한 데이터베이스 시스템
 
-마이그레이션 센터와 호환성 검증을 완료한 JRE 버전은 아래와 같다.  명시하지 않은 버전은 Oracle JDK, OpenJDK의 하위 호환성 정책을 따른다.
-
-| Java 8 (LTS) | Java 9 | Java 10 | Java 11 (LTS) | Java 12 | Java 11 ~ Java 17 (LTS) | Java 18 |
-| :----------: | :----: | :-----: | :-----------: | :-----: | :---------------------: | :-----: |
-|    **●**     | **●**  |  **●**  |     **●**     |  **●**  |            -            |  **●**  |
+| **대상 데이터베이스** | **원본 데이터베이스 종류 및 버전**                           | **대상 데이터베이스 버전** |
+| --------------------- | ------------------------------------------------------------ | -------------------------- |
+| **Altibase**          | - Altibase: 4.3.9 이상<br />- CUBRID: 8.4.1~9.3.5(ISO-8859-1, UTF-8 charset) <br />- Informix: 11.50 <br />- Microsoft SQL Server: 2005 - 2012<br />- Oracle Database: 9i - 11g <br />- Oracle MySQL: 5.0 - 5.7 <br />- Oracle TimesTen: 7.0, 11.2 <br />- Tibero: 4sp1~6 | Altibase 6.5.1 이상        |
+| **Oracle**            | Altibase: 4.3.9 이상                                         | Oracle Database 10g - 11g  |
 
 <br/>
 
 # 2. 릴리즈 정보
 
-마이그레이션 센터 7.10 의 새로운 기능과 수정된 버그 및 변경 사항에 관한 내용이다.
+Migration Center 7.10 의 새로운 기능과 수정된 버그 및 변경 사항에 관한 내용이다.
 
 ## 2.1 새로운 기능
 
 #### 원본 데이터베이스로 MySQL 5.6, 5.7 지원
 
-MySQL 5.6, 5.7 에서 Altibase 서버로 마이그레이션 센터를 이용해 데이터베이스 객체 및 데이터 이관할 수 있다. (BUG-49595)
+MySQL 5.6, 5.7 에서 Altibase 서버로 Migration Center를 이용해 데이터베이스 객체 및 데이터 이관할 수 있다. (BUG-49595)
 
 #### OpenJDK18 지원
 
-OpenJDK 18에서 마이그레이션 센터 7.10 호환성 검증을 완료하였다. 
+OpenJDK 18에서 Migration Center 7.10 호환성 검증을 완료하였다. (TASK-7433)
 
 
 
@@ -86,69 +83,33 @@ OpenJDK 18에서 마이그레이션 센터 7.10 호환성 검증을 완료하였
 
 #### BUG-49579 MySQL bit 타입 default 값 변환이 부정확합니다.
 
+MySQL에서 BIT 데이터 타입의 기본값이 DEFAULT b'*val*' 형태로 정의된 DDL을 변환한 문장에서 ERR-2100C : Conversion not applicable. 에러가 발생하는 문제를 수정합니다. DEFAULT *`b'val'`* 일 때 DEFAULT *`VARBIT'val'`* 형태로 변환되도록 수정한다.
 
+#### BUG-49731 LOB 데이터의 배치 처리 여부를 설정하는 옵션을 추가합니다.
 
-#### BUG-49731 LOB 데이터도 배치 처리 가능하도록 옵션을 제공해야 합니다.
-
-| 버그 번호 | 내용                                                      |
-| --------- | --------------------------------------------------------- |
-| BUG-49579 | MySQL bit 타입 default 값 변환이 부정확합니다.            |
-| BUG-49731 | LOB 데이터도 배치 처리 가능하도록 옵션을 제공해야 합니다. |
+DB to DB 마이그레이션 옵션에 LOB 데이터의 배치 처리 여부를 설정하는 [`Batch LOB type`](https://github.com/ALTIBASE/Documents/blob/master/Manuals/Tools/Altibase_release/kor/Migration%20Center%20User's%20Manual.md#db-to-db-%EB%A7%88%EC%9D%B4%EA%B7%B8%EB%A0%88%EC%9D%B4%EC%85%98-%EC%98%B5%EC%85%98) 옵션을 추가되었다. 데이터 마이그레이션에서 LOB 데이터의 처리 성능 향상을 위해  이 옵션을 사용할 수 있다.
 
 <br/>
 
 ## 2.3 변경사항
 
-Migration Center에 추가, 삭제 또는 변경된 기능들은 다음과 같다.
-
-- N/A
+Migration Center 7.10 에서 삭제되거나 변경된 기능들을 안내한다. 
 
 ### 2.2.1 버전 업데이트
 
-Migration Center 버전
-
-| Altibase Migration Center 버전 |
-| ------------------------------ |
-| 7.10                           |
+Migration Center 버전이 7.9 에서 7.10 로 변경되었다.
 
 ### 2.2.2 데이터베이스 호환성
 
-|                                 | **원본 데이터베이스**                                        | 대상 데이터베이스        |
-| :------------------------------ | :----------------------------------------------------------- | :----------------------- |
-| **대상 데이터베이스: Altibase** | Altibase : Altibase 4.3.9 이상 버전 <br />ORACLE : Oracle 9i ~ 11g <br />MS-SQL : MS-SQL 2005 ~ 2012 <br />MySQL : MySQL 5.0 ~ 5.7 <br />Informix : Informix 11.50 <br />TimesTen : TimesTen 7.0, TimesTen 11.2 <br />CUBRID : CUBRID 8.4.1 ~ 9.3.5 (ISO-8859-1, UTF-8 charset) | Altibase 6.5.1 이상 버전 |
-| **대상 데이터베이스: Oracle**   | Altibase 4.3.9 이상 버전                                     | Oracle 10g ~ 11g         |
-
-
-
-##### 대상 데이터베이스: Altibase
-
-- 원본 데이터베이스
-  - Altibase : Altibase 4.3.9 이상 버전
-  - ORACLE : Oracle 9i ~ 11g
-  - MS-SQL : MS-SQL 2005 ~ 2012
-  - MySQL : MySQL 5.0 ~ 5.7
-  - Informix : Informix 11.50
-  - TimesTen : TimesTen 7.0, TimesTen 11.2
-  - CUBRID : CUBRID 8.4.1 ~ 9.3.5 (ISO-8859-1, UTF-8 charset)
-  - Tibero : Tibero 4 sp1, 5 ~ 6
-- 대상 데이터베이스
-  - Altibase : Altibase 6.5.1 이상 버전
-
-##### 대상 데이터베이스: Oracle
-
-- 원본 데이터베이스
-  - Altibase : Altibase 4.3.9 이상 버전
-
-- 대상 데이터베이스
-  - ORACLE : Oracle 10g ~ 11g
+대상 데이터베이스가 Altibase 일 때, 원본 데이터베이스 MySQL의 지원 버전이 MySQL 5.0 ~ **5.5**에서 MySQL 5.0 ~ **5.7**로 변경되었다. 
 
 ### 2.2.3 프로퍼티
 
-없음
+삭제되거나 변경된 프로퍼티는 없다.
 
 ### 2.2.4 에러 메시지
 
-없음
+삭제되거나 변경된 에러 메시지는 없다.
 
 <br/>
 
@@ -156,7 +117,7 @@ Migration Center 버전
 
 Migration Center는 아래의 오픈소스 라이브러리에 기반한다. 라이선스는 텍스트 파일 형식으로 Migration Center와 함께 제공된다.
 
-- 오픈소스 라이브러리
+### 오픈소스 라이브러리
 
 | Library                    | Open Source License                                          |
 | -------------------------- | ------------------------------------------------------------ |
@@ -172,7 +133,7 @@ Migration Center는 아래의 오픈소스 라이브러리에 기반한다. 라�
 | OpenCSV                    | Homepage: http://opencsv.sourceforge.net/ <br>License: Apache License 2.0(http://www.apache.org/licenses/LICENSE-2.0.txt) |
 | Oracle JDBC Driver         | Homepage: [http://www.oracle.com](http://www.oracle.com/) <br>License: OTN(http://www.oracle.com/technetwork/licenses/distribution-license152002.html) |
 
-- 로열티 프리 이미지
+### 로열티 프리 이미지
 
 | Library                  | Royalty-Free Images                                      |
 | ------------------------ | -------------------------------------------------------- |
