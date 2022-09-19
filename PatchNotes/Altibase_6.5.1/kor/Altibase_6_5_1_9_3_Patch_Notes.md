@@ -1233,10 +1233,10 @@ Replication 프로토콜 버전은 변경되지 않았다.
 
 #### 추가된 프로퍼티
 
-- [IPC_SEM_KEY](https://github.com/ALTIBASE/Documents/blob/master/Manuals/Altibase_7.1/kor/General Reference-1.Data Types %26 Altibase Properties.md#ipc_sem_key)
-- [IPC_SHM_KEY](https://github.com/ALTIBASE/Documents/blob/master/Manuals/Altibase_7.1/kor/General Reference-1.Data Types %26 Altibase Properties.md#ipc_shm_key)
-- [IPCDA_SEM_KEY](https://github.com/ALTIBASE/Documents/blob/master/Manuals/Altibase_7.1/kor/General Reference-1.Data Types %26 Altibase Properties.md#ipcda_sem_key)
-- [IPCDA_SHM_KEY](https://github.com/ALTIBASE/Documents/blob/master/Manuals/Altibase_7.1/kor/General Reference-1.Data Types %26 Altibase Properties.md#ipcda_shm_key)
+- [IPC_SEM_KEY](https://github.com/ALTIBASE/Documents/blob/master/Manuals/Altibase_7.1/kor/General%20Reference-1.Data%20Types%20%26%20Altibase%20Properties.md#ipc_sem_key)
+- [IPC_SHM_KEY](https://github.com/ALTIBASE/Documents/blob/master/Manuals/Altibase_7.1/kor/General%20Reference-1.Data%20Types%20%26%20Altibase%20Properties.md#ipc_shm_key)
+- [IPCDA_SEM_KEY](https://github.com/ALTIBASE/Documents/blob/master/Manuals/Altibase_7.1/kor/General%20Reference-1.Data%20Types%20%26%20Altibase%20Properties.md#ipcda_sem_key)
+- [IPCDA_SHM_KEY](https://github.com/ALTIBASE/Documents/blob/master/Manuals/Altibase_7.1/kor/General%20Reference-1.Data%20Types%20%26%20Altibase%20Properties.md#ipcda_shm_key)
 
 #### 변경된 프로퍼티
 
