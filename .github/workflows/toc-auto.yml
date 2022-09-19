@@ -16,7 +16,6 @@ on:
         # Input has to be provided for the workflow to run
         required: true
 
-name: TOC Generator
 jobs:
   generateTOC:
     name: TOC Generator
@@ -24,7 +23,7 @@ jobs:
     steps:
       - uses: technote-space/toc-generator@v4.0.0
         with:
-           TARGET_PATHS: PatchNotes/Altibase_7.1/kor/Altibase_7_1_0_7_9_Patch_Notes.md
+           TARGET_PATHS: ReleaseNotes/kor/Altibase_Migration_Center_7_10_Release_Notes.md
            TOC_TITLE: #### Table of Contents
            MAX_HEADER_LEVEL: 3
            COMMIT_MESSAGE: update toc
