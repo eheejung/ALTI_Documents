@@ -16,20 +16,20 @@
 
 ### Altibase Server Side
 
-|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Java 8 (LTS) | Java 9 | Java 10 | Java 11 (LTS) | Java 12 | Java 17 (LTS) |참고 사항 |
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Java 8 (LTS) | Java 9 | Java 10 | Java 11 (LTS) | Java 12 | Java 17 (LTS) |참고 사항 |
 | ------------------------------------------------------------ | :----------: | :----: | :-----: | :-----------: | :-----: | :-----------: | --------- |
 | **DB Link**|      ●       |   ●    |    ●    |       ●       |    ●    |       -       |           |
 | **altiMon**                                                  |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |           |
 
 ### Altibase JDBC 드라이버
 
-|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Java 8 (LTS) | Java 9 | Java 10 | Java 11 (LTS) | Java 12 | Java 17 (LTS) | 참고 사항 |
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Java 8 (LTS) | Java 9 | Java 10 | Java 11 (LTS) | Java 12 | Java 17 (LTS) | 참고 사항 |
 | :----------------------------------------------------------- | :----------: | :----: | :-----: | :-----------: | :-----: | :-----------: | --------- |
 | **JDBC 드라이버**|      ●       |   ●    |    ●    |       ●       |    ●    |       -       |           |
 
 ### Tools
 
-|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Java 8 (LTS) | Java 9 | Java 10 | Java 11 (LTS) | Java 12 | Java 17 (LTS) | 참고 사항                 |
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Java 8 (LTS) | Java 9 | Java 10 | Java 11 (LTS) | Java 12 | Java 17 (LTS) | 참고 사항                 |
 | ------------------------ | :----------: | :----: | :-----: | :-----------: | :-----: | :-----------: | ------------------------- |
 | **Adapter for JDBC**|      ●       |   ●    |    ●    |       ●       |    ●    |       -       |                           |
 | **dataCompJ 7.2**        |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |                           |
