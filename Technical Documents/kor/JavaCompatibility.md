@@ -23,9 +23,9 @@
 
 ### Altibase JDBC 드라이버
 
-|                                                       | Java 8 (LTS) | Java 9 | Java 10 | Java 11 (LTS) | Java 12 | Java 17 (LTS) | 참고 사항 |
-| :---------------------------------------------------- | :----------: | :----: | :-----: | :-----------: | :-----: | :-----------: | --------- |
-| **JDBC 드라이버**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |           |
+|                                                              | Java 8 (LTS) | Java 9 | Java 10 | Java 11 (LTS) | Java 12 | Java 17 (LTS) | 참고 사항 |
+| :----------------------------------------------------------- | :----------: | :----: | :-----: | :-----------: | :-----: | :-----------: | --------- |
+| **JDBC 드라이버**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |           |
 
 ### Tools
 
