@@ -16,7 +16,7 @@
 
 ### Altibase Server Side
 
-| Altibase Server Side                                         | Java 8 (LTS) | Java 9 | Java 10 | Java 11 (LTS) | Java 12 | Java 17 (LTS) | 참고 사항 |
+| Altibase Server Side                                         | Java 8 (LTS) | Java 9 | Java 10 | Java 11 (LTS) | Java 12 | Java 17 (LTS) |참고 사항 |
 | ------------------------------------------------------------ | :----------: | :----: | :-----: | :-----------: | :-----: | :-----------: | --------- |
 | **DB Link**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |           |
 | **altiMon**                                                  |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |           |
@@ -31,7 +31,7 @@
 
 |                          | Java 8 (LTS) | Java 9 | Java 10 | Java 11 (LTS) | Java 12 | Java 17 (LTS) | 참고 사항                 |
 | ------------------------ | :----------: | :----: | :-----: | :-----------: | :-----: | :-----------: | ------------------------- |
-| **Adapter for JDBC**     |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |                           |
+| **Adapter for JDBC**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |                           |
 | **dataCompJ 7.2**        |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |                           |
 | **Migration Center 7.9** |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |                           |
 | **Linux 및 Unix**        |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |                           |
@@ -247,4 +247,3 @@
 </tr>
 </tbody>
 </table>
-
