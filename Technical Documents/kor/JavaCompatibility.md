@@ -105,14 +105,14 @@
 <thead>
 <tr>
 <th colspan="3">&nbsp;</th>
-<th>Java 4</th>
-<th>Java 5</th>
-<th>Java 6</th>
-<th>Java 7 (LTS)</th>
-<th>Java 8 (LTS) ~ Java 10</th>
-<th>Java 11</th>
-<th>Java 12</th>
-<th>Java 17 (LTS)</th>
+<th style="text-align: center;">Java 4</th>
+<th style="text-align: center;">Java 5</th>
+<th style="text-align: center;">Java 6</th>
+<th style="text-align: center;">Java 7 (LTS)</th>
+<th style="text-align: center;">Java 8 (LTS) ~ Java 10</th>
+<th style="text-align: center;">Java 11</th>
+<th style="text-align: center;">Java 12</th>
+<th style="text-align: center;">Java 17 (LTS)</th>
 <th style="text-align: left;">참고 사항</th>
 </tr>
 </thead>
