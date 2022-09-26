@@ -52,6 +52,7 @@ Altibase는 자바 메이저 버전 릴리즈 시 Altibase 와의 호환성 테�
 | **altiMon**                                                  |        ●        |      ●       |                  ●                  |    ●    | ●<sup><u>2</u></sup> |    ●    |       -       |    -    |                                                              |
 
 <sup><a name="footnote-1"><u>1</u></a> </sup>: Altibase 7.1.0.2.5부터 Java 9 이상 지원합니다.
+
 <sup><a name="footnote-2"><u>2</u></a></sup> : Altibase 7.1.0.2.6부터 Java 11 이상 지원합니다. 
 
 ### Altibase JDBC 드라이버
