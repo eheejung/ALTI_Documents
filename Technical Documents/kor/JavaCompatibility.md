@@ -102,6 +102,9 @@
 | **Replication Manager**       |        |              |              |                  |               |         |               | - *무관. JRE 6 번들 제공*                                    |
 
 <table style="undefined;table-layout: fixed; width: 1443px;"><colgroup> <col style="width: 25px;" /> <col style="width: 25px;" /> <col style="width: 193px;" /> <col style="width: 98px;" /> <col style="width: 83px;" /> <col style="width: 87px;" /> <col style="width: 113px;" /> <col style="width: 105px;" /> <col style="width: 99px;" /> <col style="width: 99px;" /> <col style="width: 99px;" /> <col style="width: 417px;" /> </colgroup>
+</table>
+
+<table>
 <thead>
 <tr>
 <th colspan="3">&nbsp;</th>
