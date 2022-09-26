@@ -16,10 +16,10 @@
 
 ### Altibase Server Side
 
-| Altibase Server Side                                         | Java 8 (LTS) | Java 9 | Java 10 | Java 11 (LTS) | Java 12 | Java 17 (LTS) | 참고 사항 |
-| ------------------------------------------------------------ | :----------: | :----: | :-----: | :-----------: | :-----: | :-----------: | --------- |
-| **DB Link**<font size="2em" color="green"><br/>이 글자는 font 태그로 속성을 주었다<br/></font> |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |           |
-| **altiMon**                                                  |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |           |
+| Altibase Server Side | Java 8 (LTS) | Java 9 | Java 10 | Java 11 (LTS) | Java 12 | Java 17 (LTS) | 참고 사항 |
+| -------------------- | :----------: | :----: | :-----: | :-----------: | :-----: | :-----------: | --------- |
+| **DB Link**          |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |           |
+| **altiMon**          |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |           |
 
 ### Altibase JDBC Driver
 
