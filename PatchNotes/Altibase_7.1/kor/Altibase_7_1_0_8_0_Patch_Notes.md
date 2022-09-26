@@ -122,31 +122,31 @@ PSM에서 타입 세트 또는 패키지 스펙을 참조할 때, 한 세션에�
 
 #### 재현 방법
 
--   재현 절차
-    
-    ```sql
-    CREATE TABLE T1 ( I1 INT, I2 INT);
-    SELECT I1
-      FROM (SELECT * FROM T1 ) AS V1
-     GROUP BY I1
-    HAVING I1 IN (SELECT I1 FROM T1 START WITH I1 = V1.I1 CONNECT BY PRIOR I1 = I2);
-    ```
-    
--   수행 결과
-    
-    아래와 같은 메시지가 발생하며 Altibase 서버가 비정상 종료합니다.
-    
-    ```sql
-    [ERR-31455 : Failed to work because an internal exception occurred from an OS.[Contact Altibase's Support Center]]
-    ```
-    
--   예상 결과
-    
-    ```sql
-    I1          
-    --------------
-    No rows selected.
-    ```
+*재현 절차*
+
+```sql
+CREATE TABLE T1 ( I1 INT, I2 INT);
+SELECT I1
+  FROM (SELECT * FROM T1 ) AS V1
+ GROUP BY I1
+HAVING I1 IN (SELECT I1 FROM T1 START WITH I1 = V1.I1 CONNECT BY PRIOR I1 = I2);
+```
+
+*수행 결과*
+
+아래와 같은 메시지가 발생하며 Altibase 서버가 비정상 종료합니다.
+
+```sql
+[ERR-31455 : Failed to work because an internal exception occurred from an OS.[Contact Altibase's Support Center]]
+```
+
+*예상 결과*
+
+```sql
+I1          
+--------------
+No rows selected.
+```
 
 #### Workaround
 
@@ -244,51 +244,51 @@ REGEXP\_MODE 프로퍼티 값이 1일 때 정규 표현식 함수에서 성능 �
 
 #### 재현 방법
 
--   재현 절차
-    
-    ```sql
-    ALTER SESSION SET REGEXP_MODE=1;
-    SELECT * FROM V$NLS_TERRITORY WHERE REGEXP_LIKE(CONVERT(NAME, 'UTF8'), 'C');
-    ```
-    
--   수행 결과
-    
-    ```sql
-    NAME
-    --------------------------------------------
-    No rows selected.
-    ```
-    
--   예상 결과
-    
-    ```sql
-    NAME
-    --------------------------------------------
-    AMERICA
-    CANADA
-    CATALONIA
-    CHILE
-    CHINA
-    CIS
-    COLOMBIA
-    COSTA RICA
-    CROATIA
-    CYPRUS
-    CZECH REPUBLIC
-    CZECHOSLOVAKIA
-    ECUADOR
-    FRANCE
-    FYR MACEDONIA
-    GREECE
-    ICELAND
-    MACEDONIA
-    MEXICO
-    MOROCCO
-    NICARAGUA
-    PUERTO RICO
-    SOUTH AFRICA
-    23 rows selected.
-    ```
+*재현 절차*
+
+```sql
+ALTER SESSION SET REGEXP_MODE=1;
+SELECT * FROM V$NLS_TERRITORY WHERE REGEXP_LIKE(CONVERT(NAME, 'UTF8'), 'C');
+```
+
+*수행 결과*
+
+```sql
+NAME
+--------------------------------------------
+No rows selected.
+```
+
+*예상 결과*
+
+```sql
+NAME
+--------------------------------------------
+AMERICA
+CANADA
+CATALONIA
+CHILE
+CHINA
+CIS
+COLOMBIA
+COSTA RICA
+CROATIA
+CYPRUS
+CZECH REPUBLIC
+CZECHOSLOVAKIA
+ECUADOR
+FRANCE
+FYR MACEDONIA
+GREECE
+ICELAND
+MACEDONIA
+MEXICO
+MOROCCO
+NICARAGUA
+PUERTO RICO
+SOUTH AFRICA
+23 rows selected.
+```
 
 #### Workaround
 
@@ -340,89 +340,89 @@ ANSI INNER JOIN으로 구성된 SQL의 질의 최적화 과정에서 SQL 작성 
 
 #### 재현 방법
 
--   재현 절차
-    
-    ```sql
-    DROP TABLE T1;
-    DROP TABLE T2;
-    DROP TABLE T3;
-    DROP TABLE T4;
-    DROP TABLE T5;
-    DROP TABLE T6;
-    
-    
-    CREATE TABLE T1 ( I1 INT , I2 INT , I3 INT );
-    CREATE TABLE T2 ( I1 INT , I2 INT , I3 INT );
-    CREATE TABLE T3 ( I1 INT , I2 INT , I3 INT );
-    CREATE TABLE T4 ( I1 INT , I2 INT , I3 INT );
-    CREATE TABLE T5 ( I1 INT , I2 INT , I3 INT );
-    CREATE TABLE T6 ( I1 INT , I2 INT , I3 INT );
-    
-    INSERT INTO T1 SELECT LEVEL, LEVEL, LEVEL FROM DUAL CONNECT BY LEVEL <=10;
-    INSERT INTO T2 SELECT LEVEL, LEVEL, LEVEL FROM DUAL CONNECT BY LEVEL <=10;
-    INSERT INTO T3 SELECT LEVEL, LEVEL, LEVEL FROM DUAL CONNECT BY LEVEL <=10;
-    INSERT INTO T4 SELECT LEVEL, LEVEL, LEVEL FROM DUAL CONNECT BY LEVEL <=10;
-    INSERT INTO T5 SELECT LEVEL, LEVEL, LEVEL FROM DUAL CONNECT BY LEVEL <=10;
-    INSERT INTO T6 SELECT LEVEL, LEVEL, LEVEL FROM DUAL CONNECT BY LEVEL <=10;
-    
-    ALTER SESSION SET EXPLAIN PLAN = ON;
-    
-    SELECT H1.I1
-      FROM T1 H1 
-     INNER JOIN T2 H2 ON H1.I1 = H2.I1 
-     INNER JOIN T3 H3 ON H2.I1 = H3.I1 
-     INNER JOIN T4 H4 ON H2.I1 = H4.I1 
-     INNER JOIN T5 H5 ON H3.I1 = H5.I1 
-     INNER JOIN T6 H6 ON H3.I1 = H6.I1;
-    ```
-    
--   수행 결과
-    
-    ```sql
-    ------------------------------------------------------------
-    PROJECT ( COLUMN_COUNT: 18, TUPLE_SIZE: 72, COST: 71358818392868040.00 )
-     JOIN ( METHOD: HASH, COST: 44619453052271392.00 )
-      SCAN ( TABLE: SYS.T5 H5, FULL SCAN, ACCESS: 10, COST: 116.76 )
-      HASH ( ITEM_SIZE: 56, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 44619453052271392.00 )
-       JOIN ( METHOD: HASH, COST: 43573684623425.38 )
-        SCAN ( TABLE: SYS.T4 H4, FULL SCAN, ACCESS: 10, COST: 116.76 )
-        HASH ( ITEM_SIZE: 48, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 43573684623425.38 )
-         JOIN ( METHOD: HASH, COST: 42552427988.33 )
+*재현 절차*
+
+```sql
+DROP TABLE T1;
+DROP TABLE T2;
+DROP TABLE T3;
+DROP TABLE T4;
+DROP TABLE T5;
+DROP TABLE T6;
+
+
+CREATE TABLE T1 ( I1 INT , I2 INT , I3 INT );
+CREATE TABLE T2 ( I1 INT , I2 INT , I3 INT );
+CREATE TABLE T3 ( I1 INT , I2 INT , I3 INT );
+CREATE TABLE T4 ( I1 INT , I2 INT , I3 INT );
+CREATE TABLE T5 ( I1 INT , I2 INT , I3 INT );
+CREATE TABLE T6 ( I1 INT , I2 INT , I3 INT );
+
+INSERT INTO T1 SELECT LEVEL, LEVEL, LEVEL FROM DUAL CONNECT BY LEVEL <=10;
+INSERT INTO T2 SELECT LEVEL, LEVEL, LEVEL FROM DUAL CONNECT BY LEVEL <=10;
+INSERT INTO T3 SELECT LEVEL, LEVEL, LEVEL FROM DUAL CONNECT BY LEVEL <=10;
+INSERT INTO T4 SELECT LEVEL, LEVEL, LEVEL FROM DUAL CONNECT BY LEVEL <=10;
+INSERT INTO T5 SELECT LEVEL, LEVEL, LEVEL FROM DUAL CONNECT BY LEVEL <=10;
+INSERT INTO T6 SELECT LEVEL, LEVEL, LEVEL FROM DUAL CONNECT BY LEVEL <=10;
+
+ALTER SESSION SET EXPLAIN PLAN = ON;
+
+SELECT H1.I1
+  FROM T1 H1 
+ INNER JOIN T2 H2 ON H1.I1 = H2.I1 
+ INNER JOIN T3 H3 ON H2.I1 = H3.I1 
+ INNER JOIN T4 H4 ON H2.I1 = H4.I1 
+ INNER JOIN T5 H5 ON H3.I1 = H5.I1 
+ INNER JOIN T6 H6 ON H3.I1 = H6.I1;
+```
+
+*수행 결과*
+
+```sql
+------------------------------------------------------------
+PROJECT ( COLUMN_COUNT: 18, TUPLE_SIZE: 72, COST: 71358818392868040.00 )
+ JOIN ( METHOD: HASH, COST: 44619453052271392.00 )
+  SCAN ( TABLE: SYS.T5 H5, FULL SCAN, ACCESS: 10, COST: 116.76 )
+  HASH ( ITEM_SIZE: 56, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 44619453052271392.00 )
+   JOIN ( METHOD: HASH, COST: 43573684623425.38 )
+    SCAN ( TABLE: SYS.T4 H4, FULL SCAN, ACCESS: 10, COST: 116.76 )
+    HASH ( ITEM_SIZE: 48, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 43573684623425.38 )
+     JOIN ( METHOD: HASH, COST: 42552427988.33 )
+      SCAN ( TABLE: SYS.T1 H1, FULL SCAN, ACCESS: 10, COST: 116.76 )
+      HASH ( ITEM_SIZE: 40, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 42552427988.33 )
+       JOIN ( METHOD: HASH, COST: 41556235.38 )
+        SCAN ( TABLE: SYS.T2 H2, FULL SCAN, ACCESS: 10, COST: 116.76 )
+        HASH ( ITEM_SIZE: 32, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 41556235.38 )
+         JOIN ( METHOD: HASH, COST: 41243.85 )
+          SCAN ( TABLE: SYS.T3 H3, FULL SCAN, ACCESS: 10, COST: 116.76 )
+          HASH ( ITEM_SIZE: 24, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 41243.85 )
+           SCAN ( TABLE: SYS.T6 H6, FULL SCAN, ACCESS: 10, COST: 116.76 )
+------------------------------------------------------------
+```
+
+*예상 결과*
+
+```sql
+------------------------------------------------------------
+PROJECT ( COLUMN_COUNT: 1, TUPLE_SIZE: 4, COST: 46104973348971200.00 )
+ JOIN ( METHOD: HASH, COST: 44619453052271392.00 )
+  SCAN ( TABLE: SYS.T6 H6, FULL SCAN, ACCESS: 10, COST: 116.76 )
+  HASH ( ITEM_SIZE: 32, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 44619453052271392.00 )
+   JOIN ( METHOD: HASH, COST: 43573684623425.38 )
+    SCAN ( TABLE: SYS.T5 H5, FULL SCAN, ACCESS: 10, COST: 116.76 )
+    HASH ( ITEM_SIZE: 32, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 43573684623425.38 )
+     JOIN ( METHOD: HASH, COST: 42552427988.33 )
+      SCAN ( TABLE: SYS.T4 H4, FULL SCAN, ACCESS: 10, COST: 116.76 )
+      HASH ( ITEM_SIZE: 40, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 42552427988.33 )
+       JOIN ( METHOD: HASH, COST: 41556235.38 )
+        SCAN ( TABLE: SYS.T3 H3, FULL SCAN, ACCESS: 10, COST: 116.76 )
+        HASH ( ITEM_SIZE: 32, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 41556235.38 )
+         JOIN ( METHOD: HASH, COST: 41243.85 )
           SCAN ( TABLE: SYS.T1 H1, FULL SCAN, ACCESS: 10, COST: 116.76 )
-          HASH ( ITEM_SIZE: 40, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 42552427988.33 )
-           JOIN ( METHOD: HASH, COST: 41556235.38 )
-            SCAN ( TABLE: SYS.T2 H2, FULL SCAN, ACCESS: 10, COST: 116.76 )
-            HASH ( ITEM_SIZE: 32, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 41556235.38 )
-             JOIN ( METHOD: HASH, COST: 41243.85 )
-              SCAN ( TABLE: SYS.T3 H3, FULL SCAN, ACCESS: 10, COST: 116.76 )
-              HASH ( ITEM_SIZE: 24, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 41243.85 )
-               SCAN ( TABLE: SYS.T6 H6, FULL SCAN, ACCESS: 10, COST: 116.76 )
-    ------------------------------------------------------------
-    ```
-    
--   예상 결과
-    
-    ```sql
-    ------------------------------------------------------------
-    PROJECT ( COLUMN_COUNT: 1, TUPLE_SIZE: 4, COST: 46104973348971200.00 )
-     JOIN ( METHOD: HASH, COST: 44619453052271392.00 )
-      SCAN ( TABLE: SYS.T6 H6, FULL SCAN, ACCESS: 10, COST: 116.76 )
-      HASH ( ITEM_SIZE: 32, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 44619453052271392.00 )
-       JOIN ( METHOD: HASH, COST: 43573684623425.38 )
-        SCAN ( TABLE: SYS.T5 H5, FULL SCAN, ACCESS: 10, COST: 116.76 )
-        HASH ( ITEM_SIZE: 32, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 43573684623425.38 )
-         JOIN ( METHOD: HASH, COST: 42552427988.33 )
-          SCAN ( TABLE: SYS.T4 H4, FULL SCAN, ACCESS: 10, COST: 116.76 )
-          HASH ( ITEM_SIZE: 40, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 42552427988.33 )
-           JOIN ( METHOD: HASH, COST: 41556235.38 )
-            SCAN ( TABLE: SYS.T3 H3, FULL SCAN, ACCESS: 10, COST: 116.76 )
-            HASH ( ITEM_SIZE: 32, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 41556235.38 )
-             JOIN ( METHOD: HASH, COST: 41243.85 )
-              SCAN ( TABLE: SYS.T1 H1, FULL SCAN, ACCESS: 10, COST: 116.76 )
-              HASH ( ITEM_SIZE: 24, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 41243.85 )
-               SCAN ( TABLE: SYS.T2 H2, FULL SCAN, ACCESS: 10, COST: 116.76 )
-    ------------------------------------------------------------
-    ```
+          HASH ( ITEM_SIZE: 24, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 41243.85 )
+           SCAN ( TABLE: SYS.T2 H2, FULL SCAN, ACCESS: 10, COST: 116.76 )
+------------------------------------------------------------
+```
 
 #### Workaround
 
