@@ -317,20 +317,20 @@ ALTER SESSONI SET REGEXP_MODE = 0;
 #### 설명
 ANSI INNER JOIN으로 구성된 SQL의 질의 최적화 과정에서 SQL 작성 순서를 고려하지 않아 SQL의 수행 성능이 저하되는 문제를 개선합니다. 질의 최적화 과정에서 ANSI INNER JOIN을 일반 INNER JOIN으로 변환할 때, 작성한 SQL의 조인 순서를 고려하여 변환하도록 수정하였습니다.
 
-**`발생 조건`**
+*`발생 조건`*
 
 이 버그 발생 조건은 ANSI 문법의 INNER JOIN으로만 구성된 질의문입니다.
 
-**`반영 버전`**
+*`반영 버전`*
 
 이 버그는 Altibase 7.1.0.8.0 이상 버전에 적용됩니다.
 
-**`적용 방법`**
+*`적용 방법`*
 
 이 버그의 변경 사항을 적용하려면 비공개 Altibase 서버 프로퍼티 \_\_OPTIMIZER\_ANSI\_INNER\_JOIN\_CONVERT의 값을 2로 변경해야 합니다. 이 프로퍼티는 ALTER SYSTEM으로 변경할 수 있으면 영구 적용하려면 altibase.properties 파일에 \_\_OPTIMIZER\_ANSI\_INNER\_JOIN\_CONVERT
 = 2를 추가하고 Altibase 서버를 재시작해야 합니다.
 
-**`영향도` **
+*`영향도`* 
 
 버그 조건에 해당하는 질의문의 실행 계획이 달라집니다. 변경 전/후 차이는 Actual Results, Expected Results를 참고하세요.
 
@@ -453,7 +453,7 @@ ALTER SYSTEM SET __OPTIMIZER_ANSI_INNER_JOIN_CONVERT = 0;
 #### 설명
 NORMALFORM\_MAXIMUM 프로퍼티가 0 일 때, PARALLEL을 지정한 테이블과 서브쿼리가 있는 질의문 수행 시 Altibase 서버가 비정상 종료하는 현상을 수정합니다.
 
-이 버그는 다음의 조건을 만족하는 질의문 수행 시 간헐적으로 발생합니다.
+이 버그는 다음의 조건을 모두 만족하는 질의문 수행 시 간헐적으로 발생합니다.
 - NORMALFORM\_MAXIMUM 프로퍼티 0 으로 설정
 
 - PARALLEL을 지정하여 테이블 생성
@@ -497,7 +497,7 @@ NORMALFORM\_MAXIMUM 프로퍼티가 0 일 때, PARALLEL을 지정한 테이블�
 #### 설명
 저장 프로시저나 저장 함수의 별칭으로 생성한 시노님을 또 다른 저장 프로시저(또는 저장 함수 및 패키지)에서 사용할 때 해당 시노님을 연관된 객체로 저장하지 않는 문제를 수정합니다.
 
-이 버그는 아래 조건을 만족할 때 발생합니다.
+이 버그는 아래 조건을 모두 만족하는 저장 프로시저(또는 저장 함수 및 패키지)를 수행할 때 발생합니다.
 
 - 저장 프로시저나 저장 함수의 별칭으로 생성한 시노님
 
@@ -505,7 +505,7 @@ NORMALFORM\_MAXIMUM 프로퍼티가 0 일 때, PARALLEL을 지정한 테이블�
 
 - 저장 프로시저나 저장 함수의 별칭으로 생성한 시노님의 정의를 변경하여 재생성
 
-**`패치 영향도`**
+*`패치 영향도`*
 
 버그 조건을 만족하는 시노님, 저장 프로시저(또는 저장 함수 및 패키지)가 있을 때 패치 전/후 저장 프로시저(또는 저장 함수 및 패키지)의 수행 결과가 달라집니다.
 
@@ -735,9 +735,7 @@ NORMALFORM\_MAXIMUM 프로퍼티가 0 일 때, PARALLEL을 지정한 테이블�
 #### 설명
 Non autocommit 환경에서 PSM 수행이 실패할 때 Altibase 서버가 비정상 종료하는 현상을 수정합니다.
 
-Altibase 서버는 하나의 트랜잭션에서 PSM이 시작할 때, PSM 수행이 실패하면 롤백할 지점인 PSM savepoint를 설정합니다. 
-
-본 버그는 PSM 수행 중 PSM savepoint가 초기화되는 문제로, PSM 수행이 실패하면 메모리 참조 오류로 Altibase 서버가 비정상 종료합니다.
+Altibase 서버는 하나의 트랜잭션에서 PSM이 시작할 때, PSM 수행이 실패하면 롤백할 지점인 PSM savepoint를 설정합니다. 이 버그는 PSM 수행 중 PSM savepoint가 초기화되는 문제로, PSM 수행이 실패하면 메모리 참조 오류로 Altibase 서버가 비정상 종료합니다.
 
 이 버그가 발생하는 조건은 아래와 같습니다.
 
@@ -757,18 +755,18 @@ Altibase 서버는 하나의 트랜잭션에서 PSM이 시작할 때, PSM 수행
 
 Altibase 서버가 비정상 종료할 때 트레이스 로그에 아래와 같은 메시지가 기록됩니다.
 
-***altibase_sm.log***
+*altibase_sm.log*
 
 ~~~bash
 [2022/08/03 17:18:36 14C7F79][PID:7667][Thread-139792713553664][LWP-7670]
 Invalid PSMSavepoint
 ~~~
 
-***altibase\_error.log***
+*altibase\_error.log*
 
 ~~~bash
 [2022/08/03 17:18:36 14C7F7A][PID:7667][Thread-139792713553664][LWP-7670]
-IDE\_`Assert`( 0 ), [`sm`xSavepointMgr.cpp:664], errno=[11]
+IDE_Assert( 0 ), [smxSavepointMgr.cpp:664], errno=[11]
 ~~~
 
 #### 재현 방법
@@ -908,13 +906,13 @@ TRANSACTION_SEGMENT_COUNT = 256 # ( 1 ~ 16384 )
 ### BUG-49868 EXECUTE\_STMT\_MEMORY\_MAXIMUM 초과로 재컴파일이 실패한 뷰 사용 시 발생하는 안정성 문제를 개선합니다.
 
 #### module
--   `qp-ddl-dcl-execute`
+`qp-ddl-dcl-execute`
 
 #### Category
--   `Fatal`
+`Fatal`
 
 #### 재현 빈도
--   `Always`
+`Always`
 
 #### 설명
 
@@ -1133,7 +1131,7 @@ Replication 프로토콜 버전은 변경되지 않았다.
 
 #### 추가된 프로퍼티
 
-- [REPLICATION\_SENDER\_IP]([Altibase 7.1 General Reference-1.Data Types & Altibase Properties](https://github.com/ALTIBASE/Documents/blob/master/Manuals/Altibase\_7.1/kor/General%20Reference-1.Data%20Types%20%26%20Altibase%20Properties.md\#replication\_sender\_ip))
+- [REPLICATION\_SENDER\_IP](https://github.com/ALTIBASE/Documents/blob/master/Manuals/Altibase\_7.1/kor/General%20Reference-1.Data%20Types%20%26%20Altibase%20Properties.md\#replication\_sender\_ip)
 
 #### 변경된 프로퍼티
 
