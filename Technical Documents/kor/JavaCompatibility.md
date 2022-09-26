@@ -127,7 +127,7 @@
 <td style="text-align: center;">&nbsp;</td>
 <td style="text-align: center;">&nbsp;</td>
 <td style="text-align: center;">&nbsp;</td>
-<td>&nbsp;</td>
+<td style="text-align: left;">&nbsp;</td>
 </tr>
 <tr>
 <td>&nbsp;</td>
@@ -140,7 +140,7 @@
 <td style="text-align: center;">●</td>
 <td style="text-align: center;">●</td>
 <td style="text-align: center;">-</td>
-<td>- Java 9 이상은 Altibase 6.5.1.6.6 부터 지원</td>
+<td style="text-align: left;">- Java 9 이상은 Altibase 6.5.1.6.6 부터 지원</td>
 </tr>
 <tr>
 <td colspan="3"><strong>Altibase JDBC Driver</strong></td>
@@ -152,7 +152,7 @@
 <td style="text-align: center;">&nbsp;</td>
 <td style="text-align: center;">&nbsp;</td>
 <td style="text-align: center;">&nbsp;</td>
-<td>&nbsp;</td>
+<td style="text-align: left;">&nbsp;</td>
 </tr>
 <tr>
 <td>&nbsp;</td>
@@ -165,7 +165,7 @@
 <td style="text-align: center;">●</td>
 <td style="text-align: center;">●</td>
 <td style="text-align: center;">-</td>
-<td>- Java 11 이상은 Altibase 6.5.1.6.6 부터 지원</td>
+<td style="text-align: left;">- Java 11 이상은 Altibase 6.5.1.6.6 부터 지원</td>
 </tr>
 <tr>
 <td colspan="3"><strong>Tools</strong></td>
@@ -177,7 +177,7 @@
 <td style="text-align: center;">&nbsp;</td>
 <td style="text-align: center;">&nbsp;</td>
 <td style="text-align: center;">&nbsp;</td>
-<td>&nbsp;</td>
+<td style="text-align: left;">&nbsp;</td>
 </tr>
 <tr>
 <td>&nbsp;</td>
@@ -190,7 +190,7 @@
 <td style="text-align: center;">●</td>
 <td style="text-align: center;">●</td>
 <td style="text-align: center;">-</td>
-<td>- Java 11 이상은 dataCompJ 7.1부터 지원<br />- dataCompJ 7.2부터 최소 버전이 Java 8로 변경</td>
+<td style="text-align: left;">- Java 11 이상은 dataCompJ 7.1부터 지원<br />- dataCompJ 7.2부터 최소 버전이 Java 8로 변경</td>
 </tr>
 <tr>
 <td>&nbsp;</td>
@@ -203,7 +203,7 @@
 <td style="text-align: center;">&nbsp;</td>
 <td style="text-align: center;">&nbsp;</td>
 <td style="text-align: center;">-</td>
-<td>&nbsp;</td>
+<td style="text-align: left;">&nbsp;</td>
 </tr>
 <tr>
 <td>&nbsp;</td>
@@ -217,14 +217,14 @@
 <td style="text-align: center;">●</td>
 <td style="text-align: center;">●</td>
 <td style="text-align: center;">-</td>
-<td>- Java 11이상은 Migration Center 7.8부터 지원<br />- Migration Center 7.9부터 최소 버전이 Java 8로 변경</td>
+<td style="text-align: left;">- Java 11이상은 Migration Center 7.8부터 지원<br />- Migration Center 7.9부터 최소 버전이 Java 8로 변경</td>
 </tr>
 <tr>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 <td><strong>Windows</strong></td>
 <td style="text-align: center;" colspan="8">무관</td>
-<td>- JRE 8 번들 제공</td>
+<td style="text-align: left;">- JRE 8 번들 제공</td>
 </tr>
 <tr>
 <td>&nbsp;</td>
@@ -237,13 +237,14 @@
 <td style="text-align: center;">-</td>
 <td style="text-align: center;">-</td>
 <td style="text-align: center;">-</td>
-<td>&nbsp;</td>
+<td style="text-align: left;">&nbsp;</td>
 </tr>
 <tr>
 <td>&nbsp;</td>
 <td colspan="2"><strong>Replication Manager</strong></td>
 <td style="text-align: center;" colspan="8">무관</td>
-<td>- JRE 6 번들 제공</td>
+<td style="text-align: left;">- JRE 6 번들 제공</td>
 </tr>
 </tbody>
 </table>
+
