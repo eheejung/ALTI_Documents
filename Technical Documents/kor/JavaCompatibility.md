@@ -16,28 +16,28 @@
 
 ### Altibase Server Side
 
-|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Java 8 (LTS) | Java 9 | Java 10 | Java 11 (LTS) | Java 12 | Java 17 (LTS) |참고 사항 |
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Java 8 (LTS) | Java 9 | Java 10 | Java 11 (LTS) | Java 12 | Java 17 (LTS) |참고 사항&nbsp;&nbsp;&nbsp; |
 | ------------------------------------------------------------ | :----------: | :----: | :-----: | :-----------: | :-----: | :-----------: | --------- |
 | **DB Link**|      ●       |   ●    |    ●    |       ●       |    ●    |       -       |           |
 | **altiMon**                                                  |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |           |
 
 ### Altibase JDBC 드라이버
 
-|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Java 8 (LTS) | Java 9 | Java 10 | Java 11 (LTS) | Java 12 | Java 17 (LTS) | 참고 사항 |
-| :----------------------------------------------------------- | :----------: | :----: | :-----: | :-----------: | :-----: | :-----------: | --------- |
-| **JDBC 드라이버**|      ●       |   ●    |    ●    |       ●       |    ●    |       -       |           |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Java 8 (LTS) | Java 9 | Java 10 | Java 11 (LTS) | Java 12 | Java 17 (LTS) | 참고 사항&nbsp;&nbsp;&nbsp; |
+| :----------------------------------------------------------- | :----------: | :----: | :-----: | :-----------: | :-----: | :-----------: | --------------------------- |
+| **JDBC 드라이버**                                            |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |                             |
 
 ### Tools
 
-|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Java 8 (LTS) | Java 9 | Java 10 | Java 11 (LTS) | Java 12 | Java 17 (LTS) | 참고 사항                 |
-| ------------------------ | :----------: | :----: | :-----: | :-----------: | :-----: | :-----------: | ------------------------- |
-| **Adapter for JDBC**|      ●       |   ●    |    ●    |       ●       |    ●    |       -       |                           |
-| **dataCompJ 7.2**        |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |                           |
-| **Migration Center 7.9** |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |                           |
-| &nbsp;&nbsp;&nbsp;**Linux 및 Unix**        |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |                           |
-| &nbsp;&nbsp;&nbsp;**Windows**              |              |        |         |               |         |               | - *무관. JRE 8 번들 제공* |
-| **altiShapeLoader 1.0**  |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |                           |
-| **Replication Manager**  |              |        |         |               |         |               | - *무관. JRE 6 번들 제공* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Java 8 (LTS) | Java 9 | Java 10 | Java 11 (LTS) | Java 12 | Java 17 (LTS) | 참고 사항                 |
+| ------------------------------------------------------------ | :----------: | :----: | :-----: | :-----------: | :-----: | :-----------: | :------------------------ |
+| **Adapter for JDBC**                                         |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |                           |
+| **dataCompJ 7.2**                                            |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |                           |
+| **Migration Center 7.9**                                     |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |                           |
+| &nbsp;&nbsp;&nbsp;&nbsp;**Linux 및 Unix**                    |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |                           |
+| &nbsp;&nbsp;&nbsp;&nbsp;**Windows**                          |              |        |         |               |         |               | - *무관. JRE 8 번들 제공* |
+| **altiShapeLoader 1.0**                                      |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |                           |
+| **Replication Manager**                                      |              |        |         |               |         |               | - *무관. JRE 6 번들 제공* |
 
 <br/>
 
