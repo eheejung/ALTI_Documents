@@ -34,8 +34,8 @@
 | **Adapter for JDBC**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |                           |
 | **dataCompJ 7.2**        |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |                           |
 | **Migration Center 7.9** |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |                           |
-| &nbsp;&nbsp;**Linux 및 Unix**        |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |                           |
-| &nbsp;&nbsp;**Windows**              |              |        |         |               |         |               | - *무관. JRE 8 번들 제공* |
+| &nbsp;&nbsp;&nbsp;**Linux 및 Unix**        |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |                           |
+| &nbsp;&nbsp;&nbsp;**Windows**              |              |        |         |               |         |               | - *무관. JRE 8 번들 제공* |
 | **altiShapeLoader 1.0**  |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |                           |
 | **Replication Manager**  |              |        |         |               |         |               | - *무관. JRE 6 번들 제공* |
 
