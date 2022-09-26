@@ -122,31 +122,31 @@ PSM에서 타입 세트 또는 패키지 스펙을 참조할 때, 한 세션에�
 
 #### 재현 방법
 
-*재현 절차*
+- 재현 절차
 
-```sql
-CREATE TABLE T1 ( I1 INT, I2 INT);
-SELECT I1
-  FROM (SELECT * FROM T1 ) AS V1
- GROUP BY I1
-HAVING I1 IN (SELECT I1 FROM T1 START WITH I1 = V1.I1 CONNECT BY PRIOR I1 = I2);
-```
+  ```sql
+  CREATE TABLE T1 ( I1 INT, I2 INT);
+  SELECT I1
+    FROM (SELECT * FROM T1 ) AS V1
+   GROUP BY I1
+  HAVING I1 IN (SELECT I1 FROM T1 START WITH I1 = V1.I1 CONNECT BY PRIOR I1 = I2);
+  ```
 
-*수행 결과*
+- 수행 결과
 
-아래와 같은 메시지가 발생하며 Altibase 서버가 비정상 종료합니다.
+  아래와 같은 메시지가 발생하며 Altibase 서버가 비정상 종료합니다.
 
-```sql
-[ERR-31455 : Failed to work because an internal exception occurred from an OS.[Contact Altibase's Support Center]]
-```
+  ```sql
+  [ERR-31455 : Failed to work because an internal exception occurred from an OS.[Contact Altibase's Support Center]]
+  ```
 
-*예상 결과*
+- 예상 결과
 
-```sql
-I1          
---------------
-No rows selected.
-```
+  ```sql
+  I1          
+  --------------
+  No rows selected.
+  ```
 
 #### Workaround
 
@@ -244,53 +244,54 @@ REGEXP\_MODE 프로퍼티 값이 1일 때 정규 표현식 함수에서 성능 �
 
 #### 재현 방법
 
-*재현 절차*
+- 재현 절차
 
-```sql
-ALTER SESSION SET REGEXP_MODE=1;
-SELECT * FROM V$NLS_TERRITORY WHERE REGEXP_LIKE(CONVERT(NAME, 'UTF8'), 'C');
-```
+  ```sql
+  ALTER SESSION SET REGEXP_MODE=1;
+  SELECT * FROM V$NLS_TERRITORY WHERE REGEXP_LIKE(CONVERT(NAME, 'UTF8'), 'C');
+  ```
 
-*수행 결과*
+- 수행 결과
 
-```sql
-NAME
---------------------------------------------
-No rows selected.
-```
+  ~~~sql
+  NAME
+  --------------------------------------------
+  No rows selected.
+  ~~~
 
-*예상 결과*
+- 예상 결과
 
-```sql
-NAME
---------------------------------------------
-AMERICA
-CANADA
-CATALONIA
-CHILE
-CHINA
-CIS
-COLOMBIA
-COSTA RICA
-CROATIA
-CYPRUS
-CZECH REPUBLIC
-CZECHOSLOVAKIA
-ECUADOR
-FRANCE
-FYR MACEDONIA
-GREECE
-ICELAND
-MACEDONIA
-MEXICO
-MOROCCO
-NICARAGUA
-PUERTO RICO
-SOUTH AFRICA
-23 rows selected.
-```
+  ~~~sql
+  NAME
+  --------------------------------------------
+  AMERICA
+  CANADA
+  CATALONIA
+  CHILE
+  CHINA
+  CIS
+  COLOMBIA
+  COSTA RICA
+  CROATIA
+  CYPRUS
+  CZECH REPUBLIC
+  CZECHOSLOVAKIA
+  ECUADOR
+  FRANCE
+  FYR MACEDONIA
+  GREECE
+  ICELAND
+  MACEDONIA
+  MEXICO
+  MOROCCO
+  NICARAGUA
+  PUERTO RICO
+  SOUTH AFRICA
+  23 rows selected.
+  ~~~
 
-#### Workaround
+- #### Workaround
+
 
 ~~~sql
 ALTER SESSONI SET REGEXP_MODE = 0;
@@ -317,20 +318,20 @@ ALTER SESSONI SET REGEXP_MODE = 0;
 #### 설명
 ANSI INNER JOIN으로 구성된 SQL의 질의 최적화 과정에서 SQL 작성 순서를 고려하지 않아 SQL의 수행 성능이 저하되는 문제를 개선합니다. 질의 최적화 과정에서 ANSI INNER JOIN을 일반 INNER JOIN으로 변환할 때, 작성한 SQL의 조인 순서를 고려하여 변환하도록 수정하였습니다.
 
-*발생 조건*
+***발생 조건***
 
 이 버그 발생 조건은 ANSI 문법의 INNER JOIN으로만 구성된 질의문입니다.
 
-*반영 버전*
+***반영 버전***
 
 이 버그는 Altibase 7.1.0.8.0 이상 버전에 적용됩니다.
 
-*적용 방법*
+***적용 방법***
 
 이 버그의 변경 사항을 적용하려면 비공개 Altibase 서버 프로퍼티 \_\_OPTIMIZER\_ANSI\_INNER\_JOIN\_CONVERT의 값을 2로 변경해야 합니다. 이 프로퍼티는 ALTER SYSTEM으로 변경할 수 있으면 영구 적용하려면 altibase.properties 파일에 \_\_OPTIMIZER\_ANSI\_INNER\_JOIN\_CONVERT
 = 2를 추가하고 Altibase 서버를 재시작해야 합니다.
 
-*영향도* 
+***영향도*** 
 
 버그 조건에 해당하는 질의문의 실행 계획이 달라집니다. 변경 전/후 차이는 Actual Results, Expected Results를 참고하세요.
 
@@ -342,87 +343,87 @@ ANSI INNER JOIN으로 구성된 SQL의 질의 최적화 과정에서 SQL 작성 
 
 - 재현 절차
 
-```sql
-DROP TABLE T1;
-DROP TABLE T2;
-DROP TABLE T3;
-DROP TABLE T4;
-DROP TABLE T5;
-DROP TABLE T6;
-
-
-CREATE TABLE T1 ( I1 INT , I2 INT , I3 INT );
-CREATE TABLE T2 ( I1 INT , I2 INT , I3 INT );
-CREATE TABLE T3 ( I1 INT , I2 INT , I3 INT );
-CREATE TABLE T4 ( I1 INT , I2 INT , I3 INT );
-CREATE TABLE T5 ( I1 INT , I2 INT , I3 INT );
-CREATE TABLE T6 ( I1 INT , I2 INT , I3 INT );
-
-INSERT INTO T1 SELECT LEVEL, LEVEL, LEVEL FROM DUAL CONNECT BY LEVEL <=10;
-INSERT INTO T2 SELECT LEVEL, LEVEL, LEVEL FROM DUAL CONNECT BY LEVEL <=10;
-INSERT INTO T3 SELECT LEVEL, LEVEL, LEVEL FROM DUAL CONNECT BY LEVEL <=10;
-INSERT INTO T4 SELECT LEVEL, LEVEL, LEVEL FROM DUAL CONNECT BY LEVEL <=10;
-INSERT INTO T5 SELECT LEVEL, LEVEL, LEVEL FROM DUAL CONNECT BY LEVEL <=10;
-INSERT INTO T6 SELECT LEVEL, LEVEL, LEVEL FROM DUAL CONNECT BY LEVEL <=10;
-
-ALTER SESSION SET EXPLAIN PLAN = ON;
-
-SELECT H1.I1
-  FROM T1 H1 
- INNER JOIN T2 H2 ON H1.I1 = H2.I1 
- INNER JOIN T3 H3 ON H2.I1 = H3.I1 
- INNER JOIN T4 H4 ON H2.I1 = H4.I1 
- INNER JOIN T5 H5 ON H3.I1 = H5.I1 
- INNER JOIN T6 H6 ON H3.I1 = H6.I1;
-```
+  ~~~sql
+  DROP TABLE T1;
+  DROP TABLE T2;
+  DROP TABLE T3;
+  DROP TABLE T4;
+  DROP TABLE T5;
+  DROP TABLE T6;
+  
+  
+  CREATE TABLE T1 ( I1 INT , I2 INT , I3 INT );
+  CREATE TABLE T2 ( I1 INT , I2 INT , I3 INT );
+  CREATE TABLE T3 ( I1 INT , I2 INT , I3 INT );
+  CREATE TABLE T4 ( I1 INT , I2 INT , I3 INT );
+  CREATE TABLE T5 ( I1 INT , I2 INT , I3 INT );
+  CREATE TABLE T6 ( I1 INT , I2 INT , I3 INT );
+  
+  INSERT INTO T1 SELECT LEVEL, LEVEL, LEVEL FROM DUAL CONNECT BY LEVEL <=10;
+  INSERT INTO T2 SELECT LEVEL, LEVEL, LEVEL FROM DUAL CONNECT BY LEVEL <=10;
+  INSERT INTO T3 SELECT LEVEL, LEVEL, LEVEL FROM DUAL CONNECT BY LEVEL <=10;
+  INSERT INTO T4 SELECT LEVEL, LEVEL, LEVEL FROM DUAL CONNECT BY LEVEL <=10;
+  INSERT INTO T5 SELECT LEVEL, LEVEL, LEVEL FROM DUAL CONNECT BY LEVEL <=10;
+  INSERT INTO T6 SELECT LEVEL, LEVEL, LEVEL FROM DUAL CONNECT BY LEVEL <=10;
+  
+  ALTER SESSION SET EXPLAIN PLAN = ON;
+  
+  SELECT H1.I1
+    FROM T1 H1 
+   INNER JOIN T2 H2 ON H1.I1 = H2.I1 
+   INNER JOIN T3 H3 ON H2.I1 = H3.I1 
+   INNER JOIN T4 H4 ON H2.I1 = H4.I1 
+   INNER JOIN T5 H5 ON H3.I1 = H5.I1 
+   INNER JOIN T6 H6 ON H3.I1 = H6.I1;
+  ~~~
 
 - 수행 결과
 
-```sql
-------------------------------------------------------------
-PROJECT ( COLUMN_COUNT: 18, TUPLE_SIZE: 72, COST: 71358818392868040.00 )
- JOIN ( METHOD: HASH, COST: 44619453052271392.00 )
-  SCAN ( TABLE: SYS.T5 H5, FULL SCAN, ACCESS: 10, COST: 116.76 )
-  HASH ( ITEM_SIZE: 56, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 44619453052271392.00 )
-   JOIN ( METHOD: HASH, COST: 43573684623425.38 )
-    SCAN ( TABLE: SYS.T4 H4, FULL SCAN, ACCESS: 10, COST: 116.76 )
-    HASH ( ITEM_SIZE: 48, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 43573684623425.38 )
-     JOIN ( METHOD: HASH, COST: 42552427988.33 )
-      SCAN ( TABLE: SYS.T1 H1, FULL SCAN, ACCESS: 10, COST: 116.76 )
-      HASH ( ITEM_SIZE: 40, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 42552427988.33 )
-       JOIN ( METHOD: HASH, COST: 41556235.38 )
-        SCAN ( TABLE: SYS.T2 H2, FULL SCAN, ACCESS: 10, COST: 116.76 )
-        HASH ( ITEM_SIZE: 32, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 41556235.38 )
-         JOIN ( METHOD: HASH, COST: 41243.85 )
-          SCAN ( TABLE: SYS.T3 H3, FULL SCAN, ACCESS: 10, COST: 116.76 )
-          HASH ( ITEM_SIZE: 24, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 41243.85 )
-           SCAN ( TABLE: SYS.T6 H6, FULL SCAN, ACCESS: 10, COST: 116.76 )
-------------------------------------------------------------
-```
+  ~~~sql
+  ------------------------------------------------------------
+  PROJECT ( COLUMN_COUNT: 18, TUPLE_SIZE: 72, COST: 71358818392868040.00 )
+   JOIN ( METHOD: HASH, COST: 44619453052271392.00 )
+    SCAN ( TABLE: SYS.T5 H5, FULL SCAN, ACCESS: 10, COST: 116.76 )
+    HASH ( ITEM_SIZE: 56, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 44619453052271392.00 )
+     JOIN ( METHOD: HASH, COST: 43573684623425.38 )
+      SCAN ( TABLE: SYS.T4 H4, FULL SCAN, ACCESS: 10, COST: 116.76 )
+      HASH ( ITEM_SIZE: 48, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 43573684623425.38 )
+       JOIN ( METHOD: HASH, COST: 42552427988.33 )
+        SCAN ( TABLE: SYS.T1 H1, FULL SCAN, ACCESS: 10, COST: 116.76 )
+        HASH ( ITEM_SIZE: 40, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 42552427988.33 )
+         JOIN ( METHOD: HASH, COST: 41556235.38 )
+          SCAN ( TABLE: SYS.T2 H2, FULL SCAN, ACCESS: 10, COST: 116.76 )
+          HASH ( ITEM_SIZE: 32, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 41556235.38 )
+           JOIN ( METHOD: HASH, COST: 41243.85 )
+            SCAN ( TABLE: SYS.T3 H3, FULL SCAN, ACCESS: 10, COST: 116.76 )
+            HASH ( ITEM_SIZE: 24, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 41243.85 )
+             SCAN ( TABLE: SYS.T6 H6, FULL SCAN, ACCESS: 10, COST: 116.76 )
+  ------------------------------------------------------------
+  ~~~
 
 - 예상 결과
 
-```sql
-------------------------------------------------------------
-PROJECT ( COLUMN_COUNT: 1, TUPLE_SIZE: 4, COST: 46104973348971200.00 )
- JOIN ( METHOD: HASH, COST: 44619453052271392.00 )
-  SCAN ( TABLE: SYS.T6 H6, FULL SCAN, ACCESS: 10, COST: 116.76 )
-  HASH ( ITEM_SIZE: 32, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 44619453052271392.00 )
-   JOIN ( METHOD: HASH, COST: 43573684623425.38 )
-    SCAN ( TABLE: SYS.T5 H5, FULL SCAN, ACCESS: 10, COST: 116.76 )
-    HASH ( ITEM_SIZE: 32, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 43573684623425.38 )
-     JOIN ( METHOD: HASH, COST: 42552427988.33 )
-      SCAN ( TABLE: SYS.T4 H4, FULL SCAN, ACCESS: 10, COST: 116.76 )
-      HASH ( ITEM_SIZE: 40, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 42552427988.33 )
-       JOIN ( METHOD: HASH, COST: 41556235.38 )
-        SCAN ( TABLE: SYS.T3 H3, FULL SCAN, ACCESS: 10, COST: 116.76 )
-        HASH ( ITEM_SIZE: 32, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 41556235.38 )
-         JOIN ( METHOD: HASH, COST: 41243.85 )
-          SCAN ( TABLE: SYS.T1 H1, FULL SCAN, ACCESS: 10, COST: 116.76 )
-          HASH ( ITEM_SIZE: 24, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 41243.85 )
-           SCAN ( TABLE: SYS.T2 H2, FULL SCAN, ACCESS: 10, COST: 116.76 )
-------------------------------------------------------------
-```
+  ~~~sql
+  ------------------------------------------------------------
+  PROJECT ( COLUMN_COUNT: 1, TUPLE_SIZE: 4, COST: 46104973348971200.00 )
+   JOIN ( METHOD: HASH, COST: 44619453052271392.00 )
+    SCAN ( TABLE: SYS.T6 H6, FULL SCAN, ACCESS: 10, COST: 116.76 )
+    HASH ( ITEM_SIZE: 32, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 44619453052271392.00 )
+     JOIN ( METHOD: HASH, COST: 43573684623425.38 )
+      SCAN ( TABLE: SYS.T5 H5, FULL SCAN, ACCESS: 10, COST: 116.76 )
+      HASH ( ITEM_SIZE: 32, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 43573684623425.38 )
+       JOIN ( METHOD: HASH, COST: 42552427988.33 )
+        SCAN ( TABLE: SYS.T4 H4, FULL SCAN, ACCESS: 10, COST: 116.76 )
+        HASH ( ITEM_SIZE: 40, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 42552427988.33 )
+         JOIN ( METHOD: HASH, COST: 41556235.38 )
+          SCAN ( TABLE: SYS.T3 H3, FULL SCAN, ACCESS: 10, COST: 116.76 )
+          HASH ( ITEM_SIZE: 32, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 41556235.38 )
+           JOIN ( METHOD: HASH, COST: 41243.85 )
+            SCAN ( TABLE: SYS.T1 H1, FULL SCAN, ACCESS: 10, COST: 116.76 )
+            HASH ( ITEM_SIZE: 24, ITEM_COUNT: 10, BUCKET_COUNT: 1024, ACCESS: 10, COST: 41243.85 )
+             SCAN ( TABLE: SYS.T2 H2, FULL SCAN, ACCESS: 10, COST: 116.76 )
+  ------------------------------------------------------------
+  ~~~
 
 #### Workaround
 
@@ -505,7 +506,7 @@ NORMALFORM\_MAXIMUM 프로퍼티가 0 일 때, PARALLEL을 지정한 테이블�
 
 - 저장 프로시저나 저장 함수의 별칭으로 생성한 시노님의 정의를 변경하여 재생성
 
-*패치 영향도*
+***패치 영향도***
 
 버그 조건을 만족하는 시노님, 저장 프로시저(또는 저장 함수 및 패키지)가 있을 때 패치 전/후 저장 프로시저(또는 저장 함수 및 패키지)의 수행 결과가 달라집니다.
 
@@ -922,13 +923,13 @@ TRANSACTION_SEGMENT_COUNT = 256 # ( 1 ~ 16384 )
 
 이 버그의 반영 전/후 변경 사항은 아래와 같습니다.
 
-*`버그 반영 전`*   
+*버그 반영 전*
 
 - 메모리 제약으로 뷰의 재컴파일이 실패하더라도 DDL 수행은 성공합니다. 
 
 - 뷰는 재컴파일을 완료하지 않은 비정상적인 상태로 남습니다.
 
-*`버그 반영 후`*
+*버그 반영 후*
 
 - 메모리 제약으로 뷰의 재컴파일이 실패하면 DDL을 실패 처리합니다. 
 
