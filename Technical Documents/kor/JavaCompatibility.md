@@ -25,7 +25,7 @@ Altibase는 자바 메이저 버전 릴리즈 시 Altibase 와의 호환성 테�
 
 # Altibase 7.2
 
-### Altibase Server Side
+### <span style="color: red">Altibase Server Side</span>
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Java 8 (LTS) | Java 9 | Java 10 | Java 11 (LTS) | Java 12 | Java 17 (LTS) | Java 18 | 참고 사항&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
 | ------------------------------------------------------------ | :----------: | :----: | :-----: | :-----------: | :-----: | :-----------: | :-----: | :----------------------------------------------------------- |
@@ -57,10 +57,10 @@ Altibase는 자바 메이저 버전 릴리즈 시 Altibase 와의 호환성 테�
 
 ### Altibase JDBC 드라이버
 
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Java 5 ~ Java 7 | Java 8 (LTS) | Java 9 | Java 10 |            Java 11 (LTS)            | Java 12 | Java 17 (LTS) | Java 18 | 참고 사항&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
-| ------------------------------------------------------------ | :-------------: | :----------: | :----: | :-----: | :---------------------------------: | :-----: | :-----------: | :-----: | :----------------------------------------------------------- |
-| **Altibase.jar**                                             |        ●        |      ●       |   ●    |    ●    | ●<sup>[<u>3</u>](#footnote-3)</sup> |    ●    |       -       |    -    | - *Java 11 이상은 Altibase 7.1.0.2.6 부터 지원*              |
-| **Altibase42.jar**                                           |                 |      ●       |   ●    |    ●    |                  ●                  |    ●    |       -       |    -    |                                                              |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Java 5 ~ Java 7 | Java 8 (LTS) | Java 9 | Java 10 | Java 11 (LTS)<sup><u>[3](#footnote-3)</u></sup> | Java 12 | Java 17 (LTS) | Java 18 | 참고 사항&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+| ------------------------------------------------------------ | :-------------: | :----------: | :----: | :-----: | :---------------------------------------------: | :-----: | :-----------: | :-----: | :----------------------------------------------------------- |
+| **Altibase.jar**                                             |        ●        |      ●       |   ●    |    ●    |                        ●                        |    ●    |       -       |    -    |                                                              |
+| **Altibase42.jar**                                           |                 |      ●       |   ●    |    ●    |                        ●                        |    ●    |       -       |    -    |                                                              |
 
 <sup><a name="footnote-3"><u>3</u></a></sup> : Altibase 7.1.0.2.6부터 Java 11 이상 지원합니다. 
 
@@ -74,7 +74,7 @@ Altibase는 자바 메이저 버전 릴리즈 시 Altibase 와의 호환성 테�
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Java 5 | Java 6 ~ Java 8 (LTS) |               Java 9                | Java 10 | Java 11 (LTS) | Java 12 | Java 17 (LTS) | Java 18 | 참고 사항&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
 | ------------------------------------------------------------ | :----: | :-------------------: | :---------------------------------: | :-----: | :-----------: | :-----: | :-----------: | :-----: | :----------------------------------------------------------- |
-| **DB Link**                                                  |   ●    |           ●           | ●<sup><u>[4](#footnote-4)</u></sup> |    ●    |       ●       |    ●    |       -       |    -    | - *Java 9 이상은 Altibase 6.5.1.6.6 부터 지원*               |
+| **DB Link**                                                  |   ●    |           ●           | ●<sup><u>[4](#footnote-4)</u></sup> |    ●    |       ●       |    ●    |       -       |    -    |                                                              |
 
 <sup><a name="footnote-4"><u>4</u></a></sup> : Altibase 6.5.1.6.6부터 Java 9 이상 지원합니다. 
 
