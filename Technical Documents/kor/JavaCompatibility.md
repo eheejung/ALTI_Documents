@@ -39,7 +39,7 @@ x : 지원하지 않는 버전을 의미합니다.
 
 ### Altibase Server Side
 
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Java 8 | Java 9 | Java 10 | Java 11 | Java 12 | Java 17 | Java 18 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |Java 8 | Java 9 | Java 10 | Java 11 | Java 12 | Java 17 | Java 18 |
 | ------------------------------------------------------------ | :----: | :----: | :-----: | :-----: | :-----: | :-----: | :-----: |
 | **altiMon**                                                  |   ●    |   ●    |    ●    |    ●    |    ●    |    -    |    -    |
 | **Adapter for JDBC**                                         |   ●    |   ●    |    ●    |    ●    |    ●    |    -    |    -    |
@@ -47,7 +47,7 @@ x : 지원하지 않는 버전을 의미합니다.
 
 ### Altibase JDBC 드라이버
 
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |  Java 8 | Java 9 | Java 10 | Java 11 | Java 12 | Java 17 | Java 18 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |  Java 8 | Java 9 | Java 10 | Java 11 | Java 12 | Java 17 | Java 18 |
 | :----------------------------------------------------------- | :----------: | :----: | :-----: | :-----------: | :-----: | :-----------: | :-----: |
 | **JDBC 드라이버**                                            |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |    -    |
 
@@ -59,7 +59,7 @@ x : 지원하지 않는 버전을 의미합니다.
 
 ### Altibase Server Side
 
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |  Java 5 | Java 6 | Java 7 | Java 8 |               Java 9                | Java 10 |            Java 11            | Java 12 | Java 17 | Java 18 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Java 5 | Java 6 | Java 7 | Java 8 |               Java 9                | Java 10 |            Java 11            | Java 12 | Java 17 | Java 18 |
 | ------------------------------------------------------------ | :-------------: | :----------: | :---------------------------------: | :-----: | :---------------------------------: | :-----: | :-----------: | :-----: | :-----: | :-----: |
 | **altiMon**                                                  |        ●        |        ●        |        ●        |      ●       |                  ●                  |    ●    | ●<sup><u>[1](#footnote-1)</u></sup> |    ●    |       -       |    -    |
 | **Adapter for JDBC** | x | x | ● | ● | ● | ● | ●<sup><u>[2](#footnote-2)</u></sup> | ● | - | - |
@@ -73,7 +73,7 @@ x : 지원하지 않는 버전을 의미합니다.
 
 ### Altibase JDBC 드라이버
 
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |  Java 5 | Java 6 ~ Java 7 | Java 8 | Java 9 ~ Java 10 | Java 11<sup><u>[4](#footnote-4)</u></sup> | Java 12 | Java 17 | Java 18 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Java 5 | Java 6 ~ Java 7 | Java 8 | Java 9 ~ Java 10 | Java 11<sup><u>[4](#footnote-4)</u></sup> | Java 12 | Java 17 | Java 18 |
 | :----------------------------------------------------------- | :-------------: | :----------: | :----: | :-----: | :-----: | :-----------: | :-----: | :----------------------------------------------------------- |
 | **Altibase.jar**                                             |        ●        |        ●        |      ●       |   ●    |                        ●                        |    ●    |       -       |    -    |
 | **Altibase42.jar**                                           | x | x |      ●       |   ●    |                        ●                        |    ●    |       -       |    -    |
@@ -88,15 +88,14 @@ x : 지원하지 않는 버전을 의미합니다.
 
 ### Altibase Server Side
 
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Java 5 | Java 6 ~ Java 8 |               Java 9                | Java 10 | Java 11 | Java 12 | Java 17 | Java 18 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Java 5 | Java 6 ~ Java 8 |               Java 9                | Java 10 | Java 11 | Java 12 | Java 17 | Java 18 |
 | ------------------------------------------------------------ | :----: | :-------------: | :---------------------------------: | :-----: | :-----: | :-----: | :-----: | :-----: |
 | **DB Link**                                                  |   ●    |        ●        | ●<sup><u>[5](#footnote-5)</u></sup> |    ●    |    ●    |    ●    |    -    |    -    |
 
 <sup><a name="footnote-5"><u>5</u></a></sup> : DB Link에서 Java 9 이상은 Altibase 6.5.1.6.6부터 지원합니다. 
 
 ### Altibase JDBC Driver
-
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | **Java 4** | Java 5 ~  Java 8 | Java 9 | Java 10 |               Java 11               | Java 12 | Java 17 | Java 18 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | **Java 4** | Java 5 ~  Java 8 | Java 9 | Java 10 |               Java 11               | Java 12 | Java 17 | Java 18 |
 | ------------------------------------------------------------ | :--------: | :--------------: | :----: | :-----: | :---------------------------------: | :-----: | :-----: | :-----: |
 | **JDBC 드라이버**                                            |     ●      |        ●         |   ●    |    ●    | ●<sup><u>[6](#footnote-6)</u></sup> |    ●    |    -    |    -    |
 
@@ -108,7 +107,7 @@ x : 지원하지 않는 버전을 의미합니다.
 
 # Tools
 
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Java 6 | Java 7 |               Java 8                | Java 9 ~ Java 10 |                Java 11                | Java 12 | Java 17 | Java 18 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Java 6 | Java 7 |               Java 8                | Java 9 ~ Java 10 |                Java 11                | Java 12 | Java 17 | Java 18 |
 | ------------------------------------------------------------ | :----: | :----: | :---------------------------------: | :--------------: | :-----------------------------------: | :-----: | :-----: | :-----: |
 | **altiShapeLoader 1.0**                                      |   x    |   x    |                  ●                  |        ●         |                   ●                   |    ●    |    -    |    ●    |
 | **Altibase Hadoop Connector**                                |   ●    |   ●    |                  ●                  |        ●         |                   -                   |    -    |    -    |    -    |
