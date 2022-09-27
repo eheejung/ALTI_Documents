@@ -23,6 +23,8 @@ Altibase는 자바 메이저 버전 릴리즈 시 Altibase 와의 호환성 테�
 
 <br/>
 
+<span style="color:#d3d3d3">#d3d3d3</span>
+
 # Altibase 7.2
 
 ### Altibase Server Side
@@ -34,9 +36,9 @@ Altibase는 자바 메이저 버전 릴리즈 시 Altibase 와의 호환성 테�
 
 ### Altibase JDBC 드라이버
 
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | <span style="color:red">Java 8 (LTS)</span> | Java 9 | Java 10 | Java 11 (LTS) | Java 12 | Java 17 (LTS) | Java 18 | 참고 사항&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
-| :----------------------------------------------------------- | :-----------------------------------------: | :----: | :-----: | :-----------: | :-----: | :-----------: | :-----: | :----------------------------------------------------------- |
-| **JDBC 드라이버**                                            |                      ●                      |   ●    |    ●    |       ●       |    ●    |       -       |    -    |                                                              |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Java 8 (LTS) | Java 9 | Java 10 | Java 11 (LTS) | Java 12 | Java 17 (LTS) | Java 18 | 참고 사항&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+| :----------------------------------------------------------- | :----------: | :----: | :-----: | :-----------: | :-----: | :-----------: | :-----: | :----------------------------------------------------------- |
+| **JDBC 드라이버**                                            |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |    -    |                                                              |
 
 <br/>
 
