@@ -108,7 +108,7 @@ x : 지원하지 않는 버전을 의미합니다.
 
 # Tools
 
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Java 6 | Java 7 |               Java 8                | Java 9 ~ Java 10 |                Java 11                | Java 12 | Java 17 | Java 18 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Java 6 | Java 7 |               Java 8                | Java 9 ~ Java 10 |                Java 11                | Java 12 | Java 17 | Java 18 |
 | ------------------------------------------------------------ | :----: | :----: | :---------------------------------: | :--------------: | :-----------------------------------: | :-----: | :-----: | :-----: |
 | **altiShapeLoader 1.0**                                      |   x    |   x    |                  ●                  |        ●         |                   ●                   |    ●    |    -    |    ●    |
 | **Altibase Hadoop Connector**                                |   ●    |   ●    |                  ●                  |        ●         |                   -                   |    -    |    -    |    -    |
