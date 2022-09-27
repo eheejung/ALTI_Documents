@@ -1,6 +1,8 @@
 # Altibase 버전 별 Java 호환성
 
+<br/>
 
+<br/>
 
 # **Table of Contents** 
 
@@ -23,20 +25,18 @@ Altibase는 자바 메이저 버전 릴리즈 시 Altibase 와의 호환성 테�
 
 <br/>
 
-<span style="color:#d3d3d3">#d3d3d3</span>
-
 # Altibase 7.2
 
 ### Altibase Server Side
 
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Java 8 (LTS) | Java 9 | Java 10 | Java 11 (LTS) | Java 12 | Java 17 (LTS) | Java 18 | 참고 사항&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Java 8 (LTS) | Java 9 | Java 10 | Java 11 (LTS) | Java 12 | Java 17 (LTS) | Java 18 | 참고 사항&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
 | ------------------------------------------------------------ | :----------: | :----: | :-----: | :-----------: | :-----: | :-----------: | :-----: | :----------------------------------------------------------- |
 | **DB Link**                                                  |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |    -    |                                                              |
 | **altiMon**                                                  |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |    -    |                                                              |
 
 ### Altibase JDBC 드라이버
 
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Java 8 (LTS) | Java 9 | Java 10 | Java 11 (LTS) | Java 12 | Java 17 (LTS) | Java 18 | 참고 사항&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |  Java 8 (LTS) | Java 9 | Java 10 | Java 11 (LTS) | Java 12 | Java 17 (LTS) | Java 18 | 참고 사항&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
 | :----------------------------------------------------------- | :----------: | :----: | :-----: | :-----------: | :-----: | :-----------: | :-----: | :----------------------------------------------------------- |
 | **JDBC 드라이버**                                            |      ●       |   ●    |    ●    |       ●       |    ●    |       -       |    -    |                                                              |
 
@@ -48,7 +48,7 @@ Altibase는 자바 메이저 버전 릴리즈 시 Altibase 와의 호환성 테�
 
 ### Altibase Server Side
 
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Java 5 ~ Java 7 | Java 8 (LTS) |               Java 9                | Java 10 |            Java 11 (LTS)            | Java 12 | Java 17 (LTS) | Java 18 | 참고 사항&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |  Java 5 ~ Java 7 | Java 8 (LTS) |               Java 9                | Java 10 |            Java 11 (LTS)            | Java 12 | Java 17 (LTS) | Java 18 | 참고 사항&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
 | ------------------------------------------------------------ | :-------------: | :----------: | :---------------------------------: | :-----: | :---------------------------------: | :-----: | :-----------: | :-----: | :----------------------------------------------------------- |
 | **DB Link**                                                  |        ●        |      ●       | ●<sup><u>[1](#footnote-1)</u></sup> |    ●    |                  ●                  |    ●    |       -       |    -    |                                                              |
 | **altiMon**                                                  |        ●        |      ●       |                  ●                  |    ●    | ●<sup><u>[2](#footnote-2)</u></sup> |    ●    |       -       |    -    |                                                              |
@@ -59,7 +59,7 @@ Altibase는 자바 메이저 버전 릴리즈 시 Altibase 와의 호환성 테�
 
 ### Altibase JDBC 드라이버
 
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Java 5 ~ Java 7 | Java 8 (LTS) | Java 9 | Java 10 | Java 11 (LTS)<sup><u>[3](#footnote-3)</u></sup> | Java 12 | Java 17 (LTS) | Java 18 | 참고 사항&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |  Java 5 ~ Java 7 | Java 8 (LTS) | Java 9 | Java 10 | Java 11 (LTS)<sup><u>[3](#footnote-3)</u></sup> | Java 12 | Java 17 (LTS) | Java 18 | 참고 사항&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
 | ------------------------------------------------------------ | :-------------: | :----------: | :----: | :-----: | :---------------------------------------------: | :-----: | :-----------: | :-----: | :----------------------------------------------------------- |
 | **Altibase.jar**                                             |        ●        |      ●       |   ●    |    ●    |                        ●                        |    ●    |       -       |    -    |                                                              |
 | **Altibase42.jar**                                           |                 |      ●       |   ●    |    ●    |                        ●                        |    ●    |       -       |    -    |                                                              |
@@ -100,6 +100,6 @@ Altibase는 자바 메이저 버전 릴리즈 시 Altibase 와의 호환성 테�
 | **altiShapeLoader 1.0**                                      |        |              |      ●       |        ●         |       ●       |    ●    |       -       |    ●    |                                                              |
 | **dataCompJ 7.2**                                            |        |              |      ●       |        ●         |       ●       |    ●    |       -       |    ●    |                                                              |
 | **Migration Center 7.10**                                    |        |              |              |                  |               |         |               |         |                                                              |
-| &nbsp;&nbsp;&nbsp;&nbsp;***Linux 및 Unix***                  |        |              |      ●       |        ●         |       ●       |    ●    |       -       |    ●    |                                                              |
-| &nbsp;&nbsp;&nbsp;&nbsp;***Windows***                        |        |              |              |                  |               |         |               |         | - *무관. JRE 8 번들 제공*                                    |
+| &nbsp;&nbsp;&nbsp;&nbsp;**Linux 및 Unix**                    |        |              |      ●       |        ●         |       ●       |    ●    |       -       |    ●    |                                                              |
+| &nbsp;&nbsp;&nbsp;&nbsp;**Windows**                          |        |              |              |                  |               |         |               |         | - *무관. JRE 8 번들 제공*                                    |
 | **Replication Manager**                                      |        |              |              |                  |               |         |               |         | - *무관. JRE 6 번들 제공*                                    |
