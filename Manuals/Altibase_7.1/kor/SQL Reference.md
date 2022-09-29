@@ -25526,52 +25526,67 @@ No rows selected.
 A.부록: 정규 표현식
 -----------------
 
-여기에서는 Altibase가 지원하는 정규 표현식에 대해서 설명한다.
+이 장에서 Altibase가 제공하는 정규 표현식에 대해서 설명한다.
 
-### 정규 표현식 지원
+### 정규 표현식
 
-정규 표현식(regular expression)이란 텍스트 패턴을 기술하기 위한 표기법으로, 하나 이상의 문자열과 메타문자(metacharacter)로 구성된다. Altibase는 POSIX Basic Regular Expression (BRE)과 Extended Regular Expression(ERE)의 일부를 지원하는 Altibase 정규 표현식 라이브러리와 펄 호환 정규 표현식 (Perl Compatible Regular Expressions, PCRE2) 라이브러리를 지원한다. 사용자는 이 두 가지 정규 표현식 라이브러리 중 하나를 선택하여 사용할 수 있다. 
+정규 표현식(regular expression)이란 텍스트 패턴을 기술하기 위한 표기법으로, 하나 이상의 문자열과 메타문자(metacharacter)로 구성된다. 
 
-정규 표현식 문법이나 기능은 구현체마다 세부 구현이 다를 수 있으므로 타 DBMS의 정규 표현식 라이브러리나 정규 표현식 라이브러리 버전에 따라 차이가 있을 수 있다.
+Altibase는 Altibase 정규 표현식 모드와 PCRE2 호환 모드를 제공한다. Altibase 정규 표현식 모드는 POSIX 기본 정규 표현식(Basic Regular Expression, BRE)과 확장 정규 표현식(Extended Regular Expression, ERE)의 문법을  일부 지원하며  PCRE2 호환 모드는 PCRE2 라이브러리의 정규 표현식 문법을 지원한다. 
 
-#### Altibase 정규 표현식 라이브러리
+정규 표현식 문법이나 기능은 구현체마다 세부 구현이 다르다. DBMS 벤더마다 도입한 정규 표현식 라이브러리나 정규 표현식 라이브러리 버전이 각각 다르기 때문에 Altibase에서 지원하는 정규 표현식 문법과 기능이 타 DBMS와 차이가 있을 수 있다.
 
-Altibase 정규 표현식 라이브러리의 정규 표현식은 아래와 같은 제약 사항과 특징이 있다.
+Altibase SQL에서 아래의 문자 함수를 사용할 때 정규 표현식을 사용할 수 있다.
 
--   멀티바이트 문자를 지원하지 않는다.
+- REGEXP_COUNT
+- REGEXP_REPLACE
+- REGEXP_INSTR
+- REGEXP_SUBSTR
 
--   역참조(backreference, \\digit)를 지원하지 않는다.
 
--   전방 탐색(lookahead, ?=)과 후방 탐색(lookbehind, ?\<=)을 지원하지 않는다.
-여기에서는 Altibase가 지원하는 정규 표현식에 대해서 설명한다.
 
-### 정규 표현식 지원
+### 정규 표현식 모드 설정 변경 방법
 
-정규 표현식(regular expression)이란 텍스트 패턴을 기술하기 위한 표기법으로, 하나 이상의 문자열과 메타문자(metacharacter)로 구성된다. Altibase는 POSIX Basic Regular Expression (BRE)과 Extended Regular Expression(ERE)의 일부를 지원하는 Altibase 정규 표현식 라이브러리와 펄 호환 정규 표현식 (Perl Compatible Regular Expressions, PCRE2) 라이브러리를 지원한다. 사용자는 이 두 가지 정규 표현식 라이브러리 중 하나를 선택하여 사용할 수 있다. 
+사용자는 Altibase 정규 표현식 모드와 PCRE2 호환 모드, 두 가지 정규 표현식 모드 중 하나를 선택하여 사용해야 한다. Altibase 정규 표현식 모드가 기본으로 설정되어 있으므로 PCRE2 호환 모드를 사용하고 싶다면 다음 구문으로 정규 표현식 모드를 변경해야 한다.
 
-정규 표현식 문법이나 기능은 구현체마다 세부 구현이 다를 수 있으므로 타 DBMS의 정규 표현식 라이브러리나 정규 표현식 라이브러리 버전에 따라 차이가 있을 수 있다.
+###### *시스템 단위 변경*
 
-### 정규 표현식 라이브러리 설정 변경 방법
+Altibase 서버가 구동된 상태에서 시스템 프로퍼티를 변경하는 구문으로 정규 표현식 모드를 변경하는 방법이다.변경된 설정을 적용하려면 세션을 재접속해야 한다. 
 
-사용자는 Altibase 정규 표현식 라이브러리와 PCRE2 라이브러리, 두 가지 라이브러리 중 하나를 선택하여 사용해야 한다. Altibase 정규 표현식 라이브러리가 기본 라이브러리로 설정되어 있으므로 PCRE2 라이브러리를 사용하고 싶다면 다음 구문으로 정규 표현식 라이브러리 설정을 변경해야 한다.
+`ALTER SYSTEM SET REGEXP_MODE=1;`
 
-- Altibase 서버 구동 상태에서 시스템 단위 변경
+~~~sql
+ALTER SYSTEM SET REGEXP_MODE=1;
+~~~
 
-  변경된 설정을 적용하려면 세션을 재접속해야 한다. 
+###### *세션 단위 변경*
 
-  `ALTER SYSTEM SET REGEXP_MODE=1;`
+Altibase 서버가 구동된 상태에서 세션의 속성을 변경하는 구문으로 정규 표현식 모드를 변경하는 방법이다.
 
-- Altibase 서버 구동 상태에서 세션 단위 변경
+`ALTER SESSION SET REGEXP_MODE=1;`
 
-  `ALTER SESSION SET REGEXP_MODE=1;`
+~~~sql
+ALTER SESSION SET REGEXP_MODE=1;
+~~~
 
-- Altibase 서버에 영구적으로 변경
+###### *Altibase 서버에 영구적으로 변경*
 
-  altibase.properties 파일에 REGEXP_MODE=1 추가하고 Altibase 서버 재시작 
-	
-#### Altibase 정규 표현식 라이브러리
+정규 표현식 변경 모드를 영구적으로 Altibase 서버에 적용하는 방법이다. Altibase 서버 프로퍼티 파일에 REGEXP_MODE=1 를 추가하고 Altibase 서버를 재시작한다.
 
-Altibase 정규 표현식 라이브러리의 정규 표현식은 아래와 같은 제약 사항과 특징이 있다.
+~~~sql
+$ vi $ALTIBASE_HOME/conf/altibase.properties
+REGEXP_MODE=1
+~~~
+
+
+
+### Altibase 정규 표현식 모드
+
+Altibase의 정규 표현식 모드 중 Altibase 정규 표현식 모드에 대해 살펴보자.
+
+#### 제약 사항
+
+Altibase 정규 표현식 모드는 최소한의 정규 표현식 문법을 지원하는 Altibase의 기본 설정 모드로 아래와 같은 제약 사항이 있다. 
 
 -   멀티바이트 문자를 지원하지 않는다.
 
@@ -25583,34 +25598,13 @@ Altibase 정규 표현식 라이브러리의 정규 표현식은 아래와 같�
     
 -   이스케이프(Escape) 문자를 지원한다.
 
-아래는 Altibase 정규 표현식 라이브러리에서 지원하는 정규 표현식의 문자 클래스를 정리한 표이다. 
+#### Altibase 정규 표현식 모드의 정규 표현식 문법
 
-| 문자 클래스 | 축약형 | 설명                                                         |
-| ----------- | ------ | ------------------------------------------------------------ |
-| [:alnum:]   |        | 알파벳과 숫자                                                |
-| [:alpha:]   | \\a    | 알파벳 문자                                                  |
-| [:blank:]   |        | 스페이스나 탭                                                |
-| [:cntrl:]   | \\c    | 아스키 코드에서 127번 문자와 31번 이하의 문자                |
-| [:digit:]   | \\d    | 숫자                                                         |
-| [:graph:]   |        | 아스키 코드에서 출력할 수 있는 문자 32 ~ 126 중, 공백 문자(32)를 제외한 문자 |
-| [:lower:]   | \\l    | 알파벳 소문자                                                |
-| [:print:]   |        | 아스키 코드에서 출력할 수 있는 문자 32 ~ 126                 |
-| [:punct:]   | \\p    | 아스키 코드에서 출력할 수 있는 문자 32 ~ 126 중, 공백 문자, 숫자, 알파벳을 제외한 문자 |
-| [:space:]   | \\s    | 출력되지 않는 공백 문자(space, carriage return, newline, vertical tab, form feed) 등 |
-| [:upper:]   | \\u    | 알파벳 대문자                                                |
-| [:word:]    | \\w    | 알파벳, 숫자, \_                                             |
-| [:xdigit:]  | \\x    | 16진수 숫자, 0-9, a-f, A-F                                   |
-|             | \\A    | \\a를 제외한 모든 문자                                       |
-|             | \\W    | \\w를 제외한 모든 문자                                       |
-|             | \\S    | \\s를 제외한 모든 문자                                       |
-|             | \\D    | \\d를 제외한 모든 문자                                       |
-|             | \\X    | \\x를 제외한 모든 문자                                       |
-|             | \\C    | \\c를 제외한 모든 문자                                       |
-|             | \\P    | \\p를 제외한 모든 문자                                       |
-|             | \\b    | 낱말 경계                                                    |
-|             | \\B    | \\b를 제외한 모든 문자                                       |
+다음은 Altibase 정규 표현식 모드의 정규 표현식 문법에 대한 설명이다.
 
-다음은 Altibase 정규 표현식 라이브러리의 정규 표현식에 사용할 수 있는 특수 문자들과 그 의미를 정리한 표이다.
+##### 메타 문자
+
+메타 문자는 정규 표현식에서 사용하는 특별한 의미를 가지는 기호이다. 아래는 Altibase 정규 표현식 모드에서 사용할 수 있는 메타 문자를 정리한 표이다. 
 
 <table>
 <tbody>
@@ -25725,15 +25719,55 @@ Altibase 정규 표현식 라이브러리의 정규 표현식은 아래와 같�
 
 
 
-#### 펄 호환 정규 표현식 (Perl Compatible Regular Expressions, PCRE2) 라이브러리
+##### 문자 클래스
 
-> *Altibase 7.1.0.7.7부터 지원하며 PCRE2 라이브러리의 버전은 10.40 이다.* 
+대괄호 안의 패턴의 일부를 문자 클래스라고 한다. 문자 클래스는 대괄호로 둘러싸인 POSIX 표기법을 사용하거나 백슬래시로 문자 유형을 지정하여 사용한다. 
 
-PCRE2 라이브러리의 정규 표현식은 아래와 같은 제약 사항과 특징이 있다.
+다음은 문자 클래스 별 의미를 설명하는 표이다.
+
+| POSIX 표기법 | 문자 유형 지정 | 설명                                                         |
+| ------------ | -------------- | ------------------------------------------------------------ |
+| [:alnum:]    |                | 알파벳과 숫자                                                |
+| [:alpha:]    | \\a            | 알파벳 문자                                                  |
+| [:blank:]    |                | 스페이스나 탭                                                |
+| [:cntrl:]    | \\c            | 아스키 코드에서 127번 문자와 31번 이하의 문자                |
+| [:digit:]    | \\d            | 숫자                                                         |
+| [:graph:]    |                | 아스키 코드에서 출력할 수 있는 문자 32 ~ 126 중, 공백 문자(32)를 제외한 문자 |
+| [:lower:]    | \\l            | 알파벳 소문자                                                |
+| [:print:]    |                | 아스키 코드에서 출력할 수 있는 문자 32 ~ 126                 |
+| [:punct:]    | \\p            | 아스키 코드에서 출력할 수 있는 문자 32 ~ 126 중, 공백 문자, 숫자, 알파벳을 제외한 문자 |
+| [:space:]    | \\s            | 출력되지 않는 공백 문자(space, carriage return, newline, vertical tab, form feed) 등 |
+| [:upper:]    | \\u            | 알파벳 대문자                                                |
+| [:word:]     | \\w            | 알파벳, 숫자, \_                                             |
+| [:xdigit:]   | \\x            | 16진수 숫자, 0-9, a-f, A-F                                   |
+|              | \\A            | \\a를 제외한 모든 문자                                       |
+|              | \\W            | \\w를 제외한 모든 문자                                       |
+|              | \\S            | \\s를 제외한 모든 문자                                       |
+|              | \\D            | \\d를 제외한 모든 문자                                       |
+|              | \\X            | \\x를 제외한 모든 문자                                       |
+|              | \\C            | \\c를 제외한 모든 문자                                       |
+|              | \\P            | \\p를 제외한 모든 문자                                       |
+|              | \\b            | 낱말 경계                                                    |
+|              | \\B            | \\b를 제외한 모든 문자                                       |
+
+
+
+### PCRE2 호환 모드
+
+Altibase의 정규 표현식 모드 중 PCRE2 호환 모드에 대해 살펴보자.
+
+PCRE2 호환 모드는 PCRE2 라이브러리의 정규 표현식 문법을 지원한다. PCRE2 호환 모드는 Altibase 7.1.0.7.7 부터 지원하며 사용된 PCRE2 라이브러리의 버전은 10.40 이다.
+
+#### PCRE2 호환 모드의 특징
+
+먼저, PCRE2 호환 모드는 아래와 같은 특징과 제약 사항이 있다.
 
 - Altibase 서버 캐릭터셋이 US7ASCII 또는 UTF-8인 경우에만 지원한다.
-- Altibase 정규 표현식 라이브러리와 PCRE2 라이브러리의 정규 표현식에서 사용할 수 있는 정규 표현식은 일부 차이가 있다. Altibase 정규 표현식 라이브러리에서 지원하는 정규 표현식을 사용할 수 없거나 같은 정규 표현식의 결과가 달라질 수 있다. 대표적인 사항들에 대한 요약은 하단 정규 표현식 라이브러리 별 문법 차이점을 참조한다.
-- Altibase 정규 표현식 라이브러리에서 지원하지 않는 한글 검색이 가능하며, 역참조, 전방 탐색, 후방 탐색 그리고 조건부 정규 표현식을 지원한다.
+- 한글 검색이 가능하다.
+- 역참조, 전방 탐색, 후방 탐색 그리고 조건부 정규 표현식을 지원한다.
+- Altibase 정규 표현식 모드와 PCRE2 호환 모드의 정규 표현식 문법은 일부 차이가 있다. 따라서, PCRE2 호환 모드로 설정하면  Altibase 정규 표현식 모드에서 지원하는 문법을 사용할 수 없거나 같은 정규 표현식 문법을 사용하더라도 질의문의 결과가 달라질 수 있다. 대표적인 차이점은 하단의 정규 표현식 모드 별 문법 차이점을 참조한다.
+
+#### PCRE2 호환 모드의 정규 표현식 문법
 
 다음은 PCRE 라이브러리의 정규 표현식에 사용할 수 있는 문법과 그 설명을 정리한 표이다.
 
@@ -25841,7 +25875,7 @@ M-T102
 AU-100
 8 rows selected.
 ```
-	
+
 문자 클래스
 <table>
   <tbody>
@@ -26071,7 +26105,7 @@ manager
 planner
 3 rows selected.
 ```
-	
+
 \p와 \P 문법에서 사용 가능한 일반적인 캐릭터 속성
 <table>
   <tbody>
@@ -26287,6 +26321,7 @@ Adlam, Ahom, Anatolian_Hieroglyphs, Arabic, Armenian, Avestan, Balinese, Bamum, 
 \X 이스케이프 문자는 확장 문자소 클러스터로 구성된 유니코드 캐릭터들과 매치된다. 확장 문자소에 대한 자세한 정보는 [유니코드 공식 문서 UAX #29: Unicode Text Segmentation](http://www.unicode.org/reports/tr29/#Grapheme_Cluster_Boundaries)를 참고하기 바란다. 확장 문자소 매칭에 대한 자세한 정보는 [PCRE2 패턴 매뉴얼 페이지](https://www.pcre.org/current/doc/html/pcre2pattern.html)를 참고하기 바란다.
 	
 앵커
+
 <table>
   <tbody>
     <tr>
@@ -26336,7 +26371,7 @@ EMP_JOB
 manager
 1 row selected.
 ```
-	
+
 그룹화 구문
 <table>
   <tbody>
@@ -26387,7 +26422,7 @@ EMP_JOB
 manager
 1 row selected.
 ```
-	
+
 탐색 구문
 <table>
   <tbody>
@@ -26489,7 +26524,7 @@ REGEXP_INSTR(EMP_JOB,'A(?=N)')
 3
 6 rows selected.
 ```
-	
+
 한정 기호
 <table>
   <tbody>
@@ -26572,7 +26607,7 @@ EMP_JOB
 planner
 1 row selected.
 ```
-	
+
 역참조
 <table>
   <tbody>
@@ -26679,7 +26714,7 @@ webmaster
 manager
 2 rows selected.
 ```
-	
+
 정규식 처리 설정
 <table>
   <tbody>
@@ -26783,7 +26818,7 @@ webmaster
 manager
 2 rows selected.
 ```
-	
+
 그 밖의 PCRE2 라이브러리의 정규 표현식 문법에 대한 자세한 내용은 [PCRE2 패턴 매뉴얼 페이지](https://www.pcre.org/current/doc/html/pcre2pattern.html)를 참고하기 바란다.
 사용 중 발생한 에러는 아래 에러 메세지 목록을 참고하기 바란다.
 	
