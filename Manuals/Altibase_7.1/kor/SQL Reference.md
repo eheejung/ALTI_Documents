@@ -25526,7 +25526,7 @@ No rows selected.
 A.부록: 정규 표현식
 -----------------
 
-이 장에서 Altibase가 제공하는 정규 표현식에 대해서 설명한다.
+이 장에서 Altibase가 제공하는 정규 표현식에 대해서 설명한다. 이 장에서 사용한 샘플 스키마는 $ALTIBASE_HOME/sample/APRE/schema/schema.sql를 이용하였다. 
 
 ### 정규 표현식
 
@@ -25604,7 +25604,7 @@ Altibase 정규 표현식 모드는 최소한의 정규 표현식 문법을 지�
 
 메타 문자는 정규 표현식에서 사용하는 특별한 의미를 가지는 기호이다. 아래는 Altibase 정규 표현식 모드에서 사용할 수 있는 메타 문자를 정리한 표이다. 
 
-|문자&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 설명                                                         |
+|문자 | 설명                                                         |
 | :-------- | :----------------------------------------------------------- |
 | \         |                                                              |
 | ^         | 문자열의 시작 위치를 의미한다.                               |
@@ -25624,7 +25624,7 @@ Altibase 정규 표현식 모드는 최소한의 정규 표현식 문법을 지�
 
 이스케이스 문자는 문자열 내에서 특수한 기능을 수행하는 문자로, 역슬래시와 함께 사용한다. 아래는 Altibase 정규 표현식 모드에서 지원하는 이스케이프 문자이다. 
 
-| 문자&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 설명                         |
+| 문자 | 설명                         |
 | :--- | :--------------------------- |
 | \t   | 탭(tab)                      |
 | \n   | 개행 문자(line feed)         |
@@ -25637,7 +25637,7 @@ Altibase 정규 표현식 모드는 최소한의 정규 표현식 문법을 지�
 
 다음은 문자 클래스 별 의미를 설명하는 표이다.
 
-| POSIX 표기법&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 문자 유형&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 설명                                                         |
+| POSIX 표기법 | 문자 유형 | 설명                                                         |
 | :----------- | :--------- | :------------------------------------------------------------ |
 | [:alnum:]    |           | 알파벳과 숫자                                                |
 | [:alpha:]    | \\a       | 알파벳 문자                                                  |
@@ -25690,7 +25690,7 @@ PCRE2 호환 모드에서 메타 문자는 대괄호 안을 제외한 어느 곳
 > ###### 대괄호 밖에서의 메타 문자
 >
 
-| 문자&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 설명                                      |
+| 문자| 설명                                      |
 | :----------------------------------------------------------- | :---------------------------------------- |
 | \                                                            | 여러 용도로 사용되는 일반 이스케이프 문자 |
 | ^                                                            | 문자열(또는 여러 줄 모드에서 줄)의 시작   |
@@ -25707,7 +25707,7 @@ PCRE2 호환 모드에서 메타 문자는 대괄호 안을 제외한 어느 곳
 
 > ###### 대괄호 안에서의 메타 문자
 
-| 문자&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 설명                                                         |
+| 문자 | 설명                                                         |
 | :--------------------------------- | :----------------------------------------------------------- |
 | \                                  | 일반 이스케이프 문자                                         |
 | ^                                  | ^ 바로 뒤 문자로 시작하지 않는 문자negate the class, but only if the first character |
@@ -25719,7 +25719,7 @@ PCRE2 호환 모드에서 메타 문자는 대괄호 안을 제외한 어느 곳
 
 이스케이스 문자는 문자열 내에서 특수한 기능을 수행하는 문자로, 역슬래시와 함께 사용한다. 아래는 PCRE2 호환 모드에서 지원하는 이스케이프 문자이다. 
 
-| 문자&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 설명                                                         |
+| 문자 | 설명                                                         |
 | :--------------------------------- | :----------------------------------------------------------- |
 | \a                                 | 경고음 문자                                                  |
 | \c*x*                              | control-*x* 문자. *x*는 출력 가능한 아스키 문자가 올 수 있다. |
@@ -25756,7 +25756,7 @@ AU-100
 
 백슬래시의 또 다른 용도로 일반 문자 유형을 지정할 수 있다. 
 
-|  문자&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     | 설명 |
+|  문자     | 설명 |
 | :------- | :--- |
 | \d       | 10진수 숫자 |
 | \D       | 10진수 숫자가 아닌 문자 |
@@ -25841,7 +25841,7 @@ planner
 
 위에서 안내한 표준 유니코드 속성 외에 PCRE2에서 추가적으로 지원하는 유니코드 문자 속성이다.|
 
-| 속성 | 설명                                                         |
+| 속성  | 설명                                                          |
 | :--- | :----------------------------------------------------------- |
 | Xan  | 영문자Alphanumeric: union of properties L and N              |
 | Xps  | POSIX space: property Z or tab, NL, VT, FF, CR               |
@@ -25860,7 +25860,7 @@ Adlam, Ahom, Anatolian_Hieroglyphs, Arabic, Armenian, Avestan, Balinese, Bamum, 
 
 
 
-	
+​	
 
 > ###### 유니코드 확장 문자소
 
@@ -25871,7 +25871,7 @@ Adlam, Ahom, Anatolian_Hieroglyphs, Arabic, Armenian, Avestan, Balinese, Bamum, 
 ##### 문자 클래스
 
 | 문법         | 설명                                                         |
-| ------------ | ------------------------------------------------------------ |
+| :------------ | :------------------------------------------------------------ |
 | [...]        | 캐릭터 셋문자 클래스 표현식. 각괄호 내의 한 문자와 매치. 예를 들어, [abc]는 "a", "b", 또는 "c"와 매칭된다. [a-z]는 "a"에서 "z"까지의 소문자와 매칭된다. 이러한 형태는 혼합될 수 있다: [abcx-z]는 "a", "b", "c", "x", "y", 또는 "z"와 매치하며, [a-cx-z]도 마찬가지이다.] 문자가 (^ 뒤의) 첫 문자일 경우 각괄호 표현식에 포함될 수 있다: []abc].^ 문자가 [] 내의 첫 번째 위치에 올 경우 []내의 문자를 제외한 나머지를 의미한다. 예를 들면, [^abc]d는 ad, bd, cd를 제외한 ed, fd 등과 매칭된다. [^a-z]는 알파벳 소문자로 시작하지 않는 모든 문자를 의미한다. |
 | [^...]       | 지정된 캐릭터 셋 이외의 캐릭터 셋                            |
 | [x-y]        | 범위 (16진수 문자에서도 사용 가능)                           |
@@ -25922,7 +25922,7 @@ AU-100
 ##### 앵커
 
 | 문법 | 설명                                                         |
-| ---- | ------------------------------------------------------------ |
+| :---- | :------------------------------------------------------------ |
 | \b   | 단어 경계 위치                                               |
 | \B   | 단어 경계가 아닌 위치                                        |
 | ^    | 문자열의 시작 위치                                           |
@@ -25935,7 +25935,7 @@ AU-100
 사용 예제는 아래와 같다.
 
 ```sql
-iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(emp_job, '^m');
+iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '^m');
 EMP_JOB
 -------------------
 manager
@@ -25944,57 +25944,29 @@ manager
 
 ##### 그룹화 구문
 
-<table>
-  <tbody>
-    <tr>
-      <th>문법</th>
-      <th>설명</th>
-    </tr>
-    <tr>
-      <td>(...)</td>
-      <td>capture group</td>
-    </tr>
-    <tr>
-      <td>(?&lt;name&gt;...)</td>
-      <td>named capture group (Perl)</td>
-    </tr>
-    <tr>
-      <td>(?'name'...)</td>
-      <td>named capture group (Perl)</td>
-    </tr>
-    <tr>
-      <td>(?P&lt;name&gt;...)</td>
-      <td>named capture group (Python)</td>
-    </tr>
-    <tr>
-      <td>(?:...)</td>
-      <td>non-capture group</td>
-    </tr>
-    <tr>
-      <td>(?|...)</td>
-      <td>non-capture group; reset group numbers for capture groups in each alternative</td>
-    </tr>
-    <tr>
-      <td>(?&gt;...)</td>
-      <td>atomic non-capture group</td>
-    </tr>
-    <tr>
-      <td>(*atomic:...)</td>
-      <td>atomic non-capture group</td>
-    </tr>
-  </tbody>
-</table>
+| 문법          | 설명                                                         |
+| :------------ | :----------------------------------------------------------- |
+| (...)         | capture group                                                |
+| (?<name>...)  | named capture group (Perl)                                   |
+| (?'name'...)  | named capture group (Perl)                                   |
+| (?P<name>...) | named capture group (Python)                                 |
+| (?:...)       | non-capture group                                            |
+| (?\|...)      | non-capture group; reset group numbers for capture groups in each alternative |
+| (?>...)       | atomic non-capture group                                     |
+| (*atomic:...) | atomic non-capture group                                     |
+
 사용 예제는 아래와 같다.
 
 ```sql
-iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '(A)N\1');
+iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '(a)n\1');
 EMP_JOB
 -------------------
 manager
 1 row selected.
 ```
 
-탐색 구문
+##### 탐색 구문
+
 <table>
   <tbody>
     <tr>
@@ -26078,14 +26050,14 @@ manager
 사용 예제는 아래와 같다.
 
 ```sql
-iSQL> SELECT REGEXP_SUBSTR(EMP_JOB, 'A(?=N)') FROM EMPLOYEES;
+iSQL> SELECT REGEXP_SUBSTR(EMP_JOB, 'a(?=n)') FROM EMPLOYEES;
 REGEXP_SUBSTR(EMP_JOB,'A(?=N)')
 -----------------------------------
 a
 a
 6 rows selected.
 
-iSQL> SELECT REGEXP_INSTR(EMP_JOB, 'A(?=N)') FROM EMPLOYEES;
+iSQL> SELECT REGEXP_INSTR(EMP_JOB, 'a(?=n)') FROM EMPLOYEES;
 REGEXP_INSTR(EMP_JOB,'A(?=N)')
 ---------------------------------
 0
@@ -26099,188 +26071,62 @@ REGEXP_INSTR(EMP_JOB,'A(?=N)')
 
 ##### 한정 기호
 
-<table>
-  <tbody>
-    <tr>
-      <th>문법</th>
-      <th>설명</th>
-    </tr>
-    <tr>
-      <td>?</td>
-      <td>앞선 문자와 0 회 또는 1회 매칭된다.</td>
-    </tr>
-    <tr>
-      <td>?+</td>
-      <td>앞선 문자와 0 회 또는 1회 매칭된다.</td>
-    </tr>
-    <tr>
-      <td>??</td>
-      <td>앞선 문자와 0 회 또는 1회 매칭된다.</td>
-    </tr>
-    <tr>
-      <td>*</td>
-      <td>0 or more, greedy 앞에 있는 요소와 0 회 또는 그 이상 횟수로 매칭된다. 예를 들어, ab*c는 "ac", "abc", "abbbc", 등과 매칭된다. [xyz]*는 "", "x", "y", "z", "zx", "zyx", "xyzzy", 등과 일치한다. (ab)*는 "", "ab", "abab", "ababab" 등과 매칭된다.</td>
-    </tr>
-    <tr>
-      <td>*+</td>
-      <td>앞에 있는 요소와 0 회 또는 그 이상 횟수로 매칭된다.</td>
-    </tr>
-    <tr>
-      <td>*?</td>
-      <td>앞에 있는 요소와 0 회 또는 그 이상 횟수로 매칭된다.</td>
-    </tr>
-    <tr>
-      <td>+</td>
-      <td>앞선 문자와 1회 이상 횟수로 매칭된다.</td>
-    </tr>
-    <tr>
-      <td>++</td>
-      <td>앞선 문자와 1회 이상 횟수로 매칭된다.</td>
-    </tr>
-    <tr>
-      <td>+?</td>
-      <td>앞선 문자와 1회 이상 횟수로 매칭된다.</td>
-    </tr>
-    <tr>
-      <td>{n}</td>
-      <td>앞선 요소와 n회 매칭된다.</td>
-    </tr>
-    <tr>
-      <td>{n,m}</td>
-      <td>앞선 요소와 최소 n회, 최대 m회 매칭된다. 예를 들어, a{3,5}는 "aaa", "aaaa", 및 "aaaaa"와 매칭된다.</td>
-    </tr>
-    <tr>
-      <td>{n,m}+</td>
-      <td>앞선 요소와 최소 n회, 최대 m회 매칭된다.</td>
-    </tr>
-    <tr>
-      <td>{n,m}?</td>
-      <td>앞선 요소와 최소 n회, 최대 m회 매칭된다.</td>
-    </tr>
-    <tr>
-      <td>{n,}</td>
-      <td>앞선 요소와 n회 이상 매칭된다.</td>
-    </tr>
-    <tr>
-      <td>{n,}+</td>
-      <td>앞선 요소와 n회 이상 매칭된다.</td>
-    </tr>
-    <tr>
-      <td>{n,}?</td>
-      <td>앞선 요소와 n회 이상 매칭된다.</td>
-    </tr>
-  </tbody>
-</table>
+| 문법   | 설명                                                         |
+| :----- | :----------------------------------------------------------- |
+| ?      | 앞선 문자와 0 회 또는 1회 매칭된다.                          |
+| ?+     | 앞선 문자와 0 회 또는 1회 매칭된다.                          |
+| ??     | 앞선 문자와 0 회 또는 1회 매칭된다.                          |
+| *      | 0 or more, greedy 앞에 있는 요소와 0 회 또는 그 이상 횟수로 매칭된다. 예를 들어, ab*c는 "ac", "abc", "abbbc", 등과 매칭된다. [xyz]*는 "", "x", "y", "z", "zx", "zyx", "xyzzy", 등과 일치한다. (ab)*는 "", "ab", "abab", "ababab" 등과 매칭된다. |
+| *+     | 앞에 있는 요소와 0 회 또는 그 이상 횟수로 매칭된다.          |
+| *?     | 앞에 있는 요소와 0 회 또는 그 이상 횟수로 매칭된다.          |
+| +      | 앞선 문자와 1회 이상 횟수로 매칭된다.                        |
+| ++     | 앞선 문자와 1회 이상 횟수로 매칭된다.                        |
+| +?     | 앞선 문자와 1회 이상 횟수로 매칭된다.                        |
+| {n}    | 앞선 요소와 n회 매칭된다.                                    |
+| {n,m}  | 앞선 요소와 최소 n회, 최대 m회 매칭된다. 예를 들어, a{3,5}는 "aaa", "aaaa", 및 "aaaaa"와 매칭된다. |
+| {n,m}+ | 앞선 요소와 최소 n회, 최대 m회 매칭된다.                     |
+| {n,m}? | 앞선 요소와 최소 n회, 최대 m회 매칭된다.                     |
+| {n,}   | 앞선 요소와 n회 이상 매칭된다.                               |
+| {n,}+  | 앞선 요소와 n회 이상 매칭된다.                               |
+| {n,}?  | 앞선 요소와 n회 이상 매칭된다.                               |
+
 사용 예제는 아래와 같다.
 
-```
-iSQL> select emp_job from EMPLOYEES where regexp_like(emp_job, '^pl.*$');
+```sql
+iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '^pl.*$');
 EMP_JOB
 -------------------
 planner
 1 row selected.
 ```
 
-역참조
-<table>
-  <tbody>
-    <tr>
-      <th>문법</th>
-      <th>설명</th>
-    </tr>
-    <tr>
-      <td>\n</td>
-      <td>
-        <div>순번를 사용하여 참조 (정규식에 따라 순번이 모호할 수 있음)</div>
-      </td>
-    </tr>
-    <tr>
-      <td>\gn</td>
-      <td>
-        <div>순번를 사용하여 참조</div>
-      </td>
-    </tr>
-    <tr>
-      <td>\g{n}</td>
-      <td>
-        <div>순번를 사용하여 참조</div>
-      </td>
-    </tr>
-    <tr>
-      <td>\g+n</td>
-      <td>
-        <div>상대 순번을 사용하여 참조 (PCRE2 확장 문법)</div>
-      </td>
-    </tr>
-    <tr>
-      <td>\g-n</td>
-      <td>
-        <div>상대 순번을 사용하여 참조</div>
-      </td>
-    </tr>
-    <tr>
-      <td>\g{+n}</td>
-      <td>
-        <div>상대 순번을 사용하여 참조 (PCRE2 확장 문법)</div>
-      </td>
-    </tr>
-    <tr>
-      <td>\g{-n}</td>
-      <td>
-        <div>상대 순번을 사용하여 참조</div>
-      </td>
-    </tr>
-    <tr>
-      <td>\k&lt;name&gt;</td>
-      <td>
-        <div>이름을 사용하여 참조 (Perl 문법)</div>
-      </td>
-    </tr>
-    <tr>
-      <td>\k'name'</td>
-      <td>
-        <div>이름을 사용하여 참조 (Perl 문법)</div>
-      </td>
-    </tr>
-    <tr>
-      <td>\g{name}</td>
-      <td>
-        <div>이름을 사용하여 참조 (Perl 문법)</div>
-      </td>
-    </tr>
-    <tr>
-      <td>\k{name}</td>
-      <td>
-        <div>이름을 사용하여 참조 (.NET 문법)</div>
-        <div>reference by name (.NET)</div>
-      </td>
-    </tr>
-    <tr>
-      <td>(?P=name)</td>
-      <td>
-        <div>이름을 사용하여 참조 (Python 문법)</div>
-      </td>
-    </tr>
-  </tbody>
-</table>
+##### 역참조
 
-조건부 일치
-<table>
-  <tbody>
-    <tr>
-      <th>문법</th>
-      <th>설명</th>
-    </tr>
-    <tr>
-      <td>expr|expr|expr</td>
-      <td>여러 식 중에 하나를 선택한다.</td>
-    </tr>
-  </tbody>
-</table>
+| 문법      | 설명                                                       |
+| :--------- | :---------------------------------------------------------- |
+| \n        | 순번를 사용하여 참조 (정규식에 따라 순번이 모호할 수 있음) |
+| \gn       | 순번를 사용하여 참조                                       |
+| \g{n}     | 순번를 사용하여 참조                                       |
+| \g+n      | 상대 순번을 사용하여 참조 (PCRE2 확장 문법)                |
+| \g-n      | 상대 순번을 사용하여 참조                                  |
+| \g{+n}    | 상대 순번을 사용하여 참조 (PCRE2 확장 문법)                |
+| \g{-n}    | 상대 순번을 사용하여 참조                                  |
+| \k<name>  | 이름을 사용하여 참조 (Perl 문법)                           |
+| \k'name'  | 이름을 사용하여 참조 (Perl 문법)                           |
+| \g{name}  | 이름을 사용하여 참조 (Perl 문법)                           |
+| \k{name}  | 이름을 사용하여 참조 (.NET 문법)reference by name (.NET)   |
+| (?P=name) | 이름을 사용하여 참조 (Python 문법)                         |
+
+##### 조건부 일치
+
+| 문법             | 설명                          |
+| :--------------- | :---------------------------- |
+| expr\|expr\|expr | 여러 식 중에 하나를 선택한다. |
+
 사용 예제는 아래와 같다.
 
-```
-iSQL> select emp_job from EMPLOYEES where regexp_like(emp_job, 'ma(s|n)');
+```sql
+iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, 'ma(s|n)');
 EMP_JOB
 -------------------
 webmaster
@@ -26288,79 +26134,25 @@ manager
 2 rows selected.
 ```
 
-정규식 처리 설정
-<table>
-  <tbody>
-    <tr>
-      <th>문법</th>
-      <th>설명</th>
-    </tr>
-    <tr>
-      <td>(?i)</td>
-      <td>
-        <p>대소문자 무시</p>
-      </td>
-    </tr>
-    <tr>
-      <td>(?J)</td>
-      <td>
-        <div>같은 이름을 가지는 그룹 허용</div>
-      </td>
-    </tr>
-    <tr>
-      <td>(?m)</td>
-      <td>
-        <p>다중행 매칭 사용</p>
-      </td>
-    </tr>
-    <tr>
-      <td>(?n)</td>
-      <td>
-        <p>자동 캡쳐 사용하지 않음</p>
-      </td>
-    </tr>
-    <tr>
-      <td>(?s)</td>
-      <td>
-        <div>단일행 매칭 사용</div>
-      </td>
-    </tr>
-    <tr>
-      <td>(?U)</td>
-      <td>
-        <div>비탐욕적(게으른) 방법으로 매칭</div>
-      </td>
-    </tr>
-    <tr>
-      <td>(?x)</td>
-      <td>
-        <div>확장: 클래스에 들어있지 않은 스페이스와 탭 문자 무시</div>
-      </td>
-    </tr>
-    <tr>
-      <td>(?xx)</td>
-      <td>
-        <div>(?x)와 같지만 클래스들에 있는 스페이스와 탭 문자도 무시</div>
-      </td>
-    </tr>
-    <tr>
-      <td>(?-...)</td>
-      <td>
-        <p>설정된 옵션(들) 해제</p>
-      </td>
-    </tr>
-    <tr>
-      <td>(?^)</td>
-      <td>
-        <div>imnsx 옵션 해제</div>
-      </td>
-    </tr>
-  </tbody>
-</table>
+##### 정규식 처리 설정
+
+| 문법    | 설명                                                    |
+| :------ | :------------------------------------------------------ |
+| (?i)    | 대소문자 무시                                           |
+| (?J)    | 같은 이름을 가지는 그룹 허용                            |
+| (?m)    | 다중행 매칭 사용                                        |
+| (?n)    | 자동 캡쳐 사용하지 않음                                 |
+| (?s)    | 단일행 매칭 사용                                        |
+| (?U)    | 비탐욕적(게으른) 방법으로 매칭                          |
+| (?x)    | 확장: 클래스에 들어있지 않은 스페이스와 탭 문자 무시    |
+| (?xx)   | (?x)와 같지만 클래스들에 있는 스페이스와 탭 문자도 무시 |
+| (?-...) | 설정된 옵션(들) 해제                                    |
+| (?^)    | imnsx 옵션 해제                                         |
+
 사용 예제는 아래와 같다.
 
-```
-iSQL> select emp_job from EMPLOYEES where regexp_like(emp_job, '(?i)MA(s|n)');
+```sql
+iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '(?i)MA(s|n)');
 EMP_JOB
 -------------------
 webmaster
@@ -26368,23 +26160,18 @@ manager
 2 rows selected.
 ```
 
-주석
-<table>
-  <tbody>
-    <tr>
-      <th>문법</th>
-      <th>설명</th>
-    </tr>
-    <tr>
-      <td>(?#....)</td>
-      <td>comment (not nestable)</td>
-    </tr>
-  </tbody>
-</table>
+##### 주석
+
+| 문법     | 설명                   |
+| :------- | :--------------------- |
+| (?#....) | comment (not nestable) |
+
+
+
 사용 예제는 아래와 같다.
 
-```
-iSQL> select emp_job from EMPLOYEES where regexp_like(emp_job, '(?i)M(?#test)A(s|n)');
+```sql
+iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '(?i)M(?#test)A(s|n)');
 EMP_JOB
 -------------------
 webmaster
