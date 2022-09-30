@@ -21247,26 +21247,14 @@ ERR-2106C : PCRE2 error: <1%s> (occurred in <0%s>)
 PCRE2 호환 모드에서 올바르지 않은 정규 표현식 문법을 사용할 때 발생하는 에러 메시지 목록이다. SQL Reference 매뉴얼 또는 PCRE2 페이지를 참고하여 문법을 올바르게 수정해야 한다.
 
 `\ at end of pattern`
+
 `\c at end of pattern`
-`unrecognized character follows \`
+
+`unrecognized character follows`
+
 `numbers out of order in {} quantifier`
-`number too big in {} quantifier`
-`missing terminating ] for character class`
-`escape sequence is invalid in character class`
-`range out of order in character class`
-`quantifier does not follow a repeatable item`
-`unrecognized character after (? or (?-`
-`POSIX named classes are supported only within a class`
-`POSIX collating elements are not supported`
-`missing closing parenthesis`
-`reference to non-existent subpattern`
-`pattern passed as NULL`
-`missing ) after (?# comment`
-`unmatched closing parenthesis`
-`missing closing parenthesis for condition`
-`lookbehind assertion is not fixed length`
-`C is not allowed in a lookbehind assertion in UTF-8 mode`
-`PCRE2 does not support \\F, \\L, \\l, \\N{name}, \\U, or \\u\`
+
+number too big in {} quantifiermissing terminating ] for character classescape sequence is invalid in character classrange out of order in character classquantifier does not follow a repeatable itemunrecognized character after (? or (?-POSIX named classes are supported only within a classPOSIX collating elements are not supportedmissing closing parenthesisreference to non-existent subpatternpattern passed as NULLmissing ) after (?# commentunmatched closing parenthesismissing closing parenthesis for conditionlookbehind assertion is not fixed lengthC is not allowed in a lookbehind assertion in UTF-8 modePCRE2 does not support \\F, \\L, \\l, \\N{name}, \\U, or \\u\`
 `number after (?C is greater than 255`
 a relative value of zero is not allowed
 conditional subpattern contains more than two branches
@@ -21374,33 +21362,62 @@ UTF-8 error: illegal byte (0xfe or 0xff)
 
 PCRE2 라이브러리 내부 동작 수행 중 오류가 발생했습니다. 구체적인 원인 확인은 Altibase 고객지원 센터로 연락바랍니다.
 
-internal error: unexpected repeat
-unrecognised compile-time option bit(s)
-internal error: code overflow
-internal error in pcre2_study(): should not occur
-unknown property after \\P or \\p
-internal error: overran compiling workspace
-internal error: previously-checked referenced subpattern not found
-internal error: unknown newline setting
-obsolete error (should not occur)
-internal error: parsed pattern overflow
-internal error: unknown meta code in check_lookbehinds()
+`internal error: unexpected repeat`
+
+`unrecognised compile-time option bit(s)`
+
+`internal error: code overflow`
+
+`internal error in pcre2_study(): should not occur`
+
+`unknown property after \\P or \\p`
+
+`internal error: overran compiling workspace`
+
+`internal error: previously-checked referenced subpattern not found`
+
+`internal error: unknown newline setting`
+
+`obsolete error (should not occur)`
+
+`internal error: parsed pattern overflow`
+
+`internal error: unknown meta code in check_lookbehinds()`
+
 using UTF is disabled by the application
+
 using UCP is disabled by the application
+
 internal error: unknown opcode in auto_possessify()
+
 using \\C is disabled by the application
+
 using \\C is disabled in this PCRE2 library
+
 internal error: unknown code in parsed pattern
+
 internal error: bad code value in parsed_skip()
+
 invalid option bits with PCRE2_LITERAL
+
 internal error - pattern overwritten?
+
 internal error - duplicate substitution match
+
 bad data value
+
 patterns do not all use the same character tables
+
 magic number missing
+
 pattern compiled in wrong mode: 8/16/32-bit error
+
 bad offset value
+
 bad option value
+
 bad offset into UTF string
+
 callout error code
+
 bad serialized data
