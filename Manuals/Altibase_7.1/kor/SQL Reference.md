@@ -25690,20 +25690,20 @@ PCRE2 호환 모드에서 메타 문자는 대괄호 안을 제외한 어느 곳
 > ###### 대괄호 밖에서의 메타 문자
 >
 
-|문자&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 설명                                      |
-|:---- |:----------------------------------------- |
-| \    | 여러 용도로 사용되는 일반 이스케이프 문자 |
-| ^    | 문자열(또는 여러 줄 모드에서 줄)의 시작   |
-| $    | 문자열(또는 여러 줄 모드에서 줄)의 끝     |
-| .    | 개행문자를 제외한 모든 문자와 일치        |
-| [    | 문자 클래스 정의 시작                     |
-| \|   | 여러 식 중 하나를 선택                    |
-| (    | start group or control verb               |
-| )    | end group or control verb                 |
-| *    | 0회 이상 매칭되는 문자                    |
-| +    | 1회 이상 매칭되는 문자                    |
-| ?    | 0 또는 1회 매칭되는 문자                  |
-| {    | 최소/최대값start min/max                  |
+| 문자&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 설명                                      |
+| :----------------------------------------------------------- | :---------------------------------------- |
+| \                                                            | 여러 용도로 사용되는 일반 이스케이프 문자 |
+| ^                                                            | 문자열(또는 여러 줄 모드에서 줄)의 시작   |
+| $                                                            | 문자열(또는 여러 줄 모드에서 줄)의 끝     |
+| .                                                            | 개행문자를 제외한 모든 문자와 일치        |
+| [                                                            | 문자 클래스 정의 시작                     |
+| \|                                                           | 여러 식 중 하나를 선택                    |
+| (                                                            | start group or control verb               |
+| )                                                            | end group or control verb                 |
+| *                                                            | 0회 이상 매칭되는 문자                    |
+| +                                                            | 1회 이상 매칭되는 문자                    |
+| ?                                                            | 0 또는 1회 매칭되는 문자                  |
+| {                                                            | 최소/최대값start min/max                  |
 
 > ###### 대괄호 안에서의 메타 문자
 
@@ -25720,7 +25720,7 @@ PCRE2 호환 모드에서 메타 문자는 대괄호 안을 제외한 어느 곳
 이스케이스 문자는 문자열 내에서 특수한 기능을 수행하는 문자로, 역슬래시와 함께 사용한다. 아래는 PCRE2 호환 모드에서 지원하는 이스케이프 문자이다. 
 
 | 문자&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 설명                                                         |
-|:---------------------------------- | :------------------------------------------------------------ |
+| :--------------------------------- | :----------------------------------------------------------- |
 | \a                                 | 경고음 문자                                                  |
 | \c*x*                              | control-*x* 문자. *x*는 출력 가능한 아스키 문자가 올 수 있다. |
 | \e                                 | ESC 문자(escape). 아스키 코드의 27번째 문자(hex 1B)          |
@@ -25729,7 +25729,7 @@ PCRE2 호환 모드에서 메타 문자는 대괄호 안을 제외한 어느 곳
 | \r                                 | 캐리지 리턴(carriage return). 아스키 코드의 13번째 문자(hex 0D) |
 | \t                                 | 탭(tab). 아스키 코드의 9번째 문자(hex 09)                    |
 | \0*dd*                             | 아스키 코드의 8진수 코드 dd에 해당하는 문자. 예를 들어 \061은 숫자 1을 의미한다. |
-| \*ddd*                             | 아스키 코드의 8진수 코드 ddd에 해당하는 문자 또는 역참조를 의미한다. |
+| \\*ddd*                            | 아스키 코드의 8진수 코드 ddd에 해당하는 문자 또는 역참조를 의미한다. |
 | \o{*ddd..*}                        | 아스키 코드의 8진수 코드 ddd... 에 해당하는 문자             |
 | \x*hh*                             | 아스키 코드의 16진수 코드 hh에 해당하는 문자. 예를 들어 \x31은  숫자 1을 의미한다. |
 | \x{*hhh..*}                        | 아스키 코드의 16진수 코드 hhh... 에 해당하는 문자            |
@@ -25738,7 +25738,7 @@ PCRE2 호환 모드에서 메타 문자는 대괄호 안을 제외한 어느 곳
 다음은 REGEXP_LIKE 조건 연산자에서 이스케이프 문자를 사용한 예제이다.
 
 ```sql
-iSQL> SELECT GNAME FROM GOODS WHERE REGEXP_LIKE(gname, '\x31');
+iSQL> SELECT GNAME FROM GOODS WHERE REGEXP_LIKE(GNAME, '\x31');
 GNAME
 ------------------------
 IM-310
@@ -25752,127 +25752,152 @@ AU-100
 8 rows selected.
 ```
 
-##### 일반 문자 유형
+일반 문자 유형
 
 백슬래시의 또 다른 용도로 일반 문자 유형을 지정할 수 있다. 
 
 |  문자&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     | 설명 |
 | :------- | :--- |
-| \d       |      |
-| \D       |      |
-| \h       |      |
-| \H       |      |
-| \N       |      |
-| \p{*xx*} |      |
-| \P{*xx*} |      |
-| \R       |      |
-| \s       |      |
-| \S       |      |
-| \v       |      |
-| \V       |      |
-| \w       |      |
-| \W       |      |
-| \X       |      |
+| \d       | 10진수 숫자 |
+| \D       | 10진수 숫자가 아닌 문자 |
+| \h       | 수평 공백 문자, 예를 들어 스페이스와 탭 문자 |
+| \H       | 수평 공백 문자가 아닌 문자 |
+| \N       | 개행 문자가 아닌 문자 |
+| \p{*xx*} | *xx* 속성을 가진 문자 |
+| \P{*xx*} | *xx* 속성이 없는 문자 |
+| \R       | 개행문자 시퀀스 |
+| \s       | 공백 문자 |
+| \S       | 공백 문자가 아닌 문자 |
+| \v       | 수직 공백 문자, 예를 들어 개행 문자 |
+| \V       | 수직 공백 문자가 아닌 문자 |
+| \w       | 단어(word) 문자 |
+| \W       | 단어(word) 문자가 아닌 문자 |
+| \X       | 유니코드 확장 자소 집합(Unicode extended grapheme cluster) |
 
-
-
-##### 유니코드 문자 속성
-
-문자 클래스
-
-<table>
-  <tbody>
-    <tr>
-      <th>문법</th>
-      <th>설명</th>
-    </tr>
-    <tr>
-      <td colspan="1">[...]</td>
-      <td colspan="1">
-        <p>캐릭터 셋</p>
-        <p>문자 클래스 표현식. 각괄호 내의 한 문자와 매치. 예를 들어, [abc]는 "a", "b", 또는 "c"와 매칭된다. [a-z]는 "a"에서 "z"까지의 소문자와 매칭된다. 이러한 형태는 혼합될 수 있다: [abcx-z]는 "a", "b", "c", "x", "y", 또는 "z"와 매치하며, [a-cx-z]도 마찬가지이다.</p>
-        <p>] 문자가 (^ 뒤의) 첫 문자일 경우 각괄호 표현식에 포함될 수 있다: []abc].</p>
-        <p>^ 문자가 [] 내의 첫 번째 위치에 올 경우 []내의 문자를 제외한 나머지를 의미한다. 예를 들면, [^abc]d는 ad, bd, cd를 제외한 ed, fd 등과 매칭된다. [^a-z]는 알파벳 소문자로 시작하지 않는 모든 문자를 의미한다.</p>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="1">[^...]</td>
-      <td colspan="1">지정된 캐릭터 셋 이외의 캐릭터 셋 </td>
-    </tr>
-    <tr>
-      <td colspan="1">[x-y]</td>
-      <td colspan="1">범위 (16진수 문자에서도 사용 가능)</td>
-    </tr>
-    <tr>
-      <td colspan="1">[[:xxx:]]</td>
-      <td colspan="1">POSIX 캐릭터 셋</td>
-    </tr>
-    <tr>
-      <td colspan="1">[[:^xxx:]]</td>
-      <td colspan="1">지정된 POSIX 캐릭터 셋 이외의 캐릭터 셋</td>
-    </tr>
-    <tr>
-      <td>[[:alnum:]]</td>
-      <td>알파벳과 숫자</td>
-    </tr>
-    <tr>
-      <td>[[:alpha:]]</td>
-      <td>알파벳 문자</td>
-    </tr>
-    <tr>
-      <td colspan="1">[[: ascii:]]</td>
-      <td colspan="1">아스키 코드에서 0번부터 127번까지의 문자</td>
-    </tr>
-    <tr>
-      <td>[[:blank:]]</td>
-      <td>스페이스나 탭</td>
-    </tr>
-    <tr>
-      <td>[[:cntrl:]]</td>
-      <td>아스키 코드에서 127번 문자와 31번 이하의 문자</td>
-    </tr>
-    <tr>
-      <td>[[:digit:]]</td>
-      <td>숫자</td>
-    </tr>
-    <tr>
-      <td>[[:graph:]]</td>
-      <td>아스키 코드에서 출력할 수 있는 문자 32 ~ 126 중, 공백 문자(32)를 제외한 문자</td>
-    </tr>
-    <tr>
-      <td>[[:lower:]]</td>
-      <td>알파벳 소문자</td>
-    </tr>
-    <tr>
-      <td>[[:print:]]</td>
-      <td>아스키 코드에서 출력할 수 있는 문자 32 ~ 126</td>
-    </tr>
-    <tr>
-      <td>[[:punct:]]</td>
-      <td>아스키 코드에서 출력할 수 있는 문자 32 ~ 126 중, 공백 문자, 숫자, 알파벳을 제외한 문자</td>
-    </tr>
-    <tr>
-      <td>[[:space:]]</td>
-      <td>출력되지 않는 공백 문자(space, carriage return, newline, vertical tab, form feed) 등</td>
-    </tr>
-    <tr>
-      <td>[[:upper:]]</td>
-      <td>알파벳 대문자</td>
-    </tr>
-    <tr>
-      <td>[[:word:]]</td>
-      <td>알파벳, 숫자, _</td>
-    </tr>
-    <tr>
-      <td>[[:xdigit:]]</td>
-      <td>16진수 숫자, 0-9, a-f, A-F</td>
-    </tr>
-  </tbody>
-</table>
 사용 예제는 아래와 같다.
 
+```sql
+iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '\p{Ll}');
+EMP_JOB
+-------------------
+webmaster
+manager
+planner
+3 rows selected.
 ```
-iSQL> select gname from goods where regexp_like(gname, '[U]');
+
+> ###### 유니코드 문자 속성
+
+\p{*xx*}와 \P{*xx*}에서 사용 가능한 문자 속성을 나타내는 표이다. *xx*로 표시되는 속성은 대소문자를 구분한다. 유니코드 문자 속성 관련한 보다 자세한 내용은 [pcre2pattern](http://www.pcre.org/current/doc/html/pcre2pattern.html#SEC5) 페이지의 Unicode character properties 부분에서 확인할 수 있다.
+
+| 속성 | 설명                  |
+| :--- | :-------------------- |
+| C    | Other                 |
+| Cc   | Control               |
+| Cf   | Format                |
+| Cn   | Unassigned            |
+| Co   | Private use           |
+| Cs   | Surrogate             |
+|      |                       |
+| L    | 영문자Letter          |
+| Ll   | Lower case letter     |
+| Lm   | Modifier letter       |
+| Lo   | Other letter          |
+| Lt   | Title case letter     |
+| Lu   | Upper case letter     |
+| L&   | Ll, Lu, or Lt         |
+|      |                       |
+| M    | Mark                  |
+| Mc   | Spacing mark          |
+| Me   | Enclosing mark        |
+| Mn   | Non-spacing mark      |
+|      |                       |
+| N    | 숫자Number            |
+| Nd   | 10진수Decimal number  |
+| Nl   | Letter number         |
+| No   | Other number          |
+|      |                       |
+| P    | Punctuation           |
+| Pc   | Connector punctuation |
+| Pd   | Dash punctuation      |
+| Pe   | Close punctuation     |
+| Pf   | Final punctuation     |
+| Pi   | Initial punctuation   |
+| Po   | Other punctuation     |
+| Ps   | Open punctuation      |
+|      |                       |
+| S    | Symbol                |
+| Sc   | Currency symbol       |
+| Sk   | Modifier symbol       |
+| Sm   | Mathematical symbol   |
+| So   | Other symbol          |
+|      |                       |
+| Z    | Separator             |
+| Zl   | Line separator        |
+| Zp   | Paragraph separator   |
+| Zs   | Space separator       |
+
+> ###### 추가적인 유니코드 문자 속성
+
+위에서 안내한 표준 유니코드 속성 외에 PCRE2에서 추가적으로 지원하는 유니코드 문자 속성이다.|
+
+| 속성 | 설명                                                         |
+| :--- | :----------------------------------------------------------- |
+| Xan  | 영문자Alphanumeric: union of properties L and N              |
+| Xps  | POSIX space: property Z or tab, NL, VT, FF, CR               |
+| Xsp  | Perl space: property Z or tab, NL, VT, FF, CR                |
+| Xuc  | Univerally-named character: one that can be represented by a Universal Character Name |
+| Xwd  | Perl word: property Xan or underscore                        |
+
+
+
+\p와 \P 문법에서 사용 가능한 스크립트 이름
+
+~~~
+Adlam, Ahom, Anatolian_Hieroglyphs, Arabic, Armenian, Avestan, Balinese, Bamum, Bassa_Vah, Batak, Bengali, Bhaiksuki, Bopomofo, Brahmi, Braille, Buginese, Buhid, Canadian_Aboriginal, Carian, Caucasian_Albanian, Chakma, Cham, Cherokee, Chorasmian, Common, Coptic, Cuneiform, Cypriot, Cypro_Minoan, Cyrillic, Deseret, Devanagari, Dives_Akuru, Dogra, Duployan, Egyptian_Hieroglyphs, Elbasan, Elymaic, Ethiopic, Georgian, Glagolitic, Gothic, Grantha, Greek, Gujarati, Gunjala_Gondi, Gurmukhi, Han, Hangul, Hanifi_Rohingya, Hanunoo, Hatran, Hebrew, Hiragana, Imperial_Aramaic, Inherited, Inscriptional_Pahlavi, Inscriptional_Parthian, Javanese, Kaithi, Kannada, Katakana, Kayah_Li, Kharoshthi, Khitan_Small_Script, Khmer, Khojki, Khudawadi, Lao, Latin, Lepcha, Limbu, Linear_A, Linear_B, Lisu, Lycian, Lydian, Mahajani, Makasar, Malayalam, Mandaic, Manichaean, Marchen, Masaram_Gondi, Medefaidrin, Meetei_Mayek, Mende_Kikakui, Meroitic_Cursive, Meroitic_Hieroglyphs, Miao, Modi, Mongolian, Mro, Multani, Myanmar, Nabataean, Nandinagari, New_Tai_Lue, Newa, Nko, Nushu, Nyakeng_Puachue_Hmong, Ogham, Ol_Chiki, Old_Hungarian, Old_Italic, Old_North_Arabian, Old_Permic, Old_Persian, Old_Sogdian, Old_South_Arabian, Old_Turkic, Old_Uyghur, Oriya, Osage, Osmanya, Pahawh_Hmong, Palmyrene, Pau_Cin_Hau, Phags_Pa, Phoenician, Psalter_Pahlavi, Rejang, Runic, Samaritan, Saurashtra, Sharada, Shavian, Siddham, SignWriting, Sinhala, Sogdian, Sora_Sompeng, Soyombo, Sundanese, Syloti_Nagri, Syriac, Tagalog, Tagbanwa, Tai_Le, Tai_Tham, Tai_Viet, Takri, Tamil, Tangsa, Tangut, Telugu, Thaana, Thai, Tibetan, Tifinagh, Tirhuta, Toto, Ugaritic, Vai, Vithkuqi, Wancho, Warang_Citi, Yezidi, Yi, Zanabazar_Square
+~~~
+
+
+
+
+	
+
+> ###### 유니코드 확장 문자소
+
+\X 이스케이프 문자는 확장 문자소 클러스터로 구성된 유니코드 캐릭터들과 매치된다. 확장 문자소에 대한 자세한 정보는 [유니코드 공식 문서 UAX #29: Unicode Text Segmentation](http://www.unicode.org/reports/tr29/#Grapheme_Cluster_Boundaries)를 참고하기 바란다. 확장 문자소 매칭에 대한 자세한 정보는 [PCRE2 패턴 매뉴얼 페이지](https://www.pcre.org/current/doc/html/pcre2pattern.html)를 참고하기 바란다.
+
+##### 
+
+##### 문자 클래스
+
+| 문법         | 설명                                                         |
+| ------------ | ------------------------------------------------------------ |
+| [...]        | 캐릭터 셋문자 클래스 표현식. 각괄호 내의 한 문자와 매치. 예를 들어, [abc]는 "a", "b", 또는 "c"와 매칭된다. [a-z]는 "a"에서 "z"까지의 소문자와 매칭된다. 이러한 형태는 혼합될 수 있다: [abcx-z]는 "a", "b", "c", "x", "y", 또는 "z"와 매치하며, [a-cx-z]도 마찬가지이다.] 문자가 (^ 뒤의) 첫 문자일 경우 각괄호 표현식에 포함될 수 있다: []abc].^ 문자가 [] 내의 첫 번째 위치에 올 경우 []내의 문자를 제외한 나머지를 의미한다. 예를 들면, [^abc]d는 ad, bd, cd를 제외한 ed, fd 등과 매칭된다. [^a-z]는 알파벳 소문자로 시작하지 않는 모든 문자를 의미한다. |
+| [^...]       | 지정된 캐릭터 셋 이외의 캐릭터 셋                            |
+| [x-y]        | 범위 (16진수 문자에서도 사용 가능)                           |
+| [[:xxx:]]    | POSIX 캐릭터 셋                                              |
+| [[:^xxx:]]   | 지정된 POSIX 캐릭터 셋 이외의 캐릭터 셋                      |
+| [[:alnum:]]  | 알파벳과 숫자                                                |
+| [[:alpha:]]  | 알파벳 문자                                                  |
+| [[: ascii:]] | 아스키 코드에서 0번부터 127번까지의 문자                     |
+| [[:blank:]]  | 스페이스나 탭                                                |
+| [[:cntrl:]]  | 아스키 코드에서 127번 문자와 31번 이하의 문자                |
+| [[:digit:]]  | 숫자                                                         |
+| [[:graph:]]  | 아스키 코드에서 출력할 수 있는 문자 32 ~ 126 중, 공백 문자(32)를 제외한 문자 |
+| [[:lower:]]  | 알파벳 소문자                                                |
+| [[:print:]]  | 아스키 코드에서 출력할 수 있는 문자 32 ~ 126                 |
+| [[:punct:]]  | 아스키 코드에서 출력할 수 있는 문자 32 ~ 126 중, 공백 문자, 숫자, 알파벳을 제외한 문자 |
+| [[:space:]]  | 출력되지 않는 공백 문자(space, carriage return, newline, vertical tab, form feed) 등 |
+| [[:upper:]]  | 알파벳 대문자                                                |
+| [[:word:]]   | 알파벳, 숫자, _                                              |
+| [[:xdigit:]] | 16진수 숫자, 0-9, a-f, A-F                                   |
+
+
+
+사용 예제는 아래와 같다.
+
+```sql
+iSQL> SELECT GNAME FROM GOODS WHERE REGEXP_LIKE(GNAME, '[U]');
 GNAME
 ------------------------
 IT-U950
@@ -25892,390 +25917,33 @@ AU-100
 14 rows selected.
 ```
 
-캐릭터 타입
-<table>
-  <tbody>
-    <tr>
-      <th>문법</th>
-      <th>설명</th>
-    </tr>
-    <tr>
-      <td colspan="1">.</td>
-      <td colspan="1">Newline를 제외한 문자 하나와 매칭된다. 각괄호 표현식 내에서 점(.) 문자는 리터럴 점(.)과 매칭된다. 예를 들어, a.c는 "abc" 등과 매치하지만, [a.c]는 오직 "a", ".", 또는 "c"와 매칭된다.
-      </td>
-    </tr>
-    <tr>
-      <td>\d</td>
-      <td>
-        <p>10진수 숫자</p>
-      </td>
-    </tr>
-    <tr>
-      <td>\D</td>
-      <td>
-        <p>10진수 숫자가 아닌 문자</p>
-      </td>
-    </tr>
-    <tr>
-      <td>\h</td>
-      <td>
-        <p>수평 공백 문자, 예를 들어 스페이스와 탭 문자</p>
-      </td>
-    </tr>
-    <tr>
-      <td>\H</td>
-      <td>
-        <p>수평 공백 문자가 아닌 문자</p>
-      </td>
-    </tr>
-    <tr>
-      <td>\N</td>
-      <td>
-        <p>개행 문자가 아닌 문자</p>
-      </td>
-    </tr>
-    <tr>
-      <td>\p{xx}</td>
-      <td>
-        <p>xx 속성을 가진 문자</p>
-      </td>
-    </tr>
-    <tr>
-      <td>\P{xx}</td>
-      <td>
-        <p>xx 속성을 가지지 않은 문자</p>
-      </td>
-    </tr>
-    <tr>
-      <td>\R</td>
-      <td>
-        <p>개행문자 시권스</p>
-      </td>
-    </tr>
-    <tr>
-      <td>\s</td>
-      <td>
-        <p>공백 문자</p>
-      </td>
-    </tr>
-    <tr>
-      <td>\S</td>
-      <td>
-        <p>공백 문자가 아닌 문자</p>
-      </td>
-    </tr>
-    <tr>
-      <td>\v</td>
-      <td>
-        <p>수직 공백 문자, 예를 들어 개행 문자</p>
-      </td>
-    </tr>
-    <tr>
-      <td>\V</td>
-      <td>
-        <p>수직 공백 문자가 아닌 문자</p>
-      </td>
-    </tr>
-    <tr>
-      <td>\w</td>
-      <td>
-        <p>단어 문자, 알파벳, 숫자, _</p>
-        <p>a "word" character</p>
-      </td>
-    </tr>
-    <tr>
-      <td>\W</td>
-      <td>
-        <p>단어 문자가 아닌 문자</p>
-      </td>
-    </tr>
-    <tr>
-      <td>\X</td>
-      <td>
-        <p>유니코드 확장 문자소 클러스터</p>
-      </td>
-    </tr>
-  </tbody>
-</table>
+​	
+
+##### 앵커
+
+| 문법 | 설명                                                         |
+| ---- | ------------------------------------------------------------ |
+| \b   | 단어 경계 위치                                               |
+| \B   | 단어 경계가 아닌 위치                                        |
+| ^    | 문자열의 시작 위치                                           |
+| \A   | 문자열의 시작 위치                                           |
+| $    | e문자열의 마지막 위치 또는 문자열의 마지막 newline 바로 전 위치 |
+| \Z   | 문자열의 마지막 위치 또는 문자열의 마지막 newline 바로 전 위치 |
+| \z   | 문자열의 마지막 위치 또는 문자열의 마지막 newline 바로 전 위치 |
+| \G   | 문자열에서 첫번째 일치 위치                                  |
+
 사용 예제는 아래와 같다.
 
-```
-iSQL> select emp_job from EMPLOYEES where regexp_like(emp_job, '\p{Ll}');
-EMP_JOB
--------------------
-webmaster
-manager
-planner
-3 rows selected.
-```
-
-\p와 \P 문법에서 사용 가능한 일반적인 캐릭터 속성
-<table>
-  <tbody>
-    <tr>
-      <th>속성</th>
-      <th>설명</th>
-    </tr>
-    <tr>
-      <td>C</td>
-      <td>
-        <p>Other</p>
-      </td>
-    </tr>
-    <tr>
-      <td>Cc</td>
-      <td>
-        <p>Control</p>
-      </td>
-    </tr>
-    <tr>
-      <td>Cf</td>
-      <td>
-        <p>Format</p>
-      </td>
-    </tr>
-    <tr>
-      <td>Cn</td>
-      <td>
-        <p>Unassigned</p>
-      </td>
-    </tr>
-    <tr>
-      <td>Co</td>
-      <td>
-        <p>Private use</p>
-      </td>
-    </tr>
-    <tr>
-      <td>Cs</td>
-      <td>Surrogate</td>
-    </tr>
-    <tr>
-      <td>L</td>
-      <td>Letter</td>
-    </tr>
-    <tr>
-      <td>Ll</td>
-      <td>Lower case letter</td>
-    </tr>
-    <tr>
-      <td>Lm</td>
-      <td>Modifier letter</td>
-    </tr>
-    <tr>
-      <td>Lo</td>
-      <td>Other letter</td>
-    </tr>
-    <tr>
-      <td>Lt</td>
-      <td>Title case letter</td>
-    </tr>
-    <tr>
-      <td>Lu</td>
-      <td>Upper case letter</td>
-    </tr>
-    <tr>
-      <td>L&amp;</td>
-      <td>Ll, Lu, or Lt</td>
-    </tr>
-    <tr>
-      <td>M</td>
-      <td>Mark</td>
-    </tr>
-    <tr>
-      <td>Mc</td>
-      <td>Spacing mark</td>
-    </tr>
-    <tr>
-      <td>Me</td>
-      <td>Enclosing mark</td>
-    </tr>
-    <tr>
-      <td>Mn</td>
-      <td>Non-spacing mark</td>
-    </tr>
-    <tr>
-      <td>N</td>
-      <td>Number</td>
-    </tr>
-    <tr>
-      <td>Nd</td>
-      <td>Decimal number</td>
-    </tr>
-    <tr>
-      <td>Nl</td>
-      <td>Letter number</td>
-    </tr>
-    <tr>
-      <td>No</td>
-      <td>Other number</td>
-    </tr>
-    <tr>
-      <td>P</td>
-      <td>Punctuation</td>
-    </tr>
-    <tr>
-      <td>Pc</td>
-      <td>Connector punctuation</td>
-    </tr>
-    <tr>
-      <td>Pd</td>
-      <td>Dash punctuation</td>
-    </tr>
-    <tr>
-      <td>Pe</td>
-      <td>Close punctuation</td>
-    </tr>
-    <tr>
-      <td>Pf</td>
-      <td>Final punctuation</td>
-    </tr>
-    <tr>
-      <td>Pi</td>
-      <td>Initial punctuation</td>
-    </tr>
-    <tr>
-      <td>Po</td>
-      <td>Other punctuation</td>
-    </tr>
-    <tr>
-      <td>Ps</td>
-      <td>Open punctuation</td>
-    </tr>
-    <tr>
-      <td>S</td>
-      <td>Symbol</td>
-    </tr>
-    <tr>
-      <td>Sc</td>
-      <td>Currency symbol</td>
-    </tr>
-    <tr>
-      <td>Sk</td>
-      <td>Modifier symbol</td>
-    </tr>
-    <tr>
-      <td>Sm</td>
-      <td>Mathematical symbol</td>
-    </tr>
-    <tr>
-      <td>So</td>
-      <td>Other symbol</td>
-    </tr>
-    <tr>
-      <td>Z</td>
-      <td>Separator</td>
-    </tr>
-    <tr>
-      <td>Zl</td>
-      <td>Line separator</td>
-    </tr>
-    <tr>
-      <td>Zp</td>
-      <td>Paragraph separator</td>
-    </tr>
-    <tr>
-      <td>Zs</td>
-      <td>Space separator</td>
-    </tr>
-  </tbody>
-</table>
-
-\p와 \P 문법에서 사용 가능한 특수 캐릭터 속성
-<table>
-  <tbody>
-    <tr>
-      <th>속성</th>
-      <th>설명</th>
-    </tr>
-    <tr>
-      <td>Xan</td>
-      <td>
-        <div>Alphanumeric: union of properties L and N</div>
-      </td>
-    </tr>
-    <tr>
-      <td>Xps</td>
-      <td>
-        <div>POSIX space: property Z or tab, NL, VT, FF, CR</div>
-      </td>
-    </tr>
-    <tr>
-      <td>Xsp</td>
-      <td>Perl space: property Z or tab, NL, VT, FF, CR</td>
-    </tr>
-    <tr>
-      <td>Xuc</td>
-      <td>Univerally-named character: one that can be represented by a Universal Character Name</td>
-    </tr>
-    <tr>
-      <td>Xwd</td>
-      <td>Perl word: property Xan or underscore</td>
-    </tr>
-  </tbody>
-</table>
-
-\p와 \P 문법에서 사용 가능한 스크립트 이름
-
-Adlam, Ahom, Anatolian_Hieroglyphs, Arabic, Armenian, Avestan, Balinese, Bamum, Bassa_Vah, Batak, Bengali, Bhaiksuki, Bopomofo, Brahmi, Braille, Buginese, Buhid, Canadian_Aboriginal, Carian, Caucasian_Albanian, Chakma, Cham, Cherokee, Chorasmian, Common, Coptic, Cuneiform, Cypriot, Cypro_Minoan, Cyrillic, Deseret, Devanagari, Dives_Akuru, Dogra, Duployan, Egyptian_Hieroglyphs, Elbasan, Elymaic, Ethiopic, Georgian, Glagolitic, Gothic, Grantha, Greek, Gujarati, Gunjala_Gondi, Gurmukhi, Han, Hangul, Hanifi_Rohingya, Hanunoo, Hatran, Hebrew, Hiragana, Imperial_Aramaic, Inherited, Inscriptional_Pahlavi, Inscriptional_Parthian, Javanese, Kaithi, Kannada, Katakana, Kayah_Li, Kharoshthi, Khitan_Small_Script, Khmer, Khojki, Khudawadi, Lao, Latin, Lepcha, Limbu, Linear_A, Linear_B, Lisu, Lycian, Lydian, Mahajani, Makasar, Malayalam, Mandaic, Manichaean, Marchen, Masaram_Gondi, Medefaidrin, Meetei_Mayek, Mende_Kikakui, Meroitic_Cursive, Meroitic_Hieroglyphs, Miao, Modi, Mongolian, Mro, Multani, Myanmar, Nabataean, Nandinagari, New_Tai_Lue, Newa, Nko, Nushu, Nyakeng_Puachue_Hmong, Ogham, Ol_Chiki, Old_Hungarian, Old_Italic, Old_North_Arabian, Old_Permic, Old_Persian, Old_Sogdian, Old_South_Arabian, Old_Turkic, Old_Uyghur, Oriya, Osage, Osmanya, Pahawh_Hmong, Palmyrene, Pau_Cin_Hau, Phags_Pa, Phoenician, Psalter_Pahlavi, Rejang, Runic, Samaritan, Saurashtra, Sharada, Shavian, Siddham, SignWriting, Sinhala, Sogdian, Sora_Sompeng, Soyombo, Sundanese, Syloti_Nagri, Syriac, Tagalog, Tagbanwa, Tai_Le, Tai_Tham, Tai_Viet, Takri, Tamil, Tangsa, Tangut, Telugu, Thaana, Thai, Tibetan, Tifinagh, Tirhuta, Toto, Ugaritic, Vai, Vithkuqi, Wancho, Warang_Citi, Yezidi, Yi, Zanabazar_Square
-	
-유니코드 확장 문자소
-
-\X 이스케이프 문자는 확장 문자소 클러스터로 구성된 유니코드 캐릭터들과 매치된다. 확장 문자소에 대한 자세한 정보는 [유니코드 공식 문서 UAX #29: Unicode Text Segmentation](http://www.unicode.org/reports/tr29/#Grapheme_Cluster_Boundaries)를 참고하기 바란다. 확장 문자소 매칭에 대한 자세한 정보는 [PCRE2 패턴 매뉴얼 페이지](https://www.pcre.org/current/doc/html/pcre2pattern.html)를 참고하기 바란다.
-	
-앵커
-
-<table>
-  <tbody>
-    <tr>
-      <th>문법</th>
-      <th>설명</th>
-    </tr>
-    <tr>
-      <td>\b</td>
-      <td>단어 경계 위치</td>
-    </tr>
-    <tr>
-      <td>\B</td>
-      <td>단어 경계가 아닌 위치</td>
-    </tr>
-    <tr>
-      <td>^</td>
-      <td>문자열의 시작 위치</td>
-    </tr>
-    <tr>
-      <td>\A</td>
-      <td>문자열의 시작 위치</td>
-    </tr>
-    <tr>
-      <td>$</td>
-      <td>e문자열의 마지막 위치 또는 문자열의 마지막 newline 바로 전 위치</td>
-    </tr>
-    <tr>
-      <td>\Z</td>
-      <td>문자열의 마지막 위치 또는 문자열의 마지막 newline 바로 전 위치</td>
-    </tr>
-    <tr>
-      <td>\z</td>
-      <td>문자열의 마지막 위치 또는 문자열의 마지막 newline 바로 전 위치</td>
-    </tr>
-    <tr>
-      <td>\G</td>
-      <td>문자열에서 첫번째 일치 위치</td>
-    </tr>
-  </tbody>
-</table>
-사용 예제는 아래와 같다.
-
-```
-iSQL> select emp_job from EMPLOYEES where regexp_like(emp_job, '^m');
+```sql
+iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(emp_job, '^m');
 EMP_JOB
 -------------------
 manager
 1 row selected.
 ```
 
-그룹화 구문
+##### 그룹화 구문
+
 <table>
   <tbody>
     <tr>
@@ -26318,8 +25986,8 @@ manager
 </table>
 사용 예제는 아래와 같다.
 
-```
-iSQL> select emp_job from EMPLOYEES where regexp_like(emp_job, '(a)n\1');
+```sql
+iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '(A)N\1');
 EMP_JOB
 -------------------
 manager
@@ -26409,14 +26077,15 @@ manager
 </table>
 사용 예제는 아래와 같다.
 
-```
-iSQL> select regexp_substr(emp_job, 'a(?=n)') from EMPLOYEES;
+```sql
+iSQL> SELECT REGEXP_SUBSTR(EMP_JOB, 'A(?=N)') FROM EMPLOYEES;
 REGEXP_SUBSTR(EMP_JOB,'A(?=N)')
 -----------------------------------
 a
 a
 6 rows selected.
-iSQL> select regexp_instr(emp_job, 'a(?=n)') from EMPLOYEES;
+
+iSQL> SELECT REGEXP_INSTR(EMP_JOB, 'A(?=N)') FROM EMPLOYEES;
 REGEXP_INSTR(EMP_JOB,'A(?=N)')
 ---------------------------------
 0
@@ -26428,7 +26097,8 @@ REGEXP_INSTR(EMP_JOB,'A(?=N)')
 6 rows selected.
 ```
 
-한정 기호
+##### 한정 기호
+
 <table>
   <tbody>
     <tr>
