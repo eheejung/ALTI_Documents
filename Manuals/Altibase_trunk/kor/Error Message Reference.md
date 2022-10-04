@@ -21251,13 +21251,11 @@ ERR-2106C : PCRE2 error: <1%s> (occurred in <0%s>)
 > Action : SQL Reference 매뉴얼 또는 PCRE2 페이지를 참고하여 문법을 올바르게 수정해야 한다.
 
 | 에러 메시지                      | 한글화                            |
-| -------------------------------- | --------------------------------- |
+| :------------------------------- | :-------------------------------- |
 | \ at end of pattern              | 패턴 마지막에 \ 문자가 나타남     |
 | \c at end of pattern             | 패턴 마지막에 \c 문자가 나타남    |
 | unrecognized character follows \ | 뒤에 인식할 수 없는 문자가 나타남 |
 |                                  |                                   |
-
-
 
 `\ at end of pattern` 패턴 마지막에 \ 문자가 나타남
 
@@ -21401,7 +21399,9 @@ ERR-2106C : PCRE2 error: <1%s> (occurred in <0%s>)
 
 > Cause : PCRE2의 제약 사항을 위배하여 발생하는 에러이다. 
 >
-> Action : 오류 메세지를 참고하여 정규 표현식을 알맞게 수정해주세요. 구체적인 원인 확인이 필요한 경우 Altibase 고객지원 센터로 연락바랍니다.
+> Action : ?
+>
+> 오류 메세지를 참고하여 정규 표현식을 알맞게 수정해주세요. 구체적인 원인 확인이 필요한 경우 Altibase 고객지원 센터로 연락바랍니다.
 
 `parentheses are too deeply nested` 
 
@@ -21453,7 +21453,7 @@ ERR-2106C : PCRE2 error: <1%s> (occurred in <0%s>)
 
 > Cause : REGEXP_ 로 시작하는 문자 함수나 REGEXP_LIKE 조건 연산자의 입력 문자열이 UTF8 형식을 벗어날 때 발생하는 에러이다.
 >
-> Action : 문자 함수나 REGEXP_LIKE 조건 연산자의 입력 문자열이 UTF-8 데이터인지 확인한다. 입력된 문자열들의 인코딩이 올바른 UTF-8 인코딩을 가지고 있지 않습니다. 입력된 문자열들의 인코딩을 확인하여 UTF-8 인코딩에 알맞게 수정합니다.
+> Action : 문자 함수나 REGEXP_LIKE 조건 연산자의 입력 문자열이 UTF-8 데이터인지 확인한다. 
 
 `UTF-8 error: 1 byte missing at end`
 

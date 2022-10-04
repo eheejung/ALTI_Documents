@@ -25602,65 +25602,96 @@ Altibase 정규 표현식 모드는 최소한의 정규 표현식 문법을 지�
 
 ##### 메타 문자
 
-메타 문자는 정규 표현식에서 사용하는 특별한 의미를 가지는 기호이다. 아래는 Altibase 정규 표현식 모드에서 사용할 수 있는 메타 문자를 정리한 표이다. 
+메타 문자는 정규 표현식에서 사용하는 특별한 의미를 가지는 기호이다. 마침표(.)와 같은 문자와 일치하는 메타 문자와 여는 대괄호([)와 닫는 대괄호(])처럼 정규 표현식 문법의 일부로 사용하는 메타 문자를 먼저 살펴보자. 
 
-|문자 | 설명                                                         |
+|메타 문자 | 의미                                                        |
 | :-------- | :----------------------------------------------------------- |
-| \         |                                                              |
+| \        | 뒤에 오는 메타 문자를 보통 문자로 취급한다. |
 | ^         | 문자열의 시작 위치를 의미한다.                               |
-| .         | Newline를 제외한 문자 하나와 매칭된다. 각괄호 표현식 내에서 점(.) 문자는 리터럴 점(.)과 매칭된다. 예를 들어, a.c는 "abc" 등과 매치하지만, [a.c]는 오직 "a", ".", 또는 "c"와 매칭된다. |
-| $         | 문자열의 마지막 위치 또는 문자열의 마지막 newline 바로 전 위치를 의미한다. |
+| .         | 새로운 행을 제외한 임의의 문자 하나와 일치한다. 공백도 한 문자로 인식한다. |
+| $         | 문자열의 마지막 위치 또는 줄바꿈 문자로 끝나는 문자열을 의미한다. |
 | \|        | 여러 식 중에 하나를 선택한다.                                |
 | ()        | 하위 표현식. 여러 식을 하나로 묶어서 복잡한 정규식을 표현할 수 있다. |
-| []        | 문자 클래스 표현식. 각괄호 내의 한 문자와 매치. 예를 들어, [abc]는 "a", "b", 또는 "c"와 매칭된다. [a-z]는 "a"에서 "z"까지의 소문자와 매칭된다. 이러한 형태는 혼합될 수 있다: [abcx-z]는 "a", "b", "c", "x", "y", 또는 "z"와 매치하며, [a-cx-z]도 마찬가지이다. |
-| *         | 앞에 있는 요소와 0 회 또는 그 이상 횟수로 매칭된다. 예를 들어, ab*c는 "ac", "abc", "abbbc", 등과 매칭된다. [xyz]*는 "", "x", "y", "z", "zx", "zyx", "xyzzy", 등과 일치한다. (ab)*는 "", "ab", "abab", "ababab" 등과 매칭된다. |
-| +         | 앞선 문자와 1회 이상 횟수로 매칭된다.                        |
-| ?         | 앞선 문자와 0 회 또는 1회 매칭된다.                          |
-| {m}       | 앞선 요소와 m회 매칭된다.                                    |
-| {m,}      | 앞선 요소와 m회 이상 매칭된다.                               |
-| {m,n}     | 앞선 요소와 최소 m회, 최대 n회 매칭된다. 예를 들어, a{3,5}는 "aaa", "aaaa", 및 "aaaaa"와 매칭된다. |
+| []        | 문자 클래스를 표현하는 메타 문자. 각 괄호 내의 한 문자와 매치. |
 
-##### 이스케이프 문자
+>  예제 1. Newline를 제외한 문자 하나와 매칭된다. 각괄호 표현식 내에서 점(.) 문자는 리터럴 점(.)과 매칭된다. 예를 들어, a.c는 "abc" 등과 매치하지만, [a.c]는 오직 "a", ".", 또는 "c"와 매칭된다.
 
-이스케이스 문자는 문자열 내에서 특수한 기능을 수행하는 문자로, 역슬래시와 함께 사용한다. 아래는 Altibase 정규 표현식 모드에서 지원하는 이스케이프 문자이다. 
+~~~sql
+Newline를 제외한 문자 하나와 매칭된다. 각괄호 표현식 내에서 점(.) 문자는 리터럴 점(.)과 매칭된다. 예를 들어, a.c는 "abc" 등과 매치하지만, [a.c]는 오직 "a", ".", 또는 "c"와 매칭된다.
+~~~
 
-| 문자 | 설명                         |
-| :--- | :--------------------------- |
-| \t   | 탭(tab)                      |
-| \n   | 개행 문자(line feed)         |
-| \r   | 캐리지 리턴(carriage return) |
-| \f   | 다음 페이지(form feed)       |
+>  예제 2. 예를 들어, [abc]는 "a", "b", 또는 "c"와 매칭된다.
+
+~~~sql
+예를 들어, [abc]는 "a", "b", 또는 "c"와 매칭된다. [a-z]는 "a"에서 "z"까지의 소문자와 매칭된다. 이러한 형태는 혼합될 수 있다: [abcx-z]는 "a", "b", "c", "x", "y", 또는 "z"와 매치하며, [a-cx-z]도 마찬가지이다.
+~~~
+
+##### 반복 찾기
+
+여러 번 반복되는 문자나 문자 집합을 검색할 때 사용하는 메타 문자를 정리한 표이다. 
+
+| 메타 문자 | 의미                                                |
+| :-------- | :-------------------------------------------------- |
+| *         | 앞에 있는 요소와 0 회 또는 그 이상 횟수로 매칭된다. |
+| +         | 앞선 문자와 1회 이상 횟수로 매칭된다.               |
+| ?         | 앞선 문자와 0회 또는 1회 매칭된다.                  |
+| {m}       | 앞선 요소와 m회 매칭된다.                           |
+| {m,}      | 앞선 요소와 m회 이상 매칭된다.                      |
+| {m,n}     | 앞선 요소와 최소 m회, 최대 n회 매칭된다.            |
+
+>  예제 3. 예를 들어, abc는 "ac", "abc", "abbbc", 등과 매칭된다. [xyz]는 "", "x", "y", "z", "zx", "zyx", "xyzzy", 등과 일치한다. (ab)*는 "", "ab", "abab", "ababab" 등과 매칭된다.
+
+~~~sql
+예를 들어, abc는 "ac", "abc", "abbbc", 등과 매칭된다. [xyz]는 "", "x", "y", "z", "zx", "zyx", "xyzzy", 등과 일치한다. (ab)*는 "", "ab", "abab", "ababab" 등과 매칭된다.
+~~~
+
+>  예제 4 : 예를 들어, a{3,5}는 "aaa", "aaaa", 및 "aaaaa"와 매칭된다.
+
+~~~sql
+예를 들어, a{3,5}는 "aaa", "aaaa", 및 "aaaaa"와 매칭된다.
+~~~
+
+##### 공백 문자
+
+눈에는 보이지 않지만 탭이나 줄바꿈과 같은 문자를 의미하는 메타 문자도 있다. 
+
+| 메타 문자 | 의미                         |
+| :-------- | :--------------------------- |
+| \t        | 탭(tab)                      |
+| \n        | 줄바꿈(line feed)            |
+| \r        | 캐리지 리턴(carriage return) |
+| \f        | 다음 페이지(form feed)       |
 
 ##### 문자 클래스
 
-대괄호 안의 패턴의 일부를 문자 클래스라고 한다. 문자 클래스는 대괄호로 둘러싸인 POSIX 표기법을 사용하거나 백슬래시로 문자 유형을 지정하여 사용한다. 
+자주 사용하는 문자 집합들은 특수한 메타 문자로 대신하기도 한다. 이런 메타 문자들을 문자 클래스라고 부른다. 문자 클래스는 대괄호로 둘러싸인 POSIX 표기법을 사용할 수도 있다. 
 
 다음은 문자 클래스 별 의미를 설명하는 표이다.
 
-| POSIX 표기법 | 문자 유형 | 설명                                                         |
-| :----------- | :--------- | :------------------------------------------------------------ |
-| [:alnum:]    |           | 알파벳과 숫자                                                |
-| [:alpha:]    | \\a       | 알파벳 문자                                                  |
-| [:blank:]    |           | 스페이스나 탭                                                |
-| [:cntrl:]    | \\c       | 아스키 코드에서 127번 문자와 31번 이하의 문자                |
-| [:digit:]    | \\d       | 숫자                                                         |
-| [:graph:]    |           | 아스키 코드에서 출력할 수 있는 문자 32 ~ 126 중, 공백 문자(32)를 제외한 문자 |
-| [:lower:]    | \\l       | 알파벳 소문자                                                |
-| [:print:]    |           | 아스키 코드에서 출력할 수 있는 문자 32 ~ 126                 |
-| [:punct:]    | \\p       | 아스키 코드에서 출력할 수 있는 문자 32 ~ 126 중, 공백 문자, 숫자, 알파벳을 제외한 문자 |
-| [:space:]    | \\s       | 출력되지 않는 공백 문자(space, carriage return, newline, vertical tab, form feed) 등 |
-| [:upper:]    | \\u       | 알파벳 대문자                                                |
-| [:word:]     | \\w       | 알파벳, 숫자, \_                                             |
-| [:xdigit:]   | \\x       | 16진수 숫자, 0-9, a-f, A-F                                   |
-|              | \\A       | \\a를 제외한 모든 문자                                       |
-|              | \\W       | \\w를 제외한 모든 문자                                       |
-|              | \\S       | \\s를 제외한 모든 문자                                       |
-|              | \\D       | \\d를 제외한 모든 문자                                       |
-|              | \\X       | \\x를 제외한 모든 문자                                       |
-|              | \\C       | \\c를 제외한 모든 문자                                       |
-|              | \\P       | \\p를 제외한 모든 문자                                       |
-|              | \\b       | 낱말 경계                                                    |
-|              | \\B       | \\b를 제외한 모든 문자                                       |
+| 메타 문자 | POSIX 문자 클래스 | 의미                                                        |
+| :------------------------------------------------------------ | :--------- | :--------- |
+|           | [:alnum:]    | 알파벳과 숫자                                                |
+| \\a       | [:alpha:]    | 알파벳 문자                                                  |
+| \\A       |              | \\a를 제외한 모든 문자                                       |
+| \\b       |              | 단어 경계. 단어의 시작이나 마지막                                     |
+| \\B       |              | \\b를 제외한 모든 문자                                       |
+|           | [:blank:]    | 빈칸(space)나 탭(\t)                                   |
+| \\c       | [:cntrl:]    | 아스키 코드의 제어 문자. 0번부터 31번, 그리고 127번 문자 |
+| \\C       |              | \\c를 제외한 모든 문자                                       |
+| \\d       | [:digit:]    | 숫자                                                    |
+| \\D       |              | \\d를 제외한 모든 문자                                       |
+|           | [:graph:]    | 아스키 코드에서 출력할 수 있는 문자 32 ~ 126 중, 공백 문자(32)를 제외한 문자 |
+| \\l       | [:lower:]    | 알파벳 소문자                                                |
+|           | [:print:]    | 아스키 코드에서 출력할 수 있는 문자 32 ~ 126                 |
+| \\p       | [:punct:]    | 아스키 코드에서 출력할 수 있는 문자 32 ~ 126 중, 공백 문자, 숫자, 알파벳을 제외한 문자 |
+| \\P       |              | \\p를 제외한 모든 문자                                       |
+| \\s       | [:space:]    | 눈에 보이지 않는 공백 문자(space, carriage return, newline, vertical tab, form feed) 등 |
+| \\S       |              | \\s를 제외한 모든 문자                                       |
+| \\u       | [:upper:]    | 알파벳 대문자                                                |
+| \\w       | [:word:]     | 알파벳, 숫자, \_                                             |
+| \\W       |              | \\w를 제외한 모든 문자                                       |
+| \\x       | [:xdigit:]   | 16진수 숫자, 0-9, a-f, A-F                                   |
+| \\X       |              | \\x를 제외한 모든 문자                                       |
 
 
 
@@ -25690,36 +25721,36 @@ PCRE2 호환 모드에서 메타 문자는 대괄호 안을 제외한 어느 곳
 > ###### 대괄호 밖에서의 메타 문자
 >
 
-| 문자| 설명                                      |
+| 메타 문자 | 의미                                     |
 | :----------------------------------------------------------- | :---------------------------------------- |
-| \                                                            | 여러 용도로 사용되는 일반 이스케이프 문자 |
+| \                                                            | 여러 용도로 사용되는 이스케이프 문자 |
 | ^                                                            | 문자열(또는 여러 줄 모드에서 줄)의 시작   |
 | $                                                            | 문자열(또는 여러 줄 모드에서 줄)의 끝     |
 | .                                                            | 개행문자를 제외한 모든 문자와 일치        |
 | [                                                            | 문자 클래스 정의 시작                     |
 | \|                                                           | 여러 식 중 하나를 선택                    |
-| (                                                            | start group or control verb               |
-| )                                                            | end group or control verb                 |
-| *                                                            | 0회 이상 매칭되는 문자                    |
-| +                                                            | 1회 이상 매칭되는 문자                    |
-| ?                                                            | 0 또는 1회 매칭되는 문자                  |
-| {                                                            | 최소/최대값start min/max                  |
+| (                                                            | 그룹 또는 제어 동사 시작 |
+| )                                                            | 그룹 또는 제어 동사 끝 |
+| *                                                            | 0회 이상 일치하는 문자                 |
+| +                                                            | 1회 이상 일치하는 문자                |
+| ?                                                            | 0 또는 1회 일치하는 문자               |
+| {                                                            | 최소/최대값                  |
 
 > ###### 대괄호 안에서의 메타 문자
 
-| 문자 | 설명                                                         |
+| 메타 문자 | 의미                                                        |
 | :--------------------------------- | :----------------------------------------------------------- |
-| \                                  | 일반 이스케이프 문자                                         |
-| ^                                  | ^ 바로 뒤 문자로 시작하지 않는 문자negate the class, but only if the first character |
+| \                                  | 뒤의 문자를 일반 문자로 인식                       |
+| ^                                  | ^ 바로 뒤 문자나 범위 또는 집합 안의 문자나 범위를 제외 |
 | -                                  | 문자 범위                                                    |
-| [                                  | POSIX 문자 클래스                                            |
+| [                                  | POSIX 문자 클래스 시작                                         |
 | ]                                  | 문자 클래스의 종료                                           |
 
-##### 이스케이프 문자
+##### 출력할 수 없는 문자
 
-이스케이스 문자는 문자열 내에서 특수한 기능을 수행하는 문자로, 역슬래시와 함께 사용한다. 아래는 PCRE2 호환 모드에서 지원하는 이스케이프 문자이다. 
+문자열 내에서 특수한 기능을 수행하는 문자인 이스케이프 문자(\, 역슬래시)와 함께 출력할 수 없는 문자를 의미하는 메타 문자를 정리한 표이다. 
 
-| 문자 | 설명                                                         |
+| 메타 문자 | 의미                                                        |
 | :--------------------------------- | :----------------------------------------------------------- |
 | \a                                 | 경고음 문자                                                  |
 | \c*x*                              | control-*x* 문자. *x*는 출력 가능한 아스키 문자가 올 수 있다. |
@@ -25735,28 +25766,30 @@ PCRE2 호환 모드에서 메타 문자는 대괄호 안을 제외한 어느 곳
 | \x{*hhh..*}                        | 아스키 코드의 16진수 코드 hhh... 에 해당하는 문자            |
 | \N{U+*hhh..*}                      | 유니코드 16진수 코드 hhh.. 값에 해당하는 문자                |
 
-다음은 REGEXP_LIKE 조건 연산자에서 이스케이프 문자를 사용한 예제이다.
+> **예제**
+>
+> REGEXP_LIKE 조건 연산자로 아스키 코드 16진수 31에 해당하는 숫자 1을 검색한다.
+>
+> ~~~sql
+> iSQL> SELECT GNAME FROM GOODS WHERE REGEXP_LIKE(GNAME, '\x31');
+> GNAME
+> ------------------------
+> IM-310
+> M-150
+> M-180
+> M-190G
+> M-U310
+> M-T153
+> M-T102
+> AU-100
+> 8 rows selected.
+> ~~~
 
-```sql
-iSQL> SELECT GNAME FROM GOODS WHERE REGEXP_LIKE(GNAME, '\x31');
-GNAME
-------------------------
-IM-310
-M-150
-M-180
-M-190G
-M-U310
-M-T153
-M-T102
-AU-100
-8 rows selected.
-```
+##### 일반 문자 유형
 
-일반 문자 유형
+자주 사용하는 일반 문자 집합들을 이스케이프 문자와 함께 나타내는 특수한 메타 문자들이다. 
 
-백슬래시의 또 다른 용도로 일반 문자 유형을 지정할 수 있다. 
-
-|  문자     | 설명 |
+|  메타 문자  | 의미 |
 | :------- | :--- |
 | \d       | 10진수 숫자 |
 | \D       | 10진수 숫자가 아닌 문자 |
@@ -25774,23 +25807,15 @@ AU-100
 | \W       | 단어(word) 문자가 아닌 문자 |
 | \X       | 유니코드 확장 자소 집합(Unicode extended grapheme cluster) |
 
-사용 예제는 아래와 같다.
 
-```sql
-iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '\p{Ll}');
-EMP_JOB
--------------------
-webmaster
-manager
-planner
-3 rows selected.
-```
+
+
 
 > ###### 유니코드 문자 속성
 
-\p{*xx*}와 \P{*xx*}에서 사용 가능한 문자 속성을 나타내는 표이다. *xx*로 표시되는 속성은 대소문자를 구분한다. 유니코드 문자 속성 관련한 보다 자세한 내용은 [pcre2pattern](http://www.pcre.org/current/doc/html/pcre2pattern.html#SEC5) 페이지의 Unicode character properties 부분에서 확인할 수 있다.
+일반 문자 유형 \p{*xx*}와 \P{*xx*}에서 사용 가능한 문자 속성을 나타내는 표이다. *xx*로 표시되는 속성은 대소문자를 구분한다. 유니코드 문자 속성과 관련한 보다 자세한 내용은 [pcre2pattern](http://www.pcre.org/current/doc/html/pcre2pattern.html#SEC5) 페이지의 Unicode character properties 부분에서 확인할 수 있다.
 
-| 속성 | 설명                  |
+| 속성 | 의미                  |
 | :--- | :-------------------- |
 | C    | Other                 |
 | Cc   | Control               |
@@ -25798,25 +25823,21 @@ planner
 | Cn   | Unassigned            |
 | Co   | Private use           |
 | Cs   | Surrogate             |
-|      |                       |
-| L    | 영문자Letter          |
+| L    | Letter                |
 | Ll   | Lower case letter     |
 | Lm   | Modifier letter       |
 | Lo   | Other letter          |
 | Lt   | Title case letter     |
 | Lu   | Upper case letter     |
 | L&   | Ll, Lu, or Lt         |
-|      |                       |
 | M    | Mark                  |
 | Mc   | Spacing mark          |
 | Me   | Enclosing mark        |
 | Mn   | Non-spacing mark      |
-|      |                       |
-| N    | 숫자Number            |
-| Nd   | 10진수Decimal number  |
+| N    | Number                |
+| Nd   | Decimal number        |
 | Nl   | Letter number         |
 | No   | Other number          |
-|      |                       |
 | P    | Punctuation           |
 | Pc   | Connector punctuation |
 | Pd   | Dash punctuation      |
@@ -25825,58 +25846,58 @@ planner
 | Pi   | Initial punctuation   |
 | Po   | Other punctuation     |
 | Ps   | Open punctuation      |
-|      |                       |
 | S    | Symbol                |
 | Sc   | Currency symbol       |
 | Sk   | Modifier symbol       |
 | Sm   | Mathematical symbol   |
 | So   | Other symbol          |
-|      |                       |
 | Z    | Separator             |
 | Zl   | Line separator        |
 | Zp   | Paragraph separator   |
 | Zs   | Space separator       |
 
-> ###### 추가적인 유니코드 문자 속성
+> **예제**
+>
+> ~~~sql
+> iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '\p{Ll}');
+> EMP_JOB
+> -------------------
+> webmaster
+> manager
+> planner
+> 3 rows selected.
+> ~~~
+
+
+
+> **추가적인 유니코드 문자 속성**
 
 위에서 안내한 표준 유니코드 속성 외에 PCRE2에서 추가적으로 지원하는 유니코드 문자 속성이다.|
 
-| 속성  | 설명                                                          |
+| 속성  | 의미                                                      |
 | :--- | :----------------------------------------------------------- |
-| Xan  | 영문자Alphanumeric: union of properties L and N              |
+| Xan  | Alphanumeric: union of properties L and N              |
 | Xps  | POSIX space: property Z or tab, NL, VT, FF, CR               |
 | Xsp  | Perl space: property Z or tab, NL, VT, FF, CR                |
 | Xuc  | Univerally-named character: one that can be represented by a Universal Character Name |
 | Xwd  | Perl word: property Xan or underscore                        |
 
-
-
-\p와 \P 문법에서 사용 가능한 스크립트 이름
+> **\p와 \P 문법에서 사용 가능한 스크립트 이름**
 
 ~~~
 Adlam, Ahom, Anatolian_Hieroglyphs, Arabic, Armenian, Avestan, Balinese, Bamum, Bassa_Vah, Batak, Bengali, Bhaiksuki, Bopomofo, Brahmi, Braille, Buginese, Buhid, Canadian_Aboriginal, Carian, Caucasian_Albanian, Chakma, Cham, Cherokee, Chorasmian, Common, Coptic, Cuneiform, Cypriot, Cypro_Minoan, Cyrillic, Deseret, Devanagari, Dives_Akuru, Dogra, Duployan, Egyptian_Hieroglyphs, Elbasan, Elymaic, Ethiopic, Georgian, Glagolitic, Gothic, Grantha, Greek, Gujarati, Gunjala_Gondi, Gurmukhi, Han, Hangul, Hanifi_Rohingya, Hanunoo, Hatran, Hebrew, Hiragana, Imperial_Aramaic, Inherited, Inscriptional_Pahlavi, Inscriptional_Parthian, Javanese, Kaithi, Kannada, Katakana, Kayah_Li, Kharoshthi, Khitan_Small_Script, Khmer, Khojki, Khudawadi, Lao, Latin, Lepcha, Limbu, Linear_A, Linear_B, Lisu, Lycian, Lydian, Mahajani, Makasar, Malayalam, Mandaic, Manichaean, Marchen, Masaram_Gondi, Medefaidrin, Meetei_Mayek, Mende_Kikakui, Meroitic_Cursive, Meroitic_Hieroglyphs, Miao, Modi, Mongolian, Mro, Multani, Myanmar, Nabataean, Nandinagari, New_Tai_Lue, Newa, Nko, Nushu, Nyakeng_Puachue_Hmong, Ogham, Ol_Chiki, Old_Hungarian, Old_Italic, Old_North_Arabian, Old_Permic, Old_Persian, Old_Sogdian, Old_South_Arabian, Old_Turkic, Old_Uyghur, Oriya, Osage, Osmanya, Pahawh_Hmong, Palmyrene, Pau_Cin_Hau, Phags_Pa, Phoenician, Psalter_Pahlavi, Rejang, Runic, Samaritan, Saurashtra, Sharada, Shavian, Siddham, SignWriting, Sinhala, Sogdian, Sora_Sompeng, Soyombo, Sundanese, Syloti_Nagri, Syriac, Tagalog, Tagbanwa, Tai_Le, Tai_Tham, Tai_Viet, Takri, Tamil, Tangsa, Tangut, Telugu, Thaana, Thai, Tibetan, Tifinagh, Tirhuta, Toto, Ugaritic, Vai, Vithkuqi, Wancho, Warang_Citi, Yezidi, Yi, Zanabazar_Square
 ~~~
 
-
-
-
-​	
-
 > ###### 유니코드 확장 문자소
 
 \X 이스케이프 문자는 확장 문자소 클러스터로 구성된 유니코드 캐릭터들과 매치된다. 확장 문자소에 대한 자세한 정보는 [유니코드 공식 문서 UAX #29: Unicode Text Segmentation](http://www.unicode.org/reports/tr29/#Grapheme_Cluster_Boundaries)를 참고하기 바란다. 확장 문자소 매칭에 대한 자세한 정보는 [PCRE2 패턴 매뉴얼 페이지](https://www.pcre.org/current/doc/html/pcre2pattern.html)를 참고하기 바란다.
 
+##### POSIX 문자 클래스
 
+POSIX 문자 클래스는 [:로 시작하여 :]로 끝난다. 정규 표현식에 바깥쪽 대괄호는 집합을 정의하는 것이고 안쪽 대괄호는 POSIX 문자 클래스 문법 자체를 의미한다. 
 
-##### 문자 클래스
-
-| 문법         | 설명                                                         |
+| POSIX 문자 클래스 | lal                                                       |
 | :------------ | :------------------------------------------------------------ |
-| [...]        | 캐릭터 셋문자 클래스 표현식. 각괄호 내의 한 문자와 매치. 예를 들어, [abc]는 "a", "b", 또는 "c"와 매칭된다. [a-z]는 "a"에서 "z"까지의 소문자와 매칭된다. 이러한 형태는 혼합될 수 있다: [abcx-z]는 "a", "b", "c", "x", "y", 또는 "z"와 매치하며, [a-cx-z]도 마찬가지이다.] 문자가 (^ 뒤의) 첫 문자일 경우 각괄호 표현식에 포함될 수 있다: []abc].^ 문자가 [] 내의 첫 번째 위치에 올 경우 []내의 문자를 제외한 나머지를 의미한다. 예를 들면, [^abc]d는 ad, bd, cd를 제외한 ed, fd 등과 매칭된다. [^a-z]는 알파벳 소문자로 시작하지 않는 모든 문자를 의미한다. |
-| [^...]       | 지정된 캐릭터 셋 이외의 캐릭터 셋                            |
-| [x-y]        | 범위 (16진수 문자에서도 사용 가능)                           |
-| [[:xxx:]]    | POSIX 캐릭터 셋                                              |
-| [[:^xxx:]]   | 지정된 POSIX 캐릭터 셋 이외의 캐릭터 셋                      |
 | [[:alnum:]]  | 알파벳과 숫자                                                |
 | [[:alpha:]]  | 알파벳 문자                                                  |
 | [[: ascii:]] | 아스키 코드에서 0번부터 127번까지의 문자                     |
@@ -25892,30 +25913,30 @@ Adlam, Ahom, Anatolian_Hieroglyphs, Arabic, Armenian, Avestan, Balinese, Bamum, 
 | [[:word:]]   | 알파벳, 숫자, _                                              |
 | [[:xdigit:]] | 16진수 숫자, 0-9, a-f, A-F                                   |
 
-
-
-사용 예제는 아래와 같다.
-
-```sql
-iSQL> SELECT GNAME FROM GOODS WHERE REGEXP_LIKE(GNAME, '[U]');
-GNAME                 
-------------------------
-IT-U950               
-IT-U200               
-TM-U950               
-TM-U925               
-TM-U375               
-TM-U325               
-TM-U200               
-TM-U300               
-TM-U590               
-TM-U295               
-M-U310                
-M-U420                
-M-U290                
-AU-100                
-14 rows selected.
-```
+> **예제**
+>
+> 사용 예제는 아래와 같다. 예제가 적합하지 않음
+>
+> ~~~sql
+> iSQL> SELECT GNAME FROM GOODS WHERE REGEXP_LIKE(GNAME, '[U]');
+> GNAME                 
+> ------------------------
+> IT-U950               
+> IT-U200               
+> TM-U950               
+> TM-U925               
+> TM-U375               
+> TM-U325               
+> TM-U200               
+> TM-U300               
+> TM-U590               
+> TM-U295               
+> M-U310                
+> M-U420                
+> M-U290                
+> AU-100                
+> 14 rows selected.
+> ~~~
 
 ##### 앵커
 
@@ -25930,15 +25951,17 @@ AU-100
 | \z   | 문자열의 마지막 위치 또는 문자열의 마지막 newline 바로 전 위치 |
 | \G   | 문자열에서 첫번째 일치 위치                                  |
 
-사용 예제는 아래와 같다.
-
-```sql
-iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '^m');
-EMP_JOB
--------------------
-manager
-1 row selected.
-```
+> **예제**
+>
+> 사용 예제는 아래와 같다.
+>
+> ~~~sql
+> iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '^m');
+> EMP_JOB
+> -------------------
+> manager
+> 1 row selected.
+> ~~~
 
 ##### 그룹화 구문
 
@@ -25953,15 +25976,17 @@ manager
 | (?>...)       | atomic non-capture group                                     |
 | (*atomic:...) | atomic non-capture group                                     |
 
-사용 예제는 아래와 같다.
-
-```sql
-iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '(a)n\1');
-EMP_JOB
--------------------
-manager
-1 row selected.
-```
+> **예제**
+>
+> 사용 예제는 아래와 같다.
+>
+> ~~~sql
+> iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '(a)n\1');
+> EMP_JOB
+> -------------------
+> manager
+> 1 row selected.
+> ~~~
 
 ##### 탐색 구문
 
@@ -26045,27 +26070,35 @@ manager
     </tr>
   </tbody>
 </table>
-사용 예제는 아래와 같다.
-
-```sql
-iSQL> SELECT REGEXP_SUBSTR(EMP_JOB, 'a(?=n)') FROM EMPLOYEES;
-REGEXP_SUBSTR(EMP_JOB,'A(?=N)')
------------------------------------
-a
-a
-6 rows selected.
-
-iSQL> SELECT REGEXP_INSTR(EMP_JOB, 'a(?=n)') FROM EMPLOYEES;
-REGEXP_INSTR(EMP_JOB,'A(?=N)')
----------------------------------
-0
-0
-0
-2
-0
-3
-6 rows selected.
-```
+> **예제**
+>
+> 사용 예제는 아래와 같다.
+>
+> ~~~sql
+> iSQL> SELECT REGEXP_SUBSTR(EMP_JOB, 'a(?=n)') FROM EMPLOYEES;
+> REGEXP_SUBSTR(EMP_JOB,'A(?=N)')
+> -----------------------------------
+> a
+> a
+> 6 rows selected.
+> 
+> 
+> ~~~
+>
+> **예제**
+>
+> ~~~sql
+> iSQL> SELECT REGEXP_INSTR(EMP_JOB, 'a(?=n)') FROM EMPLOYEES;
+> REGEXP_INSTR(EMP_JOB,'A(?=N)')
+> ---------------------------------
+> 0
+> 0
+> 0
+> 2
+> 0
+> 3
+> 6 rows selected
+> ~~~
 
 ##### 한정 기호
 
@@ -26088,15 +26121,17 @@ REGEXP_INSTR(EMP_JOB,'A(?=N)')
 | {n,}+  | 앞선 요소와 n회 이상 매칭된다.                               |
 | {n,}?  | 앞선 요소와 n회 이상 매칭된다.                               |
 
-사용 예제는 아래와 같다.
-
-```sql
-iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '^pl.*$');
-EMP_JOB
--------------------
-planner
-1 row selected.
-```
+> **예제**
+>
+> 사용 예제는 아래와 같다.
+>
+> ~~~sql
+> iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '^pl.*$');
+> EMP_JOB
+> -------------------
+> planner
+> 1 row selected.
+> ~~~
 
 ##### 역참조
 
@@ -26121,16 +26156,18 @@ planner
 | :--------------- | :---------------------------- |
 | expr\|expr\|expr | 여러 식 중에 하나를 선택한다. |
 
-사용 예제는 아래와 같다.
-
-```sql
-iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, 'ma(s|n)');
-EMP_JOB
--------------------
-webmaster
-manager
-2 rows selected.
-```
+> **예제**
+>
+> 사용 예제는 아래와 같다.
+>
+> ~~~sql
+> iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, 'ma(s|n)');
+> EMP_JOB
+> -------------------
+> webmaster
+> manager
+> 2 rows selected.
+> ~~~
 
 ##### 정규식 처리 설정
 
@@ -26147,16 +26184,18 @@ manager
 | (?-...) | 설정된 옵션(들) 해제                                    |
 | (?^)    | imnsx 옵션 해제                                         |
 
-사용 예제는 아래와 같다.
-
-```sql
-iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '(?i)MA(s|n)');
-EMP_JOB
--------------------
-webmaster
-manager
-2 rows selected.
-```
+> **예제**
+>
+> 사용 예제는 아래와 같다.
+>
+> ~~~sql
+> iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '(?i)MA(s|n)');
+> EMP_JOB
+> -------------------
+> webmaster
+> manager
+> 2 rows selected.
+> ~~~
 
 ##### 주석
 
@@ -26164,351 +26203,49 @@ manager
 | :------- | :--------------------- |
 | (?#....) | comment (not nestable) |
 
-
-
-사용 예제는 아래와 같다.
-
-```sql
-iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '(?i)M(?#test)A(s|n)');
-EMP_JOB
--------------------
-webmaster
-manager
-2 rows selected.
-```
+> **예제**
+>
+> ~~~sql
+> iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '(?i)M(?#test)A(s|n)');
+> EMP_JOB
+> -------------------
+> webmaster
+> manager
+> 2 rows selected.
+> ~~~
 
 그 밖의 PCRE2 라이브러리의 정규 표현식 문법에 대한 자세한 내용은 [PCRE2 패턴 매뉴얼 페이지](https://www.pcre.org/current/doc/html/pcre2pattern.html)를 참고하기 바란다.
 사용 중 발생한 에러는 아래 에러 메세지 목록을 참고하기 바란다.
 	
-### 정규 표현식 라이브러리 별 문법 차이점
 
-Altibase 정규 표현식 라이브러리와 PCRE2 라이브러리의 정규 표현식 차이를 나타내는 대표적인 예이다.
+### 정규 표현식 모드 별 문법 차이점
 
-<table>
-  <tbody>
-    <tr>
-      <th>정규 표현식 문법</th>
-      <th>Altibase 정규 표현식 라이브러리의 정규 표현식 문법 예</th>
-      <th>PCRE2 라이브러리의 정규 표현식 문법 예</th>
-    </tr>
-    <tr>
-      <td>
-        <p>POSIX 문자열 클래스</p>
-        <p>(POSIX character class)</p>
-      </td>
-      <td>
-SELECT REGEXP_COUNT('ABCDEFG1234567abcdefgh!@#$%^&*(','[:punct:]+');
-<br/></br/>SELECT REGEXP_COUNT('ABCDEFG1234567abcdefgh!@#$%^&*(','\l+');
-      </td>
-      <td>
-`SELECT REGEXP_COUNT('ABCDEFG1234567abcdefgh!@#$%^&*(','[[:punct:+');
-SELECT REGEXP_COUNT('ABCDEFG1234567abcdefgh!@#$%^&*(','[[:lower:+');`
-      </td>
-    </tr>
-    <tr>
-      <td rowspan="2">
-        <p>POSIX 동등 클래스</p>
-        <p>(POSIX collating element or equivalence class)</p>
-      </td>
-      <td colspan="1">
-`SELECT I1 FROM T1 WHERE REGEXP_LIKE( I1, '[=A=]' );`
-      </td>
-      <td colspan="1">지원하지 않음</td>
-    </tr>
-    <tr>
-      <td colspan="1">
-`SELECT I1 FROM T1 WHERE REGEXP_LIKE( I1, '[A-[.CH.' );`
-      </td>
-      <td colspan="1">지원하지 않음</td>
-    </tr>
-    <tr>
-      <td colspan="1">
-        <p>역참조</p>
-        <p>(Backreference)</p>
-      </td>
-      <td colspan="1">지원하지 않음</td>
-      <td colspan="1">`SELECT * FROM T1 WHERE REGEXP_LIKE(I2,'(알티(베이스)7) 데이터\2');
-SELECT * FROM T1 WHERE REGEXP_LIKE(I2,'(알티(?<BASE>베이스)7) 데이터(?P=BASE)');`
-      </td>
-    </tr>
-    <tr>
-      <td colspan="1">
-        <p>전방 탐색</p>
-        <p>(Lookahead)</p>
-      </td>
-      <td colspan="1">지원하지 않음</td>
-      <td colspan="1">`SELECT * FROM T1 WHERE REGEXP_LIKE(I2,'알티.*(?=데이터베이스)');
-SELECT * FROM T1 WHERE REGEXP_LIKE(I2,'알티.*(?!데이터베이스)');`
-      </td>
-    </tr>
-    <tr>
-      <td colspan="1">
-        <p>후방 탐색</p>
-        <p>(Lookbehind)</p>
-      </td>
-      <td colspan="1">지원하지 않음</td>
-      <td colspan="1">`SELECT * FROM T1 WHERE REGEXP_LIKE(I2,'(?<=알티베이스7) 데이터베이스');
-SELECT * FROM T1 WHERE REGEXP_LIKE(I2,'(?<!알티베이스7) 데이터베이스');`
-      </td>
-    </tr>
-    <tr>
-      <td colspan="1">
-        <p>조건부 정규 표현식</p>
-        <p>(Conditional pattern)</p>
-      </td>
-      <td colspan="1">지원하지 않음</td>
-      <td colspan="1">`SELECT REGEXP_SUBSTR(I2,'(?(?=알티베이스)알티베이스7|데이터베이스)') FROM T1;`
-      </td>
-    </tr>
-    <tr>
-      <td colspan="1">
-        <p>문자 속성 정규 표현식</p>
-        <p>(Character with the xx property)</p>
-      </td>
-      <td colspan="1">지원하지 않음</td>
-      <td colspan="1">`SELECT REGEXP_SUBSTR(I2,'\P{HANGUL}+') FROM T1;`
-      </td>
-    </tr>
-  </tbody>
-</table>
+Altibase 정규 표현식 모드와 PCRE2 호환 모드의 정규 표현식 문법 차이를 나타내는 대표적인 예이다.
+
+t-rex 문법 설명에 POSIX 동등 클래스가 없음. 
+
+t-rex 에서 지원하지 않는 문법을 차이점에 추가할 필요는 없음.
+
+| 정규 표현식 문법    | Altibase 정규 표현식 모드                                    | PCRE2 호환 모드                                              | 차이                               |
+| ------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ---------------------------------- |
+| POSIX 문자열 클래스 | SELECT REGEXP_COUNT('ABCDEFG1234567abcdefgh!@#$%^&*(','[:punct:]+'); | SELECT REGEXP_COUNT('ABCDEFG1234567abcdefgh!@#$%^&*(','[[:punct:]]+'); | 대괄호를 앞뒤로 한 개씩 더 써야 함 |
+|                     | SELECT REGEXP_COUNT('ABCDEFG1234567abcdefgh!@#$%^&*(','\l+'); | SELECT REGEXP_COUNT('ABCDEFG1234567abcdefgh!@#$%^&*(','[[:lower:+'); | t-rex 에서도                       |
+| POSIX 동등 크래스   | SELECT` `I1 ``FROM` `T1 ``WHERE` `REGEXP_LIKE( I1, ``'[=A=]'` `); | -                                                            | 지원하지 않음                      |
+|                     | SELECT` `I1 ``FROM` `T1 ``WHERE` `REGEXP_LIKE( I1, ``'[A-[.CH.]]'` `); | -                                                            | 지원하지 않음                      |
+
+
+
 ### 정규 표현식 에러 메세지
 
-PCRE2 호환 모드에서 발생
-
-아래는 대표적인 PCRE2 에러 메세지를 정리한 표이다.
-
-~~~sql
-$T0> # RegExp Pattern Syntax Error
-$T0> select * from t1 where regexp_like(i2,'(알티(베이스)');
-[ERR-2106C : PCRE2 error: missing closing parenthesis (occured in qsfPCRERegExp::expCompile4Estimate)
-0001 : select * from T1 where REGEXP_LIKE(I2,'(알티(베이스)')
-                             ^                                   ^
-]
-~~~
-
-ERR-2106C : PCRE2 error: POSIX collating elements are not supported (occurred in expCompile4Estimate)
-ERR-2106C : PCRE2 error: invalid range in character class (occurred in expCompile4Estimate)
-
-ERR-2106C : PCRE2 error: missing closing parenthesis (occured in expCompile4Estimate)
+PCRE2 호환 모드에서 발생하는 에러 중 [0x2106C](https://github.com/eheejung/ALTI_Documents/blob/master/Manuals/Altibase_trunk/kor/Error Message Reference.md#0x2106c) 에러 코드는 아래와 같은 형식으로 에러 메시지가 출력된다. <1%s> 자리는 PCRE2 라이브러리에서 반환하는 에러 메시지이다.
 
 ~~~bash
-0x2106C ( 135276) mtERR_ABORT_PCRE2_UNEXPECTED_ERROR PCRE2 error: <1%s> (occurred in <0%s>) 
-# *Cause: An internal error occurred in PCRE2 library or while executing Altibase internal function.
-# *Action: Check the error message and contact Altibase's Support Center (http://support.altibase.com).
+ERR-2106C : PCRE2 error: <1%s> (occurred in <0%s>)
 ~~~
 
+이 에러 메시지에 관한 원인과 조치 방법은 Error Message Reference의 [15.Regular Expression Error Code](https://github.com/eheejung/ALTI_Documents/blob/master/Manuals/Altibase_trunk/kor/Error%20Message%20Reference.md#15regular-expression-error-code) 장에서 확인할 수 있다. 
 
 
-<table>
-  <tbody>
-    <tr>
-      <th>
-        <p>에러 메세지</p>
-      </th>
-      <th colspan="1">분류</th>
-      <th>
-        <p>원인</p>
-      </th>
-      <th colspan="1">
-        <p>대처법</p>
-      </th>
-    </tr>
-    <tr>
-      <td>
-        <ol>
-          <li>\ at end of pattern</li>
-          <li>\c at end of pattern</li>
-          <li>unrecognized character follows \</li>
-          <li>numbers out of order in {} quantifier</li>
-          <li>number too big in {} quantifier</li>
-          <li>missing terminating ] for character class</li>
-          <li>escape sequence is invalid in character class</li>
-          <li>range out of order in character class</li>
-          <li>quantifier does not follow a repeatable item</li>
-          <li>unrecognized character after (? or (?-</li>
-          <li>POSIX named classes are supported only within a class</li>
-          <li>POSIX collating elements are not supported</li>
-          <li>missing closing parenthesis</li>
-          <li>reference to non-existent subpattern</li>
-          <li>pattern passed as NULL</li>
-          <li>missing ) after (?# comment</li>
-          <li>unmatched closing parenthesis</li>
-          <li>missing closing parenthesis for condition</li>
-          <li>lookbehind assertion is not fixed length</li>
-          <li>\C is not allowed in a lookbehind assertion in UTF-8 mode</li>
-          <li>PCRE2 does not support \\F, \\L, \\l, \\N{name}, \\U, or \\u\</li>
-          <li>number after (?C is greater than 255</li>
-          <li>a relative value of zero is not allowed</li>
-          <li>conditional subpattern contains more than two branches</li>
-          <li>assertion expected after (?( or (?(?C)</li>
-          <li>digit expected after (?+ or (?-\0</li>
-          <li>unknown POSIX class name</li>
-          <li>character code point value in \\x{} or \\o{} is too large</li>
-          <li>closing parenthesis for (?C expected</li>
-          <li>invalid escape sequence in (*VERB) name</li>
-          <li>unrecognized character after (?P</li>
-          <li>syntax error in subpattern name (missing terminator?)</li>
-          <li>two named subpatterns have the same name (PCRE2_DUPNAMES not set)</li>
-          <li>subpattern name must start with a non-digit</li>
-          <li>malformed \\P or \\p sequence</li>
-          <li>invalid range in character class</li>
-          <li>octal value is greater than \\377 in 8-bit non-UTF-8 mode</li>
-          <li>DEFINE subpattern contains more than one branch</li>
-          <li>missing opening brace after \\o</li>
-          <li>\\g is not followed by a braced, angle-bracketed, or quoted name/number or by a plain number</li>
-          <li>(?R (recursive pattern call) must be followed by a closing parenthesis</li>
-          <li>(*VERB) not recognized or malformed</li>
-          <li>subpattern name expected</li>
-          <li>non-octal character in \\o{} (closing brace missing?)</li>
-          <li>different names for subpatterns of the same number are not allowed</li>
-          <li>(*MARK) must have an argument</li>
-          <li>non-hex character in \\x{} (closing brace missing?)</li>
-          <li>\\c must be followed by a printable ASCII character</li>
-          <li>\\k is not followed by a braced, angle-bracketed, or quoted name</li>
-          <li>\\N is not supported in a class</li>
-          <li>disallowed Unicode code point (&gt;= 0xd800 &amp;&amp; &lt;= 0xdfff)</li>
-          <li>digits missing in \\x{} or \\o{} or \\N{U+}</li>
-          <li>syntax error or number too big in (?(VERSION condition</li>
-          <li>missing terminating delimiter for callout with string argument</li>
-          <li>unrecognized string delimiter follows (?C</li>
-          <li>invalid hyphen in option setting</li>
-          <li>(*alpha_assertion) not recognized</li>
-          <li>atomic assertion expected after (?( or (?(?C)</li>
-          <li>\\K is not allowed in lookarounds (but see PCRE2_EXTRA_ALLOW_LOOKAROUND_BSK)</li>
-          <li>invalid syntax</li>
-          <li>non-unique substring name</li>
-          <li>NULL argument passed with non-zero length</li>
-          <li>nested recursion at the same subject position</li>
-          <li>requested value is not available</li>
-          <li>requested value is not set</li>
-          <li>bad escape sequence in replacement string</li>
-          <li>expected closing curly bracket in replacement string</li>
-          <li>bad substitution in replacement string</li>
-          <li>invalid replacement string</li>
-        </ol>
-      </td>
-      <td colspan="1">
-        <span>문법 오류</span>
-      </td>
-      <td>
-        <p>올바르지 않은 정규식 문법을 사용하였습니다.</p>
-      </td>
-      <td colspan="1">
-        <p>정규식 문법을 올바르게 수정합니다.</p>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="1">
-        <ol>
-          <li>internal error: unexpected repeat</li>
-          <li>unrecognised compile-time option bit(s)</li>
-          <li>internal error: code overflow</li>
-          <li>internal error in pcre2_study(): should not occur</li>
-          <li>unknown property after \\P or \\p</li>
-          <li>internal error: overran compiling workspace</li>
-          <li>internal error: previously-checked referenced subpattern not found</li>
-          <li>internal error: unknown newline setting</li>
-          <li>obsolete error (should not occur)</li>
-          <li>internal error: parsed pattern overflow</li>
-          <li>internal error: unknown meta code in check_lookbehinds()</li>
-          <li>using UTF is disabled by the application</li>
-          <li>using UCP is disabled by the application</li>
-          <li>internal error: unknown opcode in auto_possessify()</li>
-          <li>using \\C is disabled by the application</li>
-          <li>using \\C is disabled in this PCRE2 library</li>
-          <li>internal error: unknown code in parsed pattern</li>
-          <li>internal error: bad code value in parsed_skip()</li>
-          <li>invalid option bits with PCRE2_LITERAL</li>
-          <li>internal error - pattern overwritten?</li>
-          <li>internal error - duplicate substitution match</li>
-          <li>bad data value</li>
-          <li>patterns do not all use the same character tables</li>
-          <li>magic number missing</li>
-          <li>pattern compiled in wrong mode: 8/16/32-bit error</li>
-          <li>bad offset value</li>
-          <li>bad option value</li>
-          <li>bad offset into UTF string</li>
-          <li>callout error code</li>
-          <li>bad serialized data</li>
-        </ol>
-      </td>
-      <td colspan="1">PCRE2 라이브러리 내부 오류</td>
-      <td colspan="1">
-        <p>PCRE2 라이브러리 내부 동작 수행 중 오류가 발생했습니다.</p>
-      </td>
-      <td colspan="1">
-        <p>구체적인 원인 확인은 Altibase 고객지원 센터로 연락바랍니다.</p>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="1">
-        <ol>
-          <li>parentheses are too deeply nested</li>
-          <li>regular expression is too large</li>
-          <li>failed to allocate heap memory</li>
-          <li>parentheses are too deeply nested (stack check)</li>
-          <li>lookbehind is too complicated</li>
-          <li>subpattern name is too long (maximum ... code units)</li>
-          <li>too many named subpatterns (maximum ...)</li>
-          <li>subpattern number is too big</li>
-          <li>callout string is too long</li>
-          <li>name is too long in (*MARK), (*PRUNE), (*SKIP), or (*THEN)</li>
-          <li>character code point value in \\u.... sequence is too large</li>
-          <li>(?| and/or (?J: or (?x: parentheses are too deeply nested</li>
-          <li>regular expression is too complicated</li>
-          <li>lookbehind assertion is too long</li>
-          <li>pattern string is longer than the limit set by the application</li>
-          <li>too many capturing groups (maximum 65535)</li>
-          <li>match limit exceeded</li>
-          <li>no more memory</li>
-          <li>matching depth limit exceeded</li>
-          <li>too many replacements (more than INT_MAX)</li>
-          <li>heap limit exceeded</li>
-          <li>offset limit set without PCRE2_USE_OFFSET_LIMIT</li>
-          <li>match with end before start or start moved backwards is not supported</li>
-        </ol>
-      </td>
-      <td colspan="1">PCRE2 제약 사항</td>
-      <td colspan="1">
-        <p>PCRE2 제약 사항으로 인하여 오류가 발생했습니다.</p>
-      </td>
-      <td colspan="1">
-        <p>오류 메세지를 참고하여 정규식을 알맞게 수정해주세요. <span>구체적인 원인 확인이 필요한 경우 <span>Altibase 고객지원 센터로 연락바랍니다.</span>
-          </span>
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="1">
-        <ol>
-          <li>UTF-8 error: 1 byte missing at end</li>
-          <li>UTF-8 error: 2 bytes missing at end</li>
-          <li>UTF-8 error: 3 bytes missing at end</li>
-          <li>UTF-8 error: 4 bytes missing at end</li>
-          <li>UTF-8 error: 5 bytes missing at end</li>
-          <li>UTF-8 error: byte 2 top bits not 0x80</li>
-          <li>UTF-8 error: byte 3 top bits not 0x80</li>
-          <li>UTF-8 error: byte 4 top bits not 0x80</li>
-          <li>UTF-8 error: byte 5 top bits not 0x80</li>
-          <li>UTF-8 error: byte 6 top bits not 0x80</li>
-          <li>UTF-8 error: 5-byte character is not allowed (RFC 3629)</li>
-          <li>UTF-8 error: 6-byte character is not allowed (RFC 3629)</li>
-          <li>UTF-8 error: code points greater than 0x10ffff are not defined</li>
-          <li>UTF-8 error: code points 0xd800-0xdfff are not defined</li>
-          <li>UTF-8 error: overlong 2-byte sequence</li>
-          <li>UTF-8 error: overlong 3-byte sequence</li>
-          <li>UTF-8 error: overlong 4-byte sequence</li>
-          <li>UTF-8 error: overlong 5-byte sequence</li>
-          <li>UTF-8 error: overlong 6-byte sequence</li>
-          <li>UTF-8 error: isolated byte with 0x80 bit set</li>
-          <li>UTF-8 error: illegal byte (0xfe or 0xff)</li>
-        </ol>
-      </td>
-      <td colspan="1">
-        <span>유니코드, UTF-8 에러</span>
-      </td>
-      <td colspan="1">입력된 문자열들의 인코딩이 올바른 UTF-8 인코딩을 가지고 있지 않습니다.</td>
-      <td colspan="1">입력된 문자열들의 인코딩을 확인하여 UTF-8 인코딩에 알맞게 수정합니다.</td>
-    </tr>
-  </tbody>
-</table>
+
+
+
