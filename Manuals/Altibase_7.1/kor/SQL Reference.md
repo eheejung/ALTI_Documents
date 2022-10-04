@@ -25614,16 +25614,18 @@ Altibase 정규 표현식 모드는 최소한의 정규 표현식 문법을 지�
 | ()        | 하위 표현식. 여러 식을 하나로 묶어서 복잡한 정규식을 표현할 수 있다. |
 | []        | 문자 클래스를 표현하는 메타 문자. 각 괄호 내의 한 문자와 매치. |
 
->  예제 1. Newline를 제외한 문자 하나와 매칭된다. 각괄호 표현식 내에서 점(.) 문자는 리터럴 점(.)과 매칭된다. 예를 들어, a.c는 "abc" 등과 매치하지만, [a.c]는 오직 "a", ".", 또는 "c"와 매칭된다.
+**예제**
+
+<질의> Newline를 제외한 문자 하나와 매칭된다. 각괄호 표현식 내에서 점(.) 문자는 리터럴 점(.)과 매칭된다. 예를 들어, a.c는 "abc" 등과 매치하지만, [a.c]는 오직 "a", ".", 또는 "c"와 매칭된다.
 
 ~~~sql
-Newline를 제외한 문자 하나와 매칭된다. 각괄호 표현식 내에서 점(.) 문자는 리터럴 점(.)과 매칭된다. 예를 들어, a.c는 "abc" 등과 매치하지만, [a.c]는 오직 "a", ".", 또는 "c"와 매칭된다.
+
 ~~~
 
->  예제 2. 예를 들어, [abc]는 "a", "b", 또는 "c"와 매칭된다.
+<질의> 예를 들어, [abc]는 "a", "b", 또는 "c"와 매칭된다. [a-z]는 "a"에서 "z"까지의 소문자와 매칭된다. 이러한 형태는 혼합될 수 있다: [abcx-z]는 "a", "b", "c", "x", "y", 또는 "z"와 매치하며, [a-cx-z]도 마찬가지이다.
 
 ~~~sql
-예를 들어, [abc]는 "a", "b", 또는 "c"와 매칭된다. [a-z]는 "a"에서 "z"까지의 소문자와 매칭된다. 이러한 형태는 혼합될 수 있다: [abcx-z]는 "a", "b", "c", "x", "y", 또는 "z"와 매치하며, [a-cx-z]도 마찬가지이다.
+
 ~~~
 
 ##### 반복 찾기
@@ -25639,13 +25641,15 @@ Newline를 제외한 문자 하나와 매칭된다. 각괄호 표현식 내에�
 | {m,}      | 앞선 요소와 m회 이상 매칭된다.                      |
 | {m,n}     | 앞선 요소와 최소 m회, 최대 n회 매칭된다.            |
 
->  예제 3. 예를 들어, abc는 "ac", "abc", "abbbc", 등과 매칭된다. [xyz]는 "", "x", "y", "z", "zx", "zyx", "xyzzy", 등과 일치한다. (ab)*는 "", "ab", "abab", "ababab" 등과 매칭된다.
+**예제**
+
+<질의> 예를 들어, abc는 "ac", "abc", "abbbc", 등과 매칭된다. [xyz]는 "", "x", "y", "z", "zx", "zyx", "xyzzy", 등과 일치한다. (ab)*는 "", "ab", "abab", "ababab" 등과 매칭된다.
 
 ~~~sql
 예를 들어, abc는 "ac", "abc", "abbbc", 등과 매칭된다. [xyz]는 "", "x", "y", "z", "zx", "zyx", "xyzzy", 등과 일치한다. (ab)*는 "", "ab", "abab", "ababab" 등과 매칭된다.
 ~~~
 
->  예제 4 : 예를 들어, a{3,5}는 "aaa", "aaaa", 및 "aaaaa"와 매칭된다.
+<질의> 예를 들어, a{3,5}는 "aaa", "aaaa", 및 "aaaaa"와 매칭된다.
 
 ~~~sql
 예를 들어, a{3,5}는 "aaa", "aaaa", 및 "aaaaa"와 매칭된다.
@@ -25766,24 +25770,24 @@ PCRE2 호환 모드에서 메타 문자는 대괄호 안을 제외한 어느 곳
 | \x{*hhh..*}                        | 아스키 코드의 16진수 코드 hhh... 에 해당하는 문자            |
 | \N{U+*hhh..*}                      | 유니코드 16진수 코드 hhh.. 값에 해당하는 문자                |
 
-> **예제**
->
-> REGEXP_LIKE 조건 연산자로 아스키 코드 16진수 31에 해당하는 숫자 1을 검색한다.
->
-> ~~~sql
-> iSQL> SELECT GNAME FROM GOODS WHERE REGEXP_LIKE(GNAME, '\x31');
-> GNAME
-> ------------------------
-> IM-310
-> M-150
-> M-180
-> M-190G
-> M-U310
-> M-T153
-> M-T102
-> AU-100
-> 8 rows selected.
-> ~~~
+**예제**
+
+<질의> REGEXP_LIKE 조건 연산자로 아스키 코드 16진수 31에 해당하는 숫자 1을 검색한다.
+
+~~~sql
+iSQL> SELECT GNAME FROM GOODS WHERE REGEXP_LIKE(GNAME, '\x31');
+GNAME
+------------------------
+IM-310
+M-150
+M-180
+M-190G
+M-U310
+M-T153
+M-T102
+AU-100
+8 rows selected.
+~~~
 
 ##### 일반 문자 유형
 
@@ -25856,19 +25860,19 @@ PCRE2 호환 모드에서 메타 문자는 대괄호 안을 제외한 어느 곳
 | Zp   | Paragraph separator   |
 | Zs   | Space separator       |
 
-> **예제**
->
-> ~~~sql
-> iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '\p{Ll}');
-> EMP_JOB
-> -------------------
-> webmaster
-> manager
-> planner
-> 3 rows selected.
-> ~~~
+**예제**
 
+<질의> 
 
+~~~sql
+iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '\p{Ll}');
+EMP_JOB
+-------------------
+webmaster
+manager
+planner
+3 rows selected.
+~~~
 
 > **추가적인 유니코드 문자 속성**
 
@@ -25913,32 +25917,34 @@ POSIX 문자 클래스는 [:로 시작하여 :]로 끝난다. 정규 표현식�
 | [[:word:]]   | 알파벳, 숫자, _                                              |
 | [[:xdigit:]] | 16진수 숫자, 0-9, a-f, A-F                                   |
 
-> **예제**
->
-> 사용 예제는 아래와 같다. 예제가 적합하지 않음
->
-> ~~~sql
-> iSQL> SELECT GNAME FROM GOODS WHERE REGEXP_LIKE(GNAME, '[U]');
-> GNAME                 
-> ------------------------
-> IT-U950               
-> IT-U200               
-> TM-U950               
-> TM-U925               
-> TM-U375               
-> TM-U325               
-> TM-U200               
-> TM-U300               
-> TM-U590               
-> TM-U295               
-> M-U310                
-> M-U420                
-> M-U290                
-> AU-100                
-> 14 rows selected.
-> ~~~
+**예제**
+
+<질의> 사용 예제는 아래와 같다. 예제가 적합하지 않음
+
+~~~sql
+iSQL> SELECT GNAME FROM GOODS WHERE REGEXP_LIKE(GNAME, '[U]');
+GNAME                 
+------------------------
+IT-U950               
+IT-U200               
+TM-U950               
+TM-U925               
+TM-U375               
+TM-U325               
+TM-U200               
+TM-U300               
+TM-U590               
+TM-U295               
+M-U310                
+M-U420                
+M-U290                
+AU-100                
+14 rows selected.
+~~~
 
 ##### 앵커
+
+문자 유형 표로 통합? 
 
 | 문법 | 설명                                                         |
 | :---- | :------------------------------------------------------------ |
@@ -25951,17 +25957,19 @@ POSIX 문자 클래스는 [:로 시작하여 :]로 끝난다. 정규 표현식�
 | \z   | 문자열의 마지막 위치 또는 문자열의 마지막 newline 바로 전 위치 |
 | \G   | 문자열에서 첫번째 일치 위치                                  |
 
-> **예제**
->
-> 사용 예제는 아래와 같다.
->
-> ~~~sql
-> iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '^m');
-> EMP_JOB
-> -------------------
-> manager
-> 1 row selected.
-> ~~~
+**예제**
+
+<질의> 사용 예제는 아래와 같다.
+
+~~~sql
+iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '^m');
+EMP_JOB
+-------------------
+manager
+1 row selected.
+~~~
+
+
 
 ##### 그룹화 구문
 
@@ -25976,17 +25984,16 @@ POSIX 문자 클래스는 [:로 시작하여 :]로 끝난다. 정규 표현식�
 | (?>...)       | atomic non-capture group                                     |
 | (*atomic:...) | atomic non-capture group                                     |
 
-> **예제**
->
-> 사용 예제는 아래와 같다.
->
-> ~~~sql
-> iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '(a)n\1');
-> EMP_JOB
-> -------------------
-> manager
-> 1 row selected.
-> ~~~
+**예제**
+<질의> 사용 예제는 아래와 같다.
+
+~~~sql
+iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '(a)n\1');
+EMP_JOB
+-------------------
+manager
+1 row selected.
+~~~
 
 ##### 탐색 구문
 
@@ -26070,35 +26077,32 @@ POSIX 문자 클래스는 [:로 시작하여 :]로 끝난다. 정규 표현식�
     </tr>
   </tbody>
 </table>
-> **예제**
->
-> 사용 예제는 아래와 같다.
->
-> ~~~sql
-> iSQL> SELECT REGEXP_SUBSTR(EMP_JOB, 'a(?=n)') FROM EMPLOYEES;
-> REGEXP_SUBSTR(EMP_JOB,'A(?=N)')
-> -----------------------------------
-> a
-> a
-> 6 rows selected.
-> 
-> 
-> ~~~
->
-> **예제**
->
-> ~~~sql
-> iSQL> SELECT REGEXP_INSTR(EMP_JOB, 'a(?=n)') FROM EMPLOYEES;
-> REGEXP_INSTR(EMP_JOB,'A(?=N)')
-> ---------------------------------
-> 0
-> 0
-> 0
-> 2
-> 0
-> 3
-> 6 rows selected
-> ~~~
+**예제**
+
+<질의> 사용 예제는 아래와 같다.
+
+~~~sql
+iSQL> SELECT REGEXP_SUBSTR(EMP_JOB, 'a(?=n)') FROM EMPLOYEES;
+REGEXP_SUBSTR(EMP_JOB,'A(?=N)')
+-----------------------------------
+a
+a
+6 rows selected.
+~~~
+
+<질의>
+~~~sql
+iSQL> SELECT REGEXP_INSTR(EMP_JOB, 'a(?=n)') FROM EMPLOYEES;
+REGEXP_INSTR(EMP_JOB,'A(?=N)')
+---------------------------------
+0
+0
+0
+2
+0
+3
+6 rows selected
+~~~
 
 ##### 한정 기호
 
@@ -26121,17 +26125,16 @@ POSIX 문자 클래스는 [:로 시작하여 :]로 끝난다. 정규 표현식�
 | {n,}+  | 앞선 요소와 n회 이상 매칭된다.                               |
 | {n,}?  | 앞선 요소와 n회 이상 매칭된다.                               |
 
-> **예제**
->
-> 사용 예제는 아래와 같다.
->
-> ~~~sql
-> iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '^pl.*$');
-> EMP_JOB
-> -------------------
-> planner
-> 1 row selected.
-> ~~~
+**예제**
+<질의> 사용 예제는 아래와 같다.
+
+~~~sql
+iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '^pl.*$');
+EMP_JOB
+-------------------
+planner
+1 row selected.
+~~~
 
 ##### 역참조
 
@@ -26156,18 +26159,17 @@ POSIX 문자 클래스는 [:로 시작하여 :]로 끝난다. 정규 표현식�
 | :--------------- | :---------------------------- |
 | expr\|expr\|expr | 여러 식 중에 하나를 선택한다. |
 
-> **예제**
->
-> 사용 예제는 아래와 같다.
->
-> ~~~sql
-> iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, 'ma(s|n)');
-> EMP_JOB
-> -------------------
-> webmaster
-> manager
-> 2 rows selected.
-> ~~~
+**예제**
+<질의> 사용 예제는 아래와 같다.
+
+~~~sql
+iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, 'ma(s|n)');
+EMP_JOB
+-------------------
+webmaster
+manager
+2 rows selected.
+~~~
 
 ##### 정규식 처리 설정
 
@@ -26184,18 +26186,17 @@ POSIX 문자 클래스는 [:로 시작하여 :]로 끝난다. 정규 표현식�
 | (?-...) | 설정된 옵션(들) 해제                                    |
 | (?^)    | imnsx 옵션 해제                                         |
 
-> **예제**
->
-> 사용 예제는 아래와 같다.
->
-> ~~~sql
-> iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '(?i)MA(s|n)');
-> EMP_JOB
-> -------------------
-> webmaster
-> manager
-> 2 rows selected.
-> ~~~
+**예제**
+<질의> 사용 예제는 아래와 같다.
+
+~~~sql
+iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '(?i)MA(s|n)');
+EMP_JOB
+-------------------
+webmaster
+manager
+2 rows selected.
+~~~
 
 ##### 주석
 
@@ -26203,16 +26204,16 @@ POSIX 문자 클래스는 [:로 시작하여 :]로 끝난다. 정규 표현식�
 | :------- | :--------------------- |
 | (?#....) | comment (not nestable) |
 
-> **예제**
->
-> ~~~sql
-> iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '(?i)M(?#test)A(s|n)');
-> EMP_JOB
-> -------------------
-> webmaster
-> manager
-> 2 rows selected.
-> ~~~
+**예제**
+<질의>
+~~~sql
+iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '(?i)M(?#test)A(s|n)');
+EMP_JOB
+-------------------
+webmaster
+manager
+2 rows selected.
+~~~
 
 그 밖의 PCRE2 라이브러리의 정규 표현식 문법에 대한 자세한 내용은 [PCRE2 패턴 매뉴얼 페이지](https://www.pcre.org/current/doc/html/pcre2pattern.html)를 참고하기 바란다.
 사용 중 발생한 에러는 아래 에러 메세지 목록을 참고하기 바란다.
@@ -26227,7 +26228,7 @@ t-rex 문법 설명에 POSIX 동등 클래스가 없음.
 t-rex 에서 지원하지 않는 문법을 차이점에 추가할 필요는 없음.
 
 | 정규 표현식 문법    | Altibase 정규 표현식 모드                                    | PCRE2 호환 모드                                              | 차이                               |
-| ------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ---------------------------------- |
+| :------------------- | :------------------------------------------------------------ | :------------------------------------------------------------ | :---------------------------------- |
 | POSIX 문자열 클래스 | SELECT REGEXP_COUNT('ABCDEFG1234567abcdefgh!@#$%^&*(','[:punct:]+'); | SELECT REGEXP_COUNT('ABCDEFG1234567abcdefgh!@#$%^&*(','[[:punct:]]+'); | 대괄호를 앞뒤로 한 개씩 더 써야 함 |
 |                     | SELECT REGEXP_COUNT('ABCDEFG1234567abcdefgh!@#$%^&*(','\l+'); | SELECT REGEXP_COUNT('ABCDEFG1234567abcdefgh!@#$%^&*(','[[:lower:+'); | t-rex 에서도                       |
 | POSIX 동등 크래스   | SELECT` `I1 ``FROM` `T1 ``WHERE` `REGEXP_LIKE( I1, ``'[=A=]'` `); | -                                                            | 지원하지 않음                      |
