@@ -25594,7 +25594,7 @@ Altibase 정규 표현식 모드는 최소한의 정규 표현식 문법을 지�
 
 -   (?(condition)B\|C)와 같은 조건부 정규 표현식(conditional regular expression)을 지원하지 않는다.
     
--   이스케이프(Escape) 문자를 지원한다.
+-   이스케이프(Escape) 문자를 지원한다. *(당연한 거 아닌가? 삭제?)*
 
 #### Altibase 정규 표현식 모드의 정규 표현식 문법
 
