@@ -25866,7 +25866,7 @@ Adlam, Ahom, Anatolian_Hieroglyphs, Arabic, Armenian, Avestan, Balinese, Bamum, 
 
 \X 이스케이프 문자는 확장 문자소 클러스터로 구성된 유니코드 캐릭터들과 매치된다. 확장 문자소에 대한 자세한 정보는 [유니코드 공식 문서 UAX #29: Unicode Text Segmentation](http://www.unicode.org/reports/tr29/#Grapheme_Cluster_Boundaries)를 참고하기 바란다. 확장 문자소 매칭에 대한 자세한 정보는 [PCRE2 패턴 매뉴얼 페이지](https://www.pcre.org/current/doc/html/pcre2pattern.html)를 참고하기 바란다.
 
-##### 
+
 
 ##### 문자 클래스
 
@@ -25898,26 +25898,24 @@ Adlam, Ahom, Anatolian_Hieroglyphs, Arabic, Armenian, Avestan, Balinese, Bamum, 
 
 ```sql
 iSQL> SELECT GNAME FROM GOODS WHERE REGEXP_LIKE(GNAME, '[U]');
-GNAME
+GNAME                 
 ------------------------
-IT-U950
-IT-U200
-TM-U950
-TM-U925
-TM-U375
-TM-U325
-TM-U200
-TM-U300
-TM-U590
-TM-U295
-M-U310
-M-U420
-M-U290
-AU-100
+IT-U950               
+IT-U200               
+TM-U950               
+TM-U925               
+TM-U375               
+TM-U325               
+TM-U200               
+TM-U300               
+TM-U590               
+TM-U295               
+M-U310                
+M-U420                
+M-U290                
+AU-100                
 14 rows selected.
 ```
-
-​	
 
 ##### 앵커
 
@@ -26273,10 +26271,33 @@ SELECT * FROM T1 WHERE REGEXP_LIKE(I2,'(?<!알티베이스7) 데이터베이스'
     </tr>
   </tbody>
 </table>
+### 정규 표현식 에러 메세지
 
-### PCRE2 에러 메세지 목록
+PCRE2 호환 모드에서 발생
 
 아래는 대표적인 PCRE2 에러 메세지를 정리한 표이다.
+
+~~~sql
+$T0> # RegExp Pattern Syntax Error
+$T0> select * from t1 where regexp_like(i2,'(알티(베이스)');
+[ERR-2106C : PCRE2 error: missing closing parenthesis (occured in qsfPCRERegExp::expCompile4Estimate)
+0001 : select * from T1 where REGEXP_LIKE(I2,'(알티(베이스)')
+                             ^                                   ^
+]
+~~~
+
+ERR-2106C : PCRE2 error: POSIX collating elements are not supported (occurred in expCompile4Estimate)
+ERR-2106C : PCRE2 error: invalid range in character class (occurred in expCompile4Estimate)
+
+ERR-2106C : PCRE2 error: missing closing parenthesis (occured in expCompile4Estimate)
+
+~~~bash
+0x2106C ( 135276) mtERR_ABORT_PCRE2_UNEXPECTED_ERROR PCRE2 error: <1%s> (occurred in <0%s>) 
+# *Cause: An internal error occurred in PCRE2 library or while executing Altibase internal function.
+# *Action: Check the error message and contact Altibase's Support Center (http://support.altibase.com).
+~~~
+
+
 
 <table>
   <tbody>
