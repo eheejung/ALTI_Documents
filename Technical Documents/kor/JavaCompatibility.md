@@ -53,21 +53,28 @@
 
 <br/>
 
+중첩된 부질의가 Semi Join 또는 Anti Join을 하는 경우 Inverse Join[^1]을 반드시
+사용하도록 지시하는 힌트이며, 부질의 내에 명시해야 한다.
+
+[^1]: Inverse Join이란 Inverse Index Nested Loop, Inverse Hash, Inverse Sort를 통칭한다. Inverse Join에 대한 자세한 설명은 Performance Tuning Guide를 참조하기 바란다.
+
 # Altibase 7.1
 
 ### Altibase Server Side
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Java 5 | Java 6 | Java 7 | Java 8 |               Java 9                | Java 10 |            Java 11            | Java 12 | Java 17 | Java 18 |
 | ------------------------------------------------------------ | :-------------: | :----------: | :---------------------------------: | :-----: | :---------------------------------: | :-----: | :-----------: | :-----: | :-----: | :-----: |
-| **altiMon**                                                  |        ●        |        ●        |        ●        |      ●       |                  ●                  |    ●    | ●<sup><u>[1](#footnote-1)</u></sup> |    ●    |       -       |    -    |
-| **Adapter for JDBC** | x | x | ● | ● | ● | ● | ●<sup><u>[2](#footnote-2)</u></sup> | ● | - | - |
-| **DB Link**                                                  |        ●        |        ●        |        ●        |      ●       | ●<sup><u>[3](#footnote-3)</u></sup> |    ●    |                  ●                  |    ●    |       -       |    -    |
+| **altiMon**                                                  |        ●        |        ●        |        ●        |      ●       |                  ●                  |    ●    | ●[^1]<sup><u>[1](#footnote-1)</u></sup> |    ●    |       -       |    -    |
+| **Adapter for JDBC** | x | x | ● | ● | ● | ● | ●[^2]<sup><u>[2](#footnote-2)</u></sup> | ● | - | - |
+| **DB Link**                                                  |        ●        |        ●        |        ●        |      ●       | ●[^3]<sup><u>[3](#footnote-3)</u></sup> |    ●    |                  ●                  |    ●    |       -       |    -    |
 
 <sup><a name="footnote-1"><u>1</u></a> </sup>: altiMon에서 Java 11 이상은 Altibase 7.1.0.2.6부터 지원합니다. 
 
 <sup><a name="footnote-2"><u>2</u></a></sup> : Adapter for JDBC에서 Java 11 이상은 Altibase 7.1.0.2.6부터 지원합니다.
 
 <sup><a name="footnote-3"><u>3</u></a></sup> : DB Link에서 Java 9 이상은 Altibase 7.1.0.2.5부터 지원합니다.
+
+
 
 ### Altibase JDBC 드라이버
 
@@ -125,3 +132,8 @@
 
 <sup><a name="footnote-11"><u>11</u></a></sup> : Migration Center Windows 용과 Replication Manager는 제품 내에 JRE 번들을 제공하고 있어 자바 버전에 영향을 받지 않습니다. 
 
+
+
+[^1]: altiMon에서 Java 11 이상은 Altibase 7.1.0.2.6부터 지원합니다.
+[^2]: Adapter for JDBC에서 Java 11 이상은 Altibase 7.1.0.2.6부터 지원합니다.
+[^3]: DB Link에서 Java 9 이상은 Altibase 7.1.0.2.5부터 지원합니다.
