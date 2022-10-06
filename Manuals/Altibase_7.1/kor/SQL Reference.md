@@ -25765,12 +25765,12 @@ PCR2E 호환 모드에서 사용할 수 있는 대표적인 정규 표현식 문
 | \n                                 | 개행 문자(line feed). 아스키 코드의 10번째 문자(hex 0A)      |
 | \r                                 | 캐리지 리턴(carriage return). 아스키 코드의 13번째 문자(hex 0D) |
 | \t                                 | 탭(tab). 아스키 코드의 9번째 문자(hex 09)                    |
-| \0*dd*                             | 아스키 코드의 8진수 코드 dd에 해당하는 문자. 예를 들어 \061은 숫자 1을 의미한다. |
-| \\*ddd*                            | 아스키 코드의 8진수 코드 ddd에 해당하는 문자 또는 역참조를 의미한다. |
-| \o{*ddd..*}                        | 아스키 코드의 8진수 코드 ddd... 에 해당하는 문자             |
-| \x*hh*                             | 아스키 코드의 16진수 코드 hh에 해당하는 문자. 예를 들어 \x31은  숫자 1을 의미한다. |
-| \x{*hhh..*}                        | 아스키 코드의 16진수 코드 hhh... 에 해당하는 문자            |
-| \N{U+*hhh..*}                      | 유니코드 16진수 코드 hhh.. 값에 해당하는 문자                |
+| \0*dd*                             | 아스키 코드의 8진수 코드 *dd*에 해당하는 문자. 예를 들어 \061은 숫자 1을 의미한다. |
+| \\*ddd*                            | 아스키 코드의 8진수 코드 *ddd*에 해당하는 문자 또는 역참조를 의미한다. |
+| \o{*ddd..*}                        | 아스키 코드의 8진수 코드 *ddd...* 에 해당하는 문자           |
+| \x*hh*                             | 아스키 코드의 16진수 코드 *hh*에 해당하는 문자. 예를 들어 \x31은  숫자 1을 의미한다. |
+| \x{*hhh..*}                        | 아스키 코드의 16진수 코드 *hhh...* 에 해당하는 문자          |
+| \N{U+*hhh..*}                      | 유니코드 16진수 코드 *hhh..* 값에 해당하는 문자              |
 
 **예제**
 
@@ -25827,36 +25827,36 @@ AU-100
 | C    | 기타(Other). C로 시작하는 속성을 모두 포함한다.              |
 | Cc   | 제어(Control)                                                |
 | Cf   | 형식(Format)                                                 |
-| Cn   | Unassigned                                                   |
-| Co   | Private use                                                  |
-| Cs   | Surrogate                                                    |
+| Cn   | 미할당 Unassigned                                            |
+| Co   | 내부 용도 Private use                                        |
+| Cs   | U+D800부터 U+DFFF까지의 범위의 문자. Surrogate. UTF-16에 도입된 인코딩 방식. 삭제? 알티베이스에서 미지원? |
 |      |                                                              |
 | L    | 문자(Letter). L로 시작하는 속성을 모두 포함한다.             |
-| Ll   | Lower case letter                                            |
-| Lm   | Modifier letter                                              |
-| Lo   | Other letter                                                 |
-| Lt   | Title case letter                                            |
-| Lu   | Upper case letter                                            |
-| L&   | Ll, Lu, or Lt                                                |
+| Ll   | 영문자 소문자 Lower case letter                              |
+| Lm   | 수정자 Modifier letter                                       |
+| Lo   | 기타 문자 Other letter                                       |
+| Lt   | 첫 글자가 영문자 대문자인 문자 Title case letter             |
+| Lu   | 영문자 대문자 Upper case letter                              |
+| L&   | 영문자 소문자, 대문자 또는 첫 글자가 대문자인 문자 Ll, Lu, or Lt |
 |      |                                                              |
 | M    | 표시(Mark). M으로 시작하는 속성을 모두 포함한다.             |
-| Mc   | Spacing mark                                                 |
-| Me   | Enclosing mark                                               |
-| Mn   | Non-spacing mark                                             |
+| Mc   | 띄어쓰기 표시 Spacing mark                                   |
+| Me   | 둘러싸는 표시 Enclosing mark                                 |
+| Mn   | 비공백 표시 Non-spacing mark                                 |
 |      |                                                              |
 | N    | 숫자(Number). N으로 시작하는 속성을 모두 포함한다.           |
-| Nd   | Decimal number                                               |
-| Nl   | Letter number                                                |
-| No   | Other number                                                 |
+| Nd   | 10진수 Decimal number                                        |
+| Nl   | 문자로 표현하는 숫자 Letter number                           |
+| No   | 기타 숫자 Other number                                       |
 |      |                                                              |
-| P    | 문장 부호(Punctuation). P로 시작하는 속성을 모두 포함한다.   |
-| Pc   | Connector punctuation                                        |
-| Pd   | Dash punctuation                                             |
-| Pe   | Close punctuation                                            |
-| Pf   | Final punctuation                                            |
-| Pi   | Initial punctuation                                          |
-| Po   | Other punctuation                                            |
-| Ps   | Open punctuation                                             |
+| P    | 문장 부호, 구두법(Punctuation). P로 시작하는 속성을 모두 포함한다. |
+| Pc   | 연결 문장 부호 Connector punctuation                         |
+| Pd   | 대시 또는 하이픈 문장 부호 Dash punctuation                  |
+| Pe   | 닫힌, 엄격한 구두법 Close punctuation                        |
+| Pf   | 마침 문장 부호 Final punctuation                             |
+| Pi   | 시작 문장 부호 Initial punctuation                           |
+| Po   | 기타 구두법 Other punctuation                                |
+| Ps   | 열린 구두법  Open punctuation                                |
 |      |                                                              |
 | S    | 기호(Symbol). S로 시작하는 속성을 모두 포함한다.             |
 | Sc   | 화폐 기호 Currency symbol                                    |
@@ -25870,7 +25870,7 @@ AU-100
 | Zs   | 공백 구분자 Space separator                                  |
 |      |                                                              |
 |      | 아래는 PCRE2에서 추가적으로 지원하는 유니코드 문자 속성이다. |
-| Xan  | Alphanumeric: union of properties L and N                    |
+| Xan  | 알파벳과 숫자. L 속성과 N 속성을 모두 포함한다. Alphanumeric: union of properties L and N |
 | Xps  | POSIX space: property Z or tab, NL, VT, FF, CR               |
 | Xsp  | Perl space: property Z or tab, NL, VT, FF, CR                |
 | Xuc  | Univerally-named character: one that can be represented by a Universal Character Name |
@@ -25891,6 +25891,13 @@ planner
 ~~~
 
 > ###### \p{*xx*}와 \P{*xx*} 에서 사용 가능한 스크립트 이름
+
+
+
+~~~sql
+\p{Greek}
+\P{Han}
+~~~
 
 
 
