@@ -25827,58 +25827,57 @@ AU-100
 | C    | 기타(Other). C로 시작하는 속성을 모두 포함한다.              |
 | Cc   | 제어(Control)                                                |
 | Cf   | 형식(Format)                                                 |
-| Cn   | 미할당 Unassigned                                            |
-| Co   | 내부 용도 Private use                                        |
-| Cs   | U+D800부터 U+DFFF까지의 범위의 문자. Surrogate. UTF-16에 도입된 인코딩 방식. 삭제? 알티베이스에서 미지원? |
+| Cn   | 미할당(Unassigned)                                           |
+| Co   | 내부 용도(Private use)                                       |
 |      |                                                              |
 | L    | 문자(Letter). L로 시작하는 속성을 모두 포함한다.             |
-| Ll   | 영문자 소문자 Lower case letter                              |
-| Lm   | 수정자 Modifier letter                                       |
-| Lo   | 기타 문자 Other letter                                       |
-| Lt   | 첫 글자가 영문자 대문자인 문자 Title case letter             |
-| Lu   | 영문자 대문자 Upper case letter                              |
-| L&   | 영문자 소문자, 대문자 또는 첫 글자가 대문자인 문자 Ll, Lu, or Lt |
+| Ll   | 영문자 소문자(Lower case letter)                             |
+| Lm   | 수정자(Modifier letter)                                      |
+| Lo   | 기타 문자(Other letter)                                      |
+| Lt   | 첫 글자가 영문자 대문자인 문자(Title case letter)            |
+| Lu   | 영문자 대문자(Upper case letter)                             |
+| L&   | 영문자 소문자, 대문자 또는 첫 글자가 대문자인 문자(Ll, Lu, or Lt) |
 |      |                                                              |
 | M    | 표시(Mark). M으로 시작하는 속성을 모두 포함한다.             |
-| Mc   | 띄어쓰기 표시 Spacing mark                                   |
-| Me   | 둘러싸는 표시 Enclosing mark                                 |
-| Mn   | 비공백 표시 Non-spacing mark                                 |
+| Mc   | 띄어쓰기 표시(Spacing mark)                                  |
+| Me   | 둘러싸는 표시(Enclosing mark)                                |
+| Mn   | 비공백 표시(Non-spacing mark)                                |
 |      |                                                              |
 | N    | 숫자(Number). N으로 시작하는 속성을 모두 포함한다.           |
-| Nd   | 10진수 Decimal number                                        |
-| Nl   | 문자로 표현하는 숫자 Letter number                           |
-| No   | 기타 숫자 Other number                                       |
+| Nd   | 10진수(Decimal number)                                       |
+| Nl   | 문자로 표현하는 숫자(Letter number)                          |
+| No   | 기타 숫자(Other number)                                      |
 |      |                                                              |
 | P    | 문장 부호, 구두법(Punctuation). P로 시작하는 속성을 모두 포함한다. |
-| Pc   | 연결 문장 부호 Connector punctuation                         |
-| Pd   | 대시 또는 하이픈 문장 부호 Dash punctuation                  |
-| Pe   | 닫힌, 엄격한 구두법 Close punctuation                        |
-| Pf   | 마침 문장 부호 Final punctuation                             |
-| Pi   | 시작 문장 부호 Initial punctuation                           |
-| Po   | 기타 구두법 Other punctuation                                |
-| Ps   | 열린 구두법  Open punctuation                                |
+| Pc   | 연결 문장 부호(Connector punctuation)                        |
+| Pd   | 대시 또는 하이픈 문장 부호(Dash punctuation)                 |
+| Pe   | 닫힌, 엄격한 구두법(Close punctuation)                       |
+| Pf   | 마침 문장 부호(Final punctuation)                            |
+| Pi   | 시작 문장 부호(Initial punctuation)                          |
+| Po   | 기타 구두(Other punctuation)                                 |
+| Ps   | 열린 구두법(Open punctuation)                                |
 |      |                                                              |
 | S    | 기호(Symbol). S로 시작하는 속성을 모두 포함한다.             |
-| Sc   | 화폐 기호 Currency symbol                                    |
-| Sk   | 수정자 기호 Modifier symbol                                  |
-| Sm   | 수학 기호 Mathematical symbol                                |
-| So   | 기타 기호 Other symbol                                       |
+| Sc   | 화폐 기호(Currency symbol)                                   |
+| Sk   | 수정자 기호(Modifier symbol)                                 |
+| Sm   | 수학 기호(Mathematical symbol)                               |
+| So   | 기타 기호(Other symbol)                                      |
 |      |                                                              |
 | Z    | 구분자(Separator). Z로 시작하는 속성을 모두 포함한다.        |
-| Zl   | 줄 구분자 Line separator                                     |
-| Zp   | 단락 구분자 Paragraph separator                              |
-| Zs   | 공백 구분자 Space separator                                  |
+| Zl   | 줄 구분자(Line separator)                                    |
+| Zp   | 단락 구분자(Paragraph separator)                             |
+| Zs   | 공백 구분자(Space separator)                                 |
 |      |                                                              |
 |      | 아래는 PCRE2에서 추가적으로 지원하는 유니코드 문자 속성이다. |
-| Xan  | 알파벳과 숫자. L 속성과 N 속성을 모두 포함한다. Alphanumeric: union of properties L and N |
-| Xps  | POSIX space: property Z or tab, NL, VT, FF, CR               |
-| Xsp  | Perl space: property Z or tab, NL, VT, FF, CR                |
-| Xuc  | Univerally-named character: one that can be represented by a Universal Character Name |
+| Xan  | 알파벳과 숫자. L 속성과 N 속성을 모두 포함한다.<br />Alphanumeric: union of properties L and N |
+| Xps  | POSIX 공백 문자: Z 속성 또는 탭, 개행 문자, 수직 탭, 다음 페이지, 캐리지 리턴<br />POSIX space: property Z or tab, NL, VT, FF, CR |
+| Xsp  | Perl 공백 문자:Z 속성 또는 탭, 개행 문자, 수직 탭, 다음 페이지, 캐리지 리턴<br />Perl space: property Z or tab, NL, VT, FF, CR |
+| Xuc  | 유니버설 문자 이름<br />Univerally-named character: one that can be represented by a Universal Character Name) |
 | Xwd  | Perl word: property Xan or underscore                        |
 
 **예제**
 
-<질의> 이스케이프 시퀀스 \p 를 사용하여 영문자 소문자와 일치하는 유니코드 문자를 검색한다.
+<질의> 이스케이프 시퀀스 \p를 사용하여 EMPLOYEES 테이블의 EMP_JOB 컬럼에서 영문자 소문자와 일치하는 유니코드 문자가 포함된 데이터를 조회한다.
 
 ~~~sql
 iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '\p{Ll}');
@@ -25911,13 +25910,13 @@ Adlam, Ahom, Anatolian_Hieroglyphs, Arabic, Armenian, Avestan, Balinese, Bamum, 
 
 ##### POSIX 문자 클래스
 
-POSIX 문자 클래스는 [:로 시작하여 :]로 끝난다. 정규 표현식에 바깥쪽 대괄호는 집합을 정의하는 것이고 안쪽 대괄호는 POSIX 문자 클래스 문법 자체를 의미한다. 
+문자 클래스는 자주 사용하는 문자 집합들을 정의한 것이다. 문자 클래스는 [일반 문자 유형](#일반-문자-유형)처럼 이스케이프 시퀀스로 표현하거나 아래 표와 같이 대괄호로 둘러싸인 POSIX 표기법을 사용할 수도 있다. POSIX 문자 클래스는 [: 와 :]로 둘러싸여 있다. 바깥쪽 대괄호는 문자 집합을 정의하는 것이고 안쪽 대괄호는 POSIX 문자 클래스 문법 자체를 의미한다. 
 
-| POSIX 문자 클래스 | lal                                                       |
+| POSIX 문자 클래스 | 의미                                                      |
 | :------------ | :------------------------------------------------------------ |
 | [[:alnum:]]  | 알파벳과 숫자                                                |
 | [[:alpha:]]  | 알파벳 문자                                                  |
-| [[: ascii:]] | 아스키 코드에서 0번부터 127번까지의 문자                     |
+| [[:ascii:]] | 아스키 코드에서 0번부터 127번까지의 문자                     |
 | [[:blank:]]  | 스페이스나 탭                                                |
 | [[:cntrl:]]  | 아스키 코드에서 127번 문자와 31번 이하의 문자                |
 | [[:digit:]]  | 숫자                                                         |
@@ -25932,27 +25931,19 @@ POSIX 문자 클래스는 [:로 시작하여 :]로 끝난다. 정규 표현식�
 
 **예제**
 
-<질의> 사용 예제는 아래와 같다. 예제가 적합하지 않음
+<질의> POSIX 문자 클래스를 사용하여 EMPLOYEES 테이블의 EMP_JOB 컬럼에서 영문자 대문자가 포함된 데이터를 조회하라.
 
 ~~~sql
-iSQL> SELECT GNAME FROM GOODS WHERE REGEXP_LIKE(GNAME, '[U]');
-GNAME                 
-------------------------
-IT-U950               
-IT-U200               
-TM-U950               
-TM-U925               
-TM-U375               
-TM-U325               
-TM-U200               
-TM-U300               
-TM-U590               
-TM-U295               
-M-U310                
-M-U420                
-M-U290                
-AU-100                
-14 rows selected.
+iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '[[:upper:]]');
+EMP_JOB          
+-------------------
+CEO              
+PL               
+PL               
+PM               
+PM               
+PM               
+6 rows selected.
 ~~~
 
 ##### 앵커
