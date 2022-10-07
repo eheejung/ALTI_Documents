@@ -25749,7 +25749,7 @@ PCR2E 호환 모드에서 사용할 수 있는 대표적인 정규 표현식 문
 | \                                  | 뒤의 문자를 일반 문자로 인식                       |
 | ^                                  | ^ 바로 뒤 문자나 범위 또는 집합 안의 문자나 범위를 제외 |
 | -                                  | 문자 범위                                                    |
-| [                                  | POSIX 문자 클래스 시작                                         |
+| [                                  | 문자 클래스 시작                                         |
 | ]                                  | 문자 클래스의 종료                                           |
 
 ##### 출력할 수 없는 문자
@@ -25871,9 +25871,9 @@ AU-100
 |      | 아래는 PCRE2에서 추가적으로 지원하는 유니코드 문자 속성이다. |
 | Xan  | 알파벳과 숫자. L 속성과 N 속성을 모두 포함한다.<br />Alphanumeric: union of properties L and N |
 | Xps  | POSIX 공백 문자: Z 속성 또는 탭, 개행 문자, 수직 탭, 다음 페이지, 캐리지 리턴<br />POSIX space: property Z or tab, NL, VT, FF, CR |
-| Xsp  | Perl 공백 문자:Z 속성 또는 탭, 개행 문자, 수직 탭, 다음 페이지, 캐리지 리턴<br />Perl space: property Z or tab, NL, VT, FF, CR |
+| Xsp  | Perl 공백 문자: Z 속성 또는 탭, 개행 문자, 수직 탭, 다음 페이지, 캐리지 리턴<br />Perl space: property Z or tab, NL, VT, FF, CR |
 | Xuc  | 유니버설 문자 이름<br />Univerally-named character: one that can be represented by a Universal Character Name) |
-| Xwd  | Perl word: property Xan or underscore                        |
+| Xwd  | Perl 단어: 속성 Xan 또는 밑줄<br />Perl word: property Xan or underscore |
 
 **예제**
 
@@ -25889,24 +25889,26 @@ planner
 3 rows selected.
 ~~~
 
-> ###### \p{*xx*}와 \P{*xx*} 에서 사용 가능한 스크립트 이름
+> ###### 유니코드 스크립트 이름
 
-
+\p{*xx*}와 \P{*xx*}의 *xx* 속성에 다음과 같이 유니코드 스크립트 이름을 사용할 수 있다.
 
 ~~~sql
 \p{Greek}
 \P{Han}
 ~~~
 
-
+지원하는 스크립트 목록은 아래와 같다.
 
 ~~~
 Adlam, Ahom, Anatolian_Hieroglyphs, Arabic, Armenian, Avestan, Balinese, Bamum, Bassa_Vah, Batak, Bengali, Bhaiksuki, Bopomofo, Brahmi, Braille, Buginese, Buhid, Canadian_Aboriginal, Carian, Caucasian_Albanian, Chakma, Cham, Cherokee, Chorasmian, Common, Coptic, Cuneiform, Cypriot, Cypro_Minoan, Cyrillic, Deseret, Devanagari, Dives_Akuru, Dogra, Duployan, Egyptian_Hieroglyphs, Elbasan, Elymaic, Ethiopic, Georgian, Glagolitic, Gothic, Grantha, Greek, Gujarati, Gunjala_Gondi, Gurmukhi, Han, Hangul, Hanifi_Rohingya, Hanunoo, Hatran, Hebrew, Hiragana, Imperial_Aramaic, Inherited, Inscriptional_Pahlavi, Inscriptional_Parthian, Javanese, Kaithi, Kannada, Katakana, Kayah_Li, Kharoshthi, Khitan_Small_Script, Khmer, Khojki, Khudawadi, Lao, Latin, Lepcha, Limbu, Linear_A, Linear_B, Lisu, Lycian, Lydian, Mahajani, Makasar, Malayalam, Mandaic, Manichaean, Marchen, Masaram_Gondi, Medefaidrin, Meetei_Mayek, Mende_Kikakui, Meroitic_Cursive, Meroitic_Hieroglyphs, Miao, Modi, Mongolian, Mro, Multani, Myanmar, Nabataean, Nandinagari, New_Tai_Lue, Newa, Nko, Nushu, Nyakeng_Puachue_Hmong, Ogham, Ol_Chiki, Old_Hungarian, Old_Italic, Old_North_Arabian, Old_Permic, Old_Persian, Old_Sogdian, Old_South_Arabian, Old_Turkic, Old_Uyghur, Oriya, Osage, Osmanya, Pahawh_Hmong, Palmyrene, Pau_Cin_Hau, Phags_Pa, Phoenician, Psalter_Pahlavi, Rejang, Runic, Samaritan, Saurashtra, Sharada, Shavian, Siddham, SignWriting, Sinhala, Sogdian, Sora_Sompeng, Soyombo, Sundanese, Syloti_Nagri, Syriac, Tagalog, Tagbanwa, Tai_Le, Tai_Tham, Tai_Viet, Takri, Tamil, Tangsa, Tangut, Telugu, Thaana, Thai, Tibetan, Tifinagh, Tirhuta, Toto, Ugaritic, Vai, Vithkuqi, Wancho, Warang_Citi, Yezidi, Yi, Zanabazar_Square
 ~~~
 
-> ###### 유니코드 확장 문자소
+> ###### 유니코드 확장 자소 집합(Unicode extended grapheme cluster)
 
-\X 이스케이프 문자는 확장 문자소 클러스터로 구성된 유니코드 캐릭터들과 매치된다. 확장 문자소에 대한 자세한 정보는 [유니코드 공식 문서 UAX #29: Unicode Text Segmentation](http://www.unicode.org/reports/tr29/#Grapheme_Cluster_Boundaries)를 참고하기 바란다. 확장 문자소 매칭에 대한 자세한 정보는 [PCRE2 패턴 매뉴얼 페이지](https://www.pcre.org/current/doc/html/pcre2pattern.html)를 참고하기 바란다.
+\X 이스케이프 시퀀스는 유니코드 확장 자소 집합을 의미한다. 자소 집합(grapheme cluster)은 사람이 읽을 수 있는 단일 문자를 말하며 하나의 자소 집합은 여러 개의 코드 포인트(code points)로 이루어진다. 
+
+확장 문자소 클러스터로 구성된 유니코드 캐릭터들과 매치된다. 확장 문자소에 대한 자세한 정보는 [유니코드 공식 문서 UAX #29: Unicode Text Segmentation](http://www.unicode.org/reports/tr29/#Grapheme_Cluster_Boundaries)를 참고하기 바란다. 확장 문자소 매칭에 대한 자세한 정보는 [PCRE2 패턴 매뉴얼 페이지](https://www.pcre.org/current/doc/html/pcre2pattern.html)를 참고하기 바란다.
 
 ##### POSIX 문자 클래스
 
@@ -25948,22 +25950,22 @@ PM
 
 ##### 앵커
 
-문자 유형 표로 통합? 
+앵커는 문자의 위치나 단어 또는 문자열의 경계를 찾는 이스케이프 시퀀스를 의미한다. 
 
-| 문법 | 설명                                                         |
+| 이스케이프 시퀀스 | 설명                                                         |
 | :---- | :------------------------------------------------------------ |
 | \b   | 단어 경계 위치                                               |
 | \B   | 단어 경계가 아닌 위치                                        |
 | ^    | 문자열의 시작 위치                                           |
 | \A   | 문자열의 시작 위치                                           |
-| $    | e문자열의 마지막 위치 또는 문자열의 마지막 newline 바로 전 위치 |
-| \Z   | 문자열의 마지막 위치 또는 문자열의 마지막 newline 바로 전 위치 |
-| \z   | 문자열의 마지막 위치 또는 문자열의 마지막 newline 바로 전 위치 |
+| $    | 문자열의 마지막 위치 또는 문자열의 마지막 개행 문자 바로 전 위치 |
+| \Z   | 문자열의 마지막 위치 또는 문자열의 마지막 개행 문자 바로 전 위치 |
+| \z   | 문자열의 마지막 위치 |
 | \G   | 문자열에서 첫번째 일치 위치                                  |
 
 **예제**
 
-<질의> 사용 예제는 아래와 같다.
+<질의> *예제 변경 필요- 메타 기호 말고 이스케이프 시퀀스 사용한 예제로*
 
 ~~~sql
 iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '^m');
