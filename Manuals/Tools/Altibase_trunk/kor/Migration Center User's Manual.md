@@ -1579,8 +1579,8 @@ PL/SQL 변환기가 PSM 타입 객체 DDL 문장을 Altibase에 호환되는 형
 
 #### Oracle to Altibase
 
-| 번호&nbsp;&nbsp;&nbsp;&nbsp; | 원본&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  | 대상&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    | 주의 사항                                                    |
-| :-- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| 번호 | 원본 | 대상   | 주의 사항                                                    |
+| :--: | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 |  1   | CHAR                                                         | CHAR                                                         | Altibase의 CHAR 타입은 byte 길이로만 정의할 수 있기 때문에 Oracle에서 문자 길이로 정의된 컬럼의 경우 자동으로 바이트 길이로 변환된다. |
 |  2   | NCHAR                                                        | NCHAR                                                        | 원본 및 대상 데이터베이스의 NCHAR 칼럼의 명시적인 크기는 같다(예. NCHAR(10) -\> NCHAR(10)). 그러나, 오라클 JDBC 드라이버에서는 NCHAR 칼럼의 크기가 사용되는 바이트의 개수로 정의되는 반면, Altibase의 JDBC 드라이버에서는 NCHAR 칼럼의 크기가 저장되는 문자의 개수로 정의된다. 이는 Altibase에서 생성되는 NCHAR 칼럼이 필요에 따라 오라클보다 2배 또는 3배 정도 클 것이라는 의미이므로, 이런 점을 유의하도록 한다. |
 |  3   | VARCHAR2                                                     | VARCHAR                                                      | 오라클의 VARCHAR2 데이터가 Altibase의 VARCHAR 최대 크기인 32,000바이트를 초과하면 Altibase의 데이터 타입을 CLOB으로 변환한다. 오라클의 VARCHAR2 최대 크기는 32,767바이트로, Altibase의 최대 크기보다 크기 때문에 마이그레이션 시 데이터 손실을 방지하기 위해서이다.<br />오라클에서 문자 길이로 정의한 VARCHAR2는 Altibase에서 바이트 단위로 변환된다. Altibase의 VARCHAR는 바이트 단위로만 정의할 수 있다. |
