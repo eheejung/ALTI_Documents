@@ -1583,7 +1583,7 @@ PL/SQL 변환기가 PSM 타입 객체 DDL 문장을 Altibase에 호환되는 형
 | :-- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 |  1   | CHAR                                                         | CHAR                                                         | Altibase의 CHAR 타입은 byte 길이로만 정의할 수 있기 때문에 Oracle에서 문자 길이로 정의된 컬럼의 경우 자동으로 바이트 길이로 변환된다. |
 |  2   | NCHAR                                                        | NCHAR                                                        | 원본 및 대상 데이터베이스의 NCHAR 칼럼의 명시적인 크기는 같다(예. NCHAR(10) -\> NCHAR(10)). 그러나, 오라클 JDBC 드라이버에서는 NCHAR 칼럼의 크기가 사용되는 바이트의 개수로 정의되는 반면, Altibase의 JDBC 드라이버에서는 NCHAR 칼럼의 크기가 저장되는 문자의 개수로 정의된다. 이는 Altibase에서 생성되는 NCHAR 칼럼이 필요에 따라 오라클보다 2배 또는 3배 정도 클 것이라는 의미이므로, 이런 점을 유의하도록 한다. |
-|  3   | VARCHAR2                                                     | VARCHAR                                                      | • 오라클의 VARCHAR2 데이터가 Altibase의 VARCHAR 최대 크기인 32000바이트를 초과하면 Altibase의 데이터 타입을 CLOB으로 변환한다. 오라클의 VARCHAR2 최대 크기는 32767바이트로, Altibase의 최대 크기보다 크기 때문에 마이그레이션 시 데이터 손실을 방지하기 위해서이다.<br />• 오라클에서 문자 길이로 정의한 VARCHAR2는 Altibase에서 바이트 단위로 변환된다. Altibase의 VARCHAR는 바이트 단위로만 정의할 수 있다. |
+|  3   | VARCHAR2                                                     | VARCHAR                                                      | 오라클의 VARCHAR2 데이터가 Altibase의 VARCHAR 최대 크기인 32,000바이트를 초과하면 Altibase의 데이터 타입을 CLOB으로 변환한다. 오라클의 VARCHAR2 최대 크기는 32,767바이트로, Altibase의 최대 크기보다 크기 때문에 마이그레이션 시 데이터 손실을 방지하기 위해서이다.<br />오라클에서 문자 길이로 정의한 VARCHAR2는 Altibase에서 바이트 단위로 변환된다. Altibase의 VARCHAR는 바이트 단위로만 정의할 수 있다. |
 |  4   | NVARCHAR2                                                    | NVARCHAR                                                     | NCHAR와 같은 이유로, 칼럼 크기가 서로 다르다. 또한 오라클의 NVARCHAR2 최대 크기는 32,767 바이트로 Altibase의 NVARCHAR 최대 크기 32,000 바이트보다 크기 때문에 데이터 손실이 발생할 수 있다. |
 |  5   | LONG                                                         | CLOB                                                         |                                                              |
 |  6   | NUMBER                                                       | NUMBER                                                       | 오라클에서 precision과 scale 없이 정의된 NUMBER 타입 칼럼은 Altibase에서도 동일하게 precision과 scale이 없는 NUMBER 타입으로 변환된다. \*참고: 오라클과 Altibase 모두 precision과 scale 없이 NUMBER 타입으로 칼럼을 정의하면 데이터베이스 내부적으로 FLOAT 타입으로 다루어진다. |
@@ -1653,7 +1653,7 @@ PL/SQL 변환기가 PSM 타입 객체 DDL 문장을 Altibase에 호환되는 형
 |  16  | DATE                            | DATE           |                                                              |
 |  17  | TIMESTAMP                       | DATE           | TIMEZONE 제외                                                |
 |  18  | CHAR                            | CHAR           |                                                              |
-|  19  | VARCHAR                         | VARCHAR        | MySQL의 VARCHAR 데이터가 Altibase의 VARCHAR 최대 크기인 32000바이트를 초과하면 Altibase의 데이터 타입을 CLOB으로 변환한다. MySQL의 VARCHAR 최대 크기는 65536바이트로 Altibase의 최대 크기보다 크기 때문에 마이그레이션 시 데이터 손실을 방지하기 위해서이다. |
+|  19  | VARCHAR                         | VARCHAR        | MySQL의 VARCHAR 데이터가 Altibase의 VARCHAR 최대 크기인 32,000바이트를 초과하면 Altibase의 데이터 타입을 CLOB으로 변환한다. MySQL의 VARCHAR 최대 크기는 65,536바이트로 Altibase의 최대 크기보다 크기 때문에 마이그레이션 시 데이터 손실을 방지하기 위해서이다. |
 |  20  | CHAR with National Character    | NCHAR          |                                                              |
 |  21  | VARCHAR with National Character | NVARCHAR       |                                                              |
 |  22  | BINARY                          | BYTE           |                                                              |
@@ -1688,11 +1688,11 @@ PL/SQL 변환기가 PSM 타입 객체 DDL 문장을 Altibase에 호환되는 형
 |  13  | DATE          | DATE       |                                                              |
 |  14  | DATETIME      | DATE       |                                                              |
 |  15  | BOOLEAN       | CHAR(1)    |                                                              |
-|  16  | CHAR          | CHAR       | Informix의 CHAR 데이터가 Altibase의 CHAR 최대 크기인 32000바이트를 초과하면 Altibase의 데이터 타입을 CLOB으로 변환한다. Informix의 CHAR 최대 크기는 32767바이트로, Altibase의 최대 크기보다 크기 때문에 마이그레이션 시 데이터 손실을 방지하기 위해서이다. |
+|  16  | CHAR          | CHAR       | Informix의 CHAR 데이터가 Altibase의 CHAR 최대 크기인 32,000바이트를 초과하면 Altibase의 데이터 타입을 CLOB으로 변환한다. Informix의 CHAR 최대 크기는 32,767바이트로, Altibase의 최대 크기보다 크기 때문에 마이그레이션 시 데이터 손실을 방지하기 위해서이다. |
 |  17  | NCHAR         | NCHAR      | NCHAR 데이터 타입의 최대 크기는 Informix(32,767)가 Altibase(32,000)보다 크기 때문에 데이터 손실이 발생할 수 있음을 염두에 두어야 한다. |
 |  18  | VARCHAR       | VARCHAR    |                                                              |
 |  19  | NVARCHAR      | NVARCHAR   |                                                              |
-|  20  | LVARCHAR      | VARCHAR    | Informix의 LVARCHAR 데이터가 Altibase의 VARCHAR 최대 크기인 32000바이트를 초과하면 Altibase의 데이터 타입을 CLOB으로 변환한다. Informix의 LVARCHAR 최대 크기는 32767바이트로, Altibase의 최대 크기보다 크기 때문에 마이그레이션 시 데이터 손실을 방지하기 위해서이다. |
+|  20  | LVARCHAR      | VARCHAR    | Informix의 LVARCHAR 데이터가 Altibase의 VARCHAR 최대 크기인 32,000바이트를 초과하면 Altibase의 데이터 타입을 CLOB으로 변환한다. Informix의 LVARCHAR 최대 크기는 32,767바이트로, Altibase의 최대 크기보다 크기 때문에 마이그레이션 시 데이터 손실을 방지하기 위해서이다. |
 |  21  | TEXT          | CLOB       |                                                              |
 |  22  | CLOB          | CLOB       | CLOB 데이터 타입의 최대 크기는 Informix(4GB)가 Altibase(2GB)보다 크기 때문에 데이터 손실이 발생할 수 있음을 염두에 두어야 한다. |
 |  23  | BYTE          | BLOB       |                                                              |
@@ -1727,9 +1727,9 @@ PL/SQL 변환기가 PSM 타입 객체 DDL 문장을 Altibase에 호환되는 형
 |  22  | TT_SMALLINT   | SMALLINT        | TimesTen의 TT_SMALLINT 최소 크기(-32,768)는 Altibase의 SMALLINT 최소 크기(-32,767)보다 작기 때문에 데이터 손실이 발생할 수 있다. |
 |  23  | TT_TIMESTAMP  | DATE            | TimesTen의 TT_TIMESTAMP 최대 스케일이 나노초(7자릿수)로 Altibase의 DATE 최대 스케일 마이크로초(6자릿수)보다 크기 때문에 데이터 손실이 발생할 수 있다. |
 |  24  | TT_TINYINT    | SMALLINT        |                                                              |
-|  25  | TT_VARCHAR    | VARCHAR         | TimesTen의 TT_VARCHAR 데이터가 Altibase의 VARCHAR 최대 크기인 32000바이트를 초과하면 Altibase의 데이터 타입을 CLOB으로 변환한다. TimesTen의 TT_VARCHAR 최대 크기는 4194304바이트로, Altibase의 최대 크기보다 크기 때문에 마이그레이션 시 데이터 손실을 방지하기 위해서이다. |
+|  25  | TT_VARCHAR    | VARCHAR         | TimesTen의 TT_VARCHAR 데이터가 Altibase의 VARCHAR 최대 크기인 32,000바이트를 초과하면 Altibase의 데이터 타입을 CLOB으로 변환한다. TimesTen의 TT_VARCHAR 최대 크기는 4,194,304바이트로, Altibase의 최대 크기보다 크기 때문에 마이그레이션 시 데이터 손실을 방지하기 위해서이다. |
 |  26  | VARBINARY     | BLOB            |                                                              |
-|  27  | VARCHAR2      | VARCHAR         | • TimesTen의 VARCHAR2 데이터가 Altibase의 VARCHAR 최대 크기인 32000바이트를 초과하면 Altibase의 데이터 타입을 CLOB으로 변환한다. 오라클의 VARCHAR2 최대 크기는 4194304바이트로, Altibase의 최대 크기보다 크기 때문에 마이그레이션 시 데이터 손실을 방지하기 위해서이다.<br />• TimesTen에서 문자 길이로 정의한 VARCHAR2는 Altibase에서 바이트 단위로 변환된다. Altibase의 VARCHAR는 바이트 단위로만 정의할 수 있다. |
+|  27  | VARCHAR2      | VARCHAR         | TimesTen의 VARCHAR2 데이터가 Altibase의 VARCHAR 최대 크기인 32,000바이트를 초과하면 Altibase의 데이터 타입을 CLOB으로 변환한다. 오라클의 VARCHAR2 최대 크기는 4,194,304바이트로, Altibase의 최대 크기보다 크기 때문에 마이그레이션 시 데이터 손실을 방지하기 위해서이다.<br />TimesTen에서 문자 길이로 정의한 VARCHAR2는 Altibase에서 바이트 단위로 변환된다. Altibase의 VARCHAR는 바이트 단위로만 정의할 수 있다. |
 
 #### CUBRID to Altibase
 
@@ -1746,7 +1746,7 @@ PL/SQL 변환기가 PSM 타입 객체 DDL 문장을 Altibase에 호환되는 형
 |  9   | TIME       | DATE          |                                                              |
 |  10  | TIMESTAMP  | DATE          |                                                              |
 |  11  | DATETIME   | DATE          |                                                              |
-|  12  | CHAR       | CHAR          | CUBRID의 CHAR 데이터가 Altibase의 CHAR 최대 크기인 32,000바이트를 초과하면 Altibase의 데이터 타입을 CLOB으로 변환한다. CUBRID의 CHAR 최대 크기는 1,073,741,823 바이트로, Altibase의 최대 크기보다 크기 때문에 마이그레이션 시 데이터 손실을 방지하기 위해서이다. |
+|  12  | CHAR       | CHAR          | CUBRID의 CHAR 데이터가 Altibase의 CHAR 최대 크기인 32,000바이트를 초과하면 Altibase의 데이터 타입을 CLOB으로 변환한다. CUBRID의 CHAR 최대 크기는 1,073,741,823바이트로, Altibase의 최대 크기보다 크기 때문에 마이그레이션 시 데이터 손실을 방지하기 위해서이다. |
 |  13  | VARCHAR    | VARCHAR       | CUBRID의 VARCHAR 데이터가 Altibase의 VARCHAR 최대 크기인 32,000바이트를 초과하면 Altibase의 데이터 타입을 CLOB으로 변환한다. CUBRID의 VARCHAR 최대 크기는 1,073,741,823 바이트로, Altibase의 최대 크기보다 크기 때문에 마이그레이션 시 데이터 손실을 방지하기 위해서이다. |
 |  14  | NCHAR      | NCHAR         | CUBRID의 NCHAR 타입 최대 크기가 1,073,741,823 바이트로 Altibase의 NCHAR 타입 최대 크기 16,000 바이트보다 크기 때문에 데이터 손실이 발생할 수 있다. |
 |  15  | VARCHAR    | NVARCHAR      | CUBRID의 VARCHAR 타입 최대 크기가 1,073,741,823 바이트로 Altibase의 NVARCHAR 타입 최대 크기 16,000 바이트보다 크기 때문에 데이터 손실이 발생할 수 있다. |
@@ -1765,7 +1765,7 @@ PL/SQL 변환기가 PSM 타입 객체 DDL 문장을 Altibase에 호환되는 형
 |  1   | CHAR     | CHAR          | Altibase의 CHAR 데이터가 Oracle의 CHAR 최대 크기인 2,000바이트(또는 글자)를 초과하면 Oracle의 데이터 타입을 CLOB으로 변환한다. Altibase의 CHAR 최대 크기는 32,000바이트로, Oracle의 최대 크기보다 크기 때문에 마이그레이션 시 데이터 손실을 방지하기 위해서이다. |
 |  2   | NCHAR    | NCHAR         | Altibase NCHAR의 최대 크기는 32000바이트, Oracle NCHAR의 최대 크기는 2000 bytes이므로 데이터 손실이 발생할 수 있다. |
 |  3   | VARCHAR  | VARCHAR2      | Altibase의 VARCHAR 데이터가 Oracle의 VARCHAR2 최대 크기인 4,000바이트(또는 글자)를 초과하면 Oracle의 데이터 타입을 CLOB으로 변환한다. Altibase의 VARCHAR 최대 크기는 32,000바이트로, Oracle의 최대 크기보다 크기 때문에 마이그레이션 시 데이터 손실을 방지하기 위해서이다. |
-|  4   | NVARCHAR | NVARCHAR2     | 2Altibase NVARCHAR의 최대 크기는 32000바이트, Oracle NVARCHAR의 최대 크기는 4000 bytes이므로 데이터 손실이 발생할 수 있다. |
+|  4   | NVARCHAR | NVARCHAR2     | Altibase NVARCHAR의 최대 크기는 32000바이트, Oracle NVARCHAR의 최대 크기는 4000 bytes이므로 데이터 손실이 발생할 수 있다. |
 |  5   | SMALLINT | NUMBER        |                                                              |
 |  6   | INTEGER  | NUMBER        |                                                              |
 |  7   | BIGINT   | NUMBER        |                                                              |
@@ -1774,8 +1774,8 @@ PL/SQL 변환기가 PSM 타입 객체 DDL 문장을 Altibase에 호환되는 형
 |  10  | FLOAT    | FLOAT         |                                                              |
 |  11  | NUMERIC  | NUMBER        |                                                              |
 |  12  | DATE     | TIMESTAMP     |                                                              |
-|  13  | BIT      | CHAR          | CHAR의 최대크기는 2,000 바이트, BIT는 64,000(8,000 바이트)이므로 데이터 손실이 발생할 수 있다. |
-|  14  | VARBIT   | VARCHAR2      | VARCHAR2 의 최대크기는 4,000 바이트 , VARBIT는 64,000(8,000 바이트)이므로 데이터 손실이 발생할 수 있다. |
+|  13  | BIT      | CHAR          | CHAR의 최대크기는 2,000바이트, BIT는 64,000비트 즉, 8,000바이트이므로 데이터 손실이 발생할 수 있다. |
+|  14  | VARBIT   | VARCHAR2      | VARCHAR2 의 최대크기는 4,000 바이트 , VARBIT는 64,000비트 즉, 8,000바이트이므로 데이터 손실이 발생할 수 있다. |
 |  15  | BYTE     | RAW           | BYTE의 최대 크기는 32,000, RAW의 최대 크기는 20,00 바이트이므로 데이터 손실이 발생할 수 있다. |
 |  16  | VARBYTE  | RAW           | VARBYTE의 최대 크기는 32,000, RAW의 최대 크기는 2,000 바이트이므로 데이터 손실이 발생할 수 있다. |
 |  17  | NIBBLE   | RAW           |                                                              |
