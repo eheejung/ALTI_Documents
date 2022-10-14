@@ -1548,38 +1548,38 @@ PL/SQL 변환기가 PSM 타입 객체 DDL 문장을 Altibase에 호환되는 형
 > 변환과정에서 파싱 에러가 발생가능하며, 이 경우 사용자가 수동으로 문법을 변환해야
 > 한다.
 
-1. ## C.부록: 데이터 타입 맵핑
+## C.부록: 데이터 타입 맵핑
 
-   이기종 데이터베이스 간의 데이터 타입을 맵핑할 때 Migration Center의 기본 정책은 "데이터 손실을 최소화하라"이다. 하지만 데이터가 손실되거나 손상되더라도 사용자가 직접 데이터 타입 맵핑 방식을 정의하는 것을 원할 수도 있다. 이런 요구를 만족시키기 위해 Migration Center는 데이터 타입 맵핑 테이블을 편집하는 방법을
-   제공한다.
+이기종 데이터베이스 간의 데이터 타입을 맵핑할 때 Migration Center의 기본 정책은 "데이터 손실을 최소화하라"이다. 하지만 데이터가 손실되거나 손상되더라도 사용자가 직접 데이터 타입 맵핑 방식을 정의하는 것을 원할 수도 있다. 이런 요구를 만족시키기 위해 Migration Center는 데이터 타입 맵핑 테이블을 편집하는 방법을
+제공한다.
 
-   이번 장에서는 Migration Center에 생성한 프로젝트 진행 과정에서 기본 데이터 타입 매핑 테이블을 확인하고 변경하는 방법을 설명한다. 
+이번 장에서는 Migration Center에 생성한 프로젝트 진행 과정에서 기본 데이터 타입 매핑 테이블을 확인하고 변경하는 방법을 설명한다. 
 
-   ### 데이터 타입 맵핑 테이블 변경
+### 데이터 타입 맵핑 테이블 변경
 
-   사용자는 기본 데이터 타입 맵핑을 확인하고, 아래의 방법을 사용하여 데이터가 맵핑되는 방식을 수정할 수 있다:
+사용자는 기본 데이터 타입 맵핑을 확인하고, 아래의 방법을 사용하여 데이터가 맵핑되는 방식을 수정할 수 있다:
 
-   #### 1 - Reconcile(조정 단계)
+#### 1 - Reconcile(조정 단계)
 
-   프로젝트 트리 창에서 마우스 오른쪽 버튼을 클릭하고 Reconcile 메뉴를 선택한다. 또는 Migration 메뉴에서 Reconcile을 선택한다. 이 단계는 Build 단계를 마쳐야 수행할 수 있다.
+프로젝트 트리 창에서 마우스 오른쪽 버튼을 클릭하고 Reconcile 메뉴를 선택한다. 또는 Migration 메뉴에서 Reconcile을 선택한다. 이 단계는 Build 단계를 마쳐야 수행할 수 있다.
 
-   ![](media/MigrationCenter/datatypemapping-step-1.png)
+![](media/MigrationCenter/datatypemapping-step-1.png)
 
-   #### 2 - Data Type Mapping
+#### 2 - Data Type Mapping
 
-   Reconcile 메뉴를 선택하면 아래와 같은 창이 뜬다. Reconcile 창의 Steps 1. Data Type Mapping 에서 대상 데이터베이스의 데이터 타입을 변경할 수 있다. 기본 매핑 테이블에서 변경하고 싶은 데이터 타입을 선택하고 오른쪽 하단의 Change 버튼을 클릭한다.
+Reconcile 메뉴를 선택하면 아래와 같은 창이 뜬다. Reconcile 창의 Steps 1. Data Type Mapping 에서 대상 데이터베이스의 데이터 타입을 변경할 수 있다. 기본 매핑 테이블에서 변경하고 싶은 데이터 타입을 선택하고 오른쪽 하단의 Change 버튼을 클릭한다.
 
-   <img src="media/MigrationCenter/datatypemapping-step-2.png" />
+<img src="media/MigrationCenter/datatypemapping-step-2.png" />
 
-   
 
-   #### 3 - Change Mapping Type
 
-   Change 버튼을 클릭하면 아래의 창이 뜬다. Change Mapping Type 창에서 Destination DB Data Type에서 변경할 데이터 타입을 선택한다. 데이터 타입에 따라 필요 시 Precision과 Scale도 입력하고 OK 버튼을 클릭한다. 
+#### 3 - Change Mapping Type
 
-   <img src="media/MigrationCenter/datatypemapping-step-3.png" style="zoom: 50%;" />
+Change 버튼을 클릭하면 아래의 창이 뜬다. Change Mapping Type 창에서 Destination DB Data Type에서 변경할 데이터 타입을 선택한다. 데이터 타입에 따라 필요 시 Precision과 Scale도 입력하고 OK 버튼을 클릭한다. 
 
-   ![image-20221014154456070](D:\work\tw\EHEE\ALTI_Documents\Manuals\Tools\Altibase_trunk\kor\media\MigrationCenter\datatypemapping-step-3-1.png)
+<img src="media/MigrationCenter/datatypemapping-step-3.png" style="zoom: 50%;" />
+
+![image-20221014154456070](media\MigrationCenter\datatypemapping-step-3-1.png)
 
 ### 기본 데이터 타입 맵핑 테이블
 
