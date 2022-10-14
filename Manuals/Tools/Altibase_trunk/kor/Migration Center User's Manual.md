@@ -1579,7 +1579,7 @@ PL/SQL 변환기가 PSM 타입 객체 DDL 문장을 Altibase에 호환되는 형
 
    <img src="media/MigrationCenter/datatypemapping-step-3.png" style="zoom: 50%;" />
 
-   ![image-20221014154456070](C:\Users\ALTIBASE\AppData\Roaming\Typora\typora-user-images\image-20221014154456070.png)
+   ![image-20221014154456070](D:\work\tw\EHEE\ALTI_Documents\Manuals\Tools\Altibase_trunk\kor\media\MigrationCenter\datatypemapping-step-3-1.png)
 
 ### 기본 데이터 타입 맵핑 테이블
 
