@@ -1639,41 +1639,45 @@ Change 버튼을 클릭하면 아래의 창이 뜬다. Change Mapping Type 창�
 
 #### MySQL to Altibase
 
-|      | 원본                            | 대상           | 주의 사항                                                    |
-| :--: | :------------------------------ | :------------- | :----------------------------------------------------------- |
-|  1   | TINYINT                         | SMALLINT       |                                                              |
-|  2   | TINYINT UNSIGNED                | SMALLINT       |                                                              |
-|  3   | SMALLINT                        | INTEGER        |                                                              |
-|  4   | SMALLINT UNSIGNED               | INTEGER        |                                                              |
-|  5   | MEDIUMINT                       | INTEGER        |                                                              |
-|  6   | MEDIUMINT UNSIGNED              | INTEGER        |                                                              |
-|  7   | INT (INTEGER)                   | INTEGER        | 주의: Altibase의 INT 타입의 최솟값(-2,147,483,647)은 MySQL INT 타입의 최솟값(-2,147,483,648) 보다 크다. |
-|  8   | INT UNSIGNED                    | BIGINT         |                                                              |
-|  9   | BIGINT                          | BIGINT         | 주의: Altibase의 BIGINT 타입의 최솟값(-9,223,372,036,854,775,807)은 MySQL BIGINT 타입의 최솟값(-9,223,372,036,854,775,808) 보다 크다. |
-|  10  | BIGINT UNSIGNED                 | NUMERIC(20,0)  | Altibase에는 MySQL BIGINT UNSIGNED 타입과 호환 가능한 데이터 타입이 없으므로, 데이터 손실을 막기 위해 NUMERIC 타입으로 맵핑된다 |
-|  11  | DECIMAL (NUMERIC)               | VARCHAR(70)    | Altibase에는 MySQL DECIMAL 타입과 호환 가능한 데이터 타입이 없으므로, 데이터 손실을 막기 위해 VARCHAR 타입으로 맵핑된다. |
-|  12  | FLOAT                           | FLOAT          |                                                              |
-|  13  | DOUBLE                          | VARCHAR(310)   | Altibase에는 MySQL DOUBLE 타입과 호환 가능한 데이터 타입이 없으므로, 데이터 손실을 막기 위해 VARCHAR 타입으로 맵핑된다. |
-|  14  | BIT                             | VARBIT         |                                                              |
-|  15  | DATETIME                        | DATE           | 시각 부분이 0으로 설정된다.                                  |
-|  16  | DATE                            | DATE           |                                                              |
-|  17  | TIMESTAMP                       | DATE           | TIMEZONE 제외                                                |
-|  18  | CHAR                            | CHAR           |                                                              |
-|  19  | VARCHAR                         | VARCHAR        | MySQL의 VARCHAR 데이터가 Altibase의 VARCHAR 최대 크기인 32,000바이트를 초과하면 Altibase의 데이터 타입을 CLOB으로 변환한다. MySQL의 VARCHAR 최대 크기는 65,536바이트로 Altibase의 최대 크기보다 크기 때문에 마이그레이션 시 데이터 손실을 방지하기 위해서이다. |
-|  20  | CHAR with National Character    | NCHAR          |                                                              |
-|  21  | VARCHAR with National Character | NVARCHAR       |                                                              |
-|  22  | BINARY                          | BYTE           |                                                              |
-|  23  | VARBINARY                       | BLOB           |                                                              |
-|  24  | TINYBLOB                        | BLOB           |                                                              |
-|  25  | MEDIUMBLOB                      | BLOB           |                                                              |
-|  26  | BLOB                            | BLOB           |                                                              |
-|  27  | LONGBLOB                        | BLOB           |                                                              |
-|  28  | TINYTEXT                        | VARCHAR(255)   |                                                              |
-|  29  | TEXT                            | CLOB           |                                                              |
-|  30  | MEDIUMTEXT                      | CLOB           |                                                              |
-|  31  | LONGTEXT                        | CLOB           |                                                              |
-|  32  | ENUM                            | VARCHAR(10666) | Altibase에는 MySQL ENUM 타입과 호환 가능한 데이터 타입이 없으므로, 데이터 손실을 막기 위해 VARCHAR 타입으로 맵핑된다. |
-|  33  | SET                             | VARCHAR(10666) | Altibase에는 MySQL SET 타입과 호환 가능한 데이터 타입이 없으므로, 데이터 손실을 막기 위해 VARCHAR 타입으로 맵핑된다. |
+|      | 원본                            | 대상            | 주의 사항                                                    |
+| :--: | :------------------------------ | :-------------- | :----------------------------------------------------------- |
+|  1   | TINYINT                         | SMALLINT        |                                                              |
+|  2   | TINYINT UNSIGNED                | SMALLINT        |                                                              |
+|  3   | SMALLINT                        | INTEGER         |                                                              |
+|  4   | SMALLINT UNSIGNED               | INTEGER         |                                                              |
+|  5   | MEDIUMINT                       | INTEGER         |                                                              |
+|  6   | MEDIUMINT UNSIGNED              | INTEGER         |                                                              |
+|  7   | INT (INTEGER)                   | INTEGER         | 주의: Altibase의 INT 타입의 최솟값(-2,147,483,647)은 MySQL INT 타입의 최솟값(-2,147,483,648) 보다 크다. |
+|  8   | INT UNSIGNED                    | BIGINT          |                                                              |
+|  9   | BIGINT                          | BIGINT          | 주의: Altibase의 BIGINT 타입의 최솟값(-9,223,372,036,854,775,807)은 MySQL BIGINT 타입의 최솟값(-9,223,372,036,854,775,808) 보다 크다. |
+|  10  | BIGINT UNSIGNED                 | NUMERIC(20,0)   | Altibase에는 MySQL BIGINT UNSIGNED 타입과 호환 가능한 데이터 타입이 없으므로, 데이터 손실을 막기 위해 NUMERIC 타입으로 맵핑된다 |
+|  11  | DECIMAL (NUMERIC)               | VARCHAR(70)     | Altibase에는 MySQL DECIMAL 타입과 호환 가능한 데이터 타입이 없으므로, 데이터 손실을 막기 위해 VARCHAR 타입으로 맵핑된다. |
+|  12  | FLOAT                           | FLOAT           |                                                              |
+|  13  | DOUBLE                          | VARCHAR(310)    | Altibase에는 MySQL DOUBLE 타입과 호환 가능한 데이터 타입이 없으므로, 데이터 손실을 막기 위해 VARCHAR 타입으로 맵핑된다. |
+|  14  | BIT                             | VARBIT          |                                                              |
+|  15  | DATETIME                        | DATE            | 시각 부분이 0으로 설정된다.                                  |
+|  16  | DATE                            | DATE            |                                                              |
+|  17  | TIMESTAMP                       | DATE            | TIMEZONE 제외                                                |
+|  18  | CHAR                            | CHAR            |                                                              |
+|  19  | VARCHAR                         | VARCHAR         | MySQL의 VARCHAR 데이터가 Altibase의 VARCHAR 최대 크기인 32,000바이트를 초과하면 Altibase의 데이터 타입을 CLOB으로 변환한다. MySQL의 VARCHAR 최대 크기는 65,536바이트로 Altibase의 최대 크기보다 크기 때문에 마이그레이션 시 데이터 손실을 방지하기 위해서이다. |
+|  20  | CHAR with National Character    |                 | MySQL와 Altibase의 캐릭터셋에 따라 Altibase의 데이터 타입이 달라진다. |
+|      |                                 | CHAR*(추가)*    | 1. MySQL와 Altibase의 캐릭터셋이 동일한 유니코드이면 CHAR로 변환한다.<br />2. MySQL의 캐릭터넷이 유니코드가 아닐 때도 CHAR로 변환한다. |
+|      |                                 | NCHAR           | *설명 추가*<br />MySQL의 캐릭터셋이 유니코드이고 Altibase의 캐릭터셋이 유니코드가 아니면 NCHAR로 변환한다. |
+|  21  | VARCHAR with National Character |                 | MySQL와 Altibase의 캐릭터셋에 따라 Altibase의 데이터 타입이 달라진다. |
+|      |                                 | VARCHAR*(추가)* | 1. MySQL와 Altibase의 캐릭터셋이 동일한 유니코드이면 VARCHAR(또는 CLOB)로 변환한다.<br />2. MySQL의 캐릭터넷이 유니코드가 아닐 때도 VARCHAR(또는 CLOB)로 변환한다. |
+|      |                                 | NVARCHAR        | *설명 추가*<br />MySQL의 캐릭터셋이 유니코드이고 Altibase의 캐릭터셋이 유니코드가 아니면 NVARCHAR로 변환한다. |
+|  22  | BINARY                          | BYTE            |                                                              |
+|  23  | VARBINARY                       | BLOB            |                                                              |
+|  24  | TINYBLOB                        | BLOB            |                                                              |
+|  25  | MEDIUMBLOB                      | BLOB            |                                                              |
+|  26  | BLOB                            | BLOB            |                                                              |
+|  27  | LONGBLOB                        | BLOB            |                                                              |
+|  28  | TINYTEXT                        | VARCHAR(255)    |                                                              |
+|  29  | TEXT                            | CLOB            |                                                              |
+|  30  | MEDIUMTEXT                      | CLOB            |                                                              |
+|  31  | LONGTEXT                        | CLOB            |                                                              |
+|  32  | ENUM                            | VARCHAR(10666)  | Altibase에는 MySQL ENUM 타입과 호환 가능한 데이터 타입이 없으므로, 데이터 손실을 막기 위해 VARCHAR 타입으로 맵핑된다. |
+|  33  | SET                             | VARCHAR(10666)  | Altibase에는 MySQL SET 타입과 호환 가능한 데이터 타입이 없으므로, 데이터 손실을 막기 위해 VARCHAR 타입으로 맵핑된다. |
 
 #### Informix 11.5 to Altibase
 
