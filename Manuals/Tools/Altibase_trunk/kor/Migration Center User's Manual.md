@@ -1548,38 +1548,40 @@ PL/SQL 변환기가 PSM 타입 객체 DDL 문장을 Altibase에 호환되는 형
 > 변환과정에서 파싱 에러가 발생가능하며, 이 경우 사용자가 수동으로 문법을 변환해야
 > 한다.
 
-## C.부록: 데이터 타입 맵핑
+1. ## C.부록: 데이터 타입 맵핑
 
-이기종 데이터베이스들 간의 데이터 타입을 맵핑하기 위한 Migration Center 정책은
-"데이터 손실을 최소화하라"이다. 그러나 데이터가 손실되거나 손상되더라도 데이터가
-맵핑되는 방식을 사용자가 정의하길 원하는 상황이 발생할 수도 있다. 이런 요구를
-충족시키기 위해 Migration Center는 데이터 타입 맵핑 테이블을 편집하는 방법도
-제공한다.
+   이기종 데이터베이스 간의 데이터 타입을 맵핑할 때 Migration Center의 기본 정책은 "데이터 손실을 최소화하라"이다. 하지만 데이터가 손실되거나 손상되더라도 사용자가 직접 데이터 타입 맵핑 방식을 정의하는 것을 원할 수도 있다. 이런 요구를 만족시키기 위해 Migration Center는 데이터 타입 맵핑 테이블을 편집하는 방법을
+   제공한다.
 
-이 부록은 기존 프로젝트에 대해 기본 데이터 타입 맵핑을 확인하고 커스터마이징
-하는 방법에 대해 설명한다. 마지막으로 데이터 타입 기본 맵핑 테이블을 제공한다.
+   이번 장에서는 Migration Center에 생성한 프로젝트 진행 과정에서 기본 데이터 타입 매핑 테이블을 확인하고 변경하는 방법을 설명한다. 
 
-- 데이터 타입 맵핑 조작
+   ### 데이터 타입 맵핑 테이블 변경
 
-- 기본 데이터 타입 맵핑 테이블
+   사용자는 기본 데이터 타입 맵핑을 확인하고, 아래의 방법을 사용하여 데이터가 맵핑되는 방식을 수정할 수 있다:
 
-### 데이터 타입 맵핑 조작
+   #### 1 - Reconcile(조정 단계)
 
-사용자는 기본 데이터 타입 맵핑을 확인하고, 아래의 방법을 사용하여 데이터가
-맵핑되는 방식을 수정할 수 있다:
+   프로젝트 트리 창에서 마우스 오른쪽 버튼을 클릭하고 Reconcile 메뉴를 선택한다. 또는 Migration 메뉴에서 Reconcile을 선택한다. 이 단계는 Build 단계를 마쳐야 수행할 수 있다.
 
-1. 프로젝트에 대해 조정 단계를 수행하라.
+   ![](D:/work/tw/ALTIBASE/Documents/Manuals/Tools/Altibase_trunk/kor/media/MigrationCenter/datatypemapping_step_1.png)
 
-2. 데이터 타입 맵핑 단계에서, 조작할 데이터 타입을 선택한 다음 "Change" 버튼을
-   클릭하라.
+   #### 2 - Data Type Mapping
 
-3. 적절한 새로운 데이터 타입을 지정하고 precision 및 또는 scale 값을 설정하라.
+   Reconcile 메뉴를 선택하면 아래와 같은 창이 뜬다. Reconcile 창의 Steps 1. Data Type Mapping 에서 대상 데이터베이스의 데이터 타입을 변경할 수 있다. 기본 매핑 테이블에서 변경하고 싶은 데이터 타입을 선택하고 오른쪽 하단의 Change 버튼을 클릭한다.
+
+   <img src="D:/work/tw/ALTIBASE/Documents/Manuals/Tools/Altibase_trunk/kor/media/MigrationCenter/datatypemapping_step_2.png" style="zoom: 33%;"/>
+
+   #### 3 - Change Mapping Type
+
+   Change 버튼을 클릭하면 아래의 창이 뜬다. Change Mapping Type 창에서 Destination DB Data Type에서 변경할 데이터 타입을 선택한다. 데이터 타입에 따라 필요 시 Precision과 Scale도 입력하고 OK 버튼을 클릭한다. 
+
+   <img src="D:/work/tw/ALTIBASE/Documents/Manuals/Tools/Altibase_trunk/kor/media/MigrationCenter/datatypemapping_step_3.png" style="zoom: 50%;" />
 
 ### 기본 데이터 타입 맵핑 테이블
 
 #### Oracle to Altibase
 
-|  | 원본&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 대상&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  | 주의 사항                                                    |
+|  | 원본| 대상| 주의 사항                                                    |
 | :--: | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 |  1   | CHAR                                                         | CHAR                                                         | Altibase의 CHAR 타입은 byte 길이로만 정의할 수 있기 때문에 Oracle에서 문자 길이로 정의된 컬럼의 경우 자동으로 바이트 길이로 변환된다. |
 |  2   | NCHAR                                                        | NCHAR                                                        | 원본 및 대상 데이터베이스의 NCHAR 칼럼의 명시적인 크기는 같다(예. NCHAR(10) -\> NCHAR(10)). 그러나, 오라클 JDBC 드라이버에서는 NCHAR 칼럼의 크기가 사용되는 바이트의 개수로 정의되는 반면, Altibase의 JDBC 드라이버에서는 NCHAR 칼럼의 크기가 저장되는 문자의 개수로 정의된다. 이는 Altibase에서 생성되는 NCHAR 칼럼이 필요에 따라 오라클보다 2배 또는 3배 정도 클 것이라는 의미이므로, 이런 점을 유의하도록 한다. |
@@ -1633,7 +1635,7 @@ PL/SQL 변환기가 PSM 타입 객체 DDL 문장을 Altibase에 호환되는 형
 
 #### MySQL to Altibase
 
-| 번호 | 원본                            | 대상           | 주의 사항                                                    |
+|      | 원본                            | 대상           | 주의 사항                                                    |
 | :--: | :------------------------------ | :------------- | :----------------------------------------------------------- |
 |  1   | TINYINT                         | SMALLINT       |                                                              |
 |  2   | TINYINT UNSIGNED                | SMALLINT       |                                                              |
@@ -1671,7 +1673,7 @@ PL/SQL 변환기가 PSM 타입 객체 DDL 문장을 Altibase에 호환되는 형
 
 #### Informix 11.5 to Altibase
 
-| 번호 | 원본          | 대상       | 주의 사항                                                    |
+|      | 원본          | 대상       | 주의 사항                                                    |
 | :--: | :------------ | :--------- | :----------------------------------------------------------- |
 |  1   | BIGINT        | BIGINT     |                                                              |
 |  2   | INT8          | BIGINT     |                                                              |
@@ -1701,7 +1703,7 @@ PL/SQL 변환기가 PSM 타입 객체 DDL 문장을 Altibase에 호환되는 형
 
 #### TimesTen to Altibase
 
-| 번호 | 원본          | 대상            | 주의 사항                                                    |
+|      | 원본          | 대상            | 주의 사항                                                    |
 | :--: | :------------ | :-------------- | :----------------------------------------------------------- |
 |  1   | BINARY        | BLOB            |                                                              |
 |  2   | BINARY_DOUBLE | VARCHAR(310)    |                                                              |
@@ -1733,7 +1735,7 @@ PL/SQL 변환기가 PSM 타입 객체 DDL 문장을 Altibase에 호환되는 형
 
 #### CUBRID to Altibase
 
-| 번호 | 원본       | 대상          | 주의 사항                                                    |
+|      | 원본       | 대상          | 주의 사항                                                    |
 | :--: | :--------- | :------------ | :----------------------------------------------------------- |
 |  1   | SHORT      | SMALLINT      | CUBRID의 SHORT 최솟값(-32,768)이 Altibase의 SMALLINT 최솟값(-32,767)보다 작다 |
 |  2   | INTEGER    | INTEGER       | CUBRID의 최솟값(-2,147,483,648)이 Altibase의 최솟값(-2,147,483,647)보다 작다. |
@@ -1760,7 +1762,7 @@ PL/SQL 변환기가 PSM 타입 객체 DDL 문장을 Altibase에 호환되는 형
 
 #### Altibase to Oracle
 
-| 번호 | 원본     | 대상          | 주의 사항                                                    |
+|      | 원본     | 대상          | 주의 사항                                                    |
 | :--: | :------- | :------------ | :----------------------------------------------------------- |
 |  1   | CHAR     | CHAR          | Altibase의 CHAR 데이터가 Oracle의 CHAR 최대 크기인 2,000바이트(또는 글자)를 초과하면 Oracle의 데이터 타입을 CLOB으로 변환한다. Altibase의 CHAR 최대 크기는 32,000바이트로, Oracle의 최대 크기보다 크기 때문에 마이그레이션 시 데이터 손실을 방지하기 위해서이다. |
 |  2   | NCHAR    | NCHAR         | Altibase NCHAR의 최대 크기는 32000바이트, Oracle NCHAR의 최대 크기는 2000 bytes이므로 데이터 손실이 발생할 수 있다. |
@@ -1784,7 +1786,7 @@ PL/SQL 변환기가 PSM 타입 객체 DDL 문장을 Altibase에 호환되는 형
 
 #### Tibero to Altibase
 
-| 번호 | 원본          | 대상            | 주의 사항                                                    |
+|      | 원본          | 대상            | 주의 사항                                                    |
 | :--: | :------------ | --------------- | :----------------------------------------------------------- |
 |  1   | CHAR          | CHAR            | Altibase의 CHAR 타입은 byte 길이로만 정의할 수 있기 때문에 Tibero에서 문자 길이로 정의된 컬럼의 경우 자동으로 바이트 길이로 변환된다. |
 |  2   | NCHAR         | NCHAR           |                                                              |
