@@ -1577,9 +1577,11 @@ Reconcile 메뉴를 선택하면 아래와 같은 창이 뜬다. Reconcile 창�
 
 Change 버튼을 클릭하면 아래의 창이 뜬다. Change Mapping Type 창에서 Destination DB Data Type에서 변경할 데이터 타입을 선택한다. 데이터 타입에 따라 필요 시 Precision과 Scale도 입력하고 OK 버튼을 클릭한다. 
 
-<img src="media/MigrationCenter/datatypemapping-step-3.png" style="zoom: 50%;" />
+<img src="media/MigrationCenter/datatypemapping-step-3.png"  />
 
 ![image-20221014154456070](media\MigrationCenter\datatypemapping-step-3-1.png)
+
+
 
 ### 기본 데이터 타입 맵핑 테이블
 
