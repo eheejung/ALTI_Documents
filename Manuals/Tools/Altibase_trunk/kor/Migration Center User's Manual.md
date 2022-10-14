@@ -1559,7 +1559,7 @@ PL/SQL 변환기가 PSM 타입 객체 DDL 문장을 Altibase에 호환되는 형
 
 사용자는 기본 데이터 타입 맵핑을 확인하고, 아래의 방법을 사용하여 데이터가 맵핑되는 방식을 수정할 수 있다:
 
-> **1. Reconcile(조정)**
+**1. Reconcile(조정)**
 
 프로젝트 트리 창에서 마우스 오른쪽 버튼을 클릭하고 Reconcile 메뉴를 선택한다. 또는 Migration 메뉴에서 Reconcile을 선택한다. 이 단계는 Build 단계를 마쳐야 수행할 수 있다.
 
@@ -1567,7 +1567,7 @@ PL/SQL 변환기가 PSM 타입 객체 DDL 문장을 Altibase에 호환되는 형
 
 
 
->  **2. Data Type Mapping**
+**2. Data Type Mapping**
 
 Reconcile 메뉴를 선택하면 아래와 같은 창이 뜬다. Reconcile 창의 Steps 1. Data Type Mapping 에서 대상 데이터베이스의 데이터 타입을 변경할 수 있다. 기본 매핑 테이블에서 변경하고 싶은 데이터 타입을 선택하고 오른쪽 하단의 Change 버튼을 클릭한다.
 
@@ -1575,7 +1575,7 @@ Reconcile 메뉴를 선택하면 아래와 같은 창이 뜬다. Reconcile 창�
 
 
 
-> **3. Change Mapping Type**
+**3. Change Mapping Type**
 
 Change 버튼을 클릭하면 아래의 창이 뜬다. Change Mapping Type 창에서 Destination DB Data Type에서 변경할 데이터 타입을 선택한다. 데이터 타입에 따라 필요 시 Precision과 Scale도 입력하고 OK 버튼을 클릭한다. 
 
@@ -1585,24 +1585,24 @@ Change 버튼을 클릭하면 아래의 창이 뜬다. Change Mapping Type 창�
 
 #### Oracle to Altibase
 
-|  | 원본| 대상| 주의 사항                                                    |
+|  | 원본 데이터베이스&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 대상 데이터베이스 | 주의 사항                                                    |
 | :--: | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 |  1   | CHAR                                                         | CHAR                                                         | Altibase의 CHAR 타입은 byte 길이로만 정의할 수 있기 때문에 Oracle에서 문자 길이로 정의된 컬럼의 경우 자동으로 바이트 길이로 변환된다. |
 |  2   | NCHAR                                                        | NCHAR                                                        | 원본 및 대상 데이터베이스의 NCHAR 칼럼의 명시적인 크기는 같다(예. NCHAR(10) -\> NCHAR(10)). 그러나, 오라클 JDBC 드라이버에서는 NCHAR 칼럼의 크기가 사용되는 바이트의 개수로 정의되는 반면, Altibase의 JDBC 드라이버에서는 NCHAR 칼럼의 크기가 저장되는 문자의 개수로 정의된다. 이는 Altibase에서 생성되는 NCHAR 칼럼이 필요에 따라 오라클보다 2배 또는 3배 정도 클 것이라는 의미이므로, 이런 점을 유의하도록 한다. |
 |  3   | VARCHAR2                                                     | VARCHAR                                                      | 오라클의 VARCHAR2 데이터가 Altibase의 VARCHAR 최대 크기인 32,000바이트를 초과하면 Altibase의 데이터 타입을 CLOB으로 변환한다. 오라클의 VARCHAR2 최대 크기는 32,767바이트로, Altibase의 최대 크기보다 크기 때문에 마이그레이션 시 데이터 손실을 방지하기 위해서이다.<br />오라클에서 문자 길이로 정의한 VARCHAR2는 Altibase에서 바이트 단위로 변환된다. Altibase의 VARCHAR는 바이트 단위로만 정의할 수 있다. |
 |  4   | NVARCHAR2                                                    | NVARCHAR                                                     | NCHAR와 같은 이유로, 칼럼 크기가 서로 다르다. 또한 오라클의 NVARCHAR2 최대 크기는 32,767 바이트로 Altibase의 NVARCHAR 최대 크기 32,000 바이트보다 크기 때문에 데이터 손실이 발생할 수 있다. |
 |  5   | LONG                                                         | CLOB                                                         |                                                              |
-|  6   | NUMBER                                                       | NUMBER                                                       | 오라클에서 precision과 scale 없이 정의된 NUMBER 타입 칼럼은 Altibase에서도 동일하게 precision과 scale이 없는 NUMBER 타입으로 변환된다. \*참고: 오라클과 Altibase 모두 precision과 scale 없이 NUMBER 타입으로 칼럼을 정의하면 데이터베이스 내부적으로 FLOAT 타입으로 다루어진다. |
+|  6   | NUMBER                                                       | NUMBER                                                       | 오라클에서 precision과 scale 없이 정의된 NUMBER 타입 칼럼은 Altibase에서도 동일하게 precision과 scale이 없는 NUMBER 타입으로 변환된다.<br /> \*참고: 오라클과 Altibase 모두 precision과 scale 없이 NUMBER 타입으로 칼럼을 정의하면 데이터베이스 내부적으로 FLOAT 타입으로 다루어진다. |
 |  7   | FLOAT                                                        | FLOAT                                                        |                                                              |
 |  8   | BINARY FLOAT                                                 | FLOAT                                                        |                                                              |
-|  9   | BINARY DOUBLE                                                | VARCHAR(310)                                                 | Altibase 에는 오라클 BINARY DOUBLE 타입과 호환되는 데이터 타입이 없으므로 데이터 손실을 막기 위해 문자 형으로 저장된다. |
+|  9   | BINARY DOUBLE                                               | VARCHAR(310)                                                 | Altibase 에는 오라클 BINARY DOUBLE 타입과 호환되는 데이터 타입이 없으므로 데이터 손실을 막기 위해 문자 형으로 저장된다. |
 |  10  | DATE                                                         | DATE                                                         |                                                              |
 |  11  | TIMESTAMP                                                    | DATE                                                         | 스케일의 차이로 인해서 소량의 데이터 손실이 발생할 수 있다. 오라클에서는 타임스탬프 값의 스케일이 나노초(9자리 수)인 반면, Altibase에서는 타임스탬프 값의 스케일이 마이크로초(6자리 수)이다. |
 |  12  | RAW                                                          | BLOB                                                         |                                                              |
 |  13  | LONG RAW                                                     | BLOB                                                         |                                                              |
 |  14  | BLOB                                                         | BLOB                                                         |                                                              |
 |  15  | CLOB                                                         | CLOB                                                         |                                                              |
-|  16  | NCLOB                                                        | NVARCHAR(10666)                                              | Altibase에는 오라클 NCLOB 타입과 호환 가능한 데이터 타입이 없으므로, 최대 크기의 NVARCHAR 타입으로 변환된다. 실제 데이터 크기가 NVARCHAR 최대 크기를 초과하는 경우, 데이터를 마이그레이션하는 동안 데이터 손실이 발생할 수도 있다. |
+|  16  | NCLOB  | NVARCHAR(10666)                                              | Altibase에는 오라클 NCLOB 타입과 호환 가능한 데이터 타입이 없으므로, 최대 크기의 NVARCHAR 타입으로 변환된다. 실제 데이터 크기가 NVARCHAR 최대 크기를 초과하는 경우, 데이터를 마이그레이션하는 동안 데이터 손실이 발생할 수도 있다. |
 |  17  | ROWID                                                        | VARCHAR(18)                                                  | 오라클의 ROWID는 문자형 데이터 타입으로 변환한다. Altibase는 ROWID라는 데이터 타입을 지원하지 않는다. |
 
 #### MS SQL Server to Altibase
