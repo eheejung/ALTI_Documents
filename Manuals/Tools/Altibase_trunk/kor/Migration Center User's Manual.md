@@ -1575,21 +1575,9 @@ PL/SQL 변환기가 PSM 타입 객체 DDL 문장을 Altibase에 호환되는 형
 
 프로젝트 트리 창에서 마우스 오른쪽 버튼을 클릭하고 Reconcile 메뉴를 선택한다. 또는 Migration 메뉴에서 Reconcile을 선택한다. 이 단계는 Build 단계를 마쳐야 수행할 수 있다.
 
-<p align="left"><img align="left" src="media/MigrationCenter/datatypemapping-step-1.png" > </p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<p align="left">
+  <img src="media/MigrationCenter/datatypemapping-step-1.png"> 
+</p>
 
 **2. Data Type Mapping**
 
