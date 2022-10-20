@@ -1575,9 +1575,9 @@ PL/SQL 변환기가 PSM 타입 객체 DDL 문장을 Altibase에 호환되는 형
 
 프로젝트 트리 창에서 마우스 오른쪽 버튼을 클릭하고 Reconcile 메뉴를 선택한다. 또는 Migration 메뉴에서 Reconcile을 선택한다. 이 단계는 Build 단계를 마쳐야 수행할 수 있다.
 
-<img src="media/MigrationCenter/datatypemapping-step-1.png" align="left">
+<img src="media/MigrationCenter/datatypemapping-step-1.png" align="left"><br/>
 
-<br/>**2. Data Type Mapping**
+**2. Data Type Mapping**
 
 Reconcile 메뉴를 선택하면 아래와 같은 창이 뜬다. Reconcile 창의 Steps 1. Data Type Mapping 에서 대상 데이터베이스의 데이터 타입을 변경할 수 있다. 기본 매핑 테이블에서 변경하고 싶은 데이터 타입을 선택하고 오른쪽 하단의 Change 버튼을 클릭한다.
 
