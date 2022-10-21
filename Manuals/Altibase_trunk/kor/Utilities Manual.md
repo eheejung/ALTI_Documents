@@ -1,4 +1,32 @@
+Altibase® Tools & Utilities
 
+Utilities Manual
+================
+
+![](media/Utilities/e5cfb3761673686d093a3b00c062fe7a.png)
+
+Altibase Tools & Utilities Utilities Manual
+
+Release 7.1
+
+Copyright ⓒ 2001\~2019 Altibase Corp. All Rights Reserved.
+
+본 문서의 저작권은 ㈜알티베이스에 있습니다. 이 문서에 대하여 당사의 동의
+없이 무단으로 복제 또는 전용할 수 없습니다.
+
+**㈜알티베이스**
+
+08378 서울시 구로구 디지털로 306 대륭포스트타워Ⅱ 10층
+
+전화: 02-2082-1114 팩스: 02-2082-1099
+
+고객서비스포털: <http://support.altibase.com>
+
+homepage: [http://www.altibase.com](http://www.altibase.com/)
+
+
+
+# 목차
 
 - [Utilities Manual](#utilities-manual)
   - [서문](#%EC%84%9C%EB%AC%B8)
@@ -33,44 +61,18 @@
 
 
 
-Altibase® Tools & Utilities
-
-Utilities Manual
-================
-
-![](media/Utilities/e5cfb3761673686d093a3b00c062fe7a.png)
-
-Altibase Tools & Utilities Utilities Manual
-
-Release 7.1
-
-Copyright ⓒ 2001\~2019 Altibase Corp. All Rights Reserved.
-
-본 문서의 저작권은 ㈜알티베이스에 있습니다. 이 문서에 대하여 당사의 동의
-없이 무단으로 복제 또는 전용할 수 없습니다.
-
-**㈜알티베이스**
-
-08378 서울시 구로구 디지털로 306 대륭포스트타워Ⅱ 10층
-
-전화: 02-2082-1114 팩스: 02-2082-1099
-
-고객서비스포털: <http://support.altibase.com>
-
-homepage: [http://www.altibase.com](http://www.altibase.com/)
-
 
 
 
 
 서문
-----
+====
 
-### 이 매뉴얼에 대하여
+## 이 매뉴얼에 대하여
 
 이 매뉴얼은 Altibase를 사용하면서 필요한 유틸리티에 대해서 설명한다.
 
-#### 대상 사용자
+### 대상 사용자
 
 이 매뉴얼은 다음과 같은 Altibase 사용자를 대상으로 작성되었다.
 
@@ -94,12 +96,12 @@ homepage: [http://www.altibase.com](http://www.altibase.com/)
 
 -   데이터베이스 서버 관리, 운영 체제 관리 또는 네트워크 관리 경험
 
-#### 소프트웨어 환경
+### 소프트웨어 환경
 
 이 매뉴얼은 데이터베이스 서버로 Altibase 버전 7.1을 사용한다는 가정 하에
 작성되었다.
 
-#### 이 매뉴얼의 구성
+### 이 매뉴얼의 구성
 
 이 매뉴얼은 다음과 같이 구성되어 있다.
 
@@ -118,7 +120,7 @@ homepage: [http://www.altibase.com](http://www.altibase.com/)
 -   제 4장 기타 Utilities  
     이 장은 aexport, altiComp, dataCompJ 등을 제외한 나머지 유틸리티에 대해서 설명한다.
 
-#### 문서화 규칙
+### 문서화 규칙
 
 이 절에서는 이 매뉴얼에서 사용하는 규칙에 대해 설명한다. 이 규칙을 이해하면 이
 매뉴얼과 설명서 세트의 다른 매뉴얼에서 정보를 쉽게 찾을 수 있다.
@@ -129,7 +131,7 @@ homepage: [http://www.altibase.com](http://www.altibase.com/)
 
 -   샘플 코드 규칙
 
-##### 구문 다이어그램
+#### 구문 다이어그램
 
 이 매뉴얼에서는 다음 구성 요소로 구축된 다이어그램을 사용하여, 명령문의 구문을
 설명한다.
@@ -146,7 +148,7 @@ homepage: [http://www.altibase.com](http://www.altibase.com/)
 | ![](media/Utilities/image8.gif) | 선택사항이 있는 선택적 항목                                  |
 | ![](media/Utilities/image9.gif) | 선택적 항목. 여러 항목이 허용된다. 각 반복 앞부분에 콤마가 와야 한다. |
 
-##### 샘플 코드 규칙
+#### 샘플 코드 규칙
 
 코드 예제는 SQL, Stored Procedure, iSQL 또는 다른 명령 라인 구문들을 예를 들어
 설명한다.
@@ -164,7 +166,7 @@ homepage: [http://www.altibase.com](http://www.altibase.com/)
 | 소문자       | 사용자가 제공하는 프로그램의 요소들, 예를 들어 테이블 이름, 칼럼 이름, 파일 이름 등 | SELECT ename FROM employee;                                                                               |
 | 대문자       | 시스템에서 제공하는 요소들 또는 구문에 나타나는 키워드                              | DESC SYSTEM_.SYS_INDICES_;                                                                                |
 
-#### 관련 자료
+### 관련 자료
 
 자세한 정보를 위하여 다음 문서 목록을 참조하기 바란다.
 
@@ -178,7 +180,7 @@ homepage: [http://www.altibase.com](http://www.altibase.com/)
 
 -   iLoader User's Manual
 
-#### Altibase는 여러분의 의견을 환영합니다.
+**Altibase는 여러분의 의견을 환영합니다.**
 
 이 매뉴얼에 대한 여러분의 의견을 보내주시기 바랍니다. 사용자의 의견은 다음
 버전의 매뉴얼을 작성하는데 많은 도움이 됩니다. 보내실 때에는 아래 내용과 함께
@@ -200,9 +202,9 @@ homepage: [http://www.altibase.com](http://www.altibase.com/)
 
 
 1.aexport
--------
+=======
 
-### aexport소개
+## aexport소개
 
 #### 개요
 
@@ -526,7 +528,7 @@ aexport가 생성하는 파일 권한을 설정하는 환경 변수이다. 값�
 예) user:rw,  group:--,  other:--로 설정하는 경우, 
 export AEXPORT_FILE_PERMISSION=600 
 
-### aexport사용방법
+## aexport사용방법
 
 #### 구문
 
@@ -1176,12 +1178,12 @@ SSL_VERIFY = ON  # OFF
 
 
 2.altiComp
---------
+========
 
 이 장은 altiComp 유틸리티의 기능을 소개하고, 불일치하는 데이터를 비교하고
 일치시키는 기능 등을 설명한다.
 
-### altiComp 소개
+## altiComp 소개
 
 Altibase AltiComp 유틸리티의 사용 목적은 두 Altibase 간의 이중화 진행 상태를
 모니터링하고 이중화 중에 발생한 데이터 불일치를 해소하는데 있다.
@@ -1270,7 +1272,7 @@ altiComp 기능 설정, 일치 정책 등의 내용을 포함한다.
 
 
 
-### altiComp 사용 방법
+## altiComp 사용 방법
 
 이 절에서는 altiComp을 실행하기 위한 정보를 기술하는 altiComp 환경 파일을 먼저
 설명하고, 비교(DIFF)와 일치(SYNC) 기능에 대해 설명한다.
@@ -1548,7 +1550,7 @@ Slave의 접속하는 사용자의 스키마 이름과 대상 테이블의 스�
 
 
 
-### 비교(DIFF)기능
+## 비교(DIFF)기능
 
 Master DB와 Slave DB 간의 이중화 작업에서 발생할 수 있는 불일치 레코드를
 식별하여 실행 결과 파일로 생성하는 기능을 가진다.
@@ -1715,7 +1717,7 @@ WHERE 프로퍼티 값에 따라, 비교 대상이 되는 EMP 레코드는 “EN
 
 
 
-### 일치(SYNC) 기능
+일치(SYNC) 기능
 
 Master DB와 Slave DB 사이의 불일치 레코드를 식별하여 altiComp 환경 파일에 기술된
 일치 정책에 따라 양 방향으로 반영하여 불일치를 해소하고, 실행요약정보와
@@ -2001,11 +2003,11 @@ MOSO = SU
 ```
 
 3.기타 Utilities
---------------
+==============
 
-### aku
+## aku
 
-#### 개요
+### 개요
 
 aku(Altibase Kubernetes Utility)는 쿠버네티스의 스테이트풀셋(Statefulset)에서 스케일링할 때 파드(Pod) 생성 및 종료에 따라 Altibase의 데이터를 복제하거나 초기화하는 등의 작업을 자동으로 수행하는 유틸리티이다. 
 
@@ -2035,7 +2037,7 @@ aku(Altibase Kubernetes Utility)는 쿠버네티스의 스테이트풀셋(Statef
 
 파드 추가 또는 삭제 시점에 위의 작업들을 수행하기 위해서는 aku 명령어를 Altibase 도커 이미지의 docker-entrypoint.sh 스크립트나 파드의 명세를 정의하는 yaml 파일 등에 추가해야 한다. 
 
-#### 구성 요소
+### 구성 요소
 
 aku 유틸리티는 aku 실행 파일과 aku 설정 파일로 구성된다. 
 
@@ -2100,13 +2102,13 @@ REPLICATIONS = (
 
 > aku 설정 파일에는 주석을 허용하지 않는다. 프로퍼티 앞에 주석을 추가하면 `Cannot parse aku.conf` 에러가 발생한다.
 
-#### 구문
+### 구문
 
 ~~~sql
 aku { -h | -v | -i | -p {start|stop|clean} }
 ~~~
 
-#### 파라미터
+### 파라미터
 
 ###### -h, --help
 
@@ -2142,9 +2144,9 @@ aku 설정 파일의 내용을 출력한다. 아래의 정보들을 확인할 �
 
 - clean : Altibase 이중화 객체를 모두 삭제한다. 사용자가 필요 시 수동적으로 수행한다. 
 
-#### 설명
+### 설명
 
-#### 주의사항
+### 주의사항
 
 - aku 설정 파일에 설정한 이중화 대상 테이블은 aku -p 수행 전에 생성되어 있어야 한다.
 - aku -p start는 파드 생성 과정에서 Altibase 서버가 정상적으로 구동된 후 수행해야 한다. 
@@ -2152,7 +2154,7 @@ aku 설정 파일의 내용을 출력한다. 아래의 정보들을 확인할 �
 - 
 - aku 설정 파일에 설정한 Altibase 이중화를 사용자가 임의로 생성/삭제/수정하면 안 된다. 
 
-#### 제약사항
+### 제약사항
 
 aku 유틸리티를 안정적으로 사용하기 위해 쿠버네티스 환경 설정 시 반드시 지켜야 할 조건이다. 
 
@@ -2161,7 +2163,7 @@ aku 유틸리티를 안정적으로 사용하기 위해 쿠버네티스 환경 �
 - 스케일 업할 수 있는 레플리카 개수는 최대 4개이다.
 - 파드 종료 시 aku 수행을 완료할 수 있는 시간을 충분히 설정해야 한다. 쿠버네티스에서 파드를 강제 종료하는 대기 시간인 terminationGracePeriodSeconds를 충분히.. 
 
-#### 사용 예
+### 사용 예
 
 -i 파라미터를 사용하여 aku를 실행한 결과이다. 아래 결과는 [aku 설정 파일](#aku-설정-파일)의 aku.conf.sample로 구성한 aku.conf에서 수행한 예시이다. Server ID가 0인 것은 스테이트풀셋 컨트롤러에서 처음 생성한 파드를 의미한다.
 
@@ -2223,7 +2225,7 @@ yaml 파일에서 `replicas` 필드를 변경하거나 `kubectl scale` 명령어
 
 이를 위해서, 컨테이너에서 실행할 Altibase 도커 이미지의 docker-entrypoint.sh 스크립트에  aku 명령어가 수행될 수 있게 반영되어 있어야 함.   
 
-### altiAudit
+## altiAudit
 
 #### 개요
 
@@ -2349,7 +2351,7 @@ into t1 values ('aaaa', 1)"
 | **SQL**                |         |                                                              |
 |                        | 문자열  | 실행된 SQL 구문                                              |
 
-### altibase
+altibase
 
 #### 개요
 
@@ -2402,7 +2404,7 @@ Administrator’s Manual
 
 iSQL User’s Manual
 
-### altiMon
+## altiMon
 
 #### 개요
 
