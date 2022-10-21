@@ -2003,6 +2003,226 @@ MOSO = SU
 3.기타 Utilities
 --------------
 
+### aku
+
+#### 개요
+
+aku(Altibase Kubernetes Utility)는 쿠버네티스의 스테이트풀셋(Statefulset)에서 스케일링할 때 파드(Pod) 생성 및 종료에 따라 Altibase의 데이터를 복제하거나 초기화하는 등의 작업을 자동으로 수행하는 유틸리티이다. 
+
+스테이트풀셋은 데이터베이스처럼 상태 유지가 필요한 애플리케이션을 지원하기 위한 쿠버네티스의 워크로드 컨트롤러 중 하나이며, 스케일링은 파드(Pod)를 추가하거나 삭제하는 것을 의미한다. 파드는 컨테이너들을 담고 있는쿠버네티스의 리소스이며, 이 컨테이너에 Altibase 서버가 실행된다. 스테이트풀셋에서 스케일 업/다운으로 Altibase 서버가 생성되거나 종료될 때 아래와 같은 과정을 aku를 사용하여 수행할 수 있다. 
+
+스테이트풀셋은 {0..N-1} 순으로 파드를 생성한다.
+
+###### 스케일 업
+
+- Altibase 이중화 객체 생성
+
+  새로 생성되는 파드 pod-1의 Altibase 서버에 Altibase 이중화 객체를 생성한다.
+
+- Altibase 데이터 복제
+
+  스테이트풀셋의 첫 번째 파드 pod-0에서 Altibase 서버의 데이터를 pod-1로 동기화한다. 
+
+- Altibase 이중화 시작
+
+  pod-0 과 pod-1 간의 양방향 이중화를 시작한다.
+
+###### 스케일 다운
+
+- Altibase 이중화 중지 및 초기화
+
+  종료되는 파드와 동기화하고 있는 모든 이중화를 중지하고 이중화 정보를 초기화한다. 
+
+파드 추가 또는 삭제 시점에 위의 작업들을 수행하기 위해서는 aku 명령어를 Altibase 도커 이미지의 docker-entrypoint.sh 스크립트나 파드의 명세를 정의하는 yaml 파일 등에 추가해야 한다. 
+
+#### 구성 요소
+
+aku 유틸리티는 aku 실행 파일과 aku 설정 파일로 구성된다. 
+
+###### aku 실행 파일
+
+실행 파일의 이름은 aku이며 $ALTIBASE_HOME/bin에 위치한다. 
+
+###### aku 설정 파일
+
+aku를 실행하면 aku 설정 파일을 가장 먼저 읽어 Altibase 데이터 동기화에 필요한 정보를 얻는다. aku 설정 파일의 이름은 aku.conf이며 $ALTIBASE_HOME/conf에 위치해야 한다. Altibase 패키지에 aku.conf.sample 이름의 예제 파일을 제공하므로 aku 실행 파일을 실행하기 전에 이 파일을 참고하여 aku.conf를 생성해야 한다. aku 설정 파일의 내용은 아래와 같다.
+
+aku.con.sample
+
+~~~bash
+AKU_SYS_PASWWORD            = "manager"
+AKU_STS_NAME                = "altibase-sts"
+AKU_SVC_NAME                = "altibase-svc"
+AKU_SERVER_COUNT            = 4
+AKU_QUERY_TIMEOUT           = 1800
+AKU_PORT_NO                 = 20300
+AKU_REPLICATION_PORT_NO     = 20301
+
+REPLICATIONS = (
+    REPLICATION_NAME_PREFIX = "AKU_REP"
+    SYNC_PARALLEL_COUNT     = 3
+    (
+        (
+            USER_NAME       = "SYS"
+            TABLE_NAME      = "T1"
+        ),
+        (
+            USER_NAME       = "SYS"
+            TABLE_NAME      = "T2"
+        ),
+        (
+            USER_NAME       = "SYS"
+            TABLE_NAME      = "T3"
+        )
+    )
+)
+~~~
+
+각 프로퍼티에 대해 살펴보자.
+
+| 프로퍼티 이름                        | 기본값 | 설명                                                         |
+| :----------------------------------- | :----: | :----------------------------------------------------------- |
+| AKU_STS_NAME                         |  없음  | 쿠버네티스 오브젝트 명세에 정의한 스테이트풀셋 이름          |
+| AKU_SVC_NAME                         |  없음  | 쿠버네티스 오브젝트 명세에 정의한 네트워크 서비스를 제공하는 서비스 이름 |
+| AKU_SERVER_COUNT                     |   4    | 스케일 업 할 수 있는 파드 수.<br />1부터 4까지 설정할 수 있다. |
+| AKU_SYS_PASWWORD                     |  없음  | 데이터베이스 SYS 사용자 패스워드                             |
+| AKU_PORT_NO                          | 20300  | Altibase 서버의 서비스 포트.<br />설정할 수 있는 값의 범위는 1024 ~ 65535 이다. |
+| AKU_REPLICATION_PORT_NO              | 20301  | Altibase 이중화 포트<br />설정할 수 있는 값의 범위는 1024 ~ 65535 이다. |
+||||
+| AKU_QUERY_TIMEOUT                    |  3600  |                                                              |
+|                                      |        |                                                              |
+| REPLICATIONS/REPLICATION_NAME_PREFIX |  없음  | aku가 생성하는 Altibase 이중화 객체 이름의 접두사.<br />최대 길이는 37바이트이다. |
+| REPLICATIONS/SYNC_PARALLEL_COUNT     |   1    | 이중화 SYNC 수행 시 송신/수신 쓰레드의 수.<br />1부터 100까지 설정할 수 있다. |
+| REPLICATIONS/USER_NAME               |  없음  | 이중화 대상 테이블의 소유자 이름                             |
+| REPLICATIONS/TABLE_NAME              |  없음  | 이중화 대상 테이블 이름                                      |
+
+> aku 프로퍼티 중 기본값이 없는 프로퍼티를 aku.conf에 명시하지 않으면 `[ERROR] Property [proerty_name] should be specified by configuration.` 에러가 발생한다. 
+
+> aku 설정 파일에는 주석을 허용하지 않는다. 프로퍼티 앞에 주석을 추가하면 `Cannot parse aku.conf` 에러가 발생한다.
+
+#### 구문
+
+~~~sql
+aku { -h | -v | -i | -p {start|stop|clean} }
+~~~
+
+#### 파라미터
+
+###### -h, --help
+
+aku 유틸리티의 사용법을 출력한다. 
+
+###### -v, --version
+
+aku 유틸리티의 버전 정보를 출력한다. aku 유틸리티의 버전은 Altibase 서버와 같은 버전으로 사용하는 것을 권장한다. 
+
+
+###### -i, --ino
+
+aku 설정 파일의 내용을 출력한다. 아래의 정보들을 확인할 수 있다.
+
+- Altibase 서버 접속 정보(데이터베이스 사용자, 패스워드, Altibase 서비스 포트)
+- Altibase 이중화 포트
+- 스케일 업 최대 수(최대 파드 수)
+- Altibase 이중화 객체 이름 및 이중화 대상 테이블 정보
+
+###### -p, --pod {pod_action}
+
+스케일링으로 파드를 추가하거나 삭제할 때 Altibase에서 수행할 작업을 명시한다. -p 또는 --pod 파라미터 뒤에 start, end, clean 중 하나를 반드시 입력해야 한다. 
+
+- start
+
+  aku 설정 파일을 읽어 Altibase 이중화 객체를 생성하고 데이터 동기화 작업을 수행하며 이중화를 시작한다. 
+
+  스테이트풀셋 컨트롤러에서 파드를 생성할 때 사용한다. 스테이트풀셋 컨트롤러에서는 파드 생성 시 Altibase 이중화 객체를 생성해야하므로 파드를 한 개만 생성할 때도 aku -p start 명령을 수행해야 한다. 
+
+  한 개의 파드만 첫 번째 파드를 최초로 생성할 때 수스케일 업으로 파드를 추가할 때 사용한다. Altibase 이중화 객체 생성 및 데이터 동기화 작업을 수행한다. 
+
+- end : 스케일 다운으로 파드를 종료할 때 사용한다. 해당 파드와 연결된 모든 이중화를 중지하고 초기화한다. 
+
+- clean : Altibase 이중화 객체를 모두 삭제한다. 사용자가 필요 시 수동적으로 수행한다. 
+
+#### 설명
+
+#### 주의사항
+
+- aku 설정 파일에 설정한 이중화 대상 테이블은 aku -p 수행 전에 생성되어 있어야 한다.
+- aku -p start는 파드 생성 과정에서 Altibase 서버가 정상적으로 구동된 후 수행해야 한다. 
+- 하나의 파드에서 aku -p start가 종료한 후 순차적으로 다음 파드를 생성해야 한다.
+- 
+- aku 설정 파일에 설정한 Altibase 이중화를 사용자가 임의로 생성/삭제/수정하면 안 된다. 
+
+#### 제약사항
+
+aku 유틸리티를 안정적으로 사용하기 위해 쿠버네티스 환경 설정 시 반드시 지켜야 할 조건이다. 
+
+- 쿠버네티스의 워크로드 컨트롤러 중 스테이트풀셋에서만 사용해야 한다.
+- 파드 관리 정책은 OrderedReady 여야 한다. OrderedReady는 스테이트풀셋의 기본 정책이다.
+- 스케일 업할 수 있는 레플리카 개수는 최대 4개이다.
+- 파드 종료 시 aku 수행을 완료할 수 있는 시간을 충분히 설정해야 한다. 쿠버네티스에서 파드를 강제 종료하는 대기 시간인 terminationGracePeriodSeconds를 충분히.. 
+
+#### 사용 예
+
+-i 파라미터를 사용하여 aku를 실행한 결과이다. 아래 결과는 [aku 설정 파일](#aku-설정-파일)의 aku.conf.sample로 구성한 aku.conf에서 수행한 예시이다. Server ID가 0인 것은 스테이트풀셋 컨트롤러에서 처음 생성한 파드를 의미한다.
+
+~~~bash
+$ aku -i
+  #########################
+ [ Server ]
+  Server ID        : 0
+  Host             : AKUHOST-0.altibase-svc
+  User             : SYS
+  Password         : manager
+  Port             : 20300
+  Replication Port : 20301
+  Max Server Count : 4
+ #########################
+ [ Replications ]
+ #### Serve[ID:0] Replication list ####
+  Replication Name : AKU_REP_01
+  Replication Name : AKU_REP_02
+  Replication Name : AKU_REP_03
+ #### Serve[ID:1] Replication list ####
+  Replication Name : AKU_REP_01
+  Replication Name : AKU_REP_12
+  Replication Name : AKU_REP_13
+ #### Serve[ID:2] Replication list ####
+  Replication Name : AKU_REP_02
+  Replication Name : AKU_REP_12
+  Replication Name : AKU_REP_23
+ #### Serve[ID:3] Replication list ####
+  Replication Name : AKU_REP_03
+  Replication Name : AKU_REP_13
+  Replication Name : AKU_REP_23
+ #########################
+ [ Replication Items ]
+  User Name        : SYS
+  Table Name       : T1
+ 
+  User Name        : SYS
+  Table Name       : T2
+ 
+  User Name        : SYS
+  Table Name       : T3
+ #########################
+~~~
+
+
+
+aku는 스테이트풀셋의 첫 번째 파드에서 Altibase 데이터베이스의 데이터를 새로 생성되는 파드로 복제하스테이트풀셋(Statefulset)을 스케일링할 때 스케일링Altibase 서버가 시작되면파드는 Altibase 도커 이미지를  [Altibase 도커 이미지 ](https://aid.altibase.com/pages/viewpage.action?pageId=14057660)
+
+스테이트풀셋 컨트롤러의 파드 관리 정책(매니페스트에서 .spec.podManagementPolicy가 OrderedReady ) 
+
+aku가 스케일 인/아웃을 감지하는 것은 아님. 
+
+스테이트풀셋을 스케일링하는 것은 레플리카 개수를 느리거나 줄이는 것을 의미한다. 
+
+yaml 파일에서 `replicas` 필드를 변경하거나 `kubectl scale` 명령어를 이용해서 스케일링한다. 
+
+스테이트풀셋을 스케일링할 때 Altibase 파드 생성/삭제 시 자동으로 마스터 노드에서 데이터를 복제할 수 있게 하는 유틸리티를 제공한 것. 
+
+이를 위해서, 컨테이너에서 실행할 Altibase 도커 이미지의 docker-entrypoint.sh 스크립트에  aku 명령어가 수행될 수 있게 반영되어 있어야 함.   
+
 ### altiAudit
 
 #### 개요
