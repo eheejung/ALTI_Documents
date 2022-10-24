@@ -2088,41 +2088,59 @@ REPLICATIONS = (
 
 > aku 설정 파일 작성 시 주의사항
 
-- aku 설정 파일은 주석을 허용하지 않는다. 프로퍼티 앞에 주석을 추가하면 `Cannot parse aku.conf` 에러가 발생한다.
-- aku 프로퍼티 중 기본값이 없는 프로퍼티를 aku.conf에 명시하지 않으면 `[ERROR] Property [proerty_name] should be specified by configuration.` 에러가 발생한다.
+aku 설정 파일은 주석을 허용하지 않는다. 프로퍼티 앞에 주석을 추가하면 `Cannot parse aku.conf` 에러가 발생한다.
+
+aku 프로퍼티 중 기본값이 없는 프로퍼티를 aku.conf에 명시하지 않으면 `[ERROR] Property [proerty_name] should be specified by configuration.` 에러가 발생한다.
 
 > REPLICATIONS/REPLICATION_NAME_PREFIX
 
-- aku 에서 생성하는 Altibase 이중화 객체 이름은*REPLICATION_NAME_PREFIX*_\[*파드번호*]\[*파드번호*\] 규칙으로 생성된다. 쿠버네티스 스테이트풀셋은 *pod_name*\_0, *pod_name*\_1, ..., *pod_name*\_*N*-1 순서로 순차적으로 파드를 생성하며 각 파드는 고유한 순번을 가진다. Altibase 이중화 객체 이름에서 파드 번호는 파드 이름에서 *pod_name*\_ 뒤의 파드 고유의 번호를 의미하며, 이중화 쌍이 되는 파드들의 번호들로 구성된다. 
+aku에서 생성하는 Altibase 이중화 객체 이름은 *REPLICATION_NAME_PREFIX*_\[*파드번호*]\[*파드번호*\] 규칙으로 생성된다. 쿠버네티스 스테이트풀셋은 *pod_name*\_0, *pod_name*\_1, ..., *pod_name*\_*N*-1 순서로 순차적으로 파드를 생성하며 각 파드는 고유한 순번을 가진다. Altibase 이중화 객체 이름에서 파드 번호는 파드 이름에서 *pod_name*\_ 뒤의 파드 고유의 번호를 의미하며, 이중화 쌍이 되는 파드들의 번호들로 구성된다. 
 
-  이해를 돕기 위해 AKU_SERVER_COUNT가 4이고 REPLICATION_NAME_PREFIX가 AKU_REP 일 때, 각 파드에서 생성되는 이중화 객체 이름을 살펴보자. 
+> 이해를 돕기 위해 AKU_SERVER_COUNT가 4이고 REPLICATION_NAME_PREFIX가 AKU_REP 일 때, 각 파드에서 생성되는 이중화 객체 이름을 살펴보자. 
+>
+> > - 파드-0 
+> >   - AKU_REP_01 : 파드-0과 파드-1의 Altibase 이중화
+> >   - AKU_REP_02 : 파드-0과 파드-2의 Altibase 이중화
+> >   - AKU_REP_03 : 파드-0과 파드-3의 Altibase 이중화
+> > - 파드-1
+> >   - AKU_REP_01 : 파드-0과 파드-1의 Altibase 이중화
+> >   - AKU_REP_12 : 파드-1과 파드-2의 Altibase 이중화
+> >   - AKU_REP_13 : 파드-1과 파드-3의 Altibase 이중화
+> > - 파드-2 
+> >   - AKU_REP_02 : 파드-0과 파드-2의 Altibase 이중화
+> >   - AKU_REP_12 : 파드-1과 파드-2의 Altibase 이중화
+> >   - AKU_REP_23 : 파드-2과 파드-3의 Altibase 이중화
+> > - 파드-3 
+> >   - AKU_REP_03 : 파드-0과 파드-3의 Altibase 이중화
+> >   - AKU_REP_13 : 파드-1과 파드-2의 Altibase 이중화
+> >   - AKU_REP_23 : 파드-2과 파드-3의 Altibase 이중화
 
-  - 파드-0 
-    - AKU_REP_01 : 파드-0과 파드-1의 Altibase 이중화
-    - AKU_REP_02 : 파드-0과 파드-2의 Altibase 이중화
-    - AKU_REP_03 : 파드-0과 파드-3의 Altibase 이중화
+- 파드-0 
+  - AKU_REP_01 : 파드-0과 파드-1의 Altibase 이중화
+  - AKU_REP_02 : 파드-0과 파드-2의 Altibase 이중화
+  - AKU_REP_03 : 파드-0과 파드-3의 Altibase 이중화
+- 파드-1
+  - AKU_REP_01 : 파드-0과 파드-1의 Altibase 이중화
+  - AKU_REP_12 : 파드-1과 파드-2의 Altibase 이중화
+  - AKU_REP_13 : 파드-1과 파드-3의 Altibase 이중화
+- 파드-2 
+  - AKU_REP_02 : 파드-0과 파드-2의 Altibase 이중화
+  - AKU_REP_12 : 파드-1과 파드-2의 Altibase 이중화
+  - AKU_REP_23 : 파드-2과 파드-3의 Altibase 이중화
+- 파드-3 
+  - AKU_REP_03 : 파드-0과 파드-3의 Altibase 이중화
+  - AKU_REP_13 : 파드-1과 파드-2의 Altibase 이중화
+  - AKU_REP_23 : 파드-2과 파드-3의 Altibase 이중화
 
-  - 파드-1
-    - AKU_REP_01 : 파드-0과 파드-1의 Altibase 이중화
-    - AKU_REP_12 : 파드-1과 파드-2의 Altibase 이중화
-    - AKU_REP_13 : 파드-1과 파드-3의 Altibase 이중화
-  - 파드-2 
-    - AKU_REP_02 : 파드-0과 파드-2의 Altibase 이중화
-    - AKU_REP_12 : 파드-1과 파드-2의 Altibase 이중화
-    - AKU_REP_23 : 파드-2과 파드-3의 Altibase 이중화
+~~~
+⚠️ aku가 생성하는 Altibase 이중화 객체는 사용자가 임의로 생성/삭제/수정하면 안 된다. 
+~~~
 
-  - 파드-3 
-    - AKU_REP_03 : 파드-0과 파드-3의 Altibase 이중화
-    - AKU_REP_13 : 파드-1과 파드-2의 Altibase 이중화
-    - AKU_REP_23 : 파드-2과 파드-3의 Altibase 이중화
 
-- ~~~
-  ⚠️ aku가 생성하는 Altibase 이중화 객체는 사용자가 임의로 생성/삭제/수정하면 안 된다. 
-  ~~~
 
 > REPLICATIONS/USER_NAME, REPLICATIONS/TABLE_NAME
 
-- aku 설정 파일에 입력한 데이터베이스 사용자 및 이중화 대상 테이블은 aku를 수행 전에 생성해야 한다. 
+설정 파일에 입력한 데이터베이스 사용자 및 이중화 대상 테이블은 aku를 수행 전에 생성해야 한다. 
 
 ### 구문
 
