@@ -1,5 +1,3 @@
-Altibase® Tools & Utilities
-
 Utilities Manual
 ================
 
@@ -24,40 +22,54 @@ Copyright ⓒ 2001\~2019 Altibase Corp. All Rights Reserved.
 
 homepage: [http://www.altibase.com](http://www.altibase.com/)
 
+~~~
+Altibase Tools & Utilities Utilities Manual
+Release 7.1
+Copyright ⓒ 2001~2019 Altibase Corp. All Rights Reserved.
+
+본 문서의 저작권은 ㈜알티베이스에 있습니다. 이 문서에 대하여 당사의 동의없이 무단으로 복제 또는 전용할 수 없습니다.
+
+㈜알티베이스
+08378 서울시 구로구 디지털로 306 대륭포스트타워Ⅱ 10층
+전화         : 02-2082-1114 
+팩스         : 02-2082-1099
+고객서비스포털 : http://support.altibase.com
+홈페이지      : http://www.altibase.com
+~~~
+
 
 
 # 목차
 
-- [Utilities Manual](#utilities-manual)
-  - [서문](#%EC%84%9C%EB%AC%B8)
-    - [이 매뉴얼에 대하여](#%EC%9D%B4-%EB%A7%A4%EB%89%B4%EC%96%BC%EC%97%90-%EB%8C%80%ED%95%98%EC%97%AC)
-  - [1.aexport](#1aexport)
-    - [aexport소개](#aexport%EC%86%8C%EA%B0%9C)
-    - [aexport사용방법](#aexport%EC%82%AC%EC%9A%A9%EB%B0%A9%EB%B2%95)
-  - [2.altiComp](#2alticomp)
-    - [altiComp 소개](#alticomp-%EC%86%8C%EA%B0%9C)
-    - [altiComp 사용 방법](#alticomp-%EC%82%AC%EC%9A%A9-%EB%B0%A9%EB%B2%95)
-    - [비교(DIFF)기능](#%EB%B9%84%EA%B5%90diff%EA%B8%B0%EB%8A%A5)
-    - [일치(SYNC) 기능](#%EC%9D%BC%EC%B9%98sync-%EA%B8%B0%EB%8A%A5)
-  - [3.기타 Utilities](#3%EA%B8%B0%ED%83%80-utilities)
-    - [altiAudit](#altiaudit)
-    - [altibase](#altibase)
-    - [altiMon](#altimon)
-    - [altierr](#altierr)
-    - [altipasswd](#altipasswd)
-    - [altiProfile](#altiprofile)
-    - [altiwrap](#altiwrap)
-    - [awrite](#awrite)
-    - [checkServer](#checkserver)
-    - [dumpbi](#dumpbi)
-    - [dumpct](#dumpct)
-    - [dumpdb](#dumpdb)
-    - [dumpddf](#dumpddf)
-    - [dumpla](#dumpla)
-    - [dumplf](#dumplf)
-    - [dumptrc](#dumptrc)
-    - [killCheckServer](#killcheckserver)
-    - [server](#server)
+- [서문](#%EC%84%9C%EB%AC%B8)
+  - [이 매뉴얼에 대하여](#%EC%9D%B4-%EB%A7%A4%EB%89%B4%EC%96%BC%EC%97%90-%EB%8C%80%ED%95%98%EC%97%AC)
+- [1.aexport](#1aexport)
+  - [aexport소개](#aexport%EC%86%8C%EA%B0%9C)
+  - [aexport사용방법](#aexport%EC%82%AC%EC%9A%A9%EB%B0%A9%EB%B2%95)
+- [2.altiComp](#2alticomp)
+  - [altiComp 소개](#alticomp-%EC%86%8C%EA%B0%9C)
+  - [altiComp 사용 방법](#alticomp-%EC%82%AC%EC%9A%A9-%EB%B0%A9%EB%B2%95)
+  - [비교(DIFF)기능](#%EB%B9%84%EA%B5%90diff%EA%B8%B0%EB%8A%A5)
+  - [일치(SYNC) 기능](#%EC%9D%BC%EC%B9%98sync-%EA%B8%B0%EB%8A%A5)
+- [3.기타 Utilities](#3%EA%B8%B0%ED%83%80-utilities)
+  - [altiAudit](#altiaudit)
+  - [altibase](#altibase)
+  - [altiMon](#altimon)
+  - [altierr](#altierr)
+  - [altipasswd](#altipasswd)
+  - [altiProfile](#altiprofile)
+  - [altiwrap](#altiwrap)
+  - [awrite](#awrite)
+  - [checkServer](#checkserver)
+  - [dumpbi](#dumpbi)
+  - [dumpct](#dumpct)
+  - [dumpdb](#dumpdb)
+  - [dumpddf](#dumpddf)
+  - [dumpla](#dumpla)
+  - [dumplf](#dumplf)
+  - [dumptrc](#dumptrc)
+  - [killCheckServer](#killcheckserver)
+  - [server](#server)
 
 
 
@@ -2115,28 +2127,9 @@ aku에서 생성하는 Altibase 이중화 객체 이름은 *REPLICATION_NAME_PRE
 > >   - AKU_REP_13 : 파드-1과 파드-2의 Altibase 이중화
 > >   - AKU_REP_23 : 파드-2과 파드-3의 Altibase 이중화
 
-- 파드-0 
-  - AKU_REP_01 : 파드-0과 파드-1의 Altibase 이중화
-  - AKU_REP_02 : 파드-0과 파드-2의 Altibase 이중화
-  - AKU_REP_03 : 파드-0과 파드-3의 Altibase 이중화
-- 파드-1
-  - AKU_REP_01 : 파드-0과 파드-1의 Altibase 이중화
-  - AKU_REP_12 : 파드-1과 파드-2의 Altibase 이중화
-  - AKU_REP_13 : 파드-1과 파드-3의 Altibase 이중화
-- 파드-2 
-  - AKU_REP_02 : 파드-0과 파드-2의 Altibase 이중화
-  - AKU_REP_12 : 파드-1과 파드-2의 Altibase 이중화
-  - AKU_REP_23 : 파드-2과 파드-3의 Altibase 이중화
-- 파드-3 
-  - AKU_REP_03 : 파드-0과 파드-3의 Altibase 이중화
-  - AKU_REP_13 : 파드-1과 파드-2의 Altibase 이중화
-  - AKU_REP_23 : 파드-2과 파드-3의 Altibase 이중화
-
 ~~~
 ⚠️ aku가 생성하는 Altibase 이중화 객체는 사용자가 임의로 생성/삭제/수정하면 안 된다. 
 ~~~
-
-
 
 > REPLICATIONS/USER_NAME, REPLICATIONS/TABLE_NAME
 
