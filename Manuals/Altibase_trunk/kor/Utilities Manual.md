@@ -2165,7 +2165,7 @@ aku 설정 파일의 내용을 출력한다. 파일에 문법(syntax) 오류가 
 
   >  **첫 번째 파드 생성 시**
 
-  ''첫 번째 파드''는 쿠버네티스 스테이트플셋에서 생성한 첫 번째 파드(*pod_name*-0)를 말한다. aku에서는 이 파드에서 수행한 aku를 ''MASTER AKU'라고 부르기도 한다. Altibase 이중화 객체는 모든 파드에 생성해야 하므로 스테이트풀셋에서 *pod_name*-0을 생성할 때도 `aku -p start` 명령을 수행해야 한다. 
+  ''첫 번째 파드''는 쿠버네티스 스테이트플셋에서 생성한 첫 번째 파드(*pod_name*-0)를 말한다. aku에서는 마스터 파드(Master Pod)라고 부르며 여기서 수행한 aku를 ''MASTER AKU'라고 부르기도 한다. Altibase 이중화 객체는 모든 파드에 생성해야 하므로 스테이트풀셋에서 *pod_name*-0을 생성할 때도 `aku -p start` 명령을 수행해야 한다. 
 
   1️⃣ aku.conf 파일을 읽는다.
 
@@ -2340,9 +2340,17 @@ MASTER AKU Initialize
     Message len  : 98
     Native error : 0x50032
 [Error][akuDbConnect:344] Failed to execute SQLDriverConnect: AKUHOST-2
-…위와 동일…
+  Diagnostic Record 1
+    SQLSTATE     : 08001
+    Message text : Client unable to establish connection. (Failed to invoke the connect() system function, errno=111)
+    Message len  : 98
+    Native error : 0x50032
 [Error][akuDbConnect:344] Failed to execute SQLDriverConnect: AKUHOST-3
-…위와 동일…
+  Diagnostic Record 1
+    SQLSTATE     : 08001
+    Message text : Client unable to establish connection. (Failed to invoke the connect() system function, errno=111)
+    Message len  : 98
+    Native error : 0x50032
 [Error][akuExecuteQuery:406] [EXECUTE BY :AKUHOST-0.altibase-svc] [SQL:ALTER REPLICATION AKU_REP_01 START] : Failed to execute sql.
   Diagnostic Record 1
     SQLSTATE     : HY000
@@ -2351,28 +2359,45 @@ MASTER AKU Initialize
     Native error : 0x6100D
 AKUHOST-0.altibase-svc: REPLICAION AKU_REP_01 Start Failure
 [Error][akuExecuteQuery:406] [EXECUTE BY :AKUHOST-0.altibase-svc] [SQL:ALTER REPLICATION AKU_REP_02 START] : Failed to execute sql.
-…위와 동일…
+  Diagnostic Record 1
+    SQLSTATE     : HY000
+    Message text : [Sender] Failed to handshake with the peer server (Handshake Process Error)
+    Message len  : 75
+    Native error : 0x6100D
 AKUHOST-0.altibase-svc: REPLICAION AKU_REP_02 Start Failure
 [Error][akuExecuteQuery:406] [EXECUTE BY :AKUHOST-0.altibase-svc] [SQL:ALTER REPLICATION AKU_REP_03 START] : Failed to execute sql.
-…위와 동일…
+  Diagnostic Record 1
+    SQLSTATE     : HY000
+    Message text : [Sender] Failed to handshake with the peer server (Handshake Process Error)
+    Message len  : 75
+    Native error : 0x6100D
 AKUHOST-0.altibase-svc: REPLICAION AKU_REP_03 Start Failure
 ~~~
 
-- `MASTER AKU Initialize`
+출력 결과를 살펴보자. 
 
-  aku.conf를 읽어 이중화 객체를 생성한다. `MASTER AKU`는 첫 번째 파드에서 수행한 aku를 의미한다.
+~~~bash
+# aku.conf를 읽어 이중화 객체를 생성한다. 
+# MASTER AKU는 첫 번째 파드에서 수행한 aku를 의미한다. 
+MASTER AKU Initialize
 
-- `[Error][akuDbConnect:344] Failed to execute SQLDriverConnect: AKUHOST-1
-  [Error][akuDbConnect:344] Failed to execute SQLDriverConnect: AKUHOST-2
-  [Error][akuDbConnect:344] Failed to execute SQLDriverConnect: AKUHOST-3`
+# 다른 파드가 아직 생성되지 않은 상태이므로 첫 번째 파드에서 다른 파드로의 접속이 실패한다.   
+[Error][akuDbConnect:344] Failed to execute SQLDriverConnect: AKUHOST-1
+  Diagnostic Record 1
+    SQLSTATE     : 08001
+    Message text : Client unable to establish connection. (Failed to invoke the connect() system function, errno=111)
+    Message len  : 98
+    Native error : 0x50032
 
-  다른 파드가 아직 생성되지 않은 상태이므로 첫 번째 파드에서 다른 파드로의 접속이 실패한다.
-
-- `AKUHOST-0.altibase-svc: REPLICAION AKU_REP_01 Start Failure
-  AKUHOST-0.altibase-svc: REPLICAION AKU_REP_02 Start Failure
-  AKUHOST-0.altibase-svc: REPLICAION AKU_REP_03 Start Failure`
-
-  다른 파드가 아직 생성되지 않은 상태이므로 첫 번째 파드에서 다른 파드로의 이중화 시작이 실패한다.
+# 다른 파드가 아직 생성되지 않은 상태이므로 첫 번째 파드에서 다른 파드로의 이중화 시작이 실패한다.   
+[Error][akuExecuteQuery:406] [EXECUTE BY :AKUHOST-0.altibase-svc] [SQL:ALTER REPLICATION AKU_REP_01 START] : Failed to execute sql.
+  Diagnostic Record 1
+    SQLSTATE     : HY000
+    Message text : [Sender] Failed to handshake with the peer server (Handshake Process Error)
+    Message len  : 75
+    Native error : 0x6100D
+AKUHOST-0.altibase-svc: REPLICAION AKU_REP_01 Start Failure
+~~~
 
 ##### 예시 3
 
@@ -2390,25 +2415,26 @@ AKUHOST-3.altibase-svc: REPLICAION AKU_REP_13 Start Success
 AKUHOST-3.altibase-svc: REPLICAION AKU_REP_23 Start Success	
 ~~~
 
-- `SLAVE AKU Initialize`
+출력 결과를 살펴보자. 
 
-  aku.conf를 읽어 이중화 객체를 생성한다. `SLAVE AKU`는 첫 번째 파드가 아닌 파드에서 수행한 aku를 의미한다.
+~~~bash
+# aku.conf를 읽어 이중화 객체를 생성한다. 
+# SLAVE AKU는 첫 번째 파드가 아닌 파드에서 수행한 aku를 의미한다.
+SLAVE AKU Initialize
 
-- `Sync Process Master Pod To My Pod`
-  `AKUHOST-0.altibase-svc: REPLICAION AKU_REP_03 Sync Success`
+# Master Pod는 첫 번째 파드(AKUHOST-0)를 말하며 AKUHOST-0의 데이터를 나의 파드로 동기화하였다.
+Sync Process Master Pod To My Pod
+AKUHOST-0.altibase-svc: REPLICAION AKU_REP_03 Sync Success
 
-  Master Pod는 첫 번째 파드(AKUHOST-0)를 말하며 AKUHOST-0의 데이터를 나의 파드로 동기화하였다.
+# AKUHOST-3 파드가 생성되었으므로 AKUHOST-1, AKUHOST-2에서 AKUHOST-3으로 이중화가 시작되었다.    
+AKUHOST-1.altibase-svc: REPLICAION AKU_REP_13 Start Success
+AKUHOST-2.altibase-svc: REPLICAION AKU_REP_23 Start Success
 
-- `AKUHOST-1.altibase-svc: REPLICAION AKU_REP_13 Start Success`
-  `AKUHOST-2.altibase-svc: REPLICAION AKU_REP_23 Start Success`
-
-  AKUHOST-3 파드가 생성되었으므로 AKUHOST-1, AKUHOST-2에서 AKUHOST-3으로 이중화가 시작되었다. 
-
-- `AKUHOST-3.altibase-svc: REPLICAION AKU_REP_03 Start Success`
-  `AKUHOST-3.altibase-svc: REPLICAION AKU_REP_13 Start Success`
-  `AKUHOST-3.altibase-svc: REPLICAION AKU_REP_23 Start Success`
-
-  AKUHOST-3 파드와 다른 파드 간 이중화가 시작되었다.
+# AKUHOST-3 파드와 다른 파드 간 이중화가 시작되었다.
+AKUHOST-3.altibase-svc: REPLICAION AKU_REP_03 Start Success
+AKUHOST-3.altibase-svc: REPLICAION AKU_REP_13 Start Success
+AKUHOST-3.altibase-svc: REPLICAION AKU_REP_23 Start Success  
+~~~
 
 ##### 예시 4
 
