@@ -2167,19 +2167,17 @@ aku 설정 파일의 내용을 출력한다. 파일에 문법(syntax) 오류가 
 
   ''첫 번째 파드''는 쿠버네티스 스테이트플셋에서 생성한 첫 번째 파드(*pod_name*-0)를 말한다. aku에서는 이 파드에서 수행한 aku를 ''MASTER AKU'라고 부르기도 한다. Altibase 이중화 객체는 모든 파드에 생성해야 하므로 스테이트풀셋에서 *pod_name*-0을 생성할 때도 `aku -p start` 명령을 수행해야 한다. 
 
-  ① aku.conf 파일을 읽는다.
+  1️⃣ aku.conf 파일을 읽는다.
 
-  ② `AKU_SERVER_COUNT`-1만큼 Altibase 이중화 객체를 생성한다. 만약, 같은 이름의 이중화 객체가 존재한다면 이중화 생성 단계는 생략한다. 
+  2️⃣ `AKU_SERVER_COUNT`-1만큼 Altibase 이중화 객체를 생성한다. 만약, 같은 이름의 이중화 객체가 존재한다면 이중화 생성 단계는 생략한다. 
 
-  ③ 이중화 대상 서버인 모드 파드에 접속을 시도한다. 하지만 다른 파드가 생성되기 전이기 때문에 접속 시도 시 에러가 발생한다. 이는 정상적인 동작이다. 
+  3️⃣ 이중화 대상 서버인 모드 파드에 접속을 시도한다. 하지만 다른 파드가 생성되기 전이기 때문에 접속 시도 시 에러가 발생한다. 이는 정상적인 동작이다. 
 
-  ④ *pod_name*-0에서 생성한 모든 이중화 객체를 대상으로 `ALTER REPLICATION replication_name START`를 수행한다. 하지만 다른 파드가 생성되기 전이기 때문에 이중화 시작은 실패한다. 다른 파드가 생성되고 이중화를 할 수 있는 준비가 되면 이중화가 시작된다. 이것은 정상적인 동작이다. 
+  4️⃣ *pod_name*-0에서 생성한 모든 이중화 객체를 대상으로 `ALTER REPLICATION replication_name START`를 수행한다. 하지만 다른 파드가 생성되기 전이기 때문에 이중화 시작은 실패한다. 다른 파드가 생성되고 이중화를 할 수 있는 준비가 되면 이중화가 시작된다. 이것은 정상적인 동작이다. 
 
   > **스케일 업(Scale up)**
 
   스테이트풀셋에서 스케일 업을 하면 파드가 생성된다. aku에서는 이러한 파드에서 수행한 aku를 "SLAVE AKU"로 표현하기도 한다. 하나의 파드는 생성과 종료를 반복할 수 있는데,  파드가 처음 생성될 때와 종료 후 다시 생성될 때 `aku -p start` 동작이 다르다. 아래 *pod_name*-1 에서 수행한 예로 `aku -p start` 동작을 살펴보자. 
-
-  1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣🔟
 
   1️⃣ aku.conf 파일을 읽는다.
 
@@ -2191,11 +2189,11 @@ aku 설정 파일의 내용을 출력한다. 파일에 문법(syntax) 오류가 
 
   5️⃣ *pod_name*-1에서 *pod_name*-0으로 이중화 SYNC를 요청한다. 만약 *pod_name*-1이 다시 생성된 파드라면*pod_name*-0과 *pod_name*-1에서 이중화 객체의 XSN 값을 확인하고 둘 중 하나라도 -1이 아니면 이 단계와 다음의 SYNC 수행은 생략한다. 
 
-  ⑥ *pod_name*-0에서 *pod_name*-1로 이중화 SYNC를 수행한다. 
+  6️⃣ *pod_name*-0에서 *pod_name*-1로 이중화 SYNC를 수행한다. 
 
-  ⑦ *pod_name*-1에서 *pod_name*-0으로 이중화를 시작한다. 
+  7️⃣ *pod_name*-1에서 *pod_name*-0으로 이중화를 시작한다. 
 
-  ⑧ *pod_name*-1에서 *pod_name*-2, *pod_name*-3으로 이중화를 시작한다. 하지만 *pod_name*-2, *pod_name*-3은 생성되기 전이기 때문에 이중화 시작은 실패한다. *pod_name*-2, *pod_name*-3이 생성되고 이중화를 할 수 있는 준비가 되면 이중화가 시작된다. 이는 정상적인 동작이다. 
+  8️⃣ *pod_name*-1에서 *pod_name*-2, *pod_name*-3으로 이중화를 시작한다. 하지만 *pod_name*-2, *pod_name*-3은 생성되기 전이기 때문에 이중화 시작은 실패한다. *pod_name*-2, *pod_name*-3이 생성되고 이중화를 할 수 있는 준비가 되면 이중화가 시작된다. 이는 정상적인 동작이다. 
 
   ~~~
   ⚠️ aku -p start 명령은 Altibase 서버가 정상적으로 시작된 후 수행해야 한다. 
@@ -2206,11 +2204,11 @@ aku 설정 파일의 내용을 출력한다. 파일에 문법(syntax) 오류가 
 
   Altibase 이중화를 중지하고 초기화하는 작업을 수행한다. 파드를 종료할 때 이용할 수 있다. 
 
-  ① 해당 파드와 이중화로 연결된 모든 파드에 접속을 시도한다. 해당 번호보다 높은 번호의 파드는 이미 삭제된 상태이기 때문에 접속 에러가 발생할 수 있다. 이는 정상적인 동작이다.
+  1️⃣ 해당 파드와 이중화로 연결된 모든 파드에 접속을 시도한다. 해당 번호보다 높은 번호의 파드는 이미 삭제된 상태이기 때문에 접속 에러가 발생할 수 있다. 이는 정상적인 동작이다.
 
-  ② 해당 파드의 이중화 객체와 관련한 모든 파드에 `ALTER REPLICATION replication_name STOP` 수행을 요청한다.
+  2️⃣ 해당 파드의 이중화 객체와 관련한 모든 파드에 `ALTER REPLICATION replication_name STOP` 수행을 요청한다.
 
-  ③ 해당 파드의 이중화 객체와 관련한 모든 파드에 `ALTER REPLICATION replication_name RESET` 수행을 요청한다.
+  3️⃣ 해당 파드의 이중화 객체와 관련한 모든 파드에 `ALTER REPLICATION replication_name RESET` 수행을 요청한다.
 
   ~~~
   ⚠️ akp -p end 명령은 Altibase 서버를 중지하기 전에 수행해야 한다.
@@ -2223,11 +2221,11 @@ aku 설정 파일의 내용을 출력한다. 파일에 문법(syntax) 오류가 
 
 ### 주의사항
 
-> `akp -p end` 명령이 완전히 완료되기 전에 파드가 종료되었다면
+> akp -p end 명령이 완료되기 전에 파드가 종료되었다면
 
 이중화 정보가 초기화되지 않고 남아 있을 수 있다. 이 경우 해당 파드가 다시 시작할 때 이중화 객체 생성과 이중화 대상 테이블을 TRUNCATE하는 작업이 생략되고 이전에 생성한 이중화가 자동으로 시작된다. `akp -p end` 명령이 정상적으로 수행될 때의 출력 결과는 [예시 4](#예시-4)를 확인해보자.
 
->  `akp -p end` 명령이 완전히 완료되기 전에 파드가 종료된 상태가 장기간 지속된다면
+>  akp -p end 명령이 완료되기 전에 파드가 종료된 상태가 장기간 지속된다면
 
 종료된 파드 뿐 아니라 다른 파드에도 이중화 정보가 초기화되지 않고 남아 있을 수 있다. 이 경우 다른 파드는 종료된 파드로 이중화 하기 위해 이중화에 필요한 온라인 로그 파일을 삭제하지 않는다. 온라인 로그 파일이 쌓이면 디스크 풀 발생으로 Altibase 서버가 정상적으로 운영되지 못할 수 있다. 따라서 이런 상황을 방지하기 위해  `akp -p end` 명령이 완전히 완료되기 전에 파드가 종료된 상태가 장기간 지속되고 있다면 이중화를 중지하고 이중화 초기화 작업을 진행해야 한다. 
 
@@ -2396,19 +2394,19 @@ AKUHOST-3.altibase-svc: REPLICAION AKU_REP_23 Start Success
 
   aku.conf를 읽어 이중화 객체를 생성한다. `SLAVE AKU`는 첫 번째 파드가 아닌 파드에서 수행한 aku를 의미한다.
 
-- `Sync Process Master Pod To My Pod
-  AKUHOST-0.altibase-svc: REPLICAION AKU_REP_03 Sync Success`
+- `Sync Process Master Pod To My Pod`
+  `AKUHOST-0.altibase-svc: REPLICAION AKU_REP_03 Sync Success`
 
   Master Pod는 첫 번째 파드(AKUHOST-0)를 말하며 AKUHOST-0의 데이터를 나의 파드로 동기화하였다.
 
-- `AKUHOST-1.altibase-svc: REPLICAION AKU_REP_13 Start Success
-  AKUHOST-2.altibase-svc: REPLICAION AKU_REP_23 Start Success`
+- `AKUHOST-1.altibase-svc: REPLICAION AKU_REP_13 Start Success`
+  `AKUHOST-2.altibase-svc: REPLICAION AKU_REP_23 Start Success`
 
   AKUHOST-3 파드가 생성되었으므로 AKUHOST-1, AKUHOST-2에서 AKUHOST-3으로 이중화가 시작되었다. 
 
-- `AKUHOST-3.altibase-svc: REPLICAION AKU_REP_03 Start Success
-  AKUHOST-3.altibase-svc: REPLICAION AKU_REP_13 Start Success
-  AKUHOST-3.altibase-svc: REPLICAION AKU_REP_23 Start Success`
+- `AKUHOST-3.altibase-svc: REPLICAION AKU_REP_03 Start Success`
+  `AKUHOST-3.altibase-svc: REPLICAION AKU_REP_13 Start Success`
+  `AKUHOST-3.altibase-svc: REPLICAION AKU_REP_23 Start Success`
 
   AKUHOST-3 파드와 다른 파드 간 이중화가 시작되었다.
 
