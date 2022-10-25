@@ -2092,8 +2092,6 @@ REPLICATIONS = (
 | REPLICATIONS/USER_NAME               |  없음  | 이중화 대상 테이블의 소유자 이름.<br />여기에 명시한 데이터베이스 사용자는 aku -p 명령을 수행하기 전에 생성해야 한다. |
 | REPLICATIONS/TABLE_NAME              |  없음  | 이중화 대상 테이블 이름.<br />여기에 명시한 테이블은 aku -p 명령을 수행하기 전에 생성해야 한다. |
 
-✔️✓❕❗
-
 > aku 설정 파일 작성 시 주의사항
 
 aku 설정 파일은 주석을 허용하지 않는다. 프로퍼티 앞에 주석을 추가하면 `Cannot parse aku.conf` 에러가 발생한다.
@@ -2146,7 +2144,7 @@ aku 유틸리티의 사용법을 출력한다.
 aku 유틸리티의 버전 정보를 출력한다. aku 유틸리티의 버전은 Altibase 서버와 같은 버전으로 사용하는 것을 권장한다. 
 
 
-###### -i, --ino
+###### -i, --info
 
 aku 설정 파일의 내용을 출력한다. 파일에 문법(syntax) 오류가 있는 경우 에러를 출력하며 정상적일 때 아래의 정보를 출력한다.
 
@@ -2165,11 +2163,11 @@ aku 설정 파일의 내용을 출력한다. 파일에 문법(syntax) 오류가 
 
   >  **첫 번째 파드 생성 시**
 
-  Altibase 이중화 객체는 모든 파드에 생성해야 하므로 스테이트풀셋에서 파드-0을 생성할 때도 aku -p start 명령을 수행해야 한다. 
+  Altibase 이중화 객체는 모든 파드에 생성해야 하므로 스테이트풀셋에서 파드-0을 생성할 때도 `aku -p start` 명령을 수행해야 한다. 
 
   ① aku.conf 파일을 읽는다.
 
-  ② `AKU_SERVER_COUNT`-1만큼 Altibase 이중화 객체를 생성한다. 
+  ② `AKU_SERVER_COUNT`-1만큼 Altibase 이중화 객체를 생성한다. 만약, 같은 이름의 이중화 객체가 존재한다면 이중화 생성 단계는 생략한다. 
 
   ③ 이중화 대상 서버인 모드 파드에 접속을 시도한다. 하지만 다른 파드가 생성되기 전이기 때문에 접속 시도 시 에러가 발생한다. 이는 정상적인 동작이다. 
 
@@ -2181,7 +2179,7 @@ aku 설정 파일의 내용을 출력한다. 파일에 문법(syntax) 오류가 
 
   ① aku.conf 파일을 읽는다.
 
-  ②  `AKU_SERVER_COUNT`-1만큼 Altibase 이중화 객체를 생성한다. 
+  ②  `AKU_SERVER_COUNT`-1만큼 Altibase 이중화 객체를 생성한다. 만약, 같은 이름의 이중화 객체가 존재한다면 이중화 생성 단계와 ③ TRUNCATE 수행 단계는 생략한다.
 
   ③ 파드-1의 이중화 대상 테이블을 대상으로 TRUNCATE를 수행한다.
 
@@ -2206,12 +2204,13 @@ aku 설정 파일의 내용을 출력한다. 파일에 문법(syntax) 오류가 
 
   ① 해당 파드와 이중화로 연결된 모든 파드에 접속을 시도한다. 해당 번호보다 높은 번호의 파드는 이미 삭제된 상태이기 때문에 접속 에러가 발생할 수 있다. 이는 정상적인 동작이다.
 
-  ② 해당 파드의 이중화 객체와 관련한 모드 파드에 `ALTER REPLICATION replication_name STOP` 수행을 요청한다.
+  ② 해당 파드의 이중화 객체와 관련한 모든 파드에 `ALTER REPLICATION replication_name STOP` 수행을 요청한다.
 
-  ③ 해당 파드의 이중화 객체와 관련한 모드 파드에 `ALTER REPLICATION replication_name RESET` 수행을 요청한다.
+  ③ 해당 파드의 이중화 객체와 관련한 모든 파드에 `ALTER REPLICATION replication_name RESET` 수행을 요청한다.
 
   ~~~
   ⚠️ akp -p end 명령은 Altibase 서버를 중지하기 전에 수행해야 한다.
+  ⚠️ akp -p end 명령이 정상적으로 완료한 후 파드를 종료해야 한다. 
   ~~~
 
 - `clean`
@@ -2220,26 +2219,52 @@ aku 설정 파일의 내용을 출력한다. 파일에 문법(syntax) 오류가 
 
 ### 주의사항
 
-Pod를 종료하기 전에 aku -p end를 수행하지 못하고 Pod가 비정상 종료된 경우, 비정상 종료된 Pod가 재시작 되면 기존에 동작하던 이중화는 자동으로 재시작되어 복구된다. 
+> `akp -p end` 명령이 완전히 완료되기 전에 파드가 종료되었다면
 
-Pod를 종료하기 전에 aku -p end를 수행하지 못하고 Pod가 비정상 종료되고 해당 Pod가 장기간 복구되지 않는 경우에는 아래와 같은 조치가 필요하다. 
+이중화 정보가 초기화되지 않고 남아 있을 수 있다. 이 경우 해당 파드가 다시 시작할 때 이중화 객체 생성과 이중화 대상 테이블을 TRUNCATE하는 작업이 생략되고 이전에 생성한 이중화가 자동으로 시작된다. `akp -p end` 명령이 정상적으로 수행될 때의 출력 결과는 [예시 4](#예시-4)를 확인해보자.
 
-aku -p end가 정상적으로 되지 않은 상태에서 Pod가 종료된 경우 다른 Pod에서는 해당 Pod의 종료를 알지 못하여 이중화가 계속 수행중인 상태로 남아있게된다.
-이 경우 비정상 종료된 Pod가 장기간 복구되지 않는다면, 다른 서비스중인 Pod는 비정상 종료된 Pod로 복제를 진행하는 이중화로 인해 로그파일을 지우지 못하여 서비스에 영향을 줄 수 있다. 
+>  `akp -p end` 명령이 완전히 완료되기 전에 파드가 종료된 상태가 장기간 지속된다면
 
-예를들어, pod-0 과 pod-1이 동작 중에 scale-in되어 pod-1이 종료하면 pod-1에서 aku -p end가 되어야 하나 비정상적인 동작으로 aku -p end가 수행되지 않은 경우,
+종료된 파드 뿐 아니라 다른 파드에도 이중화 정보가 초기화되지 않고 남아 있을 수 있다. 이 경우 다른 파드는 종료된 파드로 이중화 하기 위해 이중화에 필요한 온라인 로그 파일을 삭제하지 않는다. 온라인 로그 파일이 쌓이면 디스크 풀 발생으로 Altibase 서버가 정상적으로 운영되지 못할 수 있다. 따라서 이런 상황을 방지하기 위해  `akp -p end` 명령이 완전히 완료되기 전에 파드가 종료된 상태가 장기간 지속되고 있다면 이중화를 중지하고 이중화 초기화 작업을 진행해야 한다. 
 
-pod-0 에서 pod-1로 향하는 이중화가 종료되지 못하여, 로그 파일을 지우지 못하여 disk-full 이 발생하는 등 서비스에 영향을 미칠 수 있다. 
-
-그러므로 위 상황을 해소하기 위해서는, pod-0 에서 aku 이중화의 상태를 확인하여 해당 이중화를 stop하고 reset해야 한다.
-
- 다음의 명령을 수행하여 AKU_REP_01의 이중화 XSN을 초기화 시켜 준다.
-
-ALTER REPLICATION AKU_REP_01 STOP;
-
+~~~sql
+ALTER REPLICATION replication_name STOP;
 ALTER REPLICATION replication_name RESET;
+~~~
 
-<그림2> pod-0에서 이중화 초기화 후 조회한 이중화 메타 정보
+파드-0과 파드-1이 운영 중 파드-1이 `akp -p end` 명령을 정상적으로 수행되지 못하고 종료되었다고 가정해보자. 파드-0에서 SYSTEM_.SYS_REPLICATIONS\_의 XSN을 조회해보자. 이중화 객체 AKU_REP_01의 XSN 값이 -1이 아닌 것을 볼 수 있다. 이는 이중화 정보가 초기화되지 않은 것을 의미한다. AKU_REP_01은 파드-0과 파드-1의 이중화 객체이다. 
+
+~~~sql
+iSQL> SELECT REPLICATION_NAME, XSN FROM SYSTEM_.SYS_REPLICATIONS_;
+REPLICATION_NAME                XSN                  
+--------------------------------------------------------
+AKU_REP_03                      -1
+AKU_REP_02                      -1
+AKU_REP_01                      859070110
+No rows selected.
+~~~
+
+파드-0에서 AKU_REP_01을 중지하고 이중화 객체를 생성한 시점으로 초기화한다. 
+
+~~~sql
+iSQL> ALTER REPLICATION AKU_REP_01 STOP;
+Alter sucess.
+
+iSQL> ALTER REPLICATION AKU_REP_01 RESET;
+Alter sucess.
+~~~
+
+다시 파드-0에서 SYSTEM_.SYS_REPLICATIONS\_의 XSN을 조회해보자. 이중화 객체 AKU_REP_01의 XSN 값이 -1으로 변경되었다.
+
+~~~sql
+iSQL> SELECT REPLICATION_NAME, XSN FROM SYSTEM_.SYS_REPLICATIONS_;
+REPLICATION_NAME                XSN                  
+--------------------------------------------------------
+AKU_REP_03                      -1
+AKU_REP_02                      -1
+AKU_REP_01                      -1
+No rows selected.
+~~~
 
 ### 제약사항
 
@@ -2382,6 +2407,29 @@ AKUHOST-3.altibase-svc: REPLICAION AKU_REP_23 Start Success
   AKUHOST-3.altibase-svc: REPLICAION AKU_REP_23 Start Success`
 
   AKUHOST-3 파드와 다른 파드 간 이중화가 시작되었다.
+
+##### 예시 4
+
+4번째 파드에서 `aku -p end` 명령을 수행할 때의 출력 결과이다. 4번째 파드와 이중화로 연결된 모든 파드에 이중화 중지 및 RESSET 명령이 수행된 것을 볼 수 있다. 
+
+~~~bash
+$ aku -p end
+ SLAVE AKU Initialize
+AKUHOST-0.altibase-svc: REPLICAION AKU_REP_03 STOP Success
+AKUHOST-1.altibase-svc: REPLICAION AKU_REP_13 STOP Success
+AKUHOST-2.altibase-svc: REPLICAION AKU_REP_23 STOP Success
+AKUHOST-3.altibase-svc: REPLICAION AKU_REP_03 STOP Success
+AKUHOST-3.altibase-svc: REPLICAION AKU_REP_13 STOP Success
+AKUHOST-3.altibase-svc: REPLICAION AKU_REP_23 STOP Success
+AKUHOST-0.altibase-svc: REPLICAION AKU_REP_03 RESET Success
+AKUHOST-1.altibase-svc: REPLICAION AKU_REP_13 RESET Success
+AKUHOST-2.altibase-svc: REPLICAION AKU_REP_23 RESET Success
+AKUHOST-3.altibase-svc: REPLICAION AKU_REP_03 RESET Success
+AKUHOST-3.altibase-svc: REPLICAION AKU_REP_13 RESET Success
+AKUHOST-3.altibase-svc: REPLICAION AKU_REP_23 RESET Success
+~~~
+
+
 
 ## altiAudit
 
