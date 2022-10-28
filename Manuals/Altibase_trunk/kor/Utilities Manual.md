@@ -2175,6 +2175,10 @@ aku 설정 파일의 내용을 출력한다. 파일에 문법(syntax) 오류가 
 
   4️⃣ *pod_name*-0에서 생성한 모든 이중화 객체를 대상으로 `ALTER REPLICATION replication_name START`를 수행한다. 하지만 다른 파드가 생성되기 전이기 때문에 이중화 시작은 실패한다. 다른 파드가 생성되고 이중화를 할 수 있는 준비가 되면 이중화가 시작된다. 이것은 정상적인 동작이다. 
 
+  <div align="left">
+    <img src="media/Utilities/aku_scale_up_pod_0.png"> 
+  </div>
+
   ![image-20221028195332812](media/utilities/aku_scale_up_pod_0.png)
 
   > **스케일 업(Scale up)**
