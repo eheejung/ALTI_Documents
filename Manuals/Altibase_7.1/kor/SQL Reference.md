@@ -25731,8 +25731,8 @@ PCR2E 호환 모드에서 사용할 수 있는 대표적인 정규 표현식 문
 | :----------------------------------------------------------- | :---------------------------------------- |
 | \                                                            | 여러 용도로 사용되는 이스케이프 문자 |
 | ^                                                            | 문자열(또는 여러 줄 모드에서 줄)의 시작   |
-| $                                                            | 문자열(또는 여러 줄 모드에서 줄)의 끝     |
-| .                                                            | 개행문자를 제외한 모든 문자와 일치        |
+| $                                                            | 문자열(또는 여러 줄 모드에서 줄)의 끝 |
+| .                                                            | 줄바꿈 문자를 제외한 모든 문자와 일치     |
 | [                                                            | 문자 클래스 정의 시작                     |
 | \|                                                           | 여러 식 중 하나를 선택                    |
 | (                                                            | 그룹 또는 제어 동사 시작 |
@@ -25762,7 +25762,7 @@ PCR2E 호환 모드에서 사용할 수 있는 대표적인 정규 표현식 문
 | \c*x*                              | control-*x* 문자. *x*는 출력 가능한 아스키 문자가 올 수 있다. |
 | \e                                 | ESC 문자(escape). 아스키 코드의 27번째 문자(hex 1B)          |
 | \f                                 | 다음 페이지(form feed). 아스키 코드의 12번째 문자(hex 0C)    |
-| \n                                 | 개행 문자(line feed). 아스키 코드의 10번째 문자(hex 0A)      |
+| \n                                 | 줄바꿈 문자(line feed). 아스키 코드의 10번째 문자(hex 0A)     |
 | \r                                 | 캐리지 리턴(carriage return). 아스키 코드의 13번째 문자(hex 0D) |
 | \t                                 | 탭(tab). 아스키 코드의 9번째 문자(hex 09)                    |
 | \0*dd*                             | 아스키 코드의 8진수 코드 *dd*에 해당하는 문자. 예를 들어 \061은 숫자 1을 의미한다. |
@@ -25801,17 +25801,17 @@ AU-100
 | \D       | 10진수 숫자가 아닌 문자 |
 | \h       | 수평 공백 문자, 예를 들어 스페이스와 탭 문자 |
 | \H       | 수평 공백 문자가 아닌 문자 |
-| \N       | 개행 문자가 아닌 문자 |
+| \N       | 줄바꿈 문자가 아닌 문자 |
 | \p{*xx*} | *xx* 속성을 가진 유니코드 문자 |
 | \P{*xx*} | *xx* 속성이 없는 유니코드 문자 |
-| \R       | 개행 문자 |
+| \R       | 줄바꿈 문자 |
 | \s       | 공백 문자 |
 | \S       | 공백 문자가 아닌 문자 |
-| \v       | 수직 공백 문자, 예를 들어 개행 문자 |
+| \v       | 수직 공백 문자, 예를 들어 줄바꿈 문자 |
 | \V       | 수직 공백 문자가 아닌 문자 |
 | \w       | 단어(word) 문자 |
 | \W       | 단어(word) 문자가 아닌 문자 |
-| \X       | 유니코드 확장 자소 집합(Unicode extended grapheme cluster) |
+| \X       | 유니코드 확장 문자소 클러스터 |
 
 > ###### 유니코드 문자 속성
 
@@ -25851,11 +25851,11 @@ AU-100
 | P    | 문장 부호, 구두법(Punctuation). P로 시작하는 속성을 모두 포함한다. |
 | Pc   | 연결 문장 부호(Connector punctuation)                        |
 | Pd   | 대시 또는 하이픈 문장 부호(Dash punctuation)                 |
-| Pe   | 닫힌, 엄격한 구두법(Close punctuation)                       |
-| Pf   | 마침 문장 부호(Final punctuation)                            |
+| Pe   | 종결 문장 부호. 닫힌, 엄격한 구두법(Close punctuation)       |
+| Pf   | 종결 문장 부호(Final punctuation)                            |
 | Pi   | 시작 문장 부호(Initial punctuation)                          |
 | Po   | 기타 구두(Other punctuation)                                 |
-| Ps   | 열린 구두법(Open punctuation)                                |
+| Ps   | 시작 문장 부호. 열린 구두법(Open punctuation)                |
 |      |                                                              |
 | S    | 기호(Symbol). S로 시작하는 속성을 모두 포함한다.             |
 | Sc   | 화폐 기호(Currency symbol)                                   |
@@ -25864,14 +25864,14 @@ AU-100
 | So   | 기타 기호(Other symbol)                                      |
 |      |                                                              |
 | Z    | 구분자(Separator). Z로 시작하는 속성을 모두 포함한다.        |
-| Zl   | 줄 구분자(Line separator)                                    |
+| Zl   | 행 구분자(Line separator)                                    |
 | Zp   | 단락 구분자(Paragraph separator)                             |
 | Zs   | 공백 구분자(Space separator)                                 |
 |      |                                                              |
 |      | 아래는 PCRE2에서 추가적으로 지원하는 유니코드 문자 속성이다. |
 | Xan  | 알파벳과 숫자. L 속성과 N 속성을 모두 포함한다.<br />Alphanumeric: union of properties L and N |
-| Xps  | POSIX 공백 문자: Z 속성 또는 탭, 개행 문자, 수직 탭, 다음 페이지, 캐리지 리턴<br />POSIX space: property Z or tab, NL, VT, FF, CR |
-| Xsp  | Perl 공백 문자: Z 속성 또는 탭, 개행 문자, 수직 탭, 다음 페이지, 캐리지 리턴<br />Perl space: property Z or tab, NL, VT, FF, CR |
+| Xps  | POSIX 공백 문자: Z 속성 또는 탭, 줄바꿈 문자, 수직 탭, 다음 페이지, 캐리지 리턴<br />POSIX space: property Z or tab, NL, VT, FF, CR |
+| Xsp  | Perl 공백 문자: Z 속성 또는 탭, 줄바꿈 문자, 수직 탭, 다음 페이지, 캐리지 리턴<br />Perl space: property Z or tab, NL, VT, FF, CR |
 | Xuc  | 유니버설 문자 이름<br />Univerally-named character: one that can be represented by a Universal Character Name) |
 | Xwd  | Perl 단어: 속성 Xan 또는 밑줄<br />Perl word: property Xan or underscore |
 
@@ -25904,15 +25904,23 @@ planner
 Adlam, Ahom, Anatolian_Hieroglyphs, Arabic, Armenian, Avestan, Balinese, Bamum, Bassa_Vah, Batak, Bengali, Bhaiksuki, Bopomofo, Brahmi, Braille, Buginese, Buhid, Canadian_Aboriginal, Carian, Caucasian_Albanian, Chakma, Cham, Cherokee, Chorasmian, Common, Coptic, Cuneiform, Cypriot, Cypro_Minoan, Cyrillic, Deseret, Devanagari, Dives_Akuru, Dogra, Duployan, Egyptian_Hieroglyphs, Elbasan, Elymaic, Ethiopic, Georgian, Glagolitic, Gothic, Grantha, Greek, Gujarati, Gunjala_Gondi, Gurmukhi, Han, Hangul, Hanifi_Rohingya, Hanunoo, Hatran, Hebrew, Hiragana, Imperial_Aramaic, Inherited, Inscriptional_Pahlavi, Inscriptional_Parthian, Javanese, Kaithi, Kannada, Katakana, Kayah_Li, Kharoshthi, Khitan_Small_Script, Khmer, Khojki, Khudawadi, Lao, Latin, Lepcha, Limbu, Linear_A, Linear_B, Lisu, Lycian, Lydian, Mahajani, Makasar, Malayalam, Mandaic, Manichaean, Marchen, Masaram_Gondi, Medefaidrin, Meetei_Mayek, Mende_Kikakui, Meroitic_Cursive, Meroitic_Hieroglyphs, Miao, Modi, Mongolian, Mro, Multani, Myanmar, Nabataean, Nandinagari, New_Tai_Lue, Newa, Nko, Nushu, Nyakeng_Puachue_Hmong, Ogham, Ol_Chiki, Old_Hungarian, Old_Italic, Old_North_Arabian, Old_Permic, Old_Persian, Old_Sogdian, Old_South_Arabian, Old_Turkic, Old_Uyghur, Oriya, Osage, Osmanya, Pahawh_Hmong, Palmyrene, Pau_Cin_Hau, Phags_Pa, Phoenician, Psalter_Pahlavi, Rejang, Runic, Samaritan, Saurashtra, Sharada, Shavian, Siddham, SignWriting, Sinhala, Sogdian, Sora_Sompeng, Soyombo, Sundanese, Syloti_Nagri, Syriac, Tagalog, Tagbanwa, Tai_Le, Tai_Tham, Tai_Viet, Takri, Tamil, Tangsa, Tangut, Telugu, Thaana, Thai, Tibetan, Tifinagh, Tirhuta, Toto, Ugaritic, Vai, Vithkuqi, Wancho, Warang_Citi, Yezidi, Yi, Zanabazar_Square
 ~~~
 
-> ###### 유니코드 확장 자소 집합(Unicode extended grapheme cluster)
+> ###### 유니코드 확장 문자소 클러스터
 
-\X 이스케이프 시퀀스는 유니코드 확장 자소 집합을 의미한다. 자소 집합(grapheme cluster)은 사람이 읽을 수 있는 단일 문자를 말하며 하나의 자소 집합은 여러 개의 코드 포인트(code points)로 이루어진다. 
+\X 이스케이프 시퀀스는 유니코드 확장 문자소 클러스터(Unicode extended grapheme cluster)를 의미한다. 자소 집합(grapheme cluster)은 사람이 읽을 수 있는 단일 문자를 말하며 하나의 자소 집합은 여러 개의 코드 포인트(code points)로 이루어진다. 
 
 확장 문자소 클러스터로 구성된 유니코드 캐릭터들과 매치된다. 확장 문자소에 대한 자세한 정보는 [유니코드 공식 문서 UAX #29: Unicode Text Segmentation](http://www.unicode.org/reports/tr29/#Grapheme_Cluster_Boundaries)를 참고하기 바란다. 확장 문자소 매칭에 대한 자세한 정보는 [PCRE2 패턴 매뉴얼 페이지](https://www.pcre.org/current/doc/html/pcre2pattern.html)를 참고하기 바란다.
 
 ##### POSIX 문자 클래스
 
 문자 클래스는 자주 사용하는 문자 집합들을 정의한 것이다. 문자 클래스는 [일반 문자 유형](#일반-문자-유형)처럼 이스케이프 시퀀스로 표현하거나 아래 표와 같이 대괄호로 둘러싸인 POSIX 표기법을 사용할 수도 있다. POSIX 문자 클래스는 [: 와 :]로 둘러싸여 있다. 바깥쪽 대괄호는 문자 집합을 정의하는 것이고 안쪽 대괄호는 POSIX 문자 클래스 문법 자체를 의미한다. 
+
+`[[:alnum:]]`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;알파벳과 숫자
+
+`[:alpha:]]`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;알파벳 문자
+
+`[[:ascii:]]`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;아스키 코드에서 0번부터 127번까지의 문자
+
+
 
 | POSIX 문자 클래스 | 의미                                                      |
 | :------------ | :------------------------------------------------------------ |
@@ -25948,142 +25956,142 @@ PM
 6 rows selected.
 ~~~
 
-##### 앵커
+##### 간단한 어설션
 
-앵커는 문자의 위치나 단어 또는 문자열의 경계를 찾는 이스케이프 시퀀스를 의미한다. 
+어설션(assertions)은 어떤 문자 또는 문자열의 앞과 뒤를 확인하는 것을 의미한다. [메타 문자](#메타-문자-1)에서 소개한 ^와 $는 어설션의 하나이며 '앵커'라고 부르기도 한다. 
+
+`\A`
+
+문자열의 시작 위치
+
+`\b`
+
+`\ B`
+
+ 
+
+~~~bash
+\A
+~~~
+
+
 
 | 이스케이프 시퀀스 | 설명                                                         |
 | :---- | :------------------------------------------------------------ |
-| \b   | 단어 경계 위치                                               |
-| \B   | 단어 경계가 아닌 위치                                        |
-| ^    | 문자열의 시작 위치                                           |
 | \A   | 문자열의 시작 위치                                           |
-| $    | 문자열의 마지막 위치 또는 문자열의 마지막 개행 문자 바로 전 위치 |
-| \Z   | 문자열의 마지막 위치 또는 문자열의 마지막 개행 문자 바로 전 위치 |
+| \b   | 단어 경계. 단어의 시작이나 마지막 위치                      |
+| \B   | 단어 경계가 없을 때 일치                           |
+| \G   | 문자열에서 첫 번째 일치 위치                                 |
 | \z   | 문자열의 마지막 위치 |
-| \G   | 문자열에서 첫번째 일치 위치                                  |
+| \Z   | 문자열의 마지막 위치 또는 문자열의 마지막 문자인 줄바꿈 문자 바로 전 위치 |
 
 **예제**
 
-<질의> *예제 변경 필요- 메타 기호 말고 이스케이프 시퀀스 사용한 예제로*
+<질의> T1 테이블의 C1 컬럼에서 단어 of의 수를 조회하라. 이 예제의 데이터는 $ALTIBASE_HOME/sample/JDBC/CLOB/Greetings.txt 를 사용하였다. 
 
 ~~~sql
-iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '^m');
+iSQL> SELECT REGEXP_COUNT(C1, '\bof\b') AS COUNT FROM T1;
+COUNT       
+--------------
+6           
+1 row selected.
+~~~
+
+<질의> EMPLOYEES 테이블의 EMP_JOB 컬럼에서 er 문자열이 문자열의 마지막에 위치한 데이터를 조회하라.
+
+~~~sql
+iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, 'er\Z');
 EMP_JOB
 -------------------
+designer
+engineer
+programmer
 manager
-1 row selected.
+manager
+planner
+programmer
+webmaster
+webmaster
+manager
+planner
+11 rows selected.
 ~~~
 
 
 
 ##### 그룹화 구문
 
+'('와 ')' 는 그룹을 표현하는 메타 문자이다. 괄호 안에 여러 표현식을 하나로 묶어 그룹화한 영역을 캡쳐 그룹(capture group) 이라고 한다.
+
 | 문법          | 설명                                                         |
 | :------------ | :----------------------------------------------------------- |
-| (...)         | capture group                                                |
-| (?<name>...)  | named capture group (Perl)                                   |
-| (?'name'...)  | named capture group (Perl)                                   |
-| (?P<name>...) | named capture group (Python)                                 |
-| (?:...)       | non-capture group                                            |
-| (?\|...)      | non-capture group; reset group numbers for capture groups in each alternative |
-| (?>...)       | atomic non-capture group                                     |
-| (*atomic:...) | atomic non-capture group                                     |
+| (...)         | 괄호 안에서 지정한 문자열을 검색<br />capture group          |
+| (?<name>...)  | 캡쳐 그룹의 이름을 지정하는 펄 문법이다.<br />named capture group (Perl) |
+| (?'name'...)  | 캡쳐 그룹의 이름을 지정하는 펄 문법이다.<br />named capture group (Perl) |
+| (?P<name>...) | 캡쳐 그룹의 이름을 지정하는 파이썬 문법이다.<br />named capture group (Python) |
+| (?:...)       | 비캡쳐 그룹<br />non-capture group                           |
+| (?\|...)      | 비캡쳐 그룹<br />non-capture group; reset group numbers for capture groups in each alternative |
+| (?>...)       | 역참조 기능을 없앤 비캡쳐 그룹<br />atomic non-capture group |
+| (*atomic:...) | 역참조 기능을 없앤 비캡쳐 그룹<br />atomic non-capture group |
 
 **예제**
 
-<질의> 사용 예제는 아래와 같다.
+<질의> GOODS 테이블에서 상품 이름(GNAME)이 TM-T, TM-U, M-T, M-U가 포함된 상품을 조회하라.
 
 ~~~sql
-iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '(a)n\1');
-EMP_JOB
--------------------
-manager
-1 row selected.
+iSQL> SELECT GNAME FROM GOODS WHERE REGEXP_LIKE(GNAME, '(TM|M)-(T|U)') ;
+GNAME                                     
+--------------------------------------------
+TM-T88                                    
+TM-U950                                   
+TM-U925                                   
+TM-U375                                   
+TM-U325                                   
+TM-U200                                   
+TM-U300                                   
+TM-U590                                   
+TM-U295                                   
+M-T245                                    
+M-U310                                    
+M-T153                                    
+M-T102                                    
+M-T500                                    
+M-T300                                    
+M-T260                                    
+M-U420                                    
+M-U290
 ~~~
+
+
 
 ##### 탐색 구문
 
-<table>
-  <tbody>
-    <tr>
-      <th>문법</th>
-      <th>설명</th>
-    </tr>
-    <tr>
-      <td>(?=...)</td>
-      <td rowspan="3">
-        <div>긍정 전방탐색</div>
-      </td>
-    </tr>
-    <tr>
-      <td>(*pla:...)</td>
-    </tr>
-    <tr>
-      <td>(*positive_lookahead:...)</td>
-    </tr>
-    <tr>
-      <td>(?!...)</td>
-      <td rowspan="3">
-        <div>부정 전방탐색</div>
-      </td>
-    </tr>
-    <tr>
-      <td>(*nla:...)</td>
-    </tr>
-    <tr>
-      <td>(*negative_lookahead:...)</td>
-    </tr>
-    <tr>
-      <td>(?&lt;=...)</td>
-      <td rowspan="3">
-        <div>긍정 후방탐색</div>
-      </td>
-    </tr>
-    <tr>
-      <td>(*plb:...)</td>
-    </tr>
-    <tr>
-      <td>(*positive_lookbehind:...)</td>
-    </tr>
-    <tr>
-      <td>(?&lt;!...)</td>
-      <td rowspan="3">
-        <div>부정 후방탐색</div>
-      </td>
-    </tr>
-    <tr>
-      <td>(*nlb:...)</td>
-    </tr>
-    <tr>
-      <td>(*negative_lookbehind:...)</td>
-    </tr>
-    <tr>
-      <td colspan="1">(?*...)</td>
-      <td rowspan="3">
-        <p>비원자성 긍정 전방탐색</p>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="1">(*napla:...)</td>
-    </tr>
-    <tr>
-      <td colspan="1">(*non_atomic_positive_lookahead:...)</td>
-    </tr>
-    <tr>
-      <td colspan="1">(?&lt;*...)</td>
-      <td rowspan="3">
-        <p>비원자성 부정 후방탐색</p>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="1">(*naplb:...)</td>
-    </tr>
-    <tr>
-      <td colspan="1">(*non_atomic_positive_lookbehind:...)</td>
-    </tr>
-  </tbody>
-</table>
+찾고자 하는 문자열의 앞 또는 뒤에 무엇이 오는가를 보고 패턴을 찾는 
+
+
+
+| 문법                                                         | 설명                   |
+| ------------------------------------------------------------ | ---------------------- |
+| (?=...)<br />(\*pla:...)<br />(*positive_lookahead:...)      | 긍정형 전방 탐색       |
+|                                                              |                        |
+| (?!...)<br />(\*nla:...)<br />(*negative_lookahead:...)      | 부정형 전방탐색        |
+|                                                              |                        |
+| `(?<=...)`<br />`(*plb:...)`<br />`(*positive_lookbehind:...)` | 긍정형 후방탐색        |
+|                                                              |                        |
+| (?<!...)<br />(*nlb:...)<br />(*negative_lookbehind:...)     | 부정형 후방탐색        |
+|                                                              |                        |
+| (?*...)<br />(*napla:...)<br />(*non_atomic_positive_lookahead:...) | 비원자성 긍정 전방탐색 |
+|                                                              |                        |
+| (?<*...)<br />(*naplb:...)<br />(*non_atomic_positive_lookbehind:...) | 비원자성 부정 후방탐색 |
+|                                                              |                        |
+|                                                              |                        |
+|                                                              |                        |
+|                                                              |                        |
+|                                                              |                        |
+|                                                              |                        |
+
+
+
 **예제**
 
 <질의> 사용 예제는 아래와 같다.
@@ -26228,7 +26236,7 @@ manager
 ~~~
 
 
-	
+​	
 
 ### 정규 표현식 모드 별 문법 차이점
 
@@ -26240,7 +26248,7 @@ t-rex 에서 지원하지 않는 문법을 차이점에 추가할 필요는 없�
 
 | 정규 표현식 문법    | Altibase 정규 표현식 모드                                    | PCRE2 호환 모드                                              | 차이                               |
 | :------------------- | :------------------------------------------------------------ | :------------------------------------------------------------ | :---------------------------------- |
-| POSIX 문자열 클래스 | [:punct:] | [[:punct:]] | 대괄호를 앞뒤로 한 개씩 더 써야 함 |
+| POSIX 문자열 클래스 | [:punct:] | [[:punct:]] | 대괄호를 앞뒤로 한 개씩 더 써야한다. |
 |                     | \l+ | [[:lower:]] | t-rex 에서도                       |
 | POSIX 동등 클래스 | [=A=] | -                                                            | 지원하지 않음                      |
 |                     | [A-[.CH.]]                | -                                                            | 지원하지 않음                      |
