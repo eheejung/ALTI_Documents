@@ -21250,24 +21250,17 @@ ERR-2106C : PCRE2 error: <1%s> (occurred in <0%s>)
 >
 > Action : SQL Reference 매뉴얼 또는 PCRE2 페이지를 참고하여 문법을 올바르게 수정해야 한다.
 
-| 에러 메시지                      | 한글화                            |
-| :------------------------------- | :-------------------------------- |
-| \ at end of pattern              | 패턴 마지막에 \ 문자가 나타남     |
-| \c at end of pattern             | 패턴 마지막에 \c 문자가 나타남    |
-| unrecognized character follows \ | 뒤에 인식할 수 없는 문자가 나타남 |
-|                                  |                                   |
+`\ at end of pattern` 
 
-`\ at end of pattern` 패턴 마지막에 \ 문자가 나타남
+`\c at end of pattern` 
 
-`\c at end of pattern` 패턴 마지막에 \c 문자가 나타남
+`unrecognized character follows \` 
 
-`unrecognized character follows \` \ 뒤에 인식할 수 없는 문자가 나타남
+`numbers out of order in {} quantifier` 
 
-`numbers out of order in {} quantifier` {} 한정자 내에 숫자 순서가 잘못됨
+`number too big in {} quantifier` 
 
-`number too big in {} quantifier` {} 한정자 내의 숫자가 너무 큼
-
-`missing terminating ] for character class` 문자 클래스 마지막에 ] 메타 문자가 없음
+`missing terminating ] for character class` 
 
 `escape sequence is invalid in character class`
 
@@ -21399,9 +21392,8 @@ ERR-2106C : PCRE2 error: <1%s> (occurred in <0%s>)
 
 > Cause : PCRE2의 제약 사항을 위배하여 발생하는 에러이다. 
 >
-> Action : ?
+> Action : 에러 메시지를 참고하여 정규 표현식을 올바르게 수정한다. 조치가 어렵다면 Altibase 고객지원 센터로 연락한다.
 >
-> 오류 메세지를 참고하여 정규 표현식을 알맞게 수정해주세요. 구체적인 원인 확인이 필요한 경우 Altibase 고객지원 센터로 연락바랍니다.
 
 `parentheses are too deeply nested` 
 
@@ -21501,7 +21493,7 @@ ERR-2106C : PCRE2 error: <1%s> (occurred in <0%s>)
 
 > Cause : PCRE2 라이브러리 내부 동작 수행 중 오류가 발생하였다.
 >
-> Action : 구체적인 원인 확인은 Altibase 고객지원 센터로 연락바랍니다.
+> Action : 구체적인 원인 확인이 필요하다면 Altibase 고객지원 센터로 연락한다.
 
 `internal error: unexpected repeat`
 
