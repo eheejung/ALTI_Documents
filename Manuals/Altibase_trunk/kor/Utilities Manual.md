@@ -34,7 +34,7 @@ Copyright ⓒ 2001~2019 Altibase Corp. All Rights Reserved.
 전화         : 02-2082-1114 
 팩스         : 02-2082-1099
 고객서비스포털 : http://support.altibase.com
-홈페이지      : http://www.altibase.com
+홈페이지       : http://www.altibase.com
 ~~~
 
 <br><br>
@@ -2775,8 +2775,136 @@ altiMon을 사용하기 위해 \$ALTIBASE_HOME/altiMon 디렉토리의 conf 디�
 
 ##### Metrics.xml
 
-사전 정의된 OS Meric, SQL Metric과 사용자 정의된 OS Metric(Command Metric)을
-설정하는 파일이다.
+CPU, 메모리와 같은 OS 자원과 Altibase 서버의 모니터링 항목을 설정하는 파일이다. 
+
+- CommandMetric 태그
+- OSMetric 태그
+- SQLMetric 태그
+
+##### CommandMetric 태그
+
+사용자가 정의하는 OS Metric을 설정한다. 아래의 \<Command\> 태그에 설정한 커맨드 또는 스크립트를 실행하고, stdout으로 출력되는 값을 측정값으로 사용한다. 해당 metric에 alert을 설정하려면, 이 측정값이 숫자여야 한다.
+
+~~~xml
+    <CommandMetric Name='MEM_VSZ'>
+        <Command>scriptsDir/vsz.sh</Command>
+        <Alert Activate='true' ComparisonType='gt'>
+            <WarningThreshold Value='100000000'>
+                <ActionScript>mem_act.sh</ActionScript>
+            </WarningThreshold>
+        </Alert>
+    </CommandMetric>
+~~~
+
+- <Command\>  
+
+  커맨드 또는 스크립트 파일을 설정하며, CommandMetric일 경우 필수이다. 스크립트 파일은 절대 경로 또는 상대 경로로 설정할 수 있다. 상대 경로의 기준은 \$ALTIBASE_HOME/altiMon 디렉토리이다.
+
+  - \<Alert Activate='true|false'\>
+
+    경고 설정. 옵션.  threshold 값과 비교되는 측정값은 숫자여야 한다. <br />Activate: Alert 동작 여부, 옵션. 기본값: true <br />ComparisonColumn: threshold 값을 비교할 대상 칼럼. 옵션. <br />ComparisonType: 비교 연산자. 필수. <br />-eq: is equal to the threshold value <br />-ne: is not equal to the threshold value <br />-gt: is greater than the threshold value <br />-ge: is greater than or equal to the threshold value <br />-lt: is less than the threshold value <br />-le: is less than or equal to the threshold value
+
+    - \<WarningThreshold\>
+      - \<ActionScript\>
+
+`<OSMetric Name='PROC_CPU_USER' Activate='true' Interval='30' Logging='true'>`
+
+~~~xml
+<OSMetric Name='PROC_CPU_USER' Activate='true' Interval='30' Logging='true'>
+~~~
+
+사전 정의된 OS Metric을 설정한다. 
+
+- TOTAL_CPU_USER
+
+  사용자 모드(user mode)에서 CPU 사용률(%) 
+
+- TOTAL_CPU_KERNEL
+
+  커널 모드(kernel mode)에서 CPU 사용률(%) 
+
+- PROC_CPU_USER
+
+  사용자 모드(user mode)에서 Altibase 프로세스의 CPU 사용률(%) 
+
+- PROC_CPU_KERNEL
+
+  커널 모드(kernel mode)에서 Altibase 프로세스의 CPU 사용률(%) 
+
+- TOTAL_MEM_FREE
+
+  사용할 수 있는 메인 메모리(RAM)의 크기(KB) 
+
+- TOTAL_MEM_FREE_PERCENTAGE
+
+  사용할 수 있는 메인 메모리(RAM)의 비율(%) 
+
+- PROC_MEM_USED
+
+  Altibase 프로세스가 사용중인 메인 메모리(RSS)의 크기(KB) 
+
+- PROC_MEM_USED_PERCENTAGE
+
+  Altibase 프로세스가 사용중인 메인 메모리(RSS)의 비율(%) 
+
+- SWAP_FREE
+
+  사용 가능한 SWAP의 크기(KB) 
+
+- SWAP_FREE_PERCENTAGE
+
+  전체 SWAP 공간에서 사용 가능한 SWAP의 비율(%)
+
+- DISK_FREE
+
+  지정한 디스크에서 사용되지 않은 디스크의 크기(KB) 
+
+- DISK_FREE_PERCENTAGE
+
+  지정한 디스크에서 사용되지 않은 디스크의 비율(%)
+
+- DISK_FREE, DISK_FREE_PERCENTAGE
+
+  아래의 태그를 추가해야 하며, 'Disk Name'은 고유한 이름으로 설정해야 한다. <br /><OSMetric Name='DISK_FREE' Activate='true'\> <br /><Disk Name='disk1'\>/home\</Disk\> \</OSMetric\> \<OSMetric Name='DISK_FREE' Activate='true'\> \<Disk Name='disk2'\>/home2\</Disk\> \</OSMetric\>
+
+##### Metrics.xml
+
+사전 정의된 OS Meric, SQL Metric과 사용자 정의된 OS Metric(Command Metric)을 설정하는 파일이다.
+
+| XML 요소                               | XML 속성         | 설명                                                         |
+| -------------------------------------- | ---------------- | ------------------------------------------------------------ |
+| <?xml version="1.0" encoding="UTF-8"?> |                  | 파일은 반드시 이 요소와 함께 시작해야한다.                   |
+| <Metrics>                              |                  | 파일이 하나의 Metrics요소만 포함한다.                        |
+| <CommandMetric …>                      |                  | 사용자가 정의하는 OS Metric을 설정한다. 아래의 <Command> 태그에 설정한 커맨드 또는 스크립트를 실행하고, stdout으로 출력되는 값을 측정값으로 사용한다. 해당 metric에 alert을 설정하려면, 이 측정값이 숫자여야 한다. |
+|                                        | Name             |                                                              |
+|                                        | Activate         |                                                              |
+|                                        | Interval         |                                                              |
+|                                        | Logging          |                                                              |
+| <Command>                              |                  | CommandMetric 요소에서 필수이다. <br />커맨드 또는 스크립트 파일을 설정하며 스크립트 파일은 절대 경로 또는 상대 경로로 설정할 수 있다. 상대 경로의 기준은 $ALTIBASE_HOME/altiMon 디렉토리이다. |
+| <Alert …>                              |                  | 경고 설정. WarningThreshold Value 과 비교되는 측정값은 숫자여야 한다. |
+|                                        | Activate         | Alert 동작 여부, 옵션. 기본값: true                          |
+|                                        | ComparisonColumn | WarningThreshold Value을 비교할 대상 칼럼. 옵션.             |
+|                                        | ComparisonType   | 비교 연산자. 필수.<br />• -eq: is equal to the threshold value<br/>• -ne: is not equal to the threshold value<br/>• -gt: is greater than the threshold value<br/>• -ge: is greater than or equal to the threshold value<br/>• -lt: is less than the threshold value<br/>• -le: is less than or equal to the threshold value |
+| <WarningThreshold …>                   |                  | threshold 값 설정                                            |
+|                                        | Activate         |                                                              |
+|                                        | Value            |                                                              |
+| <CriticalThreshold …>                  |                  |                                                              |
+|                                        | Activate         |                                                              |
+|                                        | Value            |                                                              |
+| <ActionScript>                         |                  | hreshold 값을 벗어난 경우 수행할 스크립트 파일 이름 설정.<br/>$ALTIBASE_HOME/altiMon/action_scripts 디렉토리에 해당 스크립트 파일이 있어야 한다.<br/>action script 수행시 metric 이름, 레벨 (CRITICAL 또는 WARNING), threshold 값, 측정값이 인자로 전달된다. |
+|                                        |                  |                                                              |
+| <OSMetric …>                           |                  |                                                              |
+|                                        | Name             | • TOTAL_CPU_USER<br />사용자 모드(user mode)에서 CPU 사용률(%) <br />• TOTAL_CPU_KERNEL<br />커널 모드(kernel mode)에서 CPU 사용률(%) <br />• PROC_CPU_USER<br />사용자 모드(user mode)에서 Altibase 프로세스의 CPU 사용률(%) |
+|                                        | Activate         |                                                              |
+|                                        | Description      |                                                              |
+| <SQLMetric …>                          |                  | SQL Metric을 설정                                            |
+|                                        | Name             | 필수 속성                                                    |
+|                                        | Activate         | 경고 동작 여부. true 또는 false. 기본값은 true이다           |
+|                                        | Interval         | 데이터 수집 주기<br/>설정하지 않으면 config.xml에 설정한 값을 따른다. |
+|                                        | Logging          | 데이터 수집 결과를 파일에 로깅할 지 여부를 설정한다. 지정 가능한 값은 true 또는 false이며, 기본값은 true이다. alert 정보만 기록하고 싶을 때는 false로 지정한다. |
+| <Query>                                |                  | 모니터링 쿼리 설정. SQLMetric 요소 안에서 필수               |
+
+…
 
 | 태그 이름                                                    | 설명                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
