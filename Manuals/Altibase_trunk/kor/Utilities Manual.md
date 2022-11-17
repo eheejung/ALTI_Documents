@@ -2153,11 +2153,11 @@ $ cat config.xml
 
 다음은 config.xml 파일은 Altimon 요소와 Target 요소로 구성되어 있다. 
 
-> Altimon 요소
+#### Altimon 요소
 
 Altimon 요소는 altiMon 실행과 관련한 설정으로 설정할 수 있는 속성과 하위 요소는 아래와 같다.
 
-**속성**
+> **속성**
 
 | Altimon 요소                                                 | 속성            | 설명                                                         |
 | :----------------------------------------------------------- | :-------------- | :----------------------------------------------------------- |
@@ -2165,7 +2165,7 @@ Altimon 요소는 altiMon 실행과 관련한 설정으로 설정할 수 있는 
 |                                                              | Name            | altiMon의 고유 이름으로 사용자가 임의로 설정 가능하다.       |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | monitorOsMetric | OS 자원을 모니터링 할 것인지 true 또는 false 로 설정한다. <br />기본값은 true 이다. <br />false는 OS 자원을 모니터링할 필요가 없거나 PICL C 라이브러리가 제공되지 않는 환경에서 설정한다. |
 
-**하위 요소**
+> **하위 요소**
 
 | 하위 요소             | 설명                                                         |
 | :-------------------- | :----------------------------------------------------------- |
@@ -2174,18 +2174,18 @@ Altimon 요소는 altiMon 실행과 관련한 설정으로 설정할 수 있는 
 | \<LogDir\>            | altiMon 로그 파일이 생성될 경로를 입력한다. 설정하지 않으면 \$ALTIBASE_HOME/altiMon/logs 가 기본값으로 설정된다. |
 | \<MaintenancePeriod\> | altiMon 로그 파일 보관 기간을 설정한다. 단위는 일(day)이다. 설정하지 않으면 기본값 3이 적용된다. |
 
->  Target 요소
+#### Target 요소
 
 Target 요소는 altiMon으로 모니터링 할 Altibase 서버 정보를 설정한다. 설정할 수 있는 속성과 하위 요소는 아래와 같다.
 
-**속성**
+> **속성**
 
 | Target 요소                                                  | 속성 | 설명                                                      |
 | :----------------------------------------------------------- | :--- | :-------------------------------------------------------- |
 | \<Target ...>                                                |      | altiMon에서 모니터링 할 Altibase 서버 정보를 설정한다.    |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Name | 알티베이스의 고유 이름으로 사용자가 임의로 설정 가능하다. |
 
-**하위 요소**
+> **하위 요소**
 
 | 하위 요소                     | 설명                                                         |
 | :---------------------------- | :----------------------------------------------------------- |
