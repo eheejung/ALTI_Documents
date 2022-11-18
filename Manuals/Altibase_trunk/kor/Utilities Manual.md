@@ -2213,7 +2213,7 @@ Target 요소는 데이터베이스 사용자, 패스워드 등 altiMon으로 �
 
 | 속성 이름                                                    | 설명                                                         |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Altibase 서버를 식별하기 위한 고유 이름으로 사용자가 임의로 설정 가능하다. |
+| Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Altibase 서버를 식별하기 위한 고유 이름으로 사용자가 임의로 설정 가능하다. |
 
 > **하위 요소**
 
@@ -2228,7 +2228,7 @@ Target 요소는 데이터베이스 사용자, 패스워드 등 altiMon으로 �
 | \<NLS\>                                                      | 데이터베이스 클라이언트 캐릭터셋을 Altibase 서버 캐릭터셋과 같은 값으로 입력한다. |
 | \<DbName\>                                                   | 데이터베이스 이름을 입력한다. 설정하지 않으면 기본값 mydb 로 설정된다.<br />데이터베이스 이름은 아래 문장으로 확인할 수 있다.<br />`SELECT DB_NAME FROM V$DATABASE; ` |
 | \<IPv6\>                                                     | IPv6 사용 여부를 설정한다. true 또는 false 값을 가지며 기본값은 false 이다.  <br />• Yes : IPv6를 사용한다. Altibase 서버 프로퍼티 NET_CONN_IP_STACK이 1 또는 2일 때 설정할 수 있다.<br />• No  : IPv6를 사용하지 않는다. |
-| \<ConnectionProperties\>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Altibase 서버 접속할 때 추가적인 연결 속성이 필요한 경우 `연결속성=값;연결속성=값;...` 형식으로 입력한다. 사용할 수 있는 연결 속성은 [JDBC User's Manual](https://github.com/ALTIBASE/Documents/blob/master/Manuals/Altibase_trunk/kor/JDBC%20User's%20Manual.md#%EC%97%B0%EA%B2%B0-%EC%A0%95%EB%B3%B4)을 참고한다.<br />예) `<ConnectionProperties>login_timeout=3;fetch_timeout=60</ConnectionProperties>` |
+| \<ConnectionProperties\>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Altibase 서버 접속할 때 추가적인 연결 속성이 필요한 경우 `연결속성=값;연결속성=값;...` 형식으로 입력한다. 사용할 수 있는 연결 속성은 [JDBC User's Manual](https://github.com/ALTIBASE/Documents/blob/master/Manuals/Altibase_trunk/kor/JDBC%20User's%20Manual.md#%EC%97%B0%EA%B2%B0-%EC%A0%95%EB%B3%B4)을 참고한다.<br />예) `<ConnectionProperties>login_timeout=3;fetch_timeout=60</ConnectionProperties>` |
 
 ### Metrics.xml
 
