@@ -2098,10 +2098,28 @@ Java 버전은 PICL C 라이브러리의 비트 수와 일치하는 것을 선�
 
   ```bash
   $ altimon.sh start
+  Starting up...
+   INFO | 2022-11-18 16:17:15,432 | Initializing and testing the SQL metric (DB_EVENT)...
+   INFO | 2022-11-18 16:17:15,435 | Initializing and testing the SQL metric (MEM_GC)...
+   INFO | 2022-11-18 16:17:15,437 | Initializing and testing the SQL metric (MEM_TBL_USAGE)...
+   INFO | 2022-11-18 16:17:15,621 | Initializing and testing the SQL metric (DATAFILE_STAT)...
+  ...
+   INFO | 2022-11-18 16:17:15,778 | Quartz scheduler version: 1.6.6
+   INFO | 2022-11-18 16:17:15,787 | Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED started.
+   INFO | 2022-11-18 16:17:15,787 | Profile Job Scheduler started.
+   INFO | 2022-11-18 16:17:15,816 | --- STARTUP altimon SUCCESS ---
+  
   ```
 
 
 3. 구동을 실패하면, \$ALTIBASE_HOME/altiMon/logs/altimon.log 파일을 확인한다.
+
+~~~bash
+$ ps -ef|grep altimon | grep -v grep
+eheejung 29463     1  5 16:17 pts/5    00:00:03 /usr/java/jdk1.5.0_22/bin/java -Xms25m -Xmx25m -XX:NewSize=20m -Dpicl=linux-x64.so -jar altimon.jar
+~~~
+
+
 
 ### altiMon 중지
 
@@ -2111,9 +2129,22 @@ $ altimon.sh stop
 
 
 
+~~~bash
+$ altimon.sh stop
+Shutting down...
+ INFO | 2022-11-18 17:02:14,492 | Stopping Profile Job Scheduler...
+ INFO | 2022-11-18 17:02:14,492 | Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED paused.
+ INFO | 2022-11-18 17:02:14,495 | Profile Job Scheduler is on standby mode.
+ INFO | 2022-11-18 17:02:14,495 | Disconnecting from the database.
+ INFO | 2022-11-18 17:02:14,499 | Disconnecting from the database.
+ INFO | 2022-11-18 17:02:14,499 | --- SHUTDOWN altimon SUCCESS ---
+~~~
+
+
+
 ## altiMon 설정
 
-altiMon을 사용하기 위해 \$ALTIBASE_HOME/altiMon 디렉토리의 conf 디렉토리에 있는 아래의 파일들을 설정한다.
+altiMon을 사용하기 위해 \$ALTIBASE_HOME/altiMon 디렉토리의 conf 디렉토리에 있는 아래의 파일들을 설정한다. 설정 파일들은 모두 XML 문서이다.
 
 -   [config.xml](#config.xml)
 
@@ -2123,7 +2154,7 @@ altiMon을 사용하기 위해 \$ALTIBASE_HOME/altiMon 디렉토리의 conf 디�
 
 ### config.xml
 
-모니터링 대상인 Altibase의 접속 정보와 altiMon 제어 정보를 설정하는 파일이다.
+altiMon 수행과 관련한 설정과 모니터링 대상인 Altibase 서버의 정보를 설정하는 파일이다. 루트 요소 \<configuration> (또는 \<config>) 태그를 시작으로 Altimon 요소와 Target 요소로 구성되어 있다. 
 
 ~~~xml
 $ cat config.xml 
@@ -2151,28 +2182,27 @@ $ cat config.xml
 </configuration>
 ~~~
 
-다음은 config.xml 파일은 Altimon 요소와 Target 요소로 구성되어 있다. 
-
 #### Altimon 요소
 
-Altimon 요소는 altiMon 실행과 관련한 설정으로 설정할 수 있는 속성과 하위 요소는 아래와 같다.
+Altimon 요소는 altiMon 로그 출력 형식, 로그 파일 삭제 주기, 모니터링 주기와 같은 altiMon 실행과 관련된 설정을 정의한다. 이 요소는 두 가지 속성과 4개의 데이터를 가진다.
 
 > **속성**
 
-| Altimon 요소                                                 | 속성            | 설명                                                         |
-| :----------------------------------------------------------- | :-------------- | :----------------------------------------------------------- |
-| \<Altimon ...\>                                              |                 |                                                              |
-|                                                              | Name            | altiMon의 고유 이름으로 사용자가 임의로 설정 가능하다.       |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | monitorOsMetric | OS 자원을 모니터링 할 것인지 true 또는 false 로 설정한다. <br />기본값은 true 이다. <br />false는 OS 자원을 모니터링할 필요가 없거나 PICL C 라이브러리가 제공되지 않는 환경에서 설정한다. |
+| 속성 이름       | 설명                                                         |
+| :-------------- | :----------------------------------------------------------- |
+| Name            | altiMon의 고유 이름으로 사용자가 임의로 설정 가능하다.       |
+| monitorOsMetric | OS 자원을 모니터링 할 것인지 설정한다. true 또는 false 값을 가지며 기본값은 true이다.<br />• true : OS 자원을 모니터링한다. <br />• false : OS 자원을 모니터링하지 않는다. OS 자원을 모니터링 할 필요가 없거나 PICL C 라이브러리가 제공되지 않는 환경에서 설정한다. |
 
-> **하위 요소**
+> 데이터
 
-| 하위 요소             | 설명                                                         |
+아래의 데이터는 Altimon 요소 아래에 중첩된 하위 요소로 사용해야 한다. 
+
+| 태그 이름             | 설명                                                         |
 | :-------------------- | :----------------------------------------------------------- |
-| \<DateFormat\>        | altiMon 로그의 날짜 형식을 설정한다.<br />기본값은 yyyy-MM-dd HH:mm:ss 이다. 설정 가능한 날짜 형식은 [자바 SimpleDateFormat 클래스의 날짜 형식](http://docs.oracle.com/javase/1.5.0/docs/api/java/text/SimpleDateFormat.html)을 참고한다. |
-| \<Interval\>          | altiMon의 데이터 수집 주기를 설정한다. 단위는 초(second)이다. <br />기본값은 60 이다. \<OSMetric\>또는 \<SQLMetric\> 요소에서 Interval 속성을 설정하지 않으면 이 값이 적용된다. \<GroupMetric\> 요소에서는 이 값의 영향을 받지 않는다. |
-| \<LogDir\>            | altiMon 로그 파일이 생성될 경로를 입력한다. 설정하지 않으면 \$ALTIBASE_HOME/altiMon/logs 가 기본값으로 설정된다. |
-| \<MaintenancePeriod\> | altiMon 로그 파일 보관 기간을 설정한다. 단위는 일(day)이다. 설정하지 않으면 기본값 3이 적용된다. |
+| \<DateFormat\>        | altiMon 로그의 날짜 형식을 설정한다. 기본값은 yyyy-MM-dd HH:mm:ss 이다. 설정 가능한 날짜 형식은 [자바 SimpleDateFormat 클래스의 날짜 형식](http://docs.oracle.com/javase/1.5.0/docs/api/java/text/SimpleDateFormat.html)을 참고한다. |
+| \<Interval\>          | altiMon의 모니터링 데이터 수집 주기를 설정한다. 기본값은 60이고 단위는 초(second)이다. <br />Metrics.xml 파일의 \<OSMetric\> 또는 \<SQLMetric\> 요소에서 Interval 속성을 설정하지 않으면 이 값이 적용된다. GroupMetrics.xml 파일의 \<GroupMetric\> 요소에서는 이 값의 영향을 받지 않는다. |
+| \<LogDir\>            | altiMon 로그 파일이 생성될 경로를 설정한다. 기본값은 logs 이며, 이 태그를 추가하지 않으면 $ALTIBASE_HOME/altiMon/logs로 설정된다. $ALTIBASE_HOME/altiMon 아래에 logs 디렉토리가 존재하지 않으면 altiMon을 시작할 때 생성한다. 값은 절대 경로나 $ALTIBASE_HOME/altiMon/ 아래에 생성할 디렉토리 이름을 사용할 수 있다. |
+| \<MaintenancePeriod\> | altiMon 로그 파일의 보관 기간을 설정한다. 기본값은 3이고 단위는 일(day)이다. |
 
 #### Target 요소
 
@@ -2185,15 +2215,16 @@ Target 요소는 altiMon으로 모니터링 할 Altibase 서버 정보를 설정
 | \<Target ...>                                                |      | altiMon에서 모니터링 할 Altibase 서버 정보를 설정한다.    |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Name | 알티베이스의 고유 이름으로 사용자가 임의로 설정 가능하다. |
 
-> **하위 요소**
+> **데이터**
 
-| 하위 요소                     | 설명                                                         |
+아래의 데이터는 Target 요소 아래에 중첩된 하위 요소로 사용해야 한다. 
+
+| 태그 이름                     | 설명                                                         |
 | :---------------------------- | :----------------------------------------------------------- |
 | \<HomeDirectory\>             | Altibase 서버의 홈 디렉토리를 절대 경로로 입력한다. 설정하지 않으면 환경변수 ALTIBASE_HOME 값이 적용된다. |
 | \<DBConnectionWatchdogCycle\> | Altibase 서버로의 연결 시도 주기를 초(second)단위로 설정한다.  설정하지 않으면 기본값 60이 적용된다.<br />Altibase 서버가 중지되었을 때 altiMon은 일정 시간마다 Altibase 서버에 접속을 시도한다.  주기로 데이터베이스에 접속을 시도하여 모니터링을 지속할 수 있도록 한다. |
 | \<User\>                      | altiMon에서 Altibase 서버에 접속 시 사용할 데이터베이스 사용자를 입력한다.<br />설정하지 않으면 기본값 SYS 사용자로 접속한다. |
-| \<Password Encrypted>         | 데이터베이스 사용자의 패스워드를 입력한다.                   |
-|                               | DB 접속 사용자의 암호를 입력하기 위해 사용되는 속성이다. Encrypted 값을 "No"로 설정 후 평문으로 암호를 입력한다. 이후 altiMon을 구동하면 평문 암호는 암호화된 값으로 변경되어 저장되며 속성 또한 "Yes"로 변경된다. |
+| \<Password Encrypted>         | 데이터베이스 사용자의 패스워드를 입력한다.<br />DB 접속 사용자의 암호를 입력하기 위해 사용되는 속성이다. Encrypted 값을 "No"로 설정 후 평문으로 암호를 입력한다. 이후 altiMon을 구동하면 평문 암호는 암호화된 값으로 변경되어 저장되며 속성 또한 "Yes"로 변경된다. |
 | \<Port\>                      | Altibase 서버의 서비스 포트를 입력한다.                      |
 | \<NLS\>                       | 데이터베이스 클라이언트 캐릭터셋을 입력한다.                 |
 | \<DbName\>                    | 데이터베이스 이름을 입력한다. 데이터베이스 이름은 아래 문장으로 확인할 수 있다.<br />`SELECT DB_NAME FROM V$DATABASE; `<br />설정하지 않으면 기본값 mydb 로 설정된다. |
@@ -2218,6 +2249,9 @@ CPU, 메모리와 같은 OS 자원과 Altibase 서버의 모니터링 항목을 
             </WarningThreshold>
         </Alert>
     </CommandMetric>
+    <CommandMetric ...>
+        ...
+    </CommandMetric>    
     
     <!-- OSMetric 요소 --> 
     <OSMetric Name='PROC_CPU_USER' Activate='true'>
@@ -2227,7 +2261,9 @@ CPU, 메모리와 같은 OS 자원과 Altibase 서버의 모니터링 항목을 
             </WarningThreshold>
         </Alert>
     </OSMetric>
-
+    <OSMetric ...>
+    </OSMetric>
+    
     <!-- SQLMetric 요소 --> 
     <SQLMetric Name='MEM_DATABASE_USAGE' Activate='true' Interval='30'>
         <Query>
@@ -2242,8 +2278,97 @@ CPU, 메모리와 같은 OS 자원과 Altibase 서버의 모니터링 항목을 
             </CriticalThreshold>
         </Alert>
     </SQLMetric>
+    <SQLMetric ...>
+    </SQLMetric>    
 </Metrics>    
 ~~~
+
+#### CommandMetric 요소
+
+Metrics.xml 파일은 CommandMetric 요소와 Target 요소로 구성되어 있다. 
+
+> 속성
+
+CommandMetric 요소에서 사용할 수 있는 속성이다. 이 속성들은 OSMetric  요소, SQLMetric 요소에서도 동일하게 사용할 수 있다.
+
+| 요소                | 속성        | 설명                                                         |
+| ------------------- | ----------- | ------------------------------------------------------------ |
+| <CommandMetric ...> |             |                                                              |
+|                     | Name        | Metric 고유 이름으로 사용자가 임의로 설정 가능하다. 해당 이름으로 log에 기록된다. |
+|                     | Description | 사용자가 임의의 설명을 기록하기 위한 항목이다.               |
+|                     | Activate    | 수행 여부를 결정하는 값으로 true/false로 입력 가능하다. false를 설정하면 해당 Metric은 모니터링 되지 않는다. |
+|                     | Interval    | 데이터 수집 주기<br/>설정하지 않으면 config.xml에 설정한 값을 따른다. |
+|                     | Logging     | 데이터 수집 결과를 파일에 로깅할 지 여부를 설정한다. 지정 가능한 값은 true 또는 false이며, 기본값은 true이다. alert 정보만 기록하고 싶을 때는 false로 지정한다. |
+
+> 하위 요소
+
+여러 하위 요소가 있으나 여기서는 CommandMetric 요소에서만 사용할 수 있는 하위 요소를 소개한다. 다른 하위 요소는 [공통 하위 요소](#공통-하위-요소) 에서 확인할 수 있다.
+
+| 하위 요소  | 설명                                                         |
+| ---------- | ------------------------------------------------------------ |
+| \<Command> | 수행할 프로그램 또는 스크립트 파일 경로를 설정한다. 절대 경로 또는 상대 경로로 설정할 수 있다. 상대 경로의 기준은 $ALTIBASE_HOME/altiMon 디렉토리이다. 예를 들어,<br/>절대 경로 입력 방식은 $ALTIBASE_HOME/altiMon/scriptsDir/cpuUsageWithTop.sh이고 상대 경로 입력 방식은 scriptsDir/cpuUsageWithTop.sh만 입력하면 된다. |
+
+
+
+#### OSMetric 요소
+
+> 속성
+
+ CommandMetric 요소에서 사용하는 속성과 동일하다. 다만, Name으로 사용할 수 있는 값이 정해져 있다. 
+
+| Name으로 사용할 수 있는 값 | 설명                                                         |
+| -------------------------- | ------------------------------------------------------------ |
+| TOTAL_CPU_USER             | 사용자 모드(user mode)에서 CPU 사용률(%)                     |
+| TOTAL_CPU_KERNEL           | 커널 모드(kernel mode)에서 CPU 사용률(%)                     |
+| PROC_CPU_USER              | 사용자 모드(user mode)에서 Altibase 프로세스의 CPU 사용률(%) |
+| PROC_CPU_KERNEL            | 커널 모드(kernel mode)에서 Altibase 프로세스의 CPU 사용률(%) |
+| TOTAL_MEM_FREE             | 사용할 수 있는 메인 메모리(RAM)의 크기(KB)                   |
+| TOTAL_MEM_FREE_PERCENTAGE  | 사용할 수 있는 메인 메모리(RAM)의 비율(%)                    |
+| PROC_MEM_USED              | Altibase 프로세스가 사용중인 메인 메모리(RSS)의 크기(KB)     |
+| PROC_MEM_USED_PERCENTAGE   | Altibase 프로세스가 사용중인 메인 메모리(RSS)의 비율(%)      |
+| SWAP_FREE                  | 사용 가능한 SWAP의 크기(KB)                                  |
+| SWAP_FREE_PERCENTAGE       | 전체 SWAP 공간에서 사용 가능한 SWAP의 비율(%)                |
+| DISK_FREE                  | 지정한 디스크에서 사용되지 않은 디스크의 크기(KB). <br />이 값을 사용할 때는 <Disk Name ...> 하위 요소가 반드시 필요하다. |
+| DISK_FREE_PERCENTAGE       | 지정한 디스크에서 사용되지 않은 디스크의 비율(%). <br />이 값을 사용할 때는 <Disk Name ...> 하위 요소가 반드시 필요하다. |
+|                            |                                                              |
+
+> 하위 요소
+
+ [공통 하위 요소](#공통-하위-요소)를 참고한다.
+
+#### SQLMetric 요소
+
+> 속성
+
+CommandMetric 요소에서 사용하는 속성과 동일하다. 
+
+> 하위 요소
+
+여러 하위 요소가 있으나 여기서는 SQLMetric  요소에서만 사용할 수 있는 하위 요소를 소개한다. 다른 하위 요소는 [공통 하위 요소](#공통-하위-요소) 에서 확인할 수 있다.
+
+| 하위 요소 | 설명                                           |
+| --------- | ---------------------------------------------- |
+| \<Query\> | 모니터링 쿼리 설정. SQLMetric 요소 안에서 필수 |
+
+
+
+#### 공통 하위 요소
+
+CommandMetric, OSMetric, SQLMetric 요소에서 동일하게 사용되는 하위 요소이다.
+
+| 하위 요소                                       | 속성             | 설명                                                         |
+| ----------------------------------------------- | ---------------- | ------------------------------------------------------------ |
+| <Alert …>                                       |                  | 선택 사항으로 alert 설정을 위해 입력하는 항목이다. 설정한 값에 조건이 맞는 alert가 발생하면 logs/alert.log 파일에 기록된다. |
+|                                                 | Activate         | 수행 여부를 결정하는 값으로 true/false로 입력 가능하다. false를 설정하면 해당 Metric은 모니터링 되지 않는다. |
+|                                                 | ComparisonColumn | WarningThreshold Value를 비교할 대상 칼럼<br />-> SQLMetric의 하위 Elment로 이동시켜야 합니다.<br/>Alert의 비교 대상 쿼리 결과 컬럼으로 반드시 비교 가능한 숫자값이어야 한다. |
+|                                                 | ComparisonType   | 비교 연산자<br />• -eq: is equal to the threshold value<br/>• -ne: is not equal to the threshold value<br/>• -gt: is greater than the threshold value<br/>• -ge: is greater than or equal to the threshold value<br/>• -lt: is less than the threshold value<br/>• -le: is less than or equal to the threshold value |
+| <WarningThreshold …> 또는 <CriticalThreshold …> |                  | threshold 값 설정<br />\<Alert Activate= true\> 요소를 사용했을 때 필수 |
+|                                                 | Activate         | 수행 여부를 결정하는 값으로 true/false로 입력 가능하다. false를 설정하면 해당 Metric은 모니터링 되지 않는다. |
+|                                                 | Value            | threshold 값                                                 |
+| \<ActionScript\>                                |                  | threshold 값을 벗어난 경우 수행할 스크립트 파일 이름 설정.<br/>$ALTIBASE_HOME/altiMon/action_scripts 디렉토리에 해당 스크립트 파일이 있어야 한다.<br/>action script 수행시 metric 이름, 레벨 (CRITICAL 또는 WARNING), threshold 값, 측정값이 인자로 전달된다.<br /><br /><br />alert 발생에 의해 수행되는 action script는 action_logs에 기록된다. action_logs는 사용자의 주의를 필요로 하는 사항이기 때문에 다른 로그와 다르게 지워지지 않으며 필요시 사용자가 직접 지워야 한다. |
+|                                                 |                  |                                                              |
+
+
 
 다음은 Metrics.xml에 설정할 수 있는 XML 요소와 속성에 대한 설명이다.
 
