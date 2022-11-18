@@ -2191,7 +2191,7 @@ Altimon 요소는 altiMon 로그 출력 형식, 로그 파일 삭제 주기, 모
 | 속성 이름                                                    | 설명                                                         |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | Name                                                         | altiMon의 고유 이름으로 사용자가 임의로 설정 가능하다.       |
-| monitorOsMetric&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | OS 자원을 모니터링 할 것인지 설정한다. true 또는 false 값을 가지며 기본값은 true이다.<br />• true : OS 자원을 모니터링한다. <br />• false : OS 자원을 모니터링하지 않는다. OS 자원을 모니터링 할 필요가 없거나 PICL C 라이브러리가 제공되지 않는 환경에서 설정한다. |
+| monitorOsMetric&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | OS 자원을 모니터링 할 것인지 설정한다. true 또는 false 값을 가지며 기본값은 true이다.<br />• true : OS 자원을 모니터링한다. <br />• false : OS 자원을 모니터링하지 않는다. OS 자원을 모니터링 할 필요가 없거나 PICL C 라이브러리가 제공되지 않는 환경에서 설정한다. |
 
 > **하위 요소**
 
