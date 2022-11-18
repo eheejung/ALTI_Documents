@@ -2086,9 +2086,9 @@ altiMon은 Java 8 이상에서 동작한다.
 
 Java 버전은 PICL C 라이브러리의 비트 수와 일치하는 것을 선택한다. 예를 들어 PICL C 라이브러리가 linux-x64.so 인 경우 64 bit Java를 사용해야 한다.
 
-## altiMon 구동 및 중지
+## altiMon 시작 및 중지
 
-### altiMon 구동
+### altiMon 시작
 
 1. JAVA_HOME 환경 변수를 설정한다.
 
@@ -2184,7 +2184,7 @@ $ cat config.xml
 
 #### Altimon 요소
 
-Altimon 요소는 altiMon 로그 출력 형식, 로그 파일 삭제 주기, 모니터링 주기와 같은 altiMon 실행과 관련된 설정을 정의한다. 이 요소는 두 가지 속성과 4개의 데이터를 가진다.
+Altimon 요소는 altiMon 로그 출력 형식, 로그 파일 삭제 주기, 모니터링 주기와 같은 altiMon 실행과 관련된 설정을 정의한다. 이 요소는 두 개의 속성과 4개의 하위 요소를 가진다.
 
 > **속성**
 
@@ -2193,43 +2193,42 @@ Altimon 요소는 altiMon 로그 출력 형식, 로그 파일 삭제 주기, 모
 | Name            | altiMon의 고유 이름으로 사용자가 임의로 설정 가능하다.       |
 | monitorOsMetric | OS 자원을 모니터링 할 것인지 설정한다. true 또는 false 값을 가지며 기본값은 true이다.<br />• true : OS 자원을 모니터링한다. <br />• false : OS 자원을 모니터링하지 않는다. OS 자원을 모니터링 할 필요가 없거나 PICL C 라이브러리가 제공되지 않는 환경에서 설정한다. |
 
-> 데이터
+> **하위 요소**
 
-아래의 데이터는 Altimon 요소 아래에 중첩된 하위 요소로 사용해야 한다. 
-
-| 태그 이름             | 설명                                                         |
-| :-------------------- | :----------------------------------------------------------- |
-| \<DateFormat\>        | altiMon 로그의 날짜 형식을 설정한다. 기본값은 yyyy-MM-dd HH:mm:ss 이다. 설정 가능한 날짜 형식은 [자바 SimpleDateFormat 클래스의 날짜 형식](http://docs.oracle.com/javase/1.5.0/docs/api/java/text/SimpleDateFormat.html)을 참고한다. |
-| \<Interval\>          | altiMon의 모니터링 데이터 수집 주기를 설정한다. 기본값은 60이고 단위는 초(second)이다. <br />Metrics.xml 파일의 \<OSMetric\> 또는 \<SQLMetric\> 요소에서 Interval 속성을 설정하지 않으면 이 값이 적용된다. GroupMetrics.xml 파일의 \<GroupMetric\> 요소에서는 이 값의 영향을 받지 않는다. |
-| \<LogDir\>            | altiMon 로그 파일이 생성될 경로를 설정한다. 기본값은 logs 이며, 이 태그를 추가하지 않으면 $ALTIBASE_HOME/altiMon/logs로 설정된다. $ALTIBASE_HOME/altiMon 아래에 logs 디렉토리가 존재하지 않으면 altiMon을 시작할 때 생성한다. 값은 절대 경로나 $ALTIBASE_HOME/altiMon/ 아래에 생성할 디렉토리 이름을 사용할 수 있다. |
-| \<MaintenancePeriod\> | altiMon 로그 파일의 보관 기간을 설정한다. 기본값은 3이고 단위는 일(day)이다. |
-
-#### Target 요소
-
-Target 요소는 altiMon으로 모니터링 할 Altibase 서버 정보를 설정한다. 설정할 수 있는 속성과 하위 요소는 아래와 같다.
-
-> **속성**
-
-| Target 요소                                                  | 속성 | 설명                                                      |
-| :----------------------------------------------------------- | :--- | :-------------------------------------------------------- |
-| \<Target ...>                                                |      | altiMon에서 모니터링 할 Altibase 서버 정보를 설정한다.    |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Name | 알티베이스의 고유 이름으로 사용자가 임의로 설정 가능하다. |
-
-> **데이터**
-
-아래의 데이터는 Target 요소 아래에 중첩된 하위 요소로 사용해야 한다. 
+아래 표의 태그는 Altimon 요소 아래에 중첩된 하위 요소로 사용된다.
 
 | 태그 이름                     | 설명                                                         |
 | :---------------------------- | :----------------------------------------------------------- |
-| \<HomeDirectory\>             | Altibase 서버의 홈 디렉토리를 절대 경로로 입력한다. 설정하지 않으면 환경변수 ALTIBASE_HOME 값이 적용된다. |
+| \<LogDir\>                    | altiMon 로그 파일이 생성될 경로를 설정한다. 기본값은 logs 이며, 이 태그를 추가하지 않으면 $ALTIBASE_HOME/altiMon/logs로 설정된다. $ALTIBASE_HOME/altiMon 아래에 logs 디렉토리가 존재하지 않으면 altiMon을 시작할 때 생성한다. 값은 절대 경로나 $ALTIBASE_HOME/altiMon/ 아래에 생성할 디렉토리 이름을 사용할 수 있다. |
+| \<DateFormat\>                | altiMon 로그의 날짜 형식을 설정한다. 기본값은 yyyy-MM-dd HH:mm:ss 이다. 설정 가능한 날짜 형식은 [자바 SimpleDateFormat 클래스의 날짜 형식](http://docs.oracle.com/javase/1.5.0/docs/api/java/text/SimpleDateFormat.html)을 참고한다. |
+| \<MaintenancePeriod\>         | altiMon 로그 파일의 보관 기간을 설정한다. 기본값은 3이고 단위는 일(day)이다. |
+| \<Interval\>                  | altiMon의 모니터링 데이터 수집 주기를 설정한다. 기본값은 60이고 단위는 초(second)이다. <br />Metrics.xml 파일의 \<OSMetric\> 또는 \<SQLMetric\> 요소에서 Interval 속성을 설정하지 않으면 이 값이 적용된다. GroupMetrics.xml 파일의 \<GroupMetric\> 요소에서는 이 값의 영향을 받지 않는다. |
 | \<DBConnectionWatchdogCycle\> | Altibase 서버로의 연결 시도 주기를 초(second)단위로 설정한다.  설정하지 않으면 기본값 60이 적용된다.<br />Altibase 서버가 중지되었을 때 altiMon은 일정 시간마다 Altibase 서버에 접속을 시도한다.  주기로 데이터베이스에 접속을 시도하여 모니터링을 지속할 수 있도록 한다. |
-| \<User\>                      | altiMon에서 Altibase 서버에 접속 시 사용할 데이터베이스 사용자를 입력한다.<br />설정하지 않으면 기본값 SYS 사용자로 접속한다. |
-| \<Password Encrypted>         | 데이터베이스 사용자의 패스워드를 입력한다.<br />DB 접속 사용자의 암호를 입력하기 위해 사용되는 속성이다. Encrypted 값을 "No"로 설정 후 평문으로 암호를 입력한다. 이후 altiMon을 구동하면 평문 암호는 암호화된 값으로 변경되어 저장되며 속성 또한 "Yes"로 변경된다. |
-| \<Port\>                      | Altibase 서버의 서비스 포트를 입력한다.                      |
-| \<NLS\>                       | 데이터베이스 클라이언트 캐릭터셋을 입력한다.                 |
-| \<DbName\>                    | 데이터베이스 이름을 입력한다. 데이터베이스 이름은 아래 문장으로 확인할 수 있다.<br />`SELECT DB_NAME FROM V$DATABASE; `<br />설정하지 않으면 기본값 mydb 로 설정된다. |
-| \<IPv6\>                      | IPv6 사용 여부를 Yes 또는 No로 설정한다. 설정하지 않으면 기본값 false가 설정된다. |
-| \<ConnectionProperties\>      | 알티베이스에 JDBC를 통해 연결할 때, 추가적인 연결 속성이 필요한 경우 입력한다. 추가할 설정한 연결 속성을 `연결속성=값;연결속성=값;...` 형식으로 입력한다.<br />예)<br />`<ConnectionProperties>login_timeout=3;fetch_timeout=60</ConnectionProperties>` |
+
+#### Target 요소
+
+Target 요소는 데이터베이스 사용자, 패스워드 등 altiMon으로 모니터링 할 Altibase 서버의 접속 정보를 설정한다. 이 요소는 한 개의 속성과 설정할 수 있는 속성과 8개의 하위 요소를 가진다.
+
+> **속성**
+
+| 속성 이름 | 설명                                                         |
+| :-------- | :----------------------------------------------------------- |
+| Name      | Altibase 서버를 식별하기 위한 고유 이름으로 사용자가 임의로 설정 가능하다. |
+
+> **하위 요소**
+
+아래 표의 태그는 Target 요소 아래에 중첩된 하위 요소로 사용된다.
+
+| 태그 이름                | 설명                                                         |
+| :----------------------- | :----------------------------------------------------------- |
+| \<HomeDirectory\>        | Altibase 서버의 홈 디렉토리를 절대 경로로 입력한다. 설정하지 않으면 환경변수 ALTIBASE_HOME 값이 적용된다. |
+| \<User\>                 | Altibase 서버에 접속할 데이터베이스 사용자를 입력한다. 설정하지 않으면 기본값인 SYS 사용자로 접속한다. |
+| \<Password Encrypted>    | 데이터베이스 사용자의 패스워드를 입력한다.<br />Encrypted 속성은 altiMon을 처음 시작하기 전에 "No" 값으로 설정해야 한다. 이후 altiMon을 시작하면  평문으로 입력한 패스워드가 암호화된 값으로 저장되며 Encrypted 속성의 값이 "Yes"로 변경된다. |
+| \<Port\>                 | Altibase 서버의 서비스 포트를 입력한다.                      |
+| \<NLS\>                  | 데이터베이스 클라이언트 캐릭터셋을 Altibase 서버 캐릭터셋과 같은 값으로 입력한다. |
+| \<DbName\>               | 데이터베이스 이름을 입력한다. 설정하지 않으면 기본값 mydb 로 설정된다.<br />데이터베이스 이름은 아래 문장으로 확인할 수 있다.<br />`SELECT DB_NAME FROM V$DATABASE; ` |
+| \<IPv6\>                 | IPv6 사용 여부를 설정한다. true 또는 false 값을 가지며 기본값은 false 이다.  <br />• Yes : IPv6를 사용한다. Altibase 서버 프로퍼티 NET_CONN_IP_STACK이 1 또는 2일 때 설정할 수 있다.<br />• No  : IPv6를 사용하지 않는다. |
+| \<ConnectionProperties\> | Altibase 서버 접속할 때 추가적인 연결 속성이 필요한 경우 `연결속성=값;연결속성=값;...` 형식으로 입력한다. 사용할 수 있는 연결 속성은 [JDBC User's Manual](https://github.com/ALTIBASE/Documents/blob/master/Manuals/Altibase_trunk/kor/JDBC%20User's%20Manual.md#%EC%97%B0%EA%B2%B0-%EC%A0%95%EB%B3%B4)을 참고한다.<br />예) `<ConnectionProperties>login_timeout=3;fetch_timeout=60</ConnectionProperties>` |
 
 ### Metrics.xml
 
