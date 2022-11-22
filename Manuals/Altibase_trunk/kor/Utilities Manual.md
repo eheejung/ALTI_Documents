@@ -2674,6 +2674,7 @@ aku 설정 파일의 내용을 출력한다. 파일에 문법(syntax) 오류가 
     <img src="media/Utilities/aku_scale_up_pod_0.jpg"> 
   </div>
 
+
   > **스케일 업(Scale up)**
 
   스테이트풀셋에서 스케일 업을 하면 파드가 생성된다. aku에서는 이러한 파드에서 수행한 aku를 "SLAVE AKU"로 표현하기도 한다. 하나의 파드는 생성과 종료를 반복할 수 있는데,  파드가 처음 생성될 때와 종료 후 다시 생성될 때 `aku -p start` 동작이 다르다. 아래 *pod_name*-1에서 수행한 예로 `aku -p start` 동작을 살펴보자. 
