@@ -16,7 +16,7 @@ Copyright ⓒ 2001\~2022 Altibase Corp. All Rights Reserved.<br/>
 전화 : 02-2082-1114<br/>
 팩스 : 02-2082-1099<br/>
 고객서비스포털 : <http://support.altibase.com><br/>
-홈페이지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: [http://www.altibase.com](http://www.altibase.com/)
+홈페이지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: [http://www.altibase.com](http://www.altibase.com/)
 
 <br/>
 
@@ -1999,12 +1999,12 @@ MOSO = SU
 
 ## 개요
 
-Altibase 서버 상태와 Altibase 서버가 구동 된 OS의 자원 상태를 수집하는 모니터링 유틸리티로, OS 자원 상태를 수집하기 위해 자체 제작한 PICL(Platform Information Collection Library) 라이브러리와 JDBC 드라이버 기반의 자바 애플리케이션이다. altiMon에서 수집한 데이터는 데이터베이스 장애 발생 시 장애 원인을 추적하는데 이용할 수 있다. 
+Altibase 서버 상태와 Altibase 서버가 구동 된 운영체제의 자원 상태를 수집하는 모니터링 유틸리티로, 운영체제의 자원 상태를 수집하기 위해 자체 제작한 PICL(Platform Information Collection Library) 라이브러리와 JDBC 드라이버 기반의 자바 애플리케이션이다. altiMon에서 수집한 데이터는 데이터베이스 장애 발생 시 장애 원인을 추적하는데 이용할 수 있다. 
 
 altiMon의 모니터링 요소는 3가지로 나뉜다. 각 요소에 대한 보다 자세한 것은 [altiMon 설정 - Metrics.xml](#metricsxml)에서 설명한다.
 
-- [OS Metric](#osmetric-요소) : Altibase의 PICL 라이브러리에서 미리 정의된 OS 자원 상태
-- [Command Metric](commanemetric-요소) : 사용자가 정의한 OS 자원 상태
+- [OS Metric](#osmetric-요소) : Altibase의 PICL 라이브러리에서 미리 정의된 운영체제의 자원 상태
+- [Command Metric](commanemetric-요소) : 사용자가 정의한 운영체제의 자원 상태
 - [SQL Metric](sqlmetric-요소) : 사용자가 정의한 Altibase 서버 상태
 
 ## 구문
@@ -2026,69 +2026,80 @@ altimon.sh {start | stop}
 
 
 
-## 지원 운영체제
+## 시스템 요구사항
 
-altiMon은 OS 정보를 수집하기 위해 C언어로 작성된 PICL 라이브러리를 사용한다.
-PICL 라이브러리를 사용할 수 있는 운영체제는 아래와 같다.
+### 자바
 
-| OS    | CPU                   | Version                           | PICL Library                     |
-| ----- | --------------------- | --------------------------------- | -------------------------------- |
-| AIX   | ppc64                 | OS Version 5.3, 6.1, 7.1          | aix-ppc64-5.so                   |
-| HP-UX | ia64                  | IA64                              | hpux-ia64-11.sl                  |
-| LINUX | X86_64<br />ppc64(le) | OS Version 2 ~ 4<br>glibc 2.5이상 | linux-x64.so<br />linux-ppc64.so |
+- Oracle, OpenJDK 또는 IBM Java Runtime Environment 8 이상 
+- 64비트 자바
 
-지원하지 않는 OS 버전에서 아래 방법으로 하위 버전용 PICL이 동작하는지를 확인한 후에 사용할 수도 있다.
+### 지원 플랫폼
+
+altiMon의 지원 플랫폼은 PICL 라이브러리를 제공하는 플랫폼에 의존한다. 
+
+| 운영체제                                                     | CPU                     | PICL 라이브러리 |
+| ------------------------------------------------------------ | ----------------------- | --------------- |
+| **AIX**                                                      |                         |                 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AIX 5.3<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AIX 6.1<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AIX 7.1 | PowerPC                 | aix-ppc64-5.so  |
+| **HP-UX**                                                    |                         |                 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HP-UX  11.31                   | Itanium (IA-64)         | hpux-ia64-11.sl |
+| **Linux**                                                    |                         |                 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Red Hat Enterprise Linux 6.0   | x86-64                  | linux-x64.so    |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Red Hat Enterprise Linux 6.5   | PowerPC                 | linux-ppc64.so  |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Red Hat Enterprise Linux 7.2   | PowerPC (Little Endian) | linux-ppc64.so  |
+
+AIX 7.3, RHEL 8 등 위 표에 명시되지 않은 운영체제 버전에서 PICL 라이브러리가 동작하는 지 확인하는 방법이다. 
+
+##### PICL 라이브러리의 동작 여부를 확인하는 방법
+
+1️⃣ $ALTIBASE_HOME/altiMon 디렉토리로 이동한다. 
 
   ```bash
 $ cd $ALTIBASE_HOME/altiMon
+  ```
+
+2️⃣ java 명령어로 PICL 라이브러리의 동작 여부를 확인한다.
+
+위 표에서 해당하는 운영체제의 PICL 라이브러리 파일명을 확인하고 아래 명령어를 수행한다. 반드시 $ALTIBASE_HOME/altiMon 디렉토리 아래에서 수행해야 한다. 
+
+~~~bash
 $ java -Dpicl="<picl_lib_file>" -jar lib/com.altibase.picl.jar
-  ```
+~~~
 
-사용예)
+> 수행 예
 
-지원하지 않는 버전의 AIX 운영체제에서 "aix-ppc64-5.so" PICL 라이브러리가 사용 가능한지 검증하고 altimon을 구동하는 절차이다.
+~~~bash
+$ java -Dpicl="linux-x64.so" -jar lib/com.altibase.picl.jar 
+===========================================================
+Platform Information Collection Library-PICL Testing Module
+===========================================================
 
-1. 하위 버전용 PICL의 동작 여부 확인
+Initializing PICL(Platform Information Collection Library)...
+PICL Library : linux-x64.so
 
-  ```bash
-$ cd $ALTIBASE_HOME/altiMon 
-$ java -Dpicl="aix-ppc64-5.so" -jar lib/com.altibase.picl.jar
-  ```
+----------
+Process ID
+----------
+Altibase Process : /home/altibase/altibase_home/bin/altibase
+PID : 5230
+...중략... 
+~~~
 
-2. 정상 동작이 검증된 후 $ALTIBASE_HOME/bin/altimon.sh 파일을 열어서 PICL_LIB 변수에 해당 PICL 파일을 설정한다.
 
-  ```bash
-PICL_LIB=-Dpicl="aix-ppc64-5.so"
-  ```
-
-3. altimon을 구동한다
-
-  ```bash
-$ altimon.sh start
-  ```
-
-### 주의사항
-
-altiMon은 Java 8 이상에서 동작한다.
-
-Java 버전은 PICL C 라이브러리의 비트 수와 일치하는 것을 선택한다. 예를 들어 PICL C 라이브러리가 linux-x64.so 인 경우 64 bit Java를 사용해야 한다.
 
 ## altiMon 시작 및 중지
 
 ### altiMon 시작
 
-1. JAVA_HOME 환경 변수를 설정한다.
+1️⃣ JAVA_HOME 환경 변수를 설정한다.
 
-2. 운영 체제에 맞는 명령을 실행한다.
+2️⃣ altiMon 시작 명령을 수행한다.
 
-- Unix 계열
+~~~bash
+$ altimon.sh start
+~~~
 
-  ```bash
-  $ altimon.sh start
-  ```
-
-
-3. 구동을 실패하면, \$ALTIBASE_HOME/altiMon/logs/altimon.log 파일을 확인한다.
+3️⃣ altiMon 시작이 실패하면 \$ALTIBASE_HOME/altiMon/logs/altimon.log 파일을 확인한다.
 
 
 
@@ -2189,7 +2200,7 @@ config.xml에서 <Target ...> 요소는 데이터베이스 사용자, 패스워�
 | \<User\>                 | Altibase 서버에 접속할 데이터베이스 사용자를 입력한다. 설정하지 않으면 기본값인 SYS 사용자로 접속한다. |
 | \<Password Encrypted>    | 데이터베이스 사용자의 패스워드를 입력한다.<br />Encrypted 속성은 altiMon을 처음 시작하기 전에 "No" 값으로 설정해야 한다. 이후 altiMon을 시작하면  평문으로 입력한 패스워드가 암호화된 값으로 저장되며 Encrypted 속성의 값이 "Yes"로 변경된다. |
 | \<Port\>                 | Altibase 서버의 서비스 포트를 입력한다.                      |
-| \<NLS\>                  | 데이터베이스 클라이언트 캐릭터셋을 Altibase 서버 캐릭터셋과 같은 값으로 입력한다. |
+| \<NLS\>                  | 데이터베이스 클라이언트 캐릭터셋을 입력한다.                 |
 | \<DbName\>               | 데이터베이스 이름을 입력한다. 설정하지 않으면 기본값 mydb 로 설정된다.<br />데이터베이스 이름은 아래 문장으로 확인할 수 있다.<br />`SELECT DB_NAME FROM V$DATABASE; ` |
 | \<IPv6\>                 | IPv6 사용 여부를 설정한다. true 또는 false 값을 가지며 기본값은 false 이다.  <br />- true  : IPv6를 사용한다. Altibase 서버 프로퍼티 NET_CONN_IP_STACK이 1 또는 2일 때 설정할 수 있다.<br />- false : IPv6를 사용하지 않는다. |
 | \<ConnectionProperties\> | Altibase 서버 접속할 때 추가적인 연결 속성이 필요한 경우 `연결속성=값;연결속성=값;...` 형식으로 입력한다. 사용할 수 있는 연결 속성은 [JDBC User's Manual](https://github.com/ALTIBASE/Documents/blob/master/Manuals/Altibase_trunk/kor/JDBC%20User's%20Manual.md#%EC%97%B0%EA%B2%B0-%EC%A0%95%EB%B3%B4)을 참고한다.<br />예) `<ConnectionProperties>login_timeout=3;fetch_timeout=60</ConnectionProperties>` |
@@ -2198,10 +2209,10 @@ config.xml에서 <Target ...> 요소는 데이터베이스 사용자, 패스워�
 
 ### Metrics.xml
 
-CPU 및 메모리 사용률 등의 OS 자원과 Altibase 서버의 상태를 감시하기 위한 질의문을 설정하는 파일이다. 루트 요소 \<Metrics> 태그를 시작으로 CommandMetric 요소, OSMetric  요소, SQLMetric 요소로 구성되어 있다. 각 요소는 모니터링 항목에 따라 여러 번 사용할 수 있다.
+CPU 및 메모리 사용률 등의 운영체제 자원과 Altibase 서버의 상태를 감시하기 위한 질의문을 설정하는 파일이다. 루트 요소 \<Metrics> 태그를 시작으로 CommandMetric 요소, OSMetric  요소, SQLMetric 요소로 구성되어 있다. 각 요소는 모니터링 항목에 따라 여러 번 사용할 수 있다.
 
 ~~~xml
-% cat Metrics.xml  |more
+$ cat Metrics.xml | more
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Metrics>
@@ -2251,9 +2262,9 @@ CPU 및 메모리 사용률 등의 OS 자원과 Altibase 서버의 상태를 감
 
 
 
-#### 사용자 정의 OS 자원 모니터링(CommandMetric)
+#### 사용자 정의 운영체제 자원 모니터링(CommandMetric)
 
-Metrics.xml에서 <CommandMetric ...> 요소는 사용자가 직접 감시할 OS 자원을 정의할 수 있게 지원하는 모니터링 요소이다. PICL 라이브러리가 필요한 OSMetric 요소를 사용할 수 없는 환경에서 사용자가 직접 OS 명령어로 자원을 감시할 수 있다. OSMetric 요소에서 지원하지 않는 항목을 CommandMetric 요소에 추가할 수도 있다. 
+Metrics.xml에서 <CommandMetric ...> 요소는 사용자가 직접 감시할 운영체제 자원을 정의할 수 있게 지원하는 모니터링 요소이다. PICL 라이브러리가 필요한 OSMetric 요소를 사용할 수 없는 환경에서 사용자가 직접 운영체제 명령어로 자원을 감시할 수 있다. OSMetric 요소에서 지원하지 않는 항목을 CommandMetric 요소에 추가할 수도 있다. 
 
 > **속성**
 
@@ -2277,11 +2288,11 @@ CommandMetric 요소에서 사용할 수 있는 속성이다. 이 속성들은 O
 
 
 
-#### 미리 정의된 OS 자원 모니터링(OSMetric)
+#### 미리 정의된 운영체제 자원 모니터링(OSMetric)
 
-Metrics.xml에서 <OSMetric ...> 요소는Altibase에서 미리 정의한 OS 자원을 감시하도록 제공하는 모니터링 요소이다. 이 요소를 사용하려면 PICL 라이브러리가 필요하며 altiMon 시작 전에 $ALTIBASE_HOME/bin/altimon.sh 파일에서 PICL_LIB 변수를 설정해야 한다.
+Metrics.xml에서 <OSMetric ...> 요소는Altibase에서 미리 정의한 운영체제 자원을 감시하도록 제공하는 모니터링 요소이다. 
 
-감시 대상인 OS 자원은 아래와 같다. 
+감시 대상인 운영체제 자원은 아래와 같다. 
 
 - CPU
 - 메모리
@@ -2384,7 +2395,7 @@ GroupMetric 요소에서 사용할 수 있는 속성이다. 이 속성들은 OSM
 | --------- | ------------------------------------------------------------ |
 | Name      | GroupMetric을 식별하는 고유한 이름으로 사용자가 임의로 설정 가능하다. 로그 파일 생성 시 이 이름이 사용된다. 예) *group1*.csv |
 | Activate  | GroupMetric 요소를 수집할 것인지 설정한다. true 또는 false 값을 가지며 기본값은 true이다.<br />- true  : 해당 CommandMetric 요소를 수집한다.<br />- false : 해당 CommandMetric 요소를 수집하지 않는다. |
-| Interval  | 데이터 수집 주기. 단위는 초(second)이다.<br/><br />***기본값은?*** |
+| Interval  | 데이터 수집 주기. 기본값은 60이며 단위는 초(second)이다.     |
 
 > **하위 요소**
 
@@ -2415,12 +2426,12 @@ Metrics.xml에서 \<Alert\> 설정에 해당하는 데이터를 기록하는 파
 
 ~~~bash
 $ cat alert.log 
-WARNING | PROC_CPU_USER | 2022-11-21 17:21:48 | PROC_CPU_USER = [0.61]
-WARNING | PROC_CPU_USER | 2022-11-21 17:22:48 | PROC_CPU_USER = [0]
-WARNING | PROC_CPU_USER | 2022-11-21 17:23:48 | PROC_CPU_USER = [0]
-CRITICAL | DISK_FREE_PERCENTAGE.disk1 | 2022-11-21 17:24:46 | DISK_FREE_PERCENTAGE.disk1 = [30.22]
-WARNING | PROC_CPU_USER | 2022-11-21 17:24:46 | PROC_CPU_USER = [0]
-CRITICAL | DISK_FREE_PERCENTAGE.disk1 | 2022-11-21 17:25:46 | DISK_FREE_PERCENTAGE.disk1 = [30.22]
+WARNING | PROC_CPU_USER | 2022-11-21 17:21:48 | PROC_CPU_USER = [90.61]
+WARNING | PROC_CPU_USER | 2022-11-21 17:22:48 | PROC_CPU_USER = [90]
+WARNING | PROC_CPU_USER | 2022-11-21 17:23:48 | PROC_CPU_USER = [90]
+CRITICAL | DISK_FREE_PERCENTAGE.disk1 | 2022-11-21 17:24:46 | DISK_FREE_PERCENTAGE.disk1 = [99.22]
+WARNING | PROC_CPU_USER | 2022-11-21 17:24:46 | PROC_CPU_USER = [90]
+CRITICAL | DISK_FREE_PERCENTAGE.disk1 | 2022-11-21 17:25:46 | DISK_FREE_PERCENTAGE.disk1 = [99.22]
 ~~~
 
 ##### OsMetrics.log  
