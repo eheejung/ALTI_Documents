@@ -2188,7 +2188,7 @@ config.xml에서 <Target ...> 요소는 데이터베이스 사용자, 패스워�
 
 | 속성 이름                                                    | 설명                                                         |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Altibase 서버를 식별하기 위한 고유 이름으로 사용자가 임의로 설정 가능하다. 현재는 별다른 용도가 없으며 추후 기능 확장 시 사용될 예정이다. |
+| Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Altibase 서버를 식별하기 위한 고유 이름으로 사용자가 임의로 설정 가능하다. 현재는 별다른 용도가 없으며 추후 기능 확장 시 사용될 예정이다. |
 
 > **하위 요소**
 
