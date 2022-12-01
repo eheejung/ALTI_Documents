@@ -1,15 +1,13 @@
 Utilities Manual
 ================
 
-#### Release 7.1 
+#### trunk 
 
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
 Altibase Tools & Utilities Utilities Manual<br/>
 Copyright ⓒ 2001\~2022 Altibase Corp. All Rights Reserved.<br/>
 본 문서의 저작권은 ㈜알티베이스에 있습니다. 이 문서에 대하여 당사의 동의없이 무단으로 복제 또는 전용할 수 없습니다.
-
-<br/>
 
 **㈜알티베이스**<br/>
 08378 서울시 구로구 디지털로 306 대륭포스트타워Ⅱ 10층<br/>
@@ -18,25 +16,43 @@ Copyright ⓒ 2001\~2022 Altibase Corp. All Rights Reserved.<br/>
 고객서비스포털 : <http://support.altibase.com><br/>
 홈페이지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: [http://www.altibase.com](http://www.altibase.com/)
 
-<br/>
+
 
 <div align="center">
     <img src="media/Utilities/e5cfb3761673686d093a3b00c062fe7a.png">
 </div>
 
+
+
 # 목차
 
-- [서문](#%EC%84%9C%EB%AC%B8)
-  - [이 매뉴얼에 대하여](#%EC%9D%B4-%EB%A7%A4%EB%89%B4%EC%96%BC%EC%97%90-%EB%8C%80%ED%95%98%EC%97%AC)
+- [서문](#서문)
+  - [이 매뉴얼에 대하여](#이-매뉴얼에-대하여)
 - [1.aexport](#1aexport)
-  - [aexport소개](#aexport%EC%86%8C%EA%B0%9C)
-  - [aexport사용방법](#aexport%EC%82%AC%EC%9A%A9%EB%B0%A9%EB%B2%95)
+  - [aexport소개](#aexport소개)
+  - [aexport사용방법](#aexport사용방법)
 - [2.altiComp](#2alticomp)
-  - [altiComp 소개](#alticomp-%EC%86%8C%EA%B0%9C)
-  - [altiComp 사용 방법](#alticomp-%EC%82%AC%EC%9A%A9-%EB%B0%A9%EB%B2%95)
-  - [비교(DIFF)기능](#%EB%B9%84%EA%B5%90diff%EA%B8%B0%EB%8A%A5)
-  - [일치(SYNC) 기능](#%EC%9D%BC%EC%B9%98sync-%EA%B8%B0%EB%8A%A5)
-- [3.기타 Utilities](#3%EA%B8%B0%ED%83%80-utilities)
+  - [altiComp 소개](#alticomp-소개)
+  - [altiComp 사용 방법](#alticomp-사용-방법)
+  - [비교(DIFF)기능](#비교diff기능)
+  - [일치(SYNC) 기능](#일치sync-기능)
+- [3.aku](#3aku)
+  - [개요](#개요-1)
+  - [구성 요소](#구성-요소)
+  - [구문](#구문-1)
+  - [파라미터](#파라미터-1)
+  - [주의사항](#주의사항)
+  - [제약사항](#제약사항)
+  - [사용 예](#사용-예)
+- [4.altiMon](#4altimon)
+  - [개요](#개요-2)
+  - [구문](#구문-2)
+  - [파라미터](#파라미터-2)
+  - [시스템 요구사항](#시스템-요구사항)
+  - [altiMon 시작 및 중지](#altiMon-시작-및-중지)
+  - [altiMon 설정](#altiMon-설정)
+  - [altiMon 로그](#altimon-로그)
+- [5.기타 Utilities](#5기타-utilities)
   - [altiAudit](#altiaudit)
   - [altibase](#altibase)
   - [altiMon](#altimon)
@@ -56,7 +72,11 @@ Copyright ⓒ 2001\~2022 Altibase Corp. All Rights Reserved.<br/>
   - [killCheckServer](#killcheckserver)
   - [server](#server)
 
-<br/><br/>
+
+
+
+
+
 
 서문
 ====
@@ -124,7 +144,7 @@ Copyright ⓒ 2001\~2022 Altibase Corp. All Rights Reserved.<br/>
 
 -   샘플 코드 규칙
 
-#### 구문 다이어그램
+### 구문 다이어그램
 
 이 매뉴얼에서는 다음 구성 요소로 구축된 다이어그램을 사용하여, 명령문의 구문을
 설명한다.
@@ -141,23 +161,23 @@ Copyright ⓒ 2001\~2022 Altibase Corp. All Rights Reserved.<br/>
 | ![](media/Utilities/image8.gif) | 선택사항이 있는 선택적 항목                                  |
 | ![](media/Utilities/image9.gif) | 선택적 항목. 여러 항목이 허용된다. 각 반복 앞부분에 콤마가 와야 한다. |
 
-#### 샘플 코드 규칙
+##### 샘플 코드 규칙
 
 코드 예제는 SQL, Stored Procedure, iSQL 또는 다른 명령 라인 구문들을 예를 들어
 설명한다.
 
 아래 테이블은 코드 예제에서 사용된 인쇄 규칙에 대해 설명한다.
 
-| 규칙         | 의미                                                                                | 예제                                                                                                      |
-|--------------|-------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
-| [ ]          | 선택 항목을 표시                                                                    | VARCHAR [(*size*)] [[FIXED \|] VARIABLE]                                                                  |
-| { }          | 필수 항목 표시. 반드시 하나 이상을 선택해야 되는 표시                               | { ENABLE \| DISABLE \| COMPILE }                                                                          |
-| \|           | 선택 또는 필수 항목 표시의 인자 구분 표시                                           | { ENABLE \| DISABLE \| COMPILE } [ ENABLE \| DISABLE \| COMPILE ]                                         |
-| . . .        | 그 이전 인자의 반복 표시 예제 코드들의 생략되는 것을 표시                           | SQL\> SELECT ename FROM employee; ENAME ------------------------ SWNO HJNO HSCHOI . . . 20 rows selected. |
-| 그 밖에 기호 | 위에서 보여진 기호 이 외에 기호들                                                   | EXEC :p1 := 1; acc NUMBER(11,2);                                                                          |
-| 기울임 꼴    | 구문 요소에서 사용자가 지정해야 하는 변수, 특수한 값을 제공해야만 하는 위치 지정자  | SELECT \* FROM *table_name*; CONNECT userID/password;                                                     |
-| 소문자       | 사용자가 제공하는 프로그램의 요소들, 예를 들어 테이블 이름, 칼럼 이름, 파일 이름 등 | SELECT ename FROM employee;                                                                               |
-| 대문자       | 시스템에서 제공하는 요소들 또는 구문에 나타나는 키워드                              | DESC SYSTEM_.SYS_INDICES_;                                                                                |
+| 규칙         | 의미                                                         | 예제                                                         |
+| ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [ ]          | 선택 항목을 표시                                             | VARCHAR [(*size*)] [[FIXED \|] VARIABLE]                     |
+| { }          | 필수 항목 표시. 반드시 하나 이상을 선택해야 되는 표시        | { ENABLE \| DISABLE \| COMPILE }                             |
+| \|           | 선택 또는 필수 항목 표시의 인자 구분 표시                    | { ENABLE \| DISABLE \| COMPILE } [ ENABLE \| DISABLE \| COMPILE ] |
+| . . .        | 그 이전 인자의 반복 표시 예제 코드들의 생략되는 것을 표시    | SQL\> SELECT ename FROM employee; ENAME ------------------------ SWNO HJNO HSCHOI . . . 20 rows selected. |
+| 그 밖에 기호 | 위에서 보여진 기호 이 외에 기호들                            | EXEC :p1 := 1; acc NUMBER(11,2);                             |
+| 기울임 꼴    | 구문 요소에서 사용자가 지정해야 하는 변수, 특수한 값을 제공해야만 하는 위치 지정자 | SELECT \* FROM *table_name*; CONNECT userID/password;        |
+| 소문자       | 사용자가 제공하는 프로그램의 요소들, 예를 들어 테이블 이름, 칼럼 이름, 파일 이름 등 | SELECT ename FROM employee;                                  |
+| 대문자       | 시스템에서 제공하는 요소들 또는 구문에 나타나는 키워드       | DESC SYSTEM_.SYS_INDICES_;                                   |
 
 ### 관련 자료
 
@@ -173,7 +193,7 @@ Copyright ⓒ 2001\~2022 Altibase Corp. All Rights Reserved.<br/>
 
 -   iLoader User's Manual
 
-**Altibase는 여러분의 의견을 환영합니다.**
+### Altibase는 여러분의 의견을 환영합니다.
 
 이 매뉴얼에 대한 여러분의 의견을 보내주시기 바랍니다. 사용자의 의견은 다음
 버전의 매뉴얼을 작성하는데 많은 도움이 됩니다. 보내실 때에는 아래 내용과 함께
@@ -199,7 +219,7 @@ Copyright ⓒ 2001\~2022 Altibase Corp. All Rights Reserved.<br/>
 
 ## aexport소개
 
-#### 개요
+### 개요
 
 aexport는 Altibase 데이터베이스 간의 자동화된 데이터 마이그레이션(migration)을
 지원하기 위한 도구이다. aexport는 데이터베이스의 논리적인 구조 및 데이터를
@@ -216,7 +236,7 @@ aexport는 데이터베이스의 논리적인 구조를 SQL 스크립트로 변�
 서비스는 하지 않는 상태 즉, 클라이언트 연결이 없을 때 aexport를 사용하기를
 권장한다.
 
-#### aexport 기능 소개
+### aexport 기능 소개
 
 aexport가 추출할 수 있는 데이터베이스 객체 및 구성 요소는 다음과 같다.
 
@@ -291,7 +311,6 @@ aexport 실행 모드와 각 모드 별로 생성되는 SQL 스크립트 파일�
 -   ALL_ALT_TBL.sql : 모든 사용자의 테이블과 파티션에 대한 접근 모드를 변경
 
 > 주의: 롤(Role)은 비스키마 객체이므로 전체 DB 모드에서만 추출할 수 있다.
->
 
 ##### 사용자 모드
 
@@ -396,7 +415,7 @@ aexport에 의해 생성된 모든 파일은 텍스트 파일이기 때문에 �
     생성하는 SQL 스크립트를 포함한다. 또한, ALL_OBJECT_CONSTRATINS.sql을
     실행하는 run_is_con.sh 쉘 스크립트 파일이 생성된다.
 
-#### aexport 설정
+### aexport 설정
 
 aexport는 서버에 접속하기 위해서 다음과 같은 정보가 필요하다.
 
@@ -463,7 +482,7 @@ port_no와 NLS_USE는 환경 변수 또는 서버 설정 파일(altibase.propert
 
 -   PATH: 실행파일이 있는 경로인 \$ALTIBASE_HOME/bin 추가
 
-#### 환경변수
+### 환경변수
 
 ##### ALTIBASE_HOME
 
@@ -523,36 +542,36 @@ export AEXPORT_FILE_PERMISSION=600
 
 ## aexport사용방법
 
-#### 구문
+### 구문
 
-![](media/Utilities/83e5d3722e9a7c575270c6a6bb5206c2.gif)
+![](D:/work/tw/ALTIBASE/Documents/Manuals/Altibase_trunk/kor/media/Utilities/83e5d3722e9a7c575270c6a6bb5206c2.gif)
 
-#### 파라미터
+### 파라미터
 
-| 파라미터                           | 설명                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-|------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| \-h                                | 도움말을 출력한다.                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| \-s                                | 데이터를 다운로드할 서버의 호스트 명 또는 IP 주소를 설정한다. 생략시 호스트 명 입력 프롬프트가 출력된다. IP 주소의 경우, IPv4 주소 또는 IPv6 주소를 사용할 수 있다. IPv6 주소는 “[“과 “]”로 에워싸야 한다. 예를 들어, localhost 를 명시하고자 할 때, 가능한 값은 다음과 같다. localhost (호스트 이름), 127.0.0.1 (IPv4주소), [::1] (IPv6주소) Altibase에서 IPv6 주소를 사용하는 방법에 대해서는 *Administrator’s Manual*을 참고하기 바란다.                                    |
-| \-u                                | 접속할 Altibase의 사용자명을 설정한다. 생략 시 사용자명 입력 프롬프트가 출력된다. 전체 DB 모드로 실행하려면, 이 옵션에 SYS 사용자를 지정해야 한다. 사용자 이름에 소문자, 특수 문자 또는 공백이 포함된 경우 큰 따옴표를 사용해야 한다. -u \\"user name\\"                                                                                                                                                                                                                       |
-| \-p                                | 접속할 Altibase 사용자의 패스워드를 설정한다. 생략시 패스워드 입력 프롬프트가 출력된다.                                                                                                                                                                                                                                                                                                                                                                                        |
-| \-port                             | 접속할 Altibase의 포트번호를 설정한다. 생략 시 환경 변수 ALTIBASE_PORT_NO, altibase.properties를 차례로 참조하며 설정되어 있지 않은 경우에는 포트 번호 입력 프롬프트가 출력된다.                                                                                                                                                                                                                                                                                               |
-| \-object                           | 추출할 객체를 소유자 이름과 함께 명시한다. 추출할 객체 이름에 소문자, 특수 문자 또는 공백이 포함된 경우 큰 따옴표를 사용해야 한다. -object \\"user name\\".\\"table name\\"                                                                                                                                                                                                                                                                                                    |
-| \-tserver                          | 추출한 데이터를 업로드할 대상 서버를 지정한다. 이 정보는 aexport가 생성하는 쉘 스크립트 파일 안에 사용된다. -s 옵션과 마찬가지로 호스트 이름, IPv4 주소 또는 IPv6 주소 모두 가능하다.                                                                                                                                                                                                                                                                                          |
-| \-tport                            | 접속할 대상 서버의 포트번호를 설정한다. 이 정보는 aexport가 생성하는 쉘 스크립트 파일 안에 사용된다.                                                                                                                                                                                                                                                                                                                                                                           |
-| \-nls_use                          | 데이터베이스에 데이터 저장 또는 데이터 추출 시에 사용되는 클라이언트 캐릭터 셋을 지정한다 (US7ASCII, KO16KSC5601, MS949, BIG5, GB231280, MS936, UTF8, SHIFTJIS, MS932, EUCJP). 생략 시 환경 변수 ALTIBASE_NLS_USE, altibase.properties를 차례로 참조하며, 설정되지 않았을 경우에는 데이터베이스 캐릭터 셋을 사용한다.                                                                                                                                                          |
+| 파라미터                           | 설명                                                         |
+| ---------------------------------- | ------------------------------------------------------------ |
+| \-h                                | 도움말을 출력한다.                                           |
+| \-s                                | 데이터를 다운로드할 서버의 호스트 명 또는 IP 주소를 설정한다. 생략시 호스트 명 입력 프롬프트가 출력된다. IP 주소의 경우, IPv4 주소 또는 IPv6 주소를 사용할 수 있다. IPv6 주소는 “[“과 “]”로 에워싸야 한다. 예를 들어, localhost 를 명시하고자 할 때, 가능한 값은 다음과 같다. localhost (호스트 이름), 127.0.0.1 (IPv4주소), [::1] (IPv6주소) Altibase에서 IPv6 주소를 사용하는 방법에 대해서는 *Administrator’s Manual*을 참고하기 바란다. |
+| \-u                                | 접속할 Altibase의 사용자명을 설정한다. 생략 시 사용자명 입력 프롬프트가 출력된다. 전체 DB 모드로 실행하려면, 이 옵션에 SYS 사용자를 지정해야 한다. 사용자 이름에 소문자, 특수 문자 또는 공백이 포함된 경우 큰 따옴표를 사용해야 한다. -u \\"user name\\" |
+| \-p                                | 접속할 Altibase 사용자의 패스워드를 설정한다. 생략시 패스워드 입력 프롬프트가 출력된다. |
+| \-port                             | 접속할 Altibase의 포트번호를 설정한다. 생략 시 환경 변수 ALTIBASE_PORT_NO, altibase.properties를 차례로 참조하며 설정되어 있지 않은 경우에는 포트 번호 입력 프롬프트가 출력된다. |
+| \-object                           | 추출할 객체를 소유자 이름과 함께 명시한다. 추출할 객체 이름에 소문자, 특수 문자 또는 공백이 포함된 경우 큰 따옴표를 사용해야 한다. -object \\"user name\\".\\"table name\\" |
+| \-tserver                          | 추출한 데이터를 업로드할 대상 서버를 지정한다. 이 정보는 aexport가 생성하는 쉘 스크립트 파일 안에 사용된다. -s 옵션과 마찬가지로 호스트 이름, IPv4 주소 또는 IPv6 주소 모두 가능하다. |
+| \-tport                            | 접속할 대상 서버의 포트번호를 설정한다. 이 정보는 aexport가 생성하는 쉘 스크립트 파일 안에 사용된다. |
+| \-nls_use                          | 데이터베이스에 데이터 저장 또는 데이터 추출 시에 사용되는 클라이언트 캐릭터 셋을 지정한다 (US7ASCII, KO16KSC5601, MS949, BIG5, GB231280, MS936, UTF8, SHIFTJIS, MS932, EUCJP). 생략 시 환경 변수 ALTIBASE_NLS_USE, altibase.properties를 차례로 참조하며, 설정되지 않았을 경우에는 데이터베이스 캐릭터 셋을 사용한다. |
 | \-prefer_ipv6                      | \-s 옵션으로 호스트 이름을 입력했을 때, 접속할 IP 주소의 버전을 결정하는 옵션이다. 이 옵션을 명시하면, 호스트 이름을 IPv6 주소로 바꾸어 접속한다. 이 옵션을 명시하지 않으면, isql은 IPv4 주소로 접속한다. 선호하는 버전의 IP 주소로의 접속이 실패하면, 다른 IP 버전 주소로 접속을 다시 시도한다. 예를 들어, -S 옵션에 “localhost”를 입력하고 이 옵션을 명시하면, isql 은 처음에 IPv6 주소인 [::1]로 접속하고, 이 접속이 실패하면 IPv4 주소인 127.0.0.1로 접속을 다시 시도한다. |
-| \-ssl_ca *CA_file_path*            | 접속할 알티베이스 서버의 공개키(public key)가 포함된 CA(인증 기관, Certification Authority) 인증서 파일의 위치를 지정한다.                                                                                                                                                                                                                                                                                                                                                     |
-| \-ssl_capath *CA_dir_path*         | 접속할 알티베이스 서버의 공개키가 포함된 CA 인증서 파일이 저장되어 있는 디렉토리를 지정한다.                                                                                                                                                                                                                                                                                                                                                                                   |
-| \-ssl_cert *certificate_file_path* | 클라이언트 인증서 파일의 위치를 지정한다.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| \-ssl_key *key_file_path*          | 클라이언트 개인키 파일의 위치를 지정한다.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| \-ssl_verify                       | 이 옵션을 지정하면 클라이언트가 서버로부터 전달받은 인증서를 검증한다.                                                                                                                                                                                                                                                                                                                                                                                                         |
-| \-ssl_cipher *cipher_list*         | SSL 암호화를 위해 사용할 알고리즘의 이름 후보들을 지정한다. General Reference에서 SSL_CIPHER_LIST 프로퍼티를 참고한다.                                                                                                                                                                                                                                                                                                                                                         |
+| \-ssl_ca *CA_file_path*            | 접속할 알티베이스 서버의 공개키(public key)가 포함된 CA(인증 기관, Certification Authority) 인증서 파일의 위치를 지정한다. |
+| \-ssl_capath *CA_dir_path*         | 접속할 알티베이스 서버의 공개키가 포함된 CA 인증서 파일이 저장되어 있는 디렉토리를 지정한다. |
+| \-ssl_cert *certificate_file_path* | 클라이언트 인증서 파일의 위치를 지정한다.                    |
+| \-ssl_key *key_file_path*          | 클라이언트 개인키 파일의 위치를 지정한다.                    |
+| \-ssl_verify                       | 이 옵션을 지정하면 클라이언트가 서버로부터 전달받은 인증서를 검증한다. |
+| \-ssl_cipher *cipher_list*         | SSL 암호화를 위해 사용할 알고리즘의 이름 후보들을 지정한다. General Reference에서 SSL_CIPHER_LIST 프로퍼티를 참고한다. |
 
 > SSL 접속에 대한 자세한 설명과 예제는 *iSQL User's Manual*의 '접속 연결 및 해제'를 참조하기 바란다.
 
 
 
-#### 수행 절차
+### 수행 절차
 
 aexport를 사용한 데이터베이스 마이그레이션 절차는 크게 다음과 같이 분류된다.
 
@@ -678,7 +697,7 @@ TWO_PHASE_SCRIPT 프로퍼티가 ON일 때,
 
 
 
-#### 주의 사항
+### 주의 사항
 
 -   SYS 사용자가 아닌 일반 사용자로 aexport를 실행할 경우 해당 사용자가 생성한
     스키마에 대해서만 스크립트를 생성한다.
@@ -728,7 +747,7 @@ TWO_PHASE_SCRIPT 프로퍼티가 ON일 때,
 
 
 
-#### aexport의 한계
+### aexport의 한계
 
 -   저장 프로시저 생성 시 참조해야 할 저장 프로시저가 미리 생성되어 있지 않으면
     작업이 실패하게 된다. aexport는 저장 프로시저 간의 의존성에 대한 정보에
@@ -755,7 +774,7 @@ TWO_PHASE_SCRIPT 프로퍼티가 ON일 때,
 
 
 
-#### SSL 접속과 스크립트 파일
+### SSL 접속과 스크립트 파일
 
 -   SSL 접속으로 aexport를 실행하는 경우, 원본 데이터베이스 접속용
     스크립트(run_il_out.sh) 파일에는 aexport를 실행할 때 사용한 SSL 옵션이
@@ -767,7 +786,7 @@ TWO_PHASE_SCRIPT 프로퍼티가 ON일 때,
 
 
 
-#### aexport 프로퍼티
+### aexport 프로퍼티
 
 ##### aexport 프로퍼티 설정
 
@@ -957,7 +976,7 @@ Altibase를 설치할 때, aexport.properties 파일은 \$ALTIBASE_HOME/conf에 
 
 
 
-#### 사용 예제
+### 사용 예제
 
 ##### 전체 DB 모드로 실행
 
@@ -1170,8 +1189,7 @@ SSL_VERIFY = ON  # OFF
 
 
 
-2.altiComp
-========
+# 2.altiComp
 
 이 장은 altiComp 유틸리티의 기능을 소개하고, 불일치하는 데이터를 비교하고
 일치시키는 기능 등을 설명한다.
@@ -1185,7 +1203,7 @@ altiComp은 Altibase 데이터베이스를 또 다른 Altibase 데이터베이�
 비교, 검사하여 불일치 정보를 출력한다. 또한 불일치 데이터가 발생한 경우에는 두
 데이터베이스를 일치시키는 기능도 제공한다.
 
-#### altiComp 용어
+### altiComp 용어
 
 ##### Master Server
 
@@ -1205,7 +1223,7 @@ Master Server의 데이터베이스이다.
 
 Slave Server의 데이터베이스이다.
 
-#### 불일치 레코드(Different Record) 
+### 불일치 레코드(Different Record) 
 
 Master DB의 지정 테이블과 Slave DB의 지정 테이블간에 주요 키(Primary Key)를
 기준으로 칼럼 값이 일치하지 않는 레코드를 의미한다.
@@ -1221,7 +1239,7 @@ Master DB의 지정 테이블과 Slave DB의 지정 테이블간에 주요 키(P
 -   MXSO 불일치: 특정 레코드가 주요 키를 기준으로 Master DB에는 없고, Slave
     DB에는 있는 경우
 
-#### 일치 정책(Synchronization Policy) 
+### 일치 정책(Synchronization Policy) 
 
 일치 정책은 불일치 레코드를 일치시키는 방법을 명시하는 정책이다. altiComp
 프로그램은 기본적으로 Master DB를 기준 DB로 고정하고, Slave DB를 일치시키는
@@ -1231,17 +1249,17 @@ Altibase는 일치 정책으로 다음과 같은 네 가지 방법을 제공한�
 
 -   SU 정책: MOSO 불일치를 해소하는 정책으로, Master DB의 레코드 내용으로 Slave
     DB를 변경(update)한다.
-    ![](media/Utilities/su_policy.gif)
+    ![](D:/work/tw/ALTIBASE/Documents/Manuals/Altibase_trunk/kor/media/Utilities/su_policy.gif)
 -   SI 정책: MOSX 불일치를 해소하는 정책으로, Master DB의 레코드를 Slave DB에
     삽입(insert)한다.
-    ![](media/Utilities/si_policy.gif)
+    ![](D:/work/tw/ALTIBASE/Documents/Manuals/Altibase_trunk/kor/media/Utilities/si_policy.gif)
 -   MI 정책: MXSO 불일치를 해소하는 정책으로. Slave DB의 레코드를 Master DB에
     삽입(insert)한다.
-    ![](media/Utilities/mi_policy.gif)
+    ![](D:/work/tw/ALTIBASE/Documents/Manuals/Altibase_trunk/kor/media/Utilities/mi_policy.gif)
 -   SD 정책: MXSO 불일치를 해소하는 정책으로, Slave DB의 레코드를
     삭제(delete)한다.
 
-![](media/Utilities/sd_policy.gif)
+![](D:/work/tw/ALTIBASE/Documents/Manuals/Altibase_trunk/kor/media/Utilities/sd_policy.gif)
 
 SU정책, SI정책, MI정책, SD정책은 사용자가 altiComp 환경 파일을 사용하여 지정할
 수 있다. 단, MI정책과 SD정책은 서로 배타적이므로, 동시에 지정할 수 없다는 것을
@@ -1270,7 +1288,7 @@ altiComp 기능 설정, 일치 정책 등의 내용을 포함한다.
 이 절에서는 altiComp을 실행하기 위한 정보를 기술하는 altiComp 환경 파일을 먼저
 설명하고, 비교(DIFF)와 일치(SYNC) 기능에 대해 설명한다.
 
-#### altiComp 실행 방법
+### altiComp 실행 방법
 
 altiComp 기능을 사용하기 위해서는 먼저 DIFF 또는 SYNC를 수행할 테이블에 대한
 정보를 가지고 있는 altiComp 환경 파일을 만들어야 한다. altiComp 환경 파일은 운용
@@ -1298,7 +1316,7 @@ script_file_name : 환경 파일의 경로명을 포함한 파일 이름
 
 
 
-#### altiComp 프로퍼티 설정
+### altiComp 프로퍼티 설정
 
 비교 또는 일치 작업의 내용을 기술하는 환경 파일로, 각각의 고유한 프로퍼티를
 포함한다. 프로퍼티는 altiComp 유틸리티 실행에 필요한 정보를 기술한다.
@@ -1357,7 +1375,7 @@ EXCLUDE = { CCC }
 
 
 
-#### 프로퍼티 옵션
+### 프로퍼티 옵션
 
 altiComp 유틸리티는 아래의 프로퍼티로 Local Server와 Remote Server의 접속 정보
 및 비교(DIFF) 작업, 일치(SYNC)작업, 불일치 레코드에 대한 일치 정책을 지정할 수
@@ -1496,7 +1514,8 @@ DIFF는 Master DB의 지정 테이블과 Slave DB의 지정 테이블간에 주�
    지 결정하는 프로퍼티이다. 
 
    프로퍼티를 지정하지 않으면 "ON"으로 동작한다.
-#### TABLES 그룹 
+
+### TABLES 그룹 
 
 실행 대상이 되는 테이블에 관련된 정보를 정의한다. 이 그룹은 실행 대상이 되는
 테이블의 개수만큼 기술되어야 하며, 반드시 그룹명은 Master DB의 테이블 이름이어야
@@ -1516,14 +1535,14 @@ DIFF는 Master DB의 지정 테이블과 Slave DB의 지정 테이블간에 주�
 테이블의 레코드를 projection하는 조건을 지정한다. 프로퍼티 값은 다중 값으로
 기술해야 한다. 기술된 칼럼들은 비교와 일치 작업에서 제외된다.
 
-![](media/Utilities/e9cd168e51d8336eb99f9ba958d9688d.png)
+![](D:/work/tw/ALTIBASE/Documents/Manuals/Altibase_trunk/kor/media/Utilities/e9cd168e51d8336eb99f9ba958d9688d.png)
 
-![](media/Utilities/c8502d42132454c28fe8e7f0edd7c88b.png)
+![](D:/work/tw/ALTIBASE/Documents/Manuals/Altibase_trunk/kor/media/Utilities/c8502d42132454c28fe8e7f0edd7c88b.png)
 
 WHERE와 EXCLUDE를 적절히 조합하면, selection과 projection을 결합한 결과에 대해
 altiComp 작업을 수행할 수 있다.
 
-![](media/Utilities/3a664d250cbb847a5d4acd3acf65b5d1.png)
+![](D:/work/tw/ALTIBASE/Documents/Manuals/Altibase_trunk/kor/media/Utilities/3a664d250cbb847a5d4acd3acf65b5d1.png)
 
 ##### TABLE
 
@@ -1548,14 +1567,14 @@ Slave의 접속하는 사용자의 스키마 이름과 대상 테이블의 스�
 Master DB와 Slave DB 간의 이중화 작업에서 발생할 수 있는 불일치 레코드를
 식별하여 실행 결과 파일로 생성하는 기능을 가진다.
 
-#### 환경 파일
+### 환경 파일
 
 altiComp 환경 파일의 OPERATION 프로퍼티 값을 “DIFF”로 지정한다.
 
 실행 옵션의 모든 프로퍼티 파일을 기술해야 하며, 테이블 그룹의 WHERE, EXCLUDE,
 TABLE, SCHEMA 프로퍼티를 선택적으로 기술한다.
 
-#### 실행방법
+### 실행방법
 
 비교(DIFF)기능은 다음과 같이 실행한다.
 
@@ -1565,7 +1584,7 @@ $ altiComp -f script_file_name
 
 script_file_name : 환경 파일의 경로명을 포함한 파일 이름
 
-#### 실행결과
+### 실행결과
 
 실행 결과로, 실행결과에 대한 요약 정보를 포함하는 실행 로그 파일과 테이블 별로
 Master Database와 Slave Database의 내용을 비교하여 불일치가 발생한 레코드의
@@ -1629,7 +1648,7 @@ DF[m,n]-> COL_N (Vn_M, Vn_S):PK->{ PCOL_V }
 단, 데이터 타입이 LOB인 칼럼이 있는 레코드의 경우 해당 칼럼의 값이 기록되지
 않는다.
 
-#### 비교(DIFF) 예제
+### 비교(DIFF) 예제
 
 host1의 EMP 테이블과 host2의 EMPLOYEES 테이블, 그리고 host1의 DEPARTMENTS
 테이블과 host2의 DEPARTMENTS 테이블에 대해 비교(DIFF) 기능을 수행하는 예제는
@@ -1710,20 +1729,20 @@ WHERE 프로퍼티 값에 따라, 비교 대상이 되는 EMP 레코드는 “EN
 
 
 
-일치(SYNC) 기능
+## 일치(SYNC) 기능
 
 Master DB와 Slave DB 사이의 불일치 레코드를 식별하여 altiComp 환경 파일에 기술된
 일치 정책에 따라 양 방향으로 반영하여 불일치를 해소하고, 실행요약정보와
 에러정보를 포함하는 실행 결과 파일을 생성한다.
 
-#### 환경 파일
+### 환경 파일
 
 altiComp 환경 파일의 OPERATION 프로퍼티 값을 “SYNC”로 지정한다.
 
 실행 옵션의 모든 프로퍼티 파일을 기술해야 하며, 테이블 그룹의 WHERE, EXCLUDE,
 TABLE, SCHEMA 프로퍼티는 선택적으로 기술한다
 
-#### 실행방법
+### 실행방법
 
 일치(SYNC)기능은 다음과 같이 실행한다.
 
@@ -1733,7 +1752,7 @@ $ altiComp -f script_file_name
 
 script_file_name : 환경 파일의 경로명을 포함한 파일 이름
 
-#### 실행결과
+### 실행결과
 
 실행 결과로, 실행의 요약정보를 포함하는 실행 로그 파일과 테이블 별로 Master
 Database와 Slave Database의 내용을 비교하여 불일치가 발생한 레코드에 대한 일치
@@ -1781,7 +1800,7 @@ MXSX =  -, -
 만일 실패한 레코드가 있다면, 해당 레코드는 에러로그 파일에 원인과 레코드 내용이
 출력된다.
 
-#### 일치(SYNC) 예제
+### 일치(SYNC) 예제
 
 불일치 레코드를 해소하기 위한 일치 정책에 관련된 OPERATION와 TABLE을 지정하는
 예제를 제시한다.
@@ -1995,522 +2014,15 @@ MOSO = SU
      Time:       0.01 sec
 ```
 
-# 4. altiMon
+# 3.aku
 
 ## 개요
 
-Altibase 서버 상태와 Altibase 서버가 구동 된 운영체제의 자원 상태를 수집하는 모니터링 유틸리티로, 운영체제의 자원 상태를 수집하기 위해 자체 제작한 PICL(Platform Information Collection Library) 라이브러리와 JDBC 드라이버 기반의 자바 애플리케이션이다. altiMon에서 수집한 데이터는 데이터베이스 장애 발생 시 장애 원인을 추적하는데 이용할 수 있다. 
+aku(Altibase Kubernetes Utility)는 쿠버네티스의 스테이트풀셋(Statefulset)에서 스케일링(scaling)할 때 파드(Pod) 생성 및 종료에 따라 Altibase의 데이터를 동기화하거나 동기화 정보를 초기화하는 등의 작업을 수행할 수 있게 도와주는 유틸리티이다. *Altibase 7.1.0.8.1 부터 제공한다.*(Altibase 7.1 매뉴얼에 추가)
 
-altiMon의 모니터링 요소는 3가지로 나뉜다. 각 요소에 대한 보다 자세한 것은 [altiMon 설정 - Metrics.xml](#metricsxml)에서 설명한다.
+> 스테이트풀셋은 데이터베이스처럼 상태 유지가 필요한 애플리케이션을 지원하기 위한 쿠버네티스의 워크로드 컨트롤러 중 하나이며, 스케일링은 파드를 생성하거나 종료하는 것을 의미한다. 파드는 컨테이너들을 담고 있는 쿠버네티스의 리소스이며, 이 컨테이너에 Altibase 서버가 실행된다. 
 
-- [OS Metric](#osmetric-요소) : Altibase의 PICL 라이브러리에서 미리 정의된 운영체제의 자원 상태
-- [Command Metric](commanemetric-요소) : 사용자가 정의한 운영체제의 자원 상태
-- [SQL Metric](sqlmetric-요소) : 사용자가 정의한 Altibase 서버 상태
-
-## 구문
-
-~~~bash
-altimon.sh {start | stop}
-~~~
-
-<div align="left">
-    <img src=media/Utilities/9f7b2fa1105d33ea554edb062ca8b96f.png>
-</div>
-
-## 파라미터
-
-| 파라미터 | 설명         |
-| -------- | ------------ |
-| start    | altimon 시작 |
-| stop     | altimon 종료 |
-
-
-
-## 시스템 요구사항
-
-### 자바
-
-- Oracle, OpenJDK 또는 IBM Java Runtime Environment 8 이상 
-- 64비트 자바
-
-### 지원 플랫폼
-
-altiMon의 지원 플랫폼은 PICL 라이브러리를 제공하는 플랫폼에 의존한다. 
-
-| 운영체제                                                     | CPU                     | PICL 라이브러리 |
-| ------------------------------------------------------------ | ----------------------- | --------------- |
-| **AIX**                                                      |                         |                 |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AIX 5.3<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AIX 6.1<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AIX 7.1 | PowerPC                 | aix-ppc64-5.so  |
-| **HP-UX**                                                    |                         |                 |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HP-UX  11.31                   | Itanium (IA-64)         | hpux-ia64-11.sl |
-| **Linux**                                                    |                         |                 |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Red Hat Enterprise Linux 6.0   | x86-64                  | linux-x64.so    |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Red Hat Enterprise Linux 6.5   | PowerPC                 | linux-ppc64.so  |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Red Hat Enterprise Linux 7.2   | PowerPC (Little Endian) | linux-ppc64.so  |
-
-AIX 7.3, RHEL 8 등 위 표에 명시되지 않은 운영체제 버전에서 PICL 라이브러리가 동작하는 지 확인하는 방법이다. 
-
-##### PICL 라이브러리의 동작 여부를 확인하는 방법
-
-1️⃣ $ALTIBASE_HOME/altiMon 디렉토리로 이동한다. 
-
-  ```bash
-$ cd $ALTIBASE_HOME/altiMon
-  ```
-
-2️⃣ java 명령어로 PICL 라이브러리의 동작 여부를 확인한다.
-
-위 표에서 해당하는 운영체제의 PICL 라이브러리 파일명을 확인하고 아래 명령어를 수행한다. 반드시 $ALTIBASE_HOME/altiMon 디렉토리 아래에서 수행해야 한다. 
-
-~~~bash
-$ java -Dpicl="<picl_lib_file>" -jar lib/com.altibase.picl.jar
-~~~
-
-> 수행 예
-
-~~~bash
-$ java -Dpicl="linux-x64.so" -jar lib/com.altibase.picl.jar 
-===========================================================
-Platform Information Collection Library-PICL Testing Module
-===========================================================
-
-Initializing PICL(Platform Information Collection Library)...
-PICL Library : linux-x64.so
-
-----------
-Process ID
-----------
-Altibase Process : /home/altibase/altibase_home/bin/altibase
-PID : 5230
-...중략... 
-~~~
-
-
-
-## altiMon 시작 및 중지
-
-### altiMon 시작
-
-1️⃣ JAVA_HOME 환경 변수를 설정한다.
-
-2️⃣ altiMon 시작 명령을 수행한다.
-
-~~~bash
-$ altimon.sh start
-~~~
-
-3️⃣ altiMon 시작이 실패하면 \$ALTIBASE_HOME/altiMon/logs/altimon.log 파일을 확인한다.
-
-
-
-### altiMon 중지
-
-~~~bash
-$ altimon.sh stop
-~~~
-
-
-
-## altiMon 설정
-
-altiMon을 사용하기 위해 \$ALTIBASE_HOME/altiMon 디렉토리의 conf 디렉토리에 있는 아래의 파일들을 설정한다. 설정 파일들은 모두 XML 문서이다.
-
--   [config.xml](#config.xml)
-
--   [Metrics.xml](#metrics.xml)
-
--   [GroupMetrics.xml](#groupmetrics.xml)
-
-### config.xml
-
-altiMon 수행과 관련한 설정과 모니터링 대상인 Altibase 서버의 정보를 설정하는 파일이다. 루트 요소 \<configuration> (또는 \<config>) 태그를 시작으로 Altimon 요소와 Target 요소로 구성되어 있다. 
-
-~~~xml
-$ cat config.xml 
-<?xml version="1.0" encoding="UTF-8"?>
-
-<configuration>
-    
-    <!-- Altimon 요소 -->
-    <Altimon Name="rnd1" monitorOsMetric="true">
-        <!--<LogDir>logs</LogDir> -->
-        <DateFormat>yyyy-MM-dd HH:mm:ss</DateFormat>
-        <MaintenancePeriod>3<!-- days --></MaintenancePeriod>
-        <Interval>60<!-- seconds --></Interval>
-        <DBConnectionWatchdogCycle>60<!-- seconds --></DBConnectionWatchdogCycle>
-    </Altimon>
-    
-    <!-- Target 요소 -->
-    <Target Name="Altibase1">
-        <!--<HomeDirectory>/home/altibase/altibase_home</HomeDirectory> -->
-        <!--<User>sys</User> -->
-        <Password Encrypted="No">manager</Password>
-        <Port>20300</Port>
-        <DbName>mydb</DbName>
-        <NLS>KSC5601</NLS>
-        <IPv6>FALSE</IPv6>
-        <ConnectionProperties>login_timeout=3</ConnectionProperties>
-    </Target>
-    
-</configuration>
-~~~
-
-#### altiMon 실행 설정
-
-config.xml에서 <Altimon ...> 요소는 altiMon 로그 출력 형식, 로그 파일 삭제 주기, 모니터링 주기와 같은 altiMon 실행과 관련된 설정을 정의한다. 이 요소는 두 개의 속성과 4개의 하위 요소를 가진다.
-
-> **속성**
-
-| 속성 이름                                                    | 설명                                                         |
-| :----------------------------------------------------------- | :----------------------------------------------------------- |
-| Name                                                         | 사용자가 임의로 설정하는 altiMon의 고유 이름이다. 현재는 별다른 용도가 없으며 추후 기능 확장 시 사용될 예정이다. |
-| monitorOsMetric&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Metrics.xml 파일에서 OSMetric 요소를 사용할 것인지 설정한다. true 또는 false 값을 가지며 기본값은 true이다.<br />- true  : 사용한다. PICL 라이브러리가 필요하다. <br />- false : 사용하지 않는다. OS 자원을 감시할 필요가 없거나 PICL C 라이브러리가 제공되지 않는 환경에서 설정한다. |
-
-> **하위 요소**
-
-아래 표의 태그는 <Altimon ...> 요소 아래에 중첩된 하위 요소로 사용된다.
-
-| 태그 이름                     | 설명                                                         |
-| :---------------------------- | :----------------------------------------------------------- |
-| \<LogDir\>                    | altiMon 로그 파일이 생성될 경로를 설정한다. 기본값은 logs 이며, 이 태그를 추가하지 않으면 $ALTIBASE_HOME/altiMon/logs로 설정된다. $ALTIBASE_HOME/altiMon 아래에 logs 디렉토리가 존재하지 않으면 altiMon을 시작할 때 생성한다. 값은 절대 경로나 $ALTIBASE_HOME/altiMon/ 아래에 생성할 디렉토리 이름을 사용할 수 있다. |
-| \<DateFormat\>                | altiMon 로그의 날짜 형식을 설정한다. 기본값은 yyyy-MM-dd HH:mm:ss 이다. 설정 가능한 날짜 형식은 [자바 SimpleDateFormat 클래스의 날짜 형식](http://docs.oracle.com/javase/1.5.0/docs/api/java/text/SimpleDateFormat.html)을 참고한다. |
-| \<MaintenancePeriod\>         | altiMon 로그 파일의 보관 기간을 설정한다. 기본값은 3이고 단위는 일(day)이다. |
-| \<Interval\>                  | altiMon의 모니터링 데이터 수집 주기를 설정한다. 기본값은 60이고 단위는 초(second)이다. <br />Metrics.xml 파일의 \<OSMetric\> 또는 \<SQLMetric\> 요소에서 Interval 속성을 설정하지 않으면 이 값이 적용된다. GroupMetrics.xml 파일의 \<GroupMetric\> 요소에서는 이 값의 영향을 받지 않는다. |
-| \<DBConnectionWatchdogCycle\> | Altibase 서버로의 접속 시도 주기를 설정한다. Altibase 서버가 중지되었을 때 altiMon은 이 값에 따라 주기적으로 Altibase 서버에 접속을 시도하므로 Altibase 서버가 시작되면 모니터링을 지속할 수 있다. 기본값은 60이고 단위는 초(second)이다. |
-
-
-
-#### Altibase 서버 설정
-
-config.xml에서 <Target ...> 요소는 데이터베이스 사용자, 패스워드 등 altiMon으로 모니터링 할 Altibase 서버의 접속 정보를 설정한다. 이 요소는 한 개의 속성과 설정할 수 있는 속성과 8개의 하위 요소를 가진다.
-
-> **속성**
-
-| 속성 이름                                                    | 설명                                                         |
-| :----------------------------------------------------------- | :----------------------------------------------------------- |
-| Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Altibase 서버를 식별하기 위한 고유 이름으로 사용자가 임의로 설정 가능하다. 현재는 별다른 용도가 없으며 추후 기능 확장 시 사용될 예정이다. |
-
-> **하위 요소**
-
-아래 표의 태그는 Target 요소 아래에 중첩된 하위 요소로 사용된다.
-
-| 태그 이름                | 설명                                                         |
-| :----------------------- | :----------------------------------------------------------- |
-| \<HomeDirectory\>        | Altibase 서버의 홈 디렉토리를 절대 경로로 입력한다. 설정하지 않으면 환경변수 ALTIBASE_HOME 값이 적용된다. |
-| \<User\>                 | Altibase 서버에 접속할 데이터베이스 사용자를 입력한다. 설정하지 않으면 기본값인 SYS 사용자로 접속한다. |
-| \<Password Encrypted>    | 데이터베이스 사용자의 패스워드를 입력한다.<br />Encrypted 속성은 altiMon을 처음 시작하기 전에 "No" 값으로 설정해야 한다. 이후 altiMon을 시작하면  평문으로 입력한 패스워드가 암호화된 값으로 저장되며 Encrypted 속성의 값이 "Yes"로 변경된다. |
-| \<Port\>                 | Altibase 서버의 서비스 포트를 입력한다.                      |
-| \<NLS\>                  | 데이터베이스 클라이언트 캐릭터셋을 입력한다.                 |
-| \<DbName\>               | 데이터베이스 이름을 입력한다. 설정하지 않으면 기본값 mydb 로 설정된다.<br />데이터베이스 이름은 아래 문장으로 확인할 수 있다.<br />`SELECT DB_NAME FROM V$DATABASE; ` |
-| \<IPv6\>                 | IPv6 사용 여부를 설정한다. true 또는 false 값을 가지며 기본값은 false 이다.  <br />- true  : IPv6를 사용한다. Altibase 서버 프로퍼티 NET_CONN_IP_STACK이 1 또는 2일 때 설정할 수 있다.<br />- false : IPv6를 사용하지 않는다. |
-| \<ConnectionProperties\> | Altibase 서버 접속할 때 추가적인 연결 속성이 필요한 경우 `연결속성=값;연결속성=값;...` 형식으로 입력한다. 사용할 수 있는 연결 속성은 [JDBC User's Manual](https://github.com/ALTIBASE/Documents/blob/master/Manuals/Altibase_trunk/kor/JDBC%20User's%20Manual.md#%EC%97%B0%EA%B2%B0-%EC%A0%95%EB%B3%B4)을 참고한다.<br />예) `<ConnectionProperties>login_timeout=3;fetch_timeout=60</ConnectionProperties>` |
-
-
-
-### Metrics.xml
-
-CPU 및 메모리 사용률 등의 운영체제 자원과 Altibase 서버의 상태를 감시하기 위한 질의문을 설정하는 파일이다. 루트 요소 \<Metrics> 태그를 시작으로 CommandMetric 요소, OSMetric  요소, SQLMetric 요소로 구성되어 있다. 각 요소는 모니터링 항목에 따라 여러 번 사용할 수 있다.
-
-~~~xml
-$ cat Metrics.xml | more
-<?xml version="1.0" encoding="UTF-8"?>
-
-<Metrics>
-    
-    <!-- CommandMetric 요소 --> 
-    <CommandMetric Name='MEM_VSZ'>
-        <Command>scriptsDir/vsz.sh</Command>
-        <Alert Activate='true' ComparisonType='gt'>
-            <WarningThreshold Value='100000000'>
-                <ActionScript>mem_act.sh</ActionScript>
-            </WarningThreshold>
-        </Alert>
-    </CommandMetric>
-    <CommandMetric></CommandMetric>    
-    <CommandMetric></CommandMetric>        
-    
-    <!-- OSMetric 요소 --> 
-    <OSMetric Name='PROC_CPU_USER' Activate='true'>
-        <Alert Activate='true' ComparisonType='gt'>
-            <WarningThreshold Value='80' >
-                <ActionScript>cpu_act.sh</ActionScript>
-            </WarningThreshold>
-        </Alert>
-    </OSMetric>
-    <OSMetric></OSMetric>
-    <OSMetric></OSMetric>    
-    
-    <!-- SQLMetric 요소 --> 
-    <SQLMetric Name='MEM_DATABASE_USAGE' Activate='true' Interval='30'>
-        <Query>
-            select
-            trunc(mem_alloc_page_count*32/1024, 2) as alloc_mem_mb,
-            trunc(mem_free_page_count*32/1024, 2) as free_mem_mb
-            from v$database
-        </Query>
-        <Alert Activate='true' ComparisonColumn='ALLOC_MEM_MB' ComparisonType='GT'>
-            <CriticalThreshold Value='8000' >
-                <ActionScript>db_usage.sh</ActionScript>
-            </CriticalThreshold>
-        </Alert>
-    </SQLMetric>
-    <SQLMetric></SQLMetric>
-    <SQLMetric></SQLMetric>    
-
-</Metrics>    
-~~~
-
-
-
-#### 사용자 정의 운영체제 자원 모니터링(CommandMetric)
-
-Metrics.xml에서 <CommandMetric ...> 요소는 사용자가 직접 감시할 운영체제 자원을 정의할 수 있게 지원하는 모니터링 요소이다. PICL 라이브러리가 필요한 OSMetric 요소를 사용할 수 없는 환경에서 사용자가 직접 운영체제 명령어로 자원을 감시할 수 있다. OSMetric 요소에서 지원하지 않는 항목을 CommandMetric 요소에 추가할 수도 있다. 
-
-> **속성**
-
-CommandMetric 요소에서 사용할 수 있는 속성이다. 이 속성들은 OSMetric 요소, SQLMetric 요소에서도 동일하게 사용할 수 있다.
-
-| 속성 이름   | 설명                                                         |
-| ----------- | ------------------------------------------------------------ |
-| Name        | CommandMetric 요소는 여러 개 사용할 수 있으며 각 요소를 식별하기 위한 고유 이름을 설정한다. 이 요소의 로그 는 *Name*.log 로 생성된다. |
-| Description | 사용자가 임의의 설명을 기록하기 위한 항목이다.               |
-| Activate    | 해당 CommandMetric 요소를 수집할 것인지 설정한다. true 또는 false 값을 가지며 기본값은 true이다.<br />- true  : 해당 CommandMetric 요소를 수집한다.<br />- false : 해당 CommandMetric 요소를 수집하지 않는다. |
-| Interval    | 데이터 수집 주기. 단위는 초(second)이다.<br/>설정하지 않으면 config.xml에서 Altimon 요소의 \<Interval> 에 설정한 값을 따른다. |
-| Logging     | 데이터 수집 결과를 파일에 기록할 것인지 설정한다. true 또는 false 값을 가지며 기본값은 true이다.<br />- true : 데이터 수집 정보를 파일에 기록한다.<br />- false : 데이터 수집 정보를 파일에 기록하지 않는다. 단, 하위 요소로 <Alert …> 태그가 활성화되었다면, alert 정보는 이 설정과 무관하게 기록된다. |
-
-> **하위 요소**
-
-여러 하위 요소가 있으나 여기서는 CommandMetric 요소에서만 사용할 수 있는 하위 요소를 소개하고 다른 하위 요소는 [공통 하위 요소](#공통-하위-요소) 에서 설명한다.
-
-| 태그 이름  | 설명                                                         |
-| ---------- | ------------------------------------------------------------ |
-| \<Command> | 수행할 명령어 또는 스크립트 파일 경로를 절대 경로 또는 상대 경로로 입력한다. 상대 경로의 기준은 $ALTIBASE_HOME/altiMon 디렉토리이다. 예를 들어, 절대 경로 입력 방식은 $ALTIBASE_HOME/altiMon/scriptsDir/cpuUsageWithTop.sh이고 상대 경로 입력 방식은 scriptsDir/cpuUsageWithTop.sh만 입력하면 된다.<br />공통 하위 요소 중 <Alert …> 태그를 설정하려면 이 항목의 결과 값이 숫자여야 한다. |
-
-
-
-#### 미리 정의된 운영체제 자원 모니터링(OSMetric)
-
-Metrics.xml에서 <OSMetric ...> 요소는Altibase에서 미리 정의한 운영체제 자원을 감시하도록 제공하는 모니터링 요소이다. 
-
-감시 대상인 운영체제 자원은 아래와 같다. 
-
-- CPU
-- 메모리
-- 스왑(swap)
-- 디스크
-
-> **속성**
-
-[CommandMetric 요소에서 사용하는 속성](#속성-4)과 동일하다. 다만, Name은 PICL 라이브러리에서 미리 정의한 이름을 사용해야 한다.
-
-| Name으로 사용할 수 있는 값 | 설명                                                         |
-| -------------------------- | ------------------------------------------------------------ |
-| TOTAL_CPU_USER             | 사용자 모드(user mode)에서 CPU 사용률(%)                     |
-| TOTAL_CPU_KERNEL           | 커널 모드(kernel mode)에서 CPU 사용률(%)                     |
-| PROC_CPU_USER              | 사용자 모드(user mode)에서 Altibase 프로세스의 CPU 사용률(%) |
-| PROC_CPU_KERNEL            | 커널 모드(kernel mode)에서 Altibase 프로세스의 CPU 사용률(%) |
-| TOTAL_MEM_FREE             | 사용할 수 있는 메인 메모리(RAM)의 크기(KB)                   |
-| TOTAL_MEM_FREE_PERCENTAGE  | 사용할 수 있는 메인 메모리(RAM)의 비율(%)                    |
-| PROC_MEM_USED              | Altibase 프로세스가 사용중인 메인 메모리(RSS)의 크기(KB)     |
-| PROC_MEM_USED_PERCENTAGE   | Altibase 프로세스가 사용중인 메인 메모리(RSS)의 비율(%)      |
-| SWAP_FREE                  | 사용 가능한 SWAP의 크기(KB)                                  |
-| SWAP_FREE_PERCENTAGE       | 전체 SWAP 공간에서 사용 가능한 SWAP의 비율(%)                |
-| DISK_FREE                  | 지정한 디스크에서 사용되지 않은 디스크의 크기(KB). <br />이 값을 사용할 때는 <Disk Name ...> 하위 요소가 반드시 필요하다. |
-| DISK_FREE_PERCENTAGE       | 지정한 디스크에서 사용되지 않은 디스크의 비율(%). <br />이 값을 사용할 때는 <Disk Name ...> 하위 요소가 반드시 필요하다. |
-
-> **하위 요소**
-
- [공통 하위 요소](#공통-하위-요소)를 참고한다.
-
-#### Altibase 서버 상태 모니터링(SQLMetric)
-
-Metrics.xml에서 <SQLMetric ...> 요소는 Altibase 서버 상태를 수집할 수 있게 제공하는 모니터링 요소이다.
-
-> **속성**
-
-[CommandMetric 요소에서 사용하는 속성](#속성-4)과 동일하다. 
-
-> **하위 요소**
-
-여러 하위 요소가 있으나 여기서는 SQLMetric 요소에서만 사용할 수 있는 하위 요소를 소개하고 다른 하위 요소는 [공통 하위 요소](#공통-하위-요소)를 참고한다.
-
-| 태그 이름 | 설명                                                         |
-| --------- | ------------------------------------------------------------ |
-| \<Query\> | 모니터링 쿼리를 입력한다. 이 쿼리는 반드시 하나의 row를 조회하는 SELECT 문이어야 한다. |
-
-
-
-#### 공통 하위 요소
-
-CommandMetric, OSMetric, SQLMetric 요소에서 공통적으로 사용할 수 있는 하위 요소를 설명한다. 각 하위 요소는 아래와 같이 중첩적으로 사용된다. 
-
-~~~xml
-<Alert Activate='...' ComparisonColumn='...' ComparisonType='...'>
-    <WarningThreshold Value='...'>
-        <ActionScript>script_name</ActionScript>
-    </WarningThreshold>
-</Alert>
-~~~
-
-| 태그 이름                                       | 속성 이름        | 설명                                                         |
-| ----------------------------------------------- | ---------------- | ------------------------------------------------------------ |
-| <Alert …>                                       |                  | 이 요소는 선택 항목으로, 모니터링 요소의 출력 값이 사용자가 정의한 한계 설정을 만족할 때 별도의 로그 $ALTIBASE_HOME/altiMon/logs/alert.log에 기록하는 기능이다. |
-|                                                 | Activate         | <Alert …>의 수행 여부를 설정한다. true 또는 false 값을 가지며 기본값은 true이다.<br />- true : alert 기능을 사용한다. 하위 요소로 <WarningThreshold …> 또는 <CriticalThreshold …>가 반드시 필요하다. <br />- false : alert 기능을 사용하지 않는다. |
-|                                                 | ComparisonColumn | 이 속성은 ***SQLMetric에서만*** 사용할 수 있다. SQLMetric에서 조회한 컬럼을 입력해야 한다. 컬럼의 값은 <WarningThreshold …> 또는 <CriticalThreshold …>의 Value 속성과 비교 가능한 10진수 숫자여야 한다. |
-|                                                 | ComparisonType   | 모니터링 요소의 출력 값과 <WarningThreshold …> 또는 <CriticalThreshold …>의 Value 속성과 비교할 비교 연산자를 입력한다.<br />- eq : 모니터링 요소의 출력 값과 한계값이 같을 때<br/>- ne : 모니터링 요소의 출력 값이 한계값과 같지 않을 때 <br/>- gt : 모니터링 요소의 출력 값이 한계값보다 클 때<br/>- ge : 모니터링 요소의 출력 값이 한계값보다 크거나 같을 때<br/>- lt : 모니터링 요소의 출력 값이 한계값보다 작을 때<br/>- le : 모니터링 요소의 출력 값이 한계값보다 작거나 같을 때 |
-| <WarningThreshold …> 또는 <CriticalThreshold …> |                  | <Alert …>의 하위 요소로 경보 종류를 선택한다. <WarningThreshold …> 일 때 alert.log의 첫 번째 열은 WARNING이고 <CriticalThreshold …>이면 CRITICAL이다. <br />Activate 속성값이 true이면 반드시 이 요소를 사용해야 한다. |
-|                                                 | Value            | 모니터링 요소의 한계 값을 10진수 숫자로 설정한다.            |
-| \<ActionScript\>                                |                  | <WarningThreshold …> 또는 <CriticalThreshold …>의 하위 요소로, 모니터링 요소의 출력 값이 사용자가 정의한 한계 조건에 해당할 때 수행할 스크립트 파일 이름을 입력한다. 이 파일은 미리 작성되어 있어야 하며 $ALTIBASE_HOME/altiMon/action_scripts 디렉토리에 위치해야 한다. 스크립트 수행 시 각 모니터링 요소의 Name 속성과 alert 종류, 한계 값, 모니터링 요소의 결과 값이 인자로 전달된다. <br />스크립트 수행 결과는 $ALTIBASE_HOME/altiMon/action_logs/*actionscript_name*.log에 기록된다. action_logs의 파일들은 장애 원인 분석에 꼭 필요한 정보가 될 수 있어서 altiMon이 자동으로 삭제하지 않으므로 ***사용자가 직접 관리***해야 한다. |
-
-### GroupMetrics.xml
-
-Metrics.xml에 정의한 Command Metric과 OS Metric 그리고 SQL Metric을 사용자가 원하는 항목 별로 조합하여 하나의 파일에 저장하는 기능을 제공한다. GroupMetrics로 수집한 데이터는 $ALTIBASE_HOME/altiMon/logs 디렉토리에 CSV 파일 형식의 *GroupMetricName*.csv 이름으로 저장된다. Metrics.xml은 루트 요소 \<GroupMetrics> 태그를 시작으로 여러 개의 GroupMetric 요소로 구성할 수 있다.
-
-~~~xml
-<?xml version="1.0" encoding="UTF-8"?>
-
-<GroupMetrics>
-    <GroupMetric Name='group1' Interval='40'>
-        <Target MetricName='TOTAL_CPU_USER'/>
-        <Target MetricName='PROC_CPU_USER'/>
-        <Target MetricName='LOGFILE_COUNT'>
-            <Column Name='LOG_GAP' />
-        </Target>
-    </GroupMetric>
-    
-    <GroupMetric Name='group2' Interval='80'>
-        <Target MetricName='PROC_MEM_USED_PERCENTAGE'/>
-        <Target MetricName='MEM_TBL_USAGE'/>
-    </GroupMetric>
-</GroupMetrics>
-~~~
-
-다음은 GroupMetrics.xml에 설정할 수 있는 XML 요소와 속성에 대한 설명이다.
-
-> **속성**
-
-GroupMetric 요소에서 사용할 수 있는 속성이다. 이 속성들은 OSMetric 요소, SQLMetric 요소에서도 동일하게 사용할 수 있다.
-
-| 속성 이름 | 설명                                                         |
-| --------- | ------------------------------------------------------------ |
-| Name      | GroupMetric을 식별하는 고유한 이름으로 사용자가 임의로 설정 가능하다. 로그 파일 생성 시 이 이름이 사용된다. 예) *group1*.csv |
-| Activate  | GroupMetric 요소를 수집할 것인지 설정한다. true 또는 false 값을 가지며 기본값은 true이다.<br />- true  : 해당 CommandMetric 요소를 수집한다.<br />- false : 해당 CommandMetric 요소를 수집하지 않는다. |
-| Interval  | 데이터 수집 주기. 기본값은 60이며 단위는 초(second)이다.     |
-
-> **하위 요소**
-
-GroupMetric 요소 아래에 \<Target MetricName\>, \<Column Name\> 요소가 중첩적으로 사용된다.
-
-| 태그 이름             | 설명                                                         |
-| :-------------------- | :----------------------------------------------------------- |
-| \<Target MetricName\> | Group Metric에 포함할 모니터링 요소들을 지정한다. <br /><br />MetricName 속성에 Metrics.xml에서 정의한 Command Metric과 OSMetric 그리고 SQLMetric의 이름을 입력한다. OSMetric의 DISK_FREE와 DISK_FREE_PERCENTAGE를 입력할 때 'OSMetric Name'.'Disk Name'형식으로 입력해야 한다. 예) <Target MetricName='DISK_FREE.disk1'\> |
-| \<Column Name\>       | SQL Metric의 결과 중 일부 컬럼만 Group Metric에 포함하고 싶을 때 사용한다. 이 태그를 사용하지 않으면 SQL Metric에서 조회한 모든 컬럼이 Group Metric에 포함된다.<br /><br />Name 속성에 컬럼 이름을 입력한다. 컬럼 이름에 alias를 지정한 경우 alias를 입력한다. |
-
-
-
-## altiMon 로그
-
-altiMon 로그는 $ALTIBASE_HOME/altiMon/logs 아래에 생성된다. 
-
-### logs 디렉토리
-
-logs 디렉토리에 생성되는 파일은 아래와 같다.
-
-##### altimon.log  
-
-altiMon 시작/중지 과정의 로그와 altiMon 수행 중 예외 상황 발생 시 경고 또는 에러 메시지가 기록된다. 
-
-##### alert.log  
-
-Metrics.xml에서 \<Alert\> 설정에 해당하는 데이터를 기록하는 파일이다.
-
-~~~bash
-$ cat alert.log 
-WARNING | PROC_CPU_USER | 2022-11-21 17:21:48 | PROC_CPU_USER = [90.61]
-WARNING | PROC_CPU_USER | 2022-11-21 17:22:48 | PROC_CPU_USER = [90]
-WARNING | PROC_CPU_USER | 2022-11-21 17:23:48 | PROC_CPU_USER = [90]
-CRITICAL | DISK_FREE_PERCENTAGE.disk1 | 2022-11-21 17:24:46 | DISK_FREE_PERCENTAGE.disk1 = [99.22]
-WARNING | PROC_CPU_USER | 2022-11-21 17:24:46 | PROC_CPU_USER = [90]
-CRITICAL | DISK_FREE_PERCENTAGE.disk1 | 2022-11-21 17:25:46 | DISK_FREE_PERCENTAGE.disk1 = [99.22]
-~~~
-
-##### OsMetrics.log  
-
-Metrics.xml에서 설정한 OSMetric에 의해 수집된 데이터를 기록하는 파일이다.
-
-~~~bash
-2022-11-21 20:20:25 | TOTAL_MEM_FREE_PERCENTAGE = [40.35]
-2022-11-21 20:20:25 | SWAP_FREE = [94629696]
-2022-11-21 20:20:25 | DISK_FREE_PERCENTAGE.disk1 = [30.21]
-2022-11-21 20:20:25 | SWAP_FREE_PERCENTAGE = [96.26]
-2022-11-21 20:20:25 | TOTAL_MEM_FREE = [39970752]
-2022-11-21 20:20:25 | PROC_MEM_USED = [1010604]
-2022-11-21 20:20:25 | PROC_MEM_USED_PERCENTAGE = [1.02]
-2022-11-21 20:20:25 | PROC_CPU_KERNEL = [0]
-2022-11-21 20:20:25 | PROC_CPU_USER = [0]
-~~~
-
-##### [*SQLMetric_Name*].log  
-
-SQL Metric에 의해 수집된 데이터가 기록된 파일이다.
-
-~~~bash
--rw-rw-rw- 1 altibase altibase   15399 Nov 21 20:21 BUFFER_STAT.log
--rw-rw-rw- 1 altibase altibase   10701 Nov 21 20:21 STATEMENT_COUNT.log
--rw-rw-rw- 1 altibase altibase  451791 Nov 21 20:21 SESSION_EVENT.log
--rw-rw-rw- 1 altibase altibase 1320921 Nov 21 20:21 MEMSTAT_LIST.log
--rw-rw-rw- 1 altibase altibase  346347 Nov 21 20:21 DB_EVENT.log
--rw-rw-rw- 1 altibase altibase   86298 Nov 21 20:21 DATAFILE_STAT.log
--rw-rw-rw- 1 altibase altibase   32364 Nov 21 20:21 MEM_GC.log
--rw-rw-rw- 1 altibase altibase   28710 Nov 21 20:21 SERVICE_THREAD_MODE.log
-
-$ more BUFFER_STAT.log
-2022-11-21 13:39:42 |  VICTIM_FAILS = [0] READ_PAGES = [2]
-2022-11-21 13:40:42 |  VICTIM_FAILS = [0] READ_PAGES = [2]
-2022-11-21 13:41:42 |  VICTIM_FAILS = [0] READ_PAGES = [2]
-2022-11-21 13:42:42 |  VICTIM_FAILS = [0] READ_PAGES = [2]
-~~~
-
-##### [*GroupMetric_Name*].csv  
-
-Group Metric에 의해 수집된 데이터가 Metric별로 csv 파일에 기록된다.
-
-~~~bash
-$ cat group1.csv 
-"TIMESTAMP","TOTAL_CPU_USER","PROC_CPU_USER","LOGFILE_COUNT.LOG_GAP"
-"2022-11-21 13:39:42","8.01","0","0"
-"2022-11-21 13:40:22","0.81","0","0"
-"2022-11-21 13:41:02","0.82","0","0"
-"2022-11-21 13:41:42","0.79","0","0"
-"2022-11-21 13:42:22","0.69","0","0"
-~~~
-
-##### report.html  
-
-사용자가 설정한 altiMon 설정을 웹으로 확인할 수 있도록 제공하는 html 파일이다.
-
-<div align="left">
-    <img src="media/Utilities/altiMon_report_html.png">
-</div>
-
-### logs/archive 디렉토리
-
-logs 디렉토리의 altimon.log, \*.csv 제외한 모든 파일이 archive/YYYY-MM-DD 디렉토리로 매일 백업된다. 이 디렉토리 중에서 config.xml의 altiMon 실행 설정에서 \<MaintenancePeriod\>에서 설정한 기간이 지난 디렉토리는 매일 새벽 1시 50분에 삭제된다.
-
-### logs/csv_backup 디렉토리
-
-Group Metric에서 Target 설정이 변경되지 않으면 계속 같은 csv 파일에 데이터가 추가된다. 하지만 Target이 변경되면 기존의 csv 파일은 logs/csv_backup 디렉토리로 백업되고 같은 이름의 파일에 새로운 데이터가 기록된다.
-
-3.기타 Utilities
-==============
-
-## aku
-
-### 개요
-
-aku(Altibase Kubernetes Utility)는 쿠버네티스의 스테이트풀셋(Statefulset)에서 스케일링(scaling)할 때 파드(Pod) 생성 및 종료에 따라 Altibase의 데이터를 동기화하거나 동기화 정보를 초기화하는 등의 작업을 수행하는 유틸리티이다. *Altibase 7.1.0.8.1 부터 제공한다.*(Altibase 7.1 매뉴얼에 추가)
-
-스테이트풀셋은 데이터베이스처럼 상태 유지가 필요한 애플리케이션을 지원하기 위한 쿠버네티스의 워크로드 컨트롤러 중 하나이며, 스케일링은 파드를 생성하거나 종료하는 것을 의미한다. 파드는 컨테이너들을 담고 있는 쿠버네티스의 리소스이며, 이 컨테이너에 Altibase 서버가 실행된다. 스테이트풀셋에서 스케일 업/다운(scale up/down) 할 때 필요한 작업을 aku를 사용하여 수행할 수 있다. 
+스테이트풀셋에서 스케일 업/다운할 때 아래의 조건에 해당하는 파드를 생성하거나 종료하고자 할 때 aku 유틸리티를 사용할 수 있다. 이때, aku 유틸리티가 Altibase 컨테이너에서 실행되도록 적당한 위치에 명령어를 추가해야 한다.
 
 ###### 스케일 업
 
@@ -2520,19 +2032,20 @@ aku(Altibase Kubernetes Utility)는 쿠버네티스의 스테이트풀셋(Statef
 
 파드를 종료할 때 Altibase 서버의 이중화 정보를 초기화한다. 
 
-파드 생성 또는 종료 시점에 위의 작업들을 수행하기 위해서 aku 명령어를 Altibase 도커 이미지의 docker-entrypoint.sh 스크립트나 파드의 명세를 정의하는 yaml 파일에 추가할 수 있다.
 
-### 구성 요소
+## 구성 요소
 
-aku 유틸리티는 aku 실행 파일과 aku 설정 파일로 구성된다. aku를 실행하기 위해서 ALTIBASE_HOME 환경변수가 설정해야 한다.
+aku 유틸리티는 실행 파일과 설정 파일로 구성된다. 
+
+> ⚠️ 모든 파드에서 실행하는 aku 실행 파일은 같은 버전을 사용해야 하며 aku 설정 파일 내 프로퍼티도 같은 값을 가져야 한다. 일반적으로 aku 실행 파일과 aku 설정 파일은 Altibase 컨테이너 이미지에 포함되어 있다. 
 
 ###### aku 실행 파일
 
-실행 파일의 이름은 aku이며 $ALTIBASE_HOME/bin에 위치한다. 
+실행 파일의 이름은 aku이며 $ALTIBASE_HOME/bin에 위치한다. aku를 실행하려면 먼저 환경변수 ALTIBASE_HOME을 설정해야 한다.
 
 ###### aku 설정 파일
 
-aku를 실행하면 aku 설정 파일을 가장 먼저 읽어 Altibase 데이터 동기화에 필요한 정보를 얻는다. aku 설정 파일의 이름은 aku.conf이며 $ALTIBASE_HOME/conf에 위치해야 한다. Altibase 패키지에 aku.conf.sample 이름의 예제 파일을 제공하므로 aku 실행 파일을 실행하기 전에 이 파일을 참고하여 aku.conf를 생성해야 한다. aku 설정 파일의 내용은 아래와 같다. 
+aku를 실행하면 aku 설정 파일을 가장 먼저 읽어 Altibase 데이터 동기화에 필요한 정보를 얻는다. aku 설정 파일의 이름은 aku.conf이며 $ALTIBASE_HOME/conf에 위치해야 한다. Altibase 패키지에 aku.conf.sample 이름의 예제 파일을 제공하므로 aku를 실행하기 전에 이 파일을 참고하여 aku.conf를 생성해야 한다. aku 설정 파일의 내용은 아래와 같다. 
 
 ~~~bash
 # aku.conf.sample
@@ -2575,13 +2088,13 @@ REPLICATIONS = (
 | AKU_SYS_PASWWORD                     |  없음  | 데이터베이스 SYS 사용자 패스워드                             |
 | AKU_PORT_NO                          | 20300  | Altibase 서버의 서비스 포트.<br />설정할 수 있는 값의 범위는 1024 ~ 65535이다. |
 | AKU_REPLICATION_PORT_NO              | 20301  | Altibase 이중화 포트.<br />설정할 수 있는 값의 범위는 1024 ~ 65535이다. |
-||||
+|                                      |        |                                                              |
 | AKU_QUERY_TIMEOUT                    |  3600  | Altibase 서버 프로퍼티 QUERY_TIMEOUT를 의미한다. ALTER REPLICATION 등 aku에서 수행한 SQL의 수행 시간이 이 값을 초과하면 해당 문장은 취소된다. |
 |                                      |        |                                                              |
 | REPLICATIONS/REPLICATION_NAME_PREFIX |  없음  | aku가 생성하는 Altibase 이중화 객체 이름의 접두사.<br />최대 길이는 37바이트이다. |
 | REPLICATIONS/SYNC_PARALLEL_COUNT     |   1    | 이중화 SYNC 수행 시 송신/수신 쓰레드의 수.<br />1부터 100까지 설정할 수 있다. |
 | REPLICATIONS/USER_NAME               |  없음  | 이중화 대상 테이블의 소유자 이름.<br />여기에 명시한 데이터베이스 사용자는 `aku -p` 명령을 수행하기 전에 생성해야 한다. |
-| REPLICATIONS/TABLE_NAME              |  없음  | 이중화 대상 테이블 이름.<br />여기에 명시한 테이블은 `aku -p`명령을 수행하기 전에 생성해야 한다. |
+| REPLICATIONS/TABLE_NAME              |  없음  | 이중화 대상 테이블 이름으로, [테이블](https://github.com/ALTIBASE/Documents/blob/master/Manuals/Altibase_trunk/kor/Administrator's%20Manual.md#테이블-table)과 [파티션드 테이블](https://github.com/ALTIBASE/Documents/blob/master/Manuals/Altibase_trunk/kor/Administrator's%20Manual.md#파티션드-테이블partitioned-table)을 명시할 수 있다. <br />여기에 명시한 테이블은 `aku -p`명령을 수행하기 전에 생성해야 한다. |
 
 > aku 설정 파일 작성 시 주의사항
 
@@ -2595,21 +2108,21 @@ aku에서 생성하는 Altibase 이중화 객체 이름은 *REPLICATION_NAME_PRE
 
 이해를 돕기 위해 AKU_SERVER_COUNT가 4이고 REPLICATION_NAME_PREFIX가 AKU_REP 일 때, 각 파드에서 생성되는 이중화 객체 이름을 살펴보자. 
 
-- 파드-0 
+- *pod_name*-0 
   - AKU_REP_01 : *pod_name*-0과 *pod_name*-1의 Altibase 이중화
   - AKU_REP_02 : *pod_name*-0과 *pod_name*-2의 Altibase 이중화
   - AKU_REP_03 : *pod_name*-0과 *pod_name*-3의 Altibase 이중화
-- 파드-1
+- *pod_name*-1
   - AKU_REP_01 : *pod_name*-0과 *pod_name*-1의 Altibase 이중화
   - AKU_REP_12 : *pod_name*-1과 *pod_name*-2의 Altibase 이중화
   - AKU_REP_13 : *pod_name*-1과 *pod_name*-3의 Altibase 이중화
-- 파드-2 
+- *pod_name*-2 
   - AKU_REP_02 : *pod_name*-0과 *pod_name*-2의 Altibase 이중화
   - AKU_REP_12 : *pod_name*-1과 *pod_name*-2의 Altibase 이중화
   - AKU_REP_23 : *pod_name*-2과 *pod_name*-3의 Altibase 이중화
-- 파드-3 
+- *pod_name*-3 
   - AKU_REP_03 : *pod_name*-0과 *pod_name*-3의 Altibase 이중화
-  - AKU_REP_13 : *pod_name*-1과 *pod_name*-3의 Altibase 이중화
+  - AKU_REP_13 : *pod_name*-1과 *pod_name*-2의 Altibase 이중화
   - AKU_REP_23 : *pod_name*-2과 *pod_name*-3의 Altibase 이중화
 
 ~~~
@@ -2618,7 +2131,7 @@ aku에서 생성하는 Altibase 이중화 객체 이름은 *REPLICATION_NAME_PRE
 
 
 
-### 구문
+## 구문
 
 ~~~sql
 aku { -h | -v | -i | -p {pod_action} }
@@ -2626,7 +2139,7 @@ aku { -h | -v | -i | -p {pod_action} }
 
 
 
-### 파라미터
+## 파라미터
 
 ###### -h, --help
 
@@ -2658,10 +2171,6 @@ aku 설정 파일의 내용을 출력한다. 파일에 문법(syntax) 오류가 
 
   ''첫 번째 파드''는 쿠버네티스 스테이트플셋에서 생성한 첫 번째 파드(*pod_name*-0)를 말한다. aku에서는 마스터 파드(Master Pod)라고 부르며 여기서 수행한 aku를 ''MASTER AKU'라고 부르기도 한다. Altibase 이중화 객체는 모든 파드에 생성해야 하므로 스테이트풀셋에서 *pod_name*-0을 생성할 때도 `aku -p start` 명령을 수행해야 한다. 
 
-  <div align="left">
-      <img src="media/Utilities/aku_pod_0_only.jpg">
-  </div>
-
   1️⃣ aku.conf 파일을 읽는다.
 
   2️⃣ `AKU_SERVER_COUNT`-1만큼 Altibase 이중화 객체를 생성한다. 만약, 같은 이름의 이중화 객체가 존재한다면 이중화 생성 단계는 생략한다. 
@@ -2670,24 +2179,19 @@ aku 설정 파일의 내용을 출력한다. 파일에 문법(syntax) 오류가 
 
   4️⃣ *pod_name*-0에서 생성한 모든 이중화 객체를 대상으로 `ALTER REPLICATION replication_name START`를 수행한다. 하지만 다른 파드가 생성되기 전이기 때문에 이중화 시작은 실패한다. 다른 파드가 생성되고 이중화를 할 수 있는 준비가 되면 이중화가 시작된다. 이것은 정상적인 동작이다. 
 
-
   > **스케일 업(Scale up)**
 
   스테이트풀셋에서 스케일 업을 하면 파드가 생성된다. aku에서는 이러한 파드에서 수행한 aku를 "SLAVE AKU"로 표현하기도 한다. 하나의 파드는 생성과 종료를 반복할 수 있는데,  파드가 처음 생성될 때와 종료 후 다시 생성될 때 `aku -p start` 동작이 다르다. 아래 *pod_name*-1에서 수행한 예로 `aku -p start` 동작을 살펴보자. 
-
-  <div align="left">
-      <img src="media/Utilities/aku_scale_up_pod_n.jpg">
-  </div>
 
   1️⃣ aku.conf 파일을 읽는다.
 
   2️⃣  `AKU_SERVER_COUNT`-1만큼 Altibase 이중화 객체를 생성한다. 만약 *pod_name*-1이 다시 생성된 파드라면, 같은 이름의 이중화 객체가 존재할 수 있으며 이 단계는 생략된다. 
 
-  3️⃣ *pod_name*-1의 이중화 대상 테이블을 대상으로 TRUNCATE를 수행한다. 만약 *pod_name*-1이 다시 생성된 파드라면 *pod_name*-0과 *pod_name*-1에서 이중화 객체의 XSN 값을 확인하고 둘 중 하나라도 -1이 아니면 이 단계는 생략한다. 
+  3️⃣ 이중화 대상 서버인 모드 파드에 접속을 시도한다. 하지만 *pod_name*-0과의 접속만 성공하고 *pod_name*-2, ..., *pod_name*-n은 생성되기 전이기 때문에 접속 에러가 발생한다. 이는 정상적인 동작이다. 
 
-  4️⃣ 이중화 대상 서버인 모드 파드에 접속을 시도한다. 하지만 *pod_name*-0과의 접속만 성공하고 *pod_name*-2, *pod_name*-3은 생성되기 전이기 때문에 접속 에러가 발생한다. 이는 정상적인 동작이다. 
+  4️⃣ *pod_name*-1의 이중화 대상 테이블을 대상으로 TRUNCATE를 수행한다. 만약 *pod_name*-1이 다시 생성된 파드라면, *pod_name*-0과 *pod_name*-1이 정상적으로 이중화가 가능한 상태인지 확인한다. 이중화를 다시 시작할 수 있는 상태이면 이 단계는 생략하고 다시 시작할 수 없는 상태이면 이 단계를 진행한다.
 
-  5️⃣  *pod_name*-1에서 *pod_name*-0에게 *pod_name-0*에서 *pod_name*-1로 이중화 SYNC를 요청한다. 만약 *pod_name*-1이 다시 생성된 파드라면*pod_name*-0과 *pod_name*-1에서 이중화 객체의 XSN 값을 확인하고 둘 중 하나라도 -1이 아니면 이 단계와 다음의 SYNC 수행은 생략한다. 
+  5️⃣ *pod_name*-1에서 *pod_name*-0으로 이중화 SYNC를 요청한다. 만약 *pod_name*-1이 다시 생성된 파드라면, *pod_name*-0과 *pod_name*-1이 정상적으로 이중화가 가능한 상태인지 확인한다. 이중화를 다시 시작할 수 있는 상태이면 이 단계는 생략하고 다시 시작할 수 없는 상태이면 이 단계를 진행한다.
 
   6️⃣ *pod_name*-0에서 *pod_name*-1로 이중화 SYNC를 수행한다. 
 
@@ -2704,10 +2208,6 @@ aku 설정 파일의 내용을 출력한다. 파일에 문법(syntax) 오류가 
 
   Altibase 이중화를 중지하고 초기화하는 작업을 수행한다. 파드를 종료할 때 이용할 수 있다. 
 
-  <div align="left">
-      <img src="media/Utilities/aku_scale_down.jpg">
-  </div>
-
   1️⃣ 해당 파드와 이중화로 연결된 모든 파드에 접속을 시도한다. 해당 번호보다 높은 번호의 파드는 이미 삭제된 상태이기 때문에 접속 에러가 발생할 수 있다. 이는 정상적인 동작이다.
 
   2️⃣ 해당 파드의 이중화 객체와 관련한 모든 파드에 `ALTER REPLICATION replication_name STOP` 수행을 요청한다.
@@ -2721,9 +2221,9 @@ aku 설정 파일의 내용을 출력한다. 파일에 문법(syntax) 오류가 
 
 - `clean`
 
-  파드에서 Altibase 이중화 객체를 모두 삭제한다. 사용자가 필요시 수행할 수 있다.
+  파드에서 Altibase 이중화 객체를 모두 삭제한다. 더 이상 파드 간에 동기화를 할 필요가 없을 때 사용한다. 
 
-### 주의사항
+## 주의사항
 
 > akp -p end 명령이 완료되기 전에 파드가 종료되었다면
 
@@ -2772,7 +2272,7 @@ AKU_REP_01                      -1
 No rows selected.
 ~~~
 
-### 제약사항
+## 제약사항
 
 aku 유틸리티를 안정적으로 사용하기 위해 쿠버네티스 환경 설정 시 반드시 지켜야 할 조건이다. 
 
@@ -2782,7 +2282,7 @@ aku 유틸리티를 안정적으로 사용하기 위해 쿠버네티스 환경 �
 - 스케일 업할 수 있는 레플리카는 **최대 4개**이다.
 - 파드 종료 시 aku 수행을 완료할 수 있는 시간을 확보해야 한다. 따라서, 쿠버네티스에서 파드를 강제 종료하는 대기 시간인 terminationGracePeriodSeconds를 충분히 크게 설정해야 한다.
 
-### 사용 예
+## 사용 예
 
 ##### 예시 1
 
@@ -2837,7 +2337,7 @@ $ aku -i
 ~~~bash
 $ aku -p start
 MASTER AKU Initialize
-[Error][akuDbConnect:344] Failed to execute SQLDriverConnect: AKUHOST-1
+[Error][akuDbConnect:344] Failed to execute SQLDriverConnect: AKUHOST-1.altibase.svc
   Diagnostic Record 1
     SQLSTATE     : 08001
     Message text : Client unable to establish connection. (Failed to invoke the connect() system function, errno=111)
@@ -2886,7 +2386,7 @@ AKUHOST-0.altibase-svc: REPLICAION AKU_REP_03 Start Failure
 MASTER AKU Initialize
 
 # 다른 파드가 아직 생성되지 않은 상태이므로 첫 번째 파드에서 다른 파드로의 접속이 실패한다.   
-[Error][akuDbConnect:344] Failed to execute SQLDriverConnect: AKUHOST-1
+[Error][akuDbConnect:344] Failed to execute SQLDriverConnect: AKUHOST-1.altibase.svc
   Diagnostic Record 1
     SQLSTATE     : 08001
     Message text : Client unable to establish connection. (Failed to invoke the connect() system function, errno=111)
@@ -2961,11 +2461,527 @@ AKUHOST-3.altibase-svc: REPLICAION AKU_REP_13 RESET Success
 AKUHOST-3.altibase-svc: REPLICAION AKU_REP_23 RESET Success
 ~~~
 
+# 4. altiMon
 
+## 개요
+
+Altibase 서버 상태와 Altibase 서버가 구동 된 운영체제의 자원 상태를 수집하는 모니터링 유틸리티로, 운영체제의 자원 상태를 수집하기 위해 자체 제작한 PICL(Platform Information Collection Library) 라이브러리와 JDBC 드라이버 기반의 자바 애플리케이션이다. altiMon에서 수집한 데이터는 데이터베이스 장애 발생 시 장애 원인을 추적하는데 이용할 수 있다. 
+
+altiMon의 모니터링 요소는 3가지로 나뉜다. 각 요소에 대한 보다 자세한 것은 [altiMon 설정 - Metrics.xml](#metricsxml)에서 설명한다.
+
+- [OS Metric](#osmetric-요소) : Altibase의 PICL 라이브러리에서 미리 정의된 운영체제의 자원 상태
+- [Command Metric](commanemetric-요소) : 사용자가 정의한 운영체제의 자원 상태
+- [SQL Metric](sqlmetric-요소) : 사용자가 정의한 Altibase 서버 상태
+
+<br/>
+
+## 구문
+
+~~~bash
+altimon.sh {start | stop}
+~~~
+
+<div align="left">
+    <img src=media/Utilities/9f7b2fa1105d33ea554edb062ca8b96f.png>
+</div>
+
+<br/>
+
+## 파라미터
+
+| 파라미터 | 설명         |
+| -------- | ------------ |
+| start    | altimon 시작 |
+| stop     | altimon 종료 |
+
+<br/>
+
+## 시스템 요구사항
+
+### 자바
+
+- Oracle, OpenJDK 또는 IBM Java Runtime Environment 8 이상 
+- 64비트 자바
+
+### 지원 플랫폼
+
+altiMon의 지원 플랫폼은 PICL 라이브러리를 제공하는 플랫폼에 의존한다. 
+
+| 운영체제                                                     | CPU                     | PICL 라이브러리 |
+| ------------------------------------------------------------ | ----------------------- | --------------- |
+| **AIX**                                                      |                         |                 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AIX 5.3<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AIX 6.1<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AIX 7.1 | PowerPC                 | aix-ppc64-5.so  |
+| **HP-UX**                                                    |                         |                 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HP-UX  11.31                   | Itanium (IA-64)         | hpux-ia64-11.sl |
+| **Linux**                                                    |                         |                 |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Red Hat Enterprise Linux 6.0   | x86-64                  | linux-x64.so    |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Red Hat Enterprise Linux 6.5   | PowerPC                 | linux-ppc64.so  |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Red Hat Enterprise Linux 7.2   | PowerPC (Little Endian) | linux-ppc64.so  |
+
+AIX 7.3, RHEL 8 등 위 표에 명시되지 않은 운영체제 버전에서 PICL 라이브러리가 동작하는 지 확인하는 방법이다. 
+
+##### PICL 라이브러리의 동작 여부를 확인하는 방법
+
+1️⃣ $ALTIBASE_HOME/altiMon 디렉토리로 이동한다. 
+
+  ```bash
+$ cd $ALTIBASE_HOME/altiMon
+  ```
+
+2️⃣ java 명령어로 PICL 라이브러리의 동작 여부를 확인한다.
+
+위 표에서 해당하는 운영체제의 PICL 라이브러리 파일명을 확인하고 아래 명령어를 수행한다. 반드시 $ALTIBASE_HOME/altiMon 디렉토리 아래에서 수행해야 한다. 
+
+~~~bash
+$ java -Dpicl="<picl_lib_file>" -jar lib/com.altibase.picl.jar
+~~~
+
+> 수행 예
+
+~~~bash
+$ java -Dpicl="linux-x64.so" -jar lib/com.altibase.picl.jar 
+===========================================================
+Platform Information Collection Library-PICL Testing Module
+===========================================================
+
+Initializing PICL(Platform Information Collection Library)...
+PICL Library : linux-x64.so
+
+----------
+Process ID
+----------
+Altibase Process : /home/altibase/altibase_home/bin/altibase
+PID : 5230
+...중략... 
+~~~
+
+<br/>
+
+## altiMon 시작 및 중지
+
+### altiMon 시작
+
+1️⃣ JAVA_HOME 환경 변수를 설정한다.
+
+2️⃣ altiMon 시작 명령을 수행한다.
+
+~~~bash
+$ altimon.sh start
+~~~
+
+3️⃣ altiMon 시작이 실패하면 \$ALTIBASE_HOME/altiMon/logs/altimon.log 파일을 확인한다.
+
+
+
+### altiMon 중지
+
+~~~bash
+$ altimon.sh stop
+~~~
+
+<br/>
+
+## altiMon 설정
+
+altiMon을 사용하기 위해 \$ALTIBASE_HOME/altiMon 디렉토리의 conf 디렉토리에 있는 아래의 파일들을 설정한다. 설정 파일들은 모두 XML 문서이다.
+
+-   [config.xml](#config.xml)
+
+-   [Metrics.xml](#metrics.xml)
+
+-   [GroupMetrics.xml](#groupmetrics.xml)
+
+### config.xml
+
+altiMon 수행과 관련한 설정과 모니터링 대상인 Altibase 서버의 정보를 설정하는 파일이다. 루트 요소 \<configuration> (또는 \<config>) 태그를 시작으로 Altimon 요소와 Target 요소로 구성되어 있다. 
+
+~~~xml
+$ cat config.xml 
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    
+    <!-- Altimon 요소 -->
+    <Altimon Name="rnd1" monitorOsMetric="true">
+        <!--<LogDir>logs</LogDir> -->
+        <DateFormat>yyyy-MM-dd HH:mm:ss</DateFormat>
+        <MaintenancePeriod>3<!-- days --></MaintenancePeriod>
+        <Interval>60<!-- seconds --></Interval>
+        <DBConnectionWatchdogCycle>60<!-- seconds --></DBConnectionWatchdogCycle>
+    </Altimon>
+    
+    <!-- Target 요소 -->
+    <Target Name="Altibase1">
+        <!--<HomeDirectory>/home/altibase/altibase_home</HomeDirectory> -->
+        <!--<User>sys</User> -->
+        <Password Encrypted="No">manager</Password>
+        <Port>20300</Port>
+        <DbName>mydb</DbName>
+        <NLS>KSC5601</NLS>
+        <IPv6>FALSE</IPv6>
+        <ConnectionProperties>login_timeout=3</ConnectionProperties>
+    </Target>
+    
+</configuration>
+~~~
+
+> #### altiMon 실행 설정
+
+config.xml에서 <Altimon ...> 요소는 altiMon 로그 출력 형식, 로그 파일 삭제 주기, 모니터링 주기와 같은 altiMon 실행과 관련된 설정을 정의한다. 이 요소는 두 개의 속성과 4개의 하위 요소를 가진다.
+
+**속성**
+
+| 속성 이름                                                    | 설명                                                         |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| Name                                                         | 사용자가 임의로 설정하는 altiMon의 고유 이름이다. 현재는 별다른 용도가 없으며 추후 기능 확장 시 사용될 예정이다. |
+| monitorOsMetric&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Metrics.xml 파일에서 OSMetric 요소를 사용할 것인지 설정한다. true 또는 false 값을 가지며 기본값은 true이다.<br />- true  : 사용한다. PICL 라이브러리가 필요하다. <br />- false : 사용하지 않는다. OS 자원을 감시할 필요가 없거나 PICL C 라이브러리가 제공되지 않는 환경에서 설정한다. |
+
+**하위 요소**
+
+아래 표의 태그는 <Altimon ...> 요소 아래에 중첩된 하위 요소로 사용된다.
+
+| 태그 이름                     | 설명                                                         |
+| :---------------------------- | :----------------------------------------------------------- |
+| \<LogDir\>                    | altiMon 로그 파일이 생성될 경로를 설정한다. 기본값은 logs 이며, 이 태그를 추가하지 않으면 $ALTIBASE_HOME/altiMon/logs로 설정된다. $ALTIBASE_HOME/altiMon 아래에 logs 디렉토리가 존재하지 않으면 altiMon을 시작할 때 생성한다. 값은 절대 경로나 $ALTIBASE_HOME/altiMon/ 아래에 생성할 디렉토리 이름을 사용할 수 있다. |
+| \<DateFormat\>                | altiMon 로그의 날짜 형식을 설정한다. 기본값은 yyyy-MM-dd HH:mm:ss 이다. 설정 가능한 날짜 형식은 [자바 SimpleDateFormat 클래스의 날짜 형식](http://docs.oracle.com/javase/1.5.0/docs/api/java/text/SimpleDateFormat.html)을 참고한다. |
+| \<MaintenancePeriod\>         | altiMon 로그 파일의 보관 기간을 설정한다. 기본값은 3이고 단위는 일(day)이다. |
+| \<Interval\>                  | altiMon의 모니터링 데이터 수집 주기를 설정한다. 기본값은 60이고 단위는 초(second)이다. <br />Metrics.xml 파일의 \<OSMetric\> 또는 \<SQLMetric\> 요소에서 Interval 속성을 설정하지 않으면 이 값이 적용된다. GroupMetrics.xml 파일의 \<GroupMetric\> 요소에서는 이 값의 영향을 받지 않는다. |
+| \<DBConnectionWatchdogCycle\> | Altibase 서버로의 접속 시도 주기를 설정한다. Altibase 서버가 중지되었을 때 altiMon은 이 값에 따라 주기적으로 Altibase 서버에 접속을 시도하므로 Altibase 서버가 시작되면 모니터링을 지속할 수 있다. 기본값은 60이고 단위는 초(second)이다. |
+
+
+
+> #### Altibase 서버 설정
+
+config.xml에서 <Target ...> 요소는 데이터베이스 사용자, 패스워드 등 altiMon으로 모니터링 할 Altibase 서버의 접속 정보를 설정한다. 이 요소는 한 개의 속성과 설정할 수 있는 속성과 8개의 하위 요소를 가진다.
+
+**속성**
+
+| 속성 이름                                                    | 설명                                                         |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Altibase 서버를 식별하기 위한 고유 이름으로 사용자가 임의로 설정 가능하다. 현재는 별다른 용도가 없으며 추후 기능 확장 시 사용될 예정이다. |
+
+**하위 요소**
+
+아래 표의 태그는 Target 요소 아래에 중첩된 하위 요소로 사용된다.
+
+| 태그 이름                | 설명                                                         |
+| :----------------------- | :----------------------------------------------------------- |
+| \<HomeDirectory\>        | Altibase 서버의 홈 디렉토리를 절대 경로로 입력한다. 설정하지 않으면 환경변수 ALTIBASE_HOME 값이 적용된다. |
+| \<User\>                 | Altibase 서버에 접속할 데이터베이스 사용자를 입력한다. 설정하지 않으면 기본값인 SYS 사용자로 접속한다. |
+| \<Password Encrypted>    | 데이터베이스 사용자의 패스워드를 입력한다.<br />Encrypted 속성은 altiMon을 처음 시작하기 전에 "No" 값으로 설정해야 한다. 이후 altiMon을 시작하면  평문으로 입력한 패스워드가 암호화된 값으로 저장되며 Encrypted 속성의 값이 "Yes"로 변경된다. |
+| \<Port\>                 | Altibase 서버의 서비스 포트를 입력한다.                      |
+| \<NLS\>                  | 데이터베이스 클라이언트 캐릭터셋을 입력한다.                 |
+| \<DbName\>               | 데이터베이스 이름을 입력한다. 설정하지 않으면 기본값 mydb 로 설정된다.<br />데이터베이스 이름은 아래 문장으로 확인할 수 있다.<br />`SELECT DB_NAME FROM V$DATABASE; ` |
+| \<IPv6\>                 | IPv6 사용 여부를 설정한다. true 또는 false 값을 가지며 기본값은 false 이다.  <br />- true  : IPv6를 사용한다. Altibase 서버 프로퍼티 NET_CONN_IP_STACK이 1 또는 2일 때 설정할 수 있다.<br />- false : IPv6를 사용하지 않는다. |
+| \<ConnectionProperties\> | Altibase 서버 접속할 때 추가적인 연결 속성이 필요한 경우 `연결속성=값;연결속성=값;...` 형식으로 입력한다. 사용할 수 있는 연결 속성은 [JDBC User's Manual](https://github.com/ALTIBASE/Documents/blob/master/Manuals/Altibase_trunk/kor/JDBC%20User's%20Manual.md#%EC%97%B0%EA%B2%B0-%EC%A0%95%EB%B3%B4)을 참고한다.<br />예) `<ConnectionProperties>login_timeout=3;fetch_timeout=60</ConnectionProperties>` |
+
+
+
+### Metrics.xml
+
+CPU 및 메모리 사용률 등의 운영체제 자원과 Altibase 서버의 상태를 감시하기 위한 질의문을 설정하는 파일이다. 루트 요소 \<Metrics> 태그를 시작으로 CommandMetric 요소, OSMetric  요소, SQLMetric 요소로 구성되어 있다. 각 요소는 모니터링 항목에 따라 여러 번 사용할 수 있다.
+
+~~~xml
+$ cat Metrics.xml | more
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Metrics>
+    
+    <!-- CommandMetric 요소 --> 
+    <CommandMetric Name='MEM_VSZ'>
+        <Command>scriptsDir/vsz.sh</Command>
+        <Alert Activate='true' ComparisonType='gt'>
+            <WarningThreshold Value='100000000'>
+                <ActionScript>mem_act.sh</ActionScript>
+            </WarningThreshold>
+        </Alert>
+    </CommandMetric>
+    <CommandMetric></CommandMetric>    
+    <CommandMetric></CommandMetric>        
+    
+    <!-- OSMetric 요소 --> 
+	<OSMetric Name='TOTAL_CPU_USER' Activate='false' Description='TOTAL_CPU_USER'></OSMetric>
+	<OSMetric Name='TOTAL_CPU_KERNEL' Activate='false'></OSMetric>    
+    <OSMetric Name='PROC_CPU_USER' Activate='true'>
+        <Alert Activate='true' ComparisonType='gt'>
+            <WarningThreshold Value='80' >
+                <ActionScript>cpu_act.sh</ActionScript>
+            </WarningThreshold>
+        </Alert>
+    </OSMetric>
+    
+    <!-- SQLMetric 요소 --> 
+    <SQLMetric Name='MEM_DATABASE_USAGE' Activate='true' Interval='30'>
+        <Query>
+            select
+            trunc(mem_alloc_page_count*32/1024, 2) as alloc_mem_mb,
+            trunc(mem_free_page_count*32/1024, 2) as free_mem_mb
+            from v$database
+        </Query>
+        <Alert Activate='true' ComparisonColumn='ALLOC_MEM_MB' ComparisonType='GT'>
+            <CriticalThreshold Value='8000' >
+                <ActionScript>db_usage.sh</ActionScript>
+            </CriticalThreshold>
+        </Alert>
+    </SQLMetric>
+    <SQLMetric Name='MEMSTAT_LIST' Activate='true'>
+        <Query>SELECT * FROM v$MEMSTAT ORDER BY 4 DESC LIMIT 30</Query>
+    </SQLMetric>   
+
+</Metrics>    
+~~~
+
+
+
+> #### 사용자 정의 운영체제 자원 모니터링(CommandMetric)
+
+Metrics.xml에서 <CommandMetric ...> 요소는 사용자가 직접 감시할 운영체제 자원을 정의할 수 있게 지원하는 모니터링 요소이다. PICL 라이브러리가 필요한 OSMetric 요소를 사용할 수 없는 환경에서 사용자가 직접 운영체제 명령어로 자원을 감시할 수 있다. OSMetric 요소에서 지원하지 않는 항목을 CommandMetric 요소에 추가할 수도 있다. 
+
+**속성**
+
+CommandMetric 요소에서 사용할 수 있는 속성이다. 이 속성들은 OSMetric 요소, SQLMetric 요소에서도 동일하게 사용할 수 있다.
+
+| 속성 이름   | 설명                                                         |
+| :---------- | ------------------------------------------------------------ |
+| Name        | CommandMetric 요소는 여러 개 사용할 수 있으며 각 요소를 식별하기 위한 고유 이름을 설정한다. 이 요소의 로그 는 *Name*.log 로 생성된다. |
+| Description | 사용자가 임의의 설명을 기록하기 위한 항목이다.               |
+| Activate    | 해당 CommandMetric 요소를 수집할 것인지 설정한다. true 또는 false 값을 가지며 기본값은 true이다.<br />- true  : 해당 CommandMetric 요소를 수집한다.<br />- false : 해당 CommandMetric 요소를 수집하지 않는다. |
+| Interval    | 데이터 수집 주기. 단위는 초(second)이다.<br/>설정하지 않으면 config.xml에서 Altimon 요소의 \<Interval> 에 설정한 값을 따른다. |
+| Logging     | 데이터 수집 결과를 파일에 기록할 것인지 설정한다. true 또는 false 값을 가지며 기본값은 true이다.<br />- true : 데이터 수집 정보를 파일에 기록한다.<br />- false : 데이터 수집 정보를 파일에 기록하지 않는다. 단, 하위 요소로 <Alert …> 태그가 활성화되었다면, alert 정보는 이 설정과 무관하게 기록된다. |
+
+**하위 요소**
+
+여러 하위 요소가 있으나 여기서는 CommandMetric 요소에서만 사용할 수 있는 하위 요소를 소개하고 다른 하위 요소는 [공통 하위 요소](#공통-하위-요소) 에서 설명한다.
+
+| 태그 이름  | 설명                                                         |
+| ---------- | ------------------------------------------------------------ |
+| \<Command> | 수행할 명령어 또는 스크립트 파일 경로를 절대 경로 또는 상대 경로로 입력한다. 상대 경로의 기준은 $ALTIBASE_HOME/altiMon 디렉토리이다. 예를 들어, 절대 경로 입력 방식은 $ALTIBASE_HOME/altiMon/scriptsDir/cpuUsageWithTop.sh이고 상대 경로 입력 방식은 scriptsDir/cpuUsageWithTop.sh만 입력하면 된다.<br />공통 하위 요소 중 <Alert …> 태그를 설정하려면 이 항목의 결과 값이 숫자여야 한다. |
+
+
+
+> ####  미리 정의된 운영체제 자원 모니터링(OSMetric)
+
+Metrics.xml에서 <OSMetric ...> 요소는 PICL 라이브러리에서 미리 정의한 운영체제 자원을 감시하도록 제공하는 모니터링 요소이다. 
+
+감시 대상인 운영체제 자원은 아래와 같다. 
+
+- CPU
+- 메모리
+- 스왑(swap)
+- 디스크
+
+<br/>
+
+**속성**
+
+[CommandMetric 요소에서 사용하는 속성](#속성-4)과 동일하다. 다만, Name은 PICL 라이브러리에서 미리 정의한 이름을 사용해야 한다.
+
+| Name으로 사용할 수 있는 값 | 설명                                                         |
+| -------------------------- | ------------------------------------------------------------ |
+| TOTAL_CPU_USER             | 사용자 모드(user mode)에서 CPU 사용률(%)                     |
+| TOTAL_CPU_KERNEL           | 커널 모드(kernel mode)에서 CPU 사용률(%)                     |
+| PROC_CPU_USER              | 사용자 모드(user mode)에서 Altibase 프로세스의 CPU 사용률(%) |
+| PROC_CPU_KERNEL            | 커널 모드(kernel mode)에서 Altibase 프로세스의 CPU 사용률(%) |
+| TOTAL_MEM_FREE             | 사용할 수 있는 메인 메모리(RAM)의 크기(KB)                   |
+| TOTAL_MEM_FREE_PERCENTAGE  | 사용할 수 있는 메인 메모리(RAM)의 비율(%)                    |
+| PROC_MEM_USED              | Altibase 프로세스가 사용중인 메인 메모리(RSS)의 크기(KB)     |
+| PROC_MEM_USED_PERCENTAGE   | Altibase 프로세스가 사용중인 메인 메모리(RSS)의 비율(%)      |
+| SWAP_FREE                  | 사용 가능한 SWAP의 크기(KB)                                  |
+| SWAP_FREE_PERCENTAGE       | 전체 SWAP 공간에서 사용 가능한 SWAP의 비율(%)                |
+| DISK_FREE                  | 지정한 디스크에서 사용되지 않은 디스크의 크기(KB). <br />이 값을 사용할 때는 <Disk Name ...> 하위 요소가 반드시 필요하다. |
+| DISK_FREE_PERCENTAGE       | 지정한 디스크에서 사용되지 않은 디스크의 비율(%). <br />이 값을 사용할 때는 <Disk Name ...> 하위 요소가 반드시 필요하다. |
+
+**하위 요소**
+
+ [공통 하위 요소](#공통-하위-요소)를 참고한다.
+
+> #### Altibase 서버 상태 모니터링(SQLMetric)
+
+Metrics.xml에서 <SQLMetric ...> 요소는 Altibase 서버 상태를 수집할 수 있게 제공하는 모니터링 요소이다.
+
+**속성**
+
+[CommandMetric 요소에서 사용하는 속성](#속성-4)과 동일하다. 
+
+**하위 요소**
+
+여러 하위 요소가 있으나 여기서는 SQLMetric 요소에서만 사용할 수 있는 하위 요소를 소개하고 다른 하위 요소는 [공통 하위 요소](#공통-하위-요소)를 참고한다.
+
+| 태그 이름 | 설명                                                         |
+| --------- | ------------------------------------------------------------ |
+| \<Query\> | 모니터링 쿼리를 입력한다. 이 쿼리는 반드시 하나의 row를 조회하는 SELECT 문이어야 한다. |
+
+
+
+> #### 공통 하위 요소
+
+CommandMetric, OSMetric, SQLMetric 요소에서 공통적으로 사용할 수 있는 하위 요소를 설명한다. 각 하위 요소는 아래와 같이 중첩적으로 사용된다. 
+
+~~~xml
+<Alert Activate='...' ComparisonColumn='...' ComparisonType='...'>
+    <WarningThreshold Value='...'>
+        <ActionScript>script_name</ActionScript>
+    </WarningThreshold>
+</Alert>
+~~~
+
+| 태그 이름                                       | 속성 이름        | 설명                                                         |
+| ----------------------------------------------- | ---------------- | ------------------------------------------------------------ |
+| <Alert …>                                       |                  | 이 요소는 선택 항목으로, 모니터링 요소의 출력 값이 사용자가 정의한 한계 설정을 만족할 때 별도의 로그 $ALTIBASE_HOME/altiMon/logs/alert.log에 기록하는 기능이다. |
+|                                                 | Activate         | <Alert …>의 수행 여부를 설정한다. true 또는 false 값을 가지며 기본값은 true이다.<br />- true : alert 기능을 사용한다. 하위 요소로 <WarningThreshold …> 또는 <CriticalThreshold …>가 반드시 필요하다. <br />- false : alert 기능을 사용하지 않는다. |
+|                                                 | ComparisonColumn | 이 속성은 ***SQLMetric에서만*** 사용할 수 있다. SQLMetric에서 조회한 컬럼을 입력해야 한다. 컬럼의 값은 <WarningThreshold …> 또는 <CriticalThreshold …>의 Value 속성과 비교 가능한 10진수 숫자여야 한다. |
+|                                                 | ComparisonType   | 모니터링 요소의 출력 값과 <WarningThreshold …> 또는 <CriticalThreshold …>의 Value 속성과 비교할 비교 연산자를 입력한다.<br />- eq : 모니터링 요소의 출력 값과 한계값이 같을 때<br/>- ne : 모니터링 요소의 출력 값이 한계값과 같지 않을 때 <br/>- gt : 모니터링 요소의 출력 값이 한계값보다 클 때<br/>- ge : 모니터링 요소의 출력 값이 한계값보다 크거나 같을 때<br/>- lt : 모니터링 요소의 출력 값이 한계값보다 작을 때<br/>- le : 모니터링 요소의 출력 값이 한계값보다 작거나 같을 때 |
+| <WarningThreshold …> 또는 <CriticalThreshold …> |                  | <Alert …>의 하위 요소로 경보 종류를 선택한다. <WarningThreshold …> 일 때 alert.log의 첫 번째 열은 WARNING이고 <CriticalThreshold …>이면 CRITICAL이다. <br />Activate 속성값이 true이면 반드시 이 요소를 사용해야 한다. |
+|                                                 | Value            | 모니터링 요소의 한계 값을 10진수 숫자로 설정한다.            |
+| \<ActionScript\>                                |                  | <WarningThreshold …> 또는 <CriticalThreshold …>의 하위 요소로, 모니터링 요소의 출력 값이 사용자가 정의한 한계 조건에 해당할 때 수행할 스크립트 파일 이름을 입력한다. 이 파일은 미리 작성되어 있어야 하며 $ALTIBASE_HOME/altiMon/action_scripts 디렉토리에 위치해야 한다. 스크립트 수행 시 각 모니터링 요소의 Name 속성과 alert 종류, 한계 값, 모니터링 요소의 결과 값이 인자로 전달된다. <br />스크립트 수행 결과는 $ALTIBASE_HOME/altiMon/action_logs/*actionscript_name*.log에 기록된다. action_logs의 파일들은 장애 원인 분석에 꼭 필요한 정보가 될 수 있어서 altiMon이 자동으로 삭제하지 않으므로 ***사용자가 직접 관리***해야 한다. |
+
+### GroupMetrics.xml
+
+Metrics.xml에 정의한 Command Metric과 OS Metric 그리고 SQL Metric을 사용자가 원하는 항목 별로 조합하여 하나의 파일에 저장하는 기능을 제공한다. GroupMetrics로 수집한 데이터는 $ALTIBASE_HOME/altiMon/logs 디렉토리에 CSV 파일 형식의 *GroupMetricName*.csv 이름으로 저장된다. Metrics.xml은 루트 요소 \<GroupMetrics> 태그를 시작으로 여러 개의 GroupMetric 요소로 구성할 수 있다.
+
+~~~xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GroupMetrics>
+    <GroupMetric Name='group1' Interval='40'>
+        <Target MetricName='TOTAL_CPU_USER'/>
+        <Target MetricName='PROC_CPU_USER'/>
+        <Target MetricName='LOGFILE_COUNT'>
+            <Column Name='LOG_GAP' />
+        </Target>
+    </GroupMetric>
+    
+    <GroupMetric Name='group2' Interval='80'>
+        <Target MetricName='PROC_MEM_USED_PERCENTAGE'/>
+        <Target MetricName='MEM_TBL_USAGE'/>
+    </GroupMetric>
+</GroupMetrics>
+~~~
+
+다음은 GroupMetrics.xml에 설정할 수 있는 XML 요소와 속성에 대한 설명이다.
+
+**속성**
+
+GroupMetric 요소에서 사용할 수 있는 속성이다. 이 속성들은 OSMetric 요소, SQLMetric 요소에서도 동일하게 사용할 수 있다.
+
+| 속성 이름 | 설명                                                         |
+| --------- | ------------------------------------------------------------ |
+| Name      | GroupMetric을 식별하는 고유한 이름으로 사용자가 임의로 설정 가능하다. 로그 파일 생성 시 이 이름이 사용된다. 예) *group1*.csv |
+| Activate  | GroupMetric 요소를 수집할 것인지 설정한다. true 또는 false 값을 가지며 기본값은 true이다.<br />- true  : 해당 CommandMetric 요소를 수집한다.<br />- false : 해당 CommandMetric 요소를 수집하지 않는다. |
+| Interval  | 데이터 수집 주기. 기본값은 60이며 단위는 초(second)이다.     |
+
+**하위 요소**
+
+GroupMetric 요소 아래에 \<Target MetricName\>, \<Column Name\> 요소가 중첩적으로 사용된다.
+
+| 태그 이름             | 설명                                                         |
+| :-------------------- | :----------------------------------------------------------- |
+| \<Target MetricName\> | Group Metric에 포함할 모니터링 요소들을 지정한다. <br /><br />MetricName 속성에 Metrics.xml에서 정의한 Command Metric과 OSMetric 그리고 SQLMetric의 이름을 입력한다. OSMetric의 DISK_FREE와 DISK_FREE_PERCENTAGE를 입력할 때 'OSMetric Name'.'Disk Name'형식으로 입력해야 한다. 예) <Target MetricName='DISK_FREE.disk1'\> |
+| \<Column Name\>       | SQL Metric의 결과 중 일부 컬럼만 Group Metric에 포함하고 싶을 때 사용한다. 이 태그를 사용하지 않으면 SQL Metric에서 조회한 모든 컬럼이 Group Metric에 포함된다.<br /><br />Name 속성에 컬럼 이름을 입력한다. 컬럼 이름에 alias를 지정한 경우 alias를 입력한다. |
+
+<br/>
+
+## altiMon 로그
+
+altiMon 로그는 $ALTIBASE_HOME/altiMon/logs 아래에 생성된다. 
+
+### logs 디렉토리
+
+logs 디렉토리에 생성되는 파일은 아래와 같다.
+
+##### altimon.log  
+
+altiMon 시작/중지 과정의 로그와 altiMon 수행 중 예외 상황 발생 시 경고 또는 에러 메시지가 기록된다. 
+
+##### alert.log  
+
+Metrics.xml에서 \<Alert\> 설정에 해당하는 데이터를 기록하는 파일이다.
+
+~~~bash
+$ cat alert.log 
+WARNING | PROC_CPU_USER | 2022-11-21 17:21:48 | PROC_CPU_USER = [90.61]
+WARNING | PROC_CPU_USER | 2022-11-21 17:22:48 | PROC_CPU_USER = [90]
+WARNING | PROC_CPU_USER | 2022-11-21 17:23:48 | PROC_CPU_USER = [90]
+CRITICAL | DISK_FREE_PERCENTAGE.disk1 | 2022-11-21 17:24:46 | DISK_FREE_PERCENTAGE.disk1 = [5.22]
+WARNING | PROC_CPU_USER | 2022-11-21 17:24:46 | PROC_CPU_USER = [90]
+CRITICAL | DISK_FREE_PERCENTAGE.disk1 | 2022-11-21 17:25:46 | DISK_FREE_PERCENTAGE.disk1 = [5.22]
+~~~
+
+##### OsMetrics.log  
+
+Metrics.xml에서 설정한 OSMetric에 의해 수집된 데이터를 기록하는 파일이다.
+
+~~~bash
+2022-11-21 20:20:25 | TOTAL_MEM_FREE_PERCENTAGE = [40.35]
+2022-11-21 20:20:25 | SWAP_FREE = [94629696]
+2022-11-21 20:20:25 | DISK_FREE_PERCENTAGE.disk1 = [30.21]
+2022-11-21 20:20:25 | SWAP_FREE_PERCENTAGE = [96.26]
+2022-11-21 20:20:25 | TOTAL_MEM_FREE = [39970752]
+2022-11-21 20:20:25 | PROC_MEM_USED = [1010604]
+2022-11-21 20:20:25 | PROC_MEM_USED_PERCENTAGE = [1.02]
+2022-11-21 20:20:25 | PROC_CPU_KERNEL = [0]
+2022-11-21 20:20:25 | PROC_CPU_USER = [0]
+~~~
+
+##### [*SQLMetric_Name*].log  
+
+SQL Metric에 의해 수집된 데이터가 기록된 파일이다.
+
+~~~bash
+-rw-rw-rw- 1 altibase altibase   15399 Nov 21 20:21 BUFFER_STAT.log
+-rw-rw-rw- 1 altibase altibase   10701 Nov 21 20:21 STATEMENT_COUNT.log
+-rw-rw-rw- 1 altibase altibase  451791 Nov 21 20:21 SESSION_EVENT.log
+-rw-rw-rw- 1 altibase altibase 1320921 Nov 21 20:21 MEMSTAT_LIST.log
+-rw-rw-rw- 1 altibase altibase  346347 Nov 21 20:21 DB_EVENT.log
+-rw-rw-rw- 1 altibase altibase   86298 Nov 21 20:21 DATAFILE_STAT.log
+-rw-rw-rw- 1 altibase altibase   32364 Nov 21 20:21 MEM_GC.log
+-rw-rw-rw- 1 altibase altibase   28710 Nov 21 20:21 SERVICE_THREAD_MODE.log
+
+$ more BUFFER_STAT.log
+2022-11-21 13:39:42 |  VICTIM_FAILS = [0] READ_PAGES = [2]
+2022-11-21 13:40:42 |  VICTIM_FAILS = [0] READ_PAGES = [2]
+2022-11-21 13:41:42 |  VICTIM_FAILS = [0] READ_PAGES = [2]
+2022-11-21 13:42:42 |  VICTIM_FAILS = [0] READ_PAGES = [2]
+~~~
+
+##### [*GroupMetric_Name*].csv  
+
+Group Metric에 의해 수집된 데이터가 Metric별로 csv 파일에 기록된다.
+
+~~~bash
+$ cat group1.csv 
+"TIMESTAMP","TOTAL_CPU_USER","PROC_CPU_USER","LOGFILE_COUNT.LOG_GAP"
+"2022-11-21 13:39:42","8.01","0","0"
+"2022-11-21 13:40:22","0.81","0","0"
+"2022-11-21 13:41:02","0.82","0","0"
+"2022-11-21 13:41:42","0.79","0","0"
+"2022-11-21 13:42:22","0.69","0","0"
+~~~
+
+##### report.html  
+
+사용자가 설정한 altiMon 설정을 웹으로 확인할 수 있도록 제공하는 html 파일이다.
+
+<div align="left">
+    <img src="media/Utilities/altiMon_report_html.png">
+</div>
+
+
+
+### logs/archive 디렉토리
+
+logs 디렉토리의 altimon.log, \*.csv 제외한 모든 파일이 archive/YYYY-MM-DD 디렉토리로 매일 백업된다. 이 디렉토리 중에서 config.xml의 altiMon 실행 설정에서 \<MaintenancePeriod\>에서 설정한 기간이 지난 디렉토리는 매일 새벽 1시 50분에 삭제된다.
+
+### logs/csv_backup 디렉토리
+
+Group Metric에서 Target 설정이 변경되지 않으면 계속 같은 csv 파일에 데이터가 추가된다. 하지만 Target이 변경되면 기존의 csv 파일은 logs/csv_backup 디렉토리로 백업되고 같은 이름의 파일에 새로운 데이터가 기록된다.
+
+5.기타 Utilities
+==============
 
 ## altiAudit
 
-#### 개요
+### 개요
 
 감사가 Altibase 서버에서 수행 중이라면, \$ALTIBASE_HOME/trc 디렉토리에
 기본적으로 감사 로그 파일이 생성되고 로그가 기록될 것이다. 감사 로그 파일의
@@ -2979,17 +2995,17 @@ altiAudit [-s] {audit_log_file_name}
 
 
 
-#### 구문
+### 구문
 
-![](media/Utilities/altiaudit.gif)
+![](D:/work/tw/ALTIBASE/Documents/Manuals/Altibase_trunk/kor/media/Utilities/altiaudit.gif)
 
-#### 설명
+### 설명
 
 서버가 남긴 감사 로그를 문자 형태로 변환하여 출력한다.
 
 \-s 옵션을 사용해서 CSV 형태로 출력할 수도 있다.
 
-#### 사용예
+### 사용예
 
 아래는 감사 로그를 일반 텍스트 형태로 출력하는 명령어이다.
 
@@ -3053,7 +3069,7 @@ into t1 values ('aaaa', 1)"
 
 
 
-#### 출력 항목
+### 출력 항목
 
 출력 항목과 의미는 아래 표와 같다.
 
@@ -3089,9 +3105,9 @@ into t1 values ('aaaa', 1)"
 | **SQL**                |         |                                                              |
 |                        | 문자열  | 실행된 SQL 구문                                              |
 
-altibase
+## altibase
 
-#### 개요
+### 개요
 
 ‘altibase’는 Altibase의 모든 서비스를 관장하는 서버 프로세스를 실행하는
 파일이다.
@@ -3102,18 +3118,18 @@ altibase {-v|n}
 
 
 
-#### 구문
+### 구문
 
-![](media/Utilities/altibase.gif)
+![](D:/work/tw/ALTIBASE/Documents/Manuals/Altibase_trunk/kor/media/Utilities/altibase.gif)
 
-#### 파라미터
+### 파라미터
 
 | 파라미터 | 설명                                                |
-|----------|-----------------------------------------------------|
+| -------- | --------------------------------------------------- |
 | \-v      | 설치되어 있는 Altibase 제품의 버전 정보를 출력한다. |
 | \-n      | Altibase를 포그라운드에서 수행한다.                 |
 
-#### 설명
+### 설명
 
 ‘altibase’는 Altibase의 모든 서비스를 관장하는 서버 프로세스의 실행
 가능(executable) 파일이다.
@@ -3134,7 +3150,7 @@ iSQL로 구동된 Altibase 서버 프로세스는 백그라운드에서 운영�
 \-v 옵션으로 altibase 커맨드를 실행하면 현재 설치된 Altibase 제품의 버전 정보를
 출력한다.
 
-#### 참고사항
+### 참고사항
 
 Getting Started Guide
 
@@ -3142,355 +3158,13 @@ Administrator’s Manual
 
 iSQL User’s Manual
 
-## altiMon
 
-#### 개요
 
-Altibase 서버와 altiMon이 구동된 호스트 장비를 모니터링 한다.
 
-altimon.sh {start \| stop}
 
-#### 구문
+## altierr
 
-![](media/Utilities/9f7b2fa1105d33ea554edb062ca8b96f.png)
-
-#### 파라미터
-
-| 파라미터 | 설명         |
-|----------|--------------|
-| start    | altimon 시작 |
-| stop     | altimon 종료 |
-
-#### 설명
-
-altiMon은 Altibase 서버와 altiMon이 구동된 호스트 장비를 지속적으로 모니터링하여 로그 파일에 수집한 데이터를 기록한다.
-
-altiMon은 주로 OS 정보와 DB 정보를 모니터링하며, 자세한 설명은 altiMon 설정을 참고한다.
-
-##### start
-
-1. JAVA_HOME 환경 변수를 설정한다.
-
-2. 운영 체제에 맞는 명령을 실행한다.
-
-- Unix 계열
-
-  ```
-  $ altimon.sh start
-  ```
-
-
-3. 구동을 실패하면, \$ALTIBASE_HOME/altiMon/logs/altimon.log 파일을 확인한다.
-
-##### stop
-
-- Unix 계열
-
-  ```
-  $ altimon.sh stop
-  ```
-
-
-#### 운영체제
-
-altiMon은 OS 정보를 수집하기 위해 C언어로 작성된 PICL 라이브러리를 사용한다.
-PICL 라이브러리를 사용할 수 있는 운영체제는 아래와 같다.
-
-| OS    | CPU             | Version                            | PICL Library                |
-| ----- | --------------- | ---------------------------------- | --------------------------- |
-| AIX   | ppc64           | OS Version 5.3, 6.1, 7.1           | aix-ppc64-5.so              |
-| HP-UX | ia64            | IA64                               | hpux-ia64-11.sl             |
-| LINUX | X86_64ppc64(le) | OS Version 2 ~ 4<br> glibc 2.5이상 | linux-x64.so linux-ppc64.so |
-
-지원하지 않는 OS 버전에서 아래 방법으로 하위 버전용 PICL이 동작하는지를 확인한 후에 사용할 수도 있다.
-
-  ```
-  $ cd $ALTIBASE_HOME/altiMon # java -Dpicl="<picl_lib_file>" -jar lib/com.altibase.picl.jar
-  ```
-
-사용예)
-
-지원하지 않는 버전의 AIX 운영체제에서 "aix-ppc64-5.so" PICL 라이브러리가 사용 가능한지 검증하고 altimon을 구동하는 절차이다.
-
-1. 하위 버전용 PICL의 동작 여부 확인
-
-  ```
-  $ cd $ALTIBASE_HOME/altiMon 
-  $ java -Dpicl="aix-ppc64-5.so" -jar lib/com.altibase.picl.jar
-  ```
-
-2. 정상 동작이 검증된 후 $ALTIBASE_HOME/bin/altimon.sh 파일을 열어서 PICL_LIB 변수에 해당 PICL 파일을 설정한다.
-
-  ```
-  PICL_LIB=-Dpicl="aix-ppc64-5.so"
-  ```
-
-3. altimon을 구동한다
-
-  ```
-  $ altimon.sh start
-  ```
-
-##### 주의사항
-
-altiMon은 Java 8 이상에서 동작한다.
-
-Java 버전은 PICL C 라이브러리의 비트 수와 일치하는 것을 선택한다. 예를 들어 PICL C 라이브러리가 linux-x64.so 인 경우 64 bit Java를 사용해야 한다.
-
-#### altiMon 설정
-
-altiMon을 사용하기 위해 \$ALTIBASE_HOME/altiMon 디렉토리의 conf 디렉토리에 있는 아래의 파일들을 설정한다.
-
--   [config.xml](#config.xml)
-
--   [Metrics.xml](#metrics.xml)
-
--   [GroupMetrics.xml](#groupmetrics.xml)
-
-##### config.xml
-
-모니터링 대상인 Altibase의 접속 정보와 altiMon 제어 정보를 설정하는 파일이다.
-
-~~~xml
-$ cat config.xml 
-<?xml version="1.0" encoding="UTF-8"?>
-<configuration>
-    <!-- Altimon 요소 -->
-    <Altimon Name="rnd1" monitorOsMetric="true">
-        <!--<LogDir>logs</LogDir> -->
-        <DateFormat>yyyy-MM-dd HH:mm:ss</DateFormat>
-        <MaintenancePeriod>3<!-- days --></MaintenancePeriod>
-        <Interval>60<!-- seconds --></Interval>
-        <DBConnectionWatchdogCycle>60<!-- seconds --></DBConnectionWatchdogCycle>
-    </Altimon>
-    <!-- Target 요소 -->
-    <Target Name="Altibase1">
-        <!--<HomeDirectory>/home/altibase/altibase_home</HomeDirectory> -->
-        <!--<User>sys</User> -->
-        <Password Encrypted="No">manager</Password>
-        <Port>20300</Port>
-        <DbName>mydb</DbName>
-        <NLS>KSC5601</NLS>
-        <IPv6>FALSE</IPv6>
-        <ConnectionProperties>login_timeout=3</ConnectionProperties>
-    </Target>
-</configuration>
-~~~
-
-다음은 config.xml 파일은 Altimon 요소와 Target 요소로 구성되어 있다. 
-
-> Altimon 요소
-
-Altimon 요소는 altiMon 실행과 관련한 설정으로 설정할 수 있는 속성과 하위 요소는 아래와 같다.
-
-**속성**
-
-| Altimon 요소                                                 | 속성            | 설명                                                         |
-| :----------------------------------------------------------- | :-------------- | :----------------------------------------------------------- |
-| \<Altimon ...\>                                              |                 |                                                              |
-|                                                              | Name            | altiMon의 고유 이름으로 사용자가 임의로 설정 가능하다.       |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | monitorOsMetric | OS 자원을 모니터링 할 것인지 true 또는 false 로 설정한다. <br />기본값은 true 이다. <br />false는 OS 자원을 모니터링할 필요가 없거나 PICL C 라이브러리가 제공되지 않는 환경에서 설정한다. |
-
-**하위 요소**
-
-| 하위 요소             | 설명                                                         |
-| :-------------------- | :----------------------------------------------------------- |
-| \<DateFormat\>        | altiMon 로그의 날짜 형식을 설정한다.<br />기본값은 yyyy-MM-dd HH:mm:ss 이다. 설정 가능한 날짜 형식은 [자바 SimpleDateFormat 클래스의 날짜 형식](http://docs.oracle.com/javase/1.5.0/docs/api/java/text/SimpleDateFormat.html)을 참고한다. |
-| \<Interval\>          | altiMon의 데이터 수집 주기를 설정한다. 단위는 초(second)이다. <br />기본값은 60 이다. \<OSMetric\>또는 \<SQLMetric\> 요소에서 Interval 속성을 설정하지 않으면 이 값이 적용된다. \<GroupMetric\> 요소에서는 이 값의 영향을 받지 않는다. |
-| \<LogDir\>            | altiMon 로그 파일이 생성될 경로를 입력한다. 설정하지 않으면 \$ALTIBASE_HOME/altiMon/logs 가 기본값으로 설정된다. |
-| \<MaintenancePeriod\> | altiMon 로그 파일 보관 기간을 설정한다. 단위는 일(day)이다. 설정하지 않으면 기본값 3이 적용된다. |
-
->  Target 요소
-
-Target 요소는 altiMon으로 모니터링 할 Altibase 서버 정보를 설정한다. 설정할 수 있는 속성과 하위 요소는 아래와 같다.
-
-**속성**
-
-| Target 요소                                                  | 속성 | 설명                                                      |
-| :----------------------------------------------------------- | :--- | :-------------------------------------------------------- |
-| \<Target ...>                                                |      | altiMon에서 모니터링 할 Altibase 서버 정보를 설정한다.    |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Name | 알티베이스의 고유 이름으로 사용자가 임의로 설정 가능하다. |
-
-**하위 요소**
-
-| 하위 요소                     | 설명                                                         |
-| :---------------------------- | :----------------------------------------------------------- |
-| \<HomeDirectory\>             | Altibase 서버의 홈 디렉토리를 절대 경로로 입력한다. 설정하지 않으면 환경변수 ALTIBASE_HOME 값이 적용된다. |
-| \<DBConnectionWatchdogCycle\> | Altibase 서버로의 연결 시도 주기를 초(second)단위로 설정한다.  설정하지 않으면 기본값 60이 적용된다.<br />Altibase 서버가 중지되었을 때 altiMon은 일정 시간마다 Altibase 서버에 접속을 시도한다.  주기로 데이터베이스에 접속을 시도하여 모니터링을 지속할 수 있도록 한다. |
-| \<User\>                      | altiMon에서 Altibase 서버에 접속 시 사용할 데이터베이스 사용자를 입력한다.<br />설정하지 않으면 기본값 SYS 사용자로 접속한다. |
-| \<Password Encrypted>         | 데이터베이스 사용자의 패스워드를 입력한다.                   |
-|                               | DB 접속 사용자의 암호를 입력하기 위해 사용되는 속성이다. Encrypted 값을 "No"로 설정 후 평문으로 암호를 입력한다. 이후 altiMon을 구동하면 평문 암호는 암호화된 값으로 변경되어 저장되며 속성 또한 "Yes"로 변경된다. |
-| \<Port\>                      | Altibase 서버의 서비스 포트를 입력한다.                      |
-| \<NLS\>                       | 데이터베이스 클라이언트 캐릭터셋을 입력한다.                 |
-| \<DbName\>                    | 데이터베이스 이름을 입력한다. 데이터베이스 이름은 아래 문장으로 확인할 수 있다.<br />`SELECT DB_NAME FROM V$DATABASE; `<br />설정하지 않으면 기본값 mydb 로 설정된다. |
-| \<IPv6\>                      | IPv6 사용 여부를 Yes 또는 No로 설정한다. 설정하지 않으면 기본값 false가 설정된다. |
-| \<ConnectionProperties\>      | 알티베이스에 JDBC를 통해 연결할 때, 추가적인 연결 속성이 필요한 경우 입력한다. 추가할 설정한 연결 속성을 `연결속성=값;연결속성=값;...` 형식으로 입력한다.<br />예)<br />`<ConnectionProperties>login_timeout=3;fetch_timeout=60</ConnectionProperties>` |
-
-##### Metrics.xml
-
-CPU, 메모리와 같은 OS 자원과 Altibase 서버의 모니터링 항목을 설정하는 파일이다. CommandMetric 요소, OSMetric  요소, SQLMetric 요소로 구성되어 있다. 
-
-~~~xml
-% cat Metrics.xml  |more
-<?xml version="1.0" encoding="UTF-8"?>
-
-<Metrics>
-    <!-- CommandMetric 요소 --> 
-    <CommandMetric Name='MEM_VSZ'>
-        <Command>scriptsDir/vsz.sh</Command>
-        <Alert Activate='true' ComparisonType='gt'>
-            <WarningThreshold Value='100000000'>
-                <ActionScript>mem_act.sh</ActionScript>
-            </WarningThreshold>
-        </Alert>
-    </CommandMetric>
-    
-    <!-- OSMetric 요소 --> 
-    <OSMetric Name='PROC_CPU_USER' Activate='true'>
-        <Alert Activate='true' ComparisonType='gt'>
-            <WarningThreshold Value='80' >
-                <ActionScript>cpu_act.sh</ActionScript>
-            </WarningThreshold>
-        </Alert>
-    </OSMetric>
-
-    <!-- SQLMetric 요소 --> 
-    <SQLMetric Name='MEM_DATABASE_USAGE' Activate='true' Interval='30'>
-        <Query>
-            select
-            trunc(mem_alloc_page_count*32/1024, 2) as alloc_mem_mb,
-            trunc(mem_free_page_count*32/1024, 2) as free_mem_mb
-            from v$database
-        </Query>
-        <Alert Activate='true' ComparisonColumn='ALLOC_MEM_MB' ComparisonType='GT'>
-            <CriticalThreshold Value='8000' >
-                <ActionScript>db_usage.sh</ActionScript>
-            </CriticalThreshold>
-        </Alert>
-    </SQLMetric>
-</Metrics>    
-~~~
-
-다음은 Metrics.xml에 설정할 수 있는 XML 요소와 속성에 대한 설명이다.
-
-| XML 요소                                        | XML 속성         | 설명                                                         |
-| :---------------------------------------------- | :--------------- | :----------------------------------------------------------- |
-| <CommandMetric …>                               |                  | 사용자가 정의하는 OS Metric을 설정한다. 아래의 \<Command\> 태그에 설정한 커맨드 또는 스크립트를 실행하고, stdout으로 출력되는 값을 측정값으로 사용한다. 해당 metric에 alert을 설정하려면, 이 측정값이 숫자여야 한다.<br />참고: http://nok.altibase.com/pages/viewpage.action?pageId=57540630<br/>사용자가 임의로 특정 프로그램 결과 또는 스크립트를 실행하여 stdout으로 출력하는 값을 모니터링하기 위한 Metric이다. <Command> 태그에 수행할 프로그램이나 스크립트 경로를 입력한다. 수행할 대상 프로그램 또는 스크립트 대한 수행 권한이 있어야 한다. |
-|                                                 | Name             | Metric 고유 이름으로 사용자가 임의로 설정 가능하다. 해당 이름으로 log에 기록된다. |
-|                                                 | Activate         | 수행 여부를 결정하는 값으로 true/false로 입력 가능하다. false를 설정하면 해당 Metric은 모니터링 되지 않는다. |
-|                                                 | Interval         | 데이터 수집 주기<br/>설정하지 않으면 config.xml에 설정한 값을 따른다. |
-|                                                 | Logging          | 데이터 수집 결과를 파일에 로깅할 지 여부를 설정한다. 지정 가능한 값은 true 또는 false이며, 기본값은 true이다. alert 정보만 기록하고 싶을 때는 false로 지정한다. |
-| \<Command\>                                     |                  | 수행할 프로그램 또는 스크립트 파일 경로를 설정한다. 절대 경로 또는 상대 경로로 설정할 수 있다. 상대 경로의 기준은 $ALTIBASE_HOME/altiMon 디렉토리이다. 예를 들어,<br/>절대 경로 입력 방식은 $ALTIBASE_HOME/altiMon/scriptsDir/cpuUsageWithTop.sh이고 상대 경로 입력 방식은 scriptsDir/cpuUsageWithTop.sh만 입력하면 된다. |
-| <Alert …>                                       |                  | 선택 사항으로 alert 설정을 위해 입력하는 항목이다. 설정한 값에 조건이 맞는 alert가 발생하면 logs/alert.log 파일에 기록된다. |
-|                                                 | Activate         | 수행 여부를 결정하는 값으로 true/false로 입력 가능하다. false를 설정하면 해당 Metric은 모니터링 되지 않는다. |
-|                                                 | ComparisonColumn | WarningThreshold Value를 비교할 대상 칼럼<br />-> SQLMetric의 하위 Elment로 이동시켜야 합니다.<br/>Alert의 비교 대상 쿼리 결과 컬럼으로 반드시 비교 가능한 숫자값이어야 한다. |
-|                                                 | ComparisonType   | 비교 연산자<br />• -eq: is equal to the threshold value<br/>• -ne: is not equal to the threshold value<br/>• -gt: is greater than the threshold value<br/>• -ge: is greater than or equal to the threshold value<br/>• -lt: is less than the threshold value<br/>• -le: is less than or equal to the threshold value |
-| <WarningThreshold …> 또는 <CriticalThreshold …> |                  | threshold 값 설정<br />\<Alert Activate= true\> 요소를 사용했을 때 필수 |
-|                                                 | Activate         | 수행 여부를 결정하는 값으로 true/false로 입력 가능하다. false를 설정하면 해당 Metric은 모니터링 되지 않는다. |
-|                                                 | Value            | threshold 값                                                 |
-| \<ActionScript\>                                |                  | threshold 값을 벗어난 경우 수행할 스크립트 파일 이름 설정.<br/>$ALTIBASE_HOME/altiMon/action_scripts 디렉토리에 해당 스크립트 파일이 있어야 한다.<br/>action script 수행시 metric 이름, 레벨 (CRITICAL 또는 WARNING), threshold 값, 측정값이 인자로 전달된다.<br /><br /><br />alert 발생에 의해 수행되는 action script는 action_logs에 기록된다. action_logs는 사용자의 주의를 필요로 하는 사항이기 때문에 다른 로그와 다르게 지워지지 않으며 필요시 사용자가 직접 지워야 한다. |
-| <OSMetric …>                                    |                  | OSMetric은 OS를 모니터링 하기 위한 Metric으로, altiMon의 PICL 라이브러리에서 제공하는 항목만 모니터링 가능하다. OSMetric 사용 가능 여부는 운영체제 부분을 참고한다. |
-|                                                 | Name             | OSMetric의 이름은 PICL 라이브러리에서 제공하는 미리 지정된 이름만 사용 가능하다.<br />• TOTAL_CPU_USER<br />사용자 모드(user mode)에서 CPU 사용률(%) <br />• TOTAL_CPU_KERNEL<br />커널 모드(kernel mode)에서 CPU 사용률(%) <br />• PROC_CPU_USER<br />사용자 모드(user mode)에서 Altibase 프로세스의 CPU 사용률(%) |
-|                                                 | Activate         | 수행 여부를 결정하는 값으로 true/false로 입력 가능하다. false를 설정하면 해당 Metric은 모니터링 되지 않는다. |
-|                                                 | Description      | 사용자가 임의의 설명을 기록하기 위한 항목이다.               |
-| <SQLMetric …>                                   |                  | 모니터링 대상 알티베이스에서 수행할 쿼리를 정의하는 Metric이다. |
-|                                                 | Name             | Metric 고유 이름으로 사용자가 임의로 설정 가능하다. 해당 이름의 파일로 logs 디렉토리에 기록된다. 예. logs/MEM_DATABASE_USAGE.log |
-|                                                 | Activate         | 수행 여부를 결정하는 값으로 true/false로 입력 가능하다. false를 설정하면 해당 Metric은 모니터링 되지 않는다. |
-|                                                 | Interval         | 데이터 수집 주기<br/>설정하지 않으면 config.xml에 설정한 값을 따른다. |
-|                                                 | Logging          | 데이터 수집 결과를 파일에 로깅할 지 여부를 설정한다. 지정 가능한 값은 true 또는 false이며, 기본값은 true이다. alert 정보만 기록하고 싶을 때는 false로 지정한다. |
-| \<Query\>                                       |                  | 모니터링 쿼리 설정. SQLMetric 요소 안에서 필수               |
-
-> action_scripts 디렉토리  
-> \<ActionScript\> 태그에 설정하는 스크립트 파일은 \$ALTIBASE_HOME/altiMon/action_scripts 디렉토리에 위치한다. 예를 들어 \<ActionScript\>db_usage.sh\</ActionScript\>의 'db_usage.sh' 파일은 action_scripts 디렉토리에 있어야 스크립트 파일이 정상적으로 수행된다.
-
-##### GroupMetrics.xml
-
-Group Metric을 정의하는 파일이다. OS Metric, Command Metric과 SQL Metric의
-조합으로 이루어진다. Metrics.xml에 정의한 metric을 사용해서 GroupMetric을 정의할
-수 있다.
-
-Group Metric으로 수집한 데이터는 일반 Metric 측정값이 \*.log 파일에 저장되는
-것과 달리, CSV 형식의 파일로 저장된다.
-
-~~~xml
-<?xml version="1.0" encoding="UTF-8"?>
-
-<GroupMetrics>
-    <GroupMetric Name='group1' Interval='40'>
-        <Target MetricName='TOTAL_CPU_USER'/>
-        <Target MetricName='PROC_CPU_USER'/>
-        <Target MetricName='LOGFILE_COUNT'>
-            <Column Name='LOG_GAP' />
-        </Target>
-    </GroupMetric>
-    
-    <GroupMetric Name='group2' Interval='80'>
-        <Target MetricName='PROC_MEM_USED_PERCENTAGE'/>
-        <Target MetricName='MEM_TBL_USAGE'/>
-    </GroupMetric>
-</GroupMetrics>
-~~~
-
-다음은 GroupMetrics.xml에 설정할 수 있는 XML 요소와 속성에 대한 설명이다.
-
-| XML 요소                                | XML 속성   | 필수여부 | 설명                                                         |
-| :-------------------------------------- | :--------- | :------: | :----------------------------------------------------------- |
-| \<?xml version="1.0" encoding="UTF-8"?> |            |          | 파일은 이 요소와 함께 시작해야 한다.                         |
-| \<GroupMetric ...\>                     |            |    ?     | Group Metric을 설정한다.                                     |
-|                                         | Name       |   필수   | GroupMetric의 고유 이름으로 사용자가 임의로 설정 가능하다. logs 디렉토리에 입력한 이름의 파일에 모니터링 결과가 저장된다. 예. logs/group1.csv |
-|                                         | Activate   |   선택   | 데이터 수집 여부 (옵션) 지정 가능한 값은 true 또는 false이며, 기본값은 true이다. |
-|                                         | Interval   |   필수   | 데이터 수집 주기 (필수)                                      |
-| \<Target ...\>                          |            |    ?     | Group Metric에 포함될 base metric을 지정한다.                |
-|                                         | MetricName |    ?     | Metrics.xml에 정의된 OSMetric, Command Metric 또는 SQLMetric의 이름.<br />SQL Metric은 반드시 한 건의 SELECT 문의 실행 결과를 가져야 한다. <br />DISK_FREE 또는 DISK_FREE_PERCENTAGE를 target으로 지정하는 경우 'Metric Name'과 'Disk Name'을 '.'으로 연결한 문자열이 MetricName으로 설정돼야 한다.<br />\<Target MetricName='DISK_FREE.disk1'/\> |
-| \<Column ...\>                          |            |   선택   | SQL Metric의 경우 select target들 중에서 Group Metric에 포함하고자 하는 칼럼을 지정한다. 이 요소를 지정하지 않으면 모든 select target이 해당 Group Metric에 포함된다. |
-|                                         | Name       |   선택   | select 쿼리에 사용한 target 칼럼. alias를 지정한 경우 alias로 표기한다. |
-
-
-
-#### 출력 항목
-
-다음과 같은 형식으로 아래의 디렉토리에 출력된다.
-
-##### logs 디렉토리
-
--   altimon.log  
-    altiMon 데몬의 각종 로그 (info, warn, error)를 기록하는 파일이다.
-
--   alert.log  
-    \<Alert\> 설정에 해당하는 데이터를 기록하는 파일이다.
-
--   OsMetrics.log  
-    모든 OS Metric들에 의해 수집된 데이터를 기록하는 파일이다.
-
--   [SQLMetric_Name].log  
-    SQL Metric에 의해 수집된 데이터가 Metric별로 log 파일에 기록된다.
-
--   [GroupMetric_Name].csv  
-    Group Metric에 의해 수집된 데이터가 Metric별로 csv 파일에 기록된다.
-
--   report.html  
-    사용자가 설정한 Configuration을 html 형식으로 리포트하는 파일이다.
-
-##### logs/archive 디렉토리
-
-logs 디렉토리의 altimon.log, \*.csv 제외한 모든 파일이 archive/YYYY-MM-DD
-디렉토리로 매일 백업된다.
-
-이 디렉토리들 중에서 \<MaintenancePeriod\>에 설정한 유지 기간이 지난 디렉토리는
-매일 1:50am에 삭제된다.
-
-##### logs/csv_backup 디렉토리
-
-Group Metric은 설정이 변경되지 않는 한 계속 같은 csv 파일에 측정 데이터가
-추가된다.
-
-그러나 metric 설정이 변경된 경우, 즉 Group Metric의 대상이 되는 target이 변경된
-경우에는 기존의 csv 파일이 logs/csv_backup 디렉토리로 백업되고 동일한 이름의
-새로운 파일에 데이터가 기록된다.
-
-### altierr
-
-#### 개요
+### 개요
 
 altierr은 Altibase 서버 에러 코드에 대한 상세한 설명을 검색하여 출력하는
 유틸리티이다. 에러 번호나 에러 메시지 패턴을 이용하여 검색이 가능하다.
@@ -3501,18 +3175,18 @@ altierr {-w keyword pattern | [-n] error number}
 
 
 
-#### 구문
+### 구문
 
-![](media/Utilities/altierr.gif)
+![](D:/work/tw/ALTIBASE/Documents/Manuals/Altibase_trunk/kor/media/Utilities/altierr.gif)
 
-#### 파라미터
+### 파라미터
 
 | 파라미터 | 설명                                                         |
 | -------- | ------------------------------------------------------------ |
 | \-w      | 지정한 검색 패턴을 포함하는 에러 메시지를 찾는다. <br />검색 패턴을 포함하는 모든 에러 메시지를 출력한다. |
 | \-n      | 에러 번호를 사용하여 검색한다. 에러 번호는 16진수/양의 정수/음의 정수 형태로 입력 가능하다. <br />에러 코드와 정확히 일치하는 레코드만 검색된다. <br />에러 번호를 사용하여 검색할 경우 파라미터(“-n”)를 생략할 수 있다. |
 
-#### 설명
+### 설명
 
 altierr은 Altibase 서버의 에러 코드 번호나 에러 메시지에 포함된 문자열을
 이용하여 에러에 대한 상세한 설명을 검색하고 출력해 주는 유틸리티이다.
@@ -3553,13 +3227,13 @@ $ altierr –w “does not”
 
 
 
-#### 참고 사항
+### 참고 사항
 
 Error Message Reference 참조
 
-### altipasswd
+## altipasswd
 
-#### 개요
+### 개요
 
 altipasswd는 $ALTIBASE_HOME/conf/syspassword 파일을 변경한다. 데이터베이스가 서비스 상태가 아닐때는 SYSDBA 옵션으로 iSQL을 구동하여 관리자 작업을 수행하는데, 이때 syspassword 파일을 읽어 sys 계정의 패스워드를 체크한다. 따라서, 데이터베이스 상에서 ALTER USER 문으로 sys 암호를 변경하는 경우, altipasswd로 syspassword 파일의 암호도 동일하게 변경해야 한다. 데이터베이스내의 sys 암호와 syspassword 암호가 동일하게 유지되지 않으면, 데이터베이스 구동, 종료 등 SYSDBA 작업을 할 때 오류가 발생하게 된다.
 
@@ -3569,15 +3243,15 @@ altipasswd
 
 
 
-#### 구문
+### 구문
 
-![](media/Utilities/altipasswd.gif)
+![](D:/work/tw/ALTIBASE/Documents/Manuals/Altibase_trunk/kor/media/Utilities/altipasswd.gif)
 
-#### 설명
+### 설명
 
 SYS 사용자의 암호를 변경한다.
 
-#### 사용예
+### 사용예
 
 SYS 사용자의 암호 “manager”를 “manager1234”로 변경한다면 쉘 프롬프트 상에서
 다음과 같이 수행한다.
@@ -3591,9 +3265,9 @@ Retype New Password : manager1234
 
 
 
-### altiProfile
+## altiProfile
 
-#### 개요
+### 개요
 
 Altibase 서버 내에서 수행되는 작업과 서버의 상태 정보를 파일로 기록하여 분석할
 수 있다. 서버가 남긴 상태 파일을 프로파일이라 하며 altiProfile은 이 프로파일을
@@ -3606,23 +3280,23 @@ altiProfile [-stat query|session] {profile_name [profile_name2 [profile_name3] .
 
 
 
-#### 구문
+### 구문
 
-![](media/Utilities/altiprofile.gif)
+![](D:/work/tw/ALTIBASE/Documents/Manuals/Altibase_trunk/kor/media/Utilities/altiprofile.gif)
 
-#### 파라미터
+### 파라미터
 
 | 파라미터             | 설명                                                         |
 | -------------------- | ------------------------------------------------------------ |
 | \-h                  | 도움말을 출력한다.                                           |
 | \-stat query/session | 서버가 남긴 프로파일에서 STATEMENT의 통계 정보를 구축하여, 텍스트와 CSV 형태의 파일로 출력한다. <br />구축되는 통계 정보에 대한 자세한 설명은 아래의 "사용 방법"을 참고하기 바란다. |
 
-#### 설명
+### 설명
 
 서버가 남긴 프로파일을 문자 형태로 변환하거나, STATEMENT 관련 데이터만 추출하여
 통계 정보를 구축한다.
 
-#### 사용예
+### 사용예
 
 ```
 iSQL> ALTER SYSTEM SET QUERY_PROF_FLAG = 1;
@@ -3639,7 +3313,7 @@ $ altiProfile -stat query $ALTIBASE_HOME/trc/*.prof
 
 
 
-#### 사용 방법
+### 사용 방법
 
 서버의 상태 및 작업 내용을 기록하려면 QUERY_PROF_FLAG 프로퍼티를 0보다 큰 값으로
 설정하여야 한다. QUERY_PROF_FLAG 프로퍼티의 값에 따라 다음의 정보들이 기록된다.
@@ -3737,7 +3411,7 @@ COUNT,AVG,TOTAL,MIN,MAX,SUCCES,FAIL,QUERY
 
 
 
-#### 주의 사항
+### 주의 사항
 
 프로파일링 기능을 동작시킬 경우, 서버 내에서 실행되는 모든 SQL 문에 대해 실행
 정보를 기록하며 또한 매 3초마다 세션 및 시스템 정보 등 서버의 상태를 기록하므로
@@ -3746,7 +3420,7 @@ COUNT,AVG,TOTAL,MIN,MAX,SUCCES,FAIL,QUERY
 또한 프로파일링 기능을 설정할 때 프로파일이 커져 디스크가 꽉 찰 수 있으므로
 신중해야 한다..
 
-#### 출력항목
+### 출력항목
 
 다음과 같은 형식으로 출력된다.
 
@@ -3832,9 +3506,9 @@ SQL 문에 바인드 되는 변수들에 대한 정보이다.
 
 매 3초마다 V\$MEMSTAT 정보가 출력된다. V\$MEMSTAT의 자세한 내용은 *General Reference*의 성능 뷰 부분을 참고한다.
 
-### altiwrap
+## altiwrap
 
-#### 개요
+### 개요
 
 altiwrap은 PSM(Persistent Stored Module)으로 작성된 코드 프로그램을 암호화할 수
 있는 유틸리티이다. altiwrap을 사용하여 코드를 암호화하면 다른 개발자에게 저장
@@ -3846,11 +3520,11 @@ altiwarp {--iname input_file} [--oname output_file]
 
 
 
-#### 구문
+### 구문
 
-![altiwrap](media/Utilities/altiwrap.gif)
+![altiwrap](D:/work/tw/ALTIBASE/Documents/Manuals/Altibase_trunk/kor/media/Utilities/altiwrap.gif)
 
-#### 파라미터
+### 파라미터
 
 | 파라미터 | 설명                                                         |
 | -------- | ------------------------------------------------------------ |
@@ -3858,7 +3532,7 @@ altiwarp {--iname input_file} [--oname output_file]
 | \--iname | 암호화 할 파일의 이름을 지정한다. 파일의 확장자를 생략하면, '.sql'로 인식한다. |
 | \--oname | 코드 프로그램이 암호화되어 저장될 파일의 이름을 지정한다. <br />파일의 확장자를 생략하면, '.plb'로 저장된다. |
 
-#### 설명
+### 설명
 
 altiwrap을 실행하여 개발자가 작성한 저장 프로시저 및 저장 함수의 코드 프로그램을
 암호화하여, 다른 개발자 또는 경쟁사에 노출되는 것을 방지할 수 있다.
@@ -3875,7 +3549,7 @@ Altibase가 암호화할 수 있는 구문은 아래와 같다.
 
 -   CREATE [OR REPLACE] PACKAGE BODY
 
-#### 주의 사항
+### 주의 사항
 
 -   코드 프로그램이 암호화 된 후에는 프로그램을 변경할 수 없다. 프로그램을
     변경할 때에는 암호화 전의 원본 프로그램에서 변경한 후 다시 암호화해야 한다.
@@ -3885,7 +3559,7 @@ Altibase가 암호화할 수 있는 구문은 아래와 같다.
 -   암호화된 프로그램 코드는 구문(syntax) 및 시맨틱(semantic)의 오류를 검사하지
     못한다.
 
-#### 사용예제
+### 사용예제
 
 altiwrap을 사용하여 sample1.sql 파일을 암호화한 후, 암호화된 파일을 출력한다.
 
@@ -3929,22 +3603,22 @@ Execute success.
 
 
 
-### awrite
+## awrite
 
-#### 개요
+### 개요
 
 로그 파일을 생성할 때 사용되는 시스템 콜의 응답 시간을 출력한다. 출력 값은
 LOG_CREATE_METHOD 프로퍼티에서 시스템 콜을 결정하는데 참고된다.
 
-#### 구문
+### 구문
 
-![awrite](media/Utilities/awrite.gif)
+![awrite](D:/work/tw/ALTIBASE/Documents/Manuals/Altibase_trunk/kor/media/Utilities/awrite.gif)
 
-#### 설명
+### 설명
 
 write()와 fallocate() 시스템 콜의 응답 시간을 출력한다.
 
-#### 사용예
+### 사용예
 
 아래와 같은 결과를 출력한다.
 
@@ -3958,9 +3632,9 @@ write to expand file size to 1GB
 
 
 
-### checkServer
+## checkServer
 
-#### 개요
+### 개요
 
 Altibase 프로세스를 감시하며, 프로세스가 비정상 종료하면 지정된 스크립트 파일을
 실행한다.
@@ -3971,18 +3645,18 @@ checkServer [-n] {-f server-restart-script-file}
 
 
 
-#### 구문
+### 구문
 
-![checkserver](media/Utilities/checkserver.gif)
+![checkserver](D:/work/tw/ALTIBASE/Documents/Manuals/Altibase_trunk/kor/media/Utilities/checkserver.gif)
 
-#### 파라미터
+### 파라미터
 
-| 파라미터 | 설명                                                                                |
-|----------|-------------------------------------------------------------------------------------|
+| 파라미터 | 설명                                                         |
+| -------- | ------------------------------------------------------------ |
 | \-n      | checkServer를 foreground에서 수행 파라미터 생략시 checkServer는 background에서 수행 |
-| \-f      | Altibase 종료시 실행할 스크립트 파일의 이름                                         |
+| \-f      | Altibase 종료시 실행할 스크립트 파일의 이름                  |
 
-#### 설명
+### 설명
 
 checkServer는 주기적으로 Altibase 프로세스가 실행 중인지를 검사하여 Altibase
 프로세스가 종료 되었을 경우 사용자가 지정한 스크립트를 수행한다.
@@ -4008,7 +3682,7 @@ checkServer.pid파일을 삭제하면 checkServer를 정상적으로 시작할 �
 
 checkServer를 종료하기 위해선 반드시 killCheckServer 유틸리티를 이용한다.
 
-#### 주의 사항
+### 주의 사항
 
 checkServer는 Altibase 서버가 “server stop” 커맨드를 사용하지 않고 종료된
 경우에만, 지정한 재시작 스크립트를 실행한다. “server stop” 커맨드를 사용하여
@@ -4016,7 +3690,7 @@ Altibase 서버를 정상 종료하는 경우, checkServer 프로세스도 역�
 스크립트를 실행하지 않게 된다. 이것은 checkServer가 “server stop” 커맨드를
 사용하여 종료하는 것만 정상 종료라고 판단하기 때문이다.
 
-#### 사용예
+### 사용예
 
 쉘 프롬프트 상에서 다음과 같이 수행한다.
 
@@ -4026,9 +3700,9 @@ $ checkServer –f restart.sh &
 
 
 
-### dumpbi
+## dumpbi
 
-#### 개요
+### 개요
 
 dumpbi는 이진 형식으로 저장된 backupinfo 파일의 백업 정보를 문자 형식으로
 보여준다.
@@ -4039,15 +3713,15 @@ dumpbi  <backupinfo_file_name>
 
 
 
-#### 구문
+### 구문
 
-![dumpbi](media/Utilities/dumpbi.gif)
+![dumpbi](D:/work/tw/ALTIBASE/Documents/Manuals/Altibase_trunk/kor/media/Utilities/dumpbi.gif)
 
-#### 설명
+### 설명
 
 backupinfo 파일의 내용을 텍스트 형식으로 보여준다.
 
-#### 사용예
+### 사용예
 
 쉘 프롬프트 상에서 다음과 같이 수행한다.
 
@@ -4057,7 +3731,7 @@ $ dumpbi backupinfo
 
 
 
-#### 출력 항목
+### 출력 항목
 
 dumpbi는 backupinfo 의 백업 정보를 다음과 같은 섹션으로 구분하여 출력한다.
 
@@ -4087,9 +3761,9 @@ dumpbi는 backupinfo 의 백업 정보를 다음과 같은 섹션으로 구분�
 | Backup Tag                    | 문자열                                                       | 백업 태그 이름                                               |
 | Backup file name              | 문자열                                                       | 백업 파일의 경로와 이름                                      |
 
-### dumpct
+## dumpct
 
-#### 개요
+### 개요
 
 dumpct는 이진 형식으로 저장된 changeTracking 파일의 정보를 문자 형식으로
 보여준다.
@@ -4100,15 +3774,15 @@ dumpct  <changeTracking_file_name>
 
 
 
-#### 구문
+### 구문
 
-![dumpct](media/Utilities/dumpct.gif)
+![dumpct](D:/work/tw/ALTIBASE/Documents/Manuals/Altibase_trunk/kor/media/Utilities/dumpct.gif)
 
-#### 설명
+### 설명
 
 changeTracking 파일의 내용을 텍스트 형식으로 보여준다.
 
-#### 사용예
+### 사용예
 
 쉘 프롬프트 상에서 다음과 같이 수행한다.
 
@@ -4118,7 +3792,7 @@ $ dumpct changeTracking
 
 
 
-#### 출력
+### 출력
 
 dumpct는 changeTracking 파일 내의 변경 추적 정보를 다음과 같은 
 
@@ -4128,12 +3802,12 @@ dumpct는 changeTracking 파일 내의 변경 추적 정보를 다음과 같은
 
 ##### [CHANGE TRACKING FILE HDR]
 
-| 필드 이름                    | 값(단위 바이트)                 | 설명                                                                                                                                                  |
-|------------------------------|---------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 필드 이름                    | 값(단위 바이트)                 | 설명                                                         |
+| ---------------------------- | ------------------------------- | ------------------------------------------------------------ |
 | Change tracking body count   | 0 \~ unsigned int 타입의 최대값 | changeTracking 파일이 가진 body의 수 (changeTracking 파일은 header와 body로 나뉜다. body의 크기는 10Mbytes이며 공간이 부족하면 바디 단위로 확장된다.) |
-| Icremental backup chunk size | 0 \~ unsigned int 타입의 최대값 | changeTracking 파일 생성시점의 INCREMENTAL_BACKUP_CHUNK_SIZE 프로퍼티 값                                                                              |
-| Last flush LSN               | FileNo, Offset                  | 메모리상의 변경된 데이터가 파일로 기록된 시점의 LSN                                                                                                   |
-| Database name                | 문자열                          | 데이터베이스 이름                                                                                                                                     |
+| Icremental backup chunk size | 0 \~ unsigned int 타입의 최대값 | changeTracking 파일 생성시점의 INCREMENTAL_BACKUP_CHUNK_SIZE 프로퍼티 값 |
+| Last flush LSN               | FileNo, Offset                  | 메모리상의 변경된 데이터가 파일로 기록된 시점의 LSN          |
+| Database name                | 문자열                          | 데이터베이스 이름                                            |
 
 ##### [CHANGE TRACKING FILE BODY]
 
@@ -4160,9 +3834,9 @@ dumpct는 changeTracking 파일 내의 변경 추적 정보를 다음과 같은
 | Tablespace ID                 | 0 \~ unsigned short 타입의 최대값 | 데이터파일이 속한 테이블스페이스의 ID   |
 | File ID                       | 0 \~ unsigned short 타입의 최대값 | 데이터파일의 ID                         |
 
-### dumpdb
+## dumpdb
 
-#### 개요
+### 개요
 
 dumpdb는 메모리 체크포인트 이미지 파일로부터 메모리 테이블스페이스에 대한 정보를
 출력하거나 또는 메모리 테이블스페이스의 증분 백업 파일의 내용을 문자 형식으로
@@ -4174,11 +3848,11 @@ dumpdb {-j job_number } [-i pingpong_number] [-o] [-f file_name] [-s] [-p] [-d]
 
 
 
-#### 구문
+### 구문
 
-![dumpdb](media/Utilities/dumpdb.gif)
+![dumpdb](D:/work/tw/ALTIBASE/Documents/Manuals/Altibase_trunk/kor/media/Utilities/dumpdb.gif)
 
-#### 파라미터
+### 파라미터
 
 | 파라미터            | 설명                                                         |
 | ------------------- | ------------------------------------------------------------ |
@@ -4190,7 +3864,7 @@ dumpdb {-j job_number } [-i pingpong_number] [-o] [-f file_name] [-s] [-p] [-d]
 | \-p                 | 분석할 페이지의 ID를 지정한다.                               |
 | \-d                 | 정보를 상세히 출력한다.                                      |
 
-#### 설명
+### 설명
 
 메모리 체크포인트 이미지 파일을 분석하여 메타 헤더, 페이지 등의 정보를 텍스트
 형태로 출력하거나 또는 메모리 테이블스페이스의 증분 백업 파일에서 백업 정보를
@@ -4203,7 +3877,7 @@ dumpdb {-j job_number } [-i pingpong_number] [-o] [-f file_name] [-s] [-p] [-d]
 하지만 DDL 직후 서버가 비정상 종료되어 갱신된 스키마가 디스크에 기록되지 못하면
 해당 정보를 확인할 수 없다.
 
-#### 사용예
+### 사용예
 
 쉘 프롬프트 상에서 다음과 같이 수행한다.
 
@@ -4311,21 +3985,21 @@ Dump complete.
 
 
 
-#### 출력 항목
+### 출력 항목
 
 다음의 표는 증분 백업 파일에 대해 dumpdb 유틸리티를 실행하여 출력되는 항목들에
 한하여 설명한다.
 
-| 필드 이름           | 설명                                                                                                                                            |
-|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
-| Binary DB Version   | 데이터 파일의 버전                                                                                                                              |
+| 필드 이름           | 설명                                                         |
+| ------------------- | ------------------------------------------------------------ |
+| Binary DB Version   | 데이터 파일의 버전                                           |
 | Redo LSN            | 미디어 복구를 위한 Redo LSN. 로그 앵커의 Redo LSN값이 데이터 파일의 Redo LSN보다 크면, 이 항목에 출력되는 Redo LSN 부터 미디어 복구가 필요하다. |
-| Create LSN          | 체크포인트 이미지 생성 시점의 LSN                                                                                                               |
-| DataFileDescSlot ID | 메모리 체크포인트 이미지와 묶여있는 ChangeTracking의 DataFileDescSlot ID                                                                        |
+| Create LSN          | 체크포인트 이미지 생성 시점의 LSN                            |
+| DataFileDescSlot ID | 메모리 체크포인트 이미지와 묶여있는 ChangeTracking의 DataFileDescSlot ID |
 
-### dumpddf
+## dumpddf
 
-#### 개요
+### 개요
 
 dumpddf는 데이터 파일의 헤더 정보 또는 데이터 파일 내의 특정 페이지를 출력한다.
 또는 증분 백업 파일에 대해 dumpddf를 수행하면 백업 파일의 헤더 정보와 백업
@@ -4337,25 +4011,25 @@ dumpddf {-f datafile_name} {-m | -p pid}
 
 
 
-#### 구문
+### 구문
 
-![dumpddf](media/Utilities/dumpddf.gif)
+![dumpddf](D:/work/tw/ALTIBASE/Documents/Manuals/Altibase_trunk/kor/media/Utilities/dumpddf.gif)
 
-#### 파라미터
+### 파라미터
 
-| 파라미터 | 설명                                                                                                                    |
-|----------|-------------------------------------------------------------------------------------------------------------------------|
+| 파라미터 | 설명                                                         |
+| -------- | ------------------------------------------------------------ |
 | \-f      | 정보를 얻고 싶은 데이터 파일의 이름 이 옵션은 반드시 입력해야 한다. 생략하면 dumpddf는 에러 메시지를 출력하고 종료한다. |
-| \-m      | 데이터 파일의 헤더 정보를 출력한다.                                                                                     |
-| \-p      | 정보를 얻고 싶은 데이터 파일내의 페이지 ID                                                                              |
+| \-m      | 데이터 파일의 헤더 정보를 출력한다.                          |
+| \-p      | 정보를 얻고 싶은 데이터 파일내의 페이지 ID                   |
 
-#### 설명
+### 설명
 
 데이터 파일의 헤더의 정보 또는 데이터 파일 내의 특정 페이지를 텍스트 형태로
 출력한다. 지정한 페이지가 테이블이나 인덱스의 페이지이면 논리적으로 구성하여
 출력한다.
 
-#### 사용예
+### 사용예
 
 쉘 프롬프트 상에서 다음과 같이 수행한다.
 
@@ -4366,7 +4040,7 @@ $ dumpddf –f datafile –p page_id
 
 
 
-#### 출력 항목
+### 출력 항목
 
 다음은 dumpddf의 출력 예이다.
 
@@ -4380,13 +4054,13 @@ MustRedo LSN                  [0, 0 ]
 
 출력 내용 중, 필드들은 다음과 같은 의미를 갖는다.
 
-| 필드 이름           | 설명                                                                                                                           |
-|---------------------|--------------------------------------------------------------------------------------------------------------------------------|
-| Binary DB Version   | 데이터 파일의 버전                                                                                                             |
+| 필드 이름           | 설명                                                         |
+| ------------------- | ------------------------------------------------------------ |
+| Binary DB Version   | 데이터 파일의 버전                                           |
 | Redo LSN            | 미디어 복구를 위한 Redo LSN. 로그앵커의 Redo LSN값이 데이터 파일의 Redo LSN보다 크면, 이 Redo LSN 부터 미디어 복구가 필요하다. |
-| Create LSN          | 데이터 파일 생성 시점의 LSN                                                                                                    |
-| MustRedo LSN        | 미디어 복구 시 이 Redo LSN까지 수행해야 한다.                                                                                  |
-| DataFileDescSlot ID | Disk datafile과 묶여있는 ChangeTracking의 DataFileDescSlot ID                                                                  |
+| Create LSN          | 데이터 파일 생성 시점의 LSN                                  |
+| MustRedo LSN        | 미디어 복구 시 이 Redo LSN까지 수행해야 한다.                |
+| DataFileDescSlot ID | Disk datafile과 묶여있는 ChangeTracking의 DataFileDescSlot ID |
 
 다음은 증분 백업 파일을 dumpddf로 출력한 예이다.
 
@@ -4427,9 +4101,9 @@ DataFileDescSlot ID           [ 1, 2 ]
 
 
 
-### dumpla
+## dumpla
 
-#### 개요
+### 개요
 
 dumpla는 이진 형식으로 저장된 loganchor 파일의 내용을 문자 형식으로 보여준다.
 
@@ -4448,15 +4122,15 @@ dumpla <loganchor_file_name>
 
 
 
-#### 구문
+### 구문
 
-![dumpla](media/Utilities/dumpla.gif)
+![dumpla](D:/work/tw/ALTIBASE/Documents/Manuals/Altibase_trunk/kor/media/Utilities/dumpla.gif)
 
-#### 설명
+### 설명
 
 loganchor 파일의 내용을 텍스트 형식으로 보여준다.
 
-#### 사용예
+### 사용예
 
 쉘 프롬프트 상에서 다음과 같이 수행한다.
 
@@ -4466,7 +4140,7 @@ $ dumpla loganchor0
 
 
 
-#### 출력 항목
+### 출력 항목
 
 dumpla는 loganchor의 내용을 다음과 같은 섹션으로 구분하여 출력한다.
 
@@ -4475,13 +4149,13 @@ dumpla는 loganchor의 내용을 다음과 같은 섹션으로 구분하여 출�
 현재 Loganchor에 어떤 데이터들이 얼마만큼의 공간을 사용하고 있는지를 나타낸다.
 내용은 다음과 같다.
 
-| 필드 이름                  | 값(단위 바이트)                 | 설명                                                                                    |
-|----------------------------|---------------------------------|-----------------------------------------------------------------------------------------|
+| 필드 이름                  | 값(단위 바이트)                 | 설명                                                         |
+| -------------------------- | ------------------------------- | ------------------------------------------------------------ |
 | Loganchor Static Area      | 0 \~ unsigned int 타입의 최대값 | Loganchor에 고정적으로 들어가는 정보의 크기를 나타낸다. 주로 복구 시 필요한 정보들이다. |
-| Tablespace Attribute       | 0 \~ unsigned int 타입의 최대값 | 저장된 Tablespace Attribute의 크기                                                      |
-| Checkpoint Path Attribute  | 0 \~ unsigned int 타입의 최대값 | 저장된 Checkpoint Path의 크기                                                           |
-| Checkpoint Image Attribute | 0 \~ unsigned int 타입의 최대값 | 저장된 Checkpoint Image Attribute의 크기                                                |
-| Disk Datafile Attribute    | 0 \~ unsigned int 타입의 최대값 | 저장된 Disk Datafile Attribute의 크기                                                   |
+| Tablespace Attribute       | 0 \~ unsigned int 타입의 최대값 | 저장된 Tablespace Attribute의 크기                           |
+| Checkpoint Path Attribute  | 0 \~ unsigned int 타입의 최대값 | 저장된 Checkpoint Path의 크기                                |
+| Checkpoint Image Attribute | 0 \~ unsigned int 타입의 최대값 | 저장된 Checkpoint Image Attribute의 크기                     |
+| Disk Datafile Attribute    | 0 \~ unsigned int 타입의 최대값 | 저장된 Disk Datafile Attribute의 크기                        |
 
 ##### [LOGANCHOR HEADER]
 
@@ -4489,48 +4163,48 @@ dumpla는 loganchor의 내용을 다음과 같은 섹션으로 구분하여 출�
 Header 정보를 나타낸다. LSN에 대한 자세한 설명은 “dumplf 의 출력”절을 참고하기
 바란다.
 
-| 필드 이름                         | 값                                   | 설명                                                                                                                                                                                                                      |
-|-----------------------------------|--------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Binary DB Version                 | Major.minor.patch ex) 6.2.1          | 현재 Loganchor를 생성한 데이터베이스 실행 파일의 데이터베이스 버전이다.                                                                                                                                                   |
-| Archivelog Mode                   | Archivelog \|No-Archivelog           | 데이터베이스가 아카이브 모드로 운영 중인지를 나타낸다.                                                                                                                                                                    |
-| Transaction Segment Entry Count   |                                      |                                                                                                                                                                                                                           |
-| Begin Checkpoint LSN              | FileNo, Offset                       | Begin Checkpoint의 LSN을 나타낸다.                                                                                                                                                                                        |
-| End Checkpoint LSN                | FileNo, Offset                       | End Checkpoint의 LSN을 나타낸다.                                                                                                                                                                                          |
-| Disk Redo LSN                     | FileNo, Offset                       | DRDB의 Redo 시작 위치를 나타낸다.                                                                                                                                                                                         |
-| LSN for Recovery from Replication | FileNo, Offset                       | 이중화를 이용한 복구 시 이 LSN부터 시작한다.                                                                                                                                                                              |
+| 필드 이름                         | 값                                   | 설명                                                         |
+| --------------------------------- | ------------------------------------ | ------------------------------------------------------------ |
+| Binary DB Version                 | Major.minor.patch ex) 6.2.1          | 현재 Loganchor를 생성한 데이터베이스 실행 파일의 데이터베이스 버전이다. |
+| Archivelog Mode                   | Archivelog \|No-Archivelog           | 데이터베이스가 아카이브 모드로 운영 중인지를 나타낸다.       |
+| Transaction Segment Entry Count   |                                      |                                                              |
+| Begin Checkpoint LSN              | FileNo, Offset                       | Begin Checkpoint의 LSN을 나타낸다.                           |
+| End Checkpoint LSN                | FileNo, Offset                       | End Checkpoint의 LSN을 나타낸다.                             |
+| Disk Redo LSN                     | FileNo, Offset                       | DRDB의 Redo 시작 위치를 나타낸다.                            |
+| LSN for Recovery from Replication | FileNo, Offset                       | 이중화를 이용한 복구 시 이 LSN부터 시작한다.                 |
 | Server Status                     | SERVER_SHUTDOWN \|SERVER_STARTED     | 서버의 상태를 기록한다. 서버 시작 시 이 값이 SERVER_STARTED로 바뀌고 종료 시 SERVER_SHUTDOWN으로 바뀐다. 서버 시작 시에 이 값이 SERVER_STATED로 되어있다면 이전에 서버가 비정상 종료한 것이므로 재구동시 복구를 수행한다. |
-| End LSN                           | FileNo, Offset                       | 서버가 정상 종료한 후 재구동시 첫 번째 기록되는 로그의 LSN                                                                                                                                                                |
-| ResetLog LSN                      | FileNo, Offset                       | 불완전 복구시 설정된 Reset LSN                                                                                                                                                                                            |
-| Last Created Logfile Num          | 0 \~ unsigned int 타입의 최대값      | 가장 최근에 생성된 로그 파일 번호                                                                                                                                                                                         |
-| Delete Logfile(s) Range           | 삭제되는 첫 번째 \~ 마지막 파일 번호 | 가장 최근에 삭제된 로그 파일의 범위. 체크포인트 완료 후 더 이상 필요 없는 파일을 삭제하는데 이 때 지워지는 파일의 범위를 기록한다.                                                                                        |
-| Update And Flush Count            | 0 \~ unsigned int 타입의 최대값      | logAnchor 파일이 변경되고 플러시된 횟수                                                                                                                                                                                   |
-| New Tablespace ID                 | 0 \~ unsigned int 타입의 최대값      | 새로운 테이블스페이스 식별자. 테이블스페이스가 생성될 경우 이 값을 자신의 테이블스페이스 식별자로 사용하고 이 값을 증가시킨다.                                                                                            |
+| End LSN                           | FileNo, Offset                       | 서버가 정상 종료한 후 재구동시 첫 번째 기록되는 로그의 LSN   |
+| ResetLog LSN                      | FileNo, Offset                       | 불완전 복구시 설정된 Reset LSN                               |
+| Last Created Logfile Num          | 0 \~ unsigned int 타입의 최대값      | 가장 최근에 생성된 로그 파일 번호                            |
+| Delete Logfile(s) Range           | 삭제되는 첫 번째 \~ 마지막 파일 번호 | 가장 최근에 삭제된 로그 파일의 범위. 체크포인트 완료 후 더 이상 필요 없는 파일을 삭제하는데 이 때 지워지는 파일의 범위를 기록한다. |
+| Update And Flush Count            | 0 \~ unsigned int 타입의 최대값      | logAnchor 파일이 변경되고 플러시된 횟수                      |
+| New Tablespace ID                 | 0 \~ unsigned int 타입의 최대값      | 새로운 테이블스페이스 식별자. 테이블스페이스가 생성될 경우 이 값을 자신의 테이블스페이스 식별자로 사용하고 이 값을 증가시킨다. |
 
 ##### [TABLESPACE ATTRIBUTE]
 
 메모리 테이블스페이스 정보를 나타낸다. 내용은 다음과 같다.
 
-| 필드 이름                   | 값                                         | 설명                                                                                                                                                                                                                                     |
-|-----------------------------|--------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Tablespace ID               | 0 \~ unsigned int 타입의 최대값            | 테이블스페이스 식별자                                                                                                                                                                                                                    |
-| Tablespace Name             | 문자열 ex) SYS_TBS_MEM_DIC                 | 테이블스페이스 이름                                                                                                                                                                                                                      |
-| New Database File ID        | 0 \~ unsigned int 타입의 최대값            | 테이블스페이스에서 새로 파일이 추가될 때 파일이 가지게 될 파일의 식별자                                                                                                                                                                  |
+| 필드 이름                   | 값                                         | 설명                                                         |
+| --------------------------- | ------------------------------------------ | ------------------------------------------------------------ |
+| Tablespace ID               | 0 \~ unsigned int 타입의 최대값            | 테이블스페이스 식별자                                        |
+| Tablespace Name             | 문자열 ex) SYS_TBS_MEM_DIC                 | 테이블스페이스 이름                                          |
+| New Database File ID        | 0 \~ unsigned int 타입의 최대값            | 테이블스페이스에서 새로 파일이 추가될 때 파일이 가지게 될 파일의 식별자 |
 | Extent Management           | FREE EXTENT BITMAP TABLESPACE              | 디스크 테이블스페이스의 extent가 어떤 방식으로 관리되는지를 나타낸다. 현재는 FREE EXTENT BITMAP TABLESPACE만 지원한다. FREE EXTENT BITMAP TABLESPACE를 enable하면, 디스크 테이블스페이스의 free extents를 관리하는데 bitmaps을 사용한다. |
-| Tablespace Status           | 아래 TABLESPACE ATTRIBUTE 설명 참조        | 테이블스페이스의 현재 상태를 나타낸다.                                                                                                                                                                                                   |
-| Tablespace Type             | 0 \~ 8 아래 TABLESPACE ATTRIBUTE 설명 참조 | 테이블스페이스의 타입                                                                                                                                                                                                                    |
-| Checkpoint Path Count       | Checkpoint Path 개수                       | 체크포인트 이미지 파일들의 경로. 메모리 테이블스페이스에만 적용된다.                                                                                                                                                                     |
-| Autoextend Mode             | AutoExtend \|Non-AutoExtend                | 테이블스페이스가 자동으로 크기가 확장되는지 여부를 가리킨다. 메모리 테이블스페이스에만 적용된다.                                                                                                                                         |
-| Shared Memory Key           | 0 \~ unsigned int 타입의 최대값            | 데이터베이스가 공유 메모리 버전이면 이 때 공유 메모리에 데이터베이스가 사용한 공유 메모리의 키                                                                                                                                           |
-| Stable Checkpoint Image Num | 0\|1                                       | 체크포인트가 완료된 체크포인트 이미지의 파일 번호 메모리 테이블스페이스에만 적용된다.                                                                                                                                                    |
-| Init Size                   | 0 \~ unsigned int 타입의 최대값            | 초기 크기(Mbyte)                                                                                                                                                                                                                         |
-| Next Size                   | 0 \~ unsigned int 타입의 최대값            | 자동 확장되는 증가분의 크기(Mbyte)                                                                                                                                                                                                       |
-| Maximum Size                | 0 \~ unsigned int 타입의 최대값            | 최대 크기                                                                                                                                                                                                                                |
-| Split File Size             | 0 \~ unsigned int 타입의 최대값            | 메모리 테이블스페이스는 파일을 이 크기 단위로 생성한다. 예를 들어 테이블스페이스가 1G이고, Split file size가 100MB이면 10개의 파일이 생성된다.                                                                                           |
+| Tablespace Status           | 아래 TABLESPACE ATTRIBUTE 설명 참조        | 테이블스페이스의 현재 상태를 나타낸다.                       |
+| Tablespace Type             | 0 \~ 8 아래 TABLESPACE ATTRIBUTE 설명 참조 | 테이블스페이스의 타입                                        |
+| Checkpoint Path Count       | Checkpoint Path 개수                       | 체크포인트 이미지 파일들의 경로. 메모리 테이블스페이스에만 적용된다. |
+| Autoextend Mode             | AutoExtend \|Non-AutoExtend                | 테이블스페이스가 자동으로 크기가 확장되는지 여부를 가리킨다. 메모리 테이블스페이스에만 적용된다. |
+| Shared Memory Key           | 0 \~ unsigned int 타입의 최대값            | 데이터베이스가 공유 메모리 버전이면 이 때 공유 메모리에 데이터베이스가 사용한 공유 메모리의 키 |
+| Stable Checkpoint Image Num | 0\|1                                       | 체크포인트가 완료된 체크포인트 이미지의 파일 번호 메모리 테이블스페이스에만 적용된다. |
+| Init Size                   | 0 \~ unsigned int 타입의 최대값            | 초기 크기(Mbyte)                                             |
+| Next Size                   | 0 \~ unsigned int 타입의 최대값            | 자동 확장되는 증가분의 크기(Mbyte)                           |
+| Maximum Size                | 0 \~ unsigned int 타입의 최대값            | 최대 크기                                                    |
+| Split File Size             | 0 \~ unsigned int 타입의 최대값            | 메모리 테이블스페이스는 파일을 이 크기 단위로 생성한다. 예를 들어 테이블스페이스가 1G이고, Split file size가 100MB이면 10개의 파일이 생성된다. |
 
 [TABLESPACE ATTRIBUTE] 내용 중 Tablespace Status의 의미는 다음과 같다.
 
 | 값                   | 설명                                                       |
-|----------------------|------------------------------------------------------------|
+| -------------------- | ---------------------------------------------------------- |
 | OFFLINE              | 오프라인 상태                                              |
 | ONLINE               | 온라인 상태                                                |
 | INCONSISTENT         | 비일관적인 상태                                            |
@@ -4545,24 +4219,24 @@ Header 정보를 나타낸다. LSN에 대한 자세한 설명은 “dumplf 의 �
 
 [TABLESPACE ATTRIBUTE] 내용 중 Tablespace Type의 의미는 다음과 같다.
 
-| 값 | 설명                     |
-|----|--------------------------|
-| 0  | MEMORY SYSTEM DICTIONARY |
-| 1  | MEMORY SYSETM DATA       |
-| 2  | MEMORY USER DATA         |
-| 3  | DISK SYSTEM DATA         |
-| 4  | DISK USER DATA           |
-| 5  | DISK SYSTEM TEMP         |
-| 6  | DISK USER TEMP           |
-| 7  | DISK SYSTEM UNDO         |
-| 8  | VOLATILE USER DATA       |
+| 값   | 설명                     |
+| ---- | ------------------------ |
+| 0    | MEMORY SYSTEM DICTIONARY |
+| 1    | MEMORY SYSETM DATA       |
+| 2    | MEMORY USER DATA         |
+| 3    | DISK SYSTEM DATA         |
+| 4    | DISK USER DATA           |
+| 5    | DISK SYSTEM TEMP         |
+| 6    | DISK USER TEMP           |
+| 7    | DISK SYSTEM UNDO         |
+| 8    | VOLATILE USER DATA       |
 
 ##### [MEMORY CHECKPOINT PATH ATTRIBUTE]
 
 메모리 테이블스페이스의 체크포인트 저장 경로를 나타낸다. 내용은 다음과 같다.
 
 | 필드 이름       | 값                              | 설명                          |
-|-----------------|---------------------------------|-------------------------------|
+| --------------- | ------------------------------- | ----------------------------- |
 | Tablespace ID   | 0 \~ unsigned int 타입의 최대값 | 테이블스페이스 식별자         |
 | Checkpoint Path | 문자열                          | 체크포인트 이미지 파일의 경로 |
 
@@ -4570,39 +4244,39 @@ Header 정보를 나타낸다. LSN에 대한 자세한 설명은 “dumplf 의 �
 
 메모리 테이블스페이스의 체크포인트 이미지 정보를 나타낸다. 내용은 다음과 같다.
 
-| 필드 이름                          | 값                              | 설명                                                                    |
-|------------------------------------|---------------------------------|-------------------------------------------------------------------------|
-| Tablespace ID                      | 0 \~ unsigned int 타입의 최대값 | 테이블스페이스 식별자                                                   |
-| File Number                        | 0 \~ unsigned int 타입의 최대값 | 파일 번호                                                               |
-| Create LSN                         | \< FileNo, Offset\>             | 데이터 파일 생성 시점의 LSN                                             |
-| Create On Disk (PingPong 0)        | Created\|None                   | 0번 체크포인트 이미지 파일 생성 유무                                    |
-| Create On Disk (PingPong 1)        | Created\|None                   | 1번 체크포인트 이미지 파일 생성 유무                                    |
+| 필드 이름                          | 값                              | 설명                                                         |
+| ---------------------------------- | ------------------------------- | ------------------------------------------------------------ |
+| Tablespace ID                      | 0 \~ unsigned int 타입의 최대값 | 테이블스페이스 식별자                                        |
+| File Number                        | 0 \~ unsigned int 타입의 최대값 | 파일 번호                                                    |
+| Create LSN                         | \< FileNo, Offset\>             | 데이터 파일 생성 시점의 LSN                                  |
+| Create On Disk (PingPong 0)        | Created\|None                   | 0번 체크포인트 이미지 파일 생성 유무                         |
+| Create On Disk (PingPong 1)        | Created\|None                   | 1번 체크포인트 이미지 파일 생성 유무                         |
 | ChangeTracking DataFileDescSlot ID | 0 \~ unsigned int 타입의 최대값 | Memory checkpoint image와 묶여있는 ChangeTracking의 DataFileDescSlot ID |
 
 ##### [DISK DATABASE FILE ATTRIBUTE]
 
 디스크 테이블스페이스의 데이터 파일 저장 경로를 나타낸다. 내용은 다음과 같다.
 
-| 필드 이름                          | 값                                          | 설명                                                          |
-|------------------------------------|---------------------------------------------|---------------------------------------------------------------|
-| Tablespace ID                      | 0 \~ unsigned int 타입의 최대값             | 테이블스페이스 식별자                                         |
-| Database File ID                   | 0 \~ unsigned int 타입의 최대값             | 데이터 파일 식별자                                            |
-| Database File Path                 | 문자열                                      | 데이터 파일의 경로                                            |
-| Create LSN                         | \< FileNo, Offset\>                         | 데이터 파일이 생성된 시점의 시스템 로그의 마지막 LSN          |
-| Database File Status               | 아래 DISK_DATABASE_FILE_ATTRIBUTE 설명 참조 | 파일의 상태                                                   |
-| Autoextend Mode                    | AutoExtend\| Non-AutoExtend                 | 자동 확장 설정 여부                                           |
-| Create Mode                        | 0\|1                                        | 0: 재사용 1: 새로 생성한 파일                                 |
-| Initialize Size                    | 0 \~ unsigned int 타입의 최대값             | 초기 크기(MByte)                                              |
-| Current Size                       | 0 \~ unsigned int 타입의 최대값             | 현재 크기(MByte)                                              |
-| Next Size                          | 0 \~ unsigned int 타입의 최대값             | 확장 단위 크기(MByte)                                         |
-| Maximum Size                       | 0 \~ unsigned int 타입의 최대값             | 최대 크기(MByte)                                              |
+| 필드 이름                          | 값                                          | 설명                                                         |
+| ---------------------------------- | ------------------------------------------- | ------------------------------------------------------------ |
+| Tablespace ID                      | 0 \~ unsigned int 타입의 최대값             | 테이블스페이스 식별자                                        |
+| Database File ID                   | 0 \~ unsigned int 타입의 최대값             | 데이터 파일 식별자                                           |
+| Database File Path                 | 문자열                                      | 데이터 파일의 경로                                           |
+| Create LSN                         | \< FileNo, Offset\>                         | 데이터 파일이 생성된 시점의 시스템 로그의 마지막 LSN         |
+| Database File Status               | 아래 DISK_DATABASE_FILE_ATTRIBUTE 설명 참조 | 파일의 상태                                                  |
+| Autoextend Mode                    | AutoExtend\| Non-AutoExtend                 | 자동 확장 설정 여부                                          |
+| Create Mode                        | 0\|1                                        | 0: 재사용 1: 새로 생성한 파일                                |
+| Initialize Size                    | 0 \~ unsigned int 타입의 최대값             | 초기 크기(MByte)                                             |
+| Current Size                       | 0 \~ unsigned int 타입의 최대값             | 현재 크기(MByte)                                             |
+| Next Size                          | 0 \~ unsigned int 타입의 최대값             | 확장 단위 크기(MByte)                                        |
+| Maximum Size                       | 0 \~ unsigned int 타입의 최대값             | 최대 크기(MByte)                                             |
 | ChangeTracking DataFileDescSlot ID | 0 \~ unsigned int 타입의 최대값             | Disk datafile과 묶여있는 ChangeTracking의 DataFileDescSlot ID |
 
 [DISK DATABASE FILE ATTRIBUTE] 내용 중 Database File Status의 의미는 다음과
 같다.
 
 | 값           | 설명                    |
-|--------------|-------------------------|
+| ------------ | ----------------------- |
 | OFFLINE      | 오프라인 상태           |
 | ONLINE       | 온라인 상태             |
 | CREATING     | 생성 중                 |
@@ -4636,7 +4310,7 @@ Maximum Size                   [0 MBytes(0 Pages)]
 changeTracking 파일에 대한 정보를 나타낸다. 내용은 다음과 같다.
 
 | 필드 이름                     | 값                                     | 설명                                                |
-|-------------------------------|----------------------------------------|-----------------------------------------------------|
+| ----------------------------- | -------------------------------------- | --------------------------------------------------- |
 | Last Flush LSN                | FileNo, Offset                         | 메모리상의 변경된 데이터가 파일로 기록된 시점의 LSN |
 | Change Tracking Manager State | 문자열 ex) CHANGE TRACKING MGR ENABLED | 페이지 변경 추적 기능의 상태                        |
 | Change Tracking File Name     | 문자열                                 | 변경 추적 파일의 경로                               |
@@ -4646,7 +4320,7 @@ changeTracking 파일에 대한 정보를 나타낸다. 내용은 다음과 같�
 backupinfo 파일에 대한 정보를 나타낸다. 내용은 다음과 같다.
 
 | 필드 이름                    | 값                                     | 설명                                                  |
-|------------------------------|----------------------------------------|-------------------------------------------------------|
+| ---------------------------- | -------------------------------------- | ----------------------------------------------------- |
 | Delete Archivelog File Range | FileNo, Offset                         | 삭제해도 완전 복구가 가능한 아카이브 로그 파일의 번호 |
 | Last Backup LSN              | FileNo, Offset                         | 최근에 수행된 백업 시점의 LSN                         |
 | Before Backup LSN            | FileNo, Offset                         | 최근에 수행된 백업이전에 수행된 LSN                   |
@@ -4654,9 +4328,9 @@ backupinfo 파일에 대한 정보를 나타낸다. 내용은 다음과 같다.
 | Backup Directory Path        | 문자열 예) /backup_dir/                | 백업 경로                                             |
 | Backup Info File Name        | 문자열                                 | 백업 정보 파일 이름                                   |
 
-### dumplf
+## dumplf
 
-#### 개요
+### 개요
 
 Altibase는 복구를 위해서 트랜잭션이 변경 연산(INSERT, DELETE, UPDATE 등)을
 수행할 때, 데이터베이스 영역(DB File)외의 별도 파일에 로그를 남긴다. 이 로그는
@@ -4674,27 +4348,27 @@ dumplf {-f log_file_name} [-t transaction_id][-s] [-l][-S lsn [-F path] [-g]]
 
 
 
-#### 구문
+### 구문
 
-![](media/Utilities/cf929d8b05f4569ae6f63eab0d68f8bc.png)
+![](D:/work/tw/ALTIBASE/Documents/Manuals/Altibase_trunk/kor/media/Utilities/cf929d8b05f4569ae6f63eab0d68f8bc.png)
 
-#### 파라미터
+### 파라미터
 
-| 파라미터 | 설명                                                                                                                                                         |
-|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| \-f      | 출력할 로그 파일의 이름                                                                                                                                      |
-| \-t      | 출력할 로그에 해당하는 트랜잭션 ID                                                                                                                           |
-| \-s      | 로그 파일의 헤더만 출력하고자 할 때 명시                                                                                                                     |
-| \-l      | 로그의 유형 (LT 필드) 또는 서브로그유형 (OPTYPE 과 UTYPE 필드)과 관련된 정보만 출력                                                                          |
+| 파라미터 | 설명                                                         |
+| -------- | ------------------------------------------------------------ |
+| \-f      | 출력할 로그 파일의 이름                                      |
+| \-t      | 출력할 로그에 해당하는 트랜잭션 ID                           |
+| \-s      | 로그 파일의 헤더만 출력하고자 할 때 명시                     |
+| \-l      | 로그의 유형 (LT 필드) 또는 서브로그유형 (OPTYPE 과 UTYPE 필드)과 관련된 정보만 출력 |
 | \-S      | MMDB에서 INSERT, UPDATE, DELETE, COMMIT, ROLLBACK의 로그 개수를 출력한다. 특정 lsn을 입력하면 해당 lsn 이후의 로그만, '0,0'을 입력하면 전체 로그를 보여준다. |
-| \-F      | 로그를 분석할 대상 경로를 지정할 수 있으며, 생략할 경우 \$ALTIBASE_HOME/logs 의 경로를 분석한다.                                                             |
-| \-g      | 테이블의 오브젝트 ID별 통계가 전체 통계 정보와 함께 출력된다. 생략하면 전체 통계 정보만 출력된다.                                                            |
+| \-F      | 로그를 분석할 대상 경로를 지정할 수 있으며, 생략할 경우 \$ALTIBASE_HOME/logs 의 경로를 분석한다. |
+| \-g      | 테이블의 오브젝트 ID별 통계가 전체 통계 정보와 함께 출력된다. 생략하면 전체 통계 정보만 출력된다. |
 
-#### 설명
+### 설명
 
 로그 파일의 내용을 텍스트 형식으로 변환해서 보여준다.
 
-#### 사용예
+### 사용예
 
 쉘 프롬프트 상에서 다음과 같이 수행한다.
 
@@ -4704,7 +4378,7 @@ $ dumplf -f logfile0
 
 
 
-#### 출력 항목
+### 출력 항목
 
 다음은 dumplf의 출력 예이다.
 
@@ -4714,40 +4388,40 @@ LSN=<0,820>, COMP:N, MAGIC:820, TID: 6400,BE: N, REP: Y, ISVP: N, ISVP_DEPTH: 0 
 
 로그 파일의 내용 중, 필드들은 다음과 같은 의미를 갖는다.
 
-| 필드 이름               | 값                                                                             | 설명                                                                                                                                                                                      |
-|-------------------------|--------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| LSN                     | 형식: ( FileNo, Offset) 각 값의 범위: 0 - unsigned int 타입의 최대값 ,         | 로그의 sequence number로 로그의 물리적인 위치를 표시한다. LSN은 파일 번호, 오프셋으로 구성된다.                                                                                           |
-| COMP                    | Y\|N                                                                           | Y: 로그가 압축(compress)되었음 N: 압축되지 않음                                                                                                                                           |
-| MAGIC                   | 0 - unsigned short 타입의 최대값                                               | 로그 레코드가 유효하다는 것을 나타내기 위해서 로그 LSN의 로그 파일 번호와 오프셋으로 이 값을 만들고 Redo, Undo시 로그를 읽었을 때 이 값이 현재 로그의 LSN과 동일한지 검사한다.            |
-| TID                     | 0 - unsigned int 타입의 최대값                                                 | 트랜잭션 식별자                                                                                                                                                                           |
-| BE                      | Y\|N                                                                           | Y : Begin Transaction Log                                                                                                                                                                 |
-| REP                     | Y\|N                                                                           | Y: 이중화가 걸려있는 경우 Sender가 Standby로 보내거나 참조하는 로그이다. N: Sender는 이 로그를 무시한다                                                                                   |
-| ISVP                    | Y\|N                                                                           | Y: 묵시적 저장점 (Implicit Savepoint) 로그. 문장(Statement) 시작 후 처음으로 찍힌 로그이다. 트랜잭션이 문장을 수행했을 때 오류가 발생하면 이 로그까지 부분 철회(Partial Rollback)을 한다. |
-| ISVP_DEPTH              | 0 - 255                                                                        | 어떤 SQL 구문이 다른 구문 내에 중첩되었을 때 묵시적 저장점의 중첩 깊이                                                                                                                    |
-| PLSN                    | 형식: (FileNo, Offset) 각 값의 범위: 0 - unsigned int 타입의 최대값            | Previous Log LSN으로 이 값을 이용하여 같은 트랜잭션이 기록한 로그들끼리 체인(Chain)으로 연결되어 있다.                                                                                    |
-| LT                      | 문자열                                                                         | 로그의 유형을 나타낸다. 자세한 내용은 아래 로그 유형에 대한 표를 참고한다.                                                                                                                |
-| SZ                      | 0 - unsigned int 타입의 최대값                                                 | 로그 크기 (단위: bytes)                                                                                                                                                                   |
-| RdSz                    | 0 - unsigned int 타입의 최대값                                                 | 로그 레코드의 크기 (단위: bytes)                                                                                                                                                          |
-| DMIOff                  | 0 - unsigned int 타입의 최대값                                                 | 논리적 로그의 위치. 트랜잭션 언두 또는 이중화에서 사용한다.                                                                                                                               |
-| TableOID                | 0 - unsigned int 타입의 최대값                                                 | 테이블의 오브젝트 ID                                                                                                                                                                      |
-| OID                     | 0 - unsigned int 타입의 최대값                                                 | 테이블을 제외한 모든 오브젝트의 ID. 레코드 오브젝트도 포함한다.                                                                                                                           |
-| ContType                | 0, 1                                                                           | 이중화를 위해 사용하는 내부 값                                                                                                                                                            |
-| OPTYPE                  | LogTypeName\<LogTypeNumber\>                                                   | Nested Top Action (NTA) 로그의 작업 유형                                                                                                                                                  |
-| AFTER                   | SZ: \<size\>, Value: \<value\>                                                 | 로그 레코드의 변경 후 이미지 (after image)                                                                                                                                                |
-| BEFORE                  | SZ: \<size\>, Value: \<value\>                                                 | 로그 레코드의 변경 전 이미지 (before image)                                                                                                                                               |
-| UTYPE                   | LogTypeName\<LogTypeNumber\>                                                   | UPDATE 로그의 작업 유형                                                                                                                                                                   |
-| UPOS                    | 형식: (SPACEID:\<SpaceID\>, PID:\<PageID\>, OFFSET:\<Offset\> =\> OID:\<OID\>) | 변경된 객체의 주소. 또한 변경 작업 동안 발생한 정보도 포함한다.                                                                                                                           |
-| SPACEID                 | 0 - unsigned short 타입의 최대값                                               | 변경된 객체를 포함하고 있는 테이블스페이스의 ID                                                                                                                                           |
-| PID                     | 0 - unsigned int 타입의 최대값                                                 | 변경된 객체를 포함하고 있는 페이지의 ID                                                                                                                                                   |
-| Offset                  | 0 - unsigned int 타입의 최대값                                                 | 변경된 객체를 포함하고 있는 페이지 내에서의 offset                                                                                                                                        |
-| FLISlot PrevPID NextPID | 형식: (\<BeforePID\> =\> \<AfterPID\>)                                         | 메모리 테이블스페이스를 관리하기 위해 사용하는 내부 값                                                                                                                                    |
-| ESLSN                   | 형식: (FileNo, Offset) 각 값의 범위: 0 - unsigned int 타입의 최대값            | 복구 수행 시 시작할 LSN                                                                                                                                                                   |
-| Lob Locator             | 0 - unsigned long 타입의 최대값                                                | 이중화에서 LOB타입과 관련해서 내부적으로 사용하는 값                                                                                                                                      |
+| 필드 이름               | 값                                                           | 설명                                                         |
+| ----------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| LSN                     | 형식: ( FileNo, Offset) 각 값의 범위: 0 - unsigned int 타입의 최대값 , | 로그의 sequence number로 로그의 물리적인 위치를 표시한다. LSN은 파일 번호, 오프셋으로 구성된다. |
+| COMP                    | Y\|N                                                         | Y: 로그가 압축(compress)되었음 N: 압축되지 않음              |
+| MAGIC                   | 0 - unsigned short 타입의 최대값                             | 로그 레코드가 유효하다는 것을 나타내기 위해서 로그 LSN의 로그 파일 번호와 오프셋으로 이 값을 만들고 Redo, Undo시 로그를 읽었을 때 이 값이 현재 로그의 LSN과 동일한지 검사한다. |
+| TID                     | 0 - unsigned int 타입의 최대값                               | 트랜잭션 식별자                                              |
+| BE                      | Y\|N                                                         | Y : Begin Transaction Log                                    |
+| REP                     | Y\|N                                                         | Y: 이중화가 걸려있는 경우 Sender가 Standby로 보내거나 참조하는 로그이다. N: Sender는 이 로그를 무시한다 |
+| ISVP                    | Y\|N                                                         | Y: 묵시적 저장점 (Implicit Savepoint) 로그. 문장(Statement) 시작 후 처음으로 찍힌 로그이다. 트랜잭션이 문장을 수행했을 때 오류가 발생하면 이 로그까지 부분 철회(Partial Rollback)을 한다. |
+| ISVP_DEPTH              | 0 - 255                                                      | 어떤 SQL 구문이 다른 구문 내에 중첩되었을 때 묵시적 저장점의 중첩 깊이 |
+| PLSN                    | 형식: (FileNo, Offset) 각 값의 범위: 0 - unsigned int 타입의 최대값 | Previous Log LSN으로 이 값을 이용하여 같은 트랜잭션이 기록한 로그들끼리 체인(Chain)으로 연결되어 있다. |
+| LT                      | 문자열                                                       | 로그의 유형을 나타낸다. 자세한 내용은 아래 로그 유형에 대한 표를 참고한다. |
+| SZ                      | 0 - unsigned int 타입의 최대값                               | 로그 크기 (단위: bytes)                                      |
+| RdSz                    | 0 - unsigned int 타입의 최대값                               | 로그 레코드의 크기 (단위: bytes)                             |
+| DMIOff                  | 0 - unsigned int 타입의 최대값                               | 논리적 로그의 위치. 트랜잭션 언두 또는 이중화에서 사용한다.  |
+| TableOID                | 0 - unsigned int 타입의 최대값                               | 테이블의 오브젝트 ID                                         |
+| OID                     | 0 - unsigned int 타입의 최대값                               | 테이블을 제외한 모든 오브젝트의 ID. 레코드 오브젝트도 포함한다. |
+| ContType                | 0, 1                                                         | 이중화를 위해 사용하는 내부 값                               |
+| OPTYPE                  | LogTypeName\<LogTypeNumber\>                                 | Nested Top Action (NTA) 로그의 작업 유형                     |
+| AFTER                   | SZ: \<size\>, Value: \<value\>                               | 로그 레코드의 변경 후 이미지 (after image)                   |
+| BEFORE                  | SZ: \<size\>, Value: \<value\>                               | 로그 레코드의 변경 전 이미지 (before image)                  |
+| UTYPE                   | LogTypeName\<LogTypeNumber\>                                 | UPDATE 로그의 작업 유형                                      |
+| UPOS                    | 형식: (SPACEID:\<SpaceID\>, PID:\<PageID\>, OFFSET:\<Offset\> =\> OID:\<OID\>) | 변경된 객체의 주소. 또한 변경 작업 동안 발생한 정보도 포함한다. |
+| SPACEID                 | 0 - unsigned short 타입의 최대값                             | 변경된 객체를 포함하고 있는 테이블스페이스의 ID              |
+| PID                     | 0 - unsigned int 타입의 최대값                               | 변경된 객체를 포함하고 있는 페이지의 ID                      |
+| Offset                  | 0 - unsigned int 타입의 최대값                               | 변경된 객체를 포함하고 있는 페이지 내에서의 offset           |
+| FLISlot PrevPID NextPID | 형식: (\<BeforePID\> =\> \<AfterPID\>)                       | 메모리 테이블스페이스를 관리하기 위해 사용하는 내부 값       |
+| ESLSN                   | 형식: (FileNo, Offset) 각 값의 범위: 0 - unsigned int 타입의 최대값 | 복구 수행 시 시작할 LSN                                      |
+| Lob Locator             | 0 - unsigned long 타입의 최대값                              | 이중화에서 LOB타입과 관련해서 내부적으로 사용하는 값         |
 
 dumplf의 결과 중 LT (Log Type: 로그 유형)의 의미는 다음과 같다.
 
 | 값                        | 설명                                        |
-|---------------------------|---------------------------------------------|
+| ------------------------- | ------------------------------------------- |
 | SMR_LT_DUMMY              | Dummy 로그                                  |
 | SMR_LT_CHKPT_BEGIN        | Checkpoint Begin 로그                       |
 | SMR_LT_DIRTY_PAGE         | Dirty Page 로그                             |
@@ -4806,9 +4480,9 @@ OPTYPE 과 UTYPE 에 가능한 로그 타입 이름
 
 MVCC와 관련된 자세한 설명은 *Administrator’s Manual* 을 참고하기 바란다.
 
-### dumptrc 
+## dumptrc 
 
-#### 개요
+### 개요
 
 Altibase 서버가 비정상 종료될 때 \$ALTIBASE_HOME/trc 디렉토리에 기록되는
 트레이스 로그 파일을 사용자가 식별할 수 있는 형태로 변환하여 출력한다.
@@ -4820,11 +4494,11 @@ dumptrc [-h |[-p file_path][-c [-s]]
 
 
 
-#### 구문
+### 구문
 
-![](media/Utilities/8d31776c2bc3e1d547efa1715f6899f7.png)
+![](D:/work/tw/ALTIBASE/Documents/Manuals/Altibase_trunk/kor/media/Utilities/8d31776c2bc3e1d547efa1715f6899f7.png)
 
-#### 파라미터
+### 파라미터
 
 | 파라미터 | 설명                                                         |
 | -------- | ------------------------------------------------------------ |
@@ -4840,7 +4514,7 @@ dumptrc [-h |[-p file_path][-c [-s]]
 | -x       | altibase버전과 dumptrc버전이 틀린 경우도 콜 스택을 출력한다. |
 | \-v      | dumptrc의 버전을 출력한다.                                   |
 
-#### 설명
+### 설명
 
 프로세스 콜 스택에는 Altibase 종료 당시 수행되던 Altibase 내부 모듈에 대한
 정보가 기록된다. dumptrc를 이용하여 가져올 수 있는 트레이스 로그 파일은
@@ -4870,11 +4544,11 @@ dumptrc [-h |[-p file_path][-c [-s]]
 Altibase 서버가 비정상 종료할 경우, 프로세스 콜 스택을 dumptrc로 변환하여
 Altibase 기술서비스 팀에 송부하면, 보다 빨리 문제를 해결할 수 있을 것이다.
 
-#### 주의 사항
+### 주의 사항
 
  Altibase의 실행 파일의 버전과 dumptrc의 버전이 동일해야 정확한 콜 스택 정보를 확인할 수 있다.버전이 틀릴 경우는 잘못된 값이 나올 수 있기 때문에 기본적으로 경고메시지를 보여주고 콜 스택을 출력하지 않는다. 버전이 틀릴때도 강제로 콜스택을 출력하기 위해서는 -x옵션을 사용하면 된다.
 
-#### 사용예
+### 사용예
 
 altibase_error.log와 altibase_boot.log를 묶어서 출력한다.
 
@@ -5038,9 +4712,9 @@ END-STACK =======================================
 
 
 
-### killCheckServer
+## killCheckServer
 
-#### 개요
+### 개요
 
 killCheckServer는 실행 중인 checkServer를 종료한다.
 
@@ -5050,11 +4724,11 @@ killCheckServer
 
 
 
-#### 구문
+### 구문
 
-![killcheckserver](media/Utilities/killcheckserver.gif)
+![killcheckserver](D:/work/tw/ALTIBASE/Documents/Manuals/Altibase_trunk/kor/media/Utilities/killcheckserver.gif)
 
-#### 설명
+### 설명
 
 killCheckServer는 실행 중인 checkServer를 종료한다.
 
@@ -5080,7 +4754,7 @@ killCheckServer가 checkServer의 동작을 동작을 멈추도록 되어 있다
 
 그러나, 사용자가 직접 killCheckServer 명령어를 실행할 경우에는 killCheckServer.log에 수행 결과가 기록되지 않는다.
 
-#### 사용예
+### 사용예
 
 쉘 프롬프트 상에서 다음과 같이 수행한다.
 
@@ -5090,9 +4764,9 @@ $ killCheckServer
 
 
 
-### server
+## server
 
-#### 개요
+### 개요
 
 Altibase 데이터베이스의 생성, 구동 및 종료시키기 위한 쉘 스크립트이다.
 
@@ -5102,24 +4776,24 @@ server { start | stop | restart | kill | status | create db_charset national_cha
 
 
 
-#### 구문
+### 구문
 
-![server](media/Utilities/server.gif)
+![server](D:/work/tw/ALTIBASE/Documents/Manuals/Altibase_trunk/kor/media/Utilities/server.gif)
 
-#### 파라미터
+### 파라미터
 
-| 파라미터         | 설명                                                                      |
-|------------------|---------------------------------------------------------------------------|
-| start            | Altibase 프로세스를 구동한다.                                             |
-| stop             | Altibase 프로세스를 종료한다.                                             |
-| restart          | Altibase 프로세스를 재구동한다.                                           |
-| kill             | Altibase 프로세스를 강제 종료한다.                                        |
-| status           | 데이터베이스 내의 테이블 목록을 출력한다.                                 |
+| 파라미터         | 설명                                                         |
+| ---------------- | ------------------------------------------------------------ |
+| start            | Altibase 프로세스를 구동한다.                                |
+| stop             | Altibase 프로세스를 종료한다.                                |
+| restart          | Altibase 프로세스를 재구동한다.                              |
+| kill             | Altibase 프로세스를 강제 종료한다.                           |
+| status           | 데이터베이스 내의 테이블 목록을 출력한다.                    |
 | create           | 크기 10M, 노아카이브 로그로 입력된 캐릭터 셋으로 데이터베이스를 생성한다. |
-| startRoleManager | Altibase 프로세스를 Disaster Recovery의 역할 관리자로서 구동한다.         |
-| stopRoleManager  | 역할 관리자를 종료한다.                                                   |
+| startRoleManager | Altibase 프로세스를 Disaster Recovery의 역할 관리자로서 구동한다. |
+| stopRoleManager  | 역할 관리자를 종료한다.                                      |
 
-#### 설명
+### 설명
 
 Altibase의 구동 및 종료, 데이터베이스 생성은 iSQL상에서 SQL 구문으로 수행해야
 한다. Altibase는 사용자 편의를 위해 관리자가 자주 사용하는 이러한 구문들을
@@ -5147,7 +4821,7 @@ Altibase 관리를 위한 SQL 구문에 대한 자세한 내용은 *SQL Referenc
 
 역할 관리자에 대한 자세한 내용은 Disaster Recovery Manual을 참조한다.
 
-#### 사용예
+### 사용예
 
 사용 방법은 다음과 같다.
 
@@ -5164,7 +4838,7 @@ $ server stopRoleManager
 
 
 
-#### 참고사항
+### 참고사항
 
 Administrator’s Manual, *SQL Reference, Disaster Recovery Manage* 를 참고하기
 바란다.
