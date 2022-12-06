@@ -119,7 +119,7 @@ Altibase 버전 별 지원 플랫폼 및 호환성 테스트를 완료한 OS 버
 
 Altibase Library & Tools 의 지원 
 
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | PDO_ALTIBASE-1.x.x<br />for PHP 5.3, 7.1 | PDO_ALTIBASE-2.x.x<br />for PHP 8.1 | altiMon | Adapter<br />for JDBC | Adapter<br />for Oracle | 소프트웨어 요구사항                              |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | PDO_ALTIBASE-1.x.x<br />for PHP 5.3, 7.1 | PDO_ALTIBASE-2.x.x<br />for PHP 8.1 | altiMon | Adapter<br />for JDBC | Adapter<br />for Oracle | 소프트웨어 요구사항                              |
 | ------------------------------------------------------------ | :-------------------------------------: | :--------------------------------: | :-----: | :--------------: | :----------------: | :----------------------------------------------------------- |
 | **AIX on IBM Power Systems**                                 |                                         |                                    |         |                  |                    |                                                              |
 | AIX 6.1                                                      |                  **x**                  |               **x**                |    ●    |        ●         |         ●          |                                                              |
