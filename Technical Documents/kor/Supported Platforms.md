@@ -96,7 +96,7 @@ Altibase 버전 별 지원 플랫폼 및 호환성 테스트를 완료한 OS 버
 >  **Fedora, openSUSE 등 아래 표에서 포함하지 않은 리눅스 배포판은 공식 지원 대상이 아니므로 호환성을 보장하지 않습니다.**
 
 
-|                                                              | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Altibase 서버&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Altibase 클라이언트&nbsp;&nbsp;&nbsp; | 소프트웨어 요구사항                                      |
+|                                                              | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Altibase 서버&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;Altibase 클라이언트&nbsp;&nbsp;&nbsp;&nbsp; | 소프트웨어 요구사항                                      |
 | ------------------------------------------------------------ | :----------------------------------------------------------: | :-----------------------------------------------------: | :------------------------------------------------------- |
 | **AIX on IBM Power Systems**                                 |                                                              |                                                         |                                                          |
 | AIX 6.1 TL3 <br />AIX 6.1 TL9                                |                              ●                               |                            ●                            |                                                          |
