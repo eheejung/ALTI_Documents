@@ -2054,13 +2054,13 @@ AKU_SYS_PASWWORD            = "manager"
 AKU_STS_NAME                = "altibase-sts"
 AKU_SVC_NAME                = "altibase-svc"
 AKU_SERVER_COUNT            = 4
-AKU_QUERY_TIMEOUT           = 1800
+AKU_QUERY_TIMEOUT           = 3600
 AKU_PORT_NO                 = 20300
 AKU_REPLICATION_PORT_NO     = 20301
 
 REPLICATIONS = (
     REPLICATION_NAME_PREFIX = "AKU_REP"
-    SYNC_PARALLEL_COUNT     = 3
+    SYNC_PARALLEL_COUNT     = 1
     (
         (
             USER_NAME       = "SYS"
@@ -2195,11 +2195,11 @@ aku 설정 파일의 내용을 출력한다. 파일에 문법(syntax) 오류가 
 
   2️⃣ `AKU_SERVER_COUNT`-1만큼 Altibase 이중화 객체를 생성한다. 만약 *pod_name*-1이 다시 생성된 파드라면, 같은 이름의 이중화 객체가 존재할 수 있으며 이 단계는 생략된다.
 
-  3️⃣ *pod_name*-1의 이중화 대상 테이블을 대상으로 TRUNCATE를 수행한다. 만약 *pod_name*-1이 다시 생성된 파드라면 *pod_name*-0과 *pod_name*-1에서 이중화 객체의 XSN 값을 확인하고 둘 중 하나라도 -1이 아니면 이 단계는 생략한다.
+  3️⃣ 이중화 대상 서버인 모드 파드에 접속을 시도한다. 하지만 *pod_name*-0과의 접속만 성공하고 *pod_name*-2, *pod_name*-3은 생성되기 전이기 때문에 접속 에러가 발생한다. 이는 정상적인 동작이다.
 
-  4️⃣ 이중화 대상 서버인 모드 파드에 접속을 시도한다. 하지만 *pod_name*-0과의 접속만 성공하고 *pod_name*-2, *pod_name*-3은 생성되기 전이기 때문에 접속 에러가 발생한다. 이는 정상적인 동작이다.
+  4️⃣ *pod_name*-1의 이중화 대상 테이블을 대상으로 TRUNCATE를 수행한다. 만약 이전에 `aku -p end`가 수행되지 않았거나 완료되지 않아 *pod_name*-0과 연결된 이중화 정보가 남아있다면 이 단계는 생략한다.
 
-  5️⃣ *pod_name*-1에서 *pod_name*-0에게 *pod_name-0*에서 *pod_name*-1로 이중화 SYNC를 요청한다. 만약 *pod_name*-1이 다시 생성된 파드라면*pod_name*-0과 *pod_name*-1에서 이중화 객체의 XSN 값을 확인하고 둘 중 하나라도 -1이 아니면 이 단계와 다음의 SYNC 수행은 생략한다.
+  5️⃣ *pod_name*-0에게 이중화 SYNC를 요청한다. 만약 이전에 `aku -p end`가 수행되지 않았거나 완료되지 않아 *pod_name*-0과 연결된 이중화 정보가 남아있다면 이 단계는 생략한다.
 
   6️⃣ *pod_name*-0에서 *pod_name*-1로 이중화 SYNC를 수행한다.
 
