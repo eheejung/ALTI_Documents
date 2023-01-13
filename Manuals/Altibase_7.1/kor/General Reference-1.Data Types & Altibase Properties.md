@@ -5,16 +5,20 @@ General Reference-1
 
 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
-Altibase Administration General Reference<br/>
-Copyright ⓒ 2001\~2022 Altibase Corp. All Rights Reserved.<br/>
+<pre>
+Altibase Administration General Reference
+Copyright ⓒ 2001~2022 Altibase Corp. All Rights Reserved.
 본 문서의 저작권은 ㈜알티베이스에 있습니다. 이 문서에 대하여 당사의 동의없이 무단으로 복제 또는 전용할 수 없습니다.
+㈜알티베이스
+08378 서울시 구로구 디지털로 306 대륭포스트타워Ⅱ 10층
+전화 : 02-2082-1114
+팩스 : 02-2082-1099
+고객서비스포털 : http://support.altibase.com
+홈페이지      : http://www.altibase.com
 
-**㈜알티베이스**<br/>
-08378 서울시 구로구 디지털로 306 대륭포스트타워Ⅱ 10층<br/>
-전화 : 02-2082-1114<br/>
-팩스 : 02-2082-1099<br/>
-고객서비스포털 : <http://support.altibase.com><br/>
-홈페이지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: [http://www.altibase.com](http://www.altibase.com/)
+
+
+
 
 
 
