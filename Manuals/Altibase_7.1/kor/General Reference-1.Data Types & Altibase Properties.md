@@ -14,7 +14,7 @@ Copyright ⓒ 2001~2022 Altibase Corp. All Rights Reserved.
 전화 : 02-2082-1114
 팩스 : 02-2082-1099
 고객서비스포털 : http://support.altibase.com
-홈페이지      : http://www.altibase.com
+홈페이지      : http://www.altibase.com</pre>
 
 
 
