@@ -3,19 +3,9 @@ Utilities Manual
 
 #### Altibase 7.1
 
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
 <pre>
-
-
-
-
-
-
-
-
-
-
 Altibase Tools & Utilities Utilities Manual
 Copyright ⓒ 2001~2022 Altibase Corp. All Rights Reserved.
 본 문서의 저작권은 ㈜알티베이스에 있습니다. 이 문서에 대하여 당사의 동의없이 무단으로 복제 또는 전용할 수 없습니다.
@@ -25,6 +15,18 @@ Copyright ⓒ 2001~2022 Altibase Corp. All Rights Reserved.
 팩스 : 02-2082-1099
 고객서비스포털 : <a href='http://support.altibase.com'>http://support.altibase.com</a>
 홈페이지      : <a href='http://www.altibase.com/'>http://www.altibase.com</a></pre>
+
+
+
+
+
+
+
+
+
+
+
+
 
 <div align="center">
     <img src="media/Utilities/e5cfb3761673686d093a3b00c062fe7a.png">
