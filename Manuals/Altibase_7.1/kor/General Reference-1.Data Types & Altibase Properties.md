@@ -1,4 +1,4 @@
-General Reference-1
+General Reference-1.Data Types&Altibase Properties
 ================
 
 #### Altibase 7.1
