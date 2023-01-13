@@ -3,29 +3,29 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Migration Center User's Manual](#migration-center-users-manual)
-  - [서문](#%EC%84%9C%EB%AC%B8)
-    - [이 매뉴얼에 대하여](#%EC%9D%B4-%EB%A7%A4%EB%89%B4%EC%96%BC%EC%97%90-%EB%8C%80%ED%95%98%EC%97%AC)
-  - [1.Migration Center 소개](#1migration-center-%EC%86%8C%EA%B0%9C)
-    - [개요](#%EA%B0%9C%EC%9A%94)
-    - [시스템 요구 사항](#%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%9A%94%EA%B5%AC-%EC%82%AC%ED%95%AD)
-    - [설치 및 제거](#%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%A0%9C%EA%B1%B0)
-  - [2.Migration Center 시작하기](#2migration-center-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0)
-    - [Migration Center 이해하기](#migration-center-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0)
-    - [사용자 인터페이스 이해하기](#%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0)
-    - [도구](#%EB%8F%84%EA%B5%AC)
-  - [3.GUI 모드 퀵 가이드](#3gui-%EB%AA%A8%EB%93%9C-%ED%80%B5-%EA%B0%80%EC%9D%B4%EB%93%9C)
-    - [단계별 지침](#%EB%8B%A8%EA%B3%84%EB%B3%84-%EC%A7%80%EC%B9%A8)
-  - [4.CLI 모드 퀵 가이드](#4cli-%EB%AA%A8%EB%93%9C-%ED%80%B5-%EA%B0%80%EC%9D%B4%EB%93%9C)
-    - [단계별 지침](#%EB%8B%A8%EA%B3%84%EB%B3%84-%EC%A7%80%EC%B9%A8-1)
-  - [5.Migration Center 내부](#5migration-center-%EB%82%B4%EB%B6%80)
-    - [구축 단계](#%EA%B5%AC%EC%B6%95-%EB%8B%A8%EA%B3%84)
-    - [조정 단계](#%EC%A1%B0%EC%A0%95-%EB%8B%A8%EA%B3%84)
-    - [실행 단계](#%EC%8B%A4%ED%96%89-%EB%8B%A8%EA%B3%84)
-    - [검증 단계](#%EA%B2%80%EC%A6%9D-%EB%8B%A8%EA%B3%84)
-  - [A.부록: 마이그레이션 옵션](#a%EB%B6%80%EB%A1%9D-%EB%A7%88%EC%9D%B4%EA%B7%B8%EB%A0%88%EC%9D%B4%EC%85%98-%EC%98%B5%EC%85%98)
-    - [DB to DB 마이그레이션 옵션](#db-to-db-%EB%A7%88%EC%9D%B4%EA%B7%B8%EB%A0%88%EC%9D%B4%EC%85%98-%EC%98%B5%EC%85%98)
-    - [DB to File 마이그레이션 옵션](#db-to-file-%EB%A7%88%EC%9D%B4%EA%B7%B8%EB%A0%88%EC%9D%B4%EC%85%98-%EC%98%B5%EC%85%98)
-  - [B.부록: 마이그레이션 가능한 데이터베이스 객체](#b%EB%B6%80%EB%A1%9D-%EB%A7%88%EC%9D%B4%EA%B7%B8%EB%A0%88%EC%9D%B4%EC%85%98-%EA%B0%80%EB%8A%A5%ED%95%9C-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EA%B0%9D%EC%B2%B4)
+  - [서문](#서문)
+    - [이 매뉴얼에 대하여](#이-매뉴얼에-대하여)
+  - [1.Migration Center 소개](#1migration-center-소개)
+    - [개요](#개요)
+    - [시스템 요구 사항](#시스템-요구-사항)
+    - [설치 및 제거](#설치-및-제거)
+  - [2.Migration Center 시작하기](#2migration-center-시작하기)
+    - [Migration Center 이해하기](#migration-center-이해하기)
+    - [사용자 인터페이스 이해하기](#사용자-인터페이스-이해하기)
+    - [도구](#도구)
+  - [3.GUI 모드 퀵 가이드](#3gui-모드-퀵-가이드)
+    - [단계별 지침](#단계별-지침)
+  - [4.CLI 모드 퀵 가이드](#4cli-모드-퀵-가이드)
+    - [단계별 지침](#단계별-지침-1)
+  - [5.Migration Center 내부](#5migration-center-내부)
+    - [구축 단계](#구축-단계)
+    - [조정 단계](#조정-단계)
+    - [실행 단계](#실행-단계)
+    - [검증 단계](#검증-단계)
+  - [A.부록: 마이그레이션 옵션](#a부록-마이그레이션-옵션)
+    - [DB to DB 마이그레이션 옵션](#db-to-db-마이그레이션-옵션)
+    - [DB to File 마이그레이션 옵션](#db-to-file-마이그레이션-옵션)
+  - [B.부록: 마이그레이션 가능한 데이터베이스 객체](#b부록-마이그레이션-가능한-데이터베이스-객체)
     - [Altibase to Altibase](#altibase-to-altibase)
     - [Altibase to Oracle](#altibase-to-oracle)
     - [CUBRID to Altibase](#cubrid-to-altibase)
@@ -35,31 +35,31 @@
     - [SQL Server to Altibase](#sql-server-to-altibase)
     - [TimesTen to Altibase](#timesten-to-altibase)
     - [Tibero to Altibase](#tibero-to-altibase)
-  - [C.부록: 데이터 타입 맵핑](#c%EB%B6%80%EB%A1%9D-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%83%80%EC%9E%85-%EB%A7%B5%ED%95%91)
-    - [데이터 타입 맵핑 조작](#%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%83%80%EC%9E%85-%EB%A7%B5%ED%95%91-%EC%A1%B0%EC%9E%91)
-    - [기본 데이터 타입 맵핑 테이블](#%EA%B8%B0%EB%B3%B8-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%83%80%EC%9E%85-%EB%A7%B5%ED%95%91-%ED%85%8C%EC%9D%B4%EB%B8%94)
-    - [이종 문자 집합을 고려한 문자형 컬럼 길이 자동 보정](#%EC%9D%B4%EC%A2%85-%EB%AC%B8%EC%9E%90-%EC%A7%91%ED%95%A9%EC%9D%84-%EA%B3%A0%EB%A0%A4%ED%95%9C-%EB%AC%B8%EC%9E%90%ED%98%95-%EC%BB%AC%EB%9F%BC-%EA%B8%B8%EC%9D%B4-%EC%9E%90%EB%8F%99-%EB%B3%B4%EC%A0%95)
-  - [D.부록: 기본값 맵핑](#d%EB%B6%80%EB%A1%9D-%EA%B8%B0%EB%B3%B8%EA%B0%92-%EB%A7%B5%ED%95%91)
-    - [기본값 맵핑 테이블](#%EA%B8%B0%EB%B3%B8%EA%B0%92-%EB%A7%B5%ED%95%91-%ED%85%8C%EC%9D%B4%EB%B8%94)
-  - [E.부록: PSM 변환기 규칙 목록](#e%EB%B6%80%EB%A1%9D-psm-%EB%B3%80%ED%99%98%EA%B8%B0-%EA%B7%9C%EC%B9%99-%EB%AA%A9%EB%A1%9D)
-    - [뷰 변환 규칙](#%EB%B7%B0-%EB%B3%80%ED%99%98-%EA%B7%9C%EC%B9%99)
-    - [트리거 변환 규칙](#%ED%8A%B8%EB%A6%AC%EA%B1%B0-%EB%B3%80%ED%99%98-%EA%B7%9C%EC%B9%99)
-    - [함수 변환 규칙](#%ED%95%A8%EC%88%98-%EB%B3%80%ED%99%98-%EA%B7%9C%EC%B9%99)
-    - [프로시저 변환 규칙](#%ED%94%84%EB%A1%9C%EC%8B%9C%EC%A0%80-%EB%B3%80%ED%99%98-%EA%B7%9C%EC%B9%99)
-    - [Materialized View 변환 규칙](#materialized-view-%EB%B3%80%ED%99%98-%EA%B7%9C%EC%B9%99)
-    - [패키지 변환 규칙](#%ED%8C%A8%ED%82%A4%EC%A7%80-%EB%B3%80%ED%99%98-%EA%B7%9C%EC%B9%99)
-    - [라이브러리 변환 규칙](#%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-%EB%B3%80%ED%99%98-%EA%B7%9C%EC%B9%99)
-    - [DML문 변환 규칙](#dml%EB%AC%B8-%EB%B3%80%ED%99%98-%EA%B7%9C%EC%B9%99)
-    - [PSM 변환 규칙](#psm-%EB%B3%80%ED%99%98-%EA%B7%9C%EC%B9%99)
-    - [표현 변환 규칙](#%ED%91%9C%ED%98%84-%EB%B3%80%ED%99%98-%EA%B7%9C%EC%B9%99)
-  - [F.부록: FAQ](#f%EB%B6%80%EB%A1%9D-faq)
-    - [Common](#common)
-    - [Oracle](#oracle)
+  - [C.부록: 데이터 타입 맵핑](#c부록-데이터-타입-맵핑)
+    - [데이터 타입 맵핑 테이블 변경](#데이터-타입-맵핑-테이블-변경)
+    - [기본 데이터 타입 맵핑 테이블](#기본-데이터-타입-맵핑-테이블)
+    - [이종 문자 집합을 고려한 문자형 컬럼 길이 자동 보정](#이종-문자-집합을-고려한-문자형-컬럼-길이-자동-보정)
+  - [D.부록: 기본값 맵핑](#d부록-기본값-맵핑)
+    - [기본값 맵핑 테이블](#기본값-맵핑-테이블)
+  - [E.부록: PSM 변환기 규칙 목록](#e부록-psm-변환기-규칙-목록)
+    - [뷰 변환 규칙](#뷰-변환-규칙)
+    - [트리거 변환 규칙](#트리거-변환-규칙)
+    - [함수 변환 규칙](#함수-변환-규칙)
+    - [프로시저 변환 규칙](#프로시저-변환-규칙)
+    - [Materialized View 변환 규칙](#materialized-view-변환-규칙)
+    - [패키지 변환 규칙](#패키지-변환-규칙)
+    - [라이브러리 변환 규칙](#라이브러리-변환-규칙)
+    - [DML문 변환 규칙](#dml문-변환-규칙)
+    - [PSM 변환 규칙](#psm-변환-규칙)
+    - [표현 변환 규칙](#표현-변환-규칙)
+  - [F.부록: FAQ](#f부록-faq)
+    - [DBMS 공통](#dbms-공통)
+    - [Oracle](#oracle-1)
     - [MS-SQL](#ms-sql)
-    - [Altibase](#altibase)
-    - [Informix](#informix)
-    - [MySQL](#mysql)
-    - [TimesTen](#timesten)
+    - [Altibase](#altibase-1)
+    - [Informix](#informix-1)
+    - [MySQL](#mysql-1)
+    - [TimesTen](#timesten-1)
 
 Altibase® Tools & Utilities
 
@@ -70,7 +70,7 @@ Migration Center User's Manual
 
 Altibase Tools & Utilities Migration Center User's Manual
 
-Release 7.9
+Release 7.11
 
 Copyright ⓒ 2001\~2021 Altibase Corp. All Rights Reserved.
 
@@ -374,7 +374,7 @@ Altibase가 대상 데이터베이스일 경우 마이그레이션이 가능한 
 
 - Microsoft SQL Server: 2005 - 2012
 
-- Oracle MySQL: 5.0 - 5.5
+- Oracle MySQL: 5.0 - 5.7
 
 - Informix: 11.50
 
@@ -498,8 +498,6 @@ Migration Center 프로젝트는 마이그레이션의 모든 면을 기술하�
 Migration Center를 사용하여 마이그레이션을 수행하는 전반적인 과정은
 "준비(Prepare)", "구축(Build)", "조정(Reconcile)", "실행(Run)" 및 "검증(Data
 Validation)" 의 다섯 단계로 구성된다.
-
-![](media/MigrationCenter/0e1eca129799717d226a7ee6a611eba8.jpg)
 
 ##### 준비(Prepare) 단계
 
@@ -1017,8 +1015,22 @@ diff 명령을 통해 원본과 대상 데이터베이스간 다른 데이터가
 
 #### 출력
 
-- 구축 보고서: 프로젝트 폴더에 HTML 형식으로 원본 및 대상 데이터베이스의 현재
+구축 단계에서 생성되는 파일들을 소개한다. 
+
+- 구축 보고서
+
+  프로젝트 폴더에 HTML 형식으로 원본 및 대상 데이터베이스의 현재
   상태에 기반한 다수의 저장 공간 분석 보고서가 출력된다.
+
+- SQL 데이터 정의어(DDL) 스크립트
+
+  Migration Center의 지원 여부와 상관없이 원본 데이터베이스에서 수집한 데이터베이스 객체 생성 문(DDL)을 저장한 파일로, 프로젝트 폴더에 생성되며 파일의 이름은 SrcDbObj_Create.sql이다. 이 파일은 필요시 사용자가 참고하도록 제공하는 것 일 뿐 Migration Center의 어느 단계에서도 사용되지 않는다. 
+
+- BuildReport4Unsupported.html
+
+  구축(Build) 결과를 요약한 파일 중 하나로, Migration Center에서 지원하지 않는 객체의 생성 문장이 기록된다. Migration Center에서 지원하지 않는 객체는 사용자가 직접 수동으로 변환해야 하는데, 이 파일을 변환 작업에 참고할 수 있다.
+
+  지원하지 않는 객체는 원본 데이터베이스에 따라 다르며 [B.부록: 마이그레이션 가능한 데이터베이스 객체](#b부록-마이그레이션-가능한-데이터베이스-객체)에서 확인할 수 있다. Oracle의 모든 객체는 Migration Center로 마이그레이션이 가능하기 때문에 이 파일이 생성되지 않는다. 반면, MySQL의 저장 프로시저, 저장 함수, 뷰, 트리거 객체와 같이 지원하지 않는 객체가 있으면 이 파일이 생성된다. 
 
 #### 내부 동작
 
@@ -1083,21 +1095,14 @@ Altibase의 테이블스페이스에 대한 자세한 내용은 각각의 *Admin
 
 - 조정 보고서: 프로젝트 폴더에 마이그레이션 할 데이터베이스 객체 및
   마이그레이션 하는 방법을 명시하는 다수의 보고서가 출력된다.
-
 - SQL 데이터 정의어(DDL) 스크립트: 사용자 편의를 위해, 프로젝트 폴더에 대상
   데이터베이스에 데이터베이스 객체를 생성하고 삭제하는 샘플 SQL 스크립트
   파일이 출력된다. 그러나 이 파일들은 Migration Center의 어느 단계에서도
   사용되지 않는다.
-  
   - DbObj_Create.sql: 마이그레이션 될 데이터베이스 객체를 생성하는 SQL
     스크립트 파일
-  
   - DbObj_Drop.sql: 마이그레이션 될 데이터베이스 객체를 삭제하는 SQL
     스크립트 파일
-  
-  - DbObj_Unsupported.sql: 지원되지 않는 데이터베이스 객체를 생성하는 SQL
-    스크립트 파일
-
 - PL/SQL 변환 보고서: PL/SQL 변환기에서 출력하는 다수의 보고서이다.
   
   - sqlconv.html: 원본과 변환된 PL/SQL의 차이를 비교하는 HTML 형식의 보고서
@@ -1331,7 +1336,7 @@ PL/SQL 변환기가 PSM 타입 객체 DDL 문장을 Altibase에 호환되는 형
 | **Data Options**                             |                                                              |
 | Batch Execution                              | 성능 향상을 위한 JDBC 배치 입력 사용 여부를 설정한다. 기본 설정은 Yes이다. |
 | Batch Size                                   | JDBC 배치 입력 사용 시 배치 크기를 지정한다. 기본 설정은 10000이다. |
-| Batch LOB type                               | BLOB, CLOB 데이터 타입의 배치 처리 여부를 지정한다. <br/>Yes를 선택하면 데이터 크기에 따라 메모리 초과 (Out Of Memory) 등의 문제가 발생할 수 있으며, TimesTen 등 이 기능을 지원하지 않는 일부 DBMS에서 예외가 발생할 수 있다. 기본 설정은 No이다. |
+| Batch LOB type                               | BLOB, CLOB 데이터 타입의 배치 처리 여부를 지정한다. <br/>Yes는 배치 처리를 허용하는 것을 의미한다. 단, LOB 데이터 크기에 따라 메모리 초과 (Out Of Memory) 등의 문제가 발생할 수 있음을 주의해야 한다. 또한 배치 기능을 지원하지 않는 TimesTen에서 예외가 발생할 수 있다. <br />No는 배치 처리를 허용하지 않는다. 기본 설정은 No이다. |
 | Log Insert-failed Data                       | 데이터 마이그레이션 중 입력 실패한 행(row)을 로그 파일에 작성할 것인지 설정한다. 이 옵션은 Batch Execution 옵션이 No인 경우 활성화된다. 기본 설정은 No이다. |
 | File Encoding                                | 입력 실패한 레코드를 파일에 기록할 때 인코딩 문자 집합을 지정한다. Log Insert-failed Data 옵션이 Yes인 경우 활성화된다. 기본설정은 UTF8이다. |
 | **Data Validation Options**                  |                                                              |
@@ -1362,431 +1367,445 @@ PL/SQL 변환기가 PSM 타입 객체 DDL 문장을 Altibase에 호환되는 형
 
 "구축" 방식에 따라 데이터베이스 객체의 이관 여부 및 유의사항을 설명한다.
 
+Migration Center에서 지원하지 않는 원본 데이터베이스의 객체는 사용자가 직접 수동으로 변환해야 한다. Migration Center 7.11부터 구축(Build) 단계에서 객체 생성 구문을 아래 두 파일에 기록하고 있으므로 사용자는 이 파일들을 변환 작업에 참고할 수 있다.
+
+- SrcDbObj_Create.sql
+- BuildReport4Unsupported.html
+
 ### Altibase to Altibase
 
-| 데이터베이스 객체 유형      | 'Build User'로 마이그레이션 가능 여부? | 'Build Table'로 마이그레이션 가능 여부? | 비고                                     |
-| ----------------- | --------------------------- | ---------------------------- | -------------------------------------- |
-| Table             | O                           | O                            | 테이블과 칼럼에 명시된 주석(comment)도 함께 마이그레이션된다. |
-| Primary Key 제약    | O                           | O                            |                                        |
-| Unique 제약         | O                           | O                            |                                        |
-| Check 제약          | O                           | O                            |                                        |
-| Foreign Key 제약    | O                           | O                            |                                        |
-| Index             | O                           | O                            |                                        |
-| Sequence          | O                           | X                            |                                        |
-| Queue             | O                           | X                            |                                        |
-| Private Synonym   | 부분 지원                       | X                            | 다른 schema 내의 객체를 참조하는 시노님도 마이그레이션된다.   |
-| Procedure         | 부분 지원                       | X                            |                                        |
-| Function          | 부분 지원                       | X                            |                                        |
-| Package           | 부분 지원                       | X                            |                                        |
-| View              | 부분 지원                       | X                            |                                        |
-| Materialized View | 부분 지원                       | X                            |                                        |
-| Trigger           | 부분 지원                       | X                            |                                        |
+| 데이터베이스 객체 유형 | 'Build User'로 마이그레이션 가능 여부 | 'Build Table'로 마이그레이션 가능 여부 | 비고                                                         |
+| :--------------------- | :-----------------------------------: | :------------------------------------: | ------------------------------------------------------------ |
+| Table                  |                   O                   |                   O                    | 테이블과 칼럼에 명시된 주석(comment)도 함께 마이그레이션된다. |
+| Primary Key 제약       |                   O                   |                   O                    |                                                              |
+| Unique 제약            |                   O                   |                   O                    |                                                              |
+| Check 제약             |                   O                   |                   O                    |                                                              |
+| Foreign Key 제약       |                   O                   |                   O                    |                                                              |
+| Index                  |                   O                   |                   O                    |                                                              |
+| Sequence               |                   O                   |                   X                    |                                                              |
+| Queue                  |                   O                   |                   X                    |                                                              |
+| Private Synonym        |               부분 지원               |                   X                    | 다른 schema 내의 객체를 참조하는 시노님도 마이그레이션된다.  |
+| Procedure              |               부분 지원               |                   X                    | 별도의 변환작업 없이 원본 DDL 그대로 수행된다.               |
+| Function               |               부분 지원               |                   X                    | 별도의 변환작업 없이 원본 DDL 그대로 수행된다.               |
+| Package                |               부분 지원               |                   X                    | 별도의 변환작업 없이 원본 DDL 그대로 수행된다.               |
+| View                   |               부분 지원               |                   X                    | 별도의 변환작업 없이 원본 DDL 그대로 수행된다.               |
+| Materialized View      |               부분 지원               |                   X                    | 별도의 변환작업 없이 원본 DDL 그대로 수행된다.               |
+| Trigger                |               부분 지원               |                   X                    | 별도의 변환작업 없이 원본 DDL 그대로 수행된다.               |
 
 ### Altibase to Oracle
 
-| 데이터베이스 객체 유형      | 'Build User'로 마이그레이션 가능 여부? | 'Build Table'로 마이그레이션 가능 여부? | 비고                                                                             |
-| ----------------- | --------------------------- | ---------------------------- | ------------------------------------------------------------------------------ |
-| Table             | O                           | O                            |                                                                                |
-| Primary Key 제약    | O                           | O                            |                                                                                |
-| Unique 제약         | O                           | O                            |                                                                                |
-| Check 제약          | O                           | O                            |                                                                                |
-| Foreign Key 제약    | O                           | O                            |                                                                                |
-| Index             | O                           | O                            |                                                                                |
-| Sequence          | O                           | X                            |                                                                                |
-| Queue             | X                           | X                            | 변환 가능한 객체가 없기 때문에, build 단계에서 자동으로 제외된다.                                       |
-| Private Synonym   | 부분 지원                       | X                            | 다른 schema 내의 객체를 참조하는 시노님도 마이그레이션된다.                                           |
-| Procedure         | 부분 지원                       | X                            | 별도의 변환작업 없이 원본 DDL 그대로 수행된다.                                                   |
-| Function          | 부분 지원                       | X                            | 별도의 변환작업 없이 원본 DDL 그대로 수행된다.                                                   |
-| Package           | 부분 지원                       | X                            | 별도의 변환작업 없이 원본 DDL 그대로 수행된다.                                                   |
-| View              | 부분 지원                       | X                            | 별도의 변환작업 없이 원본 DDL 그대로 수행된다.                                                   |
-| Materialized View | 부분 지원                       | X                            | 별도의 변환작업 없이 원본 DDL 그대로 수행된다. 참고로 migration을 위해서는 베이스 테이블에 primary key가 있어야 한다. |
-| Trigger           | 부분 지원                       | X                            | 별도의 변환작업 없이 원본 DDL 그대로 수행된다.                                                   |
+| 데이터베이스 객체 유형 | 'Build User'로 마이그레이션 가능 여부 | 'Build Table'로 마이그레이션 가능 여부 | 비고                                                         |
+| :--------------------- | :-----------------------------------: | :------------------------------------: | :----------------------------------------------------------- |
+| Table                  |                   O                   |                   O                    |                                                              |
+| Primary Key 제약       |                   O                   |                   O                    |                                                              |
+| Unique 제약            |                   O                   |                   O                    |                                                              |
+| Check 제약             |                   O                   |                   O                    |                                                              |
+| Foreign Key 제약       |                   O                   |                   O                    |                                                              |
+| Index                  |                   O                   |                   O                    |                                                              |
+| Sequence               |                   O                   |                   X                    |                                                              |
+| Queue                  |                   X                   |                   X                    | 변환 가능한 객체가 없기 때문에, build 단계에서 자동으로 제외된다. |
+| Private Synonym        |               부분 지원               |                   X                    | 다른 schema 내의 객체를 참조하는 시노님도 마이그레이션된다.  |
+| Procedure              |               부분 지원               |                   X                    | 별도의 변환작업 없이 원본 DDL 그대로 수행된다.               |
+| Function               |               부분 지원               |                   X                    | 별도의 변환작업 없이 원본 DDL 그대로 수행된다.               |
+| Package                |               부분 지원               |                   X                    | 별도의 변환작업 없이 원본 DDL 그대로 수행된다.               |
+| View                   |               부분 지원               |                   X                    | 별도의 변환작업 없이 원본 DDL 그대로 수행된다.               |
+| Materialized View      |               부분 지원               |                   X                    | 별도의 변환작업 없이 원본 DDL 그대로 수행된다. 참고로 migration을 위해서는 베이스 테이블에 primary key가 있어야 한다. |
+| Trigger                |               부분 지원               |                   X                    | 별도의 변환작업 없이 원본 DDL 그대로 수행된다.               |
 
 ### CUBRID to Altibase
 
-| 데이터베이스 객체 유형         | 'Build User'로 마이그레이션 가능 여부? | 'Build Table'로 마이그레이션 가능 여부? | 비고                                                                                                                                                                                                                  |
-| -------------------- | --------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Table                | O                           | O                            | 테이블과 칼럼에 명시된 주석(comment)도 함께 마이그레이션된다.                                                                                                                                                                              |
-| Primary Key 제약       | O                           | O                            |                                                                                                                                                                                                                     |
-| Unique 제약            | O                           | O                            |                                                                                                                                                                                                                     |
-| Foreign Key 제약       | O                           | O                            |                                                                                                                                                                                                                     |
-| Index                | O                           | O                            | CUBRID의 Reverse index와 Prefix length index는 Altibase에서 지원하지 않는다. Reverse index는 인덱스 생성시 키 값을 역으로 넣는 방식으로, Altibase 마이그레이션에서 지원하지 않는다. Prefix length index는 키 값의 일정 부분만을 인덱싱하는 기법으로, 마이그레이션시 Altibase의 일반 인덱스로 대체된다. |
-| auto_increment 칼럼 속성 | O                           | O                            | Sequence로 마이그레이션된다.                                                                                                                                                                                                 |
-| Serial               | O                           | X                            | Sequence로 마이그레이션된다.                                                                                                                                                                                                 |
-| Procedure            | 부분 지원                       | X                            | 별도의 변환작업 없이 원본 DDL 그대로 수행된다.                                                                                                                                                                                        |
-| Function             | 부분 지원                       | X                            | 별도의 변환작업 없이 원본 DDL 그대로 수행된다.                                                                                                                                                                                        |
-| View                 | 부분 지원                       | X                            | 별도의 변환작업 없이 원본 DDL 그대로 수행된다.                                                                                                                                                                                        |
-| Trigger              | 부분 지원                       | X                            | 별도의 변환작업 없이 원본 DDL 그대로 수행된다.                                                                                                                                                                                        |
+| 데이터베이스 객체 유형   | 'Build User'로 마이그레이션 가능 여부 | 'Build Table'로 마이그레이션 가능 여부 | 비고                                                         |
+| :----------------------- | :-----------------------------------: | :------------------------------------: | :----------------------------------------------------------- |
+| Table                    |                   O                   |                   O                    | 테이블과 칼럼에 명시된 주석(comment)도 함께 마이그레이션된다. |
+| Primary Key 제약         |                   O                   |                   O                    |                                                              |
+| Unique 제약              |                   O                   |                   O                    |                                                              |
+| Foreign Key 제약         |                   O                   |                   O                    |                                                              |
+| Index                    |                   O                   |                   O                    | CUBRID의 Reverse index와 Prefix length index는 Altibase에서 지원하지 않는다. Reverse index는 인덱스 생성시 키 값을 역으로 넣는 방식으로, Altibase 마이그레이션에서 지원하지 않는다. Prefix length index는 키 값의 일정 부분만을 인덱싱하는 기법으로, 마이그레이션시 Altibase의 일반 인덱스로 대체된다. |
+| auto_increment 칼럼 속성 |                   O                   |                   O                    | Sequence로 마이그레이션된다.                                 |
+| Serial                   |                   O                   |                   X                    | Sequence로 마이그레이션된다.                                 |
+| Procedure                |                   X                   |                   X                    | 구축(Build) 단계에서 원본 데이터베이스에서 수집한 객체 생성 구문을 SrcDbObj_Create.sql과 BuildReport4Unsupported.html 파일에 기록한다. |
+| Function                 |                   X                   |                   X                    | 구축(Build) 단계에서 원본 데이터베이스에서 수집한 객체 생성 구문을 SrcDbObj_Create.sql과 BuildReport4Unsupported.html 파일에 기록한다. |
+| View                     |                   X                   |                   X                    | 구축(Build) 단계에서 원본 데이터베이스에서 수집한 객체 생성 구문을 SrcDbObj_Create.sql과 BuildReport4Unsupported.html 파일에 기록한다. |
+| Trigger                  |                   X                   |                   X                    | 구축(Build) 단계에서 원본 데이터베이스에서 수집한 객체 생성 구문을 SrcDbObj_Create.sql과 BuildReport4Unsupported.html 파일에 기록한다. |
 
 ### Informix to Altibase
 
-| 데이터베이스 객체 유형    | 'Build User'로 마이그레이션 가능 여부? | 'Build Table'로 마이그레이션 가능 여부? | 비고                                     |
-| --------------- | --------------------------- | ---------------------------- | -------------------------------------- |
-| Table           | O                           | O                            | 테이블과 칼럼에 명시된 주석(comment)도 함께 마이그레이션된다. |
-| Primary Key 제약  | O                           | O                            |                                        |
-| Unique 제약       | O                           | O                            |                                        |
-| Check 제약        | O                           | O                            |                                        |
-| Foreign Key 제약  | O                           | O                            |                                        |
-| Index           | O                           | O                            |                                        |
-| Serial 칼럼 타입    | O                           | O                            | Sequence로 마이그레이션된다.                    |
-| Sequence        | O                           | X                            |                                        |
-| Private Synonym | 부분 지원                       | X                            | 동일 schema 내의 객체를 참조하는 시노님만 마이그레이션된다.   |
-| Procedure       | 부분 지원                       | X                            | 별도의 변환작업 없이 원본 DDL 그대로 수행된다.           |
-| Function        | 부분 지원                       | X                            | 별도의 변환작업 없이 원본 DDL 그대로 수행된다.           |
-| View            | 부분 지원                       | X                            | 별도의 변환작업 없이 원본 DDL 그대로 수행된다.           |
-| Trigger         | 부분 지원                       | X                            | 별도의 변환작업 없이 원본 DDL 그대로 수행된다.           |
+| 데이터베이스 객체 유형 | 'Build User'로 마이그레이션 가능 여부 | 'Build Table'로 마이그레이션 가능 여부 | 비고                                                         |
+| :--------------------- | :-----------------------------------: | :------------------------------------: | :----------------------------------------------------------- |
+| Table                  |                   O                   |                   O                    | 테이블과 칼럼에 명시된 주석(comment)도 함께 마이그레이션된다. |
+| Primary Key 제약       |                   O                   |                   O                    |                                                              |
+| Unique 제약            |                   O                   |                   O                    |                                                              |
+| Check 제약             |                   O                   |                   O                    |                                                              |
+| Foreign Key 제약       |                   O                   |                   O                    |                                                              |
+| Index                  |                   O                   |                   O                    |                                                              |
+| Serial 칼럼 타입       |                   O                   |                   O                    | Sequence로 마이그레이션된다.                                 |
+| Sequence               |                   O                   |                   X                    |                                                              |
+| Private Synonym        |               부분 지원               |                   X                    | 동일 schema 내의 객체를 참조하는 시노님만 마이그레이션된다.  |
+| Procedure              |                   X                   |                   X                    | 구축(Build) 단계에서 원본 데이터베이스에서 수집한 객체 생성 구문을 SrcDbObj_Create.sql과 BuildReport4Unsupported.html 파일에 기록한다. |
+| Function               |                   X                   |                   X                    | 구축(Build) 단계에서 원본 데이터베이스에서 수집한 객체 생성 구문을 SrcDbObj_Create.sql과 BuildReport4Unsupported.html 파일에 기록한다. |
+| View                   |                   X                   |                   X                    | 구축(Build) 단계에서 원본 데이터베이스에서 수집한 객체 생성 구문을 SrcDbObj_Create.sql과 BuildReport4Unsupported.html 파일에 기록한다. |
+| Trigger                |                   X                   |                   X                    | 구축(Build) 단계에서 원본 데이터베이스에서 수집한 객체 생성 구문을 SrcDbObj_Create.sql과 BuildReport4Unsupported.html 파일에 기록한다. |
 
 ### MySQL to Altibase
 
-| 데이터베이스 객체 유형         | 'Build User'로 마이그레이션 가능 여부? | 'Build Table'로 마이그레이션 가능 여부? | 비고                                     |
-| -------------------- | --------------------------- | ---------------------------- | -------------------------------------- |
-| Table                | O                           | O                            | 테이블과 칼럼에 명시된 주석(comment)도 함께 마이그레이션된다. |
-| Primary Key 제약       | O                           | O                            |                                        |
-| Unique 제약            | O                           | O                            |                                        |
-| Check 제약             | O                           | O                            |                                        |
-| Foreign Key 제약       | O                           | O                            |                                        |
-| Index                | O                           | O                            |                                        |
-| auto_increment 칼럼 속성 | O                           | O                            | Sequence로 마이그레이션된다.                    |
-| Procedure            | 부분 지원                       | X                            | 별도의 변환작업 없이 원본 DDL 그대로 수행된다.           |
-| Function             | 부분 지원                       | X                            | 별도의 변환작업 없이 원본 DDL 그대로 수행된다.           |
-| View                 | 부분 지원                       | X                            | 별도의 변환작업 없이 원본 DDL 그대로 수행된다.           |
-| Trigger              | 부분 지원                       | X                            | 별도의 변환작업 없이 원본 DDL 그대로 수행된다.           |
+| 데이터베이스 객체 유형   | 'Build User'로 마이그레이션 가능 여부 | 'Build Table'로 마이그레이션 가능 여부 | 비고                                                         |
+| :----------------------- | :-----------------------------------: | :------------------------------------: | :----------------------------------------------------------- |
+| Table                    |                   O                   |                   O                    | 테이블과 칼럼에 명시된 주석(comment)도 함께 마이그레이션된다. |
+| Primary Key 제약         |                   O                   |                   O                    |                                                              |
+| Unique 제약              |                   O                   |                   O                    |                                                              |
+| Check 제약               |                   O                   |                   O                    |                                                              |
+| Foreign Key 제약         |                   O                   |                   O                    |                                                              |
+| Index                    |                   O                   |                   O                    |                                                              |
+| auto_increment 칼럼 속성 |                   O                   |                   O                    | Sequence로 마이그레이션된다.                                 |
+| Procedure                |                   X                   |                   X                    | 구축(Build) 단계에서 원본 데이터베이스에서 수집한 객체 생성 구문을 SrcDbObj_Create.sql과 BuildReport4Unsupported.html 파일에 기록한다. |
+| Function                 |                   X                   |                   X                    | 구축(Build) 단계에서 원본 데이터베이스에서 수집한 객체 생성 구문을 SrcDbObj_Create.sql과 BuildReport4Unsupported.html 파일에 기록한다. |
+| View                     |                   X                   |                   X                    | 구축(Build) 단계에서 원본 데이터베이스에서 수집한 객체 생성 구문을 SrcDbObj_Create.sql과 BuildReport4Unsupported.html 파일에 기록한다. |
+| Trigger                  |                   X                   |                   X                    | 구축(Build) 단계에서 원본 데이터베이스에서 수집한 객체 생성 구문을 SrcDbObj_Create.sql과 BuildReport4Unsupported.html 파일에 기록한다. |
 
 ### Oracle to Altibase
 
-| 데이터베이스 객체 유형      | 'Build User'로 마이그레이션 가능 여부? | 'Build Table'로 마이그레이션 가능 여부? | 비고                                                                                                                                        |
-| ----------------- | --------------------------- | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| Table             | O                           | O                            | 임시 테이블을 마이그레이션하기 위해서는 휘발성 테이블스페이스가 Altibase에 있어야 한다. Altibase의 임시 테이블은 휘발성 테이블스페이스에만 생성할 수 있기 때문이다.테이블과 칼럼에 명시된 주석(comment)도 함께 마이그레이션된다. |
-| Primary Key 제약    | O                           | O                            |                                                                                                                                           |
-| Unique 제약         | O                           | O                            |                                                                                                                                           |
-| Check 제약          | O                           | O                            |                                                                                                                                           |
-| Foreign Key 제약    | O                           | O                            |                                                                                                                                           |
-| Index             | O                           | O                            |                                                                                                                                           |
-| Sequence          | O                           | X                            |                                                                                                                                           |
-| Private Synonym   | 부분 지원                       | X                            | 동일 schema 내의 객체를 참조하는 시노님만 마이그레이션된다.                                                                                                      |
-| Procedure         | 부분 지원                       | X                            |                                                                                                                                           |
-| Function          | 부분 지원                       | X                            |                                                                                                                                           |
-| Package           | 부분 지원                       | X                            |                                                                                                                                           |
-| View              | 부분 지원                       | X                            |                                                                                                                                           |
-| Materialized View | 부분 지원                       | X                            |                                                                                                                                           |
-| Trigger           | 부분 지원                       | X                            |                                                                                                                                           |
+| 데이터베이스 객체 유형 | 'Build User'로 마이그레이션 가능 여부 | 'Build Table'로 마이그레이션 가능 여부 | 비고                                                         |
+| :--------------------- | :-----------------------------------: | :------------------------------------: | :----------------------------------------------------------- |
+| Table                  |                   O                   |                   O                    | 임시 테이블을 마이그레이션하기 위해서는 휘발성 테이블스페이스가 Altibase에 있어야 한다. Altibase의 임시 테이블은 휘발성 테이블스페이스에만 생성할 수 있기 때문이다.테이블과 칼럼에 명시된 주석(comment)도 함께 마이그레이션된다. |
+| Primary Key 제약       |                   O                   |                   O                    |                                                              |
+| Unique 제약            |                   O                   |                   O                    |                                                              |
+| Check 제약             |                   O                   |                   O                    |                                                              |
+| Foreign Key 제약       |                   O                   |                   O                    |                                                              |
+| Index                  |                   O                   |                   O                    |                                                              |
+| Sequence               |                   O                   |                   X                    |                                                              |
+| Private Synonym        |               부분 지원               |                   X                    | 동일 schema 내의 객체를 참조하는 시노님만 마이그레이션된다.  |
+| Procedure              |               부분 지원               |                   X                    | PSM 변환기에 정의된 규칙에 따라 객체 생성 문장을 변환하고 마이그레이션을 시도한다. |
+| Function               |               부분 지원               |                   X                    | PSM 변환기에 정의된 규칙에 따라 객체 생성 문장을 변환하고 마이그레이션을 시도한다. |
+| Package                |               부분 지원               |                   X                    | PSM 변환기에 정의된 규칙에 따라 객체 생성 문장을 변환하고 마이그레이션을 시도한다. |
+| View                   |               부분 지원               |                   X                    | PSM 변환기에 정의된 규칙에 따라 객체 생성 문장을 변환하고 마이그레이션을 시도한다. |
+| Materialized View      |               부분 지원               |                   X                    | PSM 변환기에 정의된 규칙에 따라 객체 생성 문장을 변환하고 마이그레이션을 시도한다. |
+| Trigger                |               부분 지원               |                   X                    | PSM 변환기에 정의된 규칙에 따라 객체 생성 문장을 변환하고 마이그레이션을 시도한다. |
 
 ### SQL Server to Altibase
 
-| 데이터베이스 객체 유형    | 'Build User'로 마이그레이션 가능 여부? | 'Build Table'로 마이그레이션 가능 여부? | 비고                                     |
-| --------------- | --------------------------- | ---------------------------- | -------------------------------------- |
-| Table           | O                           | O                            | 테이블과 칼럼에 명시된 주석(comment)도 함께 마이그레이션된다. |
-| Primary Key 제약  | O                           | O                            |                                        |
-| Unique 제약       | O                           | O                            |                                        |
-| Check 제약        | O                           | O                            |                                        |
-| Foreign Key 제약  | O                           | O                            |                                        |
-| Index           | O                           | O                            |                                        |
-| Identity 칼럼 속성  | O                           | O                            | Sequence로 마이그레이션된다.                    |
-| Sequence        | O                           | X                            | SQL Server 2012 지원                     |
-| Private Synonym | 부분 지원                       | X                            | 동일 schema 내의 객체를 참조하는 시노님만 마이그레이션된다.   |
-| Procedure       | 부분 지원                       | X                            | 별도의 변환작업 없이 원본 DDL 그대로 수행된다.           |
-| Function        | 부분 지원                       | X                            | 별도의 변환작업 없이 원본 DDL 그대로 수행된다.           |
-| View            | 부분 지원                       | X                            | 별도의 변환작업 없이 원본 DDL 그대로 수행된다.           |
-| Trigger         | 부분 지원                       | X                            | 별도의 변환작업 없이 원본 DDL 그대로 수행된다.           |
+| 데이터베이스 객체 유형 | 'Build User'로 마이그레이션 가능 여부 | 'Build Table'로 마이그레이션 가능 여부 | 비고                                                         |
+| :--------------------- | :-----------------------------------: | :------------------------------------: | :----------------------------------------------------------- |
+| Table                  |                   O                   |                   O                    | 테이블과 칼럼에 명시된 주석(comment)도 함께 마이그레이션된다. |
+| Primary Key 제약       |                   O                   |                   O                    |                                                              |
+| Unique 제약            |                   O                   |                   O                    |                                                              |
+| Check 제약             |                   O                   |                   O                    |                                                              |
+| Foreign Key 제약       |                   O                   |                   O                    |                                                              |
+| Index                  |                   O                   |                   O                    |                                                              |
+| Identity 칼럼 속성     |                   O                   |                   O                    | Sequence로 마이그레이션된다.                                 |
+| Sequence               |                   O                   |                   X                    | SQL Server 2012 지원                                         |
+| Private Synonym        |               부분 지원               |                   X                    | 동일 schema 내의 객체를 참조하는 시노님만 마이그레이션된다.  |
+| Procedure              |                   X                   |                   X                    | 구축(Build) 단계에서 원본 데이터베이스에서 수집한 객체 생성 구문을 SrcDbObj_Create.sql과 BuildReport4Unsupported.html 파일에 기록한다. |
+| Function               |                   X                   |                   X                    | 구축(Build) 단계에서 원본 데이터베이스에서 수집한 객체 생성 구문을 SrcDbObj_Create.sql과 BuildReport4Unsupported.html 파일에 기록한다. |
+| View                   |                   X                   |                   X                    | 구축(Build) 단계에서 원본 데이터베이스에서 수집한 객체 생성 구문을 SrcDbObj_Create.sql과 BuildReport4Unsupported.html 파일에 기록한다. |
+| Trigger                |                   X                   |                   X                    | 구축(Build) 단계에서 원본 데이터베이스에서 수집한 객체 생성 구문을 SrcDbObj_Create.sql과 BuildReport4Unsupported.html 파일에 기록한다. |
 
 ### TimesTen to Altibase
 
-| 데이터베이스 객체 유형      | 'Build User'로 마이그레이션 가능 여부? | 'Build Table'로 마이그레이션 가능 여부? | 비고                                                                                                                                                                                                                                                                                                                                                                       |
-| ----------------- | --------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Table             | O                           | O                            | 임시 테이블을 Altibase(대상 데이터베이스)로 마이그레이션하기 위해서는 휘발성 테이블스페이스가 Altibase에 있어야 한다. Altibase의 임시 테이블은 휘발성 테이블스페이스에만 생성할 수 있기 때문이다. 테이블과 칼럼에 명시된 주석(comment)도 함께 마이그레이션된다.                                                                                                                                                                                                          |
-| Primary Key 제약    | O                           | O                            |                                                                                                                                                                                                                                                                                                                                                                          |
-| Unique 제약         | O                           | O                            |                                                                                                                                                                                                                                                                                                                                                                          |
-| Foreign Key 제약    | O                           | O                            |                                                                                                                                                                                                                                                                                                                                                                          |
-| Index             | O                           | O                            | TimesTen(원본 데이터베이스)의 인덱스는 정렬 순서(ASC/DESC)나 크기에 대한 정보를 제공하지 않는다. 따라서 인덱스 순서는 기본값(ASC)으로 이관하며, 크기는 표시하지 않는다. TimesTen에서 제공되는 세 가지(hash, range, bitmap) 인덱스 중에서 hash·range 인덱스는 Altibase의 B-tree index로 변환되어 생성되며, bitmap 인덱스는 마이그레이션을 지원하지 않는다. 또한 인덱스 컬럼에 primary key나 unique 제약이 있을 경우, 해당 인덱스는 Altibase에서 허용하지 않기 때문에 마이그레이션에서 제외되며 build report의 Missing 탭에서 확인할 수 있다. |
-| Sequence          | O                           | X                            |                                                                                                                                                                                                                                                                                                                                                                          |
-| Private Synonym   | 부분 지원                       | X                            | 동일 schema 내의 객체를 참조하는 시노님만 마이그레이션된다.                                                                                                                                                                                                                                                                                                                                     |
-| Procedure         | 부분 지원                       | X                            | TimesTen 11.2 지원                                                                                                                                                                                                                                                                                                                                                         |
-| Function          | 부분 지원                       | X                            | TimesTen 11.2 지원                                                                                                                                                                                                                                                                                                                                                         |
-| Package           | 부분 지원                       | X                            | TimesTen 11.2 지원                                                                                                                                                                                                                                                                                                                                                         |
-| View              | 부분 지원                       | X                            | TimesTen 11.2 지원                                                                                                                                                                                                                                                                                                                                                         |
-| Materialized View | 부분 지원                       | X                            | TimesTen 11.2 지원                                                                                                                                                                                                                                                                                                                                                         |
-| Trigger           | 부분 지원                       | X                            | TimesTen 11.2 지원                                                                                                                                                                                                                                                                                                                                                         |
+| 데이터베이스 객체 유형 | 'Build User'로 마이그레이션 가능 여부 | 'Build Table'로 마이그레이션 가능 여부 | 비고                                                         |
+| :--------------------- | :-----------------------------------: | :------------------------------------: | :----------------------------------------------------------- |
+| Table                  |                   O                   |                   O                    | 임시 테이블을 Altibase(대상 데이터베이스)로 마이그레이션하기 위해서는 휘발성 테이블스페이스가 Altibase에 있어야 한다. Altibase의 임시 테이블은 휘발성 테이블스페이스에만 생성할 수 있기 때문이다. 테이블과 칼럼에 명시된 주석(comment)도 함께 마이그레이션된다. |
+| Primary Key 제약       |                   O                   |                   O                    |                                                              |
+| Unique 제약            |                   O                   |                   O                    |                                                              |
+| Foreign Key 제약       |                   O                   |                   O                    |                                                              |
+| Index                  |                   O                   |                   O                    | TimesTen(원본 데이터베이스)의 인덱스는 정렬 순서(ASC/DESC)나 크기에 대한 정보를 제공하지 않는다. 따라서 인덱스 순서는 기본값(ASC)으로 이관하며, 크기는 표시하지 않는다. TimesTen에서 제공되는 세 가지(hash, range, bitmap) 인덱스 중에서 hash·range 인덱스는 Altibase의 B-tree index로 변환되어 생성되며, bitmap 인덱스는 마이그레이션을 지원하지 않는다. 또한 인덱스 컬럼에 primary key나 unique 제약이 있을 경우, 해당 인덱스는 Altibase에서 허용하지 않기 때문에 마이그레이션에서 제외되며 build report의 Missing 탭에서 확인할 수 있다. |
+| Sequence               |                   O                   |                   X                    |                                                              |
+| Private Synonym        |               부분 지원               |                   X                    | 동일 schema 내의 객체를 참조하는 시노님만 마이그레이션된다.  |
+| Procedure              |               부분 지원               |                   X                    | TimesTen 11.2 지원                                           |
+| Function               |               부분 지원               |                   X                    | TimesTen 11.2 지원                                           |
+| Package                |               부분 지원               |                   X                    | TimesTen 11.2 지원                                           |
+| View                   |               부분 지원               |                   X                    | TimesTen 11.2 지원                                           |
+| Materialized View      |               부분 지원               |                   X                    | TimesTen 11.2 지원                                           |
+| Trigger                |               부분 지원               |                   X                    | TimesTen 11.2 지원                                           |
 
 ### Tibero to Altibase
 
-| 데이터베이스 객체 유형      | 'Build User'로 마이그레이션 가능 여부? | 'Build Table'로 마이그레이션 가능 여부? | 비고                                                                                                                                                                                 |
-| ----------------- | --------------------------- | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Table             | O                           | O                            | Tibero(원본 데이터베이스)의 임시 테이블을 Altibase(대상 데이터베이스)로 마이그레이션하기 위해서는 휘발성 테이블스페이스가 Altibase에 있어야 한다. Altibase의 임시 테이블은 휘발성 테이블스페이스에만 생성할 수 있기 때문이다. 테이블과 칼럼에 명시된 주석(comment)도 함께 마이그레이션된다. |
-| Primary Key 제약    | O                           | O                            |                                                                                                                                                                                    |
-| Unique 제약         | O                           | O                            |                                                                                                                                                                                    |
-| Check 제약          | O                           | O                            |                                                                                                                                                                                    |
-| Foreign Key 제약    | O                           | O                            |                                                                                                                                                                                    |
-| Index             | O                           | O                            | Tibero의 LOB 타입 칼럼에 자동으로 생성되는 index는 Altibase에서 지원하지 않으므로 이관되지 않는다. Build 단계에서 걸러진 이관 불가능한 인덱스 목록은 Build Report의 Missing 탭에서 확인할 수 있다.                                              |
-| Sequence          | O                           | X                            |                                                                                                                                                                                    |
-| Private Synonym   | 부분 지원                       | X                            | 동일 schema 내의 객체를 참조하는 시노님만 마이그레이션된다.                                                                                                                                               |
-| Procedure         | 부분 지원                       | X                            |                                                                                                                                                                                    |
-| Function          | 부분 지원                       | X                            |                                                                                                                                                                                    |
-| Package           | 부분 지원                       | X                            |                                                                                                                                                                                    |
-| View              | 부분 지원                       | X                            |                                                                                                                                                                                    |
-| Materialized View | 부분 지원                       | X                            |                                                                                                                                                                                    |
-| Trigger           | 부분 지원                       | X                            |                                                                                                                                                                                    |
+| 데이터베이스 객체 유형 | 'Build User'로 마이그레이션 가능 여부 | 'Build Table'로 마이그레이션 가능 여부 | 비고                                                         |
+| :--------------------- | :-----------------------------------: | :------------------------------------: | :----------------------------------------------------------- |
+| Table                  |                   O                   |                   O                    | Tibero(원본 데이터베이스)의 임시 테이블을 Altibase(대상 데이터베이스)로 마이그레이션하기 위해서는 휘발성 테이블스페이스가 Altibase에 있어야 한다. Altibase의 임시 테이블은 휘발성 테이블스페이스에만 생성할 수 있기 때문이다. 테이블과 칼럼에 명시된 주석(comment)도 함께 마이그레이션된다. |
+| Primary Key 제약       |                   O                   |                   O                    |                                                              |
+| Unique 제약            |                   O                   |                   O                    |                                                              |
+| Check 제약             |                   O                   |                   O                    |                                                              |
+| Foreign Key 제약       |                   O                   |                   O                    |                                                              |
+| Index                  |                   O                   |                   O                    | Tibero의 LOB 타입 칼럼에 자동으로 생성되는 index는 Altibase에서 지원하지 않으므로 이관되지 않는다. Build 단계에서 걸러진 이관 불가능한 인덱스 목록은 Build Report의 Missing 탭에서 확인할 수 있다. |
+| Sequence               |                   O                   |                   X                    |                                                              |
+| Private Synonym        |               부분 지원               |                   X                    | 동일 schema 내의 객체를 참조하는 시노님만 마이그레이션된다.  |
+| Procedure              |               부분 지원               |                   X                    | PSM 변환기에 정의된 규칙에 따라 객체 생성 문장을 변환하고 마이그레이션을 시도한다. |
+| Function               |               부분 지원               |                   X                    | PSM 변환기에 정의된 규칙에 따라 객체 생성 문장을 변환하고 마이그레이션을 시도한다. |
+| Package                |               부분 지원               |                   X                    | PSM 변환기에 정의된 규칙에 따라 객체 생성 문장을 변환하고 마이그레이션을 시도한다. |
+| View                   |               부분 지원               |                   X                    | PSM 변환기에 정의된 규칙에 따라 객체 생성 문장을 변환하고 마이그레이션을 시도한다. |
+| Materialized View      |               부분 지원               |                   X                    | PSM 변환기에 정의된 규칙에 따라 객체 생성 문장을 변환하고 마이그레이션을 시도한다. |
+| Trigger                |               부분 지원               |                   X                    | PSM 변환기에 정의된 규칙에 따라 객체 생성 문장을 변환하고 마이그레이션을 시도한다. |
 
-> 참고:  Tibero의 Procedure, Function, View, Materialized View, Trigger는 객체를
-> 마이그레이션하기 위해 Third-Party에서 제공하는 Oracle용 SQL 파서를 사용한다.
-> 따라서, Oracle 문법과 호환되지 않는 Tibero 고유의 문법으로 생성된 객체는
-> 변환과정에서 파싱 에러가 발생가능하며, 이 경우 사용자가 수동으로 문법을 변환해야
-> 한다.
+> 참고:  Tibero의 Procedure, Function, View, Materialized View, Trigger는 객체를 마이그레이션하기 위해 Third-Party에서 제공하는 Oracle용 SQL 파서를 사용한다. 따라서, Oracle 문법과 호환되지 않는 Tibero 고유의 문법으로 생성된 객체는 변환과정에서 파싱 에러가 발생가능하며, 이 경우 사용자가 수동으로 문법을 변환해야 한다.
 
 ## C.부록: 데이터 타입 맵핑
 
-이기종 데이터베이스들 간의 데이터 타입을 맵핑하기 위한 Migration Center 정책은
-"데이터 손실을 최소화하라"이다. 그러나 데이터가 손실되거나 손상되더라도 데이터가
-맵핑되는 방식을 사용자가 정의하길 원하는 상황이 발생할 수도 있다. 이런 요구를
-충족시키기 위해 Migration Center는 데이터 타입 맵핑 테이블을 편집하는 방법도
+이기종 데이터베이스 간의 데이터 타입을 맵핑할 때 Migration Center의 기본 정책은 "데이터 손실을 최소화하라"이다. 하지만 데이터가 손실되거나 손상되더라도 사용자가 데이터 타입 맵핑 방식을 직접 정의하는 것을 원할 수도 있다. 이런 요구를 만족시키기 위해 Migration Center는 데이터 타입 맵핑 테이블을 편집하는 방법을
 제공한다.
 
-이 부록은 기존 프로젝트에 대해 기본 데이터 타입 맵핑을 확인하고 커스터마이징
-하는 방법에 대해 설명한다. 마지막으로 데이터 타입 기본 맵핑 테이블을 제공한다.
+이번 장에서는 Migration Center의 프로젝트 진행 과정에서 기본 데이터 타입 매핑 테이블을 확인하고 변경하는 방법을 설명한다. 또한 Migration Center의 기본 데이터 타입 매핑 테이블에서 사용자가 알아야 할 주의 사항을 설명한다.
 
-- 데이터 타입 맵핑 조작
+### 데이터 타입 맵핑 테이블 변경
 
-- 기본 데이터 타입 맵핑 테이블
+사용자는 아래와 같이 Reconcile 단계에서 데이터 타입의 맵핑 테이블을 변경할 수 있다.
 
-### 데이터 타입 맵핑 조작
+**1. Reconcile(조정)**
 
-사용자는 기본 데이터 타입 맵핑을 확인하고, 아래의 방법을 사용하여 데이터가
-맵핑되는 방식을 수정할 수 있다:
+프로젝트 트리 창에서 마우스 오른쪽 버튼을 클릭하고 Reconcile 메뉴를 선택한다. 또는 Migration 메뉴에서 Reconcile을 선택한다. 이 단계는 Build 단계를 마쳐야 수행할 수 있다.
 
-1. 프로젝트에 대해 조정 단계를 수행하라.
+<div align="left">
+    <img src="media/MigrationCenter/datatypemapping-step-1.png">
+</div>
 
-2. 데이터 타입 맵핑 단계에서, 조작할 데이터 타입을 선택한 다음 "Change" 버튼을
-   클릭하라.
+**2. Data Type Mapping**
 
-3. 적절한 새로운 데이터 타입을 지정하고 precision 및 또는 scale 값을 설정하라.
+Reconcile 메뉴를 선택하면 아래와 같이 Reconcile 창이 뜬다. 사용자는 이 창에서 Migration Center의 기본 데이터 타입 매핑 테이블을 확인할 수 있고 "1. Data Type Mapping"에서 대상 데이터베이스의 데이터 타입을 변경할 수 있다. 변경하고 싶은 데이터 타입을 선택하고 오른쪽 하단의 Change 버튼을 클릭한다.
+
+<div align="left">
+    <img src="media/MigrationCenter/datatypemapping-step-2.png">
+</div>
+
+**3. Change Mapping Type**
+
+Change 버튼을 클릭하면 아래의 창이 뜬다. Change Mapping Type 창에서 Destination DB Data Type에서 변경할 데이터 타입을 선택한다. 데이터 타입에 따라 필요 시 Precision과 Scale도 입력하고 OK 버튼을 클릭한다. 
+
+<div align="left">
+    <img src="media/MigrationCenter/datatypemapping-step-3.png">
+</div>
 
 ### 기본 데이터 타입 맵핑 테이블
 
-#### Oracle 데이터베이스 to Altibase
+이기종 데이터베이스 간의 기본 데이터 타입 매핑 테이블과 사용자가 주의할 사항을 설명한다.
 
-| 인덱스 | 소스            | 대상              | 특이 사항                                                                                                                                                                                                                                                                     |
-| --- | ------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | CHAR          | CHAR            | Altibase의 CHAR 타입은 byte 길이로만 정의할 수 있기 때문에 Oracle에서 문자 길이로 정의된 컬럼의 경우 자동으로 바이트 길이로 변환된다.                                                                                                                                                                                   |
-| 2   | NCHAR         | NCHAR           | 원본 및 대상 데이터베이스의 NCHAR 칼럼의 명시적인 크기는 같다(예. NCHAR(10) -\> NCHAR(10)). 그러나, 오라클 JDBC 드라이버에서는 NCHAR 칼럼의 크기가 사용되는 바이트의 개수로 정의되는 반면, Altibase의 JDBC 드라이버에서는 NCHAR 칼럼의 크기가 저장되는 문자의 개수로 정의된다. 이는 Altibase에서 생성되는 NCHAR 칼럼이 필요에 따라 오라클보다 2배 또는 3배 정도 클 것이라는 의미이므로, 이런 점을 유의하도록 한다. |
-| 3   | VARCHAR2      | VARCHAR         | 오라클의 VARCHAR2 최대 크기는 32,767 바이트로 Altibase의 VARCHAR 최대 크기 32,000 바이트보다 크기 때문에 데이터 손실이 발생할 수 있다. Altibase의 VARCHAR 타입은 byte 길이로만 정의할 수 있기 때문에 Oracle에서 문자 길이로 정의된 컬럼의 경우 자동으로 바이트 길이로 변환된다.                                                                                 |
-| 4   | NVARCHAR2     | NVARCHAR        | NCHAR와 같은 이유로, 칼럼 크기가 서로 다르다. 또한 오라클의 NVARCHAR2 최대 크기는 32,767 바이트로 Altibase의 NVARCHAR 최대 크기 32,000 바이트보다 크기 때문에 데이터 손실이 발생할 수 있다.                                                                                                                                         |
-| 5   | LONG          | CLOB            |                                                                                                                                                                                                                                                                           |
-| 6   | NUMBER        | NUMBER          | 오라클에서 precision과 scale 없이 정의된 NUMBER 타입 칼럼은 Altibase에서도 동일하게 precision과 scale이 없는 NUMBER 타입으로 변환된다. \*참고: 오라클과 Altibase 모두 precision과 scale 없이 NUMBER 타입으로 칼럼을 정의하면 데이터베이스 내부적으로 FLOAT 타입으로 다루어진다.                                                                        |
-| 7   | FLOAT         | FLOAT           |                                                                                                                                                                                                                                                                           |
-| 8   | BINARY FLOAT  | FLOAT           |                                                                                                                                                                                                                                                                           |
-| 9   | BINARY DOUBLE | VARCHAR(310)    | Altibase 에는 오라클 BINARY DOUBLE 타입과 호환되는 데이터 타입이 없으므로 데이터 손실을 막기 위해 문자 형으로 저장된다.                                                                                                                                                                                            |
-| 10  | DATE          | DATE            |                                                                                                                                                                                                                                                                           |
-| 11  | TIMESTAMP     | DATE            | 스케일의 차이로 인해서 소량의 데이터 손실이 발생할 수 있다. 오라클에서는 타임스탬프 값의 스케일이 나노초(9자리 수)인 반면, Altibase에서는 타임스탬프 값의 스케일이 마이크로초(6자리 수)이다.                                                                                                                                                         |
-| 12  | RAW           | BLOB            |                                                                                                                                                                                                                                                                           |
-| 13  | LONG RAW      | BLOB            |                                                                                                                                                                                                                                                                           |
-| 14  | BLOB          | BLOB            |                                                                                                                                                                                                                                                                           |
-| 15  | CLOB          | CLOB            |                                                                                                                                                                                                                                                                           |
-| 16  | NCLOB         | NVARCHAR(10666) | Altibase에는 오라클 NCLOB 타입과 호환 가능한 데이터 타입이 없으므로, 최대 크기의 NVARCHAR 타입으로 변환된다. 실제 데이터 크기가 NVARCHAR 최대 크기를 초과하는 경우, 데이터를 마이그레이션하는 동안 데이터 손실이 발생할 수도 있다.                                                                                                                          |
-| 17  | ROWID         | VARCHAR(18)     |                                                                                                                                                                                                                                                                           |
+Migration Center 7.11부터 원본 데이터베이스의 문자형 데이터 타입을 처리할 때, 대상 데이터베이스의 문자 집합과 컬럼 크기 및 단위(바이트 또는 문자)를 고려하여 변환할 컬럼의 크기를 계산한다. 이때 계산된 크기가 대상 데이터베이스에서 정의한 데이터 타입의 최대 크기를 초과하면, CLOB 데이터 타입으로 변경한다. 이는 원본, 대상 데이터베이스 간의 데이터 타입 최대 크기 차이로 데이터 마이그레이션 시 데이터 손실을 최소화 하기 위한 조치이다. 대상 데이터 타입은 다음과 같다.
+
+- CHAR
+- VARCHAR 또는 VARCHAR2, LVARCHAR, TT_VARCHAR 
+
+#### Oracle to Altibase
+
+|      | 원본          | 대상              | 주의 사항                                                    |
+| :--: | :------------ | :---------------- | :----------------------------------------------------------- |
+|  1   | CHAR          | CHAR              | Altibase의 CHAR 타입은 byte 길이로만 정의할 수 있기 때문에 Oracle에서 문자 길이로 정의된 컬럼의 경우 자동으로 바이트 길이로 변환된다. |
+|  2   | NCHAR         | NCHAR             | 원본 및 대상 데이터베이스의 NCHAR 칼럼의 명시적인 크기는 같다(예. NCHAR(10) -\> NCHAR(10)). 그러나, 오라클 JDBC 드라이버에서는 NCHAR 칼럼의 크기가 사용되는 바이트의 개수로 정의되는 반면, Altibase의 JDBC 드라이버에서는 NCHAR 칼럼의 크기가 저장되는 문자의 개수로 정의된다. 이는 Altibase에서 생성되는 NCHAR 칼럼이 필요에 따라 오라클보다 2배 또는 3배 정도 클 것이라는 의미이므로, 이런 점을 유의하도록 한다. |
+|  3   | VARCHAR2      | VARCHAR 또는 CLOB | 오라클에서 문자 길이로 정의한 VARCHAR2는 Altibase에서 바이트 단위로 변환된다. Altibase의 VARCHAR는 바이트 단위로만 정의할 수 있다. |
+|  4   | NVARCHAR2     | NVARCHAR          | NCHAR와 같은 이유로, 칼럼 크기가 서로 다르다.                |
+|  5   | LONG          | CLOB              |                                                              |
+|  6   | NUMBER        | NUMBER            | 오라클에서 precision과 scale 없이 정의된 NUMBER 타입 칼럼은 Altibase에서도 동일하게 precision과 scale이 없는 NUMBER 타입으로 변환된다. \*참고: 오라클과 Altibase 모두 precision과 scale 없이 NUMBER 타입으로 칼럼을 정의하면 데이터베이스 내부적으로 FLOAT 타입으로 다루어진다. |
+|  7   | FLOAT         | FLOAT             |                                                              |
+|  8   | BINARY FLOAT  | FLOAT             |                                                              |
+|  9   | BINARY DOUBLE | VARCHAR(310)      | Altibase 에는 오라클 BINARY DOUBLE 타입과 호환되는 데이터 타입이 없으므로 데이터 손실을 막기 위해 문자 형으로 저장된다. |
+|  10  | DATE          | DATE              |                                                              |
+|  11  | TIMESTAMP     | DATE              | 스케일의 차이로 인해서 소량의 데이터 손실이 발생할 수 있다. 오라클에서는 타임스탬프 값의 스케일이 나노초(9자리 수)인 반면, Altibase에서는 타임스탬프 값의 스케일이 마이크로초(6자리 수)이다. |
+|  12  | RAW           | BLOB              |                                                              |
+|  13  | LONG RAW      | BLOB              |                                                              |
+|  14  | BLOB          | BLOB              |                                                              |
+|  15  | CLOB          | CLOB              |                                                              |
+|  16  | NCLOB         | NVARCHAR(10666)   | Altibase에는 오라클 NCLOB 타입과 호환 가능한 데이터 타입이 없으므로, 최대 크기의 NVARCHAR 타입으로 변환된다. 실제 데이터 크기가 NVARCHAR 최대 크기를 초과하는 경우, 데이터를 마이그레이션하는 동안 데이터 손실이 발생할 수도 있다. |
+|  17  | ROWID         | VARCHAR(18)       | 오라클의 ROWID는 문자형 데이터 타입으로 변환한다. Altibase는 ROWID라는 데이터 타입을 지원하지 않는다. |
 
 #### MS SQL Server to Altibase
 
-| 인덱스 | 소스               | 대상               | 특이 사항                                                                                                                                                |
-| --- | ---------------- | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | BIGINT           | BIGINT           |                                                                                                                                                      |
-| 2   | DECIMAL          | NUMERIC          |                                                                                                                                                      |
-| 3   | INT              | INTEGER          |                                                                                                                                                      |
-| 4   | NUMERIC          | NUMERIC          |                                                                                                                                                      |
-| 5   | SMALLINT         | SMALLINT         |                                                                                                                                                      |
-| 6   | MONEY            | FLOAT            |                                                                                                                                                      |
-| 7   | TINYINT          | SMALLINT         |                                                                                                                                                      |
-| 8   | SMALLINTMONEY    | FLOAT            |                                                                                                                                                      |
-| 9   | BIT              | CHAR(1)          |                                                                                                                                                      |
-| 10  | FLOAT            | VARCHAR(310)     | Altibase에는 SQL Server FLOAT 타입과 호환 가능한 데이터 타입이 없으므로, 데이터 손실을 막기 위해 VARCHAR(310)으로 맵핑된다.                                                              |
-| 11  | REAL             | FLOAT            |                                                                                                                                                      |
-| 12  | DATE             | DATE             |                                                                                                                                                      |
-| 13  | DATETIME2        | DATE             | 스케일의 차이로 인해서 시간의 fraction 손실이 발생할 수 있다. SQL Server의 DATETIME2 타입 스케일이 나노초의 100배(7자리 수)인 반면, Altibase에서는 DATE 타입의 스케일이 마이크로초(6자리 수)이다.                |
-| 14  | DATETIME         | DATE             |                                                                                                                                                      |
-| 15  | SMALLDATETIME    | DATE             |                                                                                                                                                      |
-| 16  | CHAR             | CHAR             |                                                                                                                                                      |
-| 17  | TEXT             | CLOB             |                                                                                                                                                      |
-| 18  | VARCHAR          | VARCHAR          |                                                                                                                                                      |
-| 19  | VARCHAR (MAX)    | CLOB             |                                                                                                                                                      |
-| 20  | NVARCHAR         | NVARCHAR         |                                                                                                                                                      |
-| 21  | NVARCHAR (MAX)   | NVARCHAR (10666) | Altibase에는 SQL Server NTEXT 타입과 호환 가능한 데이터 타입이 없다. 최대 크기의 NVARCHAR 타입이 사용된다. 실제 데이터 길이가 최대 NVARCHAR 크기를 초과하는 경우, 데이터를 마이그레이션하는 동안 데이터 손실이 발생할 수도 있다. |
-| 22  | BINARY           | BYTE             |                                                                                                                                                      |
-| 23  | IMAGE            | BLOB             |                                                                                                                                                      |
-| 24  | VARBINARY        | BLOB             |                                                                                                                                                      |
-| 25  | ALLIDENTITY      | NUMERIC(38, 0)   |                                                                                                                                                      |
-| 26  | UNIQUEIDENTIFIER | VARCHAR(40)      | Altibase에는 SQL Server UNIQUEIDENTIFIER 타입과 호환 가능한 데이터 타입이 없으므로, 데이터 손실을 방지하기 위해 VARCHAR 타입이 사용된다.                                                    |
-| 27  | SYSNAME          | NVARCHAR (128)   |                                                                                                                                                      |
+|      | 원본             | 대상             | 주의 사항                                                    |
+| :--- | :--------------- | :--------------- | :----------------------------------------------------------- |
+| 1    | BIGINT           | BIGINT           |                                                              |
+| 2    | DECIMAL          | NUMERIC          |                                                              |
+| 3    | INT              | INTEGER          |                                                              |
+| 4    | NUMERIC          | NUMERIC          |                                                              |
+| 5    | SMALLINT         | SMALLINT         |                                                              |
+| 6    | MONEY            | FLOAT            |                                                              |
+| 7    | TINYINT          | SMALLINT         |                                                              |
+| 8    | SMALLMONEY       | FLOAT            |                                                              |
+| 9    | BIT              | CHAR(1)          |                                                              |
+| 10   | FLOAT            | VARCHAR(310)     | Altibase에는 SQL Server FLOAT 타입과 호환 가능한 데이터 타입이 없으므로, 데이터 손실을 막기 위해 VARCHAR(310)으로 맵핑된다. |
+| 11   | REAL             | FLOAT            |                                                              |
+| 12   | DATE             | DATE             |                                                              |
+| 13   | DATETIME2        | DATE             | 스케일의 차이로 인해서 시간의 fraction 손실이 발생할 수 있다. SQL Server의 DATETIME2 타입 스케일이 나노초의 100배(7자리 수)인 반면, Altibase에서는 DATE 타입의 스케일이 마이크로초(6자리 수)이다. |
+| 14   | DATETIME         | DATE             |                                                              |
+| 15   | SMALLDATETIME    | DATE             |                                                              |
+| 16   | CHAR             | CHAR             |                                                              |
+| 17   | TEXT             | CLOB             |                                                              |
+| 18   | VARCHAR          | VARCHAR          |                                                              |
+| 19   | VARCHAR (MAX)    | CLOB             |                                                              |
+| 20   | NVARCHAR         | NVARCHAR         |                                                              |
+| 21   | NVARCHAR (MAX)   | NVARCHAR (10666) | Altibase에는 SQL Server NTEXT 타입과 호환 가능한 데이터 타입이 없다. 최대 크기의 NVARCHAR 타입이 사용된다. 실제 데이터 길이가 최대 NVARCHAR 크기를 초과하는 경우, 데이터를 마이그레이션하는 동안 데이터 손실이 발생할 수도 있다. |
+| 22   | BINARY           | BYTE             |                                                              |
+| 23   | IMAGE            | BLOB             |                                                              |
+| 24   | VARBINARY        | BLOB             |                                                              |
+| 25   | ALLIDENTITY      | NUMERIC(38, 0)   |                                                              |
+| 26   | UNIQUEIDENTIFIER | VARCHAR(80)      | Altibase에는 SQL Server UNIQUEIDENTIFIER 타입과 호환 가능한 데이터 타입이 없으므로, 데이터 손실을 방지하기 위해 VARCHAR 타입이 사용된다. |
+| 27   | SYSNAME          | NVARCHAR (128)   |                                                              |
 
 #### MySQL to Altibase
 
-| 인덱스 | 소스                              | 대상             | 특이 사항                                                                                                             |
-| --- | ------------------------------- | -------------- | ----------------------------------------------------------------------------------------------------------------- |
-| 1   | TINYINT                         | SMALLINT       |                                                                                                                   |
-| 2   | TINYINT UNSIGNED                | SMALLINT       |                                                                                                                   |
-| 3   | SMALLINT                        | INTEGER        |                                                                                                                   |
-| 4   | SMALLINT UNSIGNED               | INTEGER        |                                                                                                                   |
-| 5   | MEDIUMINT                       | INTEGER        |                                                                                                                   |
-| 6   | MEDIUMINT UNSIGNED              | INTEGER        |                                                                                                                   |
-| 7   | INT (INTEGER)                   | INTEGER        | 주의: Altibase의 INT 타입의 최솟값(-2,147,483,647)은 MySQL INT 타입의 최솟값(-2,147,483,648) 보다 크다.                               |
-| 8   | INT UNSIGNED                    | BIGINT         |                                                                                                                   |
-| 9   | BIGINT                          | BIGINT         | 주의: Altibase의 BIGINT 타입의 최솟값(-9,223,372,036,854,775,807)은 MySQL BIGINT 타입의 최솟값(-9,223,372,036,854,775,808) 보다 크다. |
-| 10  | BIGINT UNSIGNED                 | NUMERIC(20,0)  | Altibase에는 MySQL BIGINT UNSIGNED 타입과 호환 가능한 데이터 타입이 없으므로, 데이터 손실을 막기 위해 NUMERIC 타입으로 맵핑된다                         |
-| 11  | DECIMAL (NUMERIC)               | VARCHAR(70)    | Altibase에는 MySQL DECIMAL 타입과 호환 가능한 데이터 타입이 없으므로, 데이터 손실을 막기 위해 VARCHAR 타입으로 맵핑된다.                                |
-| 12  | FLOAT                           | FLOAT          |                                                                                                                   |
-| 13  | DOUBLE                          | VARCHAR(310)   | Altibase에는 MySQL DOUBLE 타입과 호환 가능한 데이터 타입이 없으므로, 데이터 손실을 막기 위해 VARCHAR 타입으로 맵핑된다.                                 |
-| 14  | BIT                             | VARBIT         |                                                                                                                   |
-| 15  | DATETIME                        | DATE           | 시각 부분이 0으로 설정된다.                                                                                                  |
-| 16  | DATE                            | DATE           |                                                                                                                   |
-| 17  | TIMESTAMP                       | DATE           | TIMEZONE 제외                                                                                                       |
-| 18  | CHAR                            | CHAR           |                                                                                                                   |
-| 19  | VARCHAR                         | CLOB           | VARCHAR 타입의 최대 크기는 MySQL(65,536)이 Altibase(32,000)보다 크기 때문에, 데이터 손실을 막기 위해 CLOB 타입으로 맵핑된다.                        |
-| 20  | CHAR with National Character    | NCHAR          |                                                                                                                   |
-| 21  | VARCHAR with National Character | NVARCHAR       |                                                                                                                   |
-| 22  | BINARY                          | BYTE           |                                                                                                                   |
-| 23  | VARBINARY                       | BLOB           |                                                                                                                   |
-| 24  | TINYBLOB                        | BLOB           |                                                                                                                   |
-| 25  | MEDIUMBLOB                      | BLOB           |                                                                                                                   |
-| 26  | BLOB                            | BLOB           |                                                                                                                   |
-| 27  | LONGBLOB                        | BLOB           |                                                                                                                   |
-| 28  | TINYTEXT                        | VARCHAR(255)   |                                                                                                                   |
-| 29  | TEXT                            | CLOB           |                                                                                                                   |
-| 30  | MEDIUMTEXT                      | CLOB           |                                                                                                                   |
-| 31  | LONGTEXT                        | CLOB           |                                                                                                                   |
-| 32  | ENUM                            | VARCHAR(10666) | Altibase에는 MySQL ENUM 타입과 호환 가능한 데이터 타입이 없으므로, 데이터 손실을 막기 위해 VARCHAR 타입으로 맵핑된다.                                   |
-| 33  | SET                             | VARCHAR(10666) | Altibase에는 MySQL SET 타입과 호환 가능한 데이터 타입이 없으므로, 데이터 손실을 막기 위해 VARCHAR 타입으로 맵핑된다.                                    |
+|      | 원본               | 대상                            | 주의 사항                                                    |
+| :--: | :----------------- | :------------------------------ | :----------------------------------------------------------- |
+|  1   | TINYINT            | SMALLINT                        |                                                              |
+|  2   | TINYINT UNSIGNED   | SMALLINT                        |                                                              |
+|  3   | SMALLINT           | INTEGER                         |                                                              |
+|  4   | SMALLINT UNSIGNED  | INTEGER                         |                                                              |
+|  5   | MEDIUMINT          | INTEGER                         |                                                              |
+|  6   | MEDIUMINT UNSIGNED | INTEGER                         |                                                              |
+|  7   | INT (INTEGER)      | INTEGER                         | 주의: Altibase의 INT 타입의 최솟값(-2,147,483,647)은 MySQL INT 타입의 최솟값(-2,147,483,648) 보다 크다. |
+|  8   | INT UNSIGNED       | BIGINT                          |                                                              |
+|  9   | BIGINT             | BIGINT                          | 주의: Altibase의 BIGINT 타입의 최솟값(-9,223,372,036,854,775,807)은 MySQL BIGINT 타입의 최솟값(-9,223,372,036,854,775,808) 보다 크다. |
+|  10  | BIGINT UNSIGNED    | NUMERIC(20,0)                   | Altibase에는 MySQL BIGINT UNSIGNED 타입과 호환 가능한 데이터 타입이 없으므로, 데이터 손실을 막기 위해 NUMERIC 타입으로 맵핑된다 |
+|  11  | DECIMAL (NUMERIC)  | VARCHAR(70)                     | Altibase에는 MySQL DECIMAL 타입과 호환 가능한 데이터 타입이 없으므로, 데이터 손실을 막기 위해 VARCHAR 타입으로 맵핑된다. |
+|  12  | FLOAT              | FLOAT                           |                                                              |
+|  13  | DOUBLE             | VARCHAR(310)                    | Altibase에는 MySQL DOUBLE 타입과 호환 가능한 데이터 타입이 없으므로, 데이터 손실을 막기 위해 VARCHAR 타입으로 맵핑된다. |
+|  14  | BIT                | VARBIT                          |                                                              |
+|  15  | DATETIME           | DATE                            | 시각 부분이 0으로 설정된다.                                  |
+|  16  | DATE               | DATE                            |                                                              |
+|  17  | TIMESTAMP          | DATE                            | TIMEZONE 제외                                                |
+|  18  | CHAR               | CHAR 또는 NCHAR                 | MySQL의 CHAR 컬럼의 문자 집합이 유니코드이면 Altibase의 문자 집합에 따라 Altibase의 데이터 타입이 결정된다. <br />\- MySQL의 CHAR 컬럼의 문자 집합이 유니코드일 때<br />  \- Altibase 문자 집합이 유니코드이면 CHAR<br />  - Altibase 문자 집합이 유니코드가 아니면 NCHAR |
+|  19  | VARCHAR            | VARCHAR 또는 NVARCHAR 또는 CLOB | MySQL의 VARCHAR 컬럼의 문자 집합이 유니코드이면 Altibase의 문자 집합에 따라 Altibase의 데이터 타입이 결정된다. <br />\- MySQL의 VARCHAR 컬럼의 문자 집합이 유니코드일 때<br />  \- Altibase 문자 집합이 유니코드이면 CHAR<br />  - Altibase 문자 집합이 유니코드가 아니면 NVARCHAR<br /><br />MySQL의 VARCHAR 컬럼이 Altibase의 VARCHAR 최대 크기인 32,000바이트를 초과하면 Altibase의 데이터 타입을 CLOB으로 변환한다. 이는 MySQL과 Altibase의 데이터 타입 간에 최대 크기 차이로 마이그레이션 시 발생할 수 있는 데이터 손실을 방지하기 위해서이다. MySQL의 VARCHAR 최대 크기는 65,536바이트로 Altibase보다 크다. |
+|  20  | BINARY             | BYTE                            |                                                              |
+|  21  | VARBINARY          | BLOB                            |                                                              |
+|  22  | TINYBLOB           | BLOB                            |                                                              |
+|  23  | MEDIUMBLOB         | BLOB                            |                                                              |
+|  24  | BLOB               | BLOB                            |                                                              |
+|  25  | LONGBLOB           | BLOB                            |                                                              |
+|  26  | TINYTEXT           | VARCHAR(255)                    |                                                              |
+|  27  | TEXT               | CLOB                            |                                                              |
+|  28  | MEDIUMTEXT         | CLOB                            |                                                              |
+|  29  | LONGTEXT           | CLOB                            |                                                              |
+|  30  | ENUM               | VARCHAR(10666)                  | Altibase에는 MySQL ENUM 타입과 호환 가능한 데이터 타입이 없으므로, 데이터 손실을 막기 위해 VARCHAR 타입으로 맵핑된다. |
+|  31  | SET                | VARCHAR(10666)                  | Altibase에는 MySQL SET 타입과 호환 가능한 데이터 타입이 없으므로, 데이터 손실을 막기 위해 VARCHAR 타입으로 맵핑된다. |
 
 #### Informix 11.5 to Altibase
 
-| 인덱스 | 소스            | 대상       | 특이 사항                                                                                              |
-| --- | ------------- | -------- | -------------------------------------------------------------------------------------------------- |
-| 1   | BIGINT        | BIGINT   |                                                                                                    |
-| 2   | INT8          | BIGINT   |                                                                                                    |
-| 3   | INT           | INTEGER  |                                                                                                    |
-| 4   | SMALLINT      | SMALLINT |                                                                                                    |
-| 5   | BIGSERIAL     | BIGINT   |                                                                                                    |
-| 6   | SERIAL8       | BIGINT   |                                                                                                    |
-| 7   | SERIAL        | INTEGER  |                                                                                                    |
-| 8   | FLOAT         | DOUBLE   |                                                                                                    |
-| 9   | REAL          | REAL     |                                                                                                    |
-| 10  | SMALLFLOAT    | REAL     |                                                                                                    |
-| 11  | MONEY         | NUMERIC  |                                                                                                    |
-| 12  | DECIMAL_FLOAT | FLOAT    |                                                                                                    |
-| 13  | DATE          | DATE     |                                                                                                    |
-| 14  | DATETIME      | DATE     |                                                                                                    |
-| 15  | BOOLEAN       | CHAR(1)  |                                                                                                    |
-| 16  | CHAR          | CHAR     | CHAR 데이터 타입의 최대 크기는 Informix(32,767)가 Altibase(32,000)보다 크기 때문에 데이터 손실이 발생할 수 있음을 염두에 두어야 한다.      |
-| 17  | NCHAR         | NCHAR    | NCHAR 데이터 타입의 최대 크기는 Informix(32,767)가 Altibase(32,000)보다 크기 때문에 데이터 손실이 발생할 수 있음을 염두에 두어야 한다.     |
-| 18  | VARCHAR       | VARCHAR  |                                                                                                    |
-| 19  | NVARCHAR      | NVARCHAR |                                                                                                    |
-| 20  | LVARCHAR      | VARCHAR  | Informix의 LVARCHAR 데이터 타입의 최대 크기가 32,767으로 Altibase(32,000)보다 크기 때문에 데이터 손실이 발생할 수 있음을 염두에 두어야 한다. |
-| 21  | TEXT          | CLOB     |                                                                                                    |
-| 22  | CLOB          | CLOB     | CLOB 데이터 타입의 최대 크기는 Informix(4GB)가 Altibase(2GB)보다 크기 때문에 데이터 손실이 발생할 수 있음을 염두에 두어야 한다.            |
-| 23  | BYTE          | BLOB     |                                                                                                    |
-| 24  | BLOB          | BLOB     | BLOB 데이터 타입의 최대 크기는 Informix(4GB)가 Altibase(2GB)보다 크기 때문에 데이터 손실이 발생할 수 있음을 염두에 두어야 한다.            |
-| 25  | INTERVAL      | FLOAT    |                                                                                                    |
+|      | 원본          | 대상              | 주의 사항                                                    |
+| :--: | :------------ | :---------------- | :----------------------------------------------------------- |
+|  1   | BIGINT        | BIGINT            |                                                              |
+|  2   | INT8          | BIGINT            |                                                              |
+|  3   | INT           | INTEGER           |                                                              |
+|  4   | SMALLINT      | SMALLINT          |                                                              |
+|  5   | BIGSERIAL     | BIGINT            |                                                              |
+|  6   | SERIAL8       | BIGINT            |                                                              |
+|  7   | SERIAL        | INTEGER           |                                                              |
+|  8   | FLOAT         | DOUBLE            |                                                              |
+|  9   | REAL          | REAL              |                                                              |
+|  10  | SMALLFLOAT    | REAL              |                                                              |
+|  11  | MONEY         | NUMERIC           |                                                              |
+|  12  | DECIMAL_FLOAT | FLOAT             |                                                              |
+|  13  | DATE          | DATE              |                                                              |
+|  14  | DATETIME      | DATE              |                                                              |
+|  15  | BOOLEAN       | CHAR(1)           |                                                              |
+|  16  | CHAR          | CHAR 또는 CLOB    | Informix의 CHAR 컬럼이 Altibase의 CHAR 최대 크기인 32,000바이트를 초과하면 Altibase의 데이터 타입을 CLOB으로 변환한다. 이는 Informix와 Altibase의 데이터 타입 간에 최대 크기 차이로 마이그레이션 시 발생할 수 있는 데이터 손실을 방지하기 위해서이다. Informix의 CHAR 최대 크기는 32,767바이트로 Altibase보다 크다. |
+|  17  | NCHAR         | NCHAR             | NCHAR 데이터 타입의 최대 크기는 Informix(32,767)가 Altibase(32,000)보다 크기 때문에 데이터 손실이 발생할 수 있음을 염두에 두어야 한다. |
+|  18  | VARCHAR       | VARCHAR           |                                                              |
+|  19  | NVARCHAR      | NVARCHAR          |                                                              |
+|  20  | LVARCHAR      | VARCHAR 또는 CLOB | Informix의 LVARCHAR 컬럼이 Altibase의 VARCHAR 최대 크기인 32,000바이트를 초과하면 Altibase의 데이터 타입을 CLOB으로 변환한다. 이는 Informix와 Altibase의 데이터 타입 간에 최대 크기 차이로 마이그레이션 시 발생할 수 있는 데이터 손실을 방지하기 위해서이다. Informix의 LVARCHAR 최대 크기는 32,767바이트로 Altibase보다 크다. |
+|  21  | TEXT          | CLOB              |                                                              |
+|  22  | CLOB          | CLOB              | CLOB 데이터 타입의 최대 크기는 Informix(4GB)가 Altibase(2GB)보다 크기 때문에 데이터 손실이 발생할 수 있음을 염두에 두어야 한다. |
+|  23  | BYTE          | BLOB              |                                                              |
+|  24  | BLOB          | BLOB              | BLOB 데이터 타입의 최대 크기는 Informix(4GB)가 Altibase(2GB)보다 크기 때문에 데이터 손실이 발생할 수 있음을 염두에 두어야 한다. |
+|  25  | INTERVAL      | NUMBER(38)        |                                                              |
 
 #### TimesTen to Altibase
 
-| 인덱스 | 소스            | 대상              | 특이 사항                                                                                                                                                                                                 |
-| --- | ------------- | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | BINARY        | BLOB            |                                                                                                                                                                                                       |
-| 2   | BINARY_DOUBLE | VARCHAR(310)    |                                                                                                                                                                                                       |
-| 3   | BINARY_FLOAT  | FLOAT           |                                                                                                                                                                                                       |
-| 4   | BLOB          | BLOB            |                                                                                                                                                                                                       |
-| 5   | CHAR          | CHAR            | Altibase의 CHAR 타입은 byte 길이로만 정의할 수 있기 때문에 TimesTen에서 문자 길이로 정의된 컬럼의 경우 자동으로 바이트 길이로 변환된다.                                                                                                             |
-| 6   | CLOB          | CLOB            |                                                                                                                                                                                                       |
-| 7   | DATE          | DATE            |                                                                                                                                                                                                       |
-| 8   | NCHAR         | NCHAR           |                                                                                                                                                                                                       |
-| 9   | NCLOB         | NVARCHAR(10666) |                                                                                                                                                                                                       |
-| 10  | NUMBER        | NUMBER          |                                                                                                                                                                                                       |
-| 11  | NVARCHAR2     | NVARCHAR        | TimesTen의 VARCHAR2 최대 크기는 2,097,152 바이트로 Altibase의 VARCHAR 최대 크기 32,000 바이트보다 크기 때문에 데이터 손실이 발생할 수 있다.                                                                                                |
-| 12  | ROWID         | VARCHAR(18)     |                                                                                                                                                                                                       |
-| 13  | TIME          | DATE            |                                                                                                                                                                                                       |
-| 14  | TIMESTAMP     | DATE            | TimesTen의 TIMESTAMP 최대 스케일이 나노초(9자릿수)로 Altibase의 DATE 최대 스케일 마이크로초(6자릿수)보다 크기 때문에 데이터 손실이 발생할 수 있다.                                                                                                   |
-| 15  | TT_BIGINT     | BIGINT          | TimesTen의 TT_BIGINT 최소 크기는 -9,223,372,036,854,775,808로 Altibase의 BIGINT 최소 크기 -9,223,372,036,854,775,807보다 작기 때문에 데이터 손실이 발생할 수 있다.                                                                   |
-| 16  | TT_CHAR       | CHAR            |                                                                                                                                                                                                       |
-| 17  | TT_DATE       | DATE            |                                                                                                                                                                                                       |
-| 18  | TT_DECIMAL    | NUMBER          | TimesTen의 TT_DECIMAL 최대 크기는 precision(40)으로 Altibase의 NUMBER 최대 크기 precision(38)보다 크기 때문에 데이터 손실이 발생할 수 있다.                                                                                           |
-| 19  | TT_INTEGER    | INTEGER         | TimesTen의 TT_INTEGER 최소 크기는 -2,147,483,648로 Altibase의 INTEGER 최소 크기 -2,147,483,647보다 작기 때문에 데이터 손실이 발생할 수 있다.                                                                                         |
-| 20  | TT_NCHAR      | NCHAR           |                                                                                                                                                                                                       |
-| 21  | TT_NVARCHAR   | NVARCHAR        | TimesTen의 TT_NVARCHAR 최대 크기(2,097,152 바이트)는 Altibase의 NVARCHAR 최대 크기(32,000 바이트)보다 크기 때문에 데이터 손실이 발생할 수 있다.                                                                                           |
-| 22  | TT_SMALLINT   | SMALLINT        | TimesTen의 TT_SMALLINT 최소 크기(-32,768)는 Altibase의 SMALLINT 최소 크기(-32,767)보다 작기 때문에 데이터 손실이 발생할 수 있다.                                                                                                    |
-| 23  | TT_TIMESTAMP  | DATE            | TimesTen의 TT_TIMESTAMP 최대 스케일이 나노초(7자릿수)로 Altibase의 DATE 최대 스케일 마이크로초(6자릿수)보다 크기 때문에 데이터 손실이 발생할 수 있다.                                                                                                |
-| 24  | TT_TINYINT    | SMALLINT        |                                                                                                                                                                                                       |
-| 25  | TT_VARCHAR    | VARCHAR         | TimesTen의 TT_VARCHAR 최대 크기(4,194,304 바이트)는 Altibase의 VARCHAR 최대 크기(32,000 바이트)보다 크기 때문에 데이터 손실이 발생할 수 있다.                                                                                             |
-| 26  | VARBINARY     | BLOB            |                                                                                                                                                                                                       |
-| 27  | VARCHAR2      | VARCHAR         | TimesTen의 VARCHAR2 최대 크기( 4,194,304 바이트)는 Altibase의 VARCHAR 최대 크기(32,000 바이트)보다 크기 때문에 데이터 손실이 발생할 수 있다. Altibase의 VARCHAR 타입은 byte 길이로만 정의할 수 있기 때문에 TimesTen에서 문자 길이로 정의된 컬럼의 경우 자동으로 바이트 길이로 변환된다. |
+|      | 원본          | 대상              | 주의 사항                                                    |
+| :--: | :------------ | :---------------- | :----------------------------------------------------------- |
+|  1   | BINARY        | BLOB              |                                                              |
+|  2   | BINARY_DOUBLE | VARCHAR(310)      |                                                              |
+|  3   | BINARY_FLOAT  | FLOAT             |                                                              |
+|  4   | BLOB          | BLOB              |                                                              |
+|  5   | CHAR          | CHAR              | Altibase의 CHAR 타입은 byte 길이로만 정의할 수 있기 때문에 TimesTen에서 문자 길이로 정의된 컬럼의 경우 자동으로 바이트 길이로 변환된다. |
+|  6   | CLOB          | CLOB              |                                                              |
+|  7   | DATE          | DATE              |                                                              |
+|  8   | NCHAR         | NCHAR             |                                                              |
+|  9   | NCLOB         | NVARCHAR(10666)   |                                                              |
+|  10  | NUMBER        | NUMBER            |                                                              |
+|  11  | NVARCHAR2     | NVARCHAR          | TimesTen의 VARCHAR2 최대 크기는 2,097,152 바이트로 Altibase의 VARCHAR 최대 크기 32,000 바이트보다 크기 때문에 데이터 손실이 발생할 수 있다. |
+|  12  | ROWID         | VARCHAR(18)       |                                                              |
+|  13  | TIME          | DATE              |                                                              |
+|  14  | TIMESTAMP     | DATE              | TimesTen의 TIMESTAMP 최대 스케일이 나노초(9자릿수)로 Altibase의 DATE 최대 스케일 마이크로초(6자릿수)보다 크기 때문에 데이터 손실이 발생할 수 있다. |
+|  15  | TT_BIGINT     | BIGINT            | TimesTen의 TT_BIGINT 최소 크기는 -9,223,372,036,854,775,808로 Altibase의 BIGINT 최소 크기 -9,223,372,036,854,775,807보다 작기 때문에 데이터 손실이 발생할 수 있다. |
+|  16  | TT_CHAR       | CHAR              |                                                              |
+|  17  | TT_DATE       | DATE              |                                                              |
+|  18  | TT_DECIMAL    | NUMBER            | TimesTen의 TT_DECIMAL 최대 크기는 precision(40)으로 Altibase의 NUMBER 최대 크기 precision(38)보다 크기 때문에 데이터 손실이 발생할 수 있다. |
+|  19  | TT_INTEGER    | INTEGER           | TimesTen의 TT_INTEGER 최소 크기는 -2,147,483,648로 Altibase의 INTEGER 최소 크기 -2,147,483,647보다 작기 때문에 데이터 손실이 발생할 수 있다. |
+|  20  | TT_NCHAR      | NCHAR             |                                                              |
+|  21  | TT_NVARCHAR   | NVARCHAR          | TimesTen의 TT_NVARCHAR 최대 크기(2,097,152 바이트)는 Altibase의 NVARCHAR 최대 크기(32,000 바이트)보다 크기 때문에 데이터 손실이 발생할 수 있다. |
+|  22  | TT_SMALLINT   | SMALLINT          | TimesTen의 TT_SMALLINT 최소 크기(-32,768)는 Altibase의 SMALLINT 최소 크기(-32,767)보다 작기 때문에 데이터 손실이 발생할 수 있다. |
+|  23  | TT_TIMESTAMP  | DATE              | TimesTen의 TT_TIMESTAMP 최대 스케일이 나노초(7자릿수)로 Altibase의 DATE 최대 스케일 마이크로초(6자릿수)보다 크기 때문에 데이터 손실이 발생할 수 있다. |
+|  24  | TT_TINYINT    | SMALLINT          |                                                              |
+|  25  | TT_VARCHAR    | VARCHAR 또는 CLOB | TimesTen의 TT_VARCHAR 컬럼이 Altibase의 VARCHAR 최대 크기인 32,000바이트를 초과하면 Altibase의 데이터 타입을 CLOB으로 변환한다. 이는 TimesTen과 Altibase의 데이터 타입 간에 최대 크기 차이로 마이그레이션 시 발생할 수 있는 데이터 손실을 방지하기 위해서이다. TimesTen의 TT_VARCHAR 최대 크기는 4,194,304바이트로 Altibase보다 크다. |
+|  26  | VARBINARY     | BLOB              |                                                              |
+|  27  | VARCHAR2      | VARCHAR 또는 CLOB | 1. TimesTen의 VARCHAR2 컬럼이 Altibase의 VARCHAR 최대 크기인 32,000바이트를 초과하면 Altibase의 데이터 타입을 CLOB으로 변환한다. 이는 TimesTen과 Altibase의 데이터 타입 간에 최대 크기 차이로 마이그레이션 시 발생할 수 있는 데이터 손실을 방지하기 위해서이다. TimesTen의 VARCHAR2 최대 크기는 4,194,304바이트로 Altibase보다 크다.<br />2. TimesTen에서 문자 길이로 정의한 VARCHAR2는 Altibase에서 바이트 단위로 변환된다. Altibase의 VARCHAR는 바이트 단위로만 정의할 수 있다. |
 
 #### CUBRID to Altibase
 
-| 인덱스 | 소스         | 대상            | 특이 사항                                                                                                          |
-| --- | ---------- | ------------- | -------------------------------------------------------------------------------------------------------------- |
-| 1   | SHORT      | SMALLINT      | CUBRID의 SHORT 최솟값(-32,768)이 Altibase의 SMALLINT 최솟값(-32,767)보다 작다                                               |
-| 2   | INTEGER    | INTEGER       | CUBRID의 최솟값(-2,147,483,648)이 Altibase의 최솟값(-2,147,483,647)보다 작다.                                               |
-| 3   | BIGINT     | BIGINT        | CUBRID의 최솟값(-9,223,372,036,854,775,808)이 Altibase의 최솟값(-9,223,372,036,854,775,807)보다 작다.                       |
-| 4   | NUMERIC    | NUMERIC       |                                                                                                                |
-| 5   | FLOAT      | REAL          |                                                                                                                |
-| 6   | DOUBLE     | DOUBLE        |                                                                                                                |
-| 7   | MONETARY   | DOUBLE        |                                                                                                                |
-| 8   | DATE       | DATE          |                                                                                                                |
-| 9   | TIME       | DATE          |                                                                                                                |
-| 10  | TIMESTAMP  | DATE          |                                                                                                                |
-| 11  | DATETIME   | DATE          |                                                                                                                |
-| 12  | CHAR       | CHAR          | CUBRID의 CHAR 타입 최대 크기가 1,073,741,823 바이트로 Altibase의 CHAR 타입 최대 크기 32,000 바이트보다 크기 때문에 데이터 손실이 발생할 수 있다.        |
-| 13  | VARCHAR    | VARCHAR       | CUBRID의 VARCHAR 타입 최대 크기가 1,073,741,823 바이트로 Altibase의 VARCHAR 타입 최대 크기 32,000 바이트보다 크기 때문에 데이터 손실이 발생할 수 있다.  |
-| 14  | NCHAR      | NCHAR         | CUBRID의 NCHAR 타입 최대 크기가 1,073,741,823 바이트로 Altibase의 NCHAR 타입 최대 크기 16,000 바이트보다 크기 때문에 데이터 손실이 발생할 수 있다.      |
-| 15  | VARCHAR    | NVARCHAR      | CUBRID의 VARCHAR 타입 최대 크기가 1,073,741,823 바이트로 Altibase의 NVARCHAR 타입 최대 크기 16,000 바이트보다 크기 때문에 데이터 손실이 발생할 수 있다. |
-| 16  | STRING     | VARCHAR       | CUBRID의 VARCHAR 타입과 동일한 데이터 타입으로 Altibase의 VARCHAR 타입 최대 크기 32,000 바이트보다 크기 때문에 데이터 손실이 발생할 수 있다.              |
-| 17  | BIT        | BLOB          |                                                                                                                |
-| 18  | VARBIT     | BLOB          |                                                                                                                |
-| 19  | BLOB       | BLOB          | CUBRID의 BLOB 최대 길이는 외부 저장소에서 생성 가능한 파일 크기로 Altibase의 BLOB 타입 최대 크기 2GB와 차이가 있으므로, 데이터 손실이 발생할 수 있다.            |
-| 20  | CLOB       | CLOB          | CUBRID의 CLOB 최대 길이는 외부 저장소에서 생성 가능한 파일 크기로 Altibase의 CLOB 타입 최대 크기 2GB와 차이가 있으므로, 데이터 손실이 발생할 수 있다.            |
-| 21  | ENUM       | VARCHAR(3200) | Altibase가 지원하지 않는 데이터 타입이다. CUBRID의 열거형 문자열 상수들은 Altibase의 VARCHAR 타입으로 임의 변경하여 마이그레이션을 수행한다.                  |
-| 22  | COLLECTION | VARCHAR(3200) | Altibase가 지원하지 않는 데이터 타입이다. CUBRID의 COLLECTION 타입은 Altibase의 VARCHAR 타입으로 임의 변경하여 마이그레이션을 수행한다.                |
+|      | 원본       | 대상              | 주의 사항                                                    |
+| :--: | :--------- | :---------------- | :----------------------------------------------------------- |
+|  1   | SHORT      | SMALLINT          | CUBRID의 SHORT 최솟값(-32,768)이 Altibase의 SMALLINT 최솟값(-32,767)보다 작다 |
+|  2   | INTEGER    | INTEGER           | CUBRID의 최솟값(-2,147,483,648)이 Altibase의 최솟값(-2,147,483,647)보다 작다. |
+|  3   | BIGINT     | BIGINT            | CUBRID의 최솟값(-9,223,372,036,854,775,808)이 Altibase의 최솟값(-9,223,372,036,854,775,807)보다 작다. |
+|  4   | NUMERIC    | NUMERIC           |                                                              |
+|  5   | FLOAT      | REAL              |                                                              |
+|  6   | DOUBLE     | DOUBLE            |                                                              |
+|  7   | MONETARY   | DOUBLE            |                                                              |
+|  8   | DATE       | DATE              |                                                              |
+|  9   | TIME       | DATE              |                                                              |
+|  10  | TIMESTAMP  | DATE              |                                                              |
+|  11  | DATETIME   | DATE              |                                                              |
+|  12  | CHAR       | CHAR 또는 CLOB    | CUBRID의 CHAR 컬럼이 Altibase의 CHAR 최대 크기인 32,000바이트를 초과하면 Altibase의 데이터 타입을 CLOB으로 변환한다. 이는 CUBRID와 Altibase의 데이터 타입 간에 최대 크기 차이로 마이그레이션 시 발생할 수 있는 데이터 손실을 방지하기 위해서이다. CUBRID의 CHAR 최대 크기는 1,073,741,823바이트로 Altibase보다 크다. |
+|  13  | VARCHAR    | VARCHAR 또는 CLOB | CUBRID의 VARCHAR 컬럼이 Altibase의 VARCHAR 최대 크기인 32,000바이트를 초과하면 Altibase의 데이터 타입을 CLOB으로 변환한다. 이는 CUBRID와 Altibase 간에 최대 크기 차이로 마이그레이션 시 발생할 수 있는 데이터 손실을 방지하기 위해서이다. CUBRID의 VARCHAR 최대 크기는 1,073,741,823바이트로, Altibase보다 크다. |
+|  14  | NCHAR      | NCHAR             | CUBRID의 NCHAR 타입 최대 크기가 1,073,741,823 바이트로 Altibase의 NCHAR 타입 최대 크기 16,000 바이트보다 크기 때문에 데이터 손실이 발생할 수 있다. |
+|  15  | VARCHAR    | NVARCHAR          | CUBRID의 VARCHAR 타입 최대 크기가 1,073,741,823 바이트로 Altibase의 NVARCHAR 타입 최대 크기 16,000 바이트보다 크기 때문에 데이터 손실이 발생할 수 있다. |
+|  16  | STRING     | VARCHAR           | CUBRID의 VARCHAR 타입과 동일한 데이터 타입으로 Altibase의 VARCHAR 타입 최대 크기 32,000 바이트보다 크기 때문에 데이터 손실이 발생할 수 있다. |
+|  17  | BIT        | BLOB              |                                                              |
+|  18  | VARBIT     | BLOB              |                                                              |
+|  19  | BLOB       | BLOB              | CUBRID의 BLOB 최대 길이는 외부 저장소에서 생성 가능한 파일 크기로 Altibase의 BLOB 타입 최대 크기 2GB와 차이가 있으므로, 데이터 손실이 발생할 수 있다. |
+|  20  | CLOB       | CLOB              | CUBRID의 CLOB 최대 길이는 외부 저장소에서 생성 가능한 파일 크기로 Altibase의 CLOB 타입 최대 크기 2GB와 차이가 있으므로, 데이터 손실이 발생할 수 있다. |
+|  21  | ENUM       | VARCHAR(3200)     | Altibase가 지원하지 않는 데이터 타입이다. CUBRID의 열거형 문자열 상수들은 Altibase의 VARCHAR 타입으로 임의 변경하여 마이그레이션을 수행한다. |
+|  22  | COLLECTION | VARCHAR(3200)     | Altibase가 지원하지 않는 데이터 타입이다. CUBRID의 COLLECTION 타입은 Altibase의 VARCHAR 타입으로 임의 변경하여 마이그레이션을 수행한다. |
 
-#### Altibase to Oracle 데이터베이스
+#### Altibase to Oracle
 
-| 인덱스 | 소스       | 대상            | 특이사항                                                                                                     |
-| --- | -------- | ------------- | -------------------------------------------------------------------------------------------------------- |
-| 1   | CHAR     | CHAR          | Altibase CHAR의 최대 크기는 32000바이트, Oracle CHAR의 최대 크기는 2000 bytes 또는 characters이므로 데이터 손실이 발생할 수 있다.        |
-| 2   | NCHAR    | NCHAR         | Altibase NCHAR의 최대 크기는 32000바이트, Oracle NCHAR의 최대 크기는 2000 bytes이므로 데이터 손실이 발생할 수 있다.                    |
-| 3   | VARCHAR  | VARCHAR2      | Altibase VARCHAR의 최대 크기는 32000바이트, Oracle VARCHAR2의 최대 크기는 4000 bytes 또는 characters이므로 데이터 손실이 발생할 수 있다. |
-| 4   | VARCHAR  | NVARCHAR2     | Altibase NVARCHAR의 최대 크기는 32000바이트, Oracle NVARCHAR의 최대 크기는 4000 bytes이므로 데이터 손실이 발생할 수 있다.              |
-| 5   | SMALLINT | NUMBER        |                                                                                                          |
-| 6   | INTEGER  | NUMBER        |                                                                                                          |
-| 7   | BIGINT   | NUMBER        |                                                                                                          |
-| 8   | REAL     | BINARY_FLOAT  |                                                                                                          |
-| 9   | DOUBLE   | BINARY_DOUBLE |                                                                                                          |
-| 10  | FLOAT    | FLOAT         |                                                                                                          |
-| 11  | NUMERIC  | NUMBER        |                                                                                                          |
-| 12  | DATE     | TIMESTAMP     |                                                                                                          |
-| 13  | BIT      | CHAR          | CHAR의 최대크기는 2000 바이트, BIT는 64000(8000 바이트)이므로 데이터 손실이 발생할 수 있다.                                          |
-| 14  | VARBIT   | VARCHAR2      | VARCHAR2 의 최대크기는 4000 바이트 , VARBIT는 64000(8000 바이트)이므로 데이터 손실이 발생할 수 있다.                                 |
-| 15  | BYTE     | RAW           | BYTE의 최대 크기는 32000, RAW의 최대 크기는 2000 바이트이므로 데이터 손실이 발생할 수 있다.                                            |
-| 16  | VARBYTE  | RAW           | VARBYTE의 최대 크기는 32000, RAW의 최대 크기는 2000 바이트이므로 데이터 손실이 발생할 수 있다.                                         |
-| 17  | NIBBLE   | RAW           |                                                                                                          |
-| 18  | BLOB     | BLOB          |                                                                                                          |
-| 19  | CLOB     | CLOB          |                                                                                                          |
+|      | 원본     | 대상          | 주의 사항                                                    |
+| :--: | :------- | :------------ | :----------------------------------------------------------- |
+|  1   | CHAR     | CHAR          | Altibase의 CHAR 컬럼이 Oracle의 CHAR 최대 크기인 2,000바이트(또는 글자)를 초과하면 Oracle의 데이터 타입을 CLOB으로 변환한다. 이는 Altibase와 오라클 간에 최대 크기 차이로 마이그레이션 시 발생할 수 있는 데이터 손실을 방지하기 위해서이다. Altibase의 CHAR 최대 크기는 32,000바이트로 오라클의 최대 크기보다 크다. |
+|  2   | NCHAR    | NCHAR         | Altibase NCHAR의 최대 크기는 32000바이트, Oracle NCHAR의 최대 크기는 2000 bytes이므로 데이터 손실이 발생할 수 있다. |
+|  3   | VARCHAR  | VARCHAR2      | Altibase의 VARCHAR 컬럼이 Oracle의 VARCHAR2 최대 크기인 4,000바이트(또는 글자)를 초과하면 Oracle의 데이터 타입을 CLOB으로 변환한다. 이는 오라클과 Altibase의 데이터 타입 간에 최대 크기 차이로 마이그레이션 시 발생할 수 있는 데이터 손실을 방지하기 위해서이다. Altibase의 VARCHAR 최대 크기는 32,000바이트로, Oracle보다 크다. |
+|  4   | NVARCHAR | NVARCHAR2     | Altibase NVARCHAR의 최대 크기는 32000바이트, Oracle NVARCHAR2의 최대 크기는 4000 bytes이므로 데이터 손실이 발생할 수 있다. |
+|  5   | SMALLINT | NUMBER        |                                                              |
+|  6   | INTEGER  | NUMBER        |                                                              |
+|  7   | BIGINT   | NUMBER        |                                                              |
+|  8   | REAL     | BINARY_FLOAT  |                                                              |
+|  9   | DOUBLE   | BINARY_DOUBLE |                                                              |
+|  10  | FLOAT    | FLOAT         |                                                              |
+|  11  | NUMERIC  | NUMBER        |                                                              |
+|  12  | DATE     | TIMESTAMP     |                                                              |
+|  13  | BIT      | CHAR          | CHAR의 최대크기는 2,000바이트, BIT는 64,000비트 즉, 8,000바이트이므로 데이터 손실이 발생할 수 있다. |
+|  14  | VARBIT   | VARCHAR2      | VARCHAR2 의 최대크기는 4,000 바이트 , VARBIT는 64,000비트 즉, 8,000바이트이므로 데이터 손실이 발생할 수 있다. |
+|  15  | BYTE     | RAW           | BYTE의 최대 크기는 32,000, RAW의 최대 크기는 2,000 바이트이므로 데이터 손실이 발생할 수 있다. |
+|  16  | VARBYTE  | RAW           | VARBYTE의 최대 크기는 32,000, RAW의 최대 크기는 2,000 바이트이므로 데이터 손실이 발생할 수 있다. |
+|  17  | NIBBLE   | RAW           |                                                              |
+|  18  | BLOB     | BLOB          |                                                              |
+|  19  | CLOB     | CLOB          |                                                              |
 
 #### Tibero to Altibase
 
-| 인덱스 | 소스            | 대상              | 특이사항                                                                                                                                                                                               |
-| --- | ------------- | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | CHAR          | CHAR            | Altibase의 CHAR 타입은 byte 길이로만 정의할 수 있기 때문에 Tibero에서 문자 길이로 정의된 컬럼의 경우 자동으로 바이트 길이로 변환된다.                                                                                                            |
-| 2   | NCHAR         | NCHAR           |                                                                                                                                                                                                    |
-| 3   | VARCHAR       | VARCHAR         | Altibase의 VARCHAR 타입은 byte 길이로만 정의할 수 있기 때문에 Tibero에서 문자 길이로 정의된 컬럼의 경우 자동으로 바이트 길이로 변환된다.                                                                                                         |
-| 4   | NVARCHAR      | NVARCHAR        |                                                                                                                                                                                                    |
-| 5   | LONG          | CLOB            |                                                                                                                                                                                                    |
-| 6   | NUMBER        | NUMERIC         | 티베로에서 precision과 scale 없이 정의된 NUMBER 타입 칼럼은 Altibase에서도 동일하게 precision과 scale이 없는 NUMBER 타입으로 변환된다. \*참고: 티베로와 Altibase 모두 precision과 scale이 없는 NUMBER 타입으로 칼럼을 정의하면 데이터베이스 내부적으로 FLOAT 타입으로 처리한다. |
-| 7   | BINARY FLOAT  | FLOAT           |                                                                                                                                                                                                    |
-| 8   | BINARY DOUBLE | VARCHAR(310)    | Altibase에는 티베로의 BINARY DOUBLE 타입과 호환되는 데이터 타입이 없으므로 데이터 손실을 막기 위해 문자형으로 저장된다.                                                                                                                      |
-| 9   | DATE          | DATE            |                                                                                                                                                                                                    |
-| 10  | TIME          | DATE            |                                                                                                                                                                                                    |
-| 11  | TIMESTAMP     | DATE            | Scale의 차이로 인해서 소량의 데이터 손실이 발생할 수 있다. 티베로에서는 타임스탬프 값의 스케일이 나노초(9자리 수)인 반면, , Altibase에서는 타임스탬프 값의 scale이 마이크로초(6자리 수)이다.                                                                            |
-| 12  | RAW           | BLOB            |                                                                                                                                                                                                    |
-| 13  | LONG RAW      | BLOB            |                                                                                                                                                                                                    |
-| 14  | BLOB          | BLOB            |                                                                                                                                                                                                    |
-| 15  | CLOB          | CLOB            |                                                                                                                                                                                                    |
-| 16  | NCLOB         | NVARCHAR(10666) | Altibase에는 티베로 NCLOB 타입과 호환 가능한 데이터 타입이 없으므로, 최대 크기의 NVARCHAR 타입으로 변환된다. 실제 데이터 크기가 NVARCHAR의 최대 크기를 초과하는 경우, 데이터를 마이그레이션하는 동안 데이터 손실이 발생할 수 있다.                                                   |
-| 17  | ROWID         | VARCHAR(18)     |                                                                                                                                                                                                    |
+|      | 원본          | 대상            | 주의 사항                                                    |
+| :--: | :------------ | --------------- | :----------------------------------------------------------- |
+|  1   | CHAR          | CHAR            | Altibase의 CHAR 타입은 byte 길이로만 정의할 수 있기 때문에 Tibero에서 문자 길이로 정의된 컬럼의 경우 자동으로 바이트 길이로 변환된다. |
+|  2   | NCHAR         | NCHAR           |                                                              |
+|  3   | VARCHAR       | VARCHAR         | Altibase의 VARCHAR 타입은 byte 길이로만 정의할 수 있기 때문에 Tibero에서 문자 길이로 정의된 컬럼의 경우 자동으로 바이트 길이로 변환된다. |
+|  4   | NVARCHAR      | NVARCHAR        |                                                              |
+|  5   | LONG          | CLOB            |                                                              |
+|  6   | NUMBER        | NUMERIC         | 티베로에서 precision과 scale 없이 정의된 NUMBER 타입 칼럼은 Altibase에서도 동일하게 precision과 scale이 없는 NUMBER 타입으로 변환된다. \*참고: 티베로와 Altibase 모두 precision과 scale이 없는 NUMBER 타입으로 칼럼을 정의하면 데이터베이스 내부적으로 FLOAT 타입으로 처리한다. |
+|  7   | BINARY FLOAT  | FLOAT           |                                                              |
+|  8   | BINARY DOUBLE | VARCHAR(310)    | Altibase에는 티베로의 BINARY DOUBLE 타입과 호환되는 데이터 타입이 없으므로 데이터 손실을 막기 위해 문자형으로 저장된다. |
+|  9   | DATE          | DATE            |                                                              |
+|  10  | TIME          | DATE            |                                                              |
+|  11  | TIMESTAMP     | DATE            | Scale의 차이로 인해서 소량의 데이터 손실이 발생할 수 있다. 티베로에서는 타임스탬프 값의 스케일이 나노초(9자리 수)인 반면, , Altibase에서는 타임스탬프 값의 scale이 마이크로초(6자리 수)이다. |
+|  12  | RAW           | BLOB            |                                                              |
+|  13  | LONG RAW      | BLOB            |                                                              |
+|  14  | BLOB          | BLOB            |                                                              |
+|  15  | CLOB          | CLOB            |                                                              |
+|  16  | NCLOB         | NVARCHAR(10666) | Altibase에는 티베로 NCLOB 타입과 호환 가능한 데이터 타입이 없으므로, 최대 크기의 NVARCHAR 타입으로 변환된다. 실제 데이터 크기가 NVARCHAR의 최대 크기를 초과하는 경우, 데이터를 마이그레이션하는 동안 데이터 손실이 발생할 수 있다. |
+|  17  | ROWID         | VARCHAR(18)     | 티베로의 ROWID는 문자형 데이터 타입으로 변환한다. Altibase는 ROWID라는 데이터 타입을 지원하지 않는다. |
 
 ### 이종 문자 집합을 고려한 문자형 컬럼 길이 자동 보정
 
@@ -2214,6079 +2233,5499 @@ TABLE 문에 지정된다.
 
 ## E.부록: PSM 변환기 규칙 목록
 
-Migration Center는 Oracle 또는 TimesTen 11.2에서 Altibase로 마이그레이션을 할
-때, PSM 변환기가 PSM 타입의 데이터베이스 객체를 생성할 수 있는 DDL SQL 문장을
-제공한다.
+Migration Center는 Oracle 또는 TimesTen 11.2에서 Altibase로 마이그레이션을 할 때, PSM 변환기가 PSM 타입의 데이터베이스 객체를 생성할 수 있는 DDL SQL 문장을 제공한다.
 
-PSM 변환기에는 DDL SQL 문장을 변환하는 규칙이 있으며, 그 규칙은 아래의 세 가지
-종류로 분류된다:
+PSM 변환기에는 DDL SQL 문장을 변환하는 규칙이 있으며, 그 규칙은 아래의 세 가지 종류로 분류된다.
 
-- CONVERTED: 변환 가능
+- `CONVERTED` : 변환 가능
 
-- REMOVED: 변환 불가, 그러나 제거 가능
+- `REMOVED` : 변환 불가, 그러나 제거 가능
 
-- TODO: 변환 불가 및 제거 불가
+- `TODO` : 변환 불가 및 제거 불가
 
-TODO 규칙이 PSM 객체에 적용된다면, 해당 객체는 To-Do 리스트 창에 표시될 것이다.
-그렇지 않다면, Done 리스트 창에 표시될 것이다.
+TODO 규칙이 PSM 객체에 적용된다면, 해당 객체는 To-Do 리스트 창에 표시될 것이다. 그렇지 않다면, Done 리스트 창에 표시될 것이다.
 
-각각의 규칙에 "버전 범위" 항목이 기술된 경우, 해당 규칙은 기술된
-Altibase버전에만 적용됨을 의미한다. "버전 범위" 항목이 생략된 규칙은 모든
-Altibase버전에 적용됨을 의미한다.
+각각의 규칙에 "버전 범위" 항목이 기술된 경우, 해당 규칙은 기술된 Altibase버전에만 적용됨을 의미한다. "버전 범위" 항목이 생략된 규칙은 모든 Altibase버전에 적용됨을 의미한다.
 
-복수의 구문을 변환할 때에는 각각의 SQL 구문 마지막에 '/'를 표기하여 구분해야
-한다.
+복수의 구문을 변환할 때에는 각각의 SQL 구문 마지막에 `'/'`를 표기하여 구분해야 한다.
 
 ### 뷰 변환 규칙
 
 #### RULE-11001
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: 'WITH CHECK OPTION'이 제거되었다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  AS SELECT \* FROM t1
-  
-  **WITH CHECK OPTION**;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  AS SELECT \* FROM t1
-  
-  **/\* WITH CHECK OPTION \*/ /\* [REMOVED] RULE-11001 : 'WITH CHECK OPTION' is
-  removed \*/**;
+'WITH CHECK OPTION'이 제거되었다.
+
+###### 원본 SQL 문장
+
+```sql
+CREATE OR REPLACE VIEW v1 
+AS SELECT * FROM t1
+WITH CHECK OPTION;
+```
+
+###### 변환된 SQL 문장
+
+```sql
+CREATE OR REPLACE VIEW v1 
+AS SELECT * FROM t1
+/* WITH CHECK OPTION */ /* [REMOVED] RULE-11001 : 'WITH CHECK OPTION' is removed */;
+```
 
 #### RULE-11002
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: 별칭의 제약조건이 제거되었다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  (a1 **UNIQUE**)
-  
-  AS SELECT c1 FROM t1;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  (a1 **/\* UNIQUE \*/ /\* [REMOVED] RULE-11002 : Inline constraints are removed
-  \*/**)
-  
-  AS SELECT c1 FROM t1;
+별칭의 제약조건이 제거되었다.
+
+###### 원본 SQL 문장
+
+```sql
+CREATE OR REPLACE VIEW v1 
+(a1 UNIQUE) 
+AS SELECT c1 FROM t1;
+```
+
+###### 변환된 SQL 문장
+
+```sql
+CREATE OR REPLACE VIEW v1
+(a1 /* UNIQUE */ /* [REMOVED] RULE-11002 : Inline constraints are removed*/)
+AS SELECT c1 FROM t1;
+```
 
 #### RULE-11003
 
-- 타입: TODO
+###### 타입
 
-- 설명: 뷰 레벨 제약조건은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  (c1, CONSTRAINT v1_uk UNIQUE(c1)
-  
-  )
-  
-  AS SELECT c1 FROM t1;
+###### 설명 
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  (c1, CONSTRAINT v1_uk UNIQUE(c1) **/\* [TODO] RULE-11003 : Out of line
-  constraint must be converted manually \*/)**
-  
-  AS SELECT c1 FROM t1;
+뷰 레벨 제약조건은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 
+(c1, CONSTRAINT v1_uk UNIQUE(c1)) 
+AS SELECT c1 FROM t1; 
+~~~
+
+###### 변환된 SQL 문장
+
+```sql
+CREATE OR REPLACE VIEW v1 
+(c1, CONSTRAINT v1_uk UNIQUE(c1) /* [TODO] RULE-11003 : Out of line constraint must be converted manually */)
+AS SELECT c1 FROM t1;
+```
 
 #### RULE-11004
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: BEQUEATH 절이 제거되었다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  BEQUEATH CURRENT_USER
-  
-  AS SELECT \* FROM t1;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  **/\* BEQUEATH CURRENT_USER \*/ /\* [REMOVED] RULE-11004 : BEQUEATH clause is
-  removed \*/**
-  
-  AS SELECT \* FROM t1;
+BEQUEATH 절이 제거되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 
+BEQUEATH CURRENT_USER 
+AS SELECT * FROM t1;
+~~~
+
+###### 변환된 SQL 문장
+
+ ~~~sql
+CREATE OR REPLACE VIEW v1 
+/* BEQUEATH CURRENT_USER */ /* [REMOVED] RULE-11004 : BEQUEATH clause is removed */
+AS SELECT * FROM t1;
+ ~~~
 
 #### RULE-11005
 
-- 타입: TODO
+###### 타입 
 
-- 설명: XML타입 뷰 절은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  **OF XMLTYPE WITH OBJECT ID DEFAULT**
-  
-  AS SELECT \* FROM t1;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  **OF XMLTYPE WITH OBJECT ID DEFAULT /\* [TODO] RULE-11005 : XMLType view should
-  be manually converted \*/**
-  
-  AS SELECT \* FROM t1;
+XML타입 뷰 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 
+OF XMLTYPE WITH OBJECT ID DEFAULT 
+AS SELECT * FROM t1;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 
+OF XMLTYPE WITH OBJECT ID DEFAULT /* [TODO] RULE-11005 : XMLType view should be manually converted */ 
+AS SELECT * FROM t1;
+~~~
+
+
 
 #### RULE-11006
 
-- 타입: TODO
+###### 타입
 
-- 설명: 객체 타입 뷰 절은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1_1
-  
-  **OF type1 UNDER v1**
-  
-  AS SELECT \* FROM t1;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1_1
-  
-  **OF type1 UNDER v1 /\* [TODO] RULE-11006 : An object view must be converted
-  manually \*/**
-  
-  AS SELECT \* FROM t1;
+객체 타입 뷰 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1_1
+OF type1 UNDER v1
+AS SELECT * FROM t1;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1_1
+OF type1 UNDER v1 /* [TODO] RULE-11006 : An object view must be converted manually */
+AS SELECT * FROM t1;
+~~~
+
+
 
 #### RULE-11007
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: VISIBLE 또는 INVISIBLE이 제거되었다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  (c1, c2 **INVISIBLE**)
-  
-  AS SELECT \* FROM t1;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  (c1, c2 **/\* INVISIBLE \*/ /\* [REMOVED] RULE-11007 : VISIBLE or INVISIBLE is
-  removed \*/**)
-  
-  AS SELECT \* FROM t1;
+VISIBLE 또는 INVISIBLE이 제거되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1
+(c1, c2 INVISIBLE)
+AS SELECT * FROM t1;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1
+(c1, c2 /* INVISIBLE */ /* [REMOVED] RULE-11007 : VISIBLE or INVISIBLE is removed */)
+AS SELECT * FROM t1;
+~~~
 
 #### RULE-11008
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: FORCE가 제거되었다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE **FORCE** VIEW v1
-  
-  (c1, c2)
-  
-  AS SELECT \* FROM t1;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE /**\* FORCE \*/ /\* [REMOVED] RULE-11008 : FORCE has been
-  removed \*/** VIEW v1
-  
-  (c1, c2)
-  
-  AS SELECT \* FROM t1;
+FORCE가 제거되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FORCE VIEW v1
+(c1, c2)
+AS SELECT * FROM t1;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE /* FORCE */ /* [REMOVED] RULE-11008 : FORCE has been removed */ VIEW v1
+(c1, c2)
+AS SELECT * FROM t1;
+~~~
+
 
 ### 트리거 변환 규칙
 
 #### RULE-12002
 
-- 버전 범위: Altibase 6.3.1.0.0 이전
+> *이 규칙은 Altibase 6.3.1 이전 버전에 적용된다.* 
 
-- 타입: TODO
+###### 타입
 
-- 설명: ‘INSTEAD OF’는 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER log_attendance
-  
-  **INSTEAD OF** INSERT ON attendance_view FOR EACH ROW
-  
-  BEGIN
-  
-  IF :NEW.cnt \< 2 THEN
-  
-  INSERT INTO daily_log VALUES(:NEW.id, CURRENT_TIMESTAMP);
-  
-  END IF;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER log_attendance
-  
-  **INSTEAD OF /\* [TODO] RULE-12002 : 'INSTEAD OF' must be converted manually
-  \*/** INSERT ON attendance_view FOR EACH ROW
-  
-  BEGIN
-  
-  IF :NEW.cnt \< 2 THEN
-  
-  INSERT INTO daily_log VALUES(:NEW.id, CURRENT_TIMESTAMP);
-  
-  END IF;
-  
-  END;
+‘INSTEAD OF’는 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER log_attendance
+INSTEAD OF INSERT ON attendance_view FOR EACH ROW
+BEGIN
+IF :NEW.cnt < 2 THEN
+INSERT INTO daily_log VALUES(:NEW.id, CURRENT_TIMESTAMP);
+END IF;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER log_attendance
+INSTEAD OF /* [TODO] RULE-12002 : 'INSTEAD OF' must be converted manually */ INSERT ON attendance_view FOR EACH ROW
+BEGIN
+IF :NEW.cnt < 2 THEN
+INSERT INTO daily_log VALUES(:NEW.id, CURRENT_TIMESTAMP);
+END IF;
+END;
+~~~
+
 
 #### RULE-12003
 
-- 타입: TODO
+###### 타입
 
-- 설명: 여러 개의 이벤트를 지원하는 트리거는 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER trig1
-  
-  BEFORE **INSERT OR DELETE ON** t1
-  
-  BEGIN
-  
-  NULL;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER trig1
-  
-  BEFORE **INSERT OR DELETE ON t1 /\* [TODO] RULE-12003 : Triggers supporting
-  multiple events must be converted manually \*/**
-  
-  BEGIN
-  
-  NULL;
-  
-  END;
+여러 개의 이벤트를 지원하는 트리거는 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+BEFORE INSERT OR DELETE ON t1
+BEGIN
+NULL;
+END;
+~~~
+
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+BEFORE INSERT OR DELETE ON t1 /* [TODO] RULE-12003 : Triggers supporting multiple events must be converted manually */
+BEGIN
+NULL;
+END;
+~~~
+
 
 #### RULE-12004
 
-- 버전 범위: Altibase 6.3.1.0.0 이전
+이 규칙은 저장 프로시저 블록에 사용된DECLARE 절에 관한 것으로 Altibase 서버 버전에 따라 다르게 적용된다. 
 
-- 타입: TODO
+###### 타입
 
-- 설명: 저장 프로시저 블록 앞에 DECLARE가 있거나 생략된 경우, AS 또는 IS로
-  대체 또는 삽입되어야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER trig1
-  
-  BEFORE INSERT ON t1
-  
-  BEGIN
-  
-  NULL;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER trig1
-  
-  BEFORE INSERT ON t1
-  
-  BEGIN **/\* [TODO] RULE-12004 : 'AS' or 'IS' should be used regardless of that
-  DECLARE exists or not in the PSM block. \*/**
-  
-  NULL;
-  
-  END;
+***Altibase 6.1.1 이하 버전에 적용되는 규칙***
 
-- 버전 범위: Altibase 6.3.1.0.0 \~ 6.5.1.3.7 이하
+- 저장 프로시저 블록 앞에 DECLARE가 있으면 AS 또는 IS로 변경하고 생략된 경우 AS 또는 IS를 추가해야 한다.
 
-- 타입: TODO
+  > Altibase 6.1.1 이하 버전에서 DECLARE는 지원하지 않으며 AS 또는 IS 이 필수 구문이다. 
 
-- 설명: 저장 프로시저 블록의 선언부 앞에 있는 DECLARE는 AS 또는 IS로
-  대체되어야 한다.
+###### 원본 SQL 문장
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER trig1
-  
-  BEFORE INSERT ON t1
-  
-  **DECLARE**
-  
-  v1 NUMBER := 1;
-  
-  BEGIN
-  
-  NULL;
-  
-  END;
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+BEFORE INSERT ON t1
+BEGIN
+NULL;
+END;
+~~~
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER trig1
-  
-  BEFORE INSERT ON t1
-  
-  **DECLARE /\* [TODO] RULE-12004 : 'AS' or 'IS' must replace 'DECLARE' that
-  starts the declarative part of the block \*/**
-  
-  v1 NUMBER := 1;
-  
-  BEGIN
-  
-  NULL;
-  
-  END;
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+BEFORE INSERT ON t1
+BEGIN /* [TODO] RULE-12004 : 'AS' or 'IS' should be used regardless of that DECLARE exists or not in the PSM block. */
+NULL;
+END;
+~~~
+
+***Altibase 6.3.1 / Altibase 6.5.1.0.0 ~ 6.5.1.3.7***
+
+- 저장 프로시저 블록의 선언부 앞에 DECLARE가 있으면 AS 또는 IS로 변경하고 생략된 경우 그대로 적용한다.
+
+  > 해당 버전에서 DECLARE는 지원하지 않으며 AS 또는 IS 는 선택적으로 사용하는 구문이다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+BEFORE INSERT ON t1
+DECLARE
+v1 NUMBER := 1;
+BEGIN
+NULL;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+BEFORE INSERT ON t1
+DECLARE /* [TODO] RULE-12004 : 'AS' or 'IS' must replace 'DECLARE' that starts the declarative part of the block */
+v1 NUMBER := 1;
+BEGIN
+NULL;
+END;
+~~~
 
 #### RULE-12005
 
-- 타입: TODO
+###### 타입
 
-- 설명: 비 DML 트리거는 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER trig1
-  
-  **BEFORE CREATE ON DATABASE**
-  
-  BEGIN
-  
-  NULL;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER trig1
-  
-  **BEFORE CREATE ON DATABASE /\* [TODO] RULE-12005 : Non DML trigger must be
-  converted manually \*/**
-  
-  BEGIN
-  
-  NULL;
-  
-  END;
+비 DML 트리거는 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+BEFORE CREATE ON DATABASE
+BEGIN
+NULL;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+BEFORE CREATE ON DATABASE /* [TODO] RULE-12005 : Non DML trigger must be converted manually */
+BEGIN
+NULL;
+END;
+~~~
+
 
 #### RULE-12007
 
-- 타입: TODO
+###### 타입
 
-- 설명: 중첩 테이블은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER trig1
-  
-  INSTEAD OF DELETE ON **NESTED TABLE t1 OF v1**
-  
-  BEGIN
-  
-  NULL;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER trig1
-  
-  INSTEAD OF DELETE ON **NESTED TABLE t1 OF v1 /\* [TODO] RULE-12007 : Nested
-  table must be converted manually \*/**
-  
-  BEGIN
-  
-  NULL;
-  
-  END;
+중첩 테이블은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+INSTEAD OF DELETE ON NESTED TABLE t1 OF v1
+BEGIN
+NULL;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+INSTEAD OF DELETE ON NESTED TABLE t1 OF v1 /* [TODO] RULE-12007 : Nested table must be converted manually */
+BEGIN
+NULL;
+END;
+~~~
 
 #### RULE-12008
 
-- 타입: TODO
+###### 타입
 
-- 설명: CALL 절은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER trig1
-  
-  AFTER DELETE ON t1
-  
-  **CALL testproc1(a1, a2);**
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER trig1
-  
-  AFTER DELETE ON t1
-  
-  **CALL testproc1(a1, a2) /\* [TODO] RULE-12008 : CALL routine clause must be
-  converted manually \*/;**
+CALL 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+AFTER DELETE ON t1
+CALL testproc1(a1, a2);
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+AFTER DELETE ON t1
+CALL testproc1(a1, a2) /* [TODO] RULE-12008 : CALL routine clause must be converted manually */;
+~~~
 
 #### RULE-12009
 
-- 타입: TODO
+###### 타입
 
-- 설명: 중첩 테이블의 부모 row는 표시할 수 없다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER trig1
-  
-  INSTEAD OF DELETE ON NESTED TABLE t1 OF v1
-  
-  REFERENCING **PARENT AS parent** FOR EACH ROW
-  
-  BEGIN
-  
-  NULL;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER trig1
-  
-  INSTEAD OF DELETE ON NESTED TABLE t1 OF v1
-  
-  REFERENCING **PARENT AS parent /\* [TODO] RULE-12009 : Parent value of the
-  current row cannot be specified \*/** FOR EACH ROW
-  
-  BEGIN
-  
-  NULL;
-  
-  END;
+중첩 테이블의 부모 row는 표시할 수 없다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+INSTEAD OF DELETE ON NESTED TABLE t1 OF v1
+REFERENCING PARENT AS parent FOR EACH ROW
+BEGIN
+NULL;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+INSTEAD OF DELETE ON NESTED TABLE t1 OF v1
+REFERENCING PARENT AS parent /* [TODO] RULE-12009 : Parent value of the current row cannot be specified */ FOR EACH ROW
+BEGIN
+NULL;
+END;
+~~~
 
 #### RULE-12010
 
-- 타입: TODO
+###### 타입
 
-- 설명: 트리거의 순서를 배치하는 절은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER trig1
-  
-  AFTER DELETE ON t1
-  
-  **FOLLOWS trig2**
-  
-  BEGIN
-  
-  NULL;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER trig1
-  
-  AFTER DELETE ON t1
-  
-  **FOLLOWS trig2 /\* [TODO] RULE-12010 : Trigger ordering clause must be
-  converted manually \*/**
-  
-  BEGIN
-  
-  NULL;
-  
-  END;
+트리거의 순서를 배치하는 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER 
+AFTER DELETE ON t1
+FOLLOWS trig2
+BEGIN
+NULL;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER 
+AFTER DELETE ON t1
+FOLLOWS trig2 /* [TODO] RULE-12010 : Trigger ordering clause must be converted manually */
+BEGIN
+NULL;
+END;
+~~~
 
 #### RULE-12011
 
-- 타입: CONVERTED
+###### 타입
 
-- 설명: REFERENCING절에 생략된 row가 추가되었다.
+`CONVERTED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER trig1
-  
-  AFTER INSERT ON t1 FOR EACH ROW
-  
-  BEGIN
-  
-  **:new**.c1 := SYSDATE;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER trig1
-  
-  AFTER INSERT ON t1
-  
-  **REFERENCING NEW AS new** FOR EACH ROW
-  
-  DECLARE
-  
-  BEGIN
-  
-  **:new**.c1 := SYSDATE;
-  
-  END;
+REFERENCING절에 생략된 row가 추가되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+AFTER INSERT ON t1 FOR EACH ROW
+BEGIN
+:new.c1 := SYSDATE;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+AFTER INSERT ON t1
+REFERENCING NEW AS new FOR EACH ROW
+BEGIN
+:new.c1 := SYSDATE;
+END;
+~~~
 
 #### RULE-12012
 
-- 타입: CONVERTED
+###### 타입
 
-- 설명: Altibase 예약어에 해당하는 지역(Local) 식별자는 변환시 접미사가
-  추가되었다.
+`CONVERTED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER trig1
-  
-  AFTER UPDATE ON t1
-  
-  REFERENCING NEW AS **new** OLD AS **old** FOR EACH ROW
-  
-  BEGIN
-  
-  NULL;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER trig1
-  
-  AFTER UPDATE ON t1
-  
-  REFERENCING NEW AS **new_POC** OLD AS **old_POC** FOR EACH ROW
-  
-  BEGIN
-  
-  NULL;
-  
-  END;
+Altibase 예약어에 해당하는 지역(Local) 식별자는 변환시 접미사가 추가되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+AFTER UPDATE ON t1
+REFERENCING NEW AS new OLD AS old FOR EACH ROW
+BEGIN
+NULL;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+AFTER UPDATE ON t1
+REFERENCING NEW AS new_POC OLD AS old_POC FOR EACH ROW
+BEGIN
+NULL;
+END;
+~~~
 
 #### RULE-12013
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: 트리거 에디션 절이 제거되었다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER trig1
-  
-  AFTER DELETE ON t1
-  
-  **CROSSEDITION**
-  
-  BEGIN
-  
-  NULL;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER trig1
-  
-  AFTER DELETE ON t1
-  
-  **/\* CROSSEDITION \*/ /\* [REMOVED] RULE-12013 : Trigger edition clause is
-  removed \*/**
-  
-  BEGIN
-  
-  NULL;
-  
-  END;
+트리거 에디션 절이 제거되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+AFTER DELETE ON t1
+CROSSEDITION
+BEGIN
+NULL;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+AFTER DELETE ON t1
+/* CROSSEDITION */ /* [REMOVED] RULE-12013 : Trigger edition clause is removed */
+BEGIN
+NULL;
+END;
+~~~
 
 #### RULE-12014
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: ENABLE이 제거되었다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER trig1
-  
-  AFTER INSERT ON t1
-  
-  **ENABLE**
-  
-  BEGIN
-  
-  NULL;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER trig1
-  
-  AFTER INSERT ON t1
-  
-  **/\* ENABLE \*/ /\* [REMOVED] RULE-12014 : ENABLE is removed \*/**
-  
-  BEGIN
-  
-  NULL;
-  
-  END;
+ENABLE이 제거되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+AFTER INSERT ON t1
+ENABLE
+BEGIN
+NULL;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+AFTER INSERT ON t1
+/* ENABLE */ /* [REMOVED] RULE-12014 : ENABLE is removed */
+BEGIN
+NULL;
+END;
+~~~
 
 #### RULE-12015
 
-- 타입: TODO
+###### 타입
 
-- 설명: DISABLE은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER trig1
-  
-  AFTER DELETE ON t1
-  
-  **DISABLE**
-  
-  BEGIN
-  
-  NULL;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER trig1
-  
-  AFTER DELETE ON t1
-  
-  **DISABLE /\* [TODO] RULE-12015 : DISABLE must be converted manually \*/**
-  
-  BEGIN
-  
-  NULL;
-  
-  END;
+DISABLE은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+AFTER DELETE ON t1
+DISABLE
+BEGIN
+NULL;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+AFTER DELETE ON t1
+DISABLE /* [TODO] RULE-12015 : DISABLE must be converted manually */
+BEGIN
+NULL;
+END;
+~~~
 
 #### RULE-12016
 
-- 타입: CONVERTED
+###### 타입
 
-- 설명: REFERENCING절에서 정의된 row를 참조하는 별칭 앞 콜론(:)이 제거되었다.
+`CONVERTED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER trig1
-  
-  BEFORE INSERT ON t1 FOR EACH ROW
-  
-  BEGIN
-  
-  DBMS_OUTPUT.PUT_LINE(:new.c1);
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER trig1
-  
-  BEFORE INSERT ON t1 FOR EACH ROW
-  
-  BEGIN
-  
-  DBMS_OUTPUT.PUT_LINE(new.c1);
-  
-  END;
+REFERENCING절에서 정의된 row를 참조하는 별칭 앞 콜론(:)이 제거되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+BEFORE INSERT ON t1 FOR EACH ROW
+BEGIN
+DBMS_OUTPUT.PUT_LINE(:new.c1);
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+BEFORE INSERT ON t1 FOR EACH ROW
+BEGIN
+DBMS_OUTPUT.PUT_LINE(new.c1);
+END;
+~~~
 
 #### RULE-12017
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: CREATE TRIGGER문에서 PL/SQL block 끝의 trigger label 이름이
-  제거되었다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER trig1
-  
-  AFTER INSERT ON t1
-  
-  BEGIN
-  
-  NULL;
-  
-  END trig1;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER trig1
-  
-  AFTER INSERT ON t1
-  
-  BEGIN
-  
-  NULL;
-  
-  END /\* trig1 \*/ /\* [REMOVED] RULE-12017 : The trigger label name at the end
-  of body has been removed \*/;
+CREATE TRIGGER문에서 PL/SQL block 끝의 trigger label 이름이 제거되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+AFTER INSERT ON t1
+BEGIN
+NULL;
+END trig1;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+AFTER INSERT ON t1
+BEGIN
+NULL;
+END /* trig1 */ /* [REMOVED] RULE-12017 : The trigger label name at the end of body has been removed */;
+~~~
 
 ### 함수 변환 규칙
 
 #### RULE-13001
 
-- 버전 범위: Altibase 6.3.1.0.0 이전
+> *이 규칙은 Altibase 6.3.1 이전 버전에서 적용된다.* 
 
-- 타입: TODO
+###### 타입
 
-- 설명: AS LANGUAGE 절은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1
-  
-  RETURN VARCHAR2
-  
-  **AS LANGUAGE JAVA**
-  
-  **NAME 'test.quote() return java.lang.String';**
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1
-  
-  RETURN VARCHAR2
-  
-  AS LANGUAGE JAVA
-  
-  NAME 'test.quote() return java.lang.String' **/\* [TODO] RULE-13001 : AS
-  LANGUAGE clause must be converted manually \*/**;
+AS LANGUAGE 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1
+RETURN VARCHAR2
+AS LANGUAGE JAVA
+NAME 'test.quote() return java.lang.String';
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1
+RETURN VARCHAR2
+AS LANGUAGE JAVA
+NAME 'test.quote() return java.lang.String'/* [TODO] RULE-13001 : AS LANGUAGE clause must be converted manually */;
+~~~
 
 #### RULE-13002
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: AUTHID 절(호출자 권한 절)이 제거되었다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-  
-  RETURN NUMBER
-  
-  **AUTHID CURRENT_USER**
-  
-  IS
-  
-  BEGIN
-  
-  RETURN a1;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-  
-  RETURN NUMBER
-  
-  **/\* AUTHID CURRENT_USER \*/ /\* [REMOVED] RULE-13002 : The invoker rights
-  clause is removed \*/**
-  
-  IS
-  
-  BEGIN
-  
-  RETURN a1;
-  
-  END;
+AUTHID 절(호출자 권한 절)이 제거되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER
+AUTHID CURRENT_USER
+IS
+BEGIN
+RETURN a1;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER
+/* AUTHID CURRENT_USER */ /* [REMOVED] RULE-13002 : The invoker rights clause is removed */
+IS
+BEGIN
+RETURN a1;
+END;
+~~~
 
 #### RULE-13003
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: PARALLEL_ENABLE 절이 제거되었다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-  
-  RETURN NUMBER
-  
-  **PARALLEL_ENABLE**
-  
-  IS
-  
-  BEGIN
-  
-  RETURN a1;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-  
-  RETURN NUMBER
-  
-  **/\* PARALLEL_ENABLE \*/ /\* [REMOVED] RULE-13003 : PARALLEL_ENABLE clause is
-  removed \*/**
-  
-  IS
-  
-  BEGIN
-  
-  RETURN a1;
-  
-  END;
+PARALLEL_ENABLE 절이 제거되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER
+PARALLEL_ENABLE
+IS
+BEGIN
+RETURN a1;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER
+/* PARALLEL_ENABLE */ /* [REMOVED] RULE-13003 : PARALLEL_ENABLE clause is removed */
+IS
+BEGIN
+RETURN a1;
+END;
+~~~
 
 #### RULE-13004
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: RESULT_CACHE 절이 제거되었다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-  
-  RETURN NUMBER
-  
-  **RESULT_CACHE RELIES_ON(t1, t2)**
-  
-  IS
-  
-  BEGIN
-  
-  RETURN a1;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-  
-  RETURN NUMBER
-  
-  **/\* RESULT_CACHE RELIES_ON(t1, t2) \*/ /\* [REMOVED] RULE-13004 : RESULT_CACHE
-  clause is removed \*/**
-  
-  IS
-  
-  BEGIN
-  
-  RETURN a1;
-  
-  END;
+RESULT_CACHE 절이 제거되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER
+RESULT_CACHE RELIES_ON(t1, t2)
+IS
+BEGIN
+RETURN a1;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER
+/* RESULT_CACHE RELIES_ON(t1, t2) */ /* [REMOVED] RULE-13004 : RESULT_CACHE clause is removed */
+IS
+BEGIN
+RETURN a1;
+END;
+~~~
 
 #### RULE-13005
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: DETERMINISTIC이 제거되었다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION tfunc1(a1 NUMBER)
-  
-  RETURN NUMBER
-  
-  **DETERMINISTIC**
-  
-  IS
-  
-  BEGIN
-  
-  RETURN a1;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-  
-  RETURN NUMBER
-  
-  **/\* DETERMINISTIC \*/ /\* [REMOVED] RULE-13005 : 'DETERMINISTIC' is removed
-  \*/**
-  
-  IS
-  
-  BEGIN
-  
-  RETURN a1;
-  
-  END;
+DETERMINISTIC이 제거되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER
+DETERMINISTIC
+IS
+BEGIN
+RETURN a1;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER
+/* DETERMINISTIC */ /* [REMOVED] RULE-13005 : 'DETERMINISTIC' is removed */
+IS
+BEGIN
+RETURN a1;
+END;
+~~~
 
 #### RULE-13006
 
-- 타입: TODO
+###### 타입
 
-- 설명: PIPELINED는 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE FUNCTION getCityList RETURN tripLog_pkg.nt_city PIPELINED AS
-  
-  BEGIN
-  
-  FOR i IN 1..tripLog_pkg.v_cityList.LAST LOOP
-  
-  PIPE ROW(tripLog_pkg.v_cityList(i));
-  
-  END LOOP;
-  
-  RETURN;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE FUNCTION getCityList RETURN tripLog_pkg.nt_city **PIPELINED /\* [TODO]
-  RULE-13006 : The keyword PIPELINED must be converted manually \*/** AS
-  
-  BEGIN
-  
-  FOR i IN 1 .. tripLog_pkg.v_cityList.LAST LOOP
-  
-  PIPE ROW(tripLog_pkg.v_cityList(i)) /\* [TODO] RULE-32012 : The PIPE ROW
-  statement must be converted manually \*/;
-  
-  END LOOP;
-  
-  RETURN;
-  
-  END;
+PIPELINED는 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE FUNCTION getCityList RETURN tripLog_pkg.nt_city PIPELINED AS
+BEGIN
+FOR i IN 1..tripLog_pkg.v_cityList.LAST LOOP
+PIPE ROW(tripLog_pkg.v_cityList(i));
+END LOOP;
+RETURN;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE FUNCTION getCityList RETURN tripLog_pkg.nt_city PIPELINED /* [TODO] RULE-13006 : The keyword PIPELINED must be converted manually */ AS
+BEGIN
+FOR i IN 1 .. tripLog_pkg.v_cityList.LAST LOOP
+PIPE ROW(tripLog_pkg.v_cityList(i)) /* [TODO] RULE-32012 : The PIPE ROW statement must be converted manually */;
+END LOOP;
+RETURN;
+END;
+~~~
 
 #### RULE-13007
 
-- 타입: TODO
+###### 타입
 
-- 설명: PIPELINED USING 또는 AGGRAGATE USING 절은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1
-  
-  RETURN NUMBER
-  
-  **AGGREGATE USING implementation_type;**
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1
-  
-  RETURN NUMBER
-  
-  AGGREGATE USING implementation_type **/\* [TODO] RULE-13007 : PIPELINED USING or
-  AGGRAGATE USING clause must be converted manually \*/**;
+PIPELINED USING 또는 AGGRAGATE USING 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1
+RETURN NUMBER
+AGGREGATE USING implementation_type;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1
+RETURN NUMBER
+AGGREGATE USING implementation_type/* [TODO] RULE-13007 : PIPELINED USING or AGGRAGATE USING clause must be converted manually */;
+~~~
 
 #### RULE-13008
 
-- 버전 범위: Altibase 6.3.1.0.0 이상
+> *이 규칙은 Altibase 6.3.1 이상에서 적용된다.* 
 
-- 타입: TODO
+###### 타입
 
-- 설명: WITH CONTEXT 절은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1
-  
-  RETURN NUMBER IS
-  
-  LANGUAGE C LIBRARY lib1 **WITH CONTEXT** PARAMETERS(CONTEXT);
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1
-  
-  RETURN NUMBER IS
-  
-  LANGUAGE C LIBRARY lib1 **WITH CONTEXT /\* [TODO] RULE-13008 : WITH CONTEXT
-  clause must be converted manually \*/** PARAMETERS(CONTEXT);
+WITH CONTEXT 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1
+RETURN NUMBER IS
+LANGUAGE C LIBRARY lib1 WITH CONTEXT PARAMETERS(CONTEXT);
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1
+RETURN NUMBER IS
+LANGUAGE C LIBRARY lib1 WITH CONTEXT /* [TODO] RULE-13008 : WITH CONTEXT clause must be converted manually */PARAMETERS(CONTEXT);
+~~~
 
 #### RULE-13009
 
-- 버전 범위: Altibase 6.3.1.0.0 이상
+> *이 규칙은 Altibase 6.3.1 이상에서 적용된다.* 
 
-- 타입: TODO
+###### 타입
 
-- 설명: AGENT IN 절은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1
-  
-  RETURN NUMBER IS
-  
-  LANGUAGE C LIBRARY lib1 **AGENT IN(EXTPROC)**;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1
-  
-  RETURN NUMBER IS
-  
-  LANGUAGE C LIBRARY lib1 **AGENT IN(EXTPROC) /\* [TODO] RULE-13009 : AGENT IN
-  clause must be converted manually \*/**;
+AGENT IN 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1
+RETURN NUMBER IS
+LANGUAGE C LIBRARY lib1 AGENT IN(EXTPROC);
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1
+RETURN NUMBER IS
+LANGUAGE C LIBRARY lib1 AGENT IN(EXTPROC)/* [TODO] RULE-13009 : AGENT IN clause must be converted manually */;
+~~~
 
 #### RULE-13010
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: ACCESSIBLE BY 절은 제거되었다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-  
-  RETURN NUMBER
-  
-  **ACCESSIBLE BY (TRIGGER trig1)**
-  
-  IS
-  
-  BEGIN
-  
-  RETURN a1;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-  
-  RETURN NUMBER
-  
-  **/\* ACCESSIBLE BY (TRIGGER trig1) \*/ /\* [REMOVED] RULE-13010 : The
-  ACCESSIBLE BY clause is removed \*/**
-  
-  IS
-  
-  BEGIN
-  
-  RETURN a1;
-  
-  END;
+ACCESSIBLE BY 절은 제거되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER
+ACCESSIBLE BY (TRIGGER trig1)
+IS
+BEGIN
+RETURN a1;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER
+/* ACCESSIBLE BY (TRIGGER trig1) */ /* [REMOVED] RULE-13010 : The ACCESSIBLE BY clause is removed */
+IS
+BEGIN
+RETURN a1;
+END;
+~~~
 
 #### RULE-13011
 
-- 버전 범위: Altibase 6.3.1.0.0 이상
+> *이 규칙은 Altibase 6.3.1 이상에서 적용된다.*
 
-- 타입: TODO
+###### 타입
 
-- 설명: JAVA 함수 호출은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1(a1 VARCHAR2)
-  
-  RETURN VARCHAR2 IS
-  
-  **LANGUAGE JAVA NAME**
-  
-  **'com.altibase.ex.empMgr.addEmp(java.lang.String)'**;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1(a1 VARCHAR2)
-  
-  RETURN VARCHAR2 IS
-  
-  **LANGUAGE JAVA NAME**
-  
-  **'com.altibase.ex.empMgr.addEmp(java.lang.String)' /\* [TODO] RULE-13011 : Java
-  call specification must be converted manually \*/;**
+JAVA 함수 호출은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 VARCHAR2)
+RETURN VARCHAR2 IS
+LANGUAGE JAVA NAME
+'com.altibase.ex.empMgr.addEmp(java.lang.String)';
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 VARCHAR2)
+RETURN VARCHAR2 IS
+LANGUAGE JAVA NAME
+'com.altibase.ex.empMgr.addEmp(java.lang.String)' /* [TODO] RULE-13011 : Java call specification must be converted manually */;
+~~~
 
 #### RULE-13012
 
-- 버전 범위: Altibase 6.3.1.0.0 이상
+> *이 규칙은 Altibase 6.3.1 이상에서 적용된다.*
 
-- 타입: TODO
+###### 타입
 
-- 설명: CONTEXT와 SELF 매개변수는 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1(a1 VARCHAR2)
-  
-  RETURN NUMBER AS
-  
-  LANGUAGE C LIBRARY lib1
-  
-  PARAMETERS(a1, a1 LENGTH, **SELF**);
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1(a1 VARCHAR2)
-  
-  RETURN NUMBER AS
-  
-  LANGUAGE C LIBRARY lib1
-  
-  PARAMETERS(a1, a1 LENGTH, **SELF /\* [TODO] RULE-13012 : The external parameter
-  CONTEXT and SELF should be manually converted \*/**);
+CONTEXT와 SELF 매개변수는 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 VARCHAR2)
+RETURN NUMBER AS
+LANGUAGE C LIBRARY lib1
+PARAMETERS(a1, a1 LENGTH, SELF);
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 VARCHAR2)
+RETURN NUMBER AS
+LANGUAGE C LIBRARY lib1
+PARAMETERS(a1, a1 LENGTH, SELF)/* [TODO] RULE-13012 : The external parameter CONTEXT and SELF should be manually converted */);
+~~~
 
 #### RULE-13013
 
-- 버전 범위: Altibase 6.3.1.0.0 이상
+> *이 규칙은 Altibase 6.3.1 이상에서 적용된다.*
 
-- 타입: TODO
+###### 타입
 
-- 설명: INDICATOR, LENGTH, MAXLEN을 제외한 속성은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1(a1 VARCHAR2)
-  
-  RETURN NUMBER AS
-  
-  LANGUAGE C LIBRARY lib1
-  
-  PARAMETERS(a1, a1 **CHARSETID**, a1 **CHARSETFORM**);
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1(a1 VARCHAR2)
-  
-  RETURN NUMBER AS
-  
-  LANGUAGE C LIBRARY lib1
-  
-  PARAMETERS(a1, a1 **CHARSETID /\* [TODO] RULE-13013 : The property except for
-  INDICATOR, LENGTH, MAXLEN must be converted manually \*/**, a1 **CHARSETFORM /\*
-  [TODO] RULE-13013 : The properties should be manually converted except
-  INDICATOR, LENGTH, and MAXLEN \*/**);
+INDICATOR, LENGTH, MAXLEN을 제외한 속성은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 VARCHAR2)
+RETURN NUMBER AS
+LANGUAGE C LIBRARY lib1
+PARAMETERS(a1, a1 CHARSETID, a1 CHARSETFORM);
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 VARCHAR2)
+RETURN NUMBER AS
+LANGUAGE C LIBRARY lib1
+PARAMETERS(a1, a1 CHARSETID /* [TODO] RULE-13013 : The property except for INDICATOR, LENGTH, MAXLEN must be converted manually */, a1 CHARSETFORM /* [TODO] RULE-13013 : The properties should be manually converted except INDICATOR, LENGTH, and MAXLEN */);
+~~~
 
 #### RULE-13014
 
-- 버전 범위: Altibase 6.3.1.0.0 이상
+> *이 규칙은 Altibase 6.3.1 이상에서 적용된다.*
 
-- 타입: TODO
+###### 타입
 
-- 설명: BY REFERENCE 절은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-  
-  RETURN NUMBER AS
-  
-  LANGUAGE C LIBRARY lib1
-  
-  PARAMETERS(a1 **BY REFERENCE**);
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-  
-  RETURN NUMBER AS
-  
-  LANGUAGE C LIBRARY lib1
-  
-  PARAMETERS(a1 **BY REFERENCE /\* [TODO] RULE-13014 : BY REFERENCE clause must be
-  converted manually \*/**);
+BY REFERENCE 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER AS
+LANGUAGE C LIBRARY lib1
+PARAMETERS(a1 BY REFERENCE);
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER AS
+LANGUAGE C LIBRARY lib1
+PARAMETERS(a1 BY REFERENCE /* [TODO] RULE-13014 : BY REFERENCE clause must be converted manually */);
+~~~
 
 #### RULE-13015
 
-- 버전 범위: Altibase 6.3.1.0.0 이상
+> *이 규칙은 Altibase 6.3.1 이상에서 적용된다.*
 
-- 타입: TODO
+###### 타입
 
-- 설명: 매개변수의 외부 데이터 타입은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-  
-  RETURN NUMBER AS
-  
-  LANGUAGE C LIBRARY lib1
-  
-  PARAMETERS(a1 OCINUMBER)**;**
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-  
-  RETURN NUMBER AS
-  
-  LANGUAGE C LIBRARY lib
-  
-  PARAMETERS(a1 **OCINUMBER /\* [TODO] RULE-13015 : External data type of the
-  parameters should be manually converted \*/**);
+매개변수의 외부 데이터 타입은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER AS
+LANGUAGE C LIBRARY lib1
+PARAMETERS(a1 OCINUMBER);
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER AS
+LANGUAGE C LIBRARY lib1
+PARAMETERS(a1 OCINUMBER /* [TODO] RULE-13015 : External data type of the parameters should be manually converted */);
+~~~
+
 
 ### 프로시저 변환 규칙
 
 #### RULE-14001
 
-- 버전 범위: Altibase 6.3.1.0.0 이전
+> *이 규칙은 Altibase 6.3.1 이전 버전에 적용된다.*
 
-- 타입: TODO
+###### 타입
 
-- 설명: AS LANGUAGE 절은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
-  
-  AS LANGUAGE JAVA
-  
-  NAME 'test.quote() return java.lang.String';
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1(a1 INUMBER)
-  
-  AS LANGUAGE JAVA
-  
-  NAME 'test.quote() return java.lang.String' **/\* [TODO] RULE-14001 : AS
-  LANGUAGE clause must be converted manually \*/**;
+AS LANGUAGE 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
+AS LANGUAGE JAVA
+NAME 'test.quote() return java.lang.String';
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
+AS LANGUAGE JAVA
+NAME 'test.quote() return java.lang.String'/* [TODO] RULE-14001 : AS LANGUAGE clause must be converted manually */;
+~~~
 
 #### RULE-14002
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: AUTHID 절이 제거되었다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
-  
-  **AUTHID DEFINER**
-  
-  IS
-  
-  BEGIN
-  
-  NULL;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
-  
-  **/\* AUTHID DEFINER \*/ /\* [REMOVED] RULE-14002 : AUTHID clause is removed
-  \*/**
-  
-  IS
-  
-  BEGIN
-  
-  NULL;
-  
-  END;
+AUTHID 절이 제거되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
+AUTHID DEFINER
+IS
+BEGIN
+NULL;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
+/* AUTHID DEFINER */ /* [REMOVED] RULE-14002 : AUTHID clause is removed */
+IS
+BEGIN
+NULL;
+END;
+~~~
 
 #### RULE-14003
 
-- 버전 범위: Altibase 6.3.1.0.0 이상
+> *이 규칙은 Altibase 6.3.1 이상 버전에 적용된다.*
 
-- 타입: TODO
+###### 타입
 
-- 설명: WITH CONTEXT 절은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  LANGUAGE C LIBRARY lib1 **WITH CONTEXT;**
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  LANGUAGE C LIBRARY lib1 **WITH CONTEXT /\* [TODO] RULE-14003 : WITH CONTEXT
-  clause must be converted manually \*/;**
+WITH CONTEXT 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+LANGUAGE C LIBRARY lib1 WITH CONTEXT;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+LANGUAGE C LIBRARY lib1 WITH CONTEXT /* [TODO] RULE-14003 : WITH CONTEXT clause must be converted manually */;
+~~~
 
 #### RULE-14004
 
-- 버전 범위: Altibase 6.3.1.0.0 이상
+> *이 규칙은 Altibase 6.3.1 이상 버전에 적용된다.* 
 
-- 타입: TODO
+###### 타입
 
-- 설명: AGENT IN 절은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  LANGUAGE C LIBRARY lib1 **AGENT IN(EXTPROC)**;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  LANGUAGE C LIBRARY lib1 **AGENT IN(EXTPROC) /\* [TODO] RULE-14004 : AGENT IN
-  clause must be converted manually \*/**;
+AGENT IN 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+LANGUAGE C LIBRARY lib1 AGENT IN(EXTPROC);
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+LANGUAGE C LIBRARY lib1 AGENT IN(EXTPROC)/* [TODO] RULE-14004 : AGENT IN clause must be converted manually */;
+~~~
 
 #### RULE-14005
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: ACCESSIBLE BY절이 제거되었다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1
-  
-  **ACCESSIBLE BY (TRIGGER trig1)**
-  
-  IS
-  
-  BEGIN
-  
-  NULL;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1
-  
-  **/\* ACCESSIBLE BY (TRIGGER trig1) \*/ /\* [REMOVED] RULE-14005 : The
-  ACCESSIBLE BY clause is removed \*/**
-  
-  IS
-  
-  BEGIN
-  
-  NULL;
-  
-  END;
+ACCESSIBLE BY절이 제거되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1
+ACCESSIBLE BY (TRIGGER trig1)
+IS
+BEGIN
+NULL;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1
+/* ACCESSIBLE BY (TRIGGER trig1) */ /* [REMOVED] RULE-14005 : The ACCESSIBLE BY clause is removed */
+IS
+BEGIN
+NULL;
+END;
+~~~
+
 
 #### RULE-14006
 
-- 버전 범위: Altibase 6.3.1.0.0 이상
+> *이 규칙은 Altibase 6.3.1 이상 버전에 적용된다.*
 
-- 타입: TODO
+###### 타입
 
-- 설명: JAVA 함수 호출은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1(a1 VARCHAR2) AS
-  
-  **LANGUAGE JAVA NAME**
-  
-  **'com.altibase.ex.empMgr.addEmp(java.lang.String)'**;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1(a1 VARCHAR2) AS
-  
-  **LANGUAGE JAVA NAME**
-  
-  **'com.altibase.ex.empMgr.addEmp(java.lang.String)';**
-  
-  **/\* [TODO] RULE-14006 : Java call specification should be converted manually
-  \*/**
+JAVA 함수 호출은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 VARCHAR2) AS
+LANGUAGE JAVA NAME
+'com.altibase.ex.empMgr.addEmp(java.lang.String)';
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 VARCHAR2) AS
+LANGUAGE JAVA NAME
+'com.altibase.ex.empMgr.addEmp(java.lang.String)';   
+/* [TODO] RULE-14006 : Java call specification should be converted manually */
+~~~
 
 #### RULE-14007
 
-- 버전 범위: Altibase 6.3.1.0.0 이상
+> *이 규칙은 Altibase 6.3.1 이상 버전에 적용된다.*
 
-- 타입: TODO
+###### 타입
 
-- 설명: CONTEXT와 SELF 매개변수는 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
-  
-  LANGUAGE C LIBRARY lib1
-  
-  PARAMETERS(a1, a1 LENGTH, **SELF**);
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
-  
-  LANGUAGE C LIBRARY lib1
-  
-  PARAMETERS(a1, a1 LENGTH, **SELF /\* [TODO] RULE-14007 : The parameters CONTEXT
-  and SELF should be manually converted \*/**);
+CONTEXT와 SELF 매개변수는 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
+LANGUAGE C LIBRARY lib1
+PARAMETERS(a1, a1 LENGTH, SELF);
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
+LANGUAGE C LIBRARY lib1
+PARAMETERS(a1, a1 LENGTH, SELF /* [TODO] RULE-14007 : The parameters CONTEXT and SELF should be manually converted */);
+~~~
+
 
 #### RULE-14008
 
-- 버전 범위: Altibase 6.3.1.0.0 이상
+> *이 규칙은 Altibase 6.3.1 이상 버전에 적용된다.*
 
-- 타입: TODO
+###### 타입
 
-- 설명: INDICATOR, LENGTH, MAXLEN을 제외한 속성은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
-  
-  LANGUAGE C LIBRARY lib1
-  
-  PARAMETERS(a1, a1 **CHARSETID**, a1 **CHARSETFORM**);
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
-  
-  LANGUAGE C LIBRARY lib1
-  
-  PARAMETERS(a1, a1 **CHARSETID /\* [TODO] RULE-14008 : The property except for
-  INDICATOR, LENGTH, MAXLEN must be converted manually \*/**, a1 **CHARSETFORM /\*
-  [TODO] RULE-14008 : The property except for INDICATOR, LENGTH, MAXLEN must be
-  converted manually \*/**);
+INDICATOR, LENGTH, MAXLEN을 제외한 속성은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
+LANGUAGE C LIBRARY lib1
+PARAMETERS(a1, a1 CHARSETID, a1 CHARSETFORM);
+~~~
+
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
+LANGUAGE C LIBRARY lib1
+PARAMETERS(a1, a1 CHARSETID /* [TODO] RULE-14008 : The property except for INDICATOR, LENGTH, MAXLEN must be converted manually */, a1 CHARSETFORM /* [TODO] RULE-14008 : The property except for INDICATOR, LENGTH, MAXLEN must be converted manually */);
+~~~
 
 #### RULE-14009
 
-- 버전 범위: Altibase 6.3.1.0.0 이상
+> *이 규칙은 Altibase 6.3.1 이상 버전에 적용된다.*
 
-- 타입: TODO
+###### 타입
 
-- 설명: BY REFERENCE 절은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
-  
-  LANGUAGE C LIBRARY lib1
-  
-  PARAMETERS(a1 **BY REFERENCE**);
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
-  
-  LANGUAGE C LIBRARY lib1
-  
-  PARAMETERS(a1 **BY REFERENCE /\* [TODO] RULE-14009 : BY REFERENCE clause must be
-  converted manually \*/**);
+BY REFERENCE 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
+LANGUAGE C LIBRARY lib1
+PARAMETERS(a1 BY REFERENCE);
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CRETE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
+LANGUAGE C LIBRARY lib1
+PARAMETERS(a1 BY REFERENCE /* [TODO] RULE-14009 : BY REFERENCE clause must be converted manually */);
+~~~
+
 
 #### RULE-14010
 
-- 버전 범위: Altibase 6.3.1.0.0 이상
+> *이 규칙은 Altibase 6.3.1 이상 버전에 적용된다.*
 
-- 타입: TODO
+###### 타입
 
-- 설명: 매개변수의 외부 데이터 타입은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
-  
-  LANGUAGE C LIBRARY lib1
-  
-  PARAMETERS(a1 OCINUMBER);
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
-  
-  LANGUAGE C LIBRARY lib1
-  
-  PARAMETERS(a1 OCINUMBER /\* [TODO] RULE-14010 : External data type of the
-  parameters should be manually converted \*/);
+매개변수의 외부 데이터 타입은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREAT OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
+LANGUAGE C LIBRARY lib1
+PARAMETERS(a1 OCINUMBER);
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREAT OR REPLACE PROCEDURE proc1(a1 NUMBER) AS
+LANGUAGE C LIBRARY lib1
+PARAMETERS(a1 OCINUMBER /* [TODO] RULE-14010 : External data type of the parameters should be manually converted */);
+~~~
+
 
 ### Materialized View 변환 규칙
 
 #### RULE-15004
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: 칼럼 별칭 절과 서브쿼리 사이의 모든 절이 제거되었다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE MATERIALIZED VIEW mview1
-  
-  **ORGANIZATION HEAP PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255**
-  
-  **NOCOMPRESS LOGGING**
-  
-  **STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645**
-  
-  **PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)**
-  
-  **TABLESPACE test**
-  
-  **BUILD IMMEDIATE**
-  
-  **USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255**
-  
-  **STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645**
-  
-  **PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)**
-  
-  **TABLESPACE tbs1**
-  
-  **REFRESH FAST ON DEMAND**
-  
-  **WITH PRIMARY KEY USING DEFAULT LOCAL ROLLBACK SEGMENT**
-  
-  **USING ENFORCED CONSTRAINTS FOR UPDATE DISABLE QUERY REWRITE**
-  
-  AS SELECT \* FROM t1;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE MATERIALIZED VIEW mview1
-  
-  **/\* ORGANIZATION HEAP PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255**
-  
-  **NOCOMPRESS LOGGING**
-  
-  **STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645**
-  
-  **PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)**
-  
-  **TABLESPACE test**
-  
-  **BUILD IMMEDIATE**
-  
-  **USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255**
-  
-  **STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645**
-  
-  **PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)**
-  
-  **TABLESPACE tbs1**
-  
-  **REFRESH FAST ON DEMAND**
-  
-  **WITH PRIMARY KEY USING DEFAULT LOCAL ROLLBACK SEGMENT**
-  
-  **USING ENFORCED CONSTRAINTS FOR UPDATE DISABLE QUERY REWRITE \*/ /\* [REMOVED]
-  RULE-15004 : All clauses between column alias clause and subquery are removed
-  \*/**
-  
-  AS SELECT \* FROM t1;
+칼럼 별칭 절과 서브쿼리 사이의 모든 절이 제거되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE MATERIALIZED VIEW mview1
+ORGANIZATION HEAP PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255
+NOCOMPRESS LOGGING
+STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+TABLESPACE test
+BUILD IMMEDIATE
+USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255
+STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+TABLESPACE tbs1
+REFRESH FAST ON DEMAND
+WITH PRIMARY KEY USING DEFAULT LOCAL ROLLBACK SEGMENT
+USING ENFORCED CONSTRAINTS FOR UPDATE DISABLE QUERY REWRITE
+AS SELECT * FROM t1;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE MATERIALIZED VIEW mview1
+/* ORGANIZATION HEAP PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255
+NOCOMPRESS LOGGING
+STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+TABLESPACE test
+BUILD IMMEDIATE
+USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255
+STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+TABLESPACE tbs1
+REFRESH FAST ON DEMAND
+WITH PRIMARY KEY USING DEFAULT LOCAL ROLLBACK SEGMENT
+USING ENFORCED CONSTRAINTS FOR UPDATE DISABLE QUERY REWRITE */ /* [REMOVED] RULE-15004 : All clauses between column alias clause and subquery are removed */
+AS SELECT * FROM t1;
+~~~
 
 ### 패키지 변환 규칙
 
 #### RULE-16001
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: AUTHID 절이 제거되었다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PACKAGE empMgr_pkg AUTHID CURRENT_USER AS PROCEDURE
-  delete(p_id INTEGER);
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PACKAGE empMgr_pkg **/\* AUTHID CURRENT_USER \*/ /\* [REMOVED]
-  RULE-16001 : The invoker rights clause is removed \*/** AS PROCEDURE delete(p_id
-  INTEGER);
-  
-  END;
+AUTHID 절이 제거되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PACKAGE empMgr_pkg AUTHID CURRENT_USER 
+AS PROCEDURE delete(p_id INTEGER);
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PACKAGE empMgr_pkg /* AUTHID CURRENT_USER */ /* [REMOVED] RULE-16001 : The invoker rights clause is removed */ 
+AS PROCEDURE delete(p_id INTEGER);
+END;
+~~~
 
 #### RULE-16002
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: ACCESSIBLE BY 절이 제거되었다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PACKAGE pkg1
-  
-  **ACCESSIBLE BY (TRIGGER trig1)**
-  
-  AS
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PACKAGE pkg1
-  
-  **/\* ACCESSIBLE BY (TRIGGER trig1) \*/ /\* [REMOVED] RULE-16002 : The
-  ACCESSIBLE BY clause is removed \*/**
-  
-  AS
-  
-  END;
+ACCESSIBLE BY 절이 제거되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PACKAGE pkg1
+ACCESSIBLE BY (TRIGGER trig1)
+AS
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PACKAGE pkg1
+/* ACCESSIBLE BY (TRIGGER trig1) */ /* [REMOVED] RULE-16002 : The ACCESSIBLE BY clause is removed */
+AS
+END;
+~~~
+
 
 ### 라이브러리 변환 규칙
 
 #### RULE-17001
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: AGENT 절이 제거되었다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE LIBRARY lib1 AS
-  
-  '\${ORACLE_HOME}/lib/test_lib.so' **AGENT 'test.rule.no_17001.com'**;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE LIBRARY lib1 AS
-  
-  '\${ORACLE_HOME}/lib/test_lib.so' **/\* AGENT 'test.rule.no_17001.com' \*/ /\*
-  [REMOVED] RULE-17001 : Agent clause is removed \*/**;
+AGENT 절이 제거되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE LIBRARY lib1 AS
+'${ORACLE_HOME}/lib/test_lib.so' AGENT 'test.rule.no_17001.com';
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE LIBRARY lib1 AS
+'${ORACLE_HOME}/lib/test_lib.so' /* AGENT 'test.rule.no_17001.com' */ /* [REMOVED] RULE-17001 : Agent clause is removed */;
+~~~
 
 #### RULE-17002
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: UNTRUSTED가 제거되었다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE LIBRARY lib1 **UNTRUSTED**
-  
-  AS '\${ORACLE_HOME}/lib/test_lib.so';
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE LIBRARY lib1 **/\* UNTRUSTED \*/ /\* [REMOVED] RULE-17002 :
-  The keyword UNTRUSTED is removed \*/**
-  
-  AS '\${ORACLE_HOME}/lib/test_lib.so';
+UNTRUSTED가 제거되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE LIBRARY lib1 UNTRUSTED 
+AS '${ORACLE_HOME}/lib/test_lib.so';
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE LIBRARY lib1 /* UNTRUSTED */ /* [REMOVED] RULE-17002 : The keyword UNTRUSTED is removed */ 
+AS '${ORACLE_HOME}/lib/test_lib.so';
+~~~
 
 ### DML문 변환 규칙
 
 #### RULE-20001
 
-- 타입: TODO
+###### 타입
 
-- 설명: Flashback 쿼리 절은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  SELECT \* FROM t1 CROSS JOIN t2 **VERSIONS BETWEEN TIMESTAMP MINVALUE AND
-  MAXVALUE**;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  AS
-  
-  SELECT \* FROM t1 CROSS JOIN t2 **VERSIONS BETWEEN TIMESTAMP MINVALUE AND
-  MAXVALUE /\* [TODO] RULE-20001 : Flashback query clause must converted manually
-  \*/**;
+Flashback 쿼리 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT * FROM t1 CROSS JOIN t2 VERSIONS BETWEEN TIMESTAMP MINVALUE AND MAXVALUE;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT * FROM t1 CROSS JOIN t2 VERSIONS BETWEEN TIMESTAMP MINVALUE AND MAXVALUE/* [TODO] RULE-20001 : Flashback query clause must converted manually */;
+~~~
 
 #### RULE-20006
 
-- 타입: TODO
+###### 타입
 
-- 설명: DBLink 절은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  AS
-  
-  SELECT \* FROM t1@remote;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  AS
-  
-  SELECT \* FROM t1@**remote /\* [TODO] RULE-20006 : DBlink must be converted
-  manually \*/**;
+DBLink 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT * FROM t1@remote;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT * FROM t1@remote /* [TODO] RULE-20006 : DBlink must be converted manually */;
+~~~
+
 
 #### RULE-20007
 
-- 버전 범위: Altibase 6.5.1.0.0 이전
+> *이 규칙은 Altibase 6.5.1 이전 버전에 적용된다.*
 
-- 타입: TODO
+###### 타입
 
-- 설명: GROUPING SET 절은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  AS
-  
-  SELECT c1, c2, c3, c4, SUM( c5 )
-  
-  FROM t1
-  
-  GROUP BY **GROUPING SETS((c1, c2, c3, c4), (c1, c2, c3), (c3, c4));**
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW r1
-  
-  AS
-  
-  SELECT c1, c2, c3, c4, SUM(c5)
-  
-  FROM t1
-  
-  GROUP BY **GROUPING SETS( (c1, c2, c3, c4), (c1, c2, c3), (c3, c4) ) /\* [TODO]
-  RULE-20007 : GROUPING SETS clause must be converted manually \*/**;
+GROUPING SET 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT c1, c2, c3, c4, SUM( c5 )
+FROM t1
+GROUP BY GROUPING SETS((c1, c2, c3, c4), (c1, c2, c3), (c3, c4));
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT c1, c2, c3, c4, SUM( c5 )
+FROM t1
+GROUP BY GROUPING SETS((c1, c2, c3, c4), (c1, c2, c3), (c3, c4))/* [TODO] RULE-20007 : GROUPING SETS clause must be converted manually */;
+~~~
+
 
 #### RULE-20009
 
-- 버전 범위: Altibase 6.3.1.0.0 이전
+> *이 규칙은 Altibase 6.3.1 이전 버전에 적용된다.*
 
-- 타입: TODO
+###### 타입
 
-- 설명: CONNECT BY 뒤의 START WITH 절은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  AS
-  
-  SELECT c1, c2, c3, c4 FROM t1 CONNECT BY c1 = c2 **START WITH c1 = c4;**
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  AS
-  
-  SELECT c1, c2, c3, c4 FROM t1 CONNECT BY c1 = c2 **START WITH c1 = c4 /\* [TODO]
-  RULE-20009 : START WITH clause after CONNECT BY clause must be converted
-  manually \*/;**
+CONNECT BY 뒤의 START WITH 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT c1, c2, c3, c4 FROM t1 CONNECT BY c1 = c2 START WITH c1 = c4;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT c1, c2, c3, c4 FROM t1 CONNECT BY c1 = c2 START WITH c1 = c4 /* [TODO] RULE-20009 : START WITH clause after CONNECT BY clause must be converted manually */;
+~~~
 
 #### RULE-20010
 
-- 버전 범위: Altibase 6.3.1.0.0 이전 버전
+> *이 규칙은 Altibase 6.3.1 이전 버전에 적용된다.*
 
-- 타입: TODO
+###### 타입
 
-- 설명: NOCYCLE을 변환하려면 IGNORE LOOP를 뒤따라오는 조건 이후에 두어야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  AS
-  
-  SELECT c1, c2, c3, c4
-  
-  FROM t1 CONNECT BY NOCYCLE c1 = c2 START WITH c1 = c4;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  AS
-  
-  SELECT c1, c2, c3, c4
-  
-  FROM t1 CONNECT BY NOCYCLE **/\* [TODO] RULE-20010 : To convert 'NOCYCLE',
-  'IGNORE LOOP' should come after the following condition \*/** c1 = c2 START WITH
-  c1 = c4;
+NOCYCLE을 변환하려면 IGNORE LOOP를 뒤따라오는 조건 이후에 두어야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT c1, c2, c3, c4
+FROM t1 CONNECT BY NOCYCLE c1 = c2 START WITH c1 = c4;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT c1, c2, c3, c4
+FROM t1 CONNECT BY NOCYCLE /* [TODO] RULE-20010 : To convert 'NOCYCLE', 'IGNORE LOOP' should come after the following condition */ c1 = c2 START WITH c1 = c4;
+~~~
 
 #### RULE-20011
 
-- 타입: CONVERTED
+###### 타입
 
-- 설명: 힌트가 제거되었다.
+`CONVERTED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  AS
-  
-  SELECT **/\*+ORDERED \*/** \* FROM t1;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  AS
-  
-  SELECT \* FROM t1;
+힌트가 제거되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT /*+ORDERED */ * FROM t1;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT * FROM t1;
+~~~
 
 #### RULE-20012
 
-- 버전 범위: Altibase 6.1.1.0.0 이전
+> *이 규칙은 Altibase 6.1.1 이전 버전에 적용된다.*
 
-- 타입: TODO
+###### 타입
 
-- 설명: PIVOT절을 확인해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW xmlView
-  
-  AS
-  
-  SELECT \*
-  
-  FROM (SELECT d.dname, e.sex FROM departments d, employees e WHERE d.dno = e.dno)
-  
-  **PIVOT XML (COUNT(\*) FOR sex IN (ANY))**
-  
-  ORDER BY dname;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW xmlView
-  
-  AS
-  
-  SELECT \*
-  
-  FROM (SELECT d.dname, e.sex FROM departments d, employees e WHERE d.dno = e.dno)
-  
-  **PIVOT XML (COUNT(\*) FOR sex IN (ANY)) /\* [TODO] RULE-20012 : PIVOT clause
-  must be reviewed \*/**
-  
-  ORDER BY dname;
+PIVOT절을 확인해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW xmlView
+AS
+SELECT *
+FROM (SELECT d.dname, e.sex FROM departments d, employees e WHERE d.dno = e.dno)
+PIVOT XML (COUNT(*) FOR sex IN (ANY))
+ORDER BY dname;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW xmlView
+AS
+SELECT *
+FROM (SELECT d.dname, e.sex FROM departments d, employees e WHERE d.dno = e.dno)
+PIVOT XML (COUNT(*) FOR sex IN (ANY)) /* [TODO] RULE-20012 : PIVOT clause must be reviewed */
+ORDER BY dname;
+~~~
 
 #### RULE-20013
 
-- 버전 범위: Altibase 6.5.1.0.0 이전
+> *이 규칙은 Altibase 6.5.1 이전 버전에 적용된다.*
 
-- 타입: TODO
+###### 타입
 
-- 설명: UNPIVOT절을 확인해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  AS
-  
-  SELECT \* FROM t1
-  
-  UNPIVOT (c5 FOR c2 IN (c3 AS 'no', c4 AS 'name'))
-  
-  ORDER BY c1, c2;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  AS
-  
-  SELECT \* FROM t1
-  
-  UNPIVOT (c5 FOR c2 IN (c3 AS 'no', c4 AS 'name')) **/\* [TODO] RULE-20013 :
-  UNPIVOT clause must be reviewed \*/**
-  
-  ORDER BY c1, c2;
+UNPIVOT절을 확인해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT * FROM t1
+UNPIVOT (c5 FOR c2 IN (c3 AS 'no', c4 AS 'name'))
+ORDER BY c1, c2;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT * FROM t1
+UNPIVOT (c5 FOR c2 IN (c3 AS 'no', c4 AS 'name')) /* [TODO] RULE-20013 : UNPIVOT clause must be reviewed */
+ORDER BY c1, c2;
+~~~
 
 #### RULE-20014
 
-- 타입: CONVERTED
+###### 타입
 
-- 설명: 스키마명이 제거되었다.
+`CONVERTED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE **testuser1**.proc1(a1 NUMBER)
-  
-  AS
-  
-  BEGIN
-  
-  INSERT INTO **testuser1**.t1 VALUES(1, 2, 3);
-  
-  UPDATE testuser2.t1 SET c1 =3, c2 = c2 + 4, c3 = 9 WHERE c4 = 12;
-  
-  DELETE FROM **TESTUSER1**.t1 WHERE c4 = 12;
-  
-  SELECT \* INTO :cur1, :cur2 FROM "**TEST_USER1**".t1;
-  
-  SELECT \* INTO :cur1, :cur2 FROM "Test_User1".t1;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
-  
-  AS
-  
-  BEGIN
-  
-  INSERT INTO t1 VALUES(1, 2, 3);
-  
-  UPDATE testuser2.t1 SET c1 =3, c2 = c2 + 4, c3 = 9 WHERE c4 = 12;
-  
-  DELETE FROM t1 WHERE C4 = 12;
-  
-  SELECT \* INTO :cur1, :cur2 FROM t1;
-  
-  SELECT \* INTO :cur1, :cur2 FROM "Test_User1".t1;
-  
-  END;
+스키마명이 제거되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE test_user1.proc1(a1 NUMBER)
+AS
+BEGIN
+INSERT INTO test_user1.t1 VALUES(1, 2, 3);
+UPDATE test_user2.t1 SET c1 =3, c2 = c2 + 4, c3 = 9 WHERE c4 = 12;
+DELETE FROM TEST_USER1.t1 WHERE c4 = 12;
+SELECT * INTO :cur1, :cur2 FROM "TEST_USER1".t1;
+SELECT * INTO :cur1, :cur2 FROM "Test_User1".t1;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
+AS
+BEGIN
+INSERT INTO t1 VALUES(1, 2, 3);
+UPDATE test_user2.t1 SET c1 =3, c2 = c2 + 4, c3 = 9 WHERE c4 = 12;
+DELETE FROM t1 WHERE C4 = 12;
+SELECT * INTO :cur1, :cur2 FROM t1;
+SELECT * INTO :cur1, :cur2 FROM "Test_User1".t1;
+END;
+~~~
 
 #### RULE-20015
 
-- 버전 범위: Altibase 6.3.1.0.0 이전 버전
+> *이 규칙은 Altibase 6.3.1 이전 버전에 적용된다.*
 
-- 타입: TODO
+###### 타입
 
-- 설명: RETURNING 절은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE FUNCTION deleteMenu(p_menuName IN VARCHAR2) RETURN INTEGER
-  
-  AS
-  
-  v_totalCnt INTEGER;
-  
-  BEGIN
-  
-  SELECT COUNT(\*) INTO v_totalCnt FROM menus;
-  
-  DELETE FROM menus WHERE name = p_menuName **RETURNING v_totalCnt - COUNT(\*)
-  INTO v_totalCnt;**
-  
-  RETURN v_totalCnt;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE FUNCTION deleteMenu(p_menuName IN VARCHAR(32000))
-  
-  RETURN INTEGER
-  
-  AS
-  
-  v_totalCnt INTEGER;
-  
-  BEGIN
-  
-  SELECT COUNT(\*) INTO v_totalCnt FROM menus;
-  
-  DELETE FROM menus WHERE name = p_menuName **RETURNING v_totalCnt - COUNT(\*)
-  INTO v_totalCnt; /\* [TODO] RULE-20015 : The RETURNING clause must be converted
-  manually \*/;**
-  
-  RETURN v_totalCnt;
-  
-  END;
+RETURNING 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE FUNCTION deleteMenu(p_menuName IN VARCHAR2) RETURN INTEGER
+AS
+v_totalCnt INTEGER;
+BEGIN
+SELECT COUNT(*) INTO v_totalCnt FROM menus;
+DELETE FROM menus WHERE name = p_menuName RETURNING v_totalCnt - COUNT(*) INTO v_totalCnt;
+RETURN v_totalCnt;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE FUNCTION deleteMenu(p_menuName IN VARCHAR(32000))
+RETURN INTEGER
+AS
+v_totalCnt INTEGER;
+BEGIN
+SELECT COUNT(*) INTO v_totalCnt FROM menus;
+DELETE FROM menus WHERE name = p_menuName RETURNING v_totalCnt - COUNT(*) INTO v_totalCnt; /* [TODO] RULE-20015 : The RETURNING clause must be converted manually */;
+RETURN v_totalCnt;
+END;
+~~~
 
 #### RULE-20016
 
-- 타입: TODO
+###### 타입
 
-- 설명: CONNECT_BY_ISCYCLE 의사 칼럼은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  AS
-  
-  SELECT c1,
-  
-  CONNECT_BY_ISCYCLE "IsCycle",
-  
-  LEVEL,
-  
-  SYS_CONNECT_BY_PATH(c1, '/') "Path"
-  
-  FROM t1
-  
-  WHERE LEVEL \<= 3
-  
-  START WITH c2 = 100
-  
-  CONNECT BY PRIOR c2 = c3 AND LEVEL \<= 4;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  AS
-  
-  SELECT c1,
-  
-  CONNECT_BY_ISCYCLE "IsCycle" **/\* [TODO] RULE-20016 : The CONNECT_BY_ISCYCLE
-  pseudocolumn must be converted manually \*/**,
-  
-  LEVEL,
-  
-  SYS_CONNECT_BY_PATH(c1, '/') "Path"
-  
-  FROM t1
-  
-  WHERE LEVEL \<= 3
-  
-  START WITH c2 = 100
-  
-  CONNECT BY PRIOR c2 = c3 AND LEVEL \<= 4;
+CONNECT_BY_ISCYCLE 의사 칼럼은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT c1,
+CONNECT_BY_ISCYCLE "IsCycle",
+LEVEL,
+SYS_CONNECT_BY_PATH(c1, '/') "Path"
+FROM t1
+WHERE LEVEL <= 3
+START WITH c2 = 100
+CONNECT BY PRIOR c2 = c3 AND LEVEL <= 4;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT c1,
+CONNECT_BY_ISCYCLE "IsCycle" /* [TODO] RULE-20016 : The CONNECT_BY_ISCYCLE pseudocolumn must be converted manually */,
+LEVEL,
+SYS_CONNECT_BY_PATH(c1, '/') "Path"
+FROM t1
+WHERE LEVEL <= 3
+START WITH c2 = 100
+CONNECT BY PRIOR c2 = c3 AND LEVEL <= 4;
+~~~
 
 #### RULE-20017
 
-- 버전 범위: Altibase 6.3.1.1.7 이전 버전
+> *이 규칙은 Altibase 6.3.1.1.7 이전 버전에 적용된다.*
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: 'NULLS FIRST'와 'NULLS LAST'가 제거되었다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  AS
-  
-  SELECT c1,
-  
-  RANK() OVER (ORDER BY c1 **NULLS LAST**)
-  
-  FROM t1
-  
-  ORDER BY c1 **NULLS FIRST**;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  AS
-  
-  SELECT c1,
-  
-  RANK() OVER (ORDER BY c1 **/\* NULLS LAST \*/ /\* [REMOVED] RULE-20017 : 'NULLS
-  FIRST' and 'NULLS LAST' are removed \*/**)
-  
-  FROM t1
-  
-  ORDER BY c1 **/\* NULLS LAST \*/ /\* [REMOVED] RULE-20017 : 'NULLS FIRST' and
-  'NULLS LAST' are removed \*/**;
+'NULLS FIRST'와 'NULLS LAST'가 제거되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT c1,
+RANK() OVER (ORDER BY c1 NULLS LAST)
+FROM t1
+ORDER BY c1 NULLS FIRST;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT c1,
+RANK() OVER (ORDER BY c1 /* NULLS LAST */ /* [REMOVED] RULE-20017 : 'NULLS FIRST' and 'NULLS LAST' are  removed */)
+FROM t1
+ORDER BY c1 /* NULLS LAST */ /* [REMOVED] RULE-20017 : 'NULLS FIRST' and 'NULLS LAST' are removed */;
+~~~
 
 #### RULE-20019
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: 부질의 제약 절이 제거되었다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  AS
-  
-  SELECT \* FROM (SELECT \* FROM t2 **WITH READ ONLY**) t1;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  AS
-  
-  SELECT \* FROM (SELECT \* FROM t2 **/\* WITH READ ONLY \*/ /\* [REMOVED]
-  RULE-20019 : Restriction clause is removed \*/**) t1;
+부질의 제약 절이 제거되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT * FROM (SELECT * FROM t2 WITH READ ONLY) t1;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT * FROM (SELECT * FROM t2 /* WITH READ ONLY */ /* [REMOVED] RULE-20019 : Restriction clause is removed */) t1;
+~~~
 
 #### RULE-20020
 
-- 타입: TODO
+###### 타입
 
-- 설명: CROSS 또는 NATURAL INNER 조인 절은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  AS
-  
-  SELECT \* FROM (SELECT \* FROM t1) CROSS JOIN t2;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  AS
-  
-  SELECT \* FROM (SELECT \* FROM t1) CROSS JOIN t2 **/\* [TODO] RULE-20020 : A
-  CROSS or NATURAL INNER join must be converted manually \*/**;
+CROSS 또는 NATURAL INNER 조인 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT * FROM (SELECT * FROM t1) CROSS JOIN t2;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT * FROM (SELECT * FROM t1) CROSS JOIN t2 /* [TODO] RULE-20020 : A CROSS or NATURAL INNER join must be converted manually */;
+~~~
 
 #### RULE-20021
 
-- 타입: TODO
+###### 타입
 
-- 설명: 조인에서 사용하는 USING 절은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  AS
-  
-  SELECT c1, c2 FROM t1 JOIN t2 USING(c1, c2);
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  AS
-  
-  SELECT c1, c2 FROM t1 JOIN t2 USING(c1, c2**) /\* [TODO] RULE-20021 : USING
-  clause in a join must be converted manually \*/**;
+조인에서 사용하는 USING 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT c1, c2 FROM t1 JOIN t2 USING(c1, c2);
+~~~
+
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT c1, c2 FROM t1 JOIN t2 USING(c1, c2) /* [TODO] RULE-20021 : USING clause in a join must be converted manually */;
+~~~
+
 
 #### RULE-20022
 
-- 타입: TODO
+###### 타입
 
-- 설명: NATURAL Outer 조인 절은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE VIEW sales_view
-  
-  AS
-  
-  SELECT \* FROM log_guest NATURAL **FULL OUTER JOIN log_sales**
-  
-  ORDER BY datetime;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE VIEW sales_view AS
-  
-  SELECT \* FROM log_guest **NATURAL FULL OUTER JOIN log_sales /\* [TODO]
-  RULE-20022 : NATURAL type outer join clause must be converted manually \*/**
-  
-  ORDER BY datetime;
+NATURAL Outer 조인 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE VIEW sales_view
+AS
+SELECT * FROM log_guest NATURAL FULL OUTER JOIN log_sales
+ORDER BY datetime;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE VIEW sales_view AS
+SELECT * FROM log_guest NATURAL FULL OUTER JOIN log_sales /* [TODO] RULE-20022 : NATURAL type outer join clause must be converted manually */
+ORDER BY datetime;
+~~~
 
 #### RULE-20023
 
-- 타입: CONVERTED
+###### 타입
 
-- 설명: UNIQUE가 변환되었다.
+`CONVERTED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  AS
-  
-  SELECT **UNIQUE** c1 FROM t1;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1
-  
-  AS
-  
-  SELECT **DISTINCT** c1 FROM t1;
+UNIQUE가 변환되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT UNIQUE c1 FROM t1;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1
+AS
+SELECT DISTINCT c1 FROM t1;
+~~~
 
 #### RULE-20028
 
-- 타입: CONVERTED
+###### 타입
 
-- 설명: 큰 따옴표가 제거되었다. 단, reconcile "Unacceptable Name" 단계에서 
-  이름에 큰 따옴표가 필요한 객체에 대해 "Use Double-quoted Identifier" 옵션을 선택하면, 
-  해당 이름의 따옴표는 제거되지 않는다. 
+`CONVERTED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW "USER1"."V1" ("A1")
-  
-  AS
-  
-  SELECT "CODE" "A1" FROM "T1"
-  
-  UNION ALL
-  
-  SELECT code A1 FROM T2
-  
-  UNION ALL
-  
-  SELECT "no" "A1" FROM "T3" WHERE "C6" = '2';
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW USER1.V1(A1)
-  
-  AS
-  
-  SELECT CODE A1 FROM T1
-  
-  UNION ALL
-  
-  SELECT code A1 FROM T2
-  
-  UNION ALL
-  
-  SELECT no A1 FROM T3 WHERE C6 = '2';
+큰 따옴표가 제거되었다. 단, reconcile "Unacceptable Name" 단계에서 이름에 큰 따옴표가 필요한 객체에 대해 "Use Double-quoted Identifier" 옵션을 선택하면, 해당 이름의 따옴표는 제거되지 않는다. 
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW "USER1"."V1" ("A1")
+AS
+SELECT "CODE" "A1" FROM "T1"
+UNION ALL
+SELECT code A1 FROM T2
+UNION ALL
+SELECT "no" "A1" FROM "T3" WHERE "C6" = '2';
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW USER1.V1(A1)
+AS
+SELECT CODE A1 FROM T1
+UNION ALL
+SELECT code A1 FROM T2
+UNION ALL
+SELECT no A1 FROM T3 WHERE C6 = '2';
+~~~
 
 #### RULE-20029
 
-- 타입: CONVERTED
+###### 타입
 
-- 설명: Altibase 예약어에 해당하는 글로벌 식별자(global identifier)는 접미사가
-  추가되어 변환되었다.
+`CONVERTED`
 
-- 원본 SQL 문장:
-  
-  CREATE PROCEDURE open(p_objName VARCHAR2, p_objType VARCHAR2)
-  
-  AS
-  
-  v_ddl VARCHAR2(200) := 'CREATE ' \|\| p_objType \|\| ' ' \|\| p_objName;
-  
-  BEGIN
-  
-  CASE p_objType
-  
-  WHEN 'TABLE' THEN v_ddl := v_ddl \|\| ' (c1 INTEGER)';
-  
-  WHEN 'VIEW' THEN v_ddl := v_ddl \|\| ' AS SELECT \* FROM dual';
-  
-  END CASE;
-  
-  DBMS_OUTPUT.PUT_LINE(v_ddl);
-  
-  EXECUTE IMMEDIATE v_ddl;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE PROCEDURE open_POC(p_objName VARCHAR2, p_objType VARCHAR2)
-  
-  AS
-  
-  v_ddl VARCHAR2(200) := 'CREATE' \|\| p_objType \|\| ' ' \|\| p_objName;
-  
-  BEGIN
-  
-  CASE p_objType
-  
-  WHEN 'TABLE' THEN v_ddl := v_ddl \|\| ' (c1 INTEGER)';
-  
-  WHEN 'VIEW' THEN v_ddl := v_ddl \|\| ' AS SELECT \* FROM dual';
-  
-  END CASE;
-  
-  DBMS_OUTPUT.PUT_LINE(v_ddl);
-  
-  EXECUTE IMMEDIATE v_ddl;
-  
-  END;
+Altibase 예약어에 해당하는 글로벌 식별자(global identifier)는 접미사가 추가되어 변환되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE PROCEDURE open(p_objName VARCHAR2, p_objType VARCHAR2)
+AS
+v_ddl VARCHAR2(200) := 'CREATE ' || p_objType || ' ' || p_objName;
+BEGIN
+CASE p_objType
+WHEN 'TABLE' THEN v_ddl := v_ddl || ' (c1 INTEGER)';
+WHEN 'VIEW' THEN v_ddl := v_ddl || ' AS SELECT * FROM dual';
+END CASE;
+DBMS_OUTPUT.PUT_LINE(v_ddl);
+EXECUTE IMMEDIATE v_ddl;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE PROCEDURE open_POC(p_objName VARCHAR2, p_objType VARCHAR2) 
+AS
+v_ddl VARCHAR2(200) := 'CREATE' || p_objType || ' ' || p_objName;
+BEGIN
+CASE p_objType
+WHEN 'TABLE' THEN v_ddl := v_ddl || ' (c1 INTEGER)';
+WHEN 'VIEW' THEN v_ddl := v_ddl || ' AS SELECT * FROM dual';
+END CASE;
+DBMS_OUTPUT.PUT_LINE(v_ddl);
+EXECUTE IMMEDIATE v_ddl;
+END;
+~~~
+
 
 #### RULE-20030
 
-- 버전 범위: Altibase 6.5.1.0.0 이상 버전
+> *이 규칙은 Altibase 6.5.1 이상 버전에 적용된다.*
 
-- 타입: TODO
+###### 타입
 
-- 설명: GROUPING SETS 절과 함께 사용된 Window 함수는 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS SELECT c1, c2, SUM(c3), **RANK() OVER(ORDER BY
-  c1)**
-  
-  FROM t1 **GROUP BY GROUPING SETS(c1, c2)**;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS SELECT c1, c2, SUM(c3**), RANK() OVER(ORDER BY c1)
-  /\* [TODO] RULE-20030 : Window functions with the GROUPING SETS clause must be
-  convert manually. \*/** FROM t1 GROUP BY GROUPING SETS(c1, c2);
+GROUPING SETS 절과 함께 사용된 Window 함수는 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS SELECT c1, c2, SUM(c3), RANK() OVER(ORDER BY c1)
+FROM t1 GROUP BY GROUPING SETS(c1, c2);
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS SELECT c1, c2, SUM(c3), RANK() OVER(ORDER BY c1) /* [TODO] 
+RULE-20030 : Window functions with the GROUPING SETS clause must be convert manually. */
+FROM t1 GROUP BY GROUPING SETS(c1, c2);
+~~~
 
 #### RULE-20031
 
-- 버전 범위: Altibase 6.5.1.0.0 이상 버전
+> *이 규칙은 Altibase 6.5.1 이상 버전에 적용된다.*
 
-- 타입: TODO
+###### 타입
 
-- 설명: 복수의 GROUPING SETS절은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE VIEW mgr_view
-  
-  AS
-  
-  SELECT mgr, job, comm, deptno, SUM(sal) FROM emp GROUP BY
-  
-  **GROUPING SETS(job), GROUPING SETS(mgr, deptno), GROUPING SETS(comm)**;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE VIEW mgr_view
-  
-  AS
-  
-  SELECT mgr, job, comm, deptno, SUM(sal) FROM emp GROUP BY
-  
-  GROUPING **SETS(job), GROUPING SETS(mgr, deptno), GROUPING SETS(comm) /\* [TODO]
-  RULE-20031 : Multiple GROUPING SETS clauses must be converted manually. \*/;**
+복수의 GROUPING SETS절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE VIEW mgr_view
+AS
+SELECT mgr, job, comm, deptno, SUM(sal) FROM emp GROUP BY
+GROUPING SETS(job), GROUPING SETS(mgr, deptno), GROUPING SETS(comm);
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE VIEW mgr_view
+AS
+SELECT mgr, job, comm, deptno, SUM(sal) FROM emp GROUP BY
+GROUPING SETS(job), GROUPING SETS(mgr, deptno), GROUPING SETS(comm) /* [TODO] RULE-20031 : Multiple GROUPING SETS clauses must be converted manually. */;
+~~~
 
 #### RULE-20043
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: EDITIONING, EDITIONABLE, NONEDITIONABLE은 제거되었다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE **EDITIONABLE** PROCEDURE proc1 AS
-  
-  BEGIN
-  
-  NULL;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE **/\* EDITIONABLE \*/ /\* [REMOVED] RULE-20043 : The
-  EDITIONING, EDITIONABLE, and NONEDITIONABLE properties have been removed \*/**
-  PROCEDURE proc1 AS
-  
-  BEGIN
-  
-  NULL;
-  
-  END;
+EDITIONING, EDITIONABLE, NONEDITIONABLE은 제거되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE EDITIONABLE PROCEDURE proc1 AS
+BEGIN
+NULL;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE /* EDITIONABLE */ /* [REMOVED] RULE-20043 : The EDITIONING, EDITIONABLE, and NONEDITIONABLE properties have been removed */ PROCEDURE proc1 AS
+BEGIN
+NULL;
+END;
+~~~
 
 #### RULE-20044
 
-- 타입: TODO
+###### 타입
 
-- 설명: 파티션의 키 값을 명시한 질의는 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  SELECT \*
-  
-  FROM t1 PARTITION **FOR ('QA', 'RND')**;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  SELECT \*
-  
-  FROM t1 PARTITION **FOR ('QA', 'RND') /\* [TODO] RULE-20052 : Query partition
-  clause must be converted manually \*/ /\* [TODO] RULE-20044 : The partition
-  extension clause specifying key value must be converted manually \*/**;
+파티션의 키 값을 명시한 질의는 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM t1 PARTITION FOR ('QA', 'RND');
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM t1 PARTITION FOR ('QA', 'RND') /* [TODO] RULE-20052 : Query partition clause must be converted manually */ /* [TODO] RULE-20044 : The partition extension clause specifying key value must be converted manually */;
+~~~
 
 #### RULE-20045
 
-- 버전 범위: Altibase 6.3.1.0.0 이상
+> *이 규칙은 Altibase 6.3.1 이상 버전에 적용된다.*
 
-- 타입: TODO
+###### 타입
 
-- 설명: WITH절에서 부질의 컬럼의 별칭은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  WITH t1**(c1, c2)** AS (SELECT \* FROM TABLE(func1))
-  
-  SELECT \* FROM t1;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  WITH t1**(c1, c2) /\* [TODO] RULE-20045 : The column alias for subquery in the
-  with clause must be converted manually \*/** AS (SELECT \* FROM TABLE(func1))
-  
-  SELECT \* FROM t1;
+WITH절에서 부질의 컬럼의 별칭은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+WITH t1(c1, c2) AS (SELECT * FROM TABLE(func1))
+SELECT * FROM t1;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+WITH t1(c1, c2) /* [TODO] RULE-20045 : The column alias for subquery in the with clause must be converted manually */ AS (SELECT * FROM TABLE(func1))
+SELECT * FROM t1;
+~~~
 
 #### RULE-20046
 
-- 버전 범위: Altibase 6.1.1.0.0 이상
+> *이 규칙은 Altibase 6.1.1 이상 버전에 적용된다.*
 
-- 타입: TODO
+###### 타입
 
-- 설명: PIVOT절의 XML은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  SELECT \*
-  
-  FROM t1 PIVOT **XML** (SUM(c1) FOR c2 IN (ANY));
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  SELECT \*
-  
-  FROM t1 PIVOT **XML /\* [TODO] RULE-20046 : The XML keyword of the pivot clause
-  must be converted manually \*/** (SUM(c1) FOR c2 IN (ANY));
+PIVOT절의 XML은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM t1 PIVOT XML (SUM(c1) FOR c2 IN (ANY));
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM t1 PIVOT XML /* [TODO] RULE-20046 : The XML keyword of the pivot clause must be converted manually */ (SUM(c1) FOR c2 IN (ANY));
+~~~
 
 #### RULE-20047
 
-- 버전 범위: Altibase 6.1.1.0.0 이상
+> *이 규칙은 Altibase 6.1.1 이상 버전에 적용된다.*
 
-- 타입: TODO
+###### 타입
 
-- 설명: pivot_in_clause에 선언된 ANY 또는 부질의는 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  SELECT \*
-  
-  FROM t1 PIVOT XML (SUM(c1) FOR c2 IN (**ANY**));
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  SELECT \*
-  
-  FROM t1 PIVOT XML (SUM(c1) FOR c2 IN (**ANY**) **/\* [TODO] RULE-20047 : The ANY
-  keyword or a subquery in the pivot_in_clause must be converted manually \*/**);
+pivot_in_clause에 선언된 ANY 또는 부질의는 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM t1 PIVOT XML (SUM(c1) FOR c2 IN (ANY));
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM t1 PIVOT XML (SUM(c1) FOR c2 IN (ANY) /* [TODO] RULE-20047 : The ANY keyword or a subquery in the pivot_in_clause must be converted manually */);
+~~~
 
 #### RULE-20048
 
-- 타입: TODO
+###### 타입
 
-- 설명: SAMPLE절은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  SELECT \*
-  
-  FROM t1 **SAMPLE(50);**
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  SELECT \*
-  
-  FROM t1 **SAMPLE(50) /\* [TODO] RULE-20048 : The sample clause must be converted
-  manually \*/;**
+SAMPLE절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM t1 SAMPLE(50);
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM t1 SAMPLE(50) /* [TODO] RULE-20048 : The sample clause must be converted manually */;
+~~~
 
 #### RULE-20049
 
-- 타입: TODO
+###### 타입
 
-- 설명: ROW LIMITING절은 LIMIT절로 변환되어야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  SELECT \*
-  
-  FROM t1 **OFFSET 1 ROW**;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  SELECT \*
-  
-  FROM t1 **OFFSET 1 ROW /\* [TODO] RULE-20049 : The row limiting clause must be
-  converted to the limit clause \*/**;
+ROW LIMITING절은 LIMIT절로 변환되어야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM t1 OFFSET 1 ROW;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM t1 OFFSET 1 ROW /* [TODO] RULE-20049 : The row limiting clause must be converted to the limit clause */;
+~~~
 
 #### RULE-20050
 
-- 타입: TODO
+###### 타입
 
-- 설명: FOR UPDATE절에서 SKIP LOCKED는 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  v1 NUMBER := 1;
-  
-  CURSOR cur1 IS SELECT c1 FROM t1 FOR UPDATE **SKIP LOCKED**;
-  
-  BEGIN
-  
-  OPEN cur1;
-  
-  LOOP
-  
-  FETCH cur1 INTO v1;
-  
-  EXIT WHEN cur1%NOTFOUND;
-  
-  DBMS_OUTPUT.PUT_LINE('v1: ' \|\| v1);
-  
-  END LOOP;
-  
-  CLOSE cur1;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  v1 NUMBER := 1;
-  
-  CURSOR cur1 IS SELECT c1 FROM t1 FOR UPDATE **SKIP LOCKED /\* [TODO] RULE-20050
-  : SKIP LOCKED in the FOR UPDATE clause must be converted manually \*/;**
-  
-  BEGIN
-  
-  OPEN cur1;
-  
-  LOOP
-  
-  FETCH cur1 INTO v1;
-  
-  EXIT WHEN cur1%NOTFOUND;
-  
-  DBMS_OUTPUT.PUT_LINE('v1: ' \|\| v1);
-  
-  END LOOP;
-  
-  CLOSE cur1;
-  
-  END;
+FOR UPDATE절에서 SKIP LOCKED는 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+v1 NUMBER := 1;
+CURSOR cur1 IS SELECT c1 FROM t1 FOR UPDATE SKIP LOCKED;
+BEGIN
+OPEN cur1;
+LOOP
+FETCH cur1 INTO v1;
+EXIT WHEN cur1%NOTFOUND;
+DBMS_OUTPUT.PUT_LINE('v1: ' || v1);
+END LOOP;
+CLOSE cur1;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+v1 NUMBER := 1;
+CURSOR cur1 IS SELECT c1 FROM t1 FOR UPDATE SKIP LOCKED /* [TODO] RULE-20050 : SKIP LOCKED in the FOR UPDATE clause must be converted manually */;
+BEGIN
+OPEN cur1;
+LOOP
+FETCH cur1 INTO v1;
+EXIT WHEN cur1%NOTFOUND;
+DBMS_OUTPUT.PUT_LINE('v1: ' || v1);
+END LOOP;
+CLOSE cur1;
+END;
+~~~
 
 #### RULE-20051
 
-- 타입: TODO
+###### 타입
 
-- 설명: FOR UPDATE절 내 OF ... 컬럼 절은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  v1 NUMBER := 1;
-  
-  CURSOR cur1 IS SELECT c1 FROM t1 FOR UPDATE **OF c1**;
-  
-  BEGIN
-  
-  OPEN cur1;
-  
-  LOOP
-  
-  FETCH cur1 INTO v1;
-  
-  EXIT WHEN cur1%NOTFOUND;
-  
-  DBMS_OUTPUT.PUT_LINE('v1: ' \|\| v1);
-  
-  END LOOP;
-  
-  CLOSE cur1;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  v1 NUMBER := 1;
-  
-  CURSOR cur1 IS SELECT c1 FROM t1 FOR UPDATE **OF c1 /\* [TODO] RULE-20051 : OF
-  ... column clause in the FOR UPDATE clause must be converted manually \*/**;
-  
-  BEGIN
-  
-  OPEN cur1;
-  
-  LOOP
-  
-  FETCH cur1 INTO v1;
-  
-  EXIT WHEN cur1%NOTFOUND;
-  
-  DBMS_OUTPUT.PUT_LINE('v1: ' \|\| v1);
-  
-  END LOOP;
-  
-  CLOSE cur1;
-  
-  END;
+FOR UPDATE절 내 OF ... 컬럼 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+v1 NUMBER := 1;
+CURSOR cur1 IS SELECT c1 FROM t1 FOR UPDATE OF c1;
+BEGIN
+OPEN cur1;
+LOOP
+FETCH cur1 INTO v1;
+EXIT WHEN cur1%NOTFOUND;
+DBMS_OUTPUT.PUT_LINE('v1: ' || v1);
+END LOOP;
+CLOSE cur1;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+v1 NUMBER := 1;
+CURSOR cur1 IS SELECT c1 FROM t1 FOR UPDATE OF c1 /* [TODO] RULE-20051 : OF ... column clause in the FOR UPDATE clause must be converted manually */;
+BEGIN
+OPEN cur1;
+LOOP
+FETCH cur1 INTO v1;
+EXIT WHEN cur1%NOTFOUND;
+DBMS_OUTPUT.PUT_LINE('v1: ' || v1);
+END LOOP;
+CLOSE cur1;
+END;
+~~~
+
 
 #### RULE-20052
 
-- 타입: TODO
+###### 타입
 
-- 설명: 질의의 파티션 절은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  SELECT \*
-  
-  FROM t1 LEFT OUTER JOIN t2 **PARTITION BY (10)** ON t1.c2 = t2.c2;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  SELECT \*
-  
-  FROM t1 LEFT OUTER JOIN t2 **PARTITION BY (10) /\* [TODO] RULE-20052 : Query
-  partition clause must be converted manually \*/** ON t1.c2 = t2.c2;
+질의의 파티션 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM t1 LEFT OUTER JOIN t2 PARTITION BY (10) ON t1.c2 = t2.c2;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM t1 LEFT OUTER JOIN t2 PARTITION BY (10) /* [TODO] RULE-20052 : Query partition clause must be converted manually */ ON t1.c2 = t2.c2;
+~~~
 
 #### RULE-20053
 
-- 버전 범위: Altibase 6.3.1.0.0 이상
+> *이 규칙은 Altibase 6.3.1 이상 버전에 적용된다.*
 
-- 타입: TODO
+###### 타입
 
-- 설명: MERGE 구문에서 WHERE 절은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  BEGIN
-  
-  MERGE INTO t1 USING t2 ON (t1.c1 = t2.c1)
-  
-  WHEN MATCHED THEN UPDATE SET t1.c2 = t2.c2 **WHERE t1.c1 = 10**;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  BEGIN
-  
-  MERGE INTO t1 USING t2 ON (t1.c1 = t2.c1)
-  
-  WHEN MATCHED THEN UPDATE SET t1.c2 = t2.c2 **WHERE t1.c1 = 10 /\* [TODO]
-  RULE-20053 : Where clause of MERGE statement must be converted manually \*/**;
-  
-  END;
+MERGE 구문에서 WHERE 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+MERGE INTO t1 USING t2 ON (t1.c1 = t2.c1)
+WHEN MATCHED THEN UPDATE SET t1.c2 = t2.c2 WHERE t1.c1 = 10;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+BEGIN
+MERGE INTO t1 USING t2 ON (t1.c1 = t2.c1)
+WHEN MATCHED THEN UPDATE SET t1.c2 = t2.c2 WHERE t1.c1 = 10 /* [TODO] RULE-20053 : Where clause of MERGE statement must be converted manually */;
+END;
+~~~
 
 #### RULE-20054
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: 에러 로깅 절은 제거되었다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  BEGIN
-  
-  INSERT INTO t1 VALUES('6.12') **LOG ERRORS**;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  BEGIN
-  
-  INSERT INTO t1 VALUES('6.12') **/\* LOG ERRORS \*/ /\* [REMOVED] RULE-20054 :
-  The error logging clause is removed \*/**;
-  
-  END;
+에러 로깅 절은 제거되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+INSERT INTO t1 VALUES('6.12') LOG ERRORS;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+INSERT INTO t1 VALUES('6.12') /* LOG ERRORS */ /* [REMOVED] RULE-20054 : The error logging clause is removed */;
+END;
+~~~
 
 #### RULE-20055
 
-- 버전 범위: Altibase 6.3.1.0.0 이상
+> *이 규칙은 Altibase 6.3.1 이상 버전에 적용된다.*
 
-- 타입: TODO
+###### 타입
 
-- 설명: MERGE 구문에서 DELETE WHERE 절은 수동으로 변환해야 한다..
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  BEGIN
-  
-  MERGE INTO t1 USING t2 ON (t1.c1 = t2.c1)
-  
-  WHEN MATCHED THEN UPDATE SET t1.c2 = t2.c2 **DELETE t1.c1 = 11**;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  BEGIN
-  
-  MERGE INTO t1 USING t2 ON (t1.c1 = t2.c1)
-  
-  WHEN MATCHED THEN UPDATE SET t1.c2 = t2.c2 **DELETE WHERE t1.c1 = 11 /\* [TODO]
-  RULE-20055 : The DELETE WHERE clause in MERGE statement must be converted
-  manually \*/**
-  
-  END;
+MERGE 구문에서 DELETE WHERE 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+MERGE INTO t1 USING t2 ON (t1.c1 = t2.c1)
+WHEN MATCHED THEN UPDATE SET t1.c2 = t2.c2 DELETE t1.c1 = 11;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+MERGE INTO t1 USING t2 ON (t1.c1 = t2.c1)
+WHEN MATCHED THEN UPDATE SET t1.c2 = t2.c2 DELETE WHERE t1.c1 = 11 /* [TODO] RULE-20055 : The DELETE WHERE clause in MERGE statement must be converted manually */
+END;
+~~~
 
 #### RULE-20056
 
-- 타입: TODO
+###### 타입
 
-- 설명: 레코드 타입 변수 삽입은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1(a1 t1%ROWTYPE) AS
-  
-  BEGIN
-  
-  INSERT INTO t1 VALUES **a1**;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1(a1 t1%ROWTYPE) AS
-  
-  BEGIN
-  
-  INSERT INTO t1 VALUES **a1 /\* [TODO] RULE-20056 : Record variable insert must
-  be converted manually \*/**;
-  
-  END;
+레코드 타입 변수 삽입은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 t1%ROWTYPE) AS
+BEGIN
+INSERT INTO t1 VALUES a1;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 t1%ROWTYPE) AS
+BEGIN
+INSERT INTO t1 VALUES a1 /* [TODO] RULE-20056 : Record variable insert must be converted manually */;
+END;
+~~~
 
 #### RULE-20057
 
-- 타입: TODO
+###### 타입
 
-- 설명: 조건부 삽입 절은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  BEGIN
-  
-  INSERT
-  
-  **WHEN team = 'UX' THEN INTO emp_ux**
-  
-  **ELSE INTO emp_etc SELECT \* FROM employees;**
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  BEGIN
-  
-  INSERT
-  
-  **WHEN team = 'UX' THEN INTO emp_ux**
-  
-  **ELSE INTO emp_etc SELECT \* FROM employees; /\* [TODO] RULE-20057 :
-  Conditional insert clause must be converted manually \*/**
-  
-  END;
+조건부 삽입 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+INSERT
+WHEN team = 'UX' THEN INTO emp_ux
+ELSE INTO emp_etc SELECT * FROM employees;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+INSERT
+WHEN team = 'UX' THEN INTO emp_ux
+ELSE INTO emp_etc SELECT * FROM employees; /* [TODO] RULE-20057 : Conditional insert clause must be converted manually */
+END;
+~~~
 
 #### RULE-20058
 
-- 타입: TODO
+###### 타입
 
-- 설명: WHERE절의 CURRENT OF 절은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  c1 NUMBER;
-  
-  CURSOR cur1 IS SELECT c1 FROM t1 FOR UPDATE;
-  
-  BEGIN
-  
-  OPEN cur1;
-  
-  LOOP
-  
-  FETCH cur1 INTO c1;
-  
-  IF c1 \> 10 THEN
-  
-  DELETE FROM t1 WHERE **CURRENT OF cur1**;
-  
-  END IF;
-  
-  EXIT WHEN cur1%NOTFOUND;
-  
-  END LOOP;
-  
-  CLOSE cur1;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  c1 NUMBER;
-  
-  CURSOR cur1 IS SELECT c1 FROM t1 FOR UPDATE;
-  
-  BEGIN
-  
-  OPEN cur1;
-  
-  LOOP
-  
-  FETCH cur1 INTO c1;
-  
-  IF c1 \> 10 THEN
-  
-  DELETE FROM t1 WHERE **CURRENT OF cur1 /\* [TODO] RULE-20058 : 'CURRENT OF'
-  clause in the WHERE clause must be converted manually \*/**;
-  
-  END IF;
-  
-  EXIT WHEN cur1%NOTFOUND;
-  
-  END LOOP;
-  
-  CLOSE cur1;
-  
-  END;
+WHERE절의 CURRENT OF 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+c1 NUMBER;
+CURSOR cur1 IS SELECT c1 FROM t1 FOR UPDATE;
+BEGIN
+OPEN cur1;
+LOOP
+FETCH cur1 INTO c1;
+IF c1 > 10 THEN
+DELETE FROM t1 WHERE CURRENT OF cur1;
+END IF;
+EXIT WHEN cur1%NOTFOUND;
+END LOOP;
+CLOSE cur1;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+c1 NUMBER;
+CURSOR cur1 IS SELECT c1 FROM t1 FOR UPDATE;
+BEGIN
+OPEN cur1;
+LOOP
+FETCH cur1 INTO c1;
+IF c1 > 10 THEN
+DELETE FROM t1 WHERE CURRENT OF cur1 /* [TODO] RULE-20058 : 'CURRENT OF' clause in the WHERE clause must be converted manually */;
+END IF;
+EXIT WHEN cur1%NOTFOUND;
+END LOOP;
+CLOSE cur1;
+END;
+~~~
 
 #### RULE-20059
 
-- 버전 범위: Altibase 6.5.1.0.0 이전
+이 규칙은 TABLE 함수에 관한 것으로 Altibase 서버 버전에 따라 다르게 적용된다. 
 
-- 타입: TODO
+###### 타입
 
-- 설명: TABLE 함수는 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  SELECT \*
-  
-  FROM **TABLE(func1('ALTIBASE'));**
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  SELECT \*
-  
-  FROM **TABLE(func1('ALTIBASE')) /\* [TODO] RULE-20059 : Table function must be
-  converted manually \*/**;
+***Altibase 6.5.1 이전***
 
-- 버전 범위: Altibase 6.5.1.0.0 이상
+- TABLE 함수는 수동으로 변환해야 한다.
 
-- 타입: TODO
+###### 원본 SQL 문장
 
-- 설명: DML(삽입, 삭제, 갱신)에 사용된 TABLE함수는 수동으로 변환해야 한다.
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM TABLE(func1('ALTIBASE'));
+~~~
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  BEGIN
-  
-  DELETE FROM **TABLE(SELECT c2 FROM t1)** t WHERE t.c1 = 1;
-  
-  END;
+###### 변환된 SQL 문장
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  BEGIN
-  
-  DELETE FROM TABLE(SELECT c2 FROM t1) t **/\* [TODO] RULE-20059 : The TABLE
-  function with DML(insert, delete, update) must be converted manually \*/** WHERE
-  t.c1 = 1;
-  
-  END;
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM TABLE(func1('ALTIBASE')) /* [TODO] RULE-20059 : Table function must be converted manually */;
+~~~
+
+***Altibase 6.5.1 이상***
+
+- DML(삽입, 삭제, 갱신)에 사용된 TABLE 함수는 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+DELETE FROM TABLE(SELECT c2 FROM t1) t WHERE t.c1 = 1;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+DELETE FROM TABLE(SELECT c2 FROM t1) t /* [TODO] RULE-20059 : The TABLE function with DML(insert, delete, update) must be converted manually */ WHERE t.c1 = 1;
+END;
+~~~
 
 #### RULE-20060
 
-- 버전 범위: Altibase 6.5.1.0.0 이상
+> *이 규칙은 Altibase 6.5.1 이상 버전에 적용된다.*
 
-- 타입: TODO
+###### 타입
 
-- 설명: (+) 연산자는 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  SELECT t1.c1, t1_c2.c2
-  
-  FROM t1, TABLE(t1.c2) **(+)** t1_c2;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  SELECT t1.c1, t1_c2.c2
-  
-  FROM t1, TABLE(t1.c2) **(+) /\* [TODO] RULE-20060 : The (+) operator must be
-  converted manually \*/** t1_c2;
+(+) 연산자는 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT t1.c1, t1_c2.c2
+FROM t1, TABLE(t1.c2) (+) t1_c2;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT t1.c1, t1_c2.c2
+FROM t1, TABLE(t1.c2) (+) /* [TODO] RULE-20060 : The (+) operator must be converted manually */ t1_c2;
+~~~
 
 #### RULE-20061
 
-- 버전 범위: Altibase 6.5.1.0.0 이상
+> *이 규칙은 Altibase 6.5.1 이상 버전에 적용된다.*
 
-- 타입: TODO
+###### 타입
 
-- 설명: TABLE 함수의 인자인 컬렉션 표현은 사용자 정의 함수이어야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  SELECT \*
-  
-  FROM TABLE(**SELECT c2 FROM t1**);
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  SELECT \*
-  
-  FROM TABLE(**SELECT c2 FROM t1**) **/\* [TODO] RULE-20061 : The collection
-  expression arguments in the TABLE function should be the user-defined function
-  \*/;**
+TABLE 함수의 인자인 컬렉션 표현은 사용자 정의 함수이어야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM TABLE(SELECT c2 FROM t1);
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM TABLE(SELECT c2 FROM t1) /* [TODO] RULE-20061 : The collection expression arguments in the TABLE function should be the user-defined function */;
+~~~
 
 #### RULE-20062
 
-- 타입: TODO
+###### 타입
 
-- 설명: ONLY절은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  SELECT \* FROM **ONLY(v2);**
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  SELECT \* FROM **ONLY(v2) /\* [TODO] RULE-20062 : ONLY Clause must be converted
-  manually \*/**;
+ONLY절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT * FROM ONLY(v2);
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT * FROM ONLY(v2) /* [TODO] RULE-20062 : ONLY Clause must be converted manually */;
+~~~
 
 #### RULE-20063
 
-- 타입: TODO
+###### 타입
 
-- 설명: SET절의 레코드 타입 변수는 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1(a1 t1%ROWTYPE) AS
-  
-  BEGIN
-  
-  UPDATE t1 SET **ROW = a1** WHERE c1 = a1.c1;
-  
-  END**;**
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  BEGIN
-  
-  UPDATE t1 SET **ROW = a1 /\* [TODO] RULE-20063 : Record variable in SET clause
-  must be converted manually \*/** WHERE c1 = a1.c1;
-  
-  END;
+SET절의 레코드 타입 변수는 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 t1%ROWTYPE) AS
+BEGIN
+UPDATE t1 SET ROW = a1 WHERE c1 = a1.c1;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+UPDATE t1 SET ROW = a1 /* [TODO] RULE-20063 : Record variable in SET clause must be converted manually */ WHERE c1 = a1.c1;
+END;
+~~~
 
 #### RULE-20065
 
-- 타입: TODO
+###### 타입
 
-- 설명: 서브 파티션은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  SELECT \*
-  
-  FROM t1 **SUBPARTITION FOR ('HDB', 'HDB DA')**;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  SELECT \*
-  
-  FROM t1 **SUBPARTITION for ('HDB', 'HDB DA') /\* [TODO] RULE-20065 :
-  SUBPARTITION must be converted manually \*/ /\* [TODO] RULE-20044 : The
-  partition extension clause specifying key value must be converted manually
-  \*/**;
+서브 파티션은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql  
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM t1 SUBPARTITION FOR ('HDB', 'HDB DA');
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM t1 SUBPARTITION for ('HDB', 'HDB DA') /* [TODO] RULE-20065 : SUBPARTITION must be converted manually */ /* [TODO] RULE-20044 : The partition extension clause specifying key value must be converted manually */;
+~~~
 
 #### RULE-20066
 
-- 버전 범위: Altibase 6.1.1.0.0 이전
+> *이 규칙은 Altibase 6.1.1 이전 버전에 적용된다.*
 
-- 타입: TODO
+###### 타입
 
-- 설명: CROSS APPLY 또는 OUTER APPLY 조인은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  SELECT \*
-  
-  FROM t1 **CROSS APPLY** (SELECT \* FROM t2 WHERE t1.c1 = c1);
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  SELECT \*
-  
-  FROM t1 **CROSS APPLY** (SELECT \* FROM t2 WHERE t1.c1 = c1) **/\* [TODO]
-  RULE-20066 : CROSS APPLY or OUTER APPLY join must be converted manually \*/**;
+CROSS APPLY 또는 OUTER APPLY 조인은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM t1 CROSS APPLY (SELECT * FROM t2 WHERE t1.c1 = c1);
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT *
+FROM t1 CROSS APPLY (SELECT * FROM t2 WHERE t1.c1 = c1) /* [TODO] RULE-20066 : CROSS APPLY or OUTER APPLY join must be converted manually */;
+~~~
 
 ### PSM 변환 규칙
 
 #### RULE-30001
 
-- 타입: CONVERTED
+###### 타입
 
-- 설명: 미지원 데이터 타입이 변환되었다.
+`CONVERTED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1(a1 **VARCHAR2**)
-  
-  RETURN **VARCHAR2**
-  
-  IS
-  
-  m_binary_double **BINARY_DOUBLE**;
-  
-  m_number **NUMBER(10)** := 1234;
-  
-  TYPE rt_n IS RECORD (c1 **NATURAL**);
-  
-  TYPE rt_nn IS RECORD (c1 **NATURAL**);
-  
-  TYPE tt_1 IS TABLE OF **TIMESTAMP(3)** INDEX BY **VARCHAR2(10)**;
-  
-  TYPE tt_2 IS TABLE OF **TIMESTAMP(3) WITH TIME ZONE** INDEX BY **VARCHAR2(10)**;
-  
-  BEGIN
-  
-  RETURN a1;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장: Altibase 7.1.0 미만 버전
-  
-  CREATE OR REPLACE FUNCTION func1(a1 **VARCHAR(65534)**)
-  
-  RETURN **VARCHAR(65534)**
-  
-  IS
-  
-  m_binary_double **DOUBLE**;
-  
-  m_number **NUMBER (10)**:= 1234;
-  
-  TYPE rt_n IS RECORD (c1 **INTEGER**);
-  
-  TYPE rt_nn IS RECORD (c1 **INTEGER**);
-  
-  TYPE tt_1 IS TABLE OF **DATE** INDEX BY **VARCHAR(10);**
-  
-  TYPE tt_2 IS TABLE OF **DATE** INDEX BY **VARCHAR(10);**
-  
-  BEGIN
-  
-  RETURN a1;
-  
-  END;
+미지원 데이터 타입이 변환되었다.
 
-- 변환된 SQL 문장:  Altibase 7.1.0 이상 버전
-  
-  CREATE OR REPLACE FUNCTION func1(a1 **VARCHAR**)
-  
-  RETURN **VARCHAR**
-  
-  IS
-  
-  m_binary_double **DOUBLE;**
-  
-  m_number **NUMBER (10)**:= 1234;
-  
-  TYPE rt_n IS RECORD (c1 **INTEGER**);
-  
-  TYPE rt_nn IS RECORD (c1 **INTEGER**);
-  
-  TYPE tt_1 IS TABLE OF **DATE** INDEX BY **VARCHAR(10);**
-  
-  TYPE tt_2 IS TABLE OF **DATE** INDEX BY **VARCHAR(10);**
-  
-  BEGIN
-  
-  RETURN a1;
-  
-  END;
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 VARCHAR2)
+RETURN VARCHAR2
+IS
+m_binary_double BINARY_DOUBLE;
+m_number NUMBER(10) := 1234;
+TYPE rt_n IS RECORD (c1 NATURAL);
+TYPE rt_nn IS RECORD (c1 NATURAL);
+TYPE tt_1 IS TABLE OF TIMESTAMP(3) INDEX BY VARCHAR2(10);
+TYPE tt_2 IS TABLE OF TIMESTAMP(3) WITH TIME ZONE INDEX BY VARCHAR2(10);
+BEGIN
+RETURN a1;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+-- Altibase 7.1 이전 버전
+CREATE OR REPLACE FUNCTION func1(a1 VARCHAR(65534))
+RETURN VARCHAR(65534)
+IS
+m_binary_double DOUBLE;
+m_number NUMBER (10):= 1234;
+TYPE rt_n IS RECORD (c1 INTEGER);
+TYPE rt_nn IS RECORD (c1 INTEGER);
+TYPE tt_1 IS TABLE OF DATE INDEX BY VARCHAR(10);
+TYPE tt_2 IS TABLE OF DATE INDEX BY VARCHAR(10);
+BEGIN
+RETURN a1;
+END;
+~~~
+
+~~~sql
+-- Altibase 7.1 이상 버전
+CREATE OR REPLACE FUNCTION func1(a1 VARCHAR)
+RETURN VARCHAR
+IS
+m_binary_double DOUBLE;
+m_number NUMBER (10):= 1234;
+TYPE rt_n IS RECORD (c1 INTEGER);
+TYPE rt_nn IS RECORD (c1 INTEGER);
+TYPE tt_1 IS TABLE OF DATE INDEX BY VARCHAR(10);
+TYPE tt_2 IS TABLE OF DATE INDEX BY VARCHAR(10);
+BEGIN
+RETURN a1;
+END;
+~~~
 
 #### RULE-30002
 
-- 타입: TODO
+###### 타입
 
-- 설명: 미지원 데이터 타입은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1
-  
-  IS
-  
-  v_rowid **ROWID**;
-  
-  v_urowid **UROWID**;
-  
-  BEGIN
-  
-  NULL;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1
-  
-  IS
-  
-  v_rowid ROWID **/\* [TODO] RULE-30002 : Unsupported data type must be converted
-  manually \*/**;
-  
-  v_urowid UROWID **/\* [TODO] RULE-30002 : Unsupported data type must be
-  converted manually \*/**;
-  
-  BEGIN
-  
-  NULL;
-  
-  END;
+미지원 데이터 타입은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1
+IS
+v_rowid ROWID;
+v_urowid UROWID;
+BEGIN
+NULL;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1
+IS
+v_rowid ROWID /* [TODO] RULE-30002 : Unsupported data type must be converted manually */;
+v_urowid UROWID /* [TODO] RULE-30002 : Unsupported data type must be converted manually */;
+BEGIN
+NULL;
+END;
+~~~
 
 #### RULE-30003
 
-- 타입: TODO
+###### 타입
 
-- 설명: %TYPE을 참조하는 변수의 데이터 타입이 VARRAY 또는 사용자 정의
-  타입이라면, 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE FUNCTION getSeason_thailand(p_date DATE) RETURN VARCHAR2
-  
-  AS
-  
-  TYPE vt_season IS VARRAY(5) OF INTEGER;
-  
-  rainy vt_season := vt_season(6, 7, 8, 9, 10);
-  
-  dry **rainy%TYPE** := vt_season(11, 12, 1, 2);
-  
-  v_currSeason VARCHAR2(20) := 'Unknown';
-  
-  v_currMonth NUMBER(2);
-  
-  BEGIN
-  
-  SELECT TO_NUMBER(TO_CHAR(p_date, 'MM')) INTO v_currMonth FROM dual;
-  
-  FOR i IN 1..rainy.LAST LOOP
-  
-  IF rainy(i) = v_currMonth THEN
-  
-  v_currSeason := 'Rainy season';
-  
-  END IF;
-  
-  END LOOP;
-  
-  FOR i IN 1..dry.LAST LOOP
-  
-  IF dry(i) = v_currMonth THEN
-  
-  v_currSeason := 'Dry season';
-  
-  END IF;
-  
-  END LOOP;
-  
-  RETURN v_currSeason;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE FUNCTION getSeason_thailand(p_date DATE) RETURN VARCHAR2
-  
-  AS
-  
-  TYPE vt_season IS VARRAY(5) OF INTEGER;
-  
-  rainy vt_season := vt_season(6, 7, 8, 9, 10);
-  
-  **dry rainy%TYPE /\* [TODO] RULE-30003 : If the data type of variable
-  referencing the %TYPE were to be a user-defined or VARRAY type, it should be
-  manually converted \*/** := vt_season(11, 12, 1, 2);
-  
-  v_currSeason VARCHAR2(20) := 'Unknown';
-  
-  v_currMonth NUMBER(2);
-  
-  BEGIN
-  
-  SELECT TO_NUMBER(TO_CHAR(p_date, 'MM')) INTO v_currMonth FROM dual;
-  
-  FOR i IN 1..rainy.LAST LOOP
-  
-  IF rainy(i) = v_currMonth THEN
-  
-  v_currSeason := 'Rainy season';
-  
-  END IF;
-  
-  END LOOP;
-  
-  FOR i IN 1..dry.LAST LOOP
-  
-  IF dry(i) = v_currMonth THEN
-  
-  v_currSeason := 'Dry season';
-  
-  END IF;
-  
-  END LOOP;
-  
-  RETURN v_currSeason;
-  
-  END;
+%TYPE을 참조하는 변수의 데이터 타입이 VARRAY 또는 사용자 정의 타입이라면, 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE FUNCTION getSeason_thailand(p_date DATE) RETURN VARCHAR2
+AS
+TYPE vt_season IS VARRAY(5) OF INTEGER;
+rainy vt_season := vt_season(6, 7, 8, 9, 10);
+dry rainy%TYPE := vt_season(11, 12, 1, 2);
+v_currSeason VARCHAR2(20) := 'Unknown';
+v_currMonth NUMBER(2);
+BEGIN
+SELECT TO_NUMBER(TO_CHAR(p_date, 'MM')) INTO v_currMonth FROM dual;
+FOR i IN 1..rainy.LAST LOOP
+IF rainy(i) = v_currMonth THEN
+v_currSeason := 'Rainy season';
+END IF;
+END LOOP;
+FOR i IN 1..dry.LAST LOOP
+IF dry(i) = v_currMonth THEN
+v_currSeason := 'Dry season';
+END IF;
+END LOOP;
+RETURN v_currSeason;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE FUNCTION getSeason_thailand(p_date DATE) RETURN VARCHAR2
+AS
+TYPE vt_season IS VARRAY(5) OF INTEGER;
+rainy vt_season := vt_season(6, 7, 8, 9, 10);
+dry rainy%TYPE /* [TODO] RULE-30003 : If the data type of variable referencing the %TYPE were to be a user-defined or VARRAY type, it should be manually converted */ := vt_season(11, 12, 1, 2);
+v_currSeason VARCHAR2(20) := 'Unknown';
+v_currMonth NUMBER(2);
+BEGIN
+SELECT TO_NUMBER(TO_CHAR(p_date, 'MM')) INTO v_currMonth FROM dual;
+FOR i IN 1..rainy.LAST LOOP
+IF rainy(i) = v_currMonth THEN
+v_currSeason := 'Rainy season';
+END IF;
+END LOOP;
+FOR i IN 1..dry.LAST LOOP
+IF dry(i) = v_currMonth THEN
+v_currSeason := 'Dry season';
+END IF;
+END LOOP;
+RETURN v_currSeason;
+END;
+~~~
 
 #### RULE-30004
 
-- 타입: TODO
+###### 타입
 
-- 설명: 변수의 데이터 타입이 VARRAY 또는 사용자 정의 타입이라면, 수동으로
-  변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE FUNCTION getSeason_thailand(p_date DATE) RETURN VARCHAR2
-  
-  AS
-  
-  TYPE vt_season IS VARRAY(5) OF INTEGER;
-  
-  rainy **vt_season** := vt_season(6, 7, 8, 9, 10);
-  
-  dry rainy%TYPE := vt_season(11, 12, 1, 2);
-  
-  v_currSeason VARCHAR2(20) := 'Unknown';
-  
-  v_currMonth NUMBER(2);
-  
-  BEGIN
-  
-  SELECT TO_NUMBER(TO_CHAR(p_date, 'MM')) INTO v_currMonth FROM dual;
-  
-  FOR i IN 1..rainy.LAST LOOP
-  
-  IF rainy(i) = v_currMonth THEN
-  
-  v_currSeason := 'Rainy season';
-  
-  END IF;
-  
-  END LOOP;
-  
-  FOR i IN 1..dry.LAST LOOP
-  
-  IF dry(i) = v_currMonth THEN
-  
-  v_currSeason := 'Dry season';
-  
-  END IF;
-  
-  END LOOP;
-  
-  RETURN v_currSeason;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE FUNCTION getSeason_thailand(p_date DATE) RETURN VARCHAR2
-  
-  AS
-  
-  TYPE vt_season IS VARRAY(5) OF INTEGER;
-  
-  rainy **vt_season /\* [TODO] RULE-30004 : If the datatype of variable is an
-  VARRAY or user-defined type, the user must convert it manually \*/** :=
-  vt_season(6, 7, 8, 9, 10);
-  
-  dry rainy%TYPE:= vt_season(11, 12, 1, 2);
-  
-  v_currSeason VARCHAR3(20) := 'Unknown';
-  
-  v_currMonth NUMBER(2);
-  
-  BEGIN
-  
-  SELECT TO_NUMBER(TO_CHAR(p_date, 'MM')) INTO v_currMonth FROM dual;
-  
-  FOR i IN 1..rainy.LAST LOOP
-  
-  IF rainy(i) = v_currMonth THEN
-  
-  v_currSeason := 'Rainy season';
-  
-  END IF;
-  
-  END LOOP;
-  
-  FOR i IN 1..dry.LAST LOOP
-  
-  IF dry(i) = v_currMonth THEN
-  
-  v_currSeason := 'Dry season';
-  
-  END IF;
-  
-  END LOOP;
-  
-  RETURN v_currSeason;
-  
-  END;
+변수의 데이터 타입이 VARRAY 또는 사용자 정의 타입이라면, 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE FUNCTION getSeason_thailand(p_date DATE) RETURN VARCHAR2
+AS
+TYPE vt_season IS VARRAY(5) OF INTEGER;
+rainy vt_season := vt_season(6, 7, 8, 9, 10);
+dry rainy%TYPE := vt_season(11, 12, 1, 2);
+v_currSeason VARCHAR2(20) := 'Unknown';
+v_currMonth NUMBER(2);
+BEGIN
+SELECT TO_NUMBER(TO_CHAR(p_date, 'MM')) INTO v_currMonth FROM dual;
+FOR i IN 1..rainy.LAST LOOP
+IF rainy(i) = v_currMonth THEN
+v_currSeason := 'Rainy season';
+END IF;
+END LOOP;
+FOR i IN 1..dry.LAST LOOP
+IF dry(i) = v_currMonth THEN
+v_currSeason := 'Dry season';
+END IF;
+END LOOP;
+RETURN v_currSeason;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE FUNCTION getSeason_thailand(p_date DATE) RETURN VARCHAR2
+AS
+TYPE vt_season IS VARRAY(5) OF INTEGER;
+rainy vt_season /* [TODO] RULE-30004 : If the datatype of variable is an VARRAY or user-defined type, the user must convert it manually */ := vt_season(6, 7, 8, 9, 10);
+dry rainy%TYPE:= vt_season(11, 12, 1, 2);
+v_currSeason VARCHAR3(20) := 'Unknown';
+v_currMonth NUMBER(2);
+BEGIN
+SELECT TO_NUMBER(TO_CHAR(p_date, 'MM')) INTO v_currMonth FROM dual;
+FOR i IN 1..rainy.LAST LOOP
+IF rainy(i) = v_currMonth THEN
+v_currSeason := 'Rainy season';
+END IF;
+END LOOP;
+FOR i IN 1..dry.LAST LOOP
+IF dry(i) = v_currMonth THEN
+v_currSeason := 'Dry season';
+END IF;
+END LOOP;
+RETURN v_currSeason;
+END;
+~~~
 
 #### RULE-30005
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: NOT NULL 제약조건은 제거되었다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-  
-  RETURN NUMBER
-  
-  IS
-  
-  v1 PLS_INTEGER NOT NULL;
-  
-  BEGIN
-  
-  RETURN a1;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-  
-  RETURN NUMBER
-  
-  IS
-  
-  v1 PLS_INTEGER **/\***NOT NULL **\*/ /\* [REMOVED] RULE-30005 : The NOT NULL
-  constraint is removed \*/**;
-  
-  BEGIN
-  
-  RETURN a1;
-  
-  END;
+NOT NULL 제약조건은 제거되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER
+IS
+v1 PLS_INTEGER NOT NULL;
+BEGIN
+RETURN a1;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER
+IS
+v1 PLS_INTEGER /*NOT NULL */ /* [REMOVED] RULE-30005 : The NOT NULL constraint is removed */;
+BEGIN
+RETURN a1;
+END;
+~~~
 
 #### RULE-30006
 
-- 버전 범위: Altibase 6.5.1.0.0 이전
+> *이 규칙은 Altibase 6.5.1 이전 버전에 적용된다.*
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: NOCOPY는 제거되었다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE PROCEDURE appendSysdate
-  
-  (
-  
-  p1 IN OUT **NOCOPY** VARCHAR2
-  
-  )
-  
-  IS
-  
-  v_date VARCHAR2(50);
-  
-  BEGIN
-  
-  SELECT SYSDATE INTO v_date FROM dual;
-  
-  p1 := p1 \|\| v_date;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE PROCEDURE appendSysdate
-  
-  (
-  
-  p1 IN OUT **/\* NOCOPY \*/ /\* [REMOVED] RULE-30006 : NOCOPY is removed \*/
-  VARCHAR2**
-  
-  )
-  
-  IS
-  
-  v_date VARCHAR2(50);
-  
-  BEGIN
-  
-  SELECT SYSDATE INTO v_date FROM dual;
-  
-  p1 := p1 \|\| v_date;
-  
-  END;
+NOCOPY는 제거되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE PROCEDURE appendSysdate
+(
+p1 IN OUT NOCOPY VARCHAR2
+)
+IS
+v_date VARCHAR2(50);
+BEGIN
+SELECT SYSDATE INTO v_date FROM dual;
+p1 := p1 || v_date;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE PROCEDURE appendSysdate
+(
+p1 IN OUT /* NOCOPY */ /* [REMOVED] RULE-30006 : NOCOPY is removed */ VARCHAR2
+)
+IS
+v_date VARCHAR2(50);
+BEGIN
+SELECT SYSDATE INTO v_date FROM dual;
+p1 := p1 || v_date;
+END;
+~~~
 
 #### RULE-30008
 
-- 타입: CONVERTED
+###### 타입
 
-- 설명: Altibase 예약어에 해당하는 지역(Local) 식별자는 변환시 접미사가
-  추가되었다.
+`CONVERTED`
 
-- 원본 SQL 문장:
-  
-  CREATE PROCEDURE printDdlReplEnable
-  
-  AS
-  
-  **true** INTEGER := 1;
-  
-  BEGIN
-  
-  DECLARE
-  
-  isEnable INTEGER := printDdlReplEnable.**true**;
-  
-  BEGIN
-  
-  SELECT value1 INTO isEnable
-  
-  FROM v\$property WHERE name='REPLICATION_DDL_ENABLE';
-  
-  DBMS_OUTPUT.PUT('[Property]REPLICATION_DDL_ENABLE: ');
-  
-  IF isEnable = printDdlReplEnable.**true** THEN
-  
-  DBMS_OUTPUT.PUT_LINE('true');
-  
-  ELSE
-  
-  DBMS_OUTPUT.PUT_LINE('false');
-  
-  END IF;
-  
-  END;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장
-  
-  CREATE PROCEDURE printDdlReplEnable
-  
-  AS
-  
-  **true_POC** INTEGER := 1;
-  
-  BEGIN
-  
-  DECLARE
-  
-  isEnable INTEGER := printDdlReplEnable.**true_POC**;
-  
-  BEGIN
-  
-  SELECT value1 INTO isEnable
-  
-  FROM v\$property WHERE name='REPLICATION_DDL_ENABLE';
-  
-  DBMS_OUTPUT.PUT('[Property]REPLICATION_DDL_ENABLE:');
-  
-  IF isEnable = printDdlReplEnable.**true_POC** THEN
-  
-  DBMS_OUTPUT.PUT_LINE('true');
-  
-  ELSE
-  
-  DBMS_OUTPUT.PUT_LINE('false');
-  
-  END IF;
-  
-  END;
-  
-  END;
+Altibase 예약어에 해당하는 지역(Local) 식별자는 변환시 접미사가 추가되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE PROCEDURE printDdlReplEnable
+AS
+true INTEGER := 1;
+BEGIN
+DECLARE
+isEnable INTEGER := printDdlReplEnable.true;
+BEGIN
+SELECT value1 INTO isEnable
+FROM v$property WHERE name='REPLICATION_DDL_ENABLE';
+DBMS_OUTPUT.PUT('[Property]REPLICATION_DDL_ENABLE: ');
+IF isEnable = printDdlReplEnable.true THEN
+DBMS_OUTPUT.PUT_LINE('true');
+ELSE
+DBMS_OUTPUT.PUT_LINE('false');
+END IF;
+END;
+END;
+
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE PROCEDURE printDdlReplEnable
+AS
+true_POC INTEGER := 1;
+BEGIN
+DECLARE
+isEnable INTEGER := printDdlReplEnable.true_POC;
+BEGIN
+SELECT value1 INTO isEnable
+FROM v$property WHERE name='REPLICATION_DDL_ENABLE';
+DBMS_OUTPUT.PUT('[Property]REPLICATION_DDL_ENABLE:');
+IF isEnable = printDdlReplEnable.true_POC THEN
+DBMS_OUTPUT.PUT_LINE('true');
+ELSE
+DBMS_OUTPUT.PUT_LINE('false');
+END IF;
+END;
+END;
+~~~
 
 #### RULE-31001
 
-- 타입: CONVERTED
+###### 타입
 
-- 설명: 모든 묵시적 커서가 명시적 커서로 변환되었다.
+`CONVERTED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
-  
-  IS
-  
-  BEGIN
-  
-  FOR item1 IN (**SELECT c1 FROM t1**)
-  
-  LOOP
-  
-  NULL;
-  
-  END LOOP;
-  
-  FOR item2 IN (**SELECT c1 FROM t2**)
-  
-  LOOP
-  
-  NULL;
-  
-  END LOOP;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
-  
-  IS
-  
-  **CURSOR O2A_generated_cur_00 IS SELECT c1 FROM t1;**
-  
-  **CURSOR O2A_generated_cur_01 IS SELECT c1 FROM t2;**
-  
-  BEGIN
-  
-  FOR item1 IN **O2A_generated_cur_00**
-  
-  LOOP
-  
-  NULL;
-  
-  END LOOP;
-  
-  FOR item2 IN **O2A_generated_cur_01**
-  
-  LOOP
-  
-  NULL;
-  
-  END LOOP;
-  
-  END;
+모든 묵시적 커서가 명시적 커서로 변환되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
+IS
+BEGIN
+FOR item1 IN (SELECT c1 FROM t1)
+LOOP
+NULL;
+END LOOP;
+FOR item2 IN (SELECT c1 FROM t2)
+LOOP
+NULL;
+END LOOP;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
+IS
+CURSOR O2A_generated_cur_00 IS (SELECT c1 FROM t1);
+CURSOR O2A_generated_cur_01 IS (SELECT c1 FROM t2);
+BEGIN
+FOR item1 IN O2A_generated_cur_00
+LOOP
+NULL;
+END LOOP;
+FOR item2 IN O2A_generated_cur_01
+LOOP
+NULL;
+END LOOP;
+END;
+~~~
 
 #### RULE-31002
 
-- 타입: TODO
+###### 타입
 
-- 설명: SUBTYPE 타입 변수는 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-  
-  RETURN NUMBER
-  
-  IS
-  
-  TYPE typ1 IS RECORD ( m1 NUMBER(4) NOT NULL := 99 );
-  
-  TYPE typ2 IS REF CURSOR RETURN record_name%TYPE;
-  
-  TYPE typ3 IS TABLE OF a1%TYPE NOT NULL;
-  
-  TYPE typ4 iS VARYING ARRAY(10) OF INTEGER;
-  
-  **SUBTYPE subtyp1 IS CHAR(10);**
-  
-  BEGIN
-  
-  RETURN a1;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-  
-  RETURN NUMBER
-  
-  IS
-  
-  TYPE typ1 IS RECORD ( m1 NUMBER(4) NOT NULL := 99 );
-  
-  TYPE typ2 IS REF CURSOR RETURN record_name%TYPE;
-  
-  TYPE typ3 IS TABLE OF a1%TYPE NOT NULL;
-  
-  TYPE typ4 iS VARYING ARRAY(10) OF INTEGER;
-  
-  **SUBTYPE subtyp1 IS CHAR(10) /\* [TODO] RULE-31002 : SUBTYPE type variable must
-  be converted manually \*/;**
-  
-  BEGIN
-  
-  RETURN a1;
-  
-  END;
+SUBTYPE 타입 변수는 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER
+IS
+TYPE typ1 IS RECORD ( m1 NUMBER(4) NOT NULL := 99 );
+TYPE typ2 IS REF CURSOR RETURN record_name%TYPE;
+TYPE typ3 IS TABLE OF a1%TYPE NOT NULL;
+TYPE typ4 iS VARYING ARRAY(10) OF INTEGER;
+SUBTYPE subtyp1 IS CHAR(10);
+BEGIN
+RETURN a1;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER
+IS
+TYPE typ1 IS RECORD ( m1 NUMBER(4) NOT NULL := 99 );
+TYPE typ2 IS REF CURSOR RETURN record_name%TYPE;
+TYPE typ3 IS TABLE OF a1%TYPE NOT NULL;
+TYPE typ4 iS VARYING ARRAY(10) OF INTEGER;
+SUBTYPE subtyp1 IS CHAR(10) /* [TODO] RULE-31002 : SUBTYPE type variable must be converted manually */;
+BEGIN
+RETURN a1;
+END;
+~~~
 
 #### RULE-31003
 
-- 타입: TODO
+###### 타입
 
-- 설명: VARRAY타입 변수는 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE FUNCTION getSeason_korea(p_date DATE) RETURN VARCHAR2 IS
-  
-  TYPE **vt_season IS VARRAY(4) OF VARCHAR2(20);**
-  
-  v_seasonList vt_season := vt_season('Winter', 'Spring', 'Summer', 'Fall');
-  
-  v_currSeason VARCHAR2(20);
-  
-  v_currMonth NUMBER(2);
-  
-  BEGIN
-  
-  SELECT TO_NUMBER(TO_CHAR(p_date, 'MM')) INTO v_currMonth FROM dual;
-  
-  v_currSeason := v_seasonList(FLOOR(MOD(v_currMonth, 12) / 3 + 1));
-  
-  RETURN v_currSeason;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE FUNCTION getSeason_korea(p_date DATE) RETURN VARCHAR2 IS
-  
-  TYPE **vt_season IS VARRAY(4) OF VARCHAR2(20) /\* [TODO] RULE-31003 : VARRAY
-  type variable must be converted manually \*/;**
-  
-  v_seasonList vt_season:= vt_season('Winter', 'Spring', 'Summer', 'Fall');
-  
-  v_currseason VARCHAR2(20);
-  
-  v_currMonth NUMBER(2);
-  
-  BEGIN
-  
-  SELECT TO_NUMBER(TO_CHAR(p_date, 'MM')) INTO v_currMonth FROM dual;
-  
-  v_currseason := v_seasonList(FLOOR(MOD(v_currMonth, 12) / 3 + 1));
-  
-  RETURN a1v_currseason;
-  
-  END;
+VARRAY타입 변수는 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE FUNCTION getSeason_korea(p_date DATE) RETURN VARCHAR2 IS
+TYPE vt_season IS VARRAY(4) OF VARCHAR2(20);
+v_seasonList vt_season := vt_season('Winter', 'Spring', 'Summer', 'Fall');
+v_currSeason VARCHAR2(20);
+v_currMonth NUMBER(2);
+BEGIN
+SELECT TO_NUMBER(TO_CHAR(p_date, 'MM')) INTO v_currMonth FROM dual;
+v_currSeason := v_seasonList(FLOOR(MOD(v_currMonth, 12) / 3 + 1));
+RETURN v_currSeason;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE FUNCTION getSeason_korea(p_date DATE) RETURN VARCHAR2 IS
+TYPE vt_season IS VARRAY(4) OF VARCHAR2(20) /* [TODO] RULE-31003 : VARRAY type variable must be converted manually */;
+v_seasonList vt_season:= vt_season('Winter', 'Spring', 'Summer', 'Fall');
+v_currseason VARCHAR2(20);
+v_currMonth NUMBER(2);
+BEGIN
+SELECT TO_NUMBER(TO_CHAR(p_date, 'MM')) INTO v_currMonth FROM dual;
+v_currseason := v_seasonList(FLOOR(MOD(v_currMonth, 12) / 3 + 1));
+RETURN a1v_currseason;
+END;
+~~~
 
 #### RULE-31004
 
-- 타입: TODO
+###### 타입
 
-- 설명: CURSOR의 경우 %ROWTYPE 타입 파라미터는 수동으로 변환해야 한다
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-  
-  RETURN t2%ROWTYPE
-  
-  IS
-  
-  CURSOR cur1
-  
-  (
-  
-  m1 collection_name%TYPE,
-  
-  m2 t1.c3%ROWTYPE
-  
-  ) RETURN t2%ROWTYPE
-  
-  IS SELECT c2, c3 FROM t1 WHERE c1 \> 10;
-  
-  BEGIN
-  
-  RETURN cur1;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-  
-  RETURN t2%ROWTYPE
-  
-  IS
-  
-  CURSOR cur1
-  
-  (
-  
-  m1 collection_name%TYPE,
-  
-  m2 t1.c3%ROWTYPE **/\* [TODO] RULE-31004 : %ROWTYPE type parameter for CURSOR
-  must be converted manually \*/**
-  
-  ) RETURN t2%ROWTYPE
-  
-  IS SELECT c2, c3 FROM t1 WHERE c1 \> 10;
-  
-  BEGIN
-  
-  RETURN cur1;
-  
-  END;
+CURSOR의 경우 %ROWTYPE 타입 파라미터는 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN t2%ROWTYPE
+IS
+CURSOR cur1
+(
+m1 collection_name%TYPE,
+m2 t1.c3%ROWTYPE
+) RETURN t2%ROWTYPE
+IS SELECT c2, c3 FROM t1 WHERE c1 > 10;
+BEGIN
+RETURN cur1;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN t2%ROWTYPE
+IS
+CURSOR cur1
+(
+m1 collection_name%TYPE,
+m2 t1.c3%ROWTYPE /* [TODO] RULE-31004 : %ROWTYPE type parameter for CURSOR must be converted manually */
+) RETURN t2%ROWTYPE
+IS SELECT c2, c3 FROM t1 WHERE c1 > 10;
+BEGIN
+RETURN cur1;
+END;
+~~~
 
 #### RULE-31005
 
-- 타입: TODO
+###### 타입
 
-- 설명: CURSOR의 RETURN 절은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-  
-  RETURN NUMBER
-  
-  IS
-  
-  TYPE typ1 IS REF CURSOR RETURN record_name%TYPE;
-  
-  CURSOR cur1 ( m1 NUMBER )
-  
-  RETURN NUMBER
-  
-  IS SELECT c2, c3 FROM t1 WHERE c1 \> 10;
-  
-  BEGIN
-  
-  RETURN a1;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
-  
-  RETURN NUMBER
-  
-  IS
-  
-  TYPE typ1 IS REF CURSOR RETURN record_name%TYPE **/\* [TODO] RULE-31005 : RETURN
-  clause of CURSOR must be converted manually \*/**;
-  
-  CURSOR cur1 ( m1 NUMBER ) RETURN NUMBER **/\* [TODO] RULE-31005 : RETURN clause
-  of CURSOR must be converted manually \*/**
-  
-  IS SELECT c2, c3 FROM t1 WHERE c1 \> 10;
-  
-  BEGIN
-  
-  RETURN a1;
-  
-  END;
+CURSOR의 RETURN 절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER
+IS
+TYPE typ1 IS REF CURSOR RETURN record_name%TYPE;
+CURSOR cur1 ( m1 NUMBER )
+RETURN NUMBER
+IS SELECT c2, c3 FROM t1 WHERE c1 > 10;
+BEGIN
+RETURN a1;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 NUMBER)
+RETURN NUMBER
+IS
+TYPE typ1 IS REF CURSOR RETURN record_name%TYPE /* [TODO] RULE-31005 : RETURN clause of CURSOR must be converted manually */;
+CURSOR cur1 ( m1 NUMBER ) RETURN NUMBER /* [TODO] RULE-31005 : RETURN clause of CURSOR must be converted manually */
+IS SELECT c2, c3 FROM t1 WHERE c1 > 10;
+BEGIN
+RETURN a1;
+END;
+~~~
 
 #### RULE-31006
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: DECLARE섹션 내에 PROCEDURE 또는 FUNCTION을 정의하거나 선언할 수 없다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE PROCEDURE util_tblMgr(p_cmd VARCHAR2, p_tblName VARCHAR2) IS
-  
-  **FUNCTION isTblExist(p_tblName VARCHAR2) RETURN BOOLEAN;**
-  
-  **FUNCTION isTblExist(p_tblName VARCHAR2) RETURN BOOLEAN AS**
-  
-  **v_cnt INTEGER;**
-  
-  **BEGIN**
-  
-  **SELECT COUNT(\*) INTO v_cnt FROM user_tables WHERE table_name = p_tblName;**
-  
-  **IF v_cnt \> 0 THEN**
-  
-  **RETURN true;**
-  
-  **ELSE**
-  
-  **RETURN false;**
-  
-  **END IF;**
-  
-  **END;**
-  
-  BEGIN
-  
-  CASE p_cmd
-  
-  WHEN 'EXIST' THEN
-  
-  IF isTblExist(p_tblName) THEN
-  
-  DBMS_OUTPUT.PUT_LINE(p_tblName \|\| ' exists.');
-  
-  ELSE
-  
-  DBMS_OUTPUT.PUT_LINE(p_tblName \|\| ' does not exist.');
-  
-  END IF;
-  
-  ELSE DBMS_OUTPUT.PUT_LINE('Unknown command: ' \|\| p_cmd);
-  
-  END CASE;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE PROCEDURE util_tblMgr(p_cmd VARCHAR2, p_tblName VARCHAR2) IS
-  
-  **/\* FUNCTION isTblExist(p_tblName VARCHAR2) RETURN BOOLEAN; \*/ /\* [REMOVED]
-  RULE-31006 : Cannot define or declare a procedure or function in the declare
-  section \*/**
-  
-  **/\* FUNCTION isTblExist(p_tblName VARCHAR2) RETURN BOOLEAN AS**
-  
-  **v_cnt INTEGER;**
-  
-  **BEGIN**
-  
-  **SELECT COUNT(\*) INTO v_cnt FROM user_tables WHERE table_name = p_tblName;**
-  
-  **IF v_cnt \> 0 THEN**
-  
-  **RETURN true;**
-  
-  **ELSE**
-  
-  **RETURN false;**
-  
-  **END IF;**
-  
-  **END; \*/ /\* [REMOVED] RULE-31006 : Cannot define or declare a procedure or
-  function in the declare section \*/**
-  
-  BEGIN
-  
-  CASE p_cmd
-  
-  WHEN 'EXIST' THEN
-  
-  IF isTblExist(p_tblName) THEN
-  
-  DBMS_OUTPUT.PUT_LINE(p_tblName \|\| ' exists.');
-  
-  ELSE
-  
-  DBMS_OUTPUT.PUT_LINE(p_tblName \|\| ' does not exist.');
-  
-  END IF;
-  
-  ELSE DBMS_OUTPUT.PUT_LINE('Unknown command: ' \|\| p_cmd);
-  
-  END CASE;
-  
-  END;
+DECLARE섹션 내에 PROCEDURE 또는 FUNCTION을 정의하거나 선언할 수 없다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE PROCEDURE util_tblMgr(p_cmd VARCHAR2, p_tblName VARCHAR2) IS
+FUNCTION isTblExist(p_tblName VARCHAR2) RETURN BOOLEAN;
+FUNCTION isTblExist(p_tblName VARCHAR2) RETURN BOOLEAN AS
+v_cnt INTEGER;
+BEGIN
+SELECT COUNT(*) INTO v_cnt FROM user_tables WHERE table_name = p_tblName;
+IF v_cnt > 0 THEN
+RETURN true;
+ELSE
+RETURN false;
+END IF;
+END;
+BEGIN
+CASE p_cmd
+WHEN 'EXIST' THEN
+IF isTblExist(p_tblName) THEN
+DBMS_OUTPUT.PUT_LINE(p_tblName || ' exists.');
+ELSE
+DBMS_OUTPUT.PUT_LINE(p_tblName || ' does not exist.');
+END IF;
+ELSE DBMS_OUTPUT.PUT_LINE('Unknown command: ' || p_cmd);
+END CASE;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE PROCEDURE util_tblMgr(p_cmd VARCHAR2, p_tblName VARCHAR2) IS
+/* FUNCTION isTblExist(p_tblName VARCHAR2) RETURN BOOLEAN; */ /* [REMOVED] RULE-31006 : Cannot define or declare a procedure or function in the declare section */
+/* FUNCTION isTblExist(p_tblName VARCHAR2) RETURN BOOLEAN AS
+v_cnt INTEGER;
+BEGIN
+SELECT COUNT(*) INTO v_cnt FROM user_tables WHERE table_name = p_tblName;
+IF v_cnt > 0 THEN
+RETURN true;
+ELSE
+RETURN false;
+END IF;
+END; */ /* [REMOVED] RULE-31006 : Cannot define or declare a procedure or function in the declare section */
+BEGIN
+CASE p_cmd
+WHEN 'EXIST' THEN
+IF isTblExist(p_tblName) THEN
+DBMS_OUTPUT.PUT_LINE(p_tblName || ' exists.');
+ELSE
+DBMS_OUTPUT.PUT_LINE(p_tblName || ' does not exist.');
+END IF;
+ELSE DBMS_OUTPUT.PUT_LINE('Unknown command: ' || p_cmd);
+END CASE;
+END;
+~~~
 
 #### RULE-31008
 
-- 타입: REMOVED
+이 규칙은 PRAGMA에 관한 규칙으로 Altibase 서버 버전에 따라 변환 결과가 다르다.
 
-- 설명: PRAGMA가 제거되었다. 단 제거할 때 Altibase 6.3.1.0.10 이상 버전에서는
-  AUTONOMOUS_TRANSACTION을, Altibase 6.5.1.0.0 이상 버전에서는
-  EXCEPTION_INIT을 제외한다.
+###### 타입
 
-- 원본 SQL 문장:
-  
-  CREATE PROCEDURE addShot(p_cnt INTEGER)
-  
-  AS
-  
-  **PRAGMA AUTONOMOUS_TRANSACTION;**
-  
-  tmp_opt_empty EXCEPTION;
-  
-  **PRAGMA EXCEPTION_INIT(tmp_opt_empty, 100);**
-  
-  v_currcnt INTEGER;
-  
-  BEGIN
-  
-  SELECT shot_cnt INTO v_currcnt FROM tmp_opt;
-  
-  v_currcnt := v_currcnt + p_cnt;
-  
-  UPDATE tmp_opt SET shot_cnt = v_currcnt WHERE id = 1;
-  
-  COMMIT;
-  
-  EXCEPTION
-  
-  WHEN tmp_opt_empty THEN
-  
-  INSERT INTO tmp_opt(id, shot_cnt) VALUES (1, p_cnt + 1);
-  
-  COMMIT;
-  
-  END;
+`REMOVED`
 
-- 변환된 SQL 문장:
-  
-  CREATE PROCEDURE addShot(p_cnt INTEGER)
-  
-  AS
-  
-  **/\* PRAGMA AUTONOMOUS_TRANSACTION; \*/ /\* [REMOVED] RULE-31008 : PRAGMA is
-  removed \*/**
-  
-  tmp_opt_empty EXCEPTION;
-  
-  **/\* PRAGMA EXCEPTION_INIT(tmp_opt_empty, 100); \*/ /\* [REMOVED] RULE-31008 :
-  PRAGMA is removed \*/**
-  
-  v_currcnt INTEGER;
-  
-  BEGIN
-  
-  SELECT shot_cnt INTO v_currcnt FROM tmp_opt;
-  
-  v_currcnt := v_currcnt + p_cnt;
-  
-  UPDATE tmp_opt SET shot_cnt = v_currcnt WHERE id = 1;
-  
-  COMMIT;
-  
-  EXCEPTION
-  
-  WHEN tmp_opt_empty THEN
-  
-  INSERT INTO tmp_opt(id, shot_cnt) VALUES (1, p_cnt + 1);
-  
-  COMMIT;
-  
-  END;
+###### 설명
 
-- 원본 SQL 문장:Altibase 6.3.1.0.10 이상 버전
-  
-  CREATE PROCEDURE addShot(p_cnt INTEGER)
-  
-  AS
-  
-  **PRAGMA AUTONOMOUS_TRANSACTION;**
-  
-  tmp_opt_empty EXCEPTION;
-  
-  **PRAGMA EXCEPTION_INIT(tmp_opt_empty, 100);**
-  
-  v_currcnt INTEGER;
-  
-  BEGIN
-  
-  SELECT shot_cnt INTO v_currcnt FROM tmp_opt;
-  
-  v_currcnt := v_currcnt + p_cnt;
-  
-  UPDATE tmp_opt SET shot_cnt = v_currcnt WHERE id = 1;
-  
-  COMMIT;
-  
-  EXCEPTION
-  
-  WHEN tmp_opt_empty THEN
-  
-  INSERT INTO tmp_opt(id, shot_cnt) VALUES (1, p_cnt + 1);
-  
-  COMMIT;
-  
-  END;
+***Altibase 6.3.1.0.9 이하***
 
-- 변환된 SQL 문장:
-  
-  CREATE PROCEDURE addShot(p_cnt INTEGER)
-  
-  AS
-  
-  **PRAGMA AUTONOMOUS_TRANSACTION**
-  
-  tmp_opt_empty EXCEPTION;
-  
-  **/\* PRAGMA EXCEPTION_INIT(tmp_opt_empty, 100); \*/ /\* [REMOVED] RULE-31008 :
-  PRAGMA is removed \*/**
-  
-  v_currcnt INTEGER;
-  
-  BEGIN
-  
-  SELECT shot_cnt INTO v_currcnt FROM tmp_opt;
-  
-  v_currcnt := v_currcnt + p_cnt;
-  
-  UPDATE tmp_opt SET shot_cnt = v_currcnt WHERE id = 1;
-  
-  COMMIT;
-  
-  EXCEPTION
-  
-  WHEN tmp_opt_empty THEN
-  
-  INSERT INTO tmp_opt(id, shot_cnt) VALUES (1, p_cnt + 1);
-  
-  COMMIT;
-  
-  END;
+- PRAGMA가 제거되었다. 
 
-- 원본 SQL 문장:Altibase 6.5.1.0.0 이상 버전
-  
-  CREATE OR REPLACE PROCEDURE addShot(p_cnt INTEGER)
-  
-  AS
-  
-  **PRAGMA AUTONOMOUS_TRANSACTION;**
-  
-  tmp_opt_empty EXCEPTION;
-  
-  **PRAGMA EXCEPTION_INIT(tmp_opt_empty, 100);**
-  
-  v_currcnt INTEGER;
-  
-  BEGIN
-  
-  SELECT shot_cnt INTO v_currcnt FROM tmp_opt;
-  
-  v_currcnt := v_currcnt + p_cnt;
-  
-  UPDATE tmp_opt SET shot_cnt = v_currcnt WHERE id = 1;
-  
-  COMMIT;
-  
-  EXCEPTION
-  
-  WHEN tmp_opt_empty THEN
-  
-  INSERT INTO tmp_opt(id, shot_cnt) VALUES (1, p_cnt + 1);
-  
-  COMMIT;
-  
-  END;
+###### 원본 SQL 문장
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE addShot(p_cnt INTEGER) AS
-  
-  **PRAGMA AUTONOMOUS_TRANSACTION;**
-  
-  tmp_opt_empty EXCEPTION;
-  
-  **PRAGMA EXCEPTION_INIT(tmp_opt_empty, 100);**
-  
-  v_currcnt INTEGER;
-  
-  BEGIN
-  
-  SELECT shot_cnt INTO v_currcnt FROM tmp_opt;
-  
-  v_currcnt := v_currcnt + p_cnt;
-  
-  UPDATE tmp_opt SET shot_cnt = v_currcnt WHERE id = 1;
-  
-  COMMIT;
-  
-  EXCEPTION
-  
-  WHEN tmp_opt_empty THEN
-  
-  INSERT INTO tmp_opt(id, shot_cnt) VALUES (1, p_cnt + 1);
-  
-  COMMIT;
-  
-  END;
+~~~sql
+CREATE PROCEDURE addShot(p_cnt INTEGER)
+AS
+PRAGMA AUTONOMOUS_TRANSACTION;
+tmp_opt_empty EXCEPTION;
+PRAGMA EXCEPTION_INIT(tmp_opt_empty, 100);
+v_currcnt INTEGER;
+BEGIN
+SELECT shot_cnt INTO v_currcnt FROM tmp_opt;
+v_currcnt := v_currcnt + p_cnt;
+UPDATE tmp_opt SET shot_cnt = v_currcnt WHERE id = 1;
+COMMIT;
+EXCEPTION
+WHEN tmp_opt_empty THEN
+INSERT INTO tmp_opt(id, shot_cnt) VALUES (1, p_cnt + 1);
+COMMIT;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE PROCEDURE addShot(p_cnt INTEGER)
+AS
+/* PRAGMA AUTONOMOUS_TRANSACTION; */ /* [REMOVED] RULE-31008 : PRAGMA is removed */
+tmp_opt_empty EXCEPTION;
+/* PRAGMA EXCEPTION_INIT(tmp_opt_empty, 100); */ /* [REMOVED] RULE-31008 : PRAGMA is removed */
+v_currcnt INTEGER;
+BEGIN
+SELECT shot_cnt INTO v_currcnt FROM tmp_opt;
+v_currcnt := v_currcnt + p_cnt;
+UPDATE tmp_opt SET shot_cnt = v_currcnt WHERE id = 1;
+COMMIT;
+EXCEPTION
+WHEN tmp_opt_empty THEN
+INSERT INTO tmp_opt(id, shot_cnt) VALUES (1, p_cnt + 1);
+COMMIT;
+END;
+~~~
+
+***Altibase 6.3.1.0.10 이상***
+
+- PRAGMA AUTONOMOUS_TRANSACTION는 유지한다.
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE PROCEDURE addShot(p_cnt INTEGER)
+AS
+PRAGMA AUTONOMOUS_TRANSACTION
+tmp_opt_empty EXCEPTION;
+/* PRAGMA EXCEPTION_INIT(tmp_opt_empty, 100); */ /* [REMOVED] RULE-31008 : PRAGMA is removed */
+v_currcnt INTEGER;
+BEGIN
+SELECT shot_cnt INTO v_currcnt FROM tmp_opt;
+v_currcnt := v_currcnt + p_cnt;
+UPDATE tmp_opt SET shot_cnt = v_currcnt WHERE id = 1;
+COMMIT;
+EXCEPTION
+WHEN tmp_opt_empty THEN
+INSERT INTO tmp_opt(id, shot_cnt) VALUES (1, p_cnt + 1);
+COMMIT;
+END;
+~~~
+
+***Altibase 6.5.1 이상***
+
+- PRAGMA AUTONOMOUS_TRANSACTION, PRAGMA EXCEPTION_INIT을 유지한다.
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE addShot(p_cnt INTEGER) AS
+PRAGMA AUTONOMOUS_TRANSACTION;
+tmp_opt_empty EXCEPTION;
+PRAGMA EXCEPTION_INIT(tmp_opt_empty, 100);
+v_currcnt INTEGER;
+BEGIN
+SELECT shot_cnt INTO v_currcnt FROM tmp_opt;
+v_currcnt := v_currcnt + p_cnt;
+UPDATE tmp_opt SET shot_cnt = v_currcnt WHERE id = 1;
+COMMIT;
+EXCEPTION
+WHEN tmp_opt_empty THEN
+INSERT INTO tmp_opt(id, shot_cnt) VALUES (1, p_cnt + 1);
+COMMIT;
+END;
+~~~
 
 #### RULE-31010
 
-- 타입: TODO
+###### 타입
 
-- 설명: Collection Constructor는 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE FUNCTION getSeason_korea(p_date DATE) RETURN VARCHAR2
-  
-  AS
-  
-  TYPE vt_season IS VARRAY(4) OF v_currSeason%TYPE;
-  
-  v_seasonList vt_season := **vt_season('Winter', 'Spring', 'Summer', 'Fall')**;
-  
-  v_currMonth NUMBER(2);
-  
-  v_currSeason VARCHAR2(20);
-  
-  BEGIN
-  
-  SELECT TO_NUMBER(TO_CHAR(p_date, 'MM')) INTO v_currMonth FROM dual;
-  
-  v_currSeason := v_seasonList(FLOOR(MOD(v_currMonth, 12) / 3 + 1));
-  
-  RETURN v_currSeason;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE FUNCTION getSeason_korea(p_date DATE) RETURN VARCHAR(32000)
-  
-  AS
-  
-  TYPE vt_season IS VARRAY(4) OF v_currSeason%TYPE;
-  
-  v_seasonList **vt_season**:= **vt_season('Winter', 'Spring', 'Summer', 'Fall')
-  /\* [TODO] RULE-31010 : The collection constructor must be converted manually
-  \*/;**
-  
-  v_currMonth NUMBER(38, 0);
-  
-  v_currSeason VARCHAR(32000);
-  
-  BEGIN
-  
-  SELECT TO_NUMBER(TO_CHAR(p_date, 'MM')) INTO v_currMonth FROM dual;
-  
-  v_currSeason := v_seasonList(FLOOR(MOD(v_currMonth, 12) / 3 + 1));
-  
-  RETURN v_currSeason;
-  
-  END;
+Collection Constructor는 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE FUNCTION getSeason_korea(p_date DATE) RETURN VARCHAR2
+AS
+TYPE vt_season IS VARRAY(4) OF v_currSeason%TYPE;
+v_seasonList vt_season := vt_season('Winter', 'Spring', 'Summer', 'Fall');
+v_currMonth NUMBER(2);
+v_currSeason VARCHAR2(20);
+BEGIN
+SELECT TO_NUMBER(TO_CHAR(p_date, 'MM')) INTO v_currMonth FROM dual;
+v_currSeason := v_seasonList(FLOOR(MOD(v_currMonth, 12) / 3 + 1));
+RETURN v_currSeason;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE FUNCTION getSeason_korea(p_date DATE) RETURN VARCHAR(32000)
+AS
+TYPE vt_season IS VARRAY(4) OF v_currSeason%TYPE;
+v_seasonList vt_season:= vt_season('Winter', 'Spring', 'Summer', 'Fall') /* [TODO] RULE-31010 : The collection constructor must be converted manually */;
+v_currMonth NUMBER(38, 0);
+v_currSeason VARCHAR(32000);
+BEGIN
+SELECT TO_NUMBER(TO_CHAR(p_date, 'MM')) INTO v_currMonth FROM dual;
+v_currSeason := v_seasonList(FLOOR(MOD(v_currMonth, 12) / 3 + 1));
+RETURN v_currSeason;
+END;
+~~~
 
 #### RULE-31011
 
-- 타입: TODO
+###### 타입
 
-- 설명: Associative array의 데이타 타입이 %TYPE 또는 %ROWTYPE으로 정의되었다면
-  수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE PACKAGE tripLog_pkg AS
-  
-  curr_date DATE := SYSDATE;
-  
-  TYPE at_city IS TABLE OF **curr_date%TYPE** INDEX BY VARCHAR2(100);
-  
-  v_cityList at_city;
-  
-  PROCEDURE addCity(p_city VARCHAR2, p_date DATE);
-  
-  PROCEDURE delCity(p_city VARCHAR2);
-  
-  PROCEDURE printCityList;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE PACKAGE tripLog_pkg AS
-  
-  curr_date DATE := SYSDATE;
-  
-  TYPE at_city IS TABLE OF **curr_date%TYPE /\* [TODO] RULE-31011 : The %TYPE or
-  %ROWTYPE attribute must be converted manually \*/** INDEX BY VARCHAR2(100);
-  
-  v_cityList at_city;
-  
-  PROCEDURE addCity(p_city VARCHAR2, p_date DATE);
-  
-  PROCEDURE delCity(p_city VARCHAR2);
-  
-  PROCEDURE printCityList;
-  
-  END;
+Associative array의 데이타 타입이 %TYPE 또는 %ROWTYPE으로 정의되었다면 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE PACKAGE tripLog_pkg AS
+curr_date DATE := SYSDATE;
+TYPE at_city IS TABLE OF curr_date%TYPE INDEX BY VARCHAR2(100);
+v_cityList at_city;
+PROCEDURE addCity(p_city VARCHAR2, p_date DATE);
+PROCEDURE delCity(p_city VARCHAR2);
+PROCEDURE printCityList;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE PACKAGE tripLog_pkg AS
+curr_date DATE := SYSDATE;
+TYPE at_city IS TABLE OF curr_date%TYPE /* [TODO] RULE-31011 : The %TYPE or %ROWTYPE attribute must be converted manually */ INDEX BY VARCHAR2(100);
+v_cityList at_city;
+PROCEDURE addCity(p_city VARCHAR2, p_date DATE);
+PROCEDURE delCity(p_city VARCHAR2);
+PROCEDURE printCityList;
+END;
+~~~
 
 #### RULE-31012
 
-- 타입: CONVERTED
+###### 타입
 
-- 설명: Associative array의 인덱스 데이타 타입이 변환되었다.
+`CONVERTED`
 
-- 원본 SQL 문장:
-  
-  CREATE PACKAGE tripLog_pkg AS
-  
-  curr_date DATE := SYSDATE;
-  
-  TYPE at_city IS TABLE OF **curr_date%TYPE INDEX BY VARCHAR2(100)**;
-  
-  v_cityList at_city;
-  
-  PROCEDURE addCity(p_city VARCHAR2, p_date DATE);
-  
-  PROCEDURE delCity(p_city VARCHAR2);
-  
-  PROCEDURE printCityList;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE PACKAGE tripLog_pkg AS
-  
-  curr_date DATE := SYSDATE;
-  
-  TYPE at_city IS TABLE OF **curr_date%TYPE INDEX BY VARCHAR(100)**;
-  
-  v_cityList at_city;
-  
-  PROCEDURE addCity(p_city VARCHAR2, p_date DATE);
-  
-  PROCEDURE delCity(p_city VARCHAR2);
-  
-  PROCEDURE printCityList;
-  
-  END;
+Associative array의 인덱스 데이타 타입이 변환되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE PACKAGE tripLog_pkg AS
+curr_date DATE := SYSDATE;
+TYPE at_city IS TABLE OF curr_date%TYPE INDEX BY VARCHAR2(100);
+v_cityList at_city;
+PROCEDURE addCity(p_city VARCHAR2, p_date DATE);
+PROCEDURE delCity(p_city VARCHAR2);
+PROCEDURE printCityList;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE PACKAGE tripLog_pkg AS
+curr_date DATE := SYSDATE;
+TYPE at_city IS TABLE OF curr_date%TYPE INDEX BY VARCHAR(100);
+v_cityList at_city;
+PROCEDURE addCity(p_city VARCHAR2, p_date DATE);
+PROCEDURE delCity(p_city VARCHAR2);
+PROCEDURE printCityList;
+END;
+~~~
 
 #### RULE-32001
 
-- 버전 범위: Altibase 6.3.1.0.0 이전 버전
+> *이 규칙은 Altibase 6.3.1 이전 버전에 적용된다.*
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: 커서가 열려 있는 중에는 COMMIT을 할 수 없다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
-  
-  AS
-  
-  m1 INTEGER;
-  
-  m2 INTEGER;
-  
-  m3 INTEGER;
-  
-  m4 INTEGER;
-  
-  CURSOR cur1 IS
-  
-  SELECT c1, c2, c3, c4 FROM t1;
-  
-  BEGIN
-  
-  OPEN cur1;
-  
-  FOR i IN 1 .. 5 LOOP
-  
-  FETCH cur1 INTO m1, m2, m3, m4;
-  
-  EXIT WHEN cur1%NOTFOUND;
-  
-  INSERT INTO t2 VALUES(m1, m2, m3, m4);
-  
-  END LOOP;
-  
-  **COMMIT**;
-  
-  CLOSE cur1;
-  
-  COMMIT;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
-  
-  AS
-  
-  m1 INTEGER;
-  
-  m2 INTEGER;
-  
-  m3 INTEGER;
-  
-  m4 INTEGER;
-  
-  CURSOR cur1 IS
-  
-  SELECT c1, c2, c3, c4 FROM t1;
-  
-  BEGIN
-  
-  OPEN cur1;
-  
-  FOR i IN 1 .. 5 LOOP
-  
-  FETCH cur1 INTO m1, m2, m3, m4;
-  
-  EXIT WHEN cur1%NOTFOUND;
-  
-  INSERT INTO t2 VALUES(m1, m2, m3, m4);
-  
-  END LOOP;
-  
-  **/\* COMMIT; \*/ /\* [REMOVED] RULE-32001 : Cannot COMMIT while cursor is still
-  open \*/**
-  
-  CLOSE cur1;
-  
-  COMMIT;
-  
-  END;
+커서가 열려 있는 중에는 COMMIT을 할 수 없다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
+AS
+m1 INTEGER;
+m2 INTEGER;
+m3 INTEGER;
+m4 INTEGER;
+CURSOR cur1 IS
+SELECT c1, c2, c3, c4 FROM t1;
+BEGIN
+OPEN cur1;
+FOR i IN 1 .. 5 LOOP
+FETCH cur1 INTO m1, m2, m3, m4;
+EXIT WHEN cur1%NOTFOUND;
+INSERT INTO t2 VALUES(m1, m2, m3, m4);
+END LOOP;
+COMMIT;
+CLOSE cur1;
+COMMIT;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1(a1 NUMBER)
+AS
+m1 INTEGER;
+m2 INTEGER;
+m3 INTEGER;
+m4 INTEGER;
+CURSOR cur1 IS
+SELECT c1, c2, c3, c4 FROM t1;
+BEGIN
+OPEN cur1;
+FOR i IN 1 .. 5 LOOP
+FETCH cur1 INTO m1, m2, m3, m4;
+EXIT WHEN cur1%NOTFOUND;
+INSERT INTO t2 VALUES(m1, m2, m3, m4);
+END LOOP;
+/* COMMIT; */ /* [REMOVED] RULE-32001 : Cannot COMMIT while cursor is still open */
+CLOSE cur1;
+COMMIT;
+END;
+~~~
 
 #### RULE-32002
 
-- 버전 범위: Altibase 6.3.1.0.0 이전 버전
+> *이 규칙은 Altibase 6.3.1 이전 버전에 적용된다.*
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: 커서가 열려 있는 중에는 ROLLBACK을 할 수 없다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER trig1
-  
-  BEFORE DELETE ON t1
-  
-  DECLARE
-  
-  m1 INTEGER;
-  
-  m2 INTEGER;
-  
-  m3 INTEGER;
-  
-  m4 INTEGER;
-  
-  CURSOR cur1 IS
-  
-  SELECT c1, c2, c3, c4 FROM t1;
-  
-  BEGIN
-  
-  OPEN cur1;
-  
-  FOR i IN 1 .. 5 LOOP
-  
-  FETCH cur1 INTO m1, m2, m3, m4;
-  
-  EXIT WHEN cur1%NOTFOUND;
-  
-  INSERT INTO t2 VALUES(m1, m2, m3, m4);
-  
-  END LOOP;
-  
-  **ROLLBACK**;
-  
-  CLOSE cur1;
-  
-  ROLLBACK;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE TRIGGER trig1
-  
-  BEFORE DELETE ON t1
-  
-  DECLARE
-  
-  m1 INTEGER;
-  
-  m2 INTEGER;
-  
-  m3 INTEGER;
-  
-  m4 INTEGER;
-  
-  CURSOR cur1 IS
-  
-  SELECT c1, c2, c3, c4 FROM t1;
-  
-  BEGIN
-  
-  OPEN cur1;
-  
-  FOR i IN 1 .. 5 LOOP
-  
-  FETCH cur1 INTO m1, m2, m3, m4;
-  
-  EXIT WHEN cur1%NOTFOUND;
-  
-  INSERT INTO t2 VALUES(m1, m2, m3, m4);
-  
-  END LOOP;
-  
-  **/\* ROLLBACK; \*/ /\* [REMOVED] RULE-32002 : Cannot ROLLBACK while cursor is
-  still open \*/**
-  
-  CLOSE cur1;
-  
-  ROLLBACK;
-  
-  END;
+커서가 열려 있는 중에는 ROLLBACK을 할 수 없다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+BEFORE DELETE ON t1
+DECLARE
+m1 INTEGER;
+m2 INTEGER;
+m3 INTEGER;
+m4 INTEGER;
+CURSOR cur1 IS
+SELECT c1, c2, c3, c4 FROM t1;
+BEGIN
+OPEN cur1;
+FOR i IN 1 .. 5 LOOP
+FETCH cur1 INTO m1, m2, m3, m4;
+EXIT WHEN cur1%NOTFOUND;
+INSERT INTO t2 VALUES(m1, m2, m3, m4);
+END LOOP;
+ROLLBACK;
+CLOSE cur1;
+ROLLBACK;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE TRIGGER trig1
+BEFORE DELETE ON t1
+DECLARE
+m1 INTEGER;
+m2 INTEGER;
+m3 INTEGER;
+m4 INTEGER;
+CURSOR cur1 IS
+SELECT c1, c2, c3, c4 FROM t1;
+BEGIN
+OPEN cur1;
+FOR i IN 1 .. 5 LOOP
+FETCH cur1 INTO m1, m2, m3, m4;
+EXIT WHEN cur1%NOTFOUND;
+INSERT INTO t2 VALUES(m1, m2, m3, m4);
+END LOOP;
+/* ROLLBACK; */ /* [REMOVED] RULE-32002 : Cannot ROLLBACK while cursor is still open */
+CLOSE cur1;
+ROLLBACK;
+END;
+~~~
 
 #### RULE-32003
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: SET TRANSACTION 구문이 제거되었다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1IS
-  
-  BEGIN
-  
-  NULL;
-  
-  **SET TRANSACTION READ ONLY NAME 'Test Rule 13019'**;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1IS
-  
-  BEGIN
-  
-  NULL;
-  
-  **/\* SET TRANSACTION READ ONLY NAME 'Test Rule 13019'; \*/ /\* [REMOVED]
-  RULE-32003 : The SET TRANSACTION statement is removed \*/**
-  
-  END;
+SET TRANSACTION 구문이 제거되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1IS
+BEGIN
+NULL;
+SET TRANSACTION READ ONLY NAME 'Test Rule 13019';
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1IS
+BEGIN
+NULL;
+/* SET TRANSACTION READ ONLY NAME 'Test Rule 13019'; */ /* [REMOVED] RULE-32003 : The SET TRANSACTION statement is removed */
+END;
+~~~
 
 #### RULE-32006
 
-- 타입: CONVERTED
+###### 타입
 
-- 설명: 변환 가능한 FORALL 구문은 FOR LOOP 구문으로 변환되었다.
+`CONVERTED`
 
-- 원본 SQL 문장:
-  
-  CREATE PROCEDURE delEmp
-  
-  AS
-  
-  TYPE nt_state IS TABLE OF CHAR(1);
-  
-  stateList nt_state := nt_state('Q', 'V');
-  
-  BEGIN
-  
-  **FORALL i IN 1..stateList.LAST**
-  
-  **DELETE FROM employees WHERE state=stateList(i);**
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE PROCEDURE delEmp
-  
-  AS
-  
-  TYPE nt_state IS TABLE OF CHAR(1);
-  
-  stateList nt_state := nt_state('Q', 'V');
-  
-  BEGIN
-  
-  **FOR i IN 1 .. stateList.LAST LOOP**
-  
-  **DELETE FROM employees WHERE state=stateList(i);**
-  
-  **END LOOP;**
-  
-  END;
+변환 가능한 FORALL 구문은 FOR LOOP 구문으로 변환되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE PROCEDURE delEmp
+AS
+TYPE nt_state IS TABLE OF CHAR(1);
+stateList nt_state := nt_state('Q', 'V');
+BEGIN
+FORALL i IN 1..stateList.LAST
+DELETE FROM employees WHERE state=stateList(i);
+END;
+~~~
+
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE PROCEDURE delEmp
+AS
+TYPE nt_state IS TABLE OF CHAR(1);
+stateList nt_state := nt_state('Q', 'V');
+BEGIN
+FOR i IN 1 .. stateList.LAST LOOP
+DELETE FROM employees WHERE state=stateList(i);
+END LOOP;
+END;
+~~~
 
 #### RULE-32007
 
-- 타입: TODO
+###### 타입
 
-- 설명: 변환할 수 없는 FORALL 구문은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE PROCEDURE delEmp
-  
-  AS
-  
-  TYPE nt_state IS TABLE OF CHAR(1);
-  
-  stateList nt_state := nt_state('Q', 'V');
-  
-  BEGIN
-  
-  FORALL i IN **INDICES OF stateList**
-  
-  DELETE FROM employees WHERE state=stateList(i);
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE PROCEDURE delEmp
-  
-  AS
-  
-  TYPE nt_state IS TABLE OF CHAR(1);
-  
-  stateList nt_state:= nt_state('Q', 'V');
-  
-  BEGIN
-  
-  FORALL i IN **INDICES OF stateList**
-  
-  DELETE FROM employees WHERE state=stateList(i); **/\* [TODO] RULE-32007 : The
-  FORALL statement must be converted manually \*/**
-  
-  END;
+변환할 수 없는 FORALL 구문은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE PROCEDURE delEmp
+AS
+TYPE nt_state IS TABLE OF CHAR(1);
+stateList nt_state := nt_state('Q', 'V');
+BEGIN
+FORALL i IN INDICES OF stateList
+DELETE FROM employees WHERE state=stateList(i);
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE PROCEDURE delEmp
+AS
+TYPE nt_state IS TABLE OF CHAR(1);
+stateList nt_state:= nt_state('Q', 'V');
+BEGIN
+FORALL i IN INDICES OF stateList
+DELETE FROM employees WHERE state=stateList(i); /* [TODO] RULE-32007 : The FORALL statement must be converted manually */
+END;
+~~~
 
 #### RULE-32008
 
-- 타입: CONVERTED
+###### 타입
 
-- 설명: FOR .. LOOP 구문에서 범위 값 앞 뒤에 공백이 추가되었다.
+`CONVERTED`
 
-- 원본 SQL 문장:
-  
-  CREATE FUNCTION getCityList RETURN tripLog_pkg.nt_city PIPELINED AS
-  
-  BEGIN
-  
-  FOR i IN 1**..**tripLog_pkg.v_cityList.LAST LOOP
-  
-  PIPE ROW(tripLog_pkg.v_cityList(i));
-  
-  END LOOP;
-  
-  RETURN;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE FUNCTION getCityList
-  
-  RETURN tripLog_pkg.nt_city PIPELINED AS
-  
-  BEGIN
-  
-  FOR i IN 1 **..** tripLog_pkg.v_cityList.LAST LOOP
-  
-  PIPE ROW(tripLog_pkg.v_cityList(i));
-  
-  END LOOP;
-  
-  RETURN;
-  
-  END;
+FOR .. LOOP 구문에서 범위 값 앞 뒤에 공백이 추가되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE FUNCTION getCityList RETURN tripLog_pkg.nt_city PIPELINED AS
+BEGIN
+FOR i IN 1..tripLog_pkg.v_cityList.LAST LOOP
+PIPE ROW(tripLog_pkg.v_cityList(i));
+END LOOP;
+RETURN;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE FUNCTION getCityList
+RETURN tripLog_pkg.nt_city PIPELINED AS
+BEGIN
+FOR i IN 1 .. tripLog_pkg.v_cityList.LAST LOOP
+PIPE ROW(tripLog_pkg.v_cityList(i));
+END LOOP;
+RETURN;
+END
+~~~
 
 #### RULE-32009
 
-- 타입: CONVERTED
+###### 타입
 
-- 설명: CONTINUE 구문에 있는 조건은 변환되었다.
+`CONVERTED`
 
-- 원본 SQL 문장:
-  
-  CREATE PROCEDURE showMail(p_from DATE)
-  
-  AS
-  
-  v_cnt INTEGER;
-  
-  v_title VARCHAR2(256);
-  
-  v_date DATE;
-  
-  BEGIN
-  
-  SELECT COUNT(\*) INTO v_cnt FROM mailbox;
-  
-  IF v_cnt \> 0 THEN
-  
-  FOR i IN 1..v_cnt LOOP
-  
-  SELECT datetime INTO v_date FROM mailbox WHERE id = i;
-  
-  IF p_from != SYSDATE THEN
-  
-  **CONTINUE WHEN v_date \< p_from;**
-  
-  END IF;
-  
-  SELECT title INTO v_title FROM mailbox WHERE id = i;
-  
-  DBMS_OUTPUT.PUT_LINE('Title: ' \|\| v_title \|\| ', Date: ' \|\| v_date);
-  
-  END LOOP;
-  
-  END IF;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE PROCEDURE showMail(p_from DATE)
-  
-  AS
-  
-  v_cnt INTEGER;
-  
-  v_title VARCHAR2(256);
-  
-  v_date DATE;
-  
-  BEGIN
-  
-  SELECT COUNT(\*) INTO v_cnt FROM mailbox;
-  
-  IF v_cnt \> 0 THEN
-  
-  FOR i IN 1 .. v_cnt LOOP
-  
-  SELECT datetime INTO v_date FROM mailbox WHERE id = i;
-  
-  **IF p_from != SYSDATE THEN**
-  
-  **IF v_date \< p_from THEN**
-  
-  **CONTINUE;**
-  
-  **END IF;**
-  
-  END IF;
-  
-  SELECT title INTO v_title FROM mailbox WHERE id = i;
-  
-  SYSTEM_.PRINTLN('Title: ' \|\| v_title \|\| ', Date: ' \|\| v_date);
-  
-  END LOOP;
-  
-  END IF;
-  
-  END;
+CONTINUE 구문에 있는 조건은 변환되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE PROCEDURE showMail(p_from DATE)
+AS
+v_cnt INTEGER;
+v_title VARCHAR2(256);
+v_date DATE;
+BEGIN
+SELECT COUNT(*) INTO v_cnt FROM mailbox;
+IF v_cnt > 0 THEN
+FOR i IN 1..v_cnt LOOP
+SELECT datetime INTO v_date FROM mailbox WHERE id = i;
+IF p_from != SYSDATE THEN
+CONTINUE WHEN v_date < p_from;
+END IF;
+SELECT title INTO v_title FROM mailbox WHERE id = i;
+DBMS_OUTPUT.PUT_LINE('Title: ' || v_title || ', Date: ' || v_date);
+END LOOP;
+END IF;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE PROCEDURE showMail(p_from DATE)
+AS
+v_cnt INTEGER;
+v_title VARCHAR2(256);
+v_date DATE;
+BEGIN
+SELECT COUNT(*) INTO v_cnt FROM mailbox;
+IF v_cnt > 0 THEN
+FOR i IN 1 .. v_cnt LOOP
+SELECT datetime INTO v_date FROM mailbox WHERE id = i;
+IF p_from != SYSDATE THEN
+IF v_date < p_from THEN
+CONTINUE;
+END IF;
+END IF;
+SELECT title INTO v_title FROM mailbox WHERE id = i;
+SYSTEM_.PRINTLN('Title: ' || v_title || ', Date: ' || v_date);
+END LOOP;
+END IF;
+END;
+~~~
 
 #### RULE-32010
 
-- 타입: TODO
+###### 타입
 
-- 설명: 호스트 변수는 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  BEGIN
-  
-  SELECT c2 BULK COLLECT INTO **:v_arr** FROM t1;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  BEGIN
-  
-  SELECT c2 BULK COLLECT INTO **:v_arr /\* [TODO] RULE-32010 : The host variable
-  must be converted manually \*/** FROM t1;
-  
-  END;
+호스트 변수는 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+SELECT c2 BULK COLLECT INTO :v_arr FROM t1;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+SELECT c2 BULK COLLECT INTO :v_arr /* [TODO] RULE-32010 : The host variable must be converted manually */ FROM t1;
+END;
+~~~
 
 #### RULE-32012
 
-- 타입: TODO
+###### 타입
 
-- 설명: PIPE ROW 구문은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE FUNCTION getCitiList
-  
-  RETURN tripLog_pkg.nt_city PIPELINED
-  
-  AS
-  
-  BEGIN
-  
-  FOR i IN 1..tripLog_pkg.v_cityList.LAST LOOP
-  
-  **PIPE ROW(tripLog_pkg.v_cityList(i));**
-  
-  END LOOP;
-  
-  RETURN;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE FUNCTION getCitiList
-  
-  RETURN tripLog_pkg.nt_city PIPELINED
-  
-  AS
-  
-  BEGIN
-  
-  FOR i IN 1..tripLog_pkg.v_cityList.LAST LOOP
-  
-  **PIPE ROW(tripLog_pkg.v_cityList(i)) /\* [TODO] RULE-32012 : The PIPE ROW
-  statement must be converted manually \*/;**
-  
-  END LOOP;
-  
-  RETURN;
-  
-  END;
+PIPE ROW 구문은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE FUNCTION getCitiList
+RETURN tripLog_pkg.nt_city PIPELINED
+AS
+BEGIN
+FOR i IN 1..tripLog_pkg.v_cityList.LAST LOOP
+PIPE ROW(tripLog_pkg.v_cityList(i));
+END LOOP;
+RETURN;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE FUNCTION getCitiList
+RETURN tripLog_pkg.nt_city PIPELINED
+AS
+BEGIN
+FOR i IN 1..tripLog_pkg.v_cityList.LAST LOOP
+PIPE ROW(tripLog_pkg.v_cityList(i)) /* [TODO] RULE-32012 : The PIPE ROW statement must be converted manually */;
+END LOOP;
+RETURN;
+END;
+~~~
 
 #### RULE-32013
 
-- 타입: CONVERTED
+###### 타입
 
-- 설명: CONTINUE 구문의 label이 변환되었다.
+`CONVERTED`
 
-- 원본 SQL 문장:
-  
-  CREATE PROCEDURE showMail(p_from DATE)
-  
-  AS
-  
-  v_cnt INTEGER;
-  
-  v_title VARCHAR2(256);
-  
-  v_date DATE;
-  
-  BEGIN
-  
-  SELECT COUNT(\*) INTO v_cnt FROM mailbox;
-  
-  IF v_cnt \> 0 THEN
-  
-  \<\<for_loop\>\>
-  
-  FOR i IN REVERSE 1..v_cnt LOOP
-  
-  SELECT datetime INTO v_date FROM mailbox WHERE id = i;
-  
-  IF v_date \<= p_from THEN
-  
-  **CONTINUE for_loop**;
-  
-  END IF;
-  
-  SELECT title INTO v_title FROM mailbox WHERE id = i;
-  
-  DBMS_OUTPUT.PUT_LINE('Title: ' \|\| v_title \|\| ', Date: ' \|\| v_date);
-  
-  END LOOP for_loop;
-  
-  END IF;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE PROCEDURE showMail(p_from DATE)
-  
-  AS
-  
-  v_cnt INTEGER;
-  
-  v_title VARCHAR2(256);
-  
-  v_date DATE;
-  
-  BEGIN
-  
-  SELECT COUNT(\*) INTO v_cnt FROM mailbox;
-  
-  IF v_cnt \> 0 THEN
-  
-  \<\<for_loop\>\>
-  
-  FOR i IN REVERSE 1 .. v_cnt LOOP
-  
-  SELECT datetime INTO v_date FROM mailbox WHERE id = i;
-  
-  IF v_date \<= p_from THEN
-  
-  **GOTO O2A_generated_label_00;**
-  
-  END IF;
-  
-  SELECT title INTO v_title FROM mailbox WHERE id = i;
-  
-  SYSTEM_.PRINTLN('Title: ' \|\| v_title \|\| ', Date: ' \|\| v_date);
-  
-  **\<\<O2A_generated_label_00\>\>**
-  
-  **NULL;**
-  
-  END LOOP for_loop;
-  
-  END IF;
-  
-  END;
+CONTINUE 구문의 label이 변환되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE PROCEDURE showMail(p_from DATE)
+AS
+v_cnt INTEGER;
+v_title VARCHAR2(256);
+v_date DATE;
+BEGIN
+SELECT COUNT(*) INTO v_cnt FROM mailbox;
+IF v_cnt > 0 THEN
+<<for_loop>>
+FOR i IN REVERSE 1..v_cnt LOOP
+SELECT datetime INTO v_date FROM mailbox WHERE id = i;
+IF v_date <= p_from THEN
+CONTINUE for_loop;
+END IF;
+SELECT title INTO v_title FROM mailbox WHERE id = i;
+DBMS_OUTPUT.PUT_LINE('Title: ' || v_title || ', Date: ' || v_date);
+END LOOP for_loop;
+END IF;
+END;
+~~~
+
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE PROCEDURE showMail(p_from DATE)
+AS
+v_cnt INTEGER;
+v_title VARCHAR2(256);
+v_date DATE;
+BEGIN
+SELECT COUNT(*) INTO v_cnt FROM mailbox;
+IF v_cnt > 0 THEN
+<<for_loop>>
+FOR i IN REVERSE 1 .. v_cnt LOOP
+SELECT datetime INTO v_date FROM mailbox WHERE id = i;
+IF v_date <= p_from THEN
+GOTO O2A_generated_label_00;
+END IF;
+SELECT title INTO v_title FROM mailbox WHERE id = i;
+SYSTEM_.PRINTLN('Title: ' || v_title || ', Date: ' || v_date);
+<<O2A_generated_label_00>>
+NULL;
+END LOOP for_loop;
+END IF;
+END;
+~~~
 
 #### RULE-32014
 
-- 타입: TODO
+###### 타입
 
-- 설명: SCN(System Change Number)은 트랜잭션으로 할당할 수 없다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  BEGIN
-  
-  COMMIT FORCE 'ORCL.C50E231F042A.10.5.109239', **143217566**;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  BEGIN
-  
-  COMMIT FORCE 'ORCL.C50E231F042A.10.5.109239', **143217566 /\* [TODO] RULE-32014
-  : SCN cannot be assigned to the transaction \*/;**
-  
-  END;
+SCN(System Change Number)은 트랜잭션으로 할당할 수 없다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+COMMIT FORCE 'ORCL.C50E231F042A.10.5.109239', 143217566;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+COMMIT FORCE 'ORCL.C50E231F042A.10.5.109239', 143217566 /* [TODO] RULE-32014 : SCN cannot be assigned to the transaction */;
+END;
+~~~
 
 #### RULE-32015
 
-- 타입: TODO
+###### 타입
 
-- 설명: CORRUPT_XID_ALL 트랜잭션은 커밋될 수 없다. 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  BEGIN
-  
-  COMMIT FORCE **CORRUPT_XID_ALL;**
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  BEGIN
-  
-  COMMIT FORCE **CORRUPT_XID_ALL; /\* [TODO] RULE-32015 : The corrupt transaction
-  cannot be committed \*/**
-  
-  END;
+CORRUPT_XID_ALL 트랜잭션은 커밋될 수 없다. 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+COMMIT FORCE CORRUPT_XID_ALL;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+COMMIT FORCE CORRUPT_XID_ALL; /* [TODO] RULE-32015 : The corrupt transaction cannot be committed */
+END;
+~~~
+
 
 #### RULE-32016
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: COMMIT 구문에 쓰여진 WRITE 절은 제거되었다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1
-  
-  AS
-  
-  v_cnt INTEGER;
-  
-  BEGIN
-  
-  SELECT COUNT(\*) INTO v_cnt FROM t1;
-  
-  INSERT INTO t1 VALUES(v_cnt, CURRENT_TIMESTAMP);
-  
-  **COMMIT WRITE NOWAIT IMMEDIATE;**
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1
-  
-  AS
-  
-  v_cnt INTEGER;
-  
-  BEGIN
-  
-  SELECT COUNT(\*) INTO v_cnt FROM t1;
-  
-  INSERT INTO t1 VALUES(v_cnt, CURRENT_TIMESTAMP);
-  
-  COMMIT **/\* WRITE NOWAIT IMMEDIATE \*/ /\* [REMOVED] RULE-32016 : The WRITE
-  clause in the COMMIT statement is removed \*/;**
-  
-  END;
+COMMIT 구문에 쓰여진 WRITE 절은 제거되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1
+AS
+v_cnt INTEGER;
+BEGIN
+SELECT COUNT(*) INTO v_cnt FROM t1;
+INSERT INTO t1 VALUES(v_cnt, CURRENT_TIMESTAMP);
+COMMIT WRITE NOWAIT IMMEDIATE;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1
+AS
+v_cnt INTEGER;
+BEGIN
+SELECT COUNT(*) INTO v_cnt FROM t1;
+INSERT INTO t1 VALUES(v_cnt, CURRENT_TIMESTAMP);
+COMMIT /* WRITE NOWAIT IMMEDIATE */ /* [REMOVED] RULE-32016 : The WRITE clause in the COMMIT statement is removed */;
+END;
+~~~
+
 
 #### RULE-32017
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: COMMIT 구문에 쓰여진 COMMENT 절은 제거되었다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  BEGIN
-  
-  COMMIT **COMMENT 'PROCEDURE proc1 committed';**
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  BEGIN
-  
-  COMMIT **/\* COMMENT 'PROCEDURE proc1 committed' \*/ /\* [REMOVED] RULE-32017 :
-  The COMMENT clause in the COMMIT statement is removed \*/;**
-  
-  END;
+COMMIT 구문에 쓰여진 COMMENT 절은 제거되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+COMMIT COMMENT 'PROCEDURE proc1 committed';
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+COMMIT /* COMMENT 'PROCEDURE proc1 committed' */ /* [REMOVED] RULE-32017 : The COMMENT clause in the COMMIT statement is removed */;
+END;
+~~~
+
 
 #### RULE-32018
 
-- 타입: CONVERTED
+###### 타입
 
-- 설명: ROLLBACK 구문에 쓰여진 TO [SAVEPOINT] 절은 변환되었다.
+`CONVERTED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  BEGIN
-  
-  **ROLLBACK TO sp1;**
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  BEGIN
-  
-  **ROLLBACK TO SAVEPOINT sp1;**
-  
-  END;
+ROLLBACK 구문에 쓰여진 TO [SAVEPOINT] 절은 변환되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+ROLLBACK TO sp1;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+ROLLBACK TO SAVEPOINT sp1;
+END;
+~~~
+
 
 #### RULE-32019
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: CASE구문에서 label이 삭제되었다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1(a1 VARCHAR2)
-  
-  RETURN VARCHAR2 AS
-  
-  v1 VARCHAR2(25);
-  
-  BEGIN
-  
-  \<\<test\>\>
-  
-  CASE UPPER(a1)
-  
-  WHEN 'ROCK' THEN v1 := 'Paper';
-  
-  WHEN 'PAPER' THEN v1 := 'Scissor';
-  
-  WHEN 'SCISSOR' THEN v1 := 'Rock';
-  
-  ELSE v1 := 'Unavailable input value';
-  
-  **END CASE test;**
-  
-  RETURN v1;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1(a1 VARCHAR2)
-  
-  RETURN VARCHAR2 AS
-  
-  v1 VARCHAR2(25);
-  
-  BEGIN
-  
-  \<\<test\>\>
-  
-  CASE UPPER(a1)
-  
-  WHEN 'ROCK' THEN v1 := 'Paper';
-  
-  WHEN 'PAPER' THEN v1 := 'Scissor';
-  
-  WHEN 'SCISSOR' THEN v1 := 'Rock';
-  
-  ELSE v1 := 'Unavailable input value';
-  
-  END CASE ;
-  
-  RETURN v1;
-  
-  END;
+CASE구문에서 label이 삭제되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 VARCHAR2)
+RETURN VARCHAR2 AS
+v1 VARCHAR2(25);
+BEGIN
+<<test>>
+CASE UPPER(a1)
+WHEN 'ROCK' THEN v1 := 'Paper';
+WHEN 'PAPER' THEN v1 := 'Scissor';
+WHEN 'SCISSOR' THEN v1 := 'Rock';
+ELSE v1 := 'Unavailable input value';
+END CASE test;
+RETURN v1;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(a1 VARCHAR2)
+RETURN VARCHAR2 AS
+v1 VARCHAR2(25);
+BEGIN
+<<test>>
+CASE UPPER(a1)
+WHEN 'ROCK' THEN v1 := 'Paper';
+WHEN 'PAPER' THEN v1 := 'Scissor';
+WHEN 'SCISSOR' THEN v1 := 'Rock';
+ELSE v1 := 'Unavailable input value';
+END CASE ;
+RETURN v1;
+END;
+~~~
 
 #### RULE-32020
 
-- 버전 범위: Altibase 6.5.1.0.0 이전
+> *이 규칙은 Altibase 6.5.1 이전 버전에 적용된다.*
 
-- 타입: TODO
+###### 타입
 
-- 설명: FETCH 구문의 BULK COLLECT INTO절은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  TYPE at_1 IS TABLE OF NUMBER;
-  
-  CURSOR cur1 IS SELECT c1 FROM t1;
-  
-  arr1 at_1;
-  
-  BEGIN
-  
-  OPEN cur1;
-  
-  **FETCH cur1 BULK COLLECT INTO arr1;**
-  
-  DBMS_OUTPUT.PUT_LINE(arr1.COUNT);
-  
-  CLOSE cur1;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  TYPE at_1 IS TABLE OF NUMBER;
-  
-  CURSOR cur1 IS SELECT c1 FROM t1;
-  
-  arr1 at_1;
-  
-  BEGIN
-  
-  OPEN cur1;
-  
-  **FETCH cur1 BULK COLLECT INTO arr1 /\* [TODO] RULE-32020 : BULK COLLECT INTO
-  clause of the FETCH statement must be converted manually \*/;**
-  
-  DBMS_OUTPUT.PUT_LINE(arr1.COUNT);
-  
-  CLOSE cur1;
-  
-  END;
+FETCH 구문의 BULK COLLECT INTO절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+TYPE at_1 IS TABLE OF NUMBER;
+CURSOR cur1 IS SELECT c1 FROM t1;
+arr1 at_1;
+BEGIN
+OPEN cur1;
+FETCH cur1 BULK COLLECT INTO arr1;
+DBMS_OUTPUT.PUT_LINE(arr1.COUNT);
+CLOSE cur1;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+TYPE at_1 IS TABLE OF NUMBER;
+CURSOR cur1 IS SELECT c1 FROM t1;
+arr1 at_1;
+BEGIN
+OPEN cur1;
+FETCH cur1 BULK COLLECT INTO arr1 /* [TODO] RULE-32020 : BULK COLLECT INTO clause of the FETCH statement must be converted manually */;
+DBMS_OUTPUT.PUT_LINE(arr1.COUNT);
+CLOSE cur1;
+END;
+~~~
 
 #### RULE-32021
 
-- 타입: TODO
+###### 타입
 
-- 설명: 동적 RETURNING절은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  v1 t1%ROWTYPE;
-  
-  BEGIN
-  
-  **EXECUTE IMMEDIATE 'DELETE FROM t1 WHERE c1=SYSDATE' RETURNING INTO v1;**
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  v1 t1%ROWTYPE;
-  
-  BEGIN
-  
-  **EXECUTE IMMEDIATE 'DELETE FROM t1 WHERE c1=SYSDATE' RETURNING INTO v1 /\*
-  [TODO] RULE-32021 : Dynamic returning clause must be converted manually \*/;**
-  
-  END;
+동적 RETURNING절은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+v1 t1%ROWTYPE;
+BEGIN
+EXECUTE IMMEDIATE 'DELETE FROM t1 WHERE c1=SYSDATE' RETURNING INTO v1;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+v1 t1%ROWTYPE;
+BEGIN
+EXECUTE IMMEDIATE 'DELETE FROM t1 WHERE c1=SYSDATE' RETURNING INTO v1 /* [TODO] RULE-32021 : Dynamic returning clause must be converted manually */;
+END;
+~~~
 
 #### RULE-32022
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: 부질의문 앞의 THE가 제거되었다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  v1 NUMBER;
-  
-  BEGIN
-  
-  SELECT t1.c1 INTO v1
-  
-  FROM **THE** (SELECT EXTRACT(MONTH FROM SYSDATE) curr_month FROM dual) dt, t1
-  
-  WHERE t1.c2 = dt.curr_month;
-  
-  DBMS_OUTPUT.PUT_LINE(v1);
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  v1 NUMBER;
-  
-  BEGIN
-  
-  SELECT t1.c1 INTO v1
-  
-  FROM **/\* THE \*/ /\* [REMOVED] RULE-32022 : The THE keyword is removed \*/**
-  (SELECT EXTRACT(MONTH FROM SYSDATE) curr_month FROM dual) dt, t1
-  
-  WHERE t1.c2 = dt.curr_month;
-  
-  DBMS_OUTPUT.PUT_LINE(v1)**;**
-  
-  END;
+부질의문 앞의 THE가 제거되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+v1 NUMBER;
+BEGIN
+SELECT t1.c1 INTO v1
+FROM THE (SELECT EXTRACT(MONTH FROM SYSDATE) curr_month FROM dual) dt, t1
+WHERE t1.c2 = dt.curr_month;
+DBMS_OUTPUT.PUT_LINE(v1);
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+v1 NUMBER;
+BEGIN
+SELECT t1.c1 INTO v1
+FROM /* THE */ /* [REMOVED] RULE-32022 : The THE keyword is removed */ (SELECT EXTRACT(MONTH FROM SYSDATE) curr_month FROM dual) dt, t1
+WHERE t1.c2 = dt.curr_month;
+DBMS_OUTPUT.PUT_LINE(v1);
+END;
+~~~
+
 
 #### RULE-32024
 
-- 타입: REMOVED
+###### 타입
 
-- 설명: 해당 프로시저가 제거되었다.
+`REMOVED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 ( p_emp_no IN integer ) AS
-  
-  v1 NUMBER;
-  
-  BEGIN
-  
-  **DBMS_OUTPUT.ENABLE;**
-  
-  SELECT i1 INTO v1
-  
-  FROM t1 WHERE i1 = p_emp_no;
-  
-  DBMS_OUTPUT.PUT_LINE( 'i1 : ' \|\| v1 );
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 ( p_emp_no IN integer ) AS
-  
-  v1 NUMBER;
-  
-  BEGIN
-  
-  **/\* DBMS_OUTPUT.ENABLE; \*/ /\* [REMOVED] RULE-32024 : The target procedure
-  has been removed \*/**
-  
-  SELECT i1 INTO v1
-  
-  FROM t1 WHERE i1 = p_emp_no;
-  
-  DBMS_OUTPUT.PUT_LINE( 'i1 : ' \|\| v1 );
-  
-  END;
+해당 프로시저가 제거되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 ( p_emp_no IN integer ) AS
+v1 NUMBER;
+BEGIN
+DBMS_OUTPUT.ENABLE;
+SELECT i1 INTO v1
+FROM t1 WHERE i1 = p_emp_no;
+DBMS_OUTPUT.PUT_LINE( 'i1 : ' || v1 ); 
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 ( p_emp_no IN integer ) AS
+v1 NUMBER;
+BEGIN
+/* DBMS_OUTPUT.ENABLE; */ /* [REMOVED] RULE-32024 : The target procedure has been removed */
+SELECT i1 INTO v1
+FROM t1 WHERE i1 = p_emp_no;
+DBMS_OUTPUT.PUT_LINE( 'i1 : ' || v1 ); 
+END;
+~~~
 
 #### RULE-33001
 
-- 타입: TODO
+###### 타입
 
-- 설명: 지원하지 않는 예외이다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  BEGIN
-  
-  NULL;
-  
-  EXCEPTION
-  
-  WHEN **ACCESS_INTO_NULL** THEN
-  
-  DBMS_OUTPUT.PUT_LINE('Exception Name: ACCESS_INTO_NULL, Error Code: -6530');
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  BEGIN
-  
-  NULL;
-  
-  EXCEPTION
-  
-  WHEN **ACCESS_INTO_NULL /\* [TODO] RULE-33001 : Unsupported exception \*/** THEN
-  
-  DBMS_OUTPUT.PUT_LINE('Exception Name: ACCESS_INTO_NULL, Error Code: -6530');
-  
-  END;
-  
-  /
+지원하지 않는 예외이다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+NULL;
+EXCEPTION
+WHEN ACCESS_INTO_NULL THEN
+DBMS_OUTPUT.PUT_LINE('Exception Name: ACCESS_INTO_NULL, Error Code: -6530');
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+NULL;
+EXCEPTION
+WHEN ACCESS_INTO_NULL /* [TODO] RULE-33001 : Unsupported exception */ THEN
+DBMS_OUTPUT.PUT_LINE('Exception Name: ACCESS_INTO_NULL, Error Code: -6530');
+END;
+/
+~~~
+
 
 #### RULE-33002
 
-- 버전 범위: Altibase 6.3.1.0.0 이상 버전
+> *이 규칙은 Altibase 6.3.1 이상 버전에 적용된다.*
 
-- 타입: TODO
+###### 타입
 
-- 설명: 내장 패키지가 Altibase에 설치되었는지 확인하여야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  BEGIN
-  
-  NULL;
-  
-  EXCEPTION
-  
-  WHEN **UTL_FILE.INVALID**\_FILENAME THEN
-  
-  DBMS_OUTPUT.PUT_LINE('Exception Name: UTL_FILE.INVALID_FILENAME, Error Code:');
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  BEGIN
-  
-  NULL;
-  
-  EXCEPTION
-  
-  WHEN **UTL_FILE.INVALID_FILENAME /\* [TODO] RULE-33002 : Confirm the target
-  built-in package is installed at Altibase \*/** THEN
-  
-  DBMS_OUTPUT.PUT_LINE('Exception Name: UTL_FILE.INVALID_FILENAME, Error Code:');
-  
-  END;
+내장 패키지가 Altibase에 설치되었는지 확인하여야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+NULL;
+EXCEPTION
+WHEN UTL_FILE.INVALID_FILENAME THEN
+DBMS_OUTPUT.PUT_LINE('Exception Name: UTL_FILE.INVALID_FILENAME, Error Code:');
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+NULL;
+EXCEPTION
+WHEN UTL_FILE.INVALID_FILENAME /* [TODO] RULE-33002 : Confirm the target built-in package is installed at Altibase */ THEN
+DBMS_OUTPUT.PUT_LINE('Exception Name: UTL_FILE.INVALID_FILENAME, Error Code:');
+END;
+~~~
+
 
 #### RULE-33003
 
-- 타입: CONVERTED
+###### 타입
 
-- 설명: 해당 예외가 변환되었다.
+`CONVERTED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  BEGIN
-  
-  NULL;
-  
-  EXCEPTION
-  
-  WHEN **UTL_FILE.INVALID_PATH** THEN
-  
-  DBMS_OUTPUT.PUT_LINE('Exception Name: UTL_FILE.INVALID_PATH, Error Code:');
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  BEGIN
-  
-  NULL;
-  
-  EXCEPTION
-  
-  WHEN **INVALID_PATH** THEN
-  
-  DBMS_OUTPUT.PUT_LINE('Exception Name: UTL_FILE.INVALID_PATH, Error Code:');
-  
-  END;
+해당 예외가 변환되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+NULL;
+EXCEPTION
+WHEN UTL_FILE.INVALID_PATH THEN
+DBMS_OUTPUT.PUT_LINE('Exception Name: UTL_FILE.INVALID_PATH, Error Code:');
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+NULL;
+EXCEPTION
+WHEN INVALID_PATH THEN
+DBMS_OUTPUT.PUT_LINE('Exception Name: UTL_FILE.INVALID_PATH, Error Code:');
+END;
+~~~
+
 
 ### 표현 변환 규칙
 
 #### RULE-40001
 
-- 타입: CONVERTED
+###### 타입
 
-- 설명: 내장 패키지가 변환되었다.
+`CONVERTED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  BEGIN
-  
-  **DBMS_OUTPUT.PUT('Hello');**
-  
-  **DBMS_OUTPUT.PUT_LINE('world!');**
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  BEGIN
-  
-  **SYSTEM_.PRINT('Hello ');**
-  
-  **SYSTEM_.PRINTLN('world!');**
-  
-  END;
+내장 패키지가 변환되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+DBMS_OUTPUT.PUT('Hello');
+DBMS_OUTPUT.PUT_LINE('world!');
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+SYSTEM_.PRINT('Hello');
+SYSTEM_.PRINTLN('world!');
+END;
+~~~
+
 
 #### RULE-40002
 
-- 버전 범위: Altibase 6.3.1.0.0 이상 버전
+> *이 규칙은 Altibase 6.3.1 이상 버전에 적용된다.*
 
-- 타입: TODO
+###### 타입
 
-- 설명: 내장 패키지가 Altibase에 설치되었는지 확인하여야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  BEGIN
-  
-  **DBMS_OUTPUT.NEW_LINE;**
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1 AS
-  
-  BEGIN
-  
-  **DBMS_OUTPUT.NEW_LINE /\* [TODO] RULE-40002 : Confirm the target built-in
-  package is installed at Altibase \*/;**
-  
-  END;
+내장 패키지가 Altibase에 설치되었는지 확인하여야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+DBMS_OUTPUT.NEW_LINE;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1 AS
+BEGIN
+DBMS_OUTPUT.NEW_LINE /* [TODO] RULE-40002 : Confirm the target built-in package is installed at Altibase */;
+END;
+~~~
 
 #### RULE-40003
 
-- 타입: TODO
+###### 타입
 
-- 설명: 내장 패키지는 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1(p_file FILE_TYPE) AS
-  
-  BEGIN
-  
-  **UTL_FILE.PUTF(p_file, 'Hello %s!', 'world');**
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1(p_file FILE_TYPE) AS
-  
-  BEGIN
-  
-  **UTL_FILE.PUTF(p_file, 'Hello %s!', 'world') /\* [TODO] RULE-40003 : The target
-  built-in package must be converted manually \*/;**
-  
-  END;
+내장 패키지는 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1(p_file FILE_TYPE) AS
+BEGIN
+UTL_FILE.PUTF(p_file, 'Hello %s!', 'world');
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1(p_file FILE_TYPE) AS
+BEGIN
+UTL_FILE.PUTF(p_file, 'Hello %s!', 'world') /* [TODO] RULE-40003 : The target built-in package must be converted manually */;
+END;
+~~~
 
 #### RULE-40004
 
-- 타입: CONVERTED
+###### 타입
 
-- 설명: 해당 SQL 함수가 변환되었다.
+`CONVERTED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  SELECT **UID** FROM dual;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  SELECT **USER_ID()** FROM dual;
+해당 SQL 함수가 변환되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT UID FROM dual;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT USER_ID() FROM dual;
+~~~
 
 #### RULE-40005
 
-- 타입: TODO
+###### 타입
 
-- 설명: 지원하지 않는 함수.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1(p1 VARCHAR2)
-  
-  RETURN NUMBER AS
-  
-  v1 NUMBER := **LENGTHC(p1)**;
-  
-  BEGIN
-  
-  RETURN v1;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE FUNCTION func1(p1 VARCHAR2)
-  
-  RETURN NUMBER AS
-  
-  v1 NUMBER := **LENGTHC(p1) /\* [TODO] RULE-40005 : Unsupported function \*/;**
-  
-  BEGIN
-  
-  RETURN v1;;
-  
-  END;
+지원하지 않는 함수.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(p1 VARCHAR2)
+RETURN NUMBER AS
+v1 NUMBER := LENGTHC(p1);
+BEGIN
+RETURN v1;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE FUNCTION func1(p1 VARCHAR2)
+RETURN NUMBER AS
+v1 NUMBER := LENGTHC(p1) /* [TODO] RULE-40005 : Unsupported function */;
+BEGIN
+RETURN v1;
+END;
+~~~
 
 #### RULE-40006
 
-- 타입: CONVERTED
+###### 타입
 
-- 설명: TRIM 함수의 인자들이 변환되었다.
+`CONVERTED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW stats AS
-  
-  SELECT **TRIM(LEADING 0 FROM total_stats)**
-  
-  FROM test_result WHERE date = SYSDATE;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW stats AS
-  
-  SELECT **LTRIM(total_stats, 0)**
-  
-  FROM test_result WHERE date = SYSDATE;
+TRIM 함수의 인자들이 변환되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW stats AS
+SELECT TRIM(LEADING 0 FROM total_stats)
+FROM test_result WHERE date = SYSDATE;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW stats AS
+SELECT LTRIM(total_stats, 0)
+FROM test_result WHERE date = SYSDATE;
+~~~
 
 #### RULE-40007
 
-- 타입: CONVERTED
+###### 타입
 
-- 설명: BIN_TO_NUM 함수의 인자들이 '\|\|'로 연결되어 변환되었다.
+`CONVERTED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW status_view AS
-  
-  SELECT **BIN_TO_NUM(cp_plan, hp_plan, tv_plan, net_plan)** status
-  
-  FROM service_tbl WHERE ym = TO_CHAR(SYSDATE, 'YYYYMM');
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW status_view AS
-  
-  SELECT **BIN_TO_NUM(cp_plan \|\| hp_plan \|\| tv_plan \|\| net_plan)** status
-  
-  FROM service_tbl WHERE ym = TO_CHAR(SYSDATE, 'YYYYMM');
+BIN_TO_NUM 함수의 인자들이 '\|\|'로 연결되어 변환되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW status_view AS
+SELECT BIN_TO_NUM(cp_plan, hp_plan, tv_plan, net_plan) status
+FROM service_tbl WHERE ym = TO_CHAR(SYSDATE, 'YYYYMM');
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW status_view AS
+SELECT BIN_TO_NUM(cp_plan || hp_plan || tv_plan || net_plan) status
+FROM service_tbl WHERE ym = TO_CHAR(SYSDATE, 'YYYYMM');
+~~~
 
 #### RULE-40008
 
-- 타입: TODO
+###### 타입
 
-- 설명: 인자로 부질의를 갖는 CAST 함수는 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  SELECT c1, **CAST(MULTISET(SELECT c1 FROM t2 ORDER BY c2) AS tmp_tbl)**
-  
-  FROM t1 ORDER BY c1;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  SELECT c1, **CAST(MULTISET(SELECT c1 FROM t2 ORDER BY c2) AS tmp_tbl) /\* [TODO]
-  RULE-40008 : The CAST function containing a subquery as an argument should be
-  manually converted \*/**
-  
-  FROM t1 ORDER BY c1;
+인자로 부질의를 갖는 CAST 함수는 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT c1, CAST(MULTISET(SELECT c1 FROM t2 ORDER BY c2) AS tmp_tbl)
+FROM t1 ORDER BY c1;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT c1, CAST(MULTISET(SELECT c1 FROM t2 ORDER BY c2) AS tmp_tbl) /* [TODO] RULE-40008 : The CAST function containing a subquery as an argument should be manually converted */
+FROM t1 ORDER BY c1;
+~~~
 
 #### RULE-40009
 
-- 타입: TODO
+###### 타입
 
-- 설명: 복수의 인자를 갖는 DUMP 함수는 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  SELECT **DUMP(c3, 8, 3, 2)**
-  
-  FROM t1 WHERE c3 = 100 ORDER BY c2;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW v1 AS
-  
-  SELECT **DUMP(c3, 8, 3, 2) /\* [TODO] RULE-40009 : The DUMP function contains
-  multiple arguments should be manually converted \*/**
-  
-  FROM t1 WHERE c3 = 100 ORDER BY c2;
+복수의 인자를 갖는 DUMP 함수는 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT DUMP(c3, 8, 3, 2)
+FROM t1 WHERE c3 = 100 ORDER BY c2;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW v1 AS
+SELECT DUMP(c3, 8, 3, 2) /* [TODO] RULE-40009 : The DUMP function contains multiple arguments should be manually converted */
+FROM t1 WHERE c3 = 100 ORDER BY c2;
+~~~
 
 #### RULE-40010
 
-- 타입: CONVERTED
+###### 타입
 
-- 설명: EXTRACT 함수가 변환되었다.
+`CONVERTED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE VIEW rsvStats_year AS
-  
-  SELECT **EXTRACT(YEAR FROM rsv_date)** year, COUNT(\*) cnt
-  
-  FROM rsv_table GROUP BY **EXTRACT(YEAR FROM rsv_date)**;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE VIEW rsvStats_year AS
-  
-  SELECT **EXTRACT(rsv_date, 'YEAR')** year, COUNT(\*) cnt
-  
-  FROM rsv_table GROUP BY **EXTRACT(rsv_date, 'YEAR')**;
+EXTRACT 함수가 변환되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW rsvStats_year AS
+SELECT EXTRACT(YEAR FROM rsv_date) year, COUNT(*) cnt
+FROM rsv_table GROUP BY EXTRACT(YEAR FROM rsv_date);
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE VIEW rsvStats_year AS
+SELECT EXTRACT(rsv_date, 'YEAR') year, COUNT(*) cnt
+FROM rsv_table GROUP BY EXTRACT(rsv_date, 'YEAR');
+~~~
 
 #### RULE-40011
 
-- 타입: TODO
+###### 타입
 
-- 설명: EXTRACT 함수에서 datetime이 'TIMEZONE'으로 시작하는 경우 수동으로
-  변환해야 한다..
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE VIEW view1 AS
-  
-  SELECT EXTRACT(**TIMEZONE_REGION** FROM CURRENT_TIMESTAMP) FROM dual;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE VIEW view1 AS
-  
-  SELECT EXTRACT(**TIMEZONE_REGION /\* [TODO] RULE-40011 : The datetime field
-  prefixed 'TIMEZONE' in the EXTRACT function should be manually converted \*/**
-  FROM CURRENT_TIMESTAMP) FROM dual;
+EXTRACT 함수에서 datetime이 'TIMEZONE'으로 시작하는 경우 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE VIEW view1 AS
+SELECT EXTRACT(TIMEZONE_REGION FROM CURRENT_TIMESTAMP) FROM dual;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE VIEW view1 AS
+SELECT EXTRACT(TIMEZONE_REGION /* [TODO] RULE-40011 : The datetime field prefixed 'TIMEZONE' in the EXTRACT function should be manually converted */ FROM CURRENT_TIMESTAMP) FROM dual;
+~~~
 
 #### RULE-40012
 
-- 타입: TODO
+###### 타입
 
-- 설명: XMLType 인스턴스를 인자로 가지는 EXTRACT 함수는 수동으로 변환해야
-  한다..
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE VIEW view1 AS
-  
-  SELECT **EXTRACT(emp_into, 'Employee/Name')** emp_name FROM dual;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE VIEW view1 AS
-  
-  SELECT **EXTRACT(emp_info, 'Employee/Name') /\* [TODO] RULE-40012 : The EXTRACT
-  function containing XMLType instance as parameters should be manually converted
-  \*/** emp_name FROM dual;
+XMLType 인스턴스를 인자로 가지는 EXTRACT 함수는 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE VIEW view1 AS
+SELECT EXTRACT(emp_into, 'Employee/Name') emp_name FROM dual;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE VIEW view1 AS
+SELECT EXTRACT(emp_info, 'Employee/Name') /* [TODO] RULE-40012 : The EXTRACT function containing XMLType instance as parameters should be manually converted */ emp_name FROM dual;
+~~~
 
 #### RULE-40013
 
-- 타입: CONVERTED
+###### 타입
 
-- 설명: SYS_CONTEXT 함수가 변환되었다.
+`CONVERTED`
 
-- 원본 SQL 문장:
-  
-  CREATE VIEW view1 AS
-  
-  SELECT SYS_CONTEXT('USERENV', 'SESSION_USER') FROM dual;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE VIEW view1 AS
-  
-  SELECT USER_NAME() FROM dual;
+SYS_CONTEXT 함수가 변환되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE VIEW view1 AS
+SELECT SYS_CONTEXT('USERENV', 'SESSION_USER') FROM dual;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE VIEW view1 AS
+SELECT USER_NAME() FROM dual;
+~~~
 
 #### RULE-40014
 
-- 타입: TODO
+###### 타입
 
-- 설명: CURRENT_TIMESTAMP 함수의 선택적 인자인 정밀도는 수동으로 변환해야
-  한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE VIEW view1 AS
-  
-  SELECT **CURRENT_TIMESTAMP(0)** FROM dual;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE VIEW view1 AS
-  
-  SELECT CURRENT_TIMESTAMP**(0) /\* [TODO] RULE-40014 : The optional argument of
-  the function CURRENT_TIMESTAMP, precision must be converted manually \*/** FROM
-  dual;
+CURRENT_TIMESTAMP 함수의 선택적 인자인 정밀도는 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE VIEW view1 AS
+SELECT CURRENT_TIMESTAMP(0) FROM dual;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE VIEW view1 AS
+SELECT CURRENT_TIMESTAMP(0) /* [TODO] RULE-40014 : The optional argument of the function CURRENT_TIMESTAMP, precision must be converted manually */ FROM dual;
+~~~
 
 #### RULE-40015
 
-- 타입: TODO
+###### 타입
 
-- 설명: 언어를 지정하는 선택적 인자인 nlsparam은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE VIEW view1 AS
-  
-  SELECT TO_CHAR(SYSDATE, 'DL', **'NLS_DATE_LANGUAGE = korean'**) FROM dual;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE VIEW view1 AS
-  
-  SELECT TO_CHAR(SYSDATE, 'DL', **'NLS_DATE_LANGUAGE = korean' /\* [TODO]
-  RULE-40015 : The optional argument, nlsparam must be converted manually \*/)**
-  FROM dual;
+언어를 지정하는 선택적 인자인 nlsparam은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE VIEW view1 AS
+SELECT TO_CHAR(SYSDATE, 'DL', 'NLS_DATE_LANGUAGE = korean') FROM dual;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE VIEW view1 AS
+SELECT TO_CHAR(SYSDATE, 'DL', 'NLS_DATE_LANGUAGE = korean' /* [TODO] RULE-40015 : The optional argument, nlsparam must be converted manually */) FROM dual;
+~~~
 
 #### RULE-40016
 
-- 타입: TODO
+###### 타입
 
-- 설명: 함수 동작에 변화를 줄 수 있는 선택적 인자인 match_param은 수동으로
-  변환해야 한다..
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE VIEW view1 AS
-  
-  SELECT REGEXP_SUBSTR(content, '(Name: )(([a-z]+) ([a-z]+))', 1, 1, **'i'**,
-  **3**) "First Name" FROM page_pi;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE VIEW view1 AS
-  
-  SELECT REGEXP_SUBSTR(content, '(Name: )(([a-z]+) ([a-z]+))', 1, 1, **'i' /\*
-  [TODO] RULE-40016 : The optional argument, match_param must be converted
-  manually \*/, 3**) "First Name" FROM page_pi;
+함수 동작에 변화를 줄 수 있는 선택적 인자인 match_param은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE VIEW view1 AS
+SELECT REGEXP_SUBSTR(content, '(Name: )(([a-z]+) ([a-z]+))', 1, 1, 'i', 3) "First Name" FROM page_pi;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE VIEW view1 AS
+SELECT REGEXP_SUBSTR(content, '(Name: )(([a-z]+) ([a-z]+))', 1, 1, 'i' /* [TODO] RULE-40016 : The optional argument, match_param must be converted manually */, 3) "First Name" FROM page_pi;
+~~~
 
 #### RULE-40017
 
-- 버전 범위: Altibase 6.3.1.0.0 이상 버전
+> *이 규칙은 Altibase 6.3.1 이상 버전에 적용된다.*
 
-- 타입: TODO
+###### 타입
 
-- 설명: 선택적 인자인 subexpr은 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE VIEW view1 AS
-  
-  SELECT REGEXP_SUBSTR(content, '(Name: )(([a-z]+) ([a-z]+))', 1, 1, 'i', **4**)
-  "Family Name" FROM page_pi;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE VIEW view1 AS
-  
-  SELECT REGEXP_SUBSTR(content, '(Name: )(([a-z]+) ([a-z]+))', 1, 1, 'i', **4 /\*
-  [TODO] RULE-40017 : The optional argument, subexpr must be converted manually
-  \*/**) "Family Name" FROM page_pi;
+선택적 인자인 subexpr은 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE VIEW view1 AS
+SELECT REGEXP_SUBSTR(content, '(Name: )(([a-z]+) ([a-z]+))', 1, 1, 'i', 4) "Family Name" FROM page_pi;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE VIEW view1 AS
+SELECT REGEXP_SUBSTR(content, '(Name: )(([a-z]+) ([a-z]+))', 1, 1, 'i', 4 /* [TODO] RULE-40017 : The optional argument, subexpr must be converted manually */) "Family Name" FROM page_pi;
+~~~
 
 #### RULE-40018
 
-- 타입: CONVERTED
+###### 타입
 
-- 설명: MOD 연산자가 함수 형태로 변환되었다.
+`CONVERTED`
 
-- 원본 SQL 문장:
-  
-  CREATE FUNCTION func1(p1 PLS_INTEGER) RETURN PLS_INTEGER AS
-  
-  v1 PLS_INTEGER := **p1 MOD 2**;
-  
-  BEGIN
-  
-  RETURN v1;
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE FUNCTION func1(p1 PLS_INTEGER) RETURN PLS_INTEGER AS
-  
-  v1 PLS_INTEGER := **MOD(p1, 2)**;
-  
-  BEGIN
-  
-  RETURN v1;
-  
-  END;
+MOD 연산자가 함수 형태로 변환되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE FUNCTION func1(p1 PLS_INTEGER) RETURN PLS_INTEGER AS
+v1 PLS_INTEGER := p1 MOD 2;
+BEGIN
+RETURN v1;
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE FUNCTION func1(p1 PLS_INTEGER) RETURN PLS_INTEGER AS
+v1 PLS_INTEGER := MOD(p1, 2);
+BEGIN
+RETURN v1;
+END;
+~~~
 
 #### RULE-40019
 
-- 타입: CONVERTED
+###### 타입
 
-- 설명: 내장 패키지가 변환되었다.
+`CONVERTED`
 
-- 원본 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1
-  
-  AS
-  
-  BEGIN
-  
-  DBMS_MVIEW.REFRESH('CAL_MONTH_SALES_MV, FWEEK_PSCAT_SALES_MV', 'CF', '', TRUE,
-  FALSE, 0,0,0, FALSE, FALSE);
-  
-  END;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE OR REPLACE PROCEDURE proc1
-  
-  AS
-  
-  BEGIN
-  
-  REFRESH_MATERIALIZED_VIEW(USER_NAME(), 'CAL_MONTH_SALES_MV');
-  
-  REFRESH_MATERIALIZED_VIEW(USER_NAME(), 'FWEEK_PSCAT_SALES_MV');
-  
-  END;
+내장 패키지가 변환되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1
+AS
+BEGIN
+DBMS_MVIEW.REFRESH('CAL_MONTH_SALES_MV, FWEEK_PSCAT_SALES_MV', 'CF', '', TRUE, FALSE, 0,0,0, FALSE, FALSE);
+END;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE OR REPLACE PROCEDURE proc1
+AS
+BEGIN
+REFRESH_MATERIALIZED_VIEW(USER_NAME(), 'CAL_MONTH_SALES_MV');
+REFRESH_MATERIALIZED_VIEW(USER_NAME(), 'FWEEK_PSCAT_SALES_MV');
+END;
+~~~
 
 #### RULE-40020
 
-- 타입: CONVERTED
+###### 타입
 
-- 설명: WM_CONCAT 함수가 LISTAGG 함수로 변환되었다.
+`CONVERTED`
 
-- 원본 SQL 문장:
-  
-  SELECT WM_CONCAT(val) FROM t1;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  SELECT LISTAGG(val, ',') WITHIN GROUP(ORDER BY val) FROM t1;
+WM_CONCAT 함수가 LISTAGG 함수로 변환되었다.
+
+###### 원본 SQL 문장
+
+~~~sql
+SELECT WM_CONCAT(val) FROM t1;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+SELECT LISTAGG(val, ',') WITHIN GROUP(ORDER BY val) FROM t1;
+~~~
 
 #### RULE-40021
 
-- 타입: TODO
+###### 타입
 
-- 설명: SYS_CONTEXT 함수의 파라미터를 수동으로 변환해야 한다.
+`TODO`
 
-- 원본 SQL 문장:
-  
-  CREATE VIEW v_r40021 AS SELECT **SYS_CONTEXT('USERENV', 'INSTANCE_NAME')** FROM
-  dual;
+###### 설명
 
-- 변환된 SQL 문장:
-  
-  CREATE VIEW v_r40021 AS SELECT **SYS_CONTEXT('USERENV', 'INSTANCE_NAME') /\*
-  [TODO] RULE-40021 : The parameter in the function 'SYS_CONTEXT' should be
-  converted manually. \*/** FROM dual;
+SYS_CONTEXT 함수의 파라미터를 수동으로 변환해야 한다.
+
+###### 원본 SQL 문장
+
+~~~sql
+CREATE VIEW v_r40021 AS 
+SELECT SYS_CONTEXT('USERENV', 'INSTANCE_NAME') FROM dual;
+~~~
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE VIEW v_r40021 AS 
+SELECT SYS_CONTEXT('USERENV', 'INSTANCE_NAME') /* [TODO] RULE-40021 : The parameter in the function 'SYS_CONTEXT' should be converted manually.*/ FROM dual;
+~~~
 
 #### RULE-40022
 
-- 타입: CONVERTED
+###### 타입
 
-- 설명: 반환하는 값의 길이를 나타내는 SYS_CONTEXT 함수의 세번째 인자가
-  SYS_CONTEXT를 둘러싼 SUBSTR 함수로 변환되었다.
+`CONVERTED`
 
-- 원본 SQL 문장:
+###### 설명
 
-CREATE VIEW v_r40022 AS SELECT **SYS_CONTEXT('USERENV', 'INSTANCE_NAME', 100)**
-FROM dual;
+반환하는 값의 길이를 나타내는 SYS_CONTEXT 함수의 세번째 인자가 SYS_CONTEXT를 둘러싼 SUBSTR 함수로 변환되었다.
 
-- 변환된 SQL 문장:
+###### 원본 SQL 문장
 
-CREATE VIEW v_r40022 AS SELECT **SUBSTR(SYS_CONTEXT('USERENV', 'INSTANCE_NAME'),
-0, 100)** FROM dual;
+~~~sql
+CREATE VIEW v_r40022 AS SELECT SYS_CONTEXT('USERENV', 'INSTANCE_NAME', 100) FROM dual;
+~~~
+
+
+###### 변환된 SQL 문장
+
+~~~sql
+CREATE VIEW v_r40022 AS SELECT SUBSTR(SYS_CONTEXT('USERENV', 'INSTANCE_NAME'), 0, 100) FROM dual;
+~~~
 
 ## F.부록: FAQ
 
-### Common
+### DBMS 공통
 
 #### 데이터 이관 중에 OutOfMemoryError가 발생한다.
 
-##### 원인
+`원인`
 
-다수의 쓰레드들이 대상 데이터베이스에 배치작업으로 데이터를 삽입하는 과정에서
-메모리가 부족하여 발생할 수 있다.
+다수의 쓰레드들이 대상 데이터베이스에 배치작업으로 데이터를 삽입하는 과정에서 메모리가 부족하여 발생할 수 있다.
 
-##### 해결방법
+`해결 방법`
 
-OutOfMemoryError에서 출력한 에러 메시지에 따라 아래와 같이 3가지 경우로 나눌 수
-있다.
+OutOfMemoryError에서 출력한 에러 메시지에 따라 아래와 같이 3가지 경우로 나눌 수 있다.
 
-###### \<Java heap space\>
+- `<Java heap space>`
 
-상황에 따라 아래 작성된 두 가지 방법을 선택해 적용한다.
+  상황에 따라 아래 작성된 두 가지 방법을 선택해 적용한다.
 
-- 메모리 사용량을 낮추도록 성능 프로퍼티 값 변경
-1. 프로젝트를 연다.
+  - 메모리 사용량을 낮추도록 성능 프로퍼티 값 변경
 
-2. 메뉴 “Migration” -\> “Migration Options”를 클릭한다.
+    1. 프로젝트를 연다.
+    2. 메뉴 Migration -\> Migration Options를 클릭한다.
+    3. Batch Size와 Thread Count의 값을 낮춘다.
 
-3. Batch Size와 Thread Count의 값을 낮춘다.
-- 프로그램이 사용할 수 있는 최대 메모리 크기 증가
-1. 실행 파일(migcenter.bat 또는 migcenter.sh)을 편집기로 연다.
+  - 프로그램이 사용할 수 있는 최대 메모리 크기 증가
 
-2. JVM 내 heap 최대 크기를 정하는 옵션 '-Xmx'의 값을 기존 값보다 높게 설정한다.
+    1. 실행 파일(migcenter.bat 또는 migcenter.sh)을 편집기로 연다.
 
-> Note: Windows 32 bit machine에서는 OS dependency로 인해 Xmx 값을 최대 1.5 GB까지
-> 설정할 수 있다.
+    2. JVM 내 heap 최대 크기를 정하는 옵션 -Xmx의 값을 기존 값보다 높게 설정한다.
 
-###### \<PermGen space\>
+    > Note: Windows 32 bit machine에서는 OS dependency로 인해 Xmx 값을 최대 1.5 GB까지 설정할 수 있다.
 
-1. 실행 파일(migcenter.bat 또는 migcenter.sh)을 편집기로 연다.
-2. JVM 내 permanent generation space의 최대 크기를 정하는 옵션
-   '-XX:MaxPermSize'의 값을 기존 값보다 크게 설정한다.
+- `<PermGen space>`
 
-###### \<Metaspace\>
+  1. 실행 파일(migcenter.bat 또는 migcenter.sh)을 편집기로 연다.
 
-사용중인 JVM의 버전이 Java 8 이상인 경우, Metaspace의 공간 부족이 원인일 수 있다. Java 8부터 구현된 Metaspace는 PermGen (permanent generation space)의 대체제이다.
+  2. JVM 내 permanent generation space의 최대 크기를 정하는 옵셥 -XX:MaxPermSize의 값을 기존 값보다 크게 설정한다.
 
-- 실행 파일(migcenter.bat 또는 migcenter.sh)을 편집기로 연다.
-- JVM 내 permanent generation space의 최대 크기를 정하는 옵션 '-XX:MaxPermSize'를
-  metaspace의 최대 크기를 정하는 옵션으로 변경한 뒤, 기존 값보다 높게 수정한다.
-  - 변경 전: -XX:MaxPermSize=128m
-  - 변경 후: -XX:MaxMetaspaceSize=256 m
+- `<Metaspace>`
 
-참고
+  사용중인 JVM의 버전이 Java 8 이상인 경우, Metaspace의 공간 부족이 원인일 수 있다. Java 8부터 구현된 Metaspace는 PermGen (permanent generation space)의 대체제이다.
 
-- <https://dzone.com/articles/java-8-permgen-metaspace>
+  1. 실행 파일(migcenter.bat 또는 migcenter.sh)을 편집기로 연다.
 
-- <https://www.infoq.com/articles/Java-PERMGEN-Removed>
+  2. JVM 내 permanent generation space의 최대 크기를 정하는 옵션 -XX:MaxPermSize를
+     metaspace의 최대 크기를 정하는 옵션으로 변경한 뒤, 기존 값보다 높게 수정한다.
+     - 변경 전 : -XX:MaxPermSize=128m
+
+     - 변경 후 : -XX:MaxMetaspaceSize=256m
+
+- 참고
+
+  - <https://dzone.com/articles/java-8-permgen-metaspace>
+  - <https://www.infoq.com/articles/Java-PERMGEN-Removed>
 
 #### 데이터 타입이 LOB인 테이블 컬럼의 NOT NULL 제약조건이 이관되지 않는다.
 
-##### 원인
+`원인`
 
-마이그레이션 센터가 LOB 칼럼의 NOT NULL 제약조건을 임의로 제거하여 발생하는
-현상이다.
+마이그레이션 센터가 LOB 칼럼의 NOT NULL 제약조건을 임의로 제거하여 발생하는 현상이다.
 
-마이그레이션 센터는 파라미터가 포함된 쿼리문(예: insert into tablename
-values(?,?))을 사용해서 대상 DB에 데이터를 삽입한다.
+마이그레이션 센터는 파라미터가 포함된 쿼리문(예: insert into tablename values(?,?))을 사용해서 대상 DB에 데이터를 삽입한다.
 
-Altibase는 다른 컬럼과는 달리 LOB 컬럼에 데이터를 입력할 경우에는 먼저 데이터를
-null로 초기화한 다음, LOB Locator를 통해 데이터를 받아서 입력하는 두 단계로
-처리한다. 따라서 해당 컬럼에 NOT NULL 제약조건이 있다면 데이터를 null로 초기화할
-수 없어서 insert가 실패하게 된다.
+Altibase는 다른 컬럼과는 달리 LOB 컬럼에 데이터를 입력할 경우에는 먼저 데이터를 null로 초기화한 다음, LOB Locator를 통해 데이터를 받아서 입력하는 두 단계로 처리한다. 따라서 해당 컬럼에 NOT NULL 제약조건이 있다면 데이터를 null로 초기화할 수 없어서 insert가 실패하게 된다.
 
-이런 제약 때문에, 마이그레이션 센터는 LOB 칼럼의 NOT NULL 제약조건을 임의로
-제거해서 마이그레이션을 수행한다.
+이런 제약 때문에, 마이그레이션 센터는 LOB 칼럼의 NOT NULL 제약조건을 임의로 제거해서 마이그레이션을 수행한다.
 
-이러한 내용은 아래 매뉴얼에서 확인할 수 있다. (General Reference - 1. 자료형 -
-LOB 데이타 타입 - 제한사항)
+이러한 내용은 아래 매뉴얼에서 확인할 수 있다. (General Reference - 1. 자료형 - LOB 데이타 타입 - 제한사항)
 
-오라클은 커밋 시에만 제약 조건에 대한 검사를 수행하기 때문에, 위와 같은
-조건에서도 데이터를 삽입할 수 있다.
+오라클은 커밋 시에만 제약 조건에 대한 검사를 수행하기 때문에, 위와 같은 조건에서도 데이터를 삽입할 수 있다.
 
-##### 해결방법
+`해결 방법`
 
 이관 후, Altibase에서 해당 컬럼에 NOT NULL 제약조건을 추가하는 SQL문을 실행한다.
 
 #### Database 문자 집합 관련 주의사항
 
-기본적으로 원본 데이터베이스와 대상 데이터베이스의 DB 문자 집합을 동일하게
-지정하여 사용하기를 권장한다.  
-만약 특수한 상황 때문에 문자 집합을 다르게 지정해야 한다면, 각각의 DB 문자 집합
-호환 여부를 꼭 확인해야 한다. 호환되지 않는 문자 집합 간의 이관을 강제 수행할
-경우, 데이터가 깨지게 된다.
+기본적으로 원본 데이터베이스와 대상 데이터베이스의 DB 문자 집합을 동일하게 지정하여 사용하기를 권장한다. 
 
-##### 예제
+만약 특수한 상황 때문에 문자 집합을 다르게 지정해야 한다면, 각각의 DB 문자 집합 호환 여부를 꼭 확인해야 한다. 호환되지 않는 문자 집합 간의 이관을 강제 수행할 경우, 데이터가 깨지게 된다.
 
-1. 원본 데이터베이스 KSC5601에서 대상 데이터베이스 UTF8:  
-   이관 가능  
-   KSC5601 한글 데이터는 UTF8로 표기될 수 있다. 따라서 각각의 문자 집합은 서로
-   호환된다.  
-   **Note**: 데이터 길이가 더 길어질 수 있으므로 테이블 객체 이관 시 문자형
-   타입 컬럼은 사이즈를 늘려야 한다.
+`사례 1 : 원본 데이터베이스 KSC5601에서 대상 데이터베이스 UTF8`  `이관 가능`
 
-2. 원본 데이터베이스 KSC5601에서 대상 데이터베이스 GB231280:  
-   이관 불가능  
-   KSC5601 한글 데이터는 GB231280으로 표기될 수 없다. 따라서 각각의 문자 집합은
-   서로 호환되지 않는다.  
-   이러한 조건에서 꼭 데이터 이관이 필요한 경우, 대상 데이터베이스의 테이블
-   컬럼 데이터타입 CHAR, VARCHAR를 모두 NCHAR, NVARCHAR로 변경한 뒤, 데이터
-   이관을 수행해야 한다.
+KSC5601 한글 데이터는 UTF8로 표기될 수 있다. 따라서 각각의 문자 집합은 서로 호환된다. 
 
-##### JDBC & 마이그레이션 센터의 문자 집합 처리 과정
+Note: 데이터 길이가 더 길어질 수 있으므로 테이블 객체 이관 시 문자형 타입 컬럼은 사이즈를 늘려야 한다.
 
-1. 원본 데이터베이스로부터 데이터를 fetch할 때, char 데이터를 원본 데이터베이스
-   DB 문자 집합 포맷으로 가져와 바이트 배열에 저장한다.
+`사례 2 : 원본 데이터베이스 KSC5601에서 대상 데이터베이스 GB231280` `이관 불가능`
 
-2. 바이트 배열에 저장된 데이터를 UTF-16 형태로 변환하여 Java 기본 타입인 String
-   객체에 저장한다.
+KSC5601 한글 데이터는 GB231280으로 표기될 수 없다. 따라서 각각의 문자 집합은 서로 호환되지 않는다. 이러한 조건에서 꼭 데이터 이관이 필요한 경우, 대상 데이터베이스의 테이블 컬럼 데이터타입 CHAR, VARCHAR를 모두 NCHAR, NVARCHAR로 변경한 뒤, 데이터 이관을 수행해야 한다.
 
-3. 대상 데이터베이스에 데이터를 삽입하는 PreparedStatement 객체에 setString
-   함수로 해당 String 객체를 전달한다.
+`JDBC & 마이그레이션 센터의 문자 집합 처리 과정`
 
-4. JDBC 드라이버 내부에서 대상 데이터베이스의 DB 문자 집합에 맞춰 데이터를
-   변환하고 삽입한다.
+1. 원본 데이터베이스로부터 데이터를 fetch할 때, char 데이터를 원본 데이터베이스 DB 문자 집합 포맷으로 가져와 바이트 배열에 저장한다.
+
+2. 바이트 배열에 저장된 데이터를 UTF-16 형태로 변환하여 Java 기본 타입인 String 객체에 저장한다.
+
+3. 대상 데이터베이스에 데이터를 삽입하는 PreparedStatement 객체에 setString 함수로 해당 String 객체를 전달한다.
+
+4. JDBC 드라이버 내부에서 대상 데이터베이스의 DB 문자 집합에 맞춰 데이터를 변환하고 삽입한다.
 
 #### JDBC 드라이버 파일 선택 중 프로그램이 비정상 종료한다.
 
-##### 원인
+`원인`
 
-Windows 환경에서 마이그레이션 센터를 실행할 때 발생할 수 있는 오류이다. 연결정보
-등록 시 JDBC 드라이버 파일을 선택하던 중, 디렉토리를 변경하면 프로그램이 비정상
-종료되는 문제가 나타날 수 있다. JVM과 Windows 운영체제 사이의 커뮤니케이션
-문제로 인해 발생하는 Java JVM crash이다. 아래 링크를 통해, 오래된 버전의 JVM에서
-발생하는 Java crash 문제를 확인할 수 있다. <http://www.java.com/en/download/help/error_hotspot.xml>
+Windows 환경에서 마이그레이션 센터를 실행할 때 발생할 수 있는 오류이다. 연결정보 등록 시 JDBC 드라이버 파일을 선택하던 중, 디렉토리를 변경하면 프로그램이 비정상 종료되는 문제가 나타날 수 있다. JVM과 Windows 운영체제 사이의 커뮤니케이션 문제로 인해 발생하는 Java JVM crash이다. 아래 링크를 통해, 오래된 버전의 JVM에서 발생하는 Java crash 문제를 확인할 수 있다. <http://www.java.com/en/download/help/error_hotspot.xml>
 
-##### 해결방법
+`해결 방법`
 
-최신 버전의 JRE를 설치하고 migcenter.bat 파일 내의 JAVA_HOME 경로를 수정한 뒤,
-마이그레이션 센터를 재실행한다.
+최신 버전의 JRE를 설치하고 migcenter.bat 파일 내의 JAVA_HOME 경로를 수정한 뒤, 마이그레이션 센터를 재실행한다.
 
 #### CLI 모드로 실행 시, UnsatisfiedLinkError: /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libawt_xawt.so: libXrender.so.1: cannot open shared object file: No such file or directory 발생
 
 JVM에서 64-bit libXrender.so 파일을 요청했지만, OS에 해당 패키지가 설치되지 않았을 때 발생하는 오류이다. 해당 패키지는 AWT나 Swing을 포함한 64-bit 어플리케이션을 실행할 때 필요하다.
 
-##### 원인
+`원인`
 
 주로 64비트 장비에  32비트 JRE를 설치한 뒤, 이를 사용하여 자바 프로그램을 실행하려 할 때 발생한다.
 
-##### 해결방법
+`해결 방법`
 
 장비의 비트 값에 맞는 JRE를 새로 설치한 뒤, JAVA_HOME을 해당 위치로 변경한다.
 데비안 계열의 리눅스는 아래와 같은 명령어를 실행하여 패키지를 설치한다.
 
-```
+~~~bash
 sudo apt-get install libXrender1
-```
+~~~
 
-##### 참고
+`참고`
 
 - http://www.jmeter-archive.org/Bug-in-running-Jmeter-on-Ubuntu-12-04-td5722692.html
 - https://www.spigotmc.org/threads/bungeecord-not-starting-up-on-java-8.24652/ 
 
 #### 마이그레이션 센터 실행시 "Could not create the java virtual machine" 메세지를 출력하고 시작 실패한다.
 
-##### 원인
+`원인`
 
-bat, sh에서 설정된 최대 메모리 할당값(-Xmx) 자바 옵션이 시스템에서 할당 가능한 메모리보다 더 큰 경우 발생 가능한 오류이다. 특히 Windows O/S 32bit에서 자주 리포팅되는 오류이다. 
+bat, sh에서 설정된 최대 메모리 할당값(`-Xmx`) 자바 옵션이 시스템에서 할당 가능한 메모리보다 더 큰 경우 발생 가능한 오류이다. 특히 Windows O/S 32bit에서 자주 리포팅되는 오류이다. 
 
-##### 해결방법
+`해결 방법`
 
 bat, sh에서 -Xms -Xmx 값을 사용자 환경에 맞춰 변경한 뒤, Migration Center를 재실행한다.
 
@@ -8294,76 +7733,58 @@ bat, sh에서 -Xms -Xmx 값을 사용자 환경에 맞춰 변경한 뒤, Migrati
 
 #### 오류 메시지 'ORA-01652 unable to extend temp segment by 128 in tablespace TEMP'가 출력된다.
 
-##### 원인
+`원인`
 
-대용량 쿼리 처리 중, 오라클의 임시 테이블스페이스 공간이 부족하여 발생한
-에러이다.
+대용량 쿼리 처리 중, 오라클의 임시 테이블스페이스 공간이 부족하여 발생한 에러이다.
 
-##### 해결방법
+`해결 방법`
 
 해당 사용자가 사용하는 임시 테이블스페이스 공간을 확장해야 한다.
 
 #### Run 단계 수행 중, 오류 메시지 'Fetch data from source database has been failed. Stream has already been closed'와 함께 일부 데이터의 이관이 실패한다.
 
-##### 원인
+`원인`
 
-한글 환경에서는 'Fetch data from source database has been failed. 스트림이 이미
-종료되었습니다.'라는 메시지로 출력되기도 한다.
+한글 환경에서는 `Fetch data from source database has been failed. 스트림이 이미 종료되었습니다.`라는 메시지로 출력되기도 한다.
 
-LONG 또는 LONG RAW 컬럼과 LOB 컬럼이 함께 들어있는 테이블은 데이터 이관 중
-문제가 발생할 수 있다. 아래는 Oracle JDBC Developer's Guide  ([link](https://docs.oracle.com/cd/E11882_01/java.112/e16548/jstreams.htm#JJDBC28411))에서 발췌한 내용이다.
+LONG 또는 LONG RAW 컬럼과 LOB 컬럼이 함께 들어있는 테이블은 데이터 이관 중 문제가 발생할 수 있다. 아래는 [Oracle JDBC Developer's Guide](https://docs.oracle.com/cd/E11882_01/java.112/e16548/jstreams.htm#JJDBC28411)에서 발췌한 내용이다.
 
-12. Java Streams in JDBC - Streaming LONG or LONG RAW Columns
+> 12. *Java Streams in JDBC - Streaming LONG or LONG RAW Columns*
+>
+> *Because the column data remains in the communications channel, the streaming mode interferes with all other use of the connection. Any use of the connection, other than reading the column data, will discard the column data from the channel.*
 
-Because the column data remains in the communications channel, the streaming
-mode interferes with all other use of the connection. Any use of the connection,
-other than reading the column data, will discard the column data from the
-channel.
+LONG 또는 LONG RAW 컬럼의 데이터 전송은 스트림을 통해 이루어지는데, 이 데이터 전송 시점에 해당 Connection을 이용한 다른 데이터 타입의 스트림 전송은 방해 받는다고 기술되어있다. 이는 LONG 또는 LONG RAW 컬럼과 LOB 컬럼이 하나의 테이블 내에 있을 경우, 해당 테이블의 데이터 이관 성공 여부를 보장할 수 없음을 의미한다. 또한 위와 같은 이유로 오라클에서는 이러한 구성을 사용하지 않도록 권고하고 있다.
 
-LONG 또는 LONG RAW 컬럼의 데이터 전송은 스트림을 통해 이루어지는데, 이 데이터
-전송 시점에 해당 Connection을 이용한 다른 데이터 타입의 스트림 전송은 방해
-받는다고 기술되어있다. 이는 LONG 또는 LONG RAW 컬럼과 LOB 컬럼이 하나의 테이블
-내에 있을 경우, 해당 테이블의 데이터 이관 성공 여부를 보장할 수 없음을 의미한다.
-또한 위와 같은 이유로 오라클에서는 이러한 구성을 사용하지 않도록 권고하고 있다.
-
-##### 해결방법
+`해결 방법`
 
 해당 테이블은 마이그레이션 센터를 통해 데이터 이관을 수행할 수 없다.
 
 #### Reconcile 단계를 시작할 때, 오류 메시지 'Unable to find any volatile tablespace to store temporary tables in the destination database'가 출력된다.
 
-##### 원인
+`원인`
 
-원본 데이터베이스인 오라클의 이관 객체 목록 중, 전역 임시 테이블(global
-temporary table)이 존재할 경우, 반드시 대상 데이터베이스인 Altibase에 휘발성
-테이블스페이스가 존재해야 한다. 오라클의 전역 임시 테이블은 Altibase의 임시
-테이블로 이관되며, Altibase의 임시 테이블은 휘발성 테이블스페이스에만 저장
-가능하기 때문이다. (매뉴얼 참조: SQL Reference - 3. 데이터 정의어 - CREATE TABLE -설명)
+원본 데이터베이스인 오라클의 이관 객체 목록 중, 전역 임시 테이블(global temporary table)이 존재할 경우, 반드시 대상 데이터베이스인 Altibase에 휘발성 테이블스페이스가 존재해야 한다. 오라클의 전역 임시 테이블은 Altibase의 임시 테이블로 이관되며, Altibase의 임시 테이블은 휘발성 테이블스페이스에만 저장 가능하기 때문이다. (매뉴얼 참조: SQL Reference - 3. 데이터 정의어 - CREATE TABLE -설명)
 
-Reconcile 단계를 수행할 때, 마이그레이션 센터는 사용자가 접근 가능한 Altibase
-테이블스페이스들의 목록을 가져와 데이터베이스 간 테이블스페이스 및 테이블 맵핑을
-시도한다. 이 때, 오라클에 존재하는 전역 임시 테이블과 맵핑할 Altibase의 휘발성
-테이블스페이스가 없을 경우, 이러한 오류가 발생한다.
+Reconcile 단계를 수행할 때, 마이그레이션 센터는 사용자가 접근 가능한 Altibase 테이블스페이스들의 목록을 가져와 데이터베이스 간 테이블스페이스 및 테이블 맵핑을 시도한다. 이 때, 오라클에 존재하는 전역 임시 테이블과 맵핑할 Altibase의 휘발성 테이블스페이스가 없을 경우, 이러한 오류가 발생한다.
 
-##### 해결방법
+`해결 방법`
 
-대상 데이터베이스인 Altibase에 휘발성 테이블스페이스를 생성하고 접근 권한을
-부여한 뒤, 다시 reconcile 단계를 수행한다.
+대상 데이터베이스인 Altibase에 휘발성 테이블스페이스를 생성하고 접근 권한을 부여한 뒤, 다시 reconcile 단계를 수행한다.
 
 #### 데이터 이관 중에 SQLException: Protocol violation(프로토콜 위반)이 발생한다.
 
-##### 원인
+`원인`
 
 통신 중에 OOM 에러가 발생하여 이를 분실하고, 프로토콜 위반 에러를 반환하였다.
 
-##### 해결방법
+`해결 방법`
 
 프로그램이 사용할 수 있는 최대 메모리 크기를 키운다.
 
 1. 실행 파일(migcenter.bat 또는 migcenter.sh)을 편집기로 연다.
-2. JVM 내 heap 최대 크기를 정하는 옵션 '-Xmx'의 값을 기존 값보다 크게 수정한다.
+2. JVM 내 heap 최대 크기를 정하는 옵션 -Xmx의 값을 기존 값보다 크게 수정한다.
 
-##### 참고
+`참고`
 
 - https://stackoverflow.com/questions/29372626/sqlexception-protocol-violation-in-oracle
 
@@ -8373,25 +7794,26 @@ Reconcile 단계를 수행할 때, 마이그레이션 센터는 사용자가 접
 
 대량의 데이터 이관 중에 오라클에서 fetch 또는 bind 관련 SQLException이 여러 건 발생하는 경우가 있다. 이런 경우, 테이블 모드에서 해당 테이블 한 개만 이관해서 성공한다면, OOM으로 인한 오류를 의심해 볼 수 있다.
 
-예) 
-
+~~~java
 Caused by: java.sql.SQLException: Fail to convert to internal representation
 at oracle.jdbc.driver.CharCommonAccessor.getBigDecimal(CharCommonAccessor.java:414)
 
 Invalid column type: getCLOB not implemented for class oracle.jdbc.driver.T4CVarcharAccessor
+~~~
 
-##### 원인
+`원인`
 
 Oracle JDBC driver 내부적으로 OOM 발생 이후 다양한 오동작이 가능하다. 
 
-##### 해결방법
+`해결 방법`
 
-Common 절의 OutOfMemoryError 항목 참조.
+[DBMS 공통](#dbms-공통)에서 [OutOfMemoryError 항목](#데이터-이관-중에-outofmemoryerror가-발생한다) 참조.
 
 #### 빌드 단계에서 NullPointerException 이 발생할 수 있다.
 
 원본 데이터베이스가 Oracle 9i, 10인 경우 Oracle JDBC 드라이버 호환성 오류로 인해 build 단계에서 아래와 같은 NullPointerException이 발생할 수 있다.
 
+```
 Fail to retrieve Source DDL: java.lang.NullPointerException
 at oracle.jdbc.driver.T4C8Oall.getNumRows(T4C8Oall.java:1046)
 at oracle.jdbc.driver.T4CPreparedStatement.executeForRows(T4CPreparedStatement.java:1047)
@@ -8401,12 +7823,13 @@ at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStat
 at oracle.jdbc.driver.OraclePreparedStatement.executeQuery(OraclePreparedStatement.java:3652)
 at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeQuery(OraclePreparedStatementWrapper.java:1207)
 at com.altibase.migLib.meta.SrcDbMeta_Oracle_9_0_0_0.getSrcDdlDbmsMetaData(SrcDbMeta_Oracle_9_0_0_0.java:2251)
+```
 
-##### 원인
+`원인`
 
 Oracle JDBC 드라이버 호환성 문제
 
-##### 해결방법
+`해결 방법`
 
 MigrationCenter의 Oracle용 JDBC 드라이버 파일을 사용중인 Oracle DBMS의 JDBC 드라이버 파일로 교체한다.
 
@@ -8414,148 +7837,147 @@ MigrationCenter의 Oracle용 JDBC 드라이버 파일을 사용중인 Oracle DBM
 
 #### MS-SQL 연결정보를 등록할 때, “Test” 버튼을 누르면 접속에 실패하는 오류 메시지가 출력될 수 있다.
 
-##### 원인
+`원인`
 
-연결정보 등록 중 “Test” 버튼을 눌렀을 때, 오류 메시지와 함께 접속에 실패한다.
+연결정보 등록 중 Test 버튼을 눌렀을 때, 오류 메시지와 함께 접속에 실패한다.
 
-MS-SQL 연결정보를 등록할 때, “Test” 버튼을 누르면 아래와 같은 오류 메시지가
-출력될 수 있다.
+MS-SQL 연결정보를 등록할 때, Test 버튼을 누르면 아래와 같은 오류 메시지가 출력될 수 있다.
 
-- “Migration Center can support MS-SQL user who has a single schema only.”
+- `Migration Center can support MS-SQL user who has a single schema only.`
 
-- “User doesn't have appropriate schema in target database.”
+- `User doesn't have appropriate schema in target database.`
 
-연결정보의 사용자가 가진 스키마 관계가 Altibase와 호환 불가능한 상태이기 때문에,
-등록이 허용되지 않는다.
+연결정보의 사용자가 가진 스키마 관계가 Altibase와 호환 불가능한 상태이기 때문에, 등록이 허용되지 않는다.
 
-MS-SQL은 Altibase와 사용자와 스키마 간의 관계가 다르다. Altibase는 각 사용자에게
-하나의 스키마가 할당되며, 데이터베이스 객체가 해당 스키마에 종속되는 구조이다.
-이에 반해 MS-SQL은 한 사용자가 복수의 스키마를 소유할 수 있으며, 각 스키마에
-데이터베이스 객체가 종속된다. 이러한 차이로 인해 마이그레이션 센터는 MS-SQL
+MS-SQL은 Altibase와 사용자와 스키마 간의 관계가 다르다. Altibase는 각 사용자에게 하나의 스키마가 할당되며, 데이터베이스 객체가 해당 스키마에 종속되는 구조이다. 이에 반해 MS-SQL은 한 사용자가 복수의 스키마를 소유할 수 있으며, 각 스키마에 데이터베이스 객체가 종속된다. 이러한 차이로 인해 마이그레이션 센터는 MS-SQL
 사용자가 하나의 스키마만을 소유한 경우에만 연결정보 등록을 허용한다.
 
-따라서, MS-SQL 사용자가 스키마를 소유하지 않거나 복수의 스키마를 소유한 경우에는
-연결정보를 등록할 수 없다.
+따라서, MS-SQL 사용자가 스키마를 소유하지 않거나 복수의 스키마를 소유한 경우에는 연결정보를 등록할 수 없다.
 
-##### 해결방법
+`해결 방법`
 
 연결정보의 사용자가 하나의 스키마만 갖도록 수정한다.
 
 #### 연결정보 등록 중 “Test” 버튼을 눌렀을 때, 프로그램이 멈춘다.
 
-##### 원인
+`원인`
 
-장비에 설치된 JVM과 마이그레이션 센터에 내장된 JVM 간의 충돌이 원인으로
-추정된다. 실행파일 migcenter.bat로 마이그레이션 센터를 시작하면 제품에 내장된
-JRE를 통해 실행되는데, 실행 장비의 운영체제가 Windows 이고 이미 JRE이 설치되어
-있을 때 이러한 문제가 발생할 수 있다.
+장비에 설치된 JVM과 마이그레이션 센터에 내장된 JVM 간의 충돌이 원인으로 추정된다. 실행파일 migcenter.bat로 마이그레이션 센터를 시작하면 제품에 내장된 JRE를 통해 실행되는데, 실행 장비의 운영체제가 Windows 이고 이미 JRE이 설치되어 있을 때 이러한 문제가 발생할 수 있다.
 
-##### 해결방법
+`해결 방법`
 
-실행 파일 migcenter.bat를 편집기로 열어, 환경변수 JAVA_HOME의 값을 장비에 기존에
-설치된 JRE 위치로 변경해야 한다. 변경할 JRE는 반드시 8 이상이어야
-한다.
+실행 파일 migcenter.bat를 편집기로 열어, 환경변수 JAVA_HOME의 값을 장비에 기존에 설치된 JRE 위치로 변경해야 한다. 변경할 JRE는 반드시 8 이상이어야 한다.
 
 #### 오류 메시지 'Unable to insert (or update) NULL into NOT NULL column.'와 함께 데이터 이관에 실패한다.
 
-##### 원인
+`원인`
 
-MS-SQL에서 NOT NULL 제약조건이 걸린 테이블 컬럼에 길이가 0인 문자열이 삽입되어
-있기 때문이다.
+MS-SQL에서 NOT NULL 제약조건이 걸린 테이블 컬럼에 길이가 0인 문자열이 삽입되어 있기 때문이다.
 
-Altibase에서는 길이가 0인 문자열은 NULL을 의미하기 때문에, NOT NULL 제약조건이
-걸린 테이블 컬럼에 길이가 0인 문자열을 삽입하는 것을 허용하지 않는다.
+Altibase에서는 길이가 0인 문자열은 NULL을 의미하기 때문에, NOT NULL 제약조건이 걸린 테이블 컬럼에 길이가 0인 문자열을 삽입하는 것을 허용하지 않는다.
 
-##### 해결방법
+`해결 방법`
 
-Reconcile 단계 - DDL Editing에서 해당 테이블의 Destination DDL로부터 NOT NULL
-제약 조건을 삭제한 뒤, “Save” 버튼을 클릭하여 저장한다.
+Reconcile 단계 - DDL Editing에서 해당 테이블의 Destination DDL로부터 NOT NULL 제약 조건을 삭제한 뒤, `Save` 버튼을 클릭하여 저장한다.
 
 #### 중복된 외래키의 이관이 실패한다.
 
-##### 원인
+`원인`
 
-MS-SQL에서 외래키가 중복 생성되어 있는 경우, Altibase에서는 이를 허용하지 않기
-때문에 중복된 외래키 중 하나만 이관된다.
+MS-SQL에서 외래키가 중복 생성되어 있는 경우, Altibase에서는 이를 허용하지 않기 때문에 중복된 외래키 중 하나만 이관된다.
 
-##### 해결방법
+`해결 방법`
 
-Run 단계 수행 후 생성된 리포트의 Missing 탭에서 이관에 실패한 외래키를 확인할 수
-있다.
+Run 단계 수행 후 생성된 리포트의 Missing 탭에서 이관에 실패한 외래키를 확인할 수 있다.
 
 #### 오류 메세지 'The server selected protocol version TLS10 is not accepted by client preferences'와 함께 서버 접속이 실패한다.
 
-##### 원인
+`원인`
 
 Migration Center를 구동하는데 사용한 Java Runtime Environment (JRE) 의 기본 TLS 버전이 1.2 이상으로 변경되었는데, MS-SQL 서버에서 해당 TLS 버전을 지원하지 않아서 발생한 오류이다.
 
-##### 해결방법
+`해결 방법`
 
-$JAVA_HOME/jre/lib/security/java.security 파일의 jdk.tls.disabledAlgorithms 항목에서 TLSv1, TLSv1.1을 제거하면 이전 버전의 TLS를 사용 가능하다. java.security.org가 수정 전 파일이고, java.security가 수정된 파일이다.
+$JAVA_HOME/jre/lib/security/java.security 파일의 jdk.tls.disabledAlgorithms 항목에서 TLSv1, TLSv1.1을 제거하면 이전 버전의 TLS를 사용 가능하다. 
 
-```bash
-$ diff java.security.org java.security
-720c720
-< jdk.tls.disabledAlgorithms=SSLv3, TLSv1, TLSv1.1, RC4, DES, MD5withRSA, \
----
-> jdk.tls.disabledAlgorithms=SSLv3, RC4, DES, MD5withRSA, \
-```
+~~~java
+//jdk.tls.disabledAlgorithms=SSLv3, TLSv1, TLSv1.1, RC4, DES, MD5withRSA, 
+jdk.tls.disabledAlgorithms=SSLv3, RC4, DES, MD5withRSA, 
+~~~
 
-TLS 1.2 이상 버전을 의무적으로 사용해야 한다면, 아래 사이트를 참조하여 Windows, MS-SQL 서버, MS-SQL JDBC 드라이버 파일을 업데이트 해야 한다.
+TLS 1.2 이상 버전을 의무적으로 사용해야 한다면, [KB3135244 - TLS 1.2 support for Microsoft SQL Server](https://support.microsoft.com/en-us/topic/kb3135244-tls-1-2-support-for-microsoft-sql-server-e4472ef8-90a9-13c1-e4d8-44aad198cdbe)를 참조하여 Windows, MS-SQL 서버, MS-SQL JDBC 드라이버 파일을 업데이트 해야 한다.
 
-https://support.microsoft.com/en-us/topic/kb3135244-tls-1-2-support-for-microsoft-sql-server-e4472ef8-90a9-13c1-e4d8-44aad198cdbe
+#### 마이그레이션 센터를 실행하는 자바 버전과 맞지 않은 JDBC 드라이버를 사용하면 Unable to connect to DB. javax/xml/bind/DatatypeConverter 에러가 발생할 수 있다.
+
+자바 11 이상에서 마이그레이션 센터를 실행하고 JRE 10 이하 버전의 JDBC 드라이버를 사용하면 Unable to connect to DB. javax/xml/bind/DatatypeConverter 에러가 발생한다.
+
+`원인`
+
+JRE 10 이하 버전의 JDBC 드라이버에서 javax.xml.bind 모듈을 참조하여 발생하는 에러이다. javax.xml.bind 모듈은 자바 11 이상에서 제거되었다. 
+
+`해결 방법`
+
+마이그레이션 센터를 실행하는 자바 버전에 해당하는 JDBC 드라이버 파일을 사용한다. 
+
+예) mssql-jdbc-7.2.2.***jre11***.jar
+
+<br/>
 
 ### Altibase
 
 #### 버전 5.1.5 이하의 Altibase를 이관할 때, 문자가 깨진다.
 
-##### 원인
+`원인`
 
-버전 5.1.5 이하의 Altibase는 globalization을 지원하지 않아 JDBC가 데이터베이스의
-문자 집합 을 알 수 없다.
+버전 5.1.5 이하의 Altibase는 globalization을 지원하지 않아 JDBC가 데이터베이스의 문자 집합 을 알 수 없다.
 
-##### 해결방법
+`해결 방법`
 
-마이그레이션 센터 내 해당 데이터베이스 연결정보의 인코딩 옵션에 대상
-데이터베이스에 설정된 문자 집합 값(예, KSC5601)을 넣어야 한다. Altibase 캐릭터
-셋 확인 방법은 다음과 같다.
+마이그레이션 센터 내 해당 데이터베이스 연결정보의 인코딩 옵션에 대상 데이터베이스에 설정된 문자 집합 값(예, KSC5601)을 넣어야 한다. Altibase 캐릭터 셋 확인 방법은 다음과 같다.
 
-- 4.3.9 \~ 5.1.5 버전:  
-  SELECT VALUE1 FROM V\$PROPERTY WHERE NAME = 'NLS_USE';
+- Altibase 4.3.9 \~ 5.1.5 버전
 
-- 5.3.3 버전 이상:  
-  SELECT NLS_CHARACTERSET FROM V\$NLS_PARAMETERS;
+  ~~~sql
+  SELECT VALUE1 FROM V$PROPERTY WHERE NAME = 'NLS_USE';
+  ~~~
+
+- Altibase 5.3.3 버전 이상
+
+  ~~~sql
+  SELECT NLS_CHARACTERSET FROM V$NLS_PARAMETERS;
+  ~~~
 
 #### Reconcile 단계의 “Tablespace to Tablespace Mapping”에 특정 테이블스페이스가 나오지 않는다.
 
-##### 원인
+`원인`
 
-마이그레이션 센터에 접속중인 Altibase의 사용자가 해당 테이블스페이스에 대한 접근
-권한이 없어서 발생한다.
+마이그레이션 센터에 접속중인 Altibase의 사용자가 해당 테이블스페이스에 대한 접근 권한이 없어서 발생한다.
 
-##### 해결방법
+`해결 방법`
 
 Altibase 사용자에게 해당 테이블스페이스에 대한 접근 권한을 부여한다.
 
 #### 버전 4.5.1.0 이하의 알티베이스를 이관할 때, 데이터타입이 BLOB, byte, nibble인 컬럼의 정보를 가져오는데 실패한다.
 
-##### 원인
+`원인`
 
 해당 버전의 알티베이스 JDBC driver가 BLOB, byte, nibble 데이터타입을 UNKOWN으로 리턴하여 컬럼의 데이터타입을 알 수 없다. 
 
-##### 해결방법
+`해결 방법`
 
 BLOB, byte, nibble 데이터타입을 가진 테이블은 aexport와 iloader를 사용하여 이관한다.
 
 #### Altibase 6.1.1 이하 버전으로부터 이관된 데이터타입 bit, varbit, nibble의 일부 데이터가 원본 데이터베이스와 일치하지 않는다.
 
-##### 원인
+`원인`
 
 알티베이스 6.1.1 이하 버전의 JDBC driver가 batch execution으로 bit, varbit, 또는 nibble 타입 데이터를 삽입할 때, 일부 데이터를 정상적으로 이관하는데 실패한다.
 
-##### 해결방법
+`해결 방법`
 
 프로젝트를 열고 메뉴 Migration - Migration Option을 클릭하여 Batch Execution을 'No'로 선택한 뒤, 데이터 이관을 수행한다.
+
+<br/>
 
 ### Informix
 
@@ -8563,8 +7985,7 @@ BLOB, byte, nibble 데이터타입을 가진 테이블은 aexport와 iloader를 
 
 데이터 이관 중에 Informix에서 fetch 중에 아래와 같은 SQLException이 발생하였다. Informix DB에 Multi-byte 문자의 바이트가 잘린 채로 입력된 경우 이 값을 조회할 때 발생하는 exception이다.
 
-예) 
-
+```
 java.sql.SQLException: Encoding or code set not supported.
 at com.informix.util.IfxErrMsg.getSQLException(IfxErrMsg.java:412)
 at com.informix.jdbc.IfxChar.fromIfx(IfxChar.java:235)
@@ -8575,117 +7996,102 @@ at com.informix.jdbc.IfxResultSet.a(IfxResultSet.java:666)
 at com.informix.jdbc.IfxResultSet.b(IfxResultSet.java:638)
 at com.informix.jdbc.IfxResultSet.getString(IfxResultSet.java:724)
 at com.altibase.migLib.run.databinder.DataBinder.getValuesFromSrc(DataBinder.java:445)
+```
 
-##### 원인
+`원인`
 
 Informix DB에 Multi-byte 문자의 바이트가 잘린 채로 입력된 경우 이 값을 조회할 때 해당 exception이 발생한다.
 
-##### 해결방법
+`해결 방법`
 
-Informix 연결 속성에 IFX_USE_STRENC=true 추가한다.
+Informix 연결 속성에 IFX_USE_STRENC=true 를 추가한다.
 
-##### 참조
+`참고`
 
 https://m.blog.naver.com/PostView.nhn?blogId=jangkeunna&logNo=70146227929&proxyReferer=https%3A%2F%2Fwww.google.co.kr%2F
+
+<br/>
 
 ### MySQL
 
 #### 테이블 컬럼의 데이터 타입이 크기가 1 또는 2인 VARCHAR나 CHAR일 때, 크기가 1인 데이터는 null로 이관된다.
 
-##### 원인
+`원인`
 
-크기가 1인 데이터를 가져올 때 MySQL JDBC 드라이버가 null 값을 반환하는 것을
-확인하였다면, MySQL JDBC 드라이버 문제로 판단된다.
+크기가 1인 데이터를 가져올 때 MySQL JDBC 드라이버가 null 값을 반환하는 것을 확인하였다면, MySQL JDBC 드라이버 문제로 판단된다.
 
-##### 해결방법
+`해결 방법`
 
-드라이버를 5.0.8 버전의 MySQL
-Connector/J([link](https://dev.mysql.com/downloads/connector/j/5.0.html))로
-교체해야 한다. 재시도에서도 같은 현상이 발생하면, 아래의 과정을 통해 Batch
-Execution을 취소한다.
+드라이버를 5.0.8 버전의 MySQL Connector/J([link](https://dev.mysql.com/downloads/connector/j/5.0.html))로 교체해야 한다. 재시도에서도 같은 현상이 발생하면, 아래의 과정을 통해 Batch Execution을 취소한다.
 
 1. 프로젝트를 연다.
 
-2. 메뉴 “Migration” -\> “Migration Options”를 클릭한다.
+2. 메뉴 Migration -\> Migration Options를 클릭한다.
 
-3. “Batch Execution”의 값을 “No”로 변경한다.
+3. Batch Execution의 값을 No로 변경한다.
 
 #### 데이터 타입 CHAR, VARCHAR가 NCHAR, NVARCHAR로 변경된다.
 
-##### 원인
+`원인`
 
-MySQL은 데이터 타입 NCHAR, NVARCHAR을 지원하지 않는다. 대신 CHAR, VARCHAR 컬럼의
-속성으로 국가별 문자 집합(national character set)을 지정할 수 있다. 마이그레이션
-센터는 이 국가별 문자 집합이 지정된 CHAR, VARCHAR 컬럼에 한해서 NCHAR,
-NVARCHAR로 변환한다.
+MySQL은 데이터 타입 NCHAR, NVARCHAR을 지원하지 않는다. 대신 CHAR, VARCHAR 컬럼의 속성으로 국가별 문자 집합(national character set)을 지정할 수 있다. 마이그레이션 센터는 이 국가별 문자 집합이 지정된 CHAR, VARCHAR 컬럼에 한해서 NCHAR, NVARCHAR로 변환한다.
 
-##### 해결방법
+`해결 방법`
 
 해당 현상은 정상적인 동작이다.
 
-Note: 기본 DataType Map에서 MySQL의 NVARCHAR가 Altibase의 NVARCHAR(10666)으로
-맵핑되어있다.
+Note: 기본 DataType Map에서 MySQL의 NVARCHAR가 Altibase의 NVARCHAR(10666)으로 맵핑되어있다.
 
-MySQL과 Altibase 간 국가별 문자 집합의 글자 당 바이트 수가 서로 다를 경우, 이에
-대한 고려 없이 이관을 수행하면 제한 바이트 수 초과로 스키마를 생성하지 못하는
-상황이 발생할 수도 있다. 이러한 상황을 피하기 위해, 마이그레이션 센터는
-기본적으로 NVARCHAR의 크기를 고정하였다.
+MySQL과 Altibase 간 국가별 문자 집합의 글자 당 바이트 수가 서로 다를 경우, 이에 대한 고려 없이 이관을 수행하면 제한 바이트 수 초과로 스키마를 생성하지 못하는 상황이 발생할 수도 있다. 이러한 상황을 피하기 위해, 마이그레이션 센터는 기본적으로 NVARCHAR의 크기를 고정하였다.
 
-만약 해당 테이블 컬럼의 데이터 크기가 크지 않다면, 아래와 같은 절차를 수행하여
-원본 데이터베이스의 크기를 그대로 이관할 수 있다.
+만약 해당 테이블 컬럼의 데이터 크기가 크지 않다면, 아래와 같은 절차를 수행하여 원본 데이터베이스의 크기를 그대로 이관할 수 있다.
 
-1. Reconcile 단계: “Data Type Mapping”에서 'NVARCHAR' 행 클릭
+1. Reconcile 단계: Data Type Mapping에서 NVARCHAR 행 클릭 
 
-2. “Change” 버튼을 클릭
+2. Change 버튼을 클릭
 
-3. Destination DB Data Type으로 'NVARCHAR'를 선택하고 Precision을 빈칸으로 둔
-   뒤, 저장한다.
+3. Destination DB Data Type으로 NVARCHAR를 선택하고 Precision을 빈칸으로 둔 뒤, 저장한다.
+
+<br/>
 
 ### TimesTen
 
 #### 연결정보 등록 중, “Test” 버튼 클릭 시 오류 메시지 'Problems with loading native library/missing methods: no ttJdbcCS in java.library.path'가 출력된다.
 
-##### 원인
+`원인`
 
-TimesTen Type 2 JDBC가 native 라이브러리를 로딩하는데 실패하였을 때 출력되는
-메시지이다.
+TimesTen Type 2 JDBC가 native 라이브러리를 로딩하는데 실패하였을 때 출력되는 메시지이다.
 
-##### 해결방법
+`해결 방법`
 
-마이그레이션 센터를 실행하려는 장비에 TimesTen 클라이언트 패키지를 설치 한 뒤,
-마이그레이션 센터를 재실행한다. 해당 장비의 운영체제가 리눅스인 경우에는,
-클라이언트 패키지를 설치한 뒤 LD_LIBRARY_PATH에 설치된 클라이언트 패키지의 lib
-디렉토리 경로를 추가해야 한다.
+마이그레이션 센터를 실행하려는 장비에 TimesTen 클라이언트 패키지를 설치 한 뒤, 마이그레이션 센터를 재실행한다. 해당 장비의 운영체제가 리눅스인 경우에는, 클라이언트 패키지를 설치한 뒤 LD_LIBRARY_PATH에 설치된 클라이언트 패키지의 lib 디렉토리 경로를 추가해야 한다.
 
 #### 연결정보 등록 중, “Test” 버튼 클릭 시 오류 메시지 'Problems with loading native library/missing method: \~\\bin\\ttJdbcCS1122.dll: Can't load AMD 64-bit.dll on a IA 32-bit platform'가 출력된다.
 
-##### 원인
+`원인`
 
-마이그레이션 센터가 사용하고 있는 JRE와 TimesTen 클라이언트 패키지의 비트 수가
-일치하지 않을 때 위의 메시지가 출력된다.
+마이그레이션 센터가 사용하고 있는 JRE와 TimesTen 클라이언트 패키지의 비트 수가 일치하지 않을 때 위의 메시지가 출력된다.
 
-##### 해결방법
+`해결 방법`
 
-실행 파일(migcenter.bat 또는 migcenter.sh)을 편집기로 열어 환경변수 JAVA_HOME의
-값을 변경한다. 설치된 TimesTen 클라이언트 패키지의 비트 수에 맞는 JRE의 경로를
-환경변수 JAVA_HOME으로 지정한 뒤, 마이그레이션 센터를 재실행한다.
+실행 파일(migcenter.bat 또는 migcenter.sh)을 편집기로 열어 환경변수 JAVA_HOME의 값을 변경한다. 설치된 TimesTen 클라이언트 패키지의 비트 수에 맞는 JRE의 경로를 환경변수 JAVA_HOME으로 지정한 뒤, 마이그레이션 센터를 재실행한다.
 
 #### 연결정보 등록 중, “Test” 버튼 클릭 시 오류 메시지 'Data source name not found and no default driver specified'가 출력된다.
 
-##### 원인
+`원인`
 
 연결정보에 입력된 DSN값이 잘못되었을 때 출력되는 메시지이다.
 
-##### 해결방법
+`해결 방법`
 
 서버에 등록된 DSN을 DSN 칸에 입력한다.
 
 #### 데이터베이스 연결 등록 및 수정 화면에서, “Test” 버튼 클릭 시 'Problems with loading native library/missing methods: Native Library /path/libttJdbcCS.so already loaded in another classloader' 오류 메시지가 발생한다.
 
-##### 원인
+`원인`
 
 Native library를 사용하는 TimesTen type 2 JDBC driver를 로딩한 상태에서 so 파일을 다시 로딩할 때 Java classloader에서 발생하는 예외상황이다. 예를 들어, 연결 테스트를 수행한 후 다른 JDBC Driver를 선택하여 다시 테스트할 때 발생한다. Java Native Interface (JNI) specification에 따르면 native library는 한번만 로딩할 수 있다. 참고: https://docs.oracle.com/javase/1.5.0/docs/guide/jni/spec/invocation.html#library_version
 
-##### 해결방법
+`해결 방법`
 
 마이그레이션 센터를 완전히 종료 후 재시작하여 데이터베이스 연결 등록을 하거나 연결 정보를 수정한다.

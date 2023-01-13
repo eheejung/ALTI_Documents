@@ -27,28 +27,6 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-- [Adapter for Oracle User’s Manual](#adapter-for-oracle-users-manual)
-  - [서문](#%EC%84%9C%EB%AC%B8)
-    - [이 매뉴얼에 대하여](#%EC%9D%B4-%EB%A7%A4%EB%89%B4%EC%96%BC%EC%97%90-%EB%8C%80%ED%95%98%EC%97%AC)
-  - [1.소개](#1%EC%86%8C%EA%B0%9C)
-    - [Adapter for Oracle](#adapter-for-oracle)
-  - [2.설치와 설정](#2%EC%84%A4%EC%B9%98%EC%99%80-%EC%84%A4%EC%A0%95)
-    - [설치전 작업](#%EC%84%A4%EC%B9%98%EC%A0%84-%EC%9E%91%EC%97%85)
-    - [설치](#%EC%84%A4%EC%B9%98)
-    - [설치 후 작업](#%EC%84%A4%EC%B9%98-%ED%9B%84-%EC%9E%91%EC%97%85)
-    - [설정](#%EC%84%A4%EC%A0%95)
-    - [프로퍼티](#%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0)
-  - [3.사용법](#3%EC%82%AC%EC%9A%A9%EB%B2%95)
-    - [oraAdapter 제약조건](#oraadapter-%EC%A0%9C%EC%95%BD%EC%A1%B0%EA%B1%B4)
-    - [구동과 종료](#%EA%B5%AC%EB%8F%99%EA%B3%BC-%EC%A2%85%EB%A3%8C)
-    - [데이터 타입](#%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%83%80%EC%9E%85)
-    - [Adapter for Oracle 유틸리티](#adapter-for-oracle-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0)
-    - [커맨드 라인 옵션](#%EC%BB%A4%EB%A7%A8%EB%93%9C-%EB%9D%BC%EC%9D%B8-%EC%98%B5%EC%85%98)
-  - [A.부록: FAQ](#a%EB%B6%80%EB%A1%9D-faq)
-    - [FAQ](#faq)
-  - [B.부록: oraAdapter 사용시 DDL 순서](#b%EB%B6%80%EB%A1%9D-oraadapter-%EC%82%AC%EC%9A%A9%EC%8B%9C-ddl-%EC%88%9C%EC%84%9C)
-    - [oraAdapter 사용시 DDL 수행 순서](#oraadapter-%EC%82%AC%EC%9A%A9%EC%8B%9C-ddl-%EC%88%98%ED%96%89-%EC%88%9C%EC%84%9C)
-
 
 
 Altibase® Tool & Utilities
@@ -1192,14 +1170,14 @@ oaUtility를 정상적으로 동작하게 하려면 아래의 사항들을 확�
 ##### 구문
 
 ```
-oaUtility {start}
+oaUtility {start [ force ]}
 ```
 
 
 
 ##### 설명
 
-oraAdapter를 데몬으로 실행한다.
+oraAdapter를 데몬으로 실행한다.  force 옵션은 복제 대상 테이블에 프라이머리 키 제약 조건이 있는지 검사하지 않고 oraAdapter를 시작한다. 
 
 #### oaUtility stop
 

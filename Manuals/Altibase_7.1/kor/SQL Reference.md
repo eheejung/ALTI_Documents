@@ -118,9 +118,12 @@
     - [비교조건](#%EB%B9%84%EA%B5%90%EC%A1%B0%EA%B1%B4)
     - [그 외의 조건](#%EA%B7%B8-%EC%99%B8%EC%9D%98-%EC%A1%B0%EA%B1%B4)
   - [A.부록: 정규 표현식](#a%EB%B6%80%EB%A1%9D-%EC%A0%95%EA%B7%9C-%ED%91%9C%ED%98%84%EC%8B%9D)
-    - [정규 표현식 지원](#%EC%A0%95%EA%B7%9C-%ED%91%9C%ED%98%84%EC%8B%9D-%EC%A7%80%EC%9B%90)
-    - [정규 표현식 라이브러리 문법 차이점](#정규-표현식-라이브러리-문법-차이점)
-    - [정규 표현식 라이브러리 설정 변경 방법](#정규-표현식-라이브러리-설정-변경-방법)
+    - [정규 표현식](#정규-표현식)
+    - [정규 표현식 모드 설정 방법](#정규-표현식-모드-설정-방법)
+    - [Altibase 정규 표현식 모드](#altibase-정규-표현식-모드)
+    - [PCRE2 호환 모드](#pcre2-호환-모드)
+    - [정규 표현식 모드 별 문법 차이점](#정규-표현식-모드-별-문법-차이점)
+    - [정규 표현식 에러 메시지](#정규-표현식-에러-메시지)
 
 
 
@@ -2549,7 +2552,7 @@ TABLESPACE 구문을 사용한다.
 \<질의\> ‘MEM-TBS-1’ 이름의 체크포인트 이미지파일을 다시 생성한다.
 
 ```
-iSQL\> ALTER DATABASE CREATE CHECKPOINT IMAGE 'MEM-TBS-1';
+iSQL> ALTER DATABASE CREATE CHECKPOINT IMAGE 'MEM-TBS-1';
 ```
 
 *SESSION CLOSE*
@@ -11055,16 +11058,17 @@ Drop success.
 
 ##### 객체 권한
 
-\<질의1\> 사용자 uare6가 WITH GRANT OPTION으로 employees 테이블에 대한 SELECT와
-DELETE 객체 권한을 부여 받은 후, 같은 권한을 다른 사용자 uare7과 uare8에게
-부여한다.
+\<질의1\> 사용자 uare6가 WITH GRANT OPTION으로 employees 테이블에 대한 SELECT와 DELETE 객체 권한을 부여 받은 후, 같은 권한을 다른 사용자 uare7과 uare8에게 부여한다.
 
-```
+```sql
 iSQL> CREATE USER uare6 IDENTIFIED BY rose6;
 Create success.
 iSQL> GRANT CREATE USER TO uare6;
 Grant success.
-iSQL> @schema.sql
+iSQL> @ ?/sample/APRE/schema/schema
+
+iSQL> CONNECT sys/manager;
+Connect success.
 iSQL> GRANT SELECT, DELETE ON employees TO uare6 WITH GRANT OPTION;
 Grant success.
 iSQL> CONNECT uare6/rose6;
@@ -11091,11 +11095,9 @@ iSQL> GRANT SELECT, DELETE ON sys.employees TO uare8;
 Grant success.
 ```
 
-WITH GRANT OPTION 으로 객체권한을 부여받은 사용자 uare6는 자신이 생성한 사용자
-uare7 뿐만 아니라 원래의 권한 부여자(SYS)가 생성한 사용자 uare8에게도 객체
-권한을 부여할 수 있다.
+WITH GRANT OPTION 으로 객체권한을 부여받은 사용자 uare6는 자신이 생성한 사용자 uare7 뿐만 아니라 원래의 권한 부여자(SYS)가 생성한 사용자 uare8에게도 객체 권한을 부여할 수 있다.
 
-```
+```sql
 iSQL> CONNECT uare8/rose8;
 Connect success.
 iSQL> DELETE FROM sys.employees WHERE eno = 13;
@@ -11107,12 +11109,11 @@ ENO         E_LASTNAME
 No rows selected.
 ```
 
-\<질의 2\> 다음은 사용자에게 시스템 권한, 객체 권한을 부여한 후 각각의 권한을
-해제하는 예제이다.
+\<질의 2\> 다음은 사용자에게 시스템 권한, 객체 권한을 부여한 후 각각의 권한을 해제하는 예제이다.
 
 1. SYS 사용자가 uare9에게 모든 시스템 권한을 부여한다.
 
-   ```
+   ```sql
    iSQL> CONNECT sys/manager;
    Connect success.
    iSQL> CREATE TABLE book(
@@ -11139,21 +11140,18 @@ No rows selected.
    ```
 
 
-2. SYS는 사용자uare9에게 객체 book에 대한 REFERENCES 권한을 WITH GRANT OPTION
-    으로 부여한다.
+2. SYS는 사용자 uare9에게 객체 book에 대한 REFERENCES 권한을 WITH GRANT OPTION 으로 부여한다.
 
-  ```
-  iSQL> GRANT REFERENCES ON book TO uare9 WITH GRANT OPTION;
-  Grant success.
-  ```
+    ~~~sql
+    iSQL> GRANT REFERENCES ON book TO uare9 WITH GRANT OPTION;
+    Grant success.
+    ~~~
 
-  사용자uare9은 SYS로부터 객체 book에 대한 REFERENCES 권한을 WITH GRANT OPTION
-  으로 부여 받았기 때문에, uare9은 다른 사용자(uare10)에게 객체 book에 대해
-  REFERENCES 객체 권한을 부여할 수 있다.
+    사용자 uare9은 SYS로부터 객체 book에 대한 REFERENCES 권한을 WITH GRANT OPTION 으로 부여 받았기 때문에, uare9은 다른 사용자(uare10)에게 객체 book에 대해 REFERENCES 객체 권한을 부여할 수 있다.
 
 3. uare9이 SYS의 객체인 book 테이블에 데이터를 입력한다.
 
-   ```
+   ```sql
    iSQL> CONNECT uare9/rose9;
    Connect success.
    
@@ -11162,53 +11160,37 @@ No rows selected.
    iSQL> INSERT INTO sys.book VALUES ('0137378424', 'Database Processing', 'David M. Kroenke', 6, 1972, 80000, 'PREN');
    1 row inserted.
    ```
-
-
-
+   
    uare9이 SYS의 객체인 inventory 테이블에 데이터를 입력한다.
-
-   ```
+   
+      ```sql
    iSQL> INSERT INTO sys.inventory VALUES('BORD000002', 'BORD', '12-Jun-2003', 6, 'N');
+   1 row inserted.
    iSQL> INSERT INTO sys.inventory VALUES('MICR000001', 'MICR', '07-Jun-2003', 7, 'N');
    1 row inserted.
-   ```
-
-
+      ```
+   
 
 
 4. uare9이 SYS의 객체인 book 테이블을 조회한다.
 
-   ```
+   ```sql
    iSQL> SELECT * FROM sys.book;
-   BOOK.ISBN   BOOK.TITLE                                          
-   ------------------------------------------------
-   BOOK.AUTHOR                     BOOK.EDITION BOOK.PUBLISHINGYEAR BOOK.PRICE  
-   ------------------------------------------------
-   BOOK.PUBCODE  
-   ----------------
-   0070521824  Software Engineering                                
-   Roger S. Pressman               4           1982        100000      
-   CHAU  
-   0137378424  Database Processing                                 
-   David M. Kroenke                6           1972        80000       
-   PREN  
+   ISBN                  TITLE                 AUTHOR                EDITION     PUBLISHINGYEAR PRICE       PUBCODE               
+   ---------------------------------------------------------------------------------------------------------------------------------------
+   0070521824            Software Engineering  Roger S. Pressman     4           1982        100000      CHAU                  
+   0137378424            Database Processing   David M. Kroenke      6           1972        80000       PREN                  
    2 rows selected.
    ```
-
-
-
+   
    uare9이 SYS의 객체인 inventory 테이블을 조회한다.
-
-   ```
+   
+      ```sql
    iSQL> SELECT * FROM sys.inventory;
-   INVENTORY.SUBSCRIPTIONID  INVENTORY.STORECODE  INVENTORY.PURCHASEDATE 
-   ------------------------------------------------
-   INVENTORY.QUANTITY INVENTORY.PAID  
-   --------------------------------------
-   BORD000002  BORD  2003/06/12 00:00:00  
-   6           N  
-   MICR000001  MICR  2003/06/07 00:00:00  
-   7           N  
+   SUBSCRIPTIONID        STORECODE             PURCHASEDATE QUANTITY    PAID                  
+   -------------------------------------------------------------------------------------------------
+   BORD000002            BORD                  12-JUN-2003  6           N                     
+   MICR000001            MICR                  07-JUN-2003  7           N                     
    2 rows selected.
    
    iSQL> CREATE TABLE book(
@@ -11229,172 +11211,118 @@ No rows selected.
      quantity INTEGER,
      paid CHAR(1));
    Create success.
-   ```
+      ```
+   
+5. uare9은 SYS로부터 ALL PRIVILEGES를 부여 받았으므로 다른 사용자를 생성할 수 있다.
 
-5. uare9은 SYS로부터 ALL PRIVILEGES를 부여 받았으므로 다른 사용자를 생성할 수
-    있다.
+    ~~~sql
+    iSQL> CREATE USER uare10 IDENTIFIED BY rose10;
+    Create success.
+    ~~~
 
-  ```
-  iSQL> CREATE USER uare10 IDENTIFIED BY rose10;
-  Create success.
-  ```
+6. SYS는 uare9에게 REFERENCES 권한을 WITH GRANT OPTION으로 부여했기 때문에, uare9는 다른 사용자(uare10)에게 이 권한을 부여할 수 있다.
 
-6. SYS는 uare9에게 REFERENCES 권한을 WITH GRANT OPTION으로 부여했기 때문에,
-    uare9는 다른 사용자(uare10)에게 이 권한을 부여할 수 있다.
-
-  ```
-  iSQL> GRANT REFERENCES ON sys.book TO uare10;
-  Grant success.
-  ```
+    ~~~sql
+    iSQL> GRANT REFERENCES ON sys.book TO uare10;
+    Grant success.
+    ~~~
 
 
-7. GRANT ANY PRIVILEGES를 부여 받은 uare9이 다른 사용자(uare10)에게 시스템
-    권한을 부여한다.
+7. GRANT ANY PRIVILEGES를 부여 받은 uare9이 다른 사용자(uare10)에게 시스템 권한을 부여한다.
 
-
-
-  ```
-  iSQL> GRANT ALTER ANY TABLE, INSERT ANY TABLE, SELECT ANY TABLE, DELETE ANY
-  TABLE TO uare10;
-  Grant success.
-  ```
-
-
-8. 사용자 uare10은 ALTER ANY TABLE과 REFERENCE 권한이 있기 때문에, 다른 사용자
-    소유의 테이블에 제약조건을 추가할 수 있다.
-
-  ```
-  iSQL> CONNECT uare10/rose10;
-  Connect success.
-  iSQL> ALTER TABLE sys.inventory
-    ADD COLUMN (isbn CHAR(10) CONSTRAINT fk_isbn REFERENCES sys.book(isbn));
-  Alter success.
-  ```
-
-
-
-
-9. 사용자 uare10은 INSERT ANY TABLE 권한이 있기 때문에, 사용자 uare9가 소유한
-    테이블에 데이터를 입력할 수 있다.
-
-  ```
-  iSQL> INSERT INTO uare9.book VALUES('0471316156', 'JAVA and CORBA', 'Robert Orfali', 2, 1998, 50000, 'PREN');
-  1 row inserted.
-  iSQL> INSERT INTO uare9.inventory VALUES('TOWE000001', '0471316156', 'TOWE', '01-Jun-2003', 5, 'N');
-  1 row inserted.
-  ```
-
-
-
-  사용자 uare10은 INSERT ANY TABLE 권한이 있기 때문에, SYS소유의 테이블에 데이터를
-  입력할 수 있다.
-
-  ```
-  iSQL> INSERT INTO sys.book VALUES('053494566X', 'Working Classes', 'Robert Orfali', 1, 1999, 80000, 'WILE');
-  1 row inserted.
-  iSQL> INSERT INTO sys.inventory VALUES('MICR000005', 'WILE', '28-JUN-1999', 8, 'N', '053494566X');
-  1 row inserted.
-  ```
-
-
-10. 사용자 uare10은 SELECT ANY TABLE 권한이 있기 때문에, uare9소유의 테이블을
-    조회할 수 있다.
-
+      ```sql
+    iSQL> GRANT ALTER ANY TABLE, INSERT ANY TABLE, SELECT ANY TABLE, DELETE ANY
+    TABLE TO uare10;
+    Grant success.
     ```
+
+8. 사용자 uare10은 ALTER ANY TABLE과 REFERENCE 권한이 있기 때문에, 다른 사용자 소유의 테이블에 제약조건을 추가할 수 있다.
+
+      ```sql
+    iSQL> CONNECT uare10/rose10;
+    Connect success.
+    iSQL> ALTER TABLE sys.inventory
+      ADD COLUMN (isbn CHAR(10) CONSTRAINT fk_isbn REFERENCES sys.book(isbn));
+    Alter success.
+    ```
+
+9. 사용자 uare10은 INSERT ANY TABLE 권한이 있기 때문에, 사용자 uare9가 소유한 테이블에 데이터를 입력할 수 있다.
+
+    ~~~sql
+    iSQL> INSERT INTO uare9.book VALUES('0471316156', 'JAVA and CORBA', 'Robert Orfali', 2, 1998, 50000, 'PREN');
+    1 row inserted.
+    iSQL> INSERT INTO uare9.inventory VALUES('TOWE000001', '0471316156', 'TOWE', '01-Jun-2003', 5, 'N');
+    1 row inserted.
+    ~~~
+
+    사용자 uare10은 INSERT ANY TABLE 권한이 있기 때문에, SYS소유의 테이블에 데이터를 입력할 수 있다.
+
+      ```sql
+    iSQL> INSERT INTO sys.book VALUES('053494566X', 'Working Classes', 'Robert Orfali', 1, 1999, 80000, 'WILE');
+    1 row inserted.
+    iSQL> INSERT INTO sys.inventory VALUES('MICR000005', 'WILE', '28-JUN-1999', 8, 'N', '053494566X');
+    1 row inserted.
+      ```
+
+10. 사용자 uare10은 SELECT ANY TABLE 권한이 있기 때문에, uare9소유의 테이블을 조회할 수 있다.
+    
+    ```sql
     iSQL> SELECT * FROM uare9.book;
-    BOOK.ISBN   BOOK.TITLE                                          
-    ------------------------------------------------
-    BOOK.AUTHOR                     BOOK.EDITION BOOK.PUBLISHINGYEAR BOOK.PRICE  
-    ------------------------------------------------
-    BOOK.PUBCODE  
-    ----------------
-    0471316156  JAVA and CORBA                                      
-    Robert Orfali                   2           1998        50000       
-    PREN  
+    ISBN                  TITLE                 AUTHOR                EDITION     PUBLISHINGYEAR PRICE       PUBCODE               
+    ---------------------------------------------------------------------------------------------------------------------------------------
+    0471316156            JAVA and CORBA        Robert Orfali         2           1998        50000       PREN  
     1 row selected.
     iSQL> SELECT * FROM uare9.inventory;
-    INVENTORY.SUBSCRIPTIONID  INVENTORY.ISBN  INVENTORY.STORECODE  
-    ------------------------------------------------
-    INVENTORY.PURCHASEDATE INVENTORY.QUANTITY INVENTORY.PAID  
-    ------------------------------------------------
-    TOWE000001  0471316156  TOWE  
-    2003/06/01 00:00:00  5           N  
+    SUBSCRIPTIONID        ISBN                  STORECODE             PURCHASEDATE QUANTITY    PAID
+    ------------------------------------------------------------------------------------------------------------------------
+    TOWE000001            0471316156            TOWE                  01-JUN-2003  5           N  
     1 row selected.
     ```
-
-
-
-    사용자 uare10은 SELECT ANY TABLE 권한이 있기 때문에, SYS소유의 테이블을 조회할
-    수 있다.
     
-    ```
+    사용자 uare10은 SELECT ANY TABLE 권한이 있기 때문에, SYS소유의 테이블을 조회할 수 있다.
+    
+    ~~~sql
     iSQL> SELECT * FROM sys.book;
-    BOOK.ISBN   BOOK.TITLE                                          
-    ------------------------------------------------
-    BOOK.AUTHOR                     BOOK.EDITION BOOK.PUBLISHINGYEAR BOOK.PRICE  
-    ------------------------------------------------
-    BOOK.PUBCODE  
-    ----------------
-    0070521824  Software Engineering                                
-    Roger S. Pressman               4           1982        100000      
-    CHAU  
-    0137378424  Database Processing                                 
-    David M. Kroenke                6           1972        80000       
-    PREN  
-    053494566X  Working Classes                                     
-    Robert Orfali                   1           1999        80000       
-    WILE  
+    ISBN                  TITLE                 AUTHOR                EDITION     PUBLISHINGYEAR PRICE       PUBCODE               
+    ---------------------------------------------------------------------------------------------------------------------------------------
+    0070521824            Software Engineering  Roger S. Pressman     4           1982        100000      CHAU                  
+    0137378424            Database Processing   David M. Kroenke      6           1972        80000       PREN                  
+    053494566X            Working Classes       Robert Orfali         1           1999        80000       WILE  
     3 rows selected.
     iSQL> SELECT * FROM sys.inventory;
-    INVENTORY.SUBSCRIPTIONID  INVENTORY.STORECODE  INVENTORY.PURCHASEDATE 
-    ------------------------------------------------
-    INVENTORY.QUANTITY INVENTORY.PAID  INVENTORY.ISBN  
-    ------------------------------------------------
-    BORD000002  BORD  2003/06/12 00:00:00  
-    6           N              
-    MICR000001  MICR  2003/06/07 00:00:00  
-    7           N              
-    MICR000005  WILE  1999/06/28 00:00:00  
-    8           N  053494566X  
+    SUBSCRIPTIONID        STORECODE             PURCHASEDATE QUANTITY    PAID                  ISBN
+    ------------------------------------------------------------------------------------------------------------------------
+    BORD000002            BORD                  12-JUN-2003  6           N
+    MICR000001            MICR                  07-JUN-2003  7           N
+    MICR000005            WILE                  28-JUN-1999  8           N                     053494566X  
     3 rows selected.
-    ```
+    ~~~
 
 
-11. 사용자 uare10은 DELETE ANY TABLE 권한이 있기 때문에, SYS와 uare9소유의
-    테이블의 데이터를 삭제할 수 있다.
-
-    ```
+11. 사용자 uare10은 DELETE ANY TABLE 권한이 있기 때문에, SYS와 uare9소유의 테이블의 데이터를 삭제할 수 있다.
+    
+    ```sql
     iSQL> DELETE FROM uare9.inventory WHERE subscriptionid = 'TOWE000001';
     1 row deleted.
     iSQL> SELECT * FROM uare9.inventory;
-    INVENTORY.SUBSCRIPTIONID  INVENTORY.ISBN  INVENTORY.STORECODE  
-    ------------------------------------------------
-    INVENTORY.PURCHASEDATE INVENTORY.QUANTITY INVENTORY.PAID  
-    ------------------------------------------------
+    SUBSCRIPTIONID        ISBN                  STORECODE             PURCHASEDATE QUANTITY    PAID
+    ------------------------------------------------------------------------------------------------------------------------
     No rows selected.
     
     iSQL> DELETE FROM sys.inventory WHERE subscriptionid = 'MICR000005';
     1 row deleted.
     iSQL> SELECT * FROM sys.inventory;
-    INVENTORY.SUBSCRIPTIONID  INVENTORY.STORECODE  INVENTORY.PURCHASEDATE 
-    ------------------------------------------------
-    INVENTORY.QUANTITY INVENTORY.PAID  INVENTORY.ISBN  
-    ------------------------------------------------
-    BORD000002  BORD  2003/06/12 00:00:00  
-    6           N              
-    MICR000001  MICR  2003/06/07 00:00:00  
-    7           N              
+    SUBSCRIPTIONID        STORECODE             PURCHASEDATE QUANTITY    PAID                  ISBN
+    ------------------------------------------------------------------------------------------------------------------------
+    BORD000002            BORD                  12-JUN-2003  6           N
+    MICR000001            MICR                  07-JUN-2003  7           N              
     2 rows selected.
+    ```
+
+
+12. 사용자 uare9이 REVOKE ALL 구문을 사용하지 않고 uare10으로부터 모든 권한을 해제한다.
     
-    ```
-
-
-
-
-12. 사용자 uare9이 REVOKE ALL 구문을 사용하지 않고 uare10으로부터 모든 권한을
-    해제한다.
-
-    ```
+    ```sql
     iSQL> CONNECT uare9/rose9;
     Connect success.
     iSQL> REVOKE ALTER ANY TABLE, INSERT ANY TABLE, SELECT ANY TABLE, DELETE ANY TABLE FROM uare10;
@@ -11402,22 +11330,17 @@ No rows selected.
     ```
 
 
-
-
-13. 사용자 uare10의 REFERENCES 권한과 함께 관련된 참조 무결성
-    제약조건(referential integrity constraints)도 같이 삭제한다.
-
-    ```
+13. 사용자 uare10의 REFERENCES 권한과 함께 관련된 참조 무결성 제약조건(referential integrity constraints)도 같이 삭제한다.
+    
+    ```sql
     iSQL> REVOKE REFERENCES ON sys.book FROM uare10 CASCADE CONSTRAINTS;
     Revoke success.
     ```
 
 
-
-
 14. 사용자 uare9의 모든 시스템 권한을 해제한다.
 
-    ```
+    ```sql
     iSQL> CONNECT sys/manager;
     Connect success.
     iSQL> REVOKE ALL PRIVILEGES FROM uare9;
@@ -11427,7 +11350,7 @@ No rows selected.
 
 15. 사용자 uare9의 GRANT ANY PRIVILEGES 권한을 해제한다.
 
-    ```
+    ```sql
     iSQL> REVOKE GRANT ANY PRIVILEGES FROM uare9;
     Revoke success.
     ```
@@ -11435,17 +11358,15 @@ No rows selected.
 
 16. 사용자 uare9의 REFERENCES 권한을 해제한다.
 
-    ```
+    ```sql
     iSQL> REVOKE REFERENCES ON book FROM uare9;
     Revoke success.
-    
     ```
 
 
-\<질의 3\> user01의 T1 테이블에 대한 SELECT, UPDATE, INSERT, DELETE 객체 권한을
-alti_role 롤에 부여한다. 그리고 alti_role 롤을 다른 사용자 user02에게 부여한다.
+\<질의 3\> user01의 T1 테이블에 대한 SELECT, UPDATE, INSERT, DELETE 객체 권한을 alti_role 롤에 부여한다. 그리고 alti_role 롤을 다른 사용자 user02에게 부여한다.
 
-```
+```sql
 iSQL> create role alti_role;
 Create success.
 iSQL> create user user01 identified by user01;
@@ -25361,21 +25282,15 @@ ENO         E_FIRSTNAME           E_LASTNAME            EMP_JOB
 
 ##### 설명
 
-LIKE는 패턴 일치 검사 조건으로써, 어떤 문자열이 주어진 패턴(문자열)을
-포함하는지를 검사한다. LIKE 조건은 퍼센트(“%”)와 밑줄(“_”) 문자를 와일드카드
-문자로 사용한다. “%”는 문자열을 나타내고, “_”는 한 문자를 나타낸다.
+LIKE는 패턴 일치 검사 조건으로써, 어떤 문자열이 주어진 패턴(문자열)을 포함하는지를 검사한다. LIKE 조건은 퍼센트("%")와 밑줄("\_") 문자를 와일드카드 문자로 사용한다. "%"는 문자열을 나타내고, "\_"는 한 문자를 나타낸다.
 
-그러나 “%” 또는 “_”를 와일드카드 문자가 아닌 실제 문자 “%” 또는 “_”로 사용하려는
-경우에는 이스케이프(ESCAPE) 문자를 사용하면 된다. ESCAPE 키워드 다음에
-이스케이프 문자로 사용할 문자를 명시하고, 패턴 문자열에서 “%” 또는 “_” 앞에 이
-이스케이프 문자를 기술하면, “%” 또는 “_”가 와일드카드 문자로 인식되지 않는다.
+그러나 "%" 또는 "\_"를 와일드카드 문자가 아닌 실제 문자 "%" 또는 "\_"로 사용하려는 경우에는 이스케이프(ESCAPE) 문자를 사용하면 된다. ESCAPE 키워드 다음에 이스케이프 문자로 사용할 문자를 명시하고, 패턴 문자열에서 "%" 또는 "\_" 앞에 이 이스케이프 문자를 기술하면, "%" 또는 "\_"가 와일드카드 문자로 인식되지 않는다.
 
 패턴 문자열의 길이는 최대 4000 바이트로 제한된다.
 
 ##### 예제
 
-\<질의\> 성이 “D”로 시작되는 직원들의 사원번호, 이름, 부서번호, 전화번호
-출력하라.
+\<질의\> 성이 “D”로 시작되는 직원들의 사원번호, 이름, 부서번호, 전화번호를 출력하라.
 
 ```
 iSQL> SELECT eno, e_lastname, e_firstname, dno, emp_tel FROM employees WHERE e_lastname LIKE 'D%';
@@ -25387,7 +25302,7 @@ ENO         E_LASTNAME            E_FIRSTNAME           DNO         EMP_TEL
 3 rows selected.
 ```
 
-\<질의\> 부서 이름에 밑줄(_)이 포함된 모든 부서에 대한 정보를 출력하라.
+\<질의\> 부서 이름에 밑줄("\_")이 포함된 모든 부서에 대한 정보를 출력하라.
 
 ```
 iSQL> INSERT INTO departments VALUES(5002, 'USA_HQ', 'Palo Alto', 100);
@@ -25401,8 +25316,7 @@ DNO         DNAME                           DEP_LOCATION  MGR_NO
 
 ```
 
-위 예제에서 백슬래시 (“\\”)가 escape 문자로 정의되었다. 이 escape 문자가
-밑줄(“_”) 앞에 있으므로 밑줄이 와일드카드로 다뤄지지 않는다.
+위 예제에서 백슬래시 ("\\")가 escape 문자로 정의되었다. 이 escape 문자가 밑줄("\_") 앞에 있으므로 밑줄이 와일드카드로 다뤄지지 않는다.
 
 \<질의\> 이름에 “h”가 들어간 모든 사원의 이름을 출력하라.
 
@@ -25434,21 +25348,15 @@ John
 
 ##### 설명
 
-REGEXP_LIKE는 LIKE 검사 조건과 유사하다. LIKE가 단순한 패턴 일치 검사라면,
-REGEXP_LIKE는 정규 표현식 일치 검사를 수행한다. Altibase는 POSIX Basic Regular
-Expression (BRE)을 지원한다. 정규 표현식에 대한 자세한 설명은 "[A.부록: 정규
-표현식](#부록-정규-표현식)"을 참고하라.
+REGEXP_LIKE는 LIKE 검사 조건과 유사하다. LIKE가 단순한 패턴 일치 검사라면, REGEXP_LIKE는 정규 표현식 일치 검사를 수행한다. Altibase는 POSIX Basic Regular Expression (BRE)을 지원한다. 정규 표현식에 대한 자세한 설명은 "[A.부록: 정규 표현식](#부록-정규-표현식)"을 참고하라.
 
-*source_expr*에는 검색 대상이 되는 칼럼이나 문자 표현식이 올 수 있으며,
-일반적으로 CHAR, VARCHAR 같은 문자 타입의 칼럼이 온다.
+*source_expr*에는 검색 대상이 되는 칼럼이나 문자 표현식이 올 수 있으며, 일반적으로 CHAR, VARCHAR 같은 문자 타입의 칼럼이 온다.
 
-*pattern_expr*에는 검색 패턴을 정규 표현식으로 표현한 값이 올 수 있으며,
-일반적으로 문자열이 온다. *pattern_expr*에는 최대 1024바이트까지 입력할 수 있다.
+*pattern_expr*에는 검색 패턴을 정규 표현식으로 표현한 값이 올 수 있으며, 일반적으로 문자열이 온다. *pattern_expr*에는 최대 1024바이트까지 입력할 수 있다.
 
 ##### 예제
 
-\<질의\> 이름의 성이 "D"로 시작되는 직원들의 사원번호, 이름, 부서번호, 전화번호
-출력하라.
+\<질의\> 이름의 성이 "D"로 시작되는 직원들의 사원번호, 이름, 부서번호, 전화번호를 출력하라.
 
 ```
 iSQL> SELECT eno, e_lastname, e_firstname, dno, emp_tel FROM employees WHERE REGEXP_LIKE(e_lastname, '^D');
@@ -25551,7 +25459,10 @@ Altibase SQL에서 정규 표현식은 아래의 문자 함수나 연산자와 �
 사용자는 Altibase 정규 표현식 모드와 PCRE2 호환 모드, 두 가지 정규 표현식 모드 중 하나를 선택하여 사용해야 한다. Altibase 정규 표현식 모드가 기본으로 설정되어 있으므로 PCRE2 호환 모드를 사용하고 싶다면 다음 구문으로 정규 표현식 모드를 변경해야 한다.
 
 > ###### 시스템 단위 변경
+<<<<<<< HEAD
 >
+=======
+>>>>>>> upstream/master
 
 Altibase 서버가 구동된 상태에서 시스템 프로퍼티를 변경하는 구문으로 정규 표현식 모드를 변경하는 방법이다. 변경한 설정을 적용하려면 세션을 재접속해야 한다. 
 
@@ -25601,15 +25512,26 @@ Altibase 정규 표현식 모드는 아래와 같은 제약 사항이 있다.
 
 메타 문자는 정규 표현식에서 사용하는 특별한 의미를 가지는 기호이다.
 
+<<<<<<< HEAD
 |메타 문자 | 의미                                                        |
 | :-------- | :----------------------------------------------------------- |
 | \        | 뒤에 오는 메타 문자를 보통 문자로 취급한다. |
 | ^         | 문자열의 시작 위치를 의미한다.                    |
+=======
+| 메타 문자 | 의미                                                         |
+| :-------- | :----------------------------------------------------------- |
+| \         | 뒤에 오는 메타 문자를 보통 문자로 취급한다.                  |
+| ^         | 문자열의 시작 위치를 의미한다.                               |
+>>>>>>> upstream/master
 | .         | 새로운 행을 제외한 임의의 문자 하나와 일치한다. 공백도 한 문자로 인식한다. |
 | $         | 문자열의 마지막 위치 또는 줄바꿈 문자로 끝나는 문자열을 의미한다. |
 | \|        | 여러 식 중에 하나를 선택한다.                                |
 | ()        | 하위 표현식 또는 그룹. 여러 식을 하나로 묶어서 복잡한 정규식을 표현할 수 있다. |
+<<<<<<< HEAD
 | []        | 문자 클래스를 의미한다. |
+=======
+| []        | 문자 클래스를 의미한다.                                      |
+>>>>>>> upstream/master
 
 ##### 반복 찾기
 
@@ -25639,6 +25561,7 @@ Altibase 정규 표현식 모드는 아래와 같은 제약 사항이 있다.
 
 문자 클래스는 자주 사용하는 문자 집합들을 정의한 것이다. 문자 클래스는 이스케이프 스퀀스로 표현하거나 대괄호로 둘러싸인 POSIX 표기법을 사용할 수도 있다. 
 
+<<<<<<< HEAD
 | 이스케이프 시퀀스 | POSIX 문자 클래스 | 의미                                                        |
 | :------------------------------------------------------------ | :--------- | :--------- |
 |           | [:alnum:]    | 알파벳 대소문자와 숫자                                          |
@@ -25663,6 +25586,32 @@ Altibase 정규 표현식 모드는 아래와 같은 제약 사항이 있다.
 | \\W       |              | \\w를 제외한 모든 문자                                       |
 | \\x       | [:xdigit:]   | 16진수. 0-9, a-f, A-F                                  |
 | \\X       |              | \\x를 제외한 모든 문자                                       |
+=======
+| 이스케이프 시퀀스 | POSIX 문자 클래스 | 의미                                                         |
+| :---------------- | :---------------- | :----------------------------------------------------------- |
+|                   | [:alnum:]         | 알파벳 대소문자와 숫자                                       |
+| \\a               | [:alpha:]         | 알파벳 대소문                                                |
+| \\A               |                   | \\a를 제외한 모든 문자                                       |
+| \\b               |                   | 단어 경계. 단어의 시작이나 마지막                            |
+| \\B               |                   | \\b를 제외한 모든 문자                                       |
+|                   | [:blank:]         | 공백 문자(space)나 탭(\t)                                    |
+| \\c               | [:cntrl:]         | 아스키 코드의 제어 문자. 0번부터 31번, 그리고 127번 문자     |
+| \\C               |                   | \\c를 제외한 모든 문자                                       |
+| \\d               | [:digit:]         | 10진 숫자                                                    |
+| \\D               |                   | \\d를 제외한 모든 문자                                       |
+|                   | [:graph:]         | 아스키 코드에서 출력할 수 있는 문자 32 ~ 126 중, 공백 문자(32)를 제외한 문자 |
+| \\l               | [:lower:]         | 알파벳 소문자                                                |
+|                   | [:print:]         | 아스키 코드에서 출력할 수 있는 문자 32 ~ 126                 |
+| \\p               | [:punct:]         | 아스키 코드에서 출력할 수 있는 문자 32 ~ 126 중, 공백 문자, 숫자, 알파벳을 제외한 문자 |
+| \\P               |                   | \\p를 제외한 모든 문자                                       |
+| \\s               | [:space:]         | 눈에 보이지 않는 공백 문자(space, carriage return, newline, vertical tab, form feed) |
+| \\S               |                   | \\s를 제외한 모든 문자                                       |
+| \\u               | [:upper:]         | 알파벳 대문자                                                |
+| \\w               | [:word:]          | 알파벳 대소문자, 숫자, 언더바(\_)                            |
+| \\W               |                   | \\w를 제외한 모든 문자                                       |
+| \\x               | [:xdigit:]        | 16진수. 0-9, a-f, A-F                                        |
+| \\X               |                   | \\x를 제외한 모든 문자                                       |
+>>>>>>> upstream/master
 
 ### PCRE2 호환 모드
 
@@ -25688,6 +25637,7 @@ PCR2E 호환 모드에서 사용할 수 있는 대표적인 정규 표현식 문
 메타 문자는 정규 표현식에서 사용하는 특별한 의미를 가지는 기호이다. PCRE2 호환 모드에서 메타 문자는 대괄호 안을 제외한 어느 곳에서나 인식되는 메타 문자와 대괄호 안에서 사용되는 메타 문자가 있다. 
 
 > ###### 대괄호 밖에서의 메타 문자
+<<<<<<< HEAD
 >
 
 | 메타 문자 | 의미                                     |
@@ -25714,11 +25664,39 @@ PCR2E 호환 모드에서 사용할 수 있는 대표적인 정규 표현식 문
 | -                                  | 문자 범위                                                    |
 | [                                  | 문자 클래스 시작                                         |
 | ]                                  | 문자 클래스의 종료                                           |
+=======
+
+| 메타 문자 | 의미                                    |
+| :-------- | :-------------------------------------- |
+| \         | 여러 용도로 사용되는 이스케이프 문자    |
+| ^         | 문자열(또는 여러 줄 모드에서 줄)의 시작 |
+| $         | 문자열(또는 여러 줄 모드에서 줄)의 끝   |
+| .         | 줄바꿈 문자를 제외한 모든 문자와 일치   |
+| [         | 문자 클래스 정의 시작                   |
+| \|        | 여러 식 중 하나를 선택                  |
+| (         | 그룹 또는 제어 동사 시작                |
+| )         | 그룹 또는 제어 동사 끝                  |
+| *         | 0회 이상 일치하는 문자                  |
+| +         | 1회 이상 일치하는 문자                  |
+| ?         | 0 또는 1회 일치하는 문자                |
+| {         | 최소/최대값                             |
+
+> ###### 대괄호 안에서의 메타 문자
+
+| 메타 문자 | 의미                                                    |
+| :-------- | :------------------------------------------------------ |
+| \         | 뒤의 문자를 일반 문자로 인식                            |
+| ^         | ^ 바로 뒤 문자나 범위 또는 집합 안의 문자나 범위를 제외 |
+| -         | 문자 범위                                               |
+| [         | 문자 클래스 시작                                        |
+| ]         | 문자 클래스의 종료                                      |
+>>>>>>> upstream/master
 
 ##### 출력할 수 없는 문자
 
 다음은 출력할 수 없는 문자를 의미하는 이스케이프 시퀀스를 정리한 표이다. 
 
+<<<<<<< HEAD
 | 이스케이프 시퀀스 | 의미                                                        |
 | :--------------------------------- | :----------------------------------------------------------- |
 | \a                                 | 경고음 문자                                                  |
@@ -25734,6 +25712,23 @@ PCR2E 호환 모드에서 사용할 수 있는 대표적인 정규 표현식 문
 | \x*hh*                             | 아스키 코드의 16진수 코드 *hh*에 해당하는 문자. 예를 들어 \x31은  숫자 1을 의미한다. |
 | \x{*hhh..*}                        | 아스키 코드의 16진수 코드 *hhh...* 에 해당하는 문자          |
 | \N{U+*hhh..*}                      | 유니코드 16진수 코드 *hhh..* 값에 해당하는 문자              |
+=======
+| 이스케이프 시퀀스 | 의미                                                         |
+| :---------------- | :----------------------------------------------------------- |
+| \a                | 경고음 문자                                                  |
+| \c*x*             | control-*x* 문자. *x*는 출력 가능한 아스키 문자가 올 수 있다. |
+| \e                | ESC 문자(escape). 아스키 코드의 27번째 문자(hex 1B)          |
+| \f                | 다음 페이지(form feed). 아스키 코드의 12번째 문자(hex 0C)    |
+| \n                | 줄바꿈 문자(line feed). 아스키 코드의 10번째 문자(hex 0A)    |
+| \r                | 캐리지 리턴(carriage return). 아스키 코드의 13번째 문자(hex 0D) |
+| \t                | 탭(tab). 아스키 코드의 9번째 문자(hex 09)                    |
+| \0*dd*            | 아스키 코드의 8진수 코드 *dd*에 해당하는 문자. 예를 들어 \061은 숫자 1을 의미한다. |
+| \\*ddd*           | 아스키 코드의 8진수 코드 *ddd*에 해당하는 문자 또는 역참조를 의미한다. |
+| \o{*ddd..*}       | 아스키 코드의 8진수 코드 *ddd...* 에 해당하는 문자           |
+| \x*hh*            | 아스키 코드의 16진수 코드 *hh*에 해당하는 문자. 예를 들어 \x31은  숫자 1을 의미한다. |
+| \x{*hhh..*}       | 아스키 코드의 16진수 코드 *hhh...* 에 해당하는 문자          |
+| \N{U+*hhh..*}     | 유니코드 16진수 코드 *hhh..* 값에 해당하는 문자              |
+>>>>>>> upstream/master
 
 **예제**
 
@@ -25758,6 +25753,7 @@ AU-100
 
 다음은 자주 사용하는 일반 문자 집합들을 의미하는 이스케이프 시퀀스를 정리한 표이다. 
 
+<<<<<<< HEAD
 |  이스케이프 시퀀스  | 의미 |
 | :------- | :--- |
 | \d       | 10진수 숫자 |
@@ -25775,6 +25771,25 @@ AU-100
 | \w       | 단어(word) 문자 |
 | \W       | 단어(word) 문자가 아닌 문자 |
 | \X       | 유니코드 확장 문자소 클러스터 |
+=======
+| 이스케이프 시퀀스 | 의미                                         |
+| :---------------- | :------------------------------------------- |
+| \d                | 10진수 숫자                                  |
+| \D                | 10진수 숫자가 아닌 문자                      |
+| \h                | 수평 공백 문자, 예를 들어 스페이스와 탭 문자 |
+| \H                | 수평 공백 문자가 아닌 문자                   |
+| \N                | 줄바꿈 문자가 아닌 문자                      |
+| \p{*xx*}          | *xx* 속성을 가진 유니코드 문자               |
+| \P{*xx*}          | *xx* 속성이 없는 유니코드 문자               |
+| \R                | 줄바꿈 문자                                  |
+| \s                | 공백 문자                                    |
+| \S                | 공백 문자가 아닌 문자                        |
+| \v                | 수직 공백 문자, 예를 들어 줄바꿈 문자        |
+| \V                | 수직 공백 문자가 아닌 문자                   |
+| \w                | 단어(word) 문자                              |
+| \W                | 단어(word) 문자가 아닌 문자                  |
+| \X                | 유니코드 확장 문자소 클러스터                |
+>>>>>>> upstream/master
 
 > ###### 유니코드 문자 속성
 
@@ -25876,6 +25891,7 @@ Adlam, Ahom, Anatolian_Hieroglyphs, Arabic, Armenian, Avestan, Balinese, Bamum, 
 
 문자 클래스는 자주 사용하는 문자 집합들을 정의한 것이다. 문자 클래스는 [일반 문자 유형](#일반-문자-유형)처럼 이스케이프 시퀀스로 표현하거나 아래 표와 같이 대괄호로 둘러싸인 POSIX 표기법을 사용할 수도 있다. POSIX 문자 클래스는 "[:" 와 ":]"로 둘러싸여 있다. 바깥쪽 대괄호는 문자 집합을 정의하는 것이고 안쪽 대괄호는 POSIX 문자 클래스 문법 자체를 의미한다. 
 
+<<<<<<< HEAD
 | POSIX 문자 클래스 | 의미                                                      |
 | :------------ | :------------------------------------------------------------ |
 | [[:alnum:]]  | 알파벳과 숫자                                                |
@@ -25892,6 +25908,24 @@ Adlam, Ahom, Anatolian_Hieroglyphs, Arabic, Armenian, Avestan, Balinese, Bamum, 
 | [[:upper:]]  | 알파벳 대문자                                                |
 | [[:word:]]   | 알파벳, 숫자, _                                              |
 | [[:xdigit:]] | 16진수 숫자, 0-9, a-f, A-F                                   |
+=======
+| POSIX 문자 클래스 | 의미                                                         |
+| :---------------- | :----------------------------------------------------------- |
+| [[:alnum:]]       | 알파벳과 숫자                                                |
+| [[:alpha:]]       | 알파벳 문자                                                  |
+| [[:ascii:]]       | 아스키 코드에서 0번부터 127번까지의 문자                     |
+| [[:blank:]]       | 스페이스나 탭                                                |
+| [[:cntrl:]]       | 아스키 코드에서 127번 문자와 31번 이하의 문자                |
+| [[:digit:]]       | 숫자                                                         |
+| [[:graph:]]       | 아스키 코드에서 출력할 수 있는 문자 32 ~ 126 중, 공백 문자(32)를 제외한 문자 |
+| [[:lower:]]       | 알파벳 소문자                                                |
+| [[:print:]]       | 아스키 코드에서 출력할 수 있는 문자 32 ~ 126                 |
+| [[:punct:]]       | 아스키 코드에서 출력할 수 있는 문자 32 ~ 126 중, 공백 문자, 숫자, 알파벳을 제외한 문자 |
+| [[:space:]]       | 출력되지 않는 공백 문자(space, carriage return, newline, vertical tab, form feed) 등 |
+| [[:upper:]]       | 알파벳 대문자                                                |
+| [[:word:]]        | 알파벳, 숫자, _                                              |
+| [[:xdigit:]]      | 16진수 숫자, 0-9, a-f, A-F                                   |
+>>>>>>> upstream/master
 
 **예제**
 
@@ -25915,6 +25949,7 @@ PM
 어설션(assertions)은 어떤 문자 또는 문자열의 앞과 뒤를 확인하는 것을 의미한다. [메타 문자](#메타-문자-1)에서 소개한 "^"와 "$"는 어설션의 하나이며 '앵커'라고 부르기도 한다. 
 
 | 이스케이프 시퀀스 | 설명                                                         |
+<<<<<<< HEAD
 | :---- | :------------------------------------------------------------ |
 | \A   | 문자열의 시작 위치                                           |
 | \b   | 단어 경계. 단어의 시작이나 마지막 위치                      |
@@ -25922,6 +25957,15 @@ PM
 | \G   | 문자열에서 첫 번째 일치 위치                                 |
 | \z   | 문자열의 마지막 위치 |
 | \Z   | 문자열의 마지막 위치 또는 문자열의 마지막 문자인 줄바꿈 문자 바로 전 위치 |
+=======
+| :---------------- | :----------------------------------------------------------- |
+| \A                | 문자열의 시작 위치                                           |
+| \b                | 단어 경계. 단어의 시작이나 마지막 위치                       |
+| \B                | 단어 경계가 없을 때 일치                                     |
+| \G                | 문자열에서 첫 번째 일치 위치                                 |
+| \z                | 문자열의 마지막 위치                                         |
+| \Z                | 문자열의 마지막 위치 또는 문자열의 마지막 문자인 줄바꿈 문자 바로 전 위치 |
+>>>>>>> upstream/master
 
 **예제**
 
@@ -26030,6 +26074,7 @@ sales rep
 sales rep                                                                                             
 sales rep                                                                                             
 3 rows selected.
+<<<<<<< HEAD
 
 iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, 'sales (*pla:rep)');
 EMP_JOB                                                                                               
@@ -26226,4 +26271,196 @@ ERR-2106C : PCRE2 error: <1%s> (occurred in <0%s>)
 
 
 
+=======
+
+iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, 'sales (*pla:rep)');
+EMP_JOB                                                                                               
+--------------------------------------------------------------------------------------------------------
+sales rep                                                                                             
+sales rep                                                                                             
+sales rep                                                                                             
+3 rows selected.
+~~~
+
+<질의> 부정형 전방탐색을 사용하여 GOODS 테이블의 GNAME 컬럼에서 TM- 문자열 오른쪽에 U가 나오지 않는 데이터를 조회하라. 
+
+~~~sql
+iSQL> SELECT GNAME FROM GOODS WHERE REGEXP_LIKE(GNAME, 'TM-(?!U)');
+GNAME                                                                                                 
+--------------------------------------------------------------------------------------------------------
+TM-H5000                                                                                              
+TM-T88                                                                                                
+TM-L60                                                                                                
+3 rows selected.
+
+iSQL> SELECT GNAME FROM GOODS WHERE REGEXP_LIKE(GNAME, 'TM-(*nla:U)');
+GNAME                                                                                                 
+--------------------------------------------------------------------------------------------------------
+TM-H5000                                                                                              
+TM-T88                                                                                                
+TM-L60                                                                                                
+3 rows selected.
+~~~
+
+##### 수량자
+
+찾고자 하는 문자가 몇 번 반복하는 지 지정하여 검색한다. 
+
+| 문법   | 설명                                                         |
+| :----- | :----------------------------------------------------------- |
+| ?      | 앞의 문자가 0번 또는 1번 나오는 문자를 찾는다. 욕심 많은(greedy) 수량자 방식으로 검색한다. |
+| ?+     | 앞의 문자가 0번 또는 1번 나오는 문자를 찾는다. 독점적인(possessive) 수량자 방식으로 검색한다. |
+| ??     | 앞의 문자가 0번 또는 1번 나오는 문자를 찾는다. 게으른(lazy) 수량자 방식으로 검색한다. |
+| *      | 앞의 문자가 0 번 이상 등장하는 문자를 찾는다. 욕심 많은 수량자 방식으로 검색한다. |
+| *+     | 앞의 문자가 0 번 이상 등장하는 문자를 찾는다. 독점적인 수량자 방식으로 검색한다. |
+| *?     | 앞의 문자가 0 번 이상 등장하는 문자를 찾는다. 게으른 수량자 방식으로 검색한다. |
+| +      | 앞의 문자가 1회 이상 나오는 문자를 찾는다. 욕심 많은 수량자 방식으로 검색한다. |
+| ++     | 앞의 문자가 1회 이상 나오는 문자를 찾는다. 독점적인 수량자 방식으로 검색한다. |
+| +?     | 앞의 문자가 1회 이상 나오는 문자를 찾는다. 게으른 수량자 방식으로 검색한다. |
+| {n}    | 앞의 문자가 n회 나오는 문자를 찾는다.                        |
+| {n,m}  | 앞의 문자가 최소 n번, 최대 m회 반복되는 문자를 찾는다. 욕심 많은 수량자 방식으로 검색한다. |
+| {n,m}+ | 앞의 문자가 최소 n번, 최대 m회 반복되는 문자를 찾는다. 독점적인 수량자 방식으로 검색한다. |
+| {n,m}? | 앞의 문자가 최소 n번, 최대 m회 반복되는 문자를 찾는다. 게으른 수량자 방식으로 검색한다. |
+| {n,}   | 앞의 문자가 n회 이상 나오는 문자를 찾는다. 욕심 많은 수량자 방식으로 검색한다. |
+| {n,}+  | 앞의 문자가 n회 이상 나오는 문자를 찾는다. 독점적인 수량자 방식으로 검색한다. |
+| {n,}?  | 앞의 문자가 n회 이상 나오는 문자를 찾는다. 게으른 수량자 방식으로 검색한다. |
+
+**예제**
+
+<질의> CUSTOMERS 테이블에서 고객 주소에서 숫자 뒤에 th가 1번 나오는 주소(ADDRESS)와 고객 번호(CNO)를 조회하라.
+
+~~~sql
+iSQL> SELECT CNO, ADDRESS FROM CUSTOMERS WHERE REGEXP_LIKE(ADDRESS, '[0-9]th{1}');
+CNO                  ADDRESS                                                       
+--------------------------------------------------------------------------------------
+2                    4712 West 10th Avenue Vancouver BC Canada                     
+9                    10th Floor No. 334 Jiujiang Road Shanghai                     
+13                   12th Floor Five Kemble Street London UK                       
+3 rows selected.
+~~~
+
+##### 역참조
+
+참조해둔 패턴을 숫자 또는 이름으로 다시 사용하는 것을 의미한다.
+
+| 문법       | 설명                                                       |
+| :--------- | :--------------------------------------------------------- |
+| \n         | 번호를 사용하여 참조 (정규식에 따라 순번이 모호할 수 있음) |
+| \gn        | 번호를 사용하여 참조                                       |
+| \g{n}      | 번호를 사용하여 참조                                       |
+| \g+n       | 번호를 사용한 상대 참조 (PCRE2 확장 문법)                  |
+| \g-n       | 번호를 사용한 상대 참조                                    |
+| \g{+n}     | 번호를 사용한 상대 참조 (PCRE2 확장 문법)                  |
+| \g{-n}     | 번호를 사용한 상대 참조                                    |
+| \k\<name\> | 이름을 사용하여 참조 (Perl 문법)                           |
+| \k'name'   | 이름을 사용하여 참조 (Perl 문법)                           |
+| \g{name}   | 이름을 사용하여 참조 (Perl 문법)                           |
+| \k{name}   | 이름을 사용하여 참조 (.NET 문법)                           |
+| (?P=name)  | 이름을 사용하여 참조 (Python 문법)                         |
+
+##### 조건부 일치
+
+"\|"로 구분된 문자 중 하나를 하나를 선택하여 검색한다.
+
+| 문법             | 설명                          |
+| :--------------- | :---------------------------- |
+| expr\|expr\|expr | 여러 식 중에 하나를 선택한다. |
+
+**예제**
+
+<질의> EMPLOYEES 테이블에서 016이나 018로 시작하는 전화번호(EMP_TEL)와 직원 번호(ENO)를 조회하라.
+
+~~~sql
+ISQL> SELECT ENO, EMP_TEL FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_TEL, '^016|018');
+ENO         EMP_TEL          
+--------------------------------
+3           0162581369       
+4           0182563984       
+9           0165293668       
+10          0167452000       
+13          0187636550       
+17          0165293886       
+19          0185698550       
+7 rows selected.
+~~~
+
+##### 정규표현식의 옵션
+
+"(?"와 ")" 사이에 묶인 문자로, 정규표현식에서 특별한 지시를 내리는 기호이다. 
+
+| 옵션    | 설명                                                         |
+| :------ | :----------------------------------------------------------- |
+| (?i)    | 대소문자 무시                                                |
+| (?J)    | 같은 이름을 가지는 그룹 허용                                 |
+| (?m)    | 다중 행에서 검색                                             |
+| (?n)    | 자동 캡쳐를 사용하지 않음                                    |
+| (?s)    | 단일 행에서 검색                                             |
+| (?U)    | 비탐욕적(게으른) 방법으로 검색                               |
+| (?x)    | 공백 문자를 무시한다. 문자 클래스 안의 공백 문자는 예외이다. |
+| (?xx)   | 공백 문자를 무시한다. 문자 클래스 안의 공백 문자도 무시한다. |
+| (?-...) | 설정된 옵션(들) 해제                                         |
+| (?^)    | imnsx 옵션 해제                                              |
+
+**예제**
+
+<질의> EMPLOYEES 테이블에서 대소문자 구분없이 m이 포함된 성(E_LASTNAME)을 검색하라.
+
+~~~sql
+iSQL> SELECT E_LASTNAME FROM EMPLOYEES WHERE REGEXP_LIKE(E_LASTNAME, '(?i)m');
+E_LASTNAME                                                    
+----------------------------------------------------------------
+Moon                                                          
+Momoi                                                         
+Hammond                                                       
+Miura                                                         
+Marquez                                                       
+5 rows selected.
+iSQL> 
+~~~
+
+##### 주석
+
+정규표현식에서 사용하는 주석이다. "(?#"는 주석의 시작을 의미하며 닫는 괄호(")")는 주석의 끝을 의미한다.
+
+| 문법     | 설명 |
+| :------- | :--- |
+| (?#....) | 주석 |
+
+**예제**
+
+<질의>
+
+~~~sql
+iSQL> SELECT EMP_JOB FROM EMPLOYEES WHERE REGEXP_LIKE(EMP_JOB, '(?i)M(?#test)A(s|n)');
+EMP_JOB
+-------------------
+webmaster
+manager
+2 rows selected.
+~~~
+
+
+​	
+
+### 정규 표현식 모드 별 문법 차이점
+
+Altibase 정규 표현식 모드와 PCRE2 호환 모드의 정규 표현식 문법 차이를 나타내는 대표적인 예이다.
+
+| 정규 표현식 문법  | Altibase 정규 표현식 모드                                    | PCRE2 호환 모드                                              | 차이                                                         |
+| ----------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| POSIX 문자 클래스 | `SELECT REGEXP_COUNT('ABCDEFG1234567abcdefgh!@#$%^&*(','[:punct:]+');` | `SELECT REGEXP_COUNT('ABCDEFG1234567abcdefgh!@#$%^&*(','[[:punct:]]+');` | POSIX 문자 클래스 표현식이 다르다.                           |
+| 이스케이프 스퀀스 | `SELECT REGEXP_COUNT('ABCDEFG1234567abcdefgh!@#$%^&*(','\l+');` | `SELECT REGEXP_COUNT('ABCDEFG1234567abcdefgh!@#$%^&*(','[[:lower:]]+');` | PCRE2 호환 모드에서는 `\l`문법을 지원하지 않는다. [[:lower:]]로 대체할 수 있다. |
+| POSIX 동등 클래스 | [=A=]                                                        | -                                                            | 지원하지 않는다.                                             |
+|                   | [A-[.CH.]]                                                   | -                                                            | 지원하지 않는다.                                             |
+
+
+
+### 정규 표현식 에러 메시지
+
+PCRE2 호환 모드에서 발생하는 에러 중 0x2106C 에러 코드는 아래와 같은 형식으로 에러 메시지가 출력된다. <1%s>는 PCRE2 라이브러리에서 반환한 메시지이며 <0%s>는 Altibase 에서 해당 에러가 발생한 위치를 의미한다. 이 에러 메시지에 대한 원인과 조치 방법은 Error Message Reference의 [15.Regular Expression Error Code](https://github.com/eheejung/ALTI_Documents/blob/master/Manuals/Altibase_trunk/kor/Error%20Message%20Reference.md#15regular-expression-error-code) 장에서 확인할 수 있다.
+
+~~~bash
+ERR-2106C : PCRE2 error: <1%s> (occurred in <0%s>)
+~~~
+>>>>>>> upstream/master
 

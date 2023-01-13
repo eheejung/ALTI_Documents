@@ -186,7 +186,8 @@ Altibase에서 지원하는 데이타형은 다음과 같다.
 
 <table>
     <tr>
-    	<td colspan="3">M: 정의된 칼럼 길이<br/>L: 입력 문자열의 길이
+    	<td colspan="3"><pre>M : 정의된 칼럼 길이
+L : 입력 문자열의 길이</pre>
 </td>
     </tr>
     <tr>
@@ -196,39 +197,42 @@ Altibase에서 지원하는 데이타형은 다음과 같다.
     </tr>
     <tr>
     	<td>CHAR(M)</td>
-        <td>0 ~ 32000</td>
+        <td>1 ~ 32000</td>
         <td>M + 2</td>
     </tr>
     <tr>
     	<td>VARCHAR(M)</td>
-        <td>0 ~ 32000</td>
-        <td>length + 2, 여기서
-입력 값이 가변영역에 저장되면, length = L
+        <td>1 ~ 32000</td>
+        <td>length + 2<br>
+여기서:<br>
+입력 값이 가변영역에 저장되면, length = L<br>
 입력 값이 고정영역에 저장되면, length = M
 </td>
     </tr>
      <tr>
     	<td>NCHAR(M)</td>
-        <td>0~16000(UTF16)
-0~10666(UTF8)
+        <td>1 ~ 16000(UTF16)<br>
+1 ~ 10666(UTF8)
 </td>
-        <td>M*2 + 2(UTF16)
+        <td>M*2 + 2(UTF16)<br>
 M*3 + 2(UTF8)
 </td>
     </tr>
      <tr>
     	<td>NVARCHAR(M)</td>
-        <td>0~16000(UTF16)
-0~10666(UTF8)
+        <td>1 ~ 16000(UTF16)<br>
+1 ~ 10666(UTF8)
 </td>
-        <td>length*2 + 2(UTF16)
-length*3 + 2(UTF8)
-여기서:
-입력 값이 가변영역에 저장되면, length = L
+        <td>length*2 + 2(UTF16)<br>
+length*3 + 2(UTF8)<br>
+여기서:<br>
+입력 값이 가변영역에 저장되면, length = L<br>
 입력 값이 고정영역에 저장되면, length = M
+</pre>
 </td>
     </tr>
     </table>
+
 NCHAR와 NVARCHAR는 유니코드 문자형 타입이다. UTF16으로 인코딩된 문자열의 최대
 길이는 UTF8로 인코딩된 문자열의 최대 길이와 다르다.
 
@@ -248,17 +252,17 @@ NCHAR와 NVARCHAR는 유니코드 문자형 타입이다. UTF16으로 인코딩�
         <td>38</td>
         <td>0</td>
         <td rowspan="8">3+((precision)+2)/2</td>
-        <td rowspan="8">*고정 소수점 숫자
+        <td rowspan="8">*고정 소수점 숫자<br>
 *DECIMAL은 NUMERIC과 동일한 데이터 타입이다.</td>
     </tr>
     <tr>
         <td>NUMERIC(p)</td>
-        <td>0 ~ 38</td>
+        <td>1 ~ 38</td>
         <td>0</td>
     </tr>
     <tr>
         <td>NUMERIC(p,s)</td>
-        <td>0 ~ 38</td>
+        <td>1 ~ 38</td>
         <td>-84 ~ 128</td>
     </tr>
     <tr>
@@ -268,22 +272,22 @@ NCHAR와 NVARCHAR는 유니코드 문자형 타입이다. UTF16으로 인코딩�
     </tr>
     <tr>
         <td>DECIMAL(p)</td>
-        <td>0 ~ 38</td>
+        <td>1 ~ 38</td>
         <td>0</td>
     </tr>
     <tr>
         <td>DECIMAL(p,s)</td>
-        <td>0 ~ 38</td>
+        <td>1 ~ 38</td>
         <td>-84 ~ 128</td>
     </tr>
     <tr>     
         <td>NUMBER(p)</td>
-        <td>0 ~ 38</td>
+        <td>1 ~ 38</td>
         <td>0</td>
     </tr>
       <tr>     
         <td>NUMBER(p,s)</td>
-        <td>0 ~ 38</td>
+        <td>1 ~ 38</td>
         <td>-84 ~ 128</td>
     </tr>
     <tr>
@@ -300,7 +304,7 @@ NCHAR와 NVARCHAR는 유니코드 문자형 타입이다. UTF16으로 인코딩�
     </tr>
     <tr>
     	<td>FLOAT(p)</td>
-        <td>0 ~ 38</td>
+        <td>1 ~ 38</td>
         <td>X</td>
     </tr>
     <tr>
@@ -388,7 +392,8 @@ long long
 
 <table>
     <tr>
-    	<td colspan="3">M: 정의된 칼럼 길이<br/>L: 입력 문자열의 길이
+    	<td colspan="3"><pre>M : 정의된 칼럼 길이
+L : 입력 문자열의 길이</pre>
 </td>
     </tr>
     <tr>
@@ -399,32 +404,34 @@ long long
     <tr>
     	<td>BLOB/CLOB</td>
         <td></td>
-        <td>1~4294967295</td>
+        <td>1 ~ 4294967295</td>
     </tr>
     <tr>
     	<td>BYTE</td>
-        <td>0~32000</td>
+        <td>1 ~ 32000</td>
         <td>M + 2</td>
     </tr>
      <tr>
     	<td>NIBBLE</td>
-        <td>0~254</td>
+        <td>1 ~ 254</td>
         <td>M/2 + 1</td>
     </tr>
      <tr>
     	<td>BIT</td>
-        <td>0~64000</td>
+        <td>1 ~ 64000</td>
         <td>M/8 + 4</td>
     </tr>
     <tr>
     	<td>VARBIT</td>
-        <td>0~64000</td>
-        <td>length/8 + 4, 여기서
-입력 값이 가변영역에 저장되면, length = L
+        <td>1  ~64000</td>
+        <td>length/8 + 4<br>
+여기서<br>
+입력 값이 가변영역에 저장되면, length = L<br>
 입력 값이 고정영역에 저장되면, length = M
 </td>
     </tr>
     </table>
+
 
 **공간 데이타형**
 
@@ -7064,7 +7071,7 @@ Unsigned Integer
 
 ##### 기본값
 
-1
+3
 
 ##### 속성
 
@@ -7076,9 +7083,7 @@ Unsigned Integer
 
 ##### 설명
 
-Altibase 서버의 디스패처(Dispatcher)에서 소켓 감지를 위한 시스템 콜을 선택하는
-프로퍼티이다. 클라이언트의 동시 접속이 1,000개 이상일 때 POLL() 시스템 콜이
-사용되면 성능 향상에 도움이 된다.
+Altibase 서버의 디스패처(Dispatcher)에서 소켓 감지를 위한 시스템 콜을 선택하는 프로퍼티이다. 클라이언트의 동시 접속이 1,000개 이상일 때 POLL() 시스템 콜이 사용되면 성능 향상에 도움이 된다.
 
 - 1: SELECT() 시스템 콜
 - 2: POLL() 시스템 콜; 지원되는 운영시스템에서만 사용이 가능함
@@ -11914,7 +11919,7 @@ Unsigned Integer
 
 ##### 기본값
 
-10*,*000*,*000
+10,000,000
 
 ##### 속성
 
@@ -11930,31 +11935,6 @@ Unsigned Integer
 위하여 트랜잭션 커밋을 지연시킬 수 있는 최대 시간을 의미한다.
 
 이 값이 0이면 이중화 격차를 해소할 때까지 트랜잭션의 커밋을 지연시킨다.
-
-Altibase 운영 중 ALTER SYSTEM 문을 이용하여 이 프로퍼티의 값을 변경할 수 있다.
-
-#### REPLICATION_GROUPING_TRANSACTION_MAX_COUNT (단위 : 개)
-
-##### 데이터 타입
-
-Unsigned Integer
-
-##### 기본값
-
-5
-
-##### 속성
-
-읽기 전용, 단일 값
-
-##### 값의 범위
-
-[1, 1000]
-
-##### 설명
-
-Ahead Analyzer 쓰레드가 복수의 트랜잭션을 한 번에 최대 몇 개까지 그룹화하여
-수신자에 전송할 것인지 정하는 프로퍼티이다.
 
 Altibase 운영 중 ALTER SYSTEM 문을 이용하여 이 프로퍼티의 값을 변경할 수 있다.
 
@@ -11980,6 +11960,31 @@ Unsigned Integer
 
 선행 분석(Ahead Analyzer) 쓰레드가 분석을 시작할 때, 송신자(Sender)가 현재 읽는
 로그 파일 번호보다 얼마나 큰 번호의 로그 파일을 읽을 것인지 설정한다.
+
+Altibase 운영 중 ALTER SYSTEM 문을 이용하여 이 프로퍼티의 값을 변경할 수 있다.
+
+#### REPLICATION_GROUPING_TRANSACTION_MAX_COUNT (단위 : 개)
+
+##### 데이터 타입
+
+Unsigned Integer
+
+##### 기본값
+
+5
+
+##### 속성
+
+읽기 전용, 단일 값
+
+##### 값의 범위
+
+[1, 1000]
+
+##### 설명
+
+Ahead Analyzer 쓰레드가 복수의 트랜잭션을 한 번에 최대 몇 개까지 그룹화하여
+수신자에 전송할 것인지 정하는 프로퍼티이다.
 
 Altibase 운영 중 ALTER SYSTEM 문을 이용하여 이 프로퍼티의 값을 변경할 수 있다.
 
@@ -12491,30 +12496,6 @@ Unsigned Integer
 
 Altibase 운영 중 ALTER SYSTEM 문을 이용하여 이 프로퍼티의 값을 변경할 수 있다.
 
-#### REPLICATION_RECEIVER_APPLIER_YIELD_COUNT
-
-##### 데이터 타입
-
-Unsigned Integer
-
-##### 기본값
-
-20000
-
-##### 속성
-
-변경 가능, 단일 값
-
-##### 값의 범위
-
-[2, 2<sup>32</sup>-1]
-
-##### 설명
-
-Applier 가 다른 Applier 의 Transaction 반영 대기시 시스템 함수인 yield 를 이용하여 대기 하는 횟수.
-
-yield 함수를 사용시 CPU 사용을 하기 때문에 이 횟수 이상 호출 이후에는 CPU자원을 사용안하는 timed_wait 함수를 호출 한다.
-
 #### REPLICATION_RECOVERY_MAX_LOGFILE
 
 ##### 데이터 타입
@@ -12659,6 +12640,41 @@ Unsigned Integer
 0: 전송 로그를 비암호화
 
 1: 전송 로그를 암호화
+
+#### REPLICATION_SENDER_IP
+
+##### 데이터 타입
+
+String
+
+##### 기본값
+
+ANY
+
+##### 속성
+
+읽기 전용, 다중 값
+
+##### 값의 범위
+
+없음
+
+##### 설명
+
+이중화 송신자의 IP 주소를 설정하는 프로퍼티이다. 값으로 ANY나 IP 주소를 입력할 수 있다.
+
+기본값 ANY는 이중화 객체를 생성하는 지역 서버의 모든 IP 주소가 이중화 통신에 사용될 수 있으며 OS에서 할당한 IP 주소가 송신자 IP 주소로 사용된다. IP 주소를 값으로 설정하면 원격 서버(수신자)와 통신할 때 설정한 IP 주소만 사용된다. REPLICATION_SENDER_IP = *value*를 추가하여 여러 개의 IP 주소를 설정할 수 있으며 순서대로 송신자 IP 주소로 사용된다. IP 주소는 IPv4, IPv6, IPv6 확장 주소 형태로 입력할 수 있다.
+
+`설정 예시`
+
+~~~bash
+REPLICATION_SENDER_IP = 10.0.0.1
+REPLICATION_SENDER_IP = 0000:0000:0000:0000:0000:ffff:1400:0001
+~~~
+
+이 프로퍼티는 Altibase 7.1.0.8.0부터 지원하며 이중화 통신 방법이 TCP일 때 적용된다. 
+
+자세한 내용은 *Replication Manual에서 [송신자 IP 주소 설정](https://github.com/ALTIBASE/Documents/blob/master/Manuals/Altibase_7.1/kor/Replication%20Manual.md#송신자-ip-주소-설정)* 설명을 참고한다.
 
 #### REPLICATION_SENDER_SEND_TIMEOUT (단위: 초)
 

@@ -1725,6 +1725,7 @@ SQLRETURN  SQLColAttribute (
 
 #### 인 자
 
+<<<<<<< HEAD
 | 자료유형      | 인자                | 사용 | 설명                                                         |
 | ------------- | ------------------- | ---- | ------------------------------------------------------------ |
 | SQLHSTMT      | stmt                | 입력 | 명령문 핸들                                                  |
@@ -1734,6 +1735,17 @@ SQLRETURN  SQLColAttribute (
 | SQLSMALLINT   | bufferLength        | 입력 | *charAttributePtr의 문자 개수, *charAttributePtr가 정수이면 무시 |
 | SQLSMALLINT * | stringLengthPtr     | 출력 | **charAttributePtr*에 반환되는 총 문자열의 바이트 길이(null-termination을 제외)의 포인터 |
 | SQLINTEGER *  | numericAttributePtr | 출력 | columnNumber 행의 fieldIdentifier 필드 안의 값이 반환될 정수 버퍼의 포인터 |
+=======
+| 자료유형       | 인자                | 사용 | 설명                                                         |
+| -------------- | ------------------- | ---- | ------------------------------------------------------------ |
+| SQLHSTMT       | stmt                | 입력 | 명령문 핸들                                                  |
+| SQLSMALLINT    | columnNumber        | 입력 | 결과 집합에서의 column의 순서, 1부터 시작                    |
+| SQLSMALLINT    | fieldIdentifier     | 입력 | 알고자 하는 정보의 식별자 SQL_DESC_CASE_SENSITIVE, SQL_DESC_CATALOG_NAME, SQL_DESC_COUNT, SQL_DESC_DISPLAY_SIZE, SQL_DESC_LABEL, SQL_DESC_LENGTH, SQL_DESC_NAME, SQL_DESC_NULLABLE, SQL_DESC_PRECISION, SQL_DESC_SCALE, SQL_DESC_SCHEMA_NAME, SQL_DESC_TABLE_NAME, SQL_DESC_TYPE, SQL_DESC_TYPE_NAME, SQL_DESC_UNSIGNED |
+| SQLCHAR \*     | charAttributePtr    | 출력 | *columnNumber* 행의 *fieldIdentifier* 필드가 문자열인 경우 반환된 데이터를 저장할 버퍼의 포인터, 필드 값이 정수이면 사용 안함 |
+| SQLSMALLINT    | bufferLength        | 입력 | \*charAttributePtr의 문자 개수, \*charAttributePtr가 정수이면 무시 |
+| SQLSMALLINT \* | stringLengthPtr     | 출력 | \**charAttributePtr*에 반환되는 총 문자열의 바이트 길이(null-termination을 제외)의 포인터 |
+| SQLPOINTER*    | numericAttributePtr | 출력 | columnNumber 행의 fieldIdentifier 필드 안의 값이 반환될 정수 버퍼의 포인터 |
+>>>>>>> upstream/master
 
 #### 결과값
 
@@ -5921,19 +5933,36 @@ SQLTransact(SQL_NULL_HENV, dbc, SQL_COMMIT);
 
 #### LOB 위치 입력기(LOB Locator)
 
+<<<<<<< HEAD
 LOB 위치 입력기는 LOB 데이터를 가리키는 Altibase 서버의 내부 자료구조로, 하나의 트랜잭션에 종속된다. CLI의 일부 함수에서 LOB 데이터를 처리할 때 LOB 위치 입력기를 사용하기 때문에 LOB 위치 입력기를 이용한 LOB 데이터 처리 방식에 대한 이해가 필요하다. 
+=======
+| SQL 식별자 | 데이터 타입 | 설명                                        |
+| ---------- | ----------- | ------------------------------------------- |
+| SQL_BLOB   | BLOB        | BLOB은 가변 길이를 가지는 이진 데이터 타입. |
+| SQL_CLOB   | CLOB        | CLOB은 가변 길이를 가지는 데이터 타입.      |
+>>>>>>> upstream/master
 
 CLI에서 LOB 데이터를 처리하는 과정은 LOB 위치 입력기를 얻는 작업과 LOB 위치 입력기를 이용하여 LOB 데이터를 읽고 쓰는 작업으로 나뉜다. 
 
+<<<<<<< HEAD
 #### LOB 위치 입력기 얻기
 
 LOB 위치 입력기는 아래의 CLI 함수들을 실행할 때 얻는다. *더 있을까요?* 
+=======
+다음 표는 LOB을 지원하는 C 데이터 타입의 식별자이다. 각 식별자에 해당하는 ODBC의 C 데이터 타입과 이 데이터 타입의 정의를 나열한다.
+
+| C 타입 식별자      | ODBC C 타입 | C 타입 정의     |
+| ------------------ | ----------- | --------------- |
+| SQL_C_BLOB_LOCATOR | SQLUBIGINT  | unsigned _int64 |
+| SQL_C_CLOB_LOCATOR | SQLUBIGINT  | unsigned _int64 |
+>>>>>>> upstream/master
 
 - SQLBindCol
 - SQLFetch
 - SQLBindParameter
 - SQLExecute
 
+<<<<<<< HEAD
 #### LOB 데이터 읽고 쓰기
 
 LOB 위치 입력기를 얻은 후에 이것을 이용하여 LOB 데이터를 읽거나 쓸 수 있다. 관련 CLI 함수는 아래와 같다. 
@@ -5994,6 +6023,19 @@ SQL_C_CLOB_LOCATOR과 SQL_C_BLOB_LOCATOR는 LOB 위치 입력기를 얻을 때 �
 > C 타입 식별자로 SQL_C_BLOB, SQL_C_CLOB은 지원하지 않는다.
 
 > 64비트 정수형의 이름은 플랫폼에 따라 다르다. 위 표에서 사용한 _int64는 일부 플랫폼에서 사용되는 64비트 정수형의 이름이다.
+=======
+64비트 정수형의 이름은 플랫폼에 따라 다르다. 위 표에서 사용한 _int64는 일부 플랫폼에서 사용되는 64비트 정수형의 이름이다.
+
+CLOB 데이터는 SQL_C_CHAR를, BLOB 데이터는 SQL_C_BINARY를 사용하여 사용자 변수를 바인딩하도록 한다.
+
+LOB Locator를 얻고자 한다면, 해당 LOB 칼럼의 타입에 따라서 SQL_C_CLOB_LOCATOR, 혹은 SQL_C_BLOB_LOCATOR를 적절하게 바인드하면 된다. 여기서 말하는 LOB Locator 즉, LOB 위치 입력기는 운영체제의 파일 포인터처럼 LOB 데이터를 연산할 때 사용되는 핸들이다.
+
+읽기용 LOB 위치 입력기는 SELECT LOB칼럼이름 FROM 테이블 where… 와 select를 수행한 후에 획득된다. 쓰기용 LOB 위치입력기는 SELECT LOB칼럼이름 FROM 테이블 where… FOR UPDATE를 수행한 후에 획득된다.
+
+LOB 위치입력기는 MVCC와 관련하여 특정 시점의 LOB 데이터를 가리키기 때문에 위치입력기를 발생시킨 트랜잭션과 수명주기(life-cycle)를 같이 한다. 따라서 LOB 위치입력기를 이용하여 LOB에 대한 연산을 하기 위해서는 connection을 항상 NON-AUTOCOMMIT 모드로 설정하여 사용해야 한다.
+
+사용자 변수의 LOB 타입으로 지정된 타입, 이를테면 SQL_C_BLOB, SQL_C_CLOB 등은 따로 존재하지 않음에 유의한다.
+>>>>>>> upstream/master
 
 ### LOB Function Overview
 
@@ -6713,7 +6755,11 @@ if (SQLFreeLob(stmt, lobLoc) != SQL_SUCCESS)
 
 ### SQLPutLob
 
+<<<<<<< HEAD
 SQLPutLob은 LOB 위치 입력기를 이용하여 LOB 데이터를 처리하는 함수로, LOB 데이터를 삽입하거나 LOB 데이터에서 특정 위치의 값을 다른 값으로 갱신할 때 사용한다. 이 함수를 실행하는 세션은 반드시 자동 커밋 모드를 해제해야 하며, LOB 위치 입력기를 얻는 함수를 먼저 실행해야 한다. 관련 내용은 [LOB 데이터 처리 방식](#lob-데이터-처리-방식)에서 확인할 수 있다. 
+=======
+이 함수의 동작들은 모두 내부에서 갱신 작업으로 동작한다. 삽입은 길이가 0인 기존 LOB 데이터를 다른 값으로 갱신하는 동작이다. 갱신은 인자의 값에 따라 기존 데이터의 지정한 위치부터 다른 값으로 덮어쓰거나 기존 데이터 뒤에 덧붙이는 동작을 할 수 있다.
+>>>>>>> upstream/master
 
 > SQLPutLob 함수는 Altibase CLI에서 LOB 데이터를 다루기 위해 제공하는 특수한 함수로, ODBC 표준에는 없다. 
 
@@ -6736,6 +6782,7 @@ SQLRETURN SQLPutLob(
 | 자료유형    | 인자          | 사용 | 설명                                                         |
 | ----------- | ------------- | ---- | ------------------------------------------------------------ |
 | SQLHSTMT    | stmt          | 입력 | 검색된 결과들에 대한 명령문 핸들                             |
+<<<<<<< HEAD
 | SQLSMALLINT | locatorCType  | 입력 | 삽입 또는 갱신할 LOB 위치 입력기의 C 데이터 타입 식별자.<br />SQL_C_BLOB_LOCATOR 또는 SQL_C_CLOB_LOCATOR가 올 수 있다. |
 | SQLUBIGINT  | targetLocator | 입력 | LOB 위치 입력기.<br />삽입 또는 갱신할 LOB 타입 칼럼을 의미한다. |
 | SQLUINTEGER | fromPosition  | 입력 | LOB 데이터를 삽입 또는 갱신할 시작 위치로, 0부터 시작된다. 단위는 바이트이다. |
@@ -6743,6 +6790,15 @@ SQLRETURN SQLPutLob(
 | SQLSMALLINT | sourceCType   | 입력 | 삽입 또는 갱신할 데이터를 담고 있는 CLI 애플리케이션 버퍼를 나타내는 C 데이터 타입 식별자. <br /> BLOB 데이터는 SQL_C_BINARY, CLOB 데이터는 SQL_C_CHAR가 올 수 있다. |
 | SQLPOINTER  | value         | 입력 | CLI 애플리케이션 버퍼를 가리키는 포인터                      |
 | SQLUINTEGER | valueLength   | 입력 | CLI 애플리케이션 버퍼에 저장된 LOB 데이터의 길이로, 1부터 시작한다. 단위는 바이트이다. SQL_NULL_DATA는 설정할 수 없다. |
+=======
+| SQLSMALLINT | locatorCType  | 입력 | Target LOB Locator의 C 데이터 타입 식별자. SQL_C_BLOB_LOCATOR SQL_C_CLOB_LOCATOR |
+| SQLUBIGINT  | targetLocator | 입력 | Target LOB Locator                                           |
+| SQLUINTEGER | fromPosition  | 입력 | LOB 데이터에서 갱신될 시작 위치(바이트 단위)로 0부터 시작된다. |
+| SQLUINTEGER | forLength     | 입력 | 사용되지 않음                                                |
+| SQLSMALLINT | sourceCType   | 입력 | value 버퍼의 C 데이터 타입 식별자. SQL_C_BINARY (BLOB인 경우), SQL_C_CHAR (CLOB인 경우) |
+| SQLPOINTER  | value         | 입력 | 입력 데이터를 갖고 있는 버퍼를 가리키는 포인터               |
+| SQLUINTEGER | valueLength   | 입력 | value 버퍼에 입력한 데이터의 길이 (단위: 바이트). 0 이상의 값을 설정해야 하며, SQL_NULL_DATA는 설정할 수 없다. |
+>>>>>>> upstream/master
 
 #### 결과값
 
@@ -6755,6 +6811,7 @@ SQL_ERROR
 
 #### 설 명
 
+<<<<<<< HEAD
 이 함수는 CLI 애플리케이션 버퍼value에 담긴 LOB 데이터를 LOB 위치 입력기targetLocator가 가리키고 있는 LOB 타입 칼럼에 갱신한다. 이때, 갱신되는 위치는 fromPosition 부터 valueLength 만큼이다. 
 
 ###### LOB 데이터 삽입
@@ -6774,6 +6831,17 @@ SQLPutLob 함수를 사용하여 SQL 문을 사용하지 않고 기존 LOB 데�
 targetLocator 인자가 유효하지 않을 때 SQL_ERROR를 반환한다. 
 
 fromPosition 인자가 함수 실행 시점의 targetLocator이 가리키는 LOB 타입 칼럼의 길이보다 크면 SQL_ERROR를 반환한다.
+=======
+이 함수는 애플리케이션 버퍼(application data buffer, value 인자)가 담고 있는 데이터를 타겟 LOB locator(targetLocator 인자)가 가리키는 LOB에 삽입 또는 갱신한다.
+
+이 함수를 실행하면, 서버는 타겟 LOB의 fromPosition 위치부터의 데이터를 value 버퍼의 valueLength 길이만큼의 데이터로 덮어쓴다. valueLength가 (LOBSize – fromPosition)보다 큰 경우, 데이터베이스에서 타겟 LOB의 길이가 늘어난다. fromPosition이 타겟 LOB 값의 끝 위치를 가리키면, value 버퍼의 valueLength 길이만큼의 데이터가 기존 값 뒤에 덧붙여진다.
+
+타겟 LOB locator가 현재의 트랜잭션에서 열린 LOB locator가 아닌 경우 본 함수의 인자로 사용할 수 없다. 트랜잭션이 종료하면 LOB locator가 무효하게 되기 때문이다. 타겟 LOB locator가 유효하지 않을 때에는, SQLPutLob() 함수는 SQL_ERROR를 리턴한다.
+
+타겟 LOB locator가 NULL인 LOB을 가리킬 경우, SQLPutLob() 함수는 LOB locator가 길이가 0인 LOB을 가리키고 있는 경우와 동일하게 동작한다.
+
+fromPosition 인자는 호출 시점의 타겟 LOB 길이보다 크면 안 된다. fromPosition 값이 타겟 LOB 길이보다 크면, SQLPutLob() 함수는 SQL_ERROR를 리턴한다.
+>>>>>>> upstream/master
 
 #### 진 단
 
@@ -6854,12 +6922,21 @@ if (SQLFreeLob(stmt, lobLoc) != SQL_SUCCESS)
 }
 ```
 
+<<<<<<< HEAD
 
 
 ##### CLOB 칼럼 값이 'Hybrid dbms Altibase'인 레코드 삽입 후 'dbms'를 'DBMS'로 치환
 
 ~~~c
 SQLCHAR buf[20];
+=======
+
+
+##### CLOB 칼럼 값이 ‘Ver.0.9a’인 레코드 한 개 삽입
+
+~~~
+SQLCHAR buf[8];
+>>>>>>> upstream/master
 SQLINTEGER lobInd;
 SQLUBIGINT lobLoc;
 
@@ -6911,6 +6988,12 @@ if (SQLFreeLob(stmt, lobLoc) != SQL_SUCCESS)
 }
 ~~~
 
+<<<<<<< HEAD
+=======
+
+
+##### 여러 레코드의 CLOB 칼럼을 일괄적으로 'Retail'로 변경
+>>>>>>> upstream/master
 
 
 ##### 여러 레코드의 CLOB 칼럼을 일괄적으로 'Retail'로 변경

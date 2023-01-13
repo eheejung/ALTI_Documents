@@ -2300,8 +2300,7 @@ Altibase가 지원하는 권한의 종류 정보를 기록하는 메타 테이�
 
 ### SYS_PROCEDURES\_
 
-저장 프로시저와 저장 함수들에 대한 정보로 저장 프로시저 이름, 리턴 타입,
-파라미터 개수, 실행 가능 여부 등을 기록하는 테이블이다.
+저장 프로시저와 저장 함수들에 대한 정보로 저장 프로시저 이름, 리턴 타입, 파라미터 개수, 실행 가능 여부 등을 기록하는 테이블이다.
 
 | Column name      | Type         | Description                                                  |
 | ---------------- | ------------ | ------------------------------------------------------------ |
@@ -2310,7 +2309,7 @@ Altibase가 지원하는 권한의 종류 정보를 기록하는 메타 테이�
 | PROC_NAME        | VARCHAR(128) | 저장 프로시저 이름                                           |
 | OBJECT_TYPE      | INTEGER      | 저장 프로시저, 저장 함수 또는 타입세트 인지를 나타냄         |
 | STATUS           | INTEGER      | 객체의 상태를 나타낸다. INVALID이면 실행 불가능 상태이다. 0: VALID 1: INVALID |
-| AUTHID           | INTEGER      | 프,로시저 또는 함수의 실행자 권한 0: 생성자 권한(DEFINER) 1: 사용자 권한(CURRENT_USER) |
+| AUTHID           | INTEGER      | 프로시저 또는 함수의 실행자 권한 <br />- 0: 생성자 권한(DEFINER) <br />- 1: 사용자 권한(CURRENT_USER) |
 | PARA_NUM         | INTEGER      | 저장 프로시저 파라미터 개수                                  |
 | RETURN_DATA_TYPE | INTEGER      | 저장 함수의 리턴 데이터 타입                                 |
 | RETURN_LANG_ID   | INTEGER      | 리턴 타입 언어 식별자                                        |
@@ -2326,8 +2325,7 @@ Altibase가 지원하는 권한의 종류 정보를 기록하는 메타 테이�
 
 ##### USER_ID
 
-저장 프로시저 또는 저장 함수 소유자의 사용자 식별자로, SYS_USERS\_ 메타 테이블의
-한 USER_ID 값과 동일하다.
+저장 프로시저 또는 저장 함수 소유자의 사용자 식별자로, SYS_USERS\_ 메타 테이블의 한 USER_ID 값과 동일하다.
 
 ##### PROC_OID
 
@@ -2339,8 +2337,7 @@ Altibase가 지원하는 권한의 종류 정보를 기록하는 메타 테이�
 
 ##### OBJECT_TYPE
 
-저장 프로시저와 저장 함수를 구별하는 값이다. 저장 함수는 저장 프로시저와 달리
-하나의 리턴 값을 가진다.
+저장 프로시저와 저장 함수를 구별하는 값이다. 저장 함수는 저장 프로시저와 달리 하나의 리턴 값을 가진다.
 
 - 0: 저장 프로시저
 - 1: 저장 함수
@@ -2348,13 +2345,9 @@ Altibase가 지원하는 권한의 종류 정보를 기록하는 메타 테이�
 
 ##### STATUS
 
-저장프로시저 또는 함수의 실행 가능 여부를 나타내는 값이다. 0 (VALID) 은
-실행가능함을 나타낸다.
+저장프로시저 또는 함수의 실행 가능 여부를 나타내는 값이다. 0 (VALID) 은 실행가능함을 나타낸다.
 
-저장 프로시저 또는 저장 함수가 접근하는 객체에 DDL문을 수행하면, 관련 저장
-프로시저 또는 저장 함수는 무효한 상태가 된다. 예를 들어 저장 프로시저가 접근하는
-테이블에 새로운 칼럼이 추가되면 관련 저장 프로시저는 재 컴파일 후 VALID 상태가
-되면 실행할 수 있다.
+저장 프로시저 또는 저장 함수가 접근하는 객체에 DDL문을 수행하면, 관련 저장 프로시저 또는 저장 함수는 무효한 상태가 된다. 예를 들어 저장 프로시저가 접근하는 테이블에 새로운 칼럼이 추가되면 관련 저장 프로시저는 재 컴파일 후 VALID 상태가 되면 실행할 수 있다.
 
 - 0: VALID
 - 1: INVALID
@@ -2372,8 +2365,7 @@ Altibase가 지원하는 권한의 종류 정보를 기록하는 메타 테이�
 
 ##### RETURN_DATA_TYPE
 
-저장 함수의 리턴값에 대한 데이터 타입의 식별자이다. 데이터 타입 식별자 값은
-SYS_COLUMNS\_ 메타 테이블의 DATA_TYPE 칼럼 설명을 참조한다.
+저장 함수의 리턴값에 대한 데이터 타입의 식별자이다. 데이터 타입 식별자 값은 SYS_COLUMNS\_ 메타 테이블의 DATA_TYPE 칼럼 설명을 참조한다.
 
 데이터 타입에 대한 자세한 내용은 1장을 참조한다.
 
@@ -2387,25 +2379,21 @@ SYS_COLUMNS\_ 메타 테이블의 DATA_TYPE 칼럼 설명을 참조한다.
 
 ##### RETURN_PRECISION
 
-리턴 데이터 타입의 정밀도 (precision)로, 사용자가 지정하거나 또는 시스템이 기본
-값으로 부여한다. 타입의 경우 사용자가 정의한 타입의 길이이다.
+리턴 데이터 타입의 정밀도 (precision)로, 사용자가 지정하거나 또는 시스템이 기본 값으로 부여한다. 타입의 경우 사용자가 정의한 타입의 길이이다.
 
 ##### RETURN_SCALE
 
-리턴 데이터 타입의 scale로, 사용자가 지정하거나 또는 시스템이 기본 값으로
-부여한다. 타입에 따라 이 값은 사용하지 않을 수 있다.
+리턴 데이터 타입의 scale로, 사용자가 지정하거나 또는 시스템이 기본 값으로 부여한다. 타입에 따라 이 값은 사용하지 않을 수 있다.
 
 데이터 타입의 precision 과 scale에 대한 상세한 내용은 1장을 참조한다.
 
 ##### PARSE_NO
 
-저장 프로시저 또는 저장 함수 구문은 SYS_PROC_PARSE\_ 메타 테이블에 나눠져 여러
-레코드로 저장되는데, 이 값은 저장하는 레코드의 수를 나타낸다.
+저장 프로시저 또는 저장 함수 구문은 SYS_PROC_PARSE\_ 메타 테이블에 나눠져 여러 레코드로 저장되는데, 이 값은 저장하는 레코드의 수를 나타낸다.
 
 ##### PARSE_LEN
 
-저장 프로시저 또는 저장 함수 구문은 SYS_PROC_PARSE\_ 메타 테이블에 나눠져 여러
-레코드로 저장되는데 저장하는 전체 구문의 문자열 길이이다.
+저장 프로시저 또는 저장 함수 구문은 SYS_PROC_PARSE\_ 메타 테이블에 나눠져 여러 레코드로 저장되는데 저장하는 전체 구문의 문자열 길이이다.
 
 ##### LAST_DDL_TIME
 
@@ -4492,6 +4480,7 @@ iSQL> SELECT * FROM V$TAB;
 | V\$PLANTEXT                           | SQL의 실행 계획 텍스트 정보                                  |
 | V\$PROCTEXT                           | 저장 프로시저의 텍스트 정보                                  |
 | V\$PROPERTY                           | Altibase에 설정된 프로퍼티 정보                              |
+| V$QUEUE_DELETE_OFF                    | DELETE 문을 허용하지 않는 큐 테이블의 객체 식별자(OID) 정보  |
 | V\$REPEXEC                            | 이중화 관리자 정보                                           |
 | V\$REPGAP                             | 이중화 송신자의 작업 로그 레코드와 현재 생성된 최근 로그 레코드간의 차이 정보 |
 | V\$REPGAP_PARALLEL                    | 병렬 수행중인 이중화 송신 쓰레드의 작업 로그 레코드와 현재 생성된 최근 로그 레코드간의 차이 정보 |
@@ -5522,7 +5511,7 @@ identifier), 글로벌 트랜잭션 식별자 (global transaction identifier) �
 
 | Column name              | Type         | Description                                                  |
 | ------------------------ | ------------ | ------------------------------------------------------------ |
-| STATUS                   | INTEGER      | AltiLinker의 상태 1: AltiLinker가 정상적으로 수행 중인 상태 0: AltiLinker가 실행되어 있지 않거나 정상적인 수행이 불가능한 상태 |
+| STATUS                   | INTEGER      | AltiLinker의 상태. 값의 의미는 [칼럼 정보](#status-4) 참고.  |
 | SESSION_COUNT            | INTEGER      | Altibase와 AltiLinker 프로세스 사이의 세션인 링커 세션의 개수 |
 | REMOTE_SESSION_COUNT     | INTEGER      | AltiLinker 프로세스와 원격 서버들 사이의 세션의 개수         |
 | JVM_MEMORY_POOL_MAX_SIZE | INTEGER      | JVM 상에서 AltiLinker를 위해 할당하는 메모리 풀의 최대 크기  |
@@ -5533,9 +5522,11 @@ identifier), 글로벌 트랜잭션 식별자 (global transaction identifier) �
 
 ##### STATUS
 
-AltiLinker의 상태를 나타낸다. 값이 1이면 AltiLinker가 정상적으로 수행 중인
-상태이다. 그러나 값이 0이면, AltiLinker가 실행되어 있지 않거나 정상적인 수행이
-불가능한 상태이다.
+AltiLinker 프로세스의 상태를 나타낸다.
+
+- 0 : AltiLinker 프로세스가 시작되지 않았거나 정상적인 수행이 불가능한 상태이다.
+- 1 : AltiLinker 프로세스가 시작된 상태이다.
+- 2 : AltiLinker 프로세스와 Altibase 서버 간에 링커 제어 세션(Linker Control Session)이 생성되어 AltiLinker가 정상적으로 수행 중인 상태이다.
 
 ### V\$DBLINK_DATABASE_LINK_INFO
 
@@ -8268,18 +8259,18 @@ Altibase 내부에 설정된 프로퍼티의 정보를 보여준다.
 
 ### V\$QUEUE_DELETE_OFF	
 
-DELETE 문을 허용하지 않는 큐 테이블을 보여준다. CREATE QUEUE 또는 ALTER QUEUE 에서 DELETE OFF 절을 사용한 경우 해당 큐 테이블에 DELETE 문을 허용하지 않는다.
+DELETE 문을 허용하지 않는 큐 테이블의 객체 식별자(OID) 정보를 가지고 있다. CREATE QUEUE 또는 ALTER QUEUE에서 DELETE OFF 절을 사용한 큐 테이블은 DELETE 문을 허용하지 않는다.
 
-| Column name | Type       | Description                                     |
-| ----------- | ---------- | ----------------------------------------------- |
-| TABLE_OID   | BIGINT     | 테이블 객체 식별자                              |
+| Column name | Type   | Description        |
+| ----------- | ------ | ------------------ |
+| TABLE_OID   | BIGINT | 테이블 객체 식별자 |
 
 #### 칼럼 정보
 
 ##### TABLE_OID
 
-테이블 식별자로 SYS_TABLES_메타 테이블의 한 TABLE_OID 값과 동일하다.		
-	
+테이블 객체 식별자로, SYS_TABLES_메타 테이블에서 하나의 TABLE_OID와 일대일로 대응된다.	
+
 ### V\$REPEXEC
 
 이중화 관리자 정보를 보여준다.

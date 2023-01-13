@@ -2300,8 +2300,7 @@ Altibase가 지원하는 권한의 종류 정보를 기록하는 메타 테이�
 
 ### SYS_PROCEDURES\_
 
-저장 프로시저와 저장 함수들에 대한 정보로 저장 프로시저 이름, 리턴 타입,
-파라미터 개수, 실행 가능 여부 등을 기록하는 테이블이다.
+저장 프로시저와 저장 함수들에 대한 정보로 저장 프로시저 이름, 리턴 타입, 파라미터 개수, 실행 가능 여부 등을 기록하는 테이블이다.
 
 | Column name      | Type         | Description                                                  |
 | ---------------- | ------------ | ------------------------------------------------------------ |
@@ -2310,7 +2309,7 @@ Altibase가 지원하는 권한의 종류 정보를 기록하는 메타 테이�
 | PROC_NAME        | VARCHAR(128) | 저장 프로시저 이름                                           |
 | OBJECT_TYPE      | INTEGER      | 저장 프로시저, 저장 함수 또는 타입세트 인지를 나타냄         |
 | STATUS           | INTEGER      | 객체의 상태를 나타낸다. INVALID이면 실행 불가능 상태이다. 0: VALID 1: INVALID |
-| AUTHID           | INTEGER      | 프,로시저 또는 함수의 실행자 권한 0: 생성자 권한(DEFINER) 1: 사용자 권한(CURRENT_USER) |
+| AUTHID           | INTEGER      | 프로시저 또는 함수의 실행자 권한 <br />- 0: 생성자 권한(DEFINER) <br />- 1: 사용자 권한(CURRENT_USER) |
 | PARA_NUM         | INTEGER      | 저장 프로시저 파라미터 개수                                  |
 | RETURN_DATA_TYPE | INTEGER      | 저장 함수의 리턴 데이터 타입                                 |
 | RETURN_LANG_ID   | INTEGER      | 리턴 타입 언어 식별자                                        |
@@ -2326,8 +2325,7 @@ Altibase가 지원하는 권한의 종류 정보를 기록하는 메타 테이�
 
 ##### USER_ID
 
-저장 프로시저 또는 저장 함수 소유자의 사용자 식별자로, SYS_USERS\_ 메타 테이블의
-한 USER_ID 값과 동일하다.
+저장 프로시저 또는 저장 함수 소유자의 사용자 식별자로, SYS_USERS\_ 메타 테이블의 한 USER_ID 값과 동일하다.
 
 ##### PROC_OID
 
@@ -2339,8 +2337,7 @@ Altibase가 지원하는 권한의 종류 정보를 기록하는 메타 테이�
 
 ##### OBJECT_TYPE
 
-저장 프로시저와 저장 함수를 구별하는 값이다. 저장 함수는 저장 프로시저와 달리
-하나의 리턴 값을 가진다.
+저장 프로시저와 저장 함수를 구별하는 값이다. 저장 함수는 저장 프로시저와 달리 하나의 리턴 값을 가진다.
 
 - 0: 저장 프로시저
 - 1: 저장 함수
@@ -2348,13 +2345,9 @@ Altibase가 지원하는 권한의 종류 정보를 기록하는 메타 테이�
 
 ##### STATUS
 
-저장프로시저 또는 함수의 실행 가능 여부를 나타내는 값이다. 0 (VALID) 은
-실행가능함을 나타낸다.
+저장프로시저 또는 함수의 실행 가능 여부를 나타내는 값이다. 0 (VALID) 은 실행가능함을 나타낸다.
 
-저장 프로시저 또는 저장 함수가 접근하는 객체에 DDL문을 수행하면, 관련 저장
-프로시저 또는 저장 함수는 무효한 상태가 된다. 예를 들어 저장 프로시저가 접근하는
-테이블에 새로운 칼럼이 추가되면 관련 저장 프로시저는 재 컴파일 후 VALID 상태가
-되면 실행할 수 있다.
+저장 프로시저 또는 저장 함수가 접근하는 객체에 DDL문을 수행하면, 관련 저장 프로시저 또는 저장 함수는 무효한 상태가 된다. 예를 들어 저장 프로시저가 접근하는 테이블에 새로운 칼럼이 추가되면 관련 저장 프로시저는 재 컴파일 후 VALID 상태가 되면 실행할 수 있다.
 
 - 0: VALID
 - 1: INVALID
@@ -2372,8 +2365,7 @@ Altibase가 지원하는 권한의 종류 정보를 기록하는 메타 테이�
 
 ##### RETURN_DATA_TYPE
 
-저장 함수의 리턴값에 대한 데이터 타입의 식별자이다. 데이터 타입 식별자 값은
-SYS_COLUMNS\_ 메타 테이블의 DATA_TYPE 칼럼 설명을 참조한다.
+저장 함수의 리턴값에 대한 데이터 타입의 식별자이다. 데이터 타입 식별자 값은 SYS_COLUMNS\_ 메타 테이블의 DATA_TYPE 칼럼 설명을 참조한다.
 
 데이터 타입에 대한 자세한 내용은 1장을 참조한다.
 
@@ -2387,25 +2379,21 @@ SYS_COLUMNS\_ 메타 테이블의 DATA_TYPE 칼럼 설명을 참조한다.
 
 ##### RETURN_PRECISION
 
-리턴 데이터 타입의 정밀도 (precision)로, 사용자가 지정하거나 또는 시스템이 기본
-값으로 부여한다. 타입의 경우 사용자가 정의한 타입의 길이이다.
+리턴 데이터 타입의 정밀도 (precision)로, 사용자가 지정하거나 또는 시스템이 기본 값으로 부여한다. 타입의 경우 사용자가 정의한 타입의 길이이다.
 
 ##### RETURN_SCALE
 
-리턴 데이터 타입의 scale로, 사용자가 지정하거나 또는 시스템이 기본 값으로
-부여한다. 타입에 따라 이 값은 사용하지 않을 수 있다.
+리턴 데이터 타입의 scale로, 사용자가 지정하거나 또는 시스템이 기본 값으로 부여한다. 타입에 따라 이 값은 사용하지 않을 수 있다.
 
 데이터 타입의 precision 과 scale에 대한 상세한 내용은 1장을 참조한다.
 
 ##### PARSE_NO
 
-저장 프로시저 또는 저장 함수 구문은 SYS_PROC_PARSE\_ 메타 테이블에 나눠져 여러
-레코드로 저장되는데, 이 값은 저장하는 레코드의 수를 나타낸다.
+저장 프로시저 또는 저장 함수 구문은 SYS_PROC_PARSE\_ 메타 테이블에 나눠져 여러 레코드로 저장되는데, 이 값은 저장하는 레코드의 수를 나타낸다.
 
 ##### PARSE_LEN
 
-저장 프로시저 또는 저장 함수 구문은 SYS_PROC_PARSE\_ 메타 테이블에 나눠져 여러
-레코드로 저장되는데 저장하는 전체 구문의 문자열 길이이다.
+저장 프로시저 또는 저장 함수 구문은 SYS_PROC_PARSE\_ 메타 테이블에 나눠져 여러 레코드로 저장되는데 저장하는 전체 구문의 문자열 길이이다.
 
 ##### LAST_DDL_TIME
 
@@ -4601,6 +4589,7 @@ iSQL> SELECT * FROM V$TAB;
 | V\$PLANTEXT                           | SQL의 실행 계획 텍스트 정보                                  |
 | V\$PROCTEXT                           | 저장 프로시저의 텍스트 정보                                  |
 | V\$PROPERTY                           | Altibase에 설정된 프로퍼티 정보                              |
+| V$QUEUE_DELETE_OFF                    | DELETE 문을 허용하지 않는 큐 테이블의 객체 식별자(OID) 정보  |
 | V\$REPEXEC                            | 이중화 관리자 정보                                           |
 | V\$REPGAP                             | 이중화 송신자의 작업 로그 레코드와 현재 생성된 최근 로그 레코드간의 차이 정보 |
 | V\$REPGAP_PARALLEL                    | 병렬 수행중인 이중화 송신 쓰레드의 작업 로그 레코드와 현재 생성된 최근 로그 레코드간의 차이 정보 |
@@ -5631,7 +5620,7 @@ identifier), 글로벌 트랜잭션 식별자 (global transaction identifier) �
 
 | Column name              | Type         | Description                                                  |
 | ------------------------ | ------------ | ------------------------------------------------------------ |
-| STATUS                   | INTEGER      | AltiLinker의 상태 1: AltiLinker가 정상적으로 수행 중인 상태 0: AltiLinker가 실행되어 있지 않거나 정상적인 수행이 불가능한 상태 |
+| STATUS                   | INTEGER      | AltiLinker의 상태. 값의 의미는 [칼럼 정보](#status-4) 참고.  |
 | SESSION_COUNT            | INTEGER      | Altibase와 AltiLinker 프로세스 사이의 세션인 링커 세션의 개수 |
 | REMOTE_SESSION_COUNT     | INTEGER      | AltiLinker 프로세스와 원격 서버들 사이의 세션의 개수         |
 | JVM_MEMORY_POOL_MAX_SIZE | INTEGER      | JVM 상에서 AltiLinker를 위해 할당하는 메모리 풀의 최대 크기  |
@@ -5642,9 +5631,11 @@ identifier), 글로벌 트랜잭션 식별자 (global transaction identifier) �
 
 ##### STATUS
 
-AltiLinker의 상태를 나타낸다. 값이 1이면 AltiLinker가 정상적으로 수행 중인
-상태이다. 그러나 값이 0이면, AltiLinker가 실행되어 있지 않거나 정상적인 수행이
-불가능한 상태이다.
+AltiLinker 프로세스의 상태를 나타낸다. 
+
+- 0 : AltiLinker 프로세스가 시작되지 않았거나 정상적인 수행이 불가능한 상태이다.
+- 1 : AltiLinker 프로세스가 시작된 상태이다. 
+- 2 : AltiLinker 프로세스와 Altibase 서버 간에 링커 제어 세션(Linker Control Session)이 생성되어 AltiLinker가 정상적으로 수행 중인 상태이다.
 
 ### V\$DBLINK_DATABASE_LINK_INFO
 
@@ -7215,7 +7206,7 @@ RESET_LSN중 로그파일 안의 오프셋 부분을 나타낸다.
 | DBF     | 데이터베이스 파일      |
 | UNKNOWN | 객체 유형을 알 수 없음 |
 
-### lock_statementV\$LOCK_STATEMENT
+### V\$LOCK_STATEMENT
 
 잠금 (lock)을 잡고 있는 구문 (statement)과 잠금을 획득하기를 대기하고 있는 구문
 (statement) 정보를 보여준다.
@@ -7236,7 +7227,7 @@ RESET_LSN중 로그파일 안의 오프셋 부분을 나타낸다.
 | LOCK_CNT       | INTEGER        | 해당 잠금 노드의 잠금 개수                                   |
 | IS_GRANT       | BIGINT         | 해당 테이블에 대하여 잠금을 잡고 있는지 대기하고 있는지 여부 |
 
-### logV\$LOG
+### V\$LOG
 
 로그 앵커 정보를 보여준다.
 
@@ -7274,7 +7265,7 @@ RESET_LSN중 로그파일 안의 오프셋 부분을 나타낸다.
 
 -   NOARCHIVE: 이 모드에서는 불필요한 로그 파일이 삭제된다.
 
-### lock_waitV\$LOCK_WAIT
+### V\$LOCK_WAIT
 
 시스템에서 수행되는 트랜잭션 간의 대기 정보를 나타낸다.
 
@@ -7306,7 +7297,7 @@ V$LOCK_WAIT.TRANS_ID  V$LOCK_WAIT.WAIT_FOR_TRANS_ID
 위에 예제에서, 트랜잭션 2208에 대해서 트랜잭션 1216과 트랜잭션 5344가 현재
 대기하고 있다.
 
-### memgcV\$MEMGC
+### V\$MEMGC
 
 메모리 공간 회수 즉, 가비지 콜렉션 (memory garbage collection) 정보를 보여준다.
 
@@ -7350,7 +7341,7 @@ AGING_PROCESSED_OID_CNT는 OID 단위로 계산하기 때문에 10 증가한다.
 ##### THREAD_COUNT
 공간 회수(garbage collection, aging) 쓰레드 개수를 나타낸다.
 
-### memstatV\$MEMSTAT
+### V\$MEMSTAT
 
 Altibase 프로세스가 사용하는 메모리의 통계 정보를 보여준다.
 
@@ -7580,7 +7571,7 @@ Prepare-Execute할 때 한번 Prepare된 statement는 구문분석 (Parsing), �
 
 삭제가 재시도될 때 이 값이 증가된다
 
-###  mem_btree_headerV\$MEM_BTREE_HEADER
+###  V\$MEM_BTREE_HEADER
 
 메모리 BTREE의 헤더 정보를 보여준다.
 
@@ -7638,7 +7629,7 @@ Prepare-Execute할 때 한번 Prepare된 statement는 구문분석 (Parsing), �
 인덱스 생성 시 키 값을 사용했는지 레코드 포인터를 사용했는지를 나타낸다. 키
 값으로 생성되었을 경우 'V'를 갖고, 레코드 포인터로 생성되었을 경우 'P'를 갖는다.
 
-### mem_btree_nodepoolV\$MEM_BTREE_NODEPOOL
+### V\$MEM_BTREE_NODEPOOL
 
 메모리 BTREE 인덱스를 위한 노드 풀 정보를 보여준다. 해당 노드 풀은 모든 메모리
 BTREE 인덱스의 노드 할당과 반환을 관리한다.
@@ -8229,7 +8220,7 @@ Altibase 내부에 설정된 프로퍼티의 정보를 보여준다.
 
 ### V\$QUEUE_DELETE_OFF	
 
-DELETE 문을 허용하지 않는 큐 테이블을 보여준다. CREATE QUEUE 또는 ALTER QUEUE 에서 DELETE OFF 절을 사용한 경우 해당 큐 테이블에 DELETE 문을 허용하지 않는다.
+DELETE 문을 허용하지 않는 큐 테이블의 객체 식별자(OID) 정보를 가지고 있다. CREATE QUEUE 또는 ALTER QUEUE에서 DELETE OFF 절을 사용한 큐 테이블은 DELETE 문을 허용하지 않는다.
 
 | Column name | Type       | Description                                     |
 | ----------- | ---------- | ----------------------------------------------- |
@@ -8239,7 +8230,7 @@ DELETE 문을 허용하지 않는 큐 테이블을 보여준다. CREATE QUEUE �
 
 ##### TABLE_OID
 
-테이블 식별자로 SYS_TABLES_메타 테이블의 한 TABLE_OID 값과 동일하다.
+테이블 객체 식별자로, SYS_TABLES_메타 테이블에서 하나의 TABLE_OID와 일대일로 대응된다.
 	
 ### V\$REPEXEC
 
@@ -11813,7 +11804,7 @@ V\$SYSSTATE과 V\$SESSTAT 성능 뷰에서 64비트 정수로 표현된다.
 
 [<sup>15</sup>] elapsed time 단위 : microsecond
 
-###  sysstatV\$SYSSTAT
+###  V\$SYSSTAT
 
 시스템 상태를 보여준다. 그러나 상태값은 모든 세션의 정보에 기반하여 3초마다
 갱신되기 때문에, 보여지는 값들은 시간이 지난 값일 수 있다.
@@ -11867,7 +11858,7 @@ TIMED_STATISTICS 프로퍼티가 1로 설정된 경우에만 정보를 수집한
 
 버퍼 페이지의 래치 획득 실패로 인한 대기 시간 (단위: 마이크로 초)을 나타낸다.
 
-### system_eventV\$SYSTEM_EVENT
+### V\$SYSTEM_EVENT
 
 Altibase 구동 후부터 현재까지 대기 이벤트별로 누적된 대기 통계 정보를 보여준다.
 
@@ -12441,7 +12432,7 @@ alter system set qp_msglog_flag=3
 alter system set rp_conflict_msglog_flag=4
 ```
 
-### transactionV\$TRANSACTION
+### V\$TRANSACTION
 
 트랜잭션 객체의 정보를 보여준다.
 

@@ -254,9 +254,17 @@ Altibase 7.1은 JDBC 4.2 API를 부분적으로 지원하는 JDBC 드라이버�
 Altibase 7.1은 5가지 종류의 JDBC 드라이버를 제공한다.
 
 ###### Altibase.jar
+<<<<<<< HEAD
 Altibase 7.1의 기본 JDBC 드라이버이다.
 
 ###### Altibase7_1.jar
+=======
+
+Altibase 7.1의 기본 JDBC 드라이버이다.
+
+###### Altibase7_1.jar
+
+>>>>>>> upstream/master
 기본 JDBC 드라이버와 같지만, 드라이버 클래스 이름이 다르다. 이 JDBC 드라이버는 하나의 애플리케이션에서 여러 버전의 Altibase 서버에 접속할 때 Altibase 7.1 JDBC 드라이버를 구별하는 용도로 사용하며 드라이버 클래스 이름은 Altibase7_1.jdbc.driver.AltibaseDriver이다.
 
 Altibase 서버 버전에 상관없이 기본 JDBC 드라이버 파일 이름과 드라이버 클래스 이름이 같아서 Altibase.jar로 Altibase 서버 버전을 구분할 수 없기 때문에 Altibase 7.1 서버 접속을 위한 추가적인 JDBC 드라이버 Altibase7_1.jar를 제공한다.
@@ -278,18 +286,31 @@ String db_url2 = "jdbc:Altibase://192.168.1.222:20300/mydb";
 ~~~
 
 ###### Altibase42.jar
+<<<<<<< HEAD
 JDBC 4.2 API를 일부 지원하는 JDBC 드라이버이다.
 
 ###### Altibase42_7_1.jar
 JDBC 4.2 API를 일부 지원하는 JDBC 드라이버와 같지만 드라이버 클래스 이름이 다르다.  이 JDBC 드라이버는 하나의 애플리케이션에서 여러 버전의 Altibase 서버에 접속할 때 Altibase 7.1 JDBC 드라이버를 구별하는 용도로,  클래스 이름은 Altibase7_1.jdbc.driver.AltibaseDriver이다.
 
 ###### Altibase_t.jar
+=======
+
+JDBC 4.2 API를 일부 지원하는 JDBC 드라이버이다.
+
+###### Altibase42_7_1.jar
+
+JDBC 4.2 API를 일부 지원하는 JDBC 드라이버와 같지만 드라이버 클래스 이름이 다르다.  이 JDBC 드라이버는 하나의 애플리케이션에서 여러 버전의 Altibase 서버에 접속할 때 Altibase 7.1 JDBC 드라이버를 구별하는 용도로,  클래스 이름은 Altibase7_1.jdbc.driver.AltibaseDriver이다.
+
+###### Altibase_t.jar
+
+>>>>>>> upstream/master
 JDBC 로깅 기능을 포함한 드라이버이다. 이 드라이버의 사용 방법은 [JDBC 로깅](#jdbc-로깅)에서 확인할 수 있다. Altibase_t.jar는 JDBC 3.0 API를 지원하는 JDBC 드라이버를 위한 로깅 드라이버이며 JDBC 4.2 API 일부 지원하는 JDBC 드라이버의 로깅 드라이버는 지원하지 않는다.
 
 ###### Altibase 7.1 JDBC 드라이버 종류와 특성
 
 다음은 Altibase 7.1에서 제공하는 JDBC 드라이버 종류와 특성을 정리한 표이다.
 
+<<<<<<< HEAD
 |JDBC 드라이버 종류|용도|JDBC API|최소 JRE 버전|드라이버 클래스 이름|
 |:--|:---|:--:|:--:|:--|
 |Altibase.jar |Altibase 7.1의 기본 JDBC 드라이버   | 3.0  |1.5   |Altibase.jdbc.driver.AltibaseDriver   |
@@ -297,6 +318,15 @@ JDBC 로깅 기능을 포함한 드라이버이다. 이 드라이버의 사용 �
 |Altibase_t.jar   |JDBC 3.0 API 드라이버 용 로깅 드라이버   |3.0   |1.5   | Altibase.jdbc.driver.AltibaseDriver |
 |Altibase42.jar   |JDBC 4.2 API 부분 지원 드라이버   |4.2 부분 지원   |1.8  |Altibase.jdbc.driver.AltibaseDriver   |
 |Altibase42_7_1.jar   |여러 버전의 Altibase 서버에 접속하는 애플리케이션에서 Altibase 7.1을 구별하기 위한 JDBC 4.2 API 부분 지원 드라이버   |4.2 부분 지원   |1.8   |Altibase7_1.jdbc.driver.AltibaseDriver   |
+=======
+| JDBC 드라이버 종류 | 용도                                                         |   JDBC API    | 최소 JRE 버전 | 드라이버 클래스 이름                   |
+| :----------------- | :----------------------------------------------------------- | :-----------: | :-----------: | :------------------------------------- |
+| Altibase.jar       | Altibase 7.1의 기본 JDBC 드라이버                            |      3.0      |      1.5      | Altibase.jdbc.driver.AltibaseDriver    |
+| Altibase7_1.jar    | 여러 버전의 Altibase 서버 접속하는 애플리케이션에서 Altibase 7.1을 구별하기 위한 JDBC 3.0 API 드라이버 |      3.0      |      1.5      | Altibase7_1.jdbc.driver.AltibaseDriver |
+| Altibase_t.jar     | JDBC 3.0 API 드라이버 용 로깅 드라이버                       |      3.0      |      1.5      | Altibase.jdbc.driver.AltibaseDriver    |
+| Altibase42.jar     | JDBC 4.2 API 부분 지원 드라이버                              | 4.2 부분 지원 |      1.8      | Altibase.jdbc.driver.AltibaseDriver    |
+| Altibase42_7_1.jar | 여러 버전의 Altibase 서버에 접속하는 애플리케이션에서 Altibase 7.1을 구별하기 위한 JDBC 4.2 API 부분 지원 드라이버 | 4.2 부분 지원 |      1.8      | Altibase7_1.jdbc.driver.AltibaseDriver |
+>>>>>>> upstream/master
 
 
 

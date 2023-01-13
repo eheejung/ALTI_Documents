@@ -169,7 +169,8 @@ The following data types are supported in Altibase:
 
 <table>
     <tr>
-    	<td colspan="3">M: Defined column length<br/>L: The length of the input string
+    	<td colspan="3"><pre>M : Defined column length
+L : The length of the input string</pre>
 </td>
     </tr>
     <tr>
@@ -185,34 +186,35 @@ The following data types are supported in Altibase:
     <tr>
     	<td>VARCHAR(M)</td>
         <td>1 ~ 32000</td>
-        <td>length + 2, where
-length = L if the input value is stored in a variable area
+        <td>length + 2<br>
+where<br>
+length = L if the input value is stored in a variable area<br>
 length = M if the input value is stored in a fixed area
 </td>
     </tr>
      <tr>
     	<td>NCHAR(M)</td>
-        <td>1~16000(UTF16)
-1~10666(UTF8)
+        <td>1 ~ 16000(UTF16)<br>
+1 ~ 10666(UTF8)
 </td>
-        <td>M*2 + 2(UTF16)
+        <td>M*2 + 2(UTF16)<br>
 M*3 + 2(UTF8)
 </td>
     </tr>
      <tr>
     	<td>NVARCHAR(M)</td>
-        <td>1~16000(UTF16)
-1~10666(UTF8)
+        <td>1 ~ 16000(UTF16)<br>
+1 ~ 10666(UTF8)
 </td>
-        <td>length*2 + 2(UTF16)
-length*2 + 2(UTF16)
-length*3 + 2(UTF8)
-where:
-length = L if the input value is stored in a variable area
+        <td>length*2 + 2(UTF16)<br>
+length*3 + 2(UTF8)<br>
+where:<br>
+length = L if the input value is stored in a variable area<br>
 length = M if the input value is stored in a fixed area
 </td>
     </tr>
     </table>
+
 
 NCHAR and NVARCHAR are Unicode character types. The available maximum length of a UTF16-encoded string is different from that of a UTF8-encoded string.
 
@@ -232,7 +234,7 @@ NCHAR and NVARCHAR are Unicode character types. The available maximum length of 
         <td>38</td>
         <td>0</td>
         <td rowspan="8">3+((precision)+2)/2</td>
-        <td rowspan="8">*Fixed-Point Numbers
+        <td rowspan="8">*Fixed-Point Numbers<br>
 * The NUMERIC data type is the same as the DECIMAL datatype.</td>
     </tr>
     <tr>
@@ -324,6 +326,7 @@ NCHAR and NVARCHAR are Unicode character types. The available maximum length of 
     </tr> 
 </table>
 
+
 ###### Example 1
 
 Fixed-Point Numbers Size Calculation: 
@@ -371,7 +374,8 @@ Floating-Point Numbers Size Calculation: ( 3 + ( ( p ) + 2 ) / 2 )
 
 <table>
     <tr>
-    	<td colspan="3">M: Defined column length<br/>L: The length of the input value
+    	<td colspan="3"><pre>M : Defined column length
+L : The length of the input value</pre>
 </td>
     </tr>
     <tr>
@@ -382,32 +386,34 @@ Floating-Point Numbers Size Calculation: ( 3 + ( ( p ) + 2 ) / 2 )
     <tr>
     	<td>BLOB/CLOB</td>
         <td></td>
-        <td>1~4294967295</td>
+        <td>1 ~ 4294967295</td>
     </tr>
     <tr>
     	<td>BYTE</td>
-        <td>1~32000</td>
+        <td>1 ~ 32000</td>
         <td>M + 2</td>
     </tr>
      <tr>
     	<td>NIBBLE</td>
-        <td>1~254</td>
+        <td>1 ~ 254</td>
         <td>M/2 + 1</td>
     </tr>
      <tr>
     	<td>BIT</td>
-        <td>1~64000</td>
+        <td>1 ~ 64000</td>
         <td>M/8 + 4</td>
     </tr>
     <tr>
     	<td>VARBIT</td>
-        <td>1~64000</td>
-        <td>length/8 + 4, where
-length = L if the input value is stored in a variable area
+        <td>1 ~ 64000</td>
+        <td>length/8 + 4<br>
+where<br>
+length = L if the input value is stored in a variable area<br>
 length = M if the input value is stored in a fixed area
 </td>
     </tr>
     </table>
+
 
 **Geomerty Data Type**
 
@@ -6652,7 +6658,7 @@ Unsigned Integer
 
 ##### Default Value
 
-1
+3
 
 ##### Attribute
 
@@ -14452,14 +14458,22 @@ ACCESS_LIST = operation, address, mask
 
 - operation ::= [PERMIT\|DENY]  
   Indicates whether to allow or deny access by an IP packet that matches a validation rule.
-  
+
 - address  
   Indicates the IP address of the packet to validate. It can be in IPv4 or IPv6 address notation.
-  
+
 - mask  
   If the specified address is in IPv4 address notation, mask specifies that only part of the IP address of a packet, the subnet mask, is to be validated. 
-  
+
   If the specified address is in IPv6 address notation, mask gives the length of prefix bits to be compared. An IPv6 address is matched if the specified mask bits of the specified address are equal to the specified mask bits of the originating address of an incoming IP packet.
+
+- limit
+
+  limit is an optional item. Specifies the maximum number of sessions allowed to access the Altibase server from the accessible IP address range specified in ACCESS_LIST.
+
+  If a value is entered in the limit item, limit condition checks are performed on all access requests. Therefore, access is not allowed if the number of access requests from allowed IPs exceeds the limit.  If there is no value in the limit item, the limit condition is not checked.
+
+  If ACCESS_LIST is added with the ALTER SYSTEM RELOAD ACCESS LIST statement while the Altibase server is running, existing connected sessions are not affected, and the ACCESS_LIST condition is applied only to new connection requests after the change. So when retrieving V$ACCESS_LIST, the CONNECTED value may be greater than the LIMIT value.
 
 ##### Validation Rule
 
@@ -14511,6 +14525,14 @@ deny, 0.0.0.0, 0.0.0.0
 deny, ::1, 1
 deny, fe80::, 1
 ```
+
+Limit the number of sessions accessible from the 192.168.3.17 address to 5.
+
+~~~bash
+ACCESS_LIST = permit, 192.168.3.17, 255.255.255.255, 5
+~~~
+
+
 
 **ACCESS_LIST_FILE**
 

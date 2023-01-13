@@ -18,7 +18,10 @@ Altibase 7.1.0.8.0 Patch Notes
   - [BUG-49712 기본 파티션 테이블을 포함한 이중화 객체에서 특정 파티션 테이블을 이중화 테이블에서 삭제하면 이중화 송신자가 중단됩니다.](#bug-49712EA%B8%B0%EB%B3%B8-%ED%8C%8C%ED%8B%B0%EC%85%98-%ED%85%8C%EC%9D%B4%EB%B8%94%EC%9D%84-%ED%8F%AC%ED%95%A8%ED%95%9C-%EC%9D%B4%EC%A4%91%ED%99%94-%EA%B0%9D%EC%B2%B4%EC%97%90%EC%84%9C-%ED%8A%B9%EC%A0%95-%ED%8C%8C%ED%8B%B0%EC%85%98-%ED%85%8C%EC%9D%B4%EB%B8%94%EC%9D%84-%EC%9D%B4%EC%A4%91%ED%99%94-%ED%85%8C%EC%9D%B4%EB%B8%94%EC%97%90%EC%84%9C-%EC%82%AD%EC%A0%9C%ED%95%98%EB%A9%B4-%EC%9D%B4%EC%A4%91%ED%99%94-%EC%86%A1%EC%8B%A0%EC%9E%90%EA%B0%80-%EC%A4%91%EB%8B%A8%EB%90%A9%EB%8B%88%EB%8B%A4)
   - [BUG-49737 Veracode에서 검출된 JDBC 드라이버의 보안 취약점을 수정합니다.](#bug-49737veracode%EC%97%90%EC%84%9C-%EA%B2%80%EC%B6%9C%EB%90%9C-jdbc-%EB%93%9C%EB%9D%BC%EC%9D%B4%EB%B2%84%EC%9D%98-%EB%B3%B4%EC%95%88-%EC%B7%A8%EC%95%BD%EC%A0%90%EC%9D%84-%EC%88%98%EC%A0%95%ED%95%A9%EB%8B%88%EB%8B%A4)
   - [BUG-49774 REGEXP\_MODE 프로퍼티 값이 1일 때 정규 표현식 함수에서 성능 뷰를 참조하면 결과 오류가 발생합니다.](#bug-49774regexp_mode-%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0-%EA%B0%92%EC%9D%B4-1%EC%9D%BC-%EB%95%8C-%EC%A0%95%EA%B7%9C-%ED%91%9C%ED%98%84%EC%8B%9D-%ED%95%A8%EC%88%98%EC%97%90%EC%84%9C-%EC%84%B1%EB%8A%A5-%EB%B7%B0%EB%A5%BC-%EC%B0%B8%EC%A1%B0%ED%95%98%EB%A9%B4-%EA%B2%B0%EA%B3%BC-%EC%98%A4%EB%A5%98%EA%B0%80-%EB%B0%9C%EC%83%9D%ED%95%A9%EB%8B%88%EB%8B%A4)
+<<<<<<< HEAD
   - [BUG-49804 ANSI 문법의 INNER JOIN으로 구성된 SQL의 수행 성능이 저하되는 문제를 개선합니다.](#bug-49804ansi-%EB%AC%B8%EB%B2%95%EC%9D%98-inner-join%EC%9C%BC%EB%A1%9C-%EA%B5%AC%EC%84%B1%EB%90%9C-sql%EC%9D%98-%EC%88%98%ED%96%89-%EC%84%B1%EB%8A%A5%EC%9D%B4-%EC%A0%80%ED%95%98%EB%90%98%EB%8A%94-%EB%AC%B8%EC%A0%9C%EB%A5%BC-%EA%B0%9C%EC%84%A0%ED%95%A9%EB%8B%88%EB%8B%A4)
+=======
+>>>>>>> upstream/master
   - [BUG-49825 NORMALFORM\_MAXIMUM 프로퍼티가 0 일 때, PARALLEL을 지정한 테이블과 서브쿼리가 있는 질의문 수행 시 발생하는 안정성 문제를 개선합니다.](#bug-49825normalform_maximum-%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0%EA%B0%80-0-%EC%9D%BC-%EB%95%8C-parallel%EC%9D%84-%EC%A7%80%EC%A0%95%ED%95%9C-%ED%85%8C%EC%9D%B4%EB%B8%94%EA%B3%BC-%EC%84%9C%EB%B8%8C%EC%BF%BC%EB%A6%AC%EA%B0%80-%EC%9E%88%EB%8A%94-%EC%A7%88%EC%9D%98%EB%AC%B8-%EC%88%98%ED%96%89-%EC%8B%9C-%EB%B0%9C%EC%83%9D%ED%95%98%EB%8A%94-%EC%95%88%EC%A0%95%EC%84%B1-%EB%AC%B8%EC%A0%9C%EB%A5%BC-%EA%B0%9C%EC%84%A0%ED%95%A9%EB%8B%88%EB%8B%A4)
   - [BUG-49834 저장 프로시저(또는 저장 함수 및 패키지)에서 접근하는 시노님의 정의가 변경될 때 저장 프로시저(또는 저장 함수 및 패키지)에 반영되지 않습니다.](#bug-49834%EC%A0%80%EC%9E%A5-%ED%94%84%EB%A1%9C%EC%8B%9C%EC%A0%80%EB%98%90%EB%8A%94-%EC%A0%80%EC%9E%A5-%ED%95%A8%EC%88%98-%EB%B0%8F-%ED%8C%A8%ED%82%A4%EC%A7%80%EC%97%90%EC%84%9C-%EC%A0%91%EA%B7%BC%ED%95%98%EB%8A%94-%EC%8B%9C%EB%85%B8%EB%8B%98%EC%9D%98-%EC%A0%95%EC%9D%98%EA%B0%80-%EB%B3%80%EA%B2%BD%EB%90%A0-%EB%95%8C-%EC%A0%80%EC%9E%A5-%ED%94%84%EB%A1%9C%EC%8B%9C%EC%A0%80%EB%98%90%EB%8A%94-%EC%A0%80%EC%9E%A5-%ED%95%A8%EC%88%98-%EB%B0%8F-%ED%8C%A8%ED%82%A4%EC%A7%80%EC%97%90-%EB%B0%98%EC%98%81%EB%90%98%EC%A7%80-%EC%95%8A%EC%8A%B5%EB%8B%88%EB%8B%A4)
   - [BUG-49845 휘발성 테이블스페이스를 대상으로 BEGIN BACKUP 수행 시 ERR-0109E : Internal server error. 에러가 발생합니다.](#bug-49845%ED%9C%98%EB%B0%9C%EC%84%B1-%ED%85%8C%EC%9D%B4%EB%B8%94%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4%EB%A5%BC-%EB%8C%80%EC%83%81%EC%9C%BC%EB%A1%9C-begin-backup-%EC%88%98%ED%96%89-%EC%8B%9C-err-0109e--internal-server-error-%EC%97%90%EB%9F%AC%EA%B0%80-%EB%B0%9C%EC%83%9D%ED%95%A9%EB%8B%88%EB%8B%A4)
@@ -290,7 +293,12 @@ REGEXP\_MODE 프로퍼티 값이 1일 때 정규 표현식 함수에서 성능 �
   23 rows selected.
   ~~~
 
+<<<<<<< HEAD
 - #### Workaround
+=======
+
+#### Workaround
+>>>>>>> upstream/master
 
 
 ~~~sql
@@ -304,6 +312,7 @@ ALTER SESSONI SET REGEXP_MODE = 0;
 -   Compile Option
 -   Error Code
 
+<<<<<<< HEAD
 ### BUG-49804 ANSI 문법의 INNER JOIN으로 구성된 SQL의 수행 성능이 저하되는 문제를 개선합니다.
 
 #### module
@@ -440,6 +449,8 @@ ALTER SYSTEM SET __OPTIMIZER_ANSI_INNER_JOIN_CONVERT = 0;
 -   Compile Option
 -   Error Code
 
+=======
+>>>>>>> upstream/master
 ### BUG-49825 NORMALFORM\_MAXIMUM 프로퍼티가 0 일 때, PARALLEL을 지정한 테이블과 서브쿼리가 있는 질의문 수행 시 발생하는 안정성 문제를 개선합니다.
 
 #### module

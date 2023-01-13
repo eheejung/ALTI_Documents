@@ -59,6 +59,11 @@
     - [FATAL](#fatal-11)
     - [ABORT](#abort-13)
     - [IGNORE](#ignore-9)
+  - [15.Regular Expression Error Code](#15regular-expression-error-code)
+    - [문법 오류](#문법-오류)
+    - [PCRE2 제약 사항](#pcre2-제약-사항)
+    - [유니코드, UTF-8 에러](#유니코드-utf-8-에러)
+    - [PCRE2 라이브러리 내부 오류](#pcre2-라이브러리-내부-오류)
 
 
 
@@ -4228,6 +4233,12 @@ operation.
 **Action:** Set the LOG_CREATE_METHOD property value to 0 and restart the
 server.
 
+**0x111B5 (  70069) smERR_ABORT_ERR_LOG_CONSISTENCY Incomplete media recovery aborted due to log consistency failure. ( <0%s> ).** 
+
+**Cause:** A log file has been lost. If Incomplete media recovery continues, data may be lost.
+
+**Action:** Copy a valid log file to [LOG_DIR] or move log files that are not needed for recovery to another directory.
+
 ### IGNORE
 
 **0x12007 ( 73735) smERR_IGNORE_SyncFail Failed to invoke the msync() system
@@ -4996,6 +5007,7 @@ Mathematics Module.
 
 **Action:** check an error message.
 
+<<<<<<< HEAD
 **0x2106B ( 135275) mtERR_ABORT_PCRE2_NOT_SUPPORTED_ENCODING Unsupported character set by PCRE2 library** 
 
 > Cause : The current session processes regular expression using the PCRE2 library. In this case, the Altibase server character set must be a character set supported by the PCRE2 library.
@@ -5015,6 +5027,19 @@ Mathematics Module.
 > Cause: An internal error occurred in PCRE2 library or while executing Altibase internal function.
 >
 > Action: Check the error message and contact Altibase's Support Center (http://support.altibase.com).
+=======
+**0x2106A ( 135274) mtERR_ABORT_MAX_MEM_SIZE_EXCEED The memory size allocated for the statement has exceeded the maximum limit ( Name : <0%s>, Wanted Memory Size : <1%lu>, Max size : <2%lu> ).** 
+
+**Cause:** The memory size allocated for the statement has exceeded the maximum limit.
+
+**Action:** Increase the XXXXXXX_MEMORY_MAXIMUM property value...
+
+**0x2106C ( 135276) mtERR_ABORT_PCRE2_UNEXPECTED_ERROR PCRE2 error: <1%s> (occurred in <0%s>)** 
+
+**Cause:** An internal error occurred in PCRE2 library or while executing Altibase internal function.
+
+**Action:** Check the error message and contact Altibase's Support Center (http://support.altibase.com).
+>>>>>>> upstream/master
 
 ### IGNORE
 
@@ -14029,6 +14054,12 @@ empty queue can reset a msgid.**
 **Action:** Check whether the queue is empty, otherwise remove the data from the
 queue.
 
+**0x314AA ( 201898) qpERR_ABORT_QDQ_USE_QUEUE_TABLE_IN_DISK_TABLESPACE Failed to create queue table in disk tablespace.** 
+
+**Cause:** Cannot create queue table in disk tablespace.
+
+**Action:** Create queue table in memory tablespace or volatile tablespace.
+
 ### RETRY
 
 **0x331FE ( 209406) qpERR_REBUILD_QMX_TOO_OLD_PLANTREE The plan tree is too
@@ -21230,13 +21261,20 @@ supported by ODBC.
 **Action:** Refer to the log file specified for ALA_EnableLogging and pass a
 data type supported by ODBC.
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> upstream/master
 ## 15.Regular Expression Error Code
 
 PCRE2 호환 모드(REGEXP_MODE=1)에서 정규 표현식 사용 시 발생할 수 있는 에러 메시지를 정리하였다. 
 
+<<<<<<< HEAD
 PCRE2 호환 모드에서 만날 수 있는 [0x2106C](#0x2106c) 에러 코드는 아래와 같은 메시지 형식을 갖는다. <1%s>는 PCRE2 라이브러리에서 반환한 메시지이며 <0%s>는 Altibase 에서 해당 에러가 발생한 위치를 의미한다.  
+=======
+PCRE2 호환 모드에서 만날 수 있는 0x2106C 에러 코드는 아래와 같은 메시지 형식을 갖는다. <1%s>는 PCRE2 라이브러리에서 반환한 메시지이며 <0%s>는 Altibase 에서 해당 에러가 발생한 위치를 의미한다.  
+>>>>>>> upstream/master
 
 ~~~sql
 ERR-2106C : PCRE2 error: <1%s> (occurred in <0%s>)
@@ -21393,7 +21431,10 @@ ERR-2106C : PCRE2 error: <1%s> (occurred in <0%s>)
 > Cause : PCRE2의 제약 사항을 위배하여 발생하는 에러이다. 
 >
 > Action : 에러 메시지를 참고하여 정규 표현식을 올바르게 수정한다. 조치가 어렵다면 Altibase 고객지원 센터로 연락한다.
+<<<<<<< HEAD
 >
+=======
+>>>>>>> upstream/master
 
 `parentheses are too deeply nested` 
 
@@ -21554,3 +21595,7 @@ ERR-2106C : PCRE2 error: <1%s> (occurred in <0%s>)
 `callout error code`
 
 `bad serialized data`
+<<<<<<< HEAD
+=======
+
+>>>>>>> upstream/master

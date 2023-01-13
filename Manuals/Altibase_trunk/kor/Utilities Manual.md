@@ -23,6 +23,7 @@ Copyright ⓒ 2001\~2022 Altibase Corp. All Rights Reserved.<br/>
 </div>
 
 
+<<<<<<< HEAD
 
 # 목차
 
@@ -73,6 +74,57 @@ Copyright ⓒ 2001\~2022 Altibase Corp. All Rights Reserved.<br/>
   - [server](#server)
 
 
+=======
+# 목차
+
+- [서문](#서문)
+  - [이 매뉴얼에 대하여](#이-매뉴얼에-대하여)
+- [1.aexport](#1aexport)
+  - [aexport소개](#aexport소개)
+  - [aexport사용방법](#aexport사용방법)
+- [2.altiComp](#2alticomp)
+  - [altiComp 소개](#alticomp-소개)
+  - [altiComp 사용 방법](#alticomp-사용-방법)
+  - [비교(DIFF)기능](#비교diff기능)
+  - [일치(SYNC) 기능](#일치sync-기능)
+- [3.aku](#3aku)
+  - [개요](#개요-1)
+  - [구성 요소](#구성-요소)
+  - [구문](#구문-1)
+  - [파라미터](#파라미터-1)
+  - [주의사항](#주의사항)
+  - [제약사항](#제약사항)
+  - [사용 예](#사용-예)
+- [4.altiMon](#4altimon)
+  - [개요](#개요-2)
+  - [구문](#구문-2)
+  - [파라미터](#파라미터-2)
+  - [시스템 요구사항](#시스템-요구사항)
+  - [altiMon 시작 및 중지](#altiMon-시작-및-중지)
+  - [altiMon 설정](#altiMon-설정)
+  - [altiMon 로그](#altimon-로그)
+- [5.기타 Utilities](#5기타-utilities)
+  - [altiAudit](#altiaudit)
+  - [altibase](#altibase)
+  - [altiMon](#altimon)
+  - [altierr](#altierr)
+  - [altipasswd](#altipasswd)
+  - [altiProfile](#altiprofile)
+  - [altiwrap](#altiwrap)
+  - [awrite](#awrite)
+  - [checkServer](#checkserver)
+  - [dumpbi](#dumpbi)
+  - [dumpct](#dumpct)
+  - [dumpdb](#dumpdb)
+  - [dumpddf](#dumpddf)
+  - [dumpla](#dumpla)
+  - [dumplf](#dumplf)
+  - [dumptrc](#dumptrc)
+  - [killCheckServer](#killcheckserver)
+  - [server](#server)
+
+
+>>>>>>> upstream/master
 
 
 
@@ -947,8 +999,8 @@ Altibase를 설치할 때, aexport.properties 파일은 \$ALTIBASE_HOME/conf에 
     ILOADER_ARRAY = *count* (기본값: 1)  
     iLoader로 데이터를 다운로드 또는 업로드 할 때 한 번에 처리할 row 개수를
     지정한다.
--   ILOADER**\_**COMMIT  
-    ILOADER**\_**COMMIT = *count* (기본값: 1000)  
+-   ILOADER_COMMIT  
+    ILOADER_COMMIT = *count* (기본값: 1000)  
     iLoader로 데이터를 업로드할 때 커밋할 단위(개수)를 지정한다. 이 프로퍼티로
     -commit옵션의 값을 지정할 수 있다.
 -   ILOADER_PARALLEL  
@@ -1514,7 +1566,10 @@ DIFF는 Master DB의 지정 테이블과 Slave DB의 지정 테이블간에 주�
    지 결정하는 프로퍼티이다. 
 
    프로퍼티를 지정하지 않으면 "ON"으로 동작한다.
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/master
 ### TABLES 그룹 
 
 실행 대상이 되는 테이블에 관련된 정보를 정의한다. 이 그룹은 실행 대상이 되는
@@ -2088,9 +2143,13 @@ REPLICATIONS = (
 | AKU_SYS_PASWWORD                     |  없음  | 데이터베이스 SYS 사용자 패스워드                             |
 | AKU_PORT_NO                          | 20300  | Altibase 서버의 서비스 포트.<br />설정할 수 있는 값의 범위는 1024 ~ 65535이다. |
 | AKU_REPLICATION_PORT_NO              | 20301  | Altibase 이중화 포트.<br />설정할 수 있는 값의 범위는 1024 ~ 65535이다. |
+<<<<<<< HEAD
 |                                      |        |                                                              |
 | AKU_QUERY_TIMEOUT                    |  3600  | Altibase 서버 프로퍼티 QUERY_TIMEOUT를 의미한다. ALTER REPLICATION 등 aku에서 수행한 SQL의 수행 시간이 이 값을 초과하면 해당 문장은 취소된다. |
 |                                      |        |                                                              |
+=======
+| AKU_QUERY_TIMEOUT                    |  3600  | Altibase 서버 프로퍼티 QUERY_TIMEOUT를 의미한다. ALTER REPLICATION 등 aku에서 수행한 SQL의 수행 시간이 이 값을 초과하면 해당 문장은 취소된다. |
+>>>>>>> upstream/master
 | REPLICATIONS/REPLICATION_NAME_PREFIX |  없음  | aku가 생성하는 Altibase 이중화 객체 이름의 접두사.<br />최대 길이는 37바이트이다. |
 | REPLICATIONS/SYNC_PARALLEL_COUNT     |   1    | 이중화 SYNC 수행 시 송신/수신 쓰레드의 수.<br />1부터 100까지 설정할 수 있다. |
 | REPLICATIONS/USER_NAME               |  없음  | 이중화 대상 테이블의 소유자 이름.<br />여기에 명시한 데이터베이스 사용자는 `aku -p` 명령을 수행하기 전에 생성해야 한다. |
@@ -2190,6 +2249,7 @@ aku 설정 파일의 내용을 출력한다. 파일에 문법(syntax) 오류가 
   <div align="left">
       <img src="media/Utilities/aku_scale_up_pod_n.jpg"></img>
   </div>
+<<<<<<< HEAD
 
   1️⃣ aku.conf 파일을 읽는다.
 
@@ -2207,16 +2267,45 @@ aku 설정 파일의 내용을 출력한다. 파일에 문법(syntax) 오류가 
 
   8️⃣ *pod_name*-1에서 *pod_name*-2, *pod_name*-3으로 이중화를 시작한다. 하지만 *pod_name*-2, *pod_name*-3은 생성되기 전이기 때문에 이중화 시작은 실패한다. *pod_name*-2, *pod_name*-3이 생성되고 이중화를 할 수 있는 준비가 되면 이중화가 시작된다. 이는 정상적인 동작이다.
 
+=======
+  1️⃣ aku.conf 파일을 읽는다.
+  
+  2️⃣ `AKU_SERVER_COUNT`-1만큼 Altibase 이중화 객체를 생성한다. 만약 *pod_name*-1이 다시 생성된 파드라면, 같은 이름의 이중화 객체가 존재할 수 있으며 이 단계는 생략된다.
+  
+  3️⃣ 이중화 대상 서버인 모드 파드에 접속을 시도한다. 하지만 *pod_name*-0과의 접속만 성공하고 *pod_name*-2, *pod_name*-3은 생성되기 전이기 때문에 접속 에러가 발생한다. 이는 정상적인 동작이다.
+  
+  4️⃣ *pod_name*-1의 이중화 대상 테이블을 대상으로 TRUNCATE를 수행한다. 만약 이전에 `aku -p end`가 수행되지 않았거나 완료되지 않아 *pod_name*-0과 연결된 이중화 정보가 남아 있다면 이 단계는 생략한다.
+  
+  5️⃣ *pod_name*-0에게 이중화 SYNC를 요청한다. 만약 이전에 `aku -p end`가 수행되지 않았거나 완료되지 않아 *pod_name*-0과 연결된 이중화 정보가 남아 있다면 이 단계는 생략한다.
+  
+  6️⃣ *pod_name*-0에서 *pod_name*-1로 이중화 SYNC를 수행한다.
+  
+  7️⃣ *pod_name*-1에서 *pod_name*-0으로 이중화를 시작한다.
+  
+  8️⃣ *pod_name*-1에서 *pod_name*-2, *pod_name*-3으로 이중화를 시작한다. 하지만 *pod_name*-2, *pod_name*-3은 생성되기 전이기 때문에 이중화 시작은 실패한다. *pod_name*-2, *pod_name*-3이 생성되고 이중화를 할 수 있는 준비가 되면 이중화가 시작된다. 이는 정상적인 동작이다.
+  
+>>>>>>> upstream/master
   ~~~
   ⚠️ aku -p start 명령은 Altibase 서버가 정상적으로 시작된 후 수행해야 한다. 
   ⚠️ 하나의 파드에서 aku -p start 명령을 완료한 후 순차적으로 다음 파드를 생성해야 한다.
   ~~~
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> upstream/master
 - `end`
 
   Altibase 이중화를 중지하고 초기화하는 작업을 수행한다. 파드를 종료할 때 이용할 수 있다. 
 
+<<<<<<< HEAD
   <div align="left">    <img src="media/\Utilities/aku_scale_down.jpg"></img></div>
+=======
+  <div align="left">
+      <img src="media/Utilities/aku_scale_down.jpg"></img>
+  </div>
+
+>>>>>>> upstream/master
 
   1️⃣ 해당 파드와 이중화로 연결된 모든 파드에 접속을 시도한다. 해당 번호보다 높은 번호의 파드는 이미 삭제된 상태이기 때문에 접속 에러가 발생할 수 있다. 이는 정상적인 동작이다.
 
@@ -2235,11 +2324,19 @@ aku 설정 파일의 내용을 출력한다. 파일에 문법(syntax) 오류가 
 
 ## 주의사항
 
+<<<<<<< HEAD
 > akp -p end 명령이 완료되기 전에 파드가 종료되었다면
 
 이중화 정보가 초기화되지 않고 남아 있을 수 있다. 이 경우 해당 파드가 다시 시작할 때 이중화 객체 생성과 이중화 대상 테이블을 TRUNCATE 하는 작업이 생략되고 이전에 생성한 이중화가 자동으로 시작된다. `akp -p end` 명령이 정상적으로 수행될 때의 출력 결과는 [예시 4](#예시-4)를 확인해 보자.
 
 >  akp -p end 명령이 완료되기 전에 파드가 종료된 상태가 장기간 지속된다면
+=======
+> **akp -p end 명령이 완료되기 전에 파드가 종료되었다면**
+
+이중화 정보가 초기화되지 않고 남아 있을 수 있다. 이 경우 해당 파드가 다시 시작할 때 이중화 객체 생성과 이중화 대상 테이블을 TRUNCATE 하는 작업이 생략되고 이전에 생성한 이중화가 자동으로 시작된다. `akp -p end` 명령이 정상적으로 수행될 때의 출력 결과는 [예시 4](#예시-4)를 확인해 보자.
+
+>  **akp -p end 명령이 완료되기 전에 파드가 종료된 상태가 장기간 지속된다면**
+>>>>>>> upstream/master
 
 종료된 파드뿐 아니라 다른 파드에도 이중화 정보가 초기화되지 않고 남아 있을 수 있다. 이 경우 다른 파드는 종료된 파드로 이중화 하기 위해 이중화에 필요한 온라인 로그 파일을 삭제하지 않는다. 온라인 로그 파일이 쌓이면 디스크 풀 발생으로 Altibase 서버가 정상적으로 운영되지 못할 수 있다. 따라서 이런 상황을 방지하기 위해  `akp -p end` 명령이 완전히 완료되기 전에 파드가 종료된 상태가 장기간 지속되고 있다면 이중화를 중지하고 이중화 초기화 작업을 진행해야 한다. 
 
@@ -2471,7 +2568,11 @@ AKUHOST-3.altibase-svc: REPLICAION AKU_REP_13 RESET Success
 AKUHOST-3.altibase-svc: REPLICAION AKU_REP_23 RESET Success
 ~~~
 
+<<<<<<< HEAD
 # 4.altiMon
+=======
+# 4. altiMon
+>>>>>>> upstream/master
 
 ## 개요
 
@@ -2494,7 +2595,10 @@ altimon.sh {start | stop}
 <div align="left">
     <img src=media/Utilities/9f7b2fa1105d33ea554edb062ca8b96f.png>
 </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/master
 <br/>
 
 ## 파라미터
@@ -2973,7 +3077,10 @@ $ cat group1.csv
 </div>
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/master
 ### logs/archive 디렉토리
 
 logs 디렉토리의 altimon.log, \*.csv 제외한 모든 파일이 archive/YYYY-MM-DD 디렉토리로 매일 백업된다. 이 디렉토리 중에서 config.xml의 altiMon 실행 설정에서 \<MaintenancePeriod\>에서 설정한 기간이 지난 디렉토리는 매일 새벽 1시 50분에 삭제된다.
