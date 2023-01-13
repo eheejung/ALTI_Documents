@@ -13,8 +13,8 @@ Copyright ⓒ 2001~2022 Altibase Corp. All Rights Reserved.
 08378 서울시 구로구 디지털로 306 대륭포스트타워Ⅱ 10층
 전화 : 02-2082-1114
 팩스 : 02-2082-1099
-고객서비스포털 : http://support.altibase.com
-홈페이지      : http://www.altibase.com</pre>
+고객서비스포털 : <a href='http://support.altibase.com'>http://support.altibase.com</a>
+홈페이지      : <a href='http://www.altibase.com/'>http://www.altibase.com</a></pre>
 
 
 
