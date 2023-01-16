@@ -1,9 +1,67 @@
-General Reference-1
+General Reference - 1. Data Types & Altibase Properties
 ================
 
 #### Altibase 7.1
 
+Altibase Administration General Reference
+
 <br><br><br><br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div align="center">
+    <img src="media/Utilities/e5cfb3761673686d093a3b00c062fe7a.png">
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -45,13 +103,6 @@ Copyright ⓒ 2001~2022 Altibase Corp. All Rights Reserved.
 팩스 : 02-2082-1099
 고객서비스포털 : <a href='http://support.altibase.com'>http://support.altibase.com</a>
 홈페이지      : <a href='http://www.altibase.com/'>http://www.altibase.com</a></pre>
-
-
-
-<div align="center">
-    <img src="media/Utilities/e5cfb3761673686d093a3b00c062fe7a.png">
-</div>
-
 
 
 
