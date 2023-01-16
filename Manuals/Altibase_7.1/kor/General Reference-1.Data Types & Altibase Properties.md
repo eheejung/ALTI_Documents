@@ -35,6 +35,12 @@ Altibase Administration General Reference
 
 
 
+
+
+
+
+
+
 <div align="left">
     <img src="media/Utilities/e5cfb3761673686d093a3b00c062fe7a.png">
 </div>
@@ -90,6 +96,12 @@ Altibase Administration General Reference
 
 
 <br><br>
+
+
+
+
+
+
 
 
 
