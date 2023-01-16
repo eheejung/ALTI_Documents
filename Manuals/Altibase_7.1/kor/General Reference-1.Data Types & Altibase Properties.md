@@ -5,11 +5,7 @@ General Reference - 1. Data Types & Altibase Properties
 
 Altibase Administration General Reference
 
----
-
-date : YYYY-MM-DD
-
----
+Last Updated: 2023-01-03
 
 <br><br><br><br><br><br>
 
