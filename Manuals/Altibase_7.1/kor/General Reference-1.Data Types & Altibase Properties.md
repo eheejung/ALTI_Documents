@@ -5,7 +5,7 @@ General Reference - 1. Data Types & Altibase Properties
 
 Altibase Administration General Reference
 
-Last Updated: 2023-01-03
+마지막 수정 날짜 : 2023-01-03
 
 <br><br><br><br><br><br>
 
