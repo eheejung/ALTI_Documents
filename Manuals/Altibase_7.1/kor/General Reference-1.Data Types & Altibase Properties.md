@@ -5,6 +5,12 @@ General Reference - 1. Data Types & Altibase Properties
 
 Altibase Administration General Reference
 
+---
+
+date : YYYY-MM-DD
+
+---
+
 <br><br><br><br><br><br>
 
 
@@ -116,7 +122,7 @@ Copyright ⓒ 2001~2022 Altibase Corp. All Rights Reserved.
 고객서비스포털 : <a href='http://support.altibase.com'>http://support.altibase.com</a>
 홈페이지      : <a href='http://www.altibase.com/'>http://www.altibase.com</a></pre>
 
-
+<br>
 
 # 목차
 
