@@ -2150,56 +2150,33 @@ REPLICATIONS = (
 | AKU_FLUSH_AT_START_VALUE             |   1    | aku -p start시 FLUSH 구문을 통해 이중화 갭 제거 여부<br />1이면 이중화 갭을 제거하며, 0인 경우 제거 없이 시작한다. |
 | AKU_FLUSH_TIMEOUT_AT_START_VALUE     |  300   | AKU_FLUSH_AT_START_VALUE 값이 1일때, 서비스 중인 원격 파드로 부터 이중화 FLUSH를 수행하는 초단위 제한시간<br />0 이면 FLUSH ALL을 수행하며, 1 이상인 경우 FLUSH WAIT AKU_FLUSH_TIMEOUT_AT_START_VALUE를 수행하여 원격 파드로 부터 이중화 데이터를 해당 초 동안 수신한다. |
 | AKU_FLUSH_AT_END_VALUE               |   1    | aku -p end시 Slave Pod에서 종료 전 이중화 갭 제거 여부<br />1 이면 이중화 FLUSH ALL 구문을 통하여 이중화 갭을 제거하며, 0 이면 제거하지 않는다. |
-| REPLICATIONS/REPLICATION_NAME_PREFIX |  없음  | aku가 생성하는 Altibase 이중화 객체 이름의 접두사.<br />최대 길이는 37바이트이다. |
+| REPLICATIONS/REPLICATION_NAME_PREFIX |  없음  | aku가 생성하는 Altibase 이중화 객체 이름의 접두사로, 최대 길이는 37바이트이다.<br/>*REPLICATION_NAME_PREFIX*_\[*파드번호*]\[*파드번호*\]  형태로 이중화 객체 이름을 생성한다.<sup>1</sup>[^1] |
 | REPLICATIONS/SYNC_PARALLEL_COUNT     |   1    | 이중화 SYNC 수행 시 송신/수신 쓰레드의 수.<br />1부터 100까지 설정할 수 있다. |
 | REPLICATIONS/USER_NAME               |  없음  | 이중화 대상 테이블의 소유자 이름.<br />여기에 명시한 데이터베이스 사용자는 `aku -p` 명령을 수행하기 전에 생성해야 한다. |
 | REPLICATIONS/TABLE_NAME              |  없음  | 이중화 대상 테이블 이름으로, [테이블](https://github.com/ALTIBASE/Documents/blob/master/Manuals/Altibase_trunk/kor/Administrator's%20Manual.md#테이블-table)과 [파티션드 테이블](https://github.com/ALTIBASE/Documents/blob/master/Manuals/Altibase_trunk/kor/Administrator's%20Manual.md#파티션드-테이블partitioned-table)을 명시할 수 있다. <br />여기에 명시한 테이블은 `aku -p`명령을 수행하기 전에 생성해야 한다. |
 
-⚠️ aku 설정 파일 작성 시 주의사항
+> **Altibase 이중화 객체 이름 생성 규칙**
 
-- aku 설정 파일은 주석을 허용하지 않는다. 프로퍼티 앞에 주석을 추가하면 `Cannot parse aku.conf` 에러가 발생한다.
+[^1]: **Altibase 이중화 객체 이름 생성 규칙**
 
-- aku 프로퍼티 중 기본값이 없는 프로퍼티를 aku.conf에 명시하지 않으면 `[ERROR] Property [proerty_name] should be specified by configuration.` 에러가 발생한다.
+aku에서 생성하는 Altibase 이중화 객체 이름은 *REPLICATION_NAME_PREFIX*_\[*파드번호*]\[*파드번호*\] 규칙으로 생성된다. 쿠버네티스 스테이트풀셋은 *pod_name*\_0, *pod_name*\_1, ..., *pod_name*\_*N*-1 순서로 순차적으로 파드를 생성하며 각 파드는 고유한 순번을 가진다. Altibase 이중화 객체 이름에서 파드 번호는 파드 이름에서 *pod_name*\_ 뒤의 파드 고유의 번호를 의미하며, 이중화 쌍이 되는 파드들의 번호들로 구성된다. 
 
-- REPLICATIONS/REPLICATION_NAME_PREFIX
+이해를 돕기 위해 AKU_SERVER_COUNT가 4이고 REPLICATION_NAME_PREFIX가 AKU_REP 일 때, 각 파드에서 생성되는 이중화 객체 이름을 살펴보자. 
 
-  aku에서 생성하는 Altibase 이중화 객체 이름은 *REPLICATION_NAME_PREFIX*_\[*파드번호*]\[*파드번호*\] 규칙으로 생성된다. 쿠버네티스 스테이트풀셋은 *pod_name*\_0, *pod_name*\_1, ..., *pod_name*\_*N*-1 순서로 순차적으로 파드를 생성하며 각 파드는 고유한 순번을 가진다. Altibase 이중화 객체 이름에서 파드 번호는 파드 이름에서 *pod_name*\_ 뒤의 파드 고유의 번호를 의미하며, 이중화 쌍이 되는 파드들의 번호들로 구성된다. 
-
-  이해를 돕기 위해 AKU_SERVER_COUNT가 4이고 REPLICATION_NAME_PREFIX가 AKU_REP 일 때, 각 파드에서 생성되는 이중화 객체 이름을 살펴보자. 
-
-  | 파드 번호    | 이중화 객체 이름 | 설명                                      |
-  | :----------- | :--------------- | :---------------------------------------- |
-  | *pod_name*-0 | AKU_REP_01       | *pod_name*-0과 *pod_name*-1의 이중화 객체 |
-  |              | AKU_REP_02       | *pod_name*-0과 *pod_name*-2의 이중화 객체 |
-  |              | AKU_REP_03       | *pod_name*-0과 *pod_name*-3의 이중화 객체 |
-  | *pod_name*-1 | AKU_REP_01       | *pod_name*-0과 *pod_name*-1의 이중화 객체 |
-  |              | AKU_REP_12       | *pod_name*-1과 *pod_name*-2의 이중화 객체 |
-  |              | AKU_REP_13       | *pod_name*-1과 *pod_name*-3의 이중화 객체 |
-  | *pod_name*-2 | AKU_REP_02       | *pod_name*-0과 *pod_name*-2의 이중화 객체 |
-  |              | AKU_REP_12       | *pod_name*-1과 *pod_name*-2의 이중화 객체 |
-  |              | AKU_REP_23       | *pod_name*-2와 *pod_name*-3의 이중화 객체 |
-  | *pod_name*-3 | AKU_REP_03       | *pod_name*-0과 *pod_name*-3의 이중화 객체 |
-  |              | AKU_REP_13       | *pod_name*-1과 *pod_name*-3의 이중화 객체 |
-  |              | AKU_REP_23       | *pod_name*-2와 *pod_name*-3의 이중화 객체 |
-
-  
-
-- *pod_name*-0 
-  - AKU_REP_01 : *pod_name*-0과 *pod_name*-1의 Altibase 이중화
-  - AKU_REP_02 : *pod_name*-0과 *pod_name*-2의 Altibase 이중화
-  - AKU_REP_03 : *pod_name*-0과 *pod_name*-3의 Altibase 이중화
-- *pod_name*-1
-  - AKU_REP_01 : *pod_name*-0과 *pod_name*-1의 Altibase 이중화
-  - AKU_REP_12 : *pod_name*-1과 *pod_name*-2의 Altibase 이중화
-  - AKU_REP_13 : *pod_name*-1과 *pod_name*-3의 Altibase 이중화
-- *pod_name*-2 
-  - AKU_REP_02 : *pod_name*-0과 *pod_name*-2의 Altibase 이중화
-  - AKU_REP_12 : *pod_name*-1과 *pod_name*-2의 Altibase 이중화
-  - AKU_REP_23 : *pod_name*-2과 *pod_name*-3의 Altibase 이중화
-- *pod_name*-3 
-  - AKU_REP_03 : *pod_name*-0과 *pod_name*-3의 Altibase 이중화
-  - AKU_REP_13 : *pod_name*-1과 *pod_name*-3의 Altibase 이중화
-  - AKU_REP_23 : *pod_name*-2과 *pod_name*-3의 Altibase 이중화
+| 파드 번호    | 이중화 객체 이름 | 설명                                                         |
+| :----------- | :--------------- | :----------------------------------------------------------- |
+| *pod_name*-0 | AKU_REP_01       | *pod_name*-0과 *pod_name*-1의 이중화 객체&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+|              | AKU_REP_02       | *pod_name*-0과 *pod_name*-2의 이중화 객체                    |
+|              | AKU_REP_03       | *pod_name*-0과 *pod_name*-3의 이중화 객체                    |
+| *pod_name*-1 | AKU_REP_01       | *pod_name*-0과 *pod_name*-1의 이중화 객체                    |
+|              | AKU_REP_12       | *pod_name*-1과 *pod_name*-2의 이중화 객체                    |
+|              | AKU_REP_13       | *pod_name*-1과 *pod_name*-3의 이중화 객체                    |
+| *pod_name*-2 | AKU_REP_02       | *pod_name*-0과 *pod_name*-2의 이중화 객체                    |
+|              | AKU_REP_12       | *pod_name*-1과 *pod_name*-2의 이중화 객체                    |
+|              | AKU_REP_23       | *pod_name*-2와 *pod_name*-3의 이중화 객체                    |
+| *pod_name*-3 | AKU_REP_03       | *pod_name*-0과 *pod_name*-3의 이중화 객체                    |
+|              | AKU_REP_13       | *pod_name*-1과 *pod_name*-3의 이중화 객체                    |
+|              | AKU_REP_23       | *pod_name*-2와 *pod_name*-3의 이중화 객체                    |
 
 ~~~
 ⚠️ aku가 생성하는 Altibase 이중화 객체는 사용자가 임의로 생성/삭제/수정하면 안 된다. 
@@ -2351,6 +2328,12 @@ Altibase 이중화를 중지하고 초기화하는 작업을 수행한다. 파�
 <br/>
 
 ## 주의사항
+
+### aku 설정 파일 작성 시
+
+aku 설정 파일은 주석을 허용하지 않는다. 프로퍼티 앞에 주석을 추가하면 `Cannot parse aku.conf` 에러가 발생한다.
+
+aku 프로퍼티 중 기본값이 없는 프로퍼티를 aku.conf에 명시하지 않으면 `[ERROR] Property [proerty_name] should be specified by configuration.` 에러가 발생한다.
 
 ### akp -p start 명령 수행 시
 
