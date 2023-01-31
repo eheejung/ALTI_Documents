@@ -2155,17 +2155,34 @@ REPLICATIONS = (
 | REPLICATIONS/USER_NAME               |  없음  | 이중화 대상 테이블의 소유자 이름.<br />여기에 명시한 데이터베이스 사용자는 `aku -p` 명령을 수행하기 전에 생성해야 한다. |
 | REPLICATIONS/TABLE_NAME              |  없음  | 이중화 대상 테이블 이름으로, [테이블](https://github.com/ALTIBASE/Documents/blob/master/Manuals/Altibase_trunk/kor/Administrator's%20Manual.md#테이블-table)과 [파티션드 테이블](https://github.com/ALTIBASE/Documents/blob/master/Manuals/Altibase_trunk/kor/Administrator's%20Manual.md#파티션드-테이블partitioned-table)을 명시할 수 있다. <br />여기에 명시한 테이블은 `aku -p`명령을 수행하기 전에 생성해야 한다. |
 
-> aku 설정 파일 작성 시 주의사항
+⚠️ aku 설정 파일 작성 시 주의사항
 
-aku 설정 파일은 주석을 허용하지 않는다. 프로퍼티 앞에 주석을 추가하면 `Cannot parse aku.conf` 에러가 발생한다.
+- aku 설정 파일은 주석을 허용하지 않는다. 프로퍼티 앞에 주석을 추가하면 `Cannot parse aku.conf` 에러가 발생한다.
 
-aku 프로퍼티 중 기본값이 없는 프로퍼티를 aku.conf에 명시하지 않으면 `[ERROR] Property [proerty_name] should be specified by configuration.` 에러가 발생한다.
+- aku 프로퍼티 중 기본값이 없는 프로퍼티를 aku.conf에 명시하지 않으면 `[ERROR] Property [proerty_name] should be specified by configuration.` 에러가 발생한다.
 
-> REPLICATIONS/REPLICATION_NAME_PREFIX
+- REPLICATIONS/REPLICATION_NAME_PREFIX
 
-aku에서 생성하는 Altibase 이중화 객체 이름은 *REPLICATION_NAME_PREFIX*_\[*파드번호*]\[*파드번호*\] 규칙으로 생성된다. 쿠버네티스 스테이트풀셋은 *pod_name*\_0, *pod_name*\_1, ..., *pod_name*\_*N*-1 순서로 순차적으로 파드를 생성하며 각 파드는 고유한 순번을 가진다. Altibase 이중화 객체 이름에서 파드 번호는 파드 이름에서 *pod_name*\_ 뒤의 파드 고유의 번호를 의미하며, 이중화 쌍이 되는 파드들의 번호들로 구성된다. 
+  aku에서 생성하는 Altibase 이중화 객체 이름은 *REPLICATION_NAME_PREFIX*_\[*파드번호*]\[*파드번호*\] 규칙으로 생성된다. 쿠버네티스 스테이트풀셋은 *pod_name*\_0, *pod_name*\_1, ..., *pod_name*\_*N*-1 순서로 순차적으로 파드를 생성하며 각 파드는 고유한 순번을 가진다. Altibase 이중화 객체 이름에서 파드 번호는 파드 이름에서 *pod_name*\_ 뒤의 파드 고유의 번호를 의미하며, 이중화 쌍이 되는 파드들의 번호들로 구성된다. 
 
-이해를 돕기 위해 AKU_SERVER_COUNT가 4이고 REPLICATION_NAME_PREFIX가 AKU_REP 일 때, 각 파드에서 생성되는 이중화 객체 이름을 살펴보자. 
+  이해를 돕기 위해 AKU_SERVER_COUNT가 4이고 REPLICATION_NAME_PREFIX가 AKU_REP 일 때, 각 파드에서 생성되는 이중화 객체 이름을 살펴보자. 
+
+  | 파드 번호    | 이중화 객체 이름 | 설명                                      |
+  | :----------- | :--------------- | :---------------------------------------- |
+  | *pod_name*-0 | AKU_REP_01       | *pod_name*-0과 *pod_name*-1의 이중화 객체 |
+  |              | AKU_REP_02       | *pod_name*-0과 *pod_name*-2의 이중화 객체 |
+  |              | AKU_REP_03       | *pod_name*-0과 *pod_name*-3의 이중화 객체 |
+  | *pod_name*-1 | AKU_REP_01       | *pod_name*-0과 *pod_name*-1의 이중화 객체 |
+  |              | AKU_REP_12       | *pod_name*-1과 *pod_name*-2의 이중화 객체 |
+  |              | AKU_REP_13       | *pod_name*-1과 *pod_name*-3의 이중화 객체 |
+  | *pod_name*-2 | AKU_REP_02       | *pod_name*-0과 *pod_name*-2의 이중화 객체 |
+  |              | AKU_REP_12       | *pod_name*-1과 *pod_name*-2의 이중화 객체 |
+  |              | AKU_REP_23       | *pod_name*-2과 *pod_name*-3의 이중화 객체 |
+  | *pod_name*-3 | AKU_REP_03       | *pod_name*-0과 *pod_name*-3의 이중화 객체 |
+  |              | AKU_REP_13       | *pod_name*-1과 *pod_name*-3의 이중화 객체 |
+  |              | AKU_REP_23       | *pod_name*-2과 *pod_name*-3의 이중화 객체 |
+
+  
 
 - *pod_name*-0 
   - AKU_REP_01 : *pod_name*-0과 *pod_name*-1의 Altibase 이중화
@@ -2293,15 +2310,15 @@ Altibase 이중화 객체를 생성하고 데이터를 동기화하는 작업을
 
 4️⃣ AKU_FLUSH_AT_START_VALUE = 1일 때,
 
-1) *pod_name*-1의 Altibase에 ADMIN_MODE를 1로 설정하여 신규 세션의 접근을 막고, 기존에 접속된 세션을 종료시켜서 *pod_name*-0으로부터 데이터를 Flush 시키기 위한 준비를 한다.
+① *pod_name*-1의 Altibase에 ADMIN_MODE를 1로 설정하여 신규 세션의 접근을 막고, 기존에 접속된 세션을 종료시켜서 *pod_name*-0으로부터 데이터를 Flush 시키기 위한 준비를 한다.
 
-2. *pod_name*-1에서 *pod_name*-0으로 보내지 못한 데이터를 전송하기 위해 이중화 시작과 Flush를 수행하여 모든 로그를 전송한다.  
+② *pod_name*-1에서 *pod_name*-0으로 보내지 못한 데이터를 전송하기 위해 이중화 시작과 Flush를 수행하여 모든 로그를 전송한다.  
 
-3. *pod_name*-1에서 *pod_name*-2, *pod_name*-3으로 이중화를 시작하고 Flush를 수행한다. 하지만 *pod_name*-2, *pod_name*-3은 생성되기 전이기 때문에 이중화 시작과 Flush가 실패한다. *pod_name*-2, *pod_name*-3이 생성되고 이중화를 할 수 있는 준비가 되면 각 pod의 `aku -p start`에 의해 이중화 시작과 Flush가 수행된다. 이는 정상적인 동작이다.
+③ *pod_name*-1에서 *pod_name*-2, *pod_name*-3으로 이중화를 시작하고 Flush를 수행한다. 하지만 *pod_name*-2, *pod_name*-3은 생성되기 전이기 때문에 이중화 시작과 Flush가 실패한다. *pod_name*-2, *pod_name*-3이 생성되고 이중화를 할 수 있는 준비가 되면 각 pod의 `aku -p start`에 의해 이중화 시작과 Flush가 수행된다. 이는 정상적인 동작이다.
 
-4. *pod_name*-0에서 *pod_name*-1로 보내지 못한 데이터를 전송하기 위해 이중화 시작과 Flush를 AKU_FLUSH_TIMEOUT_AT_START_VALUE 시간동안 수행한다. 
+④ *pod_name*-0에서 *pod_name*-1로 보내지 못한 데이터를 전송하기 위해 이중화 시작과 Flush를 AKU_FLUSH_TIMEOUT_AT_START_VALUE 시간동안 수행한다. 
 
-5. *pod_name*-1의 ADMIN_MODE를 0으로 설정하여 신규 세션의 접속을 허용한다. 
+⑤ *pod_name*-1의 ADMIN_MODE를 0으로 설정하여 신규 세션의 접속을 허용한다. 
 
 5️⃣ AKU_FLUSH_AT_START_VALUE = 0일 때,
 
