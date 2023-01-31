@@ -2150,14 +2150,12 @@ REPLICATIONS = (
 | AKU_FLUSH_AT_START_VALUE             |   1    | aku -p start시 FLUSH 구문을 통해 이중화 갭 제거 여부<br />1이면 이중화 갭을 제거하며, 0인 경우 제거 없이 시작한다. |
 | AKU_FLUSH_TIMEOUT_AT_START_VALUE     |  300   | AKU_FLUSH_AT_START_VALUE 값이 1일때, 서비스 중인 원격 파드로 부터 이중화 FLUSH를 수행하는 초단위 제한시간<br />0 이면 FLUSH ALL을 수행하며, 1 이상인 경우 FLUSH WAIT AKU_FLUSH_TIMEOUT_AT_START_VALUE를 수행하여 원격 파드로 부터 이중화 데이터를 해당 초 동안 수신한다. |
 | AKU_FLUSH_AT_END_VALUE               |   1    | aku -p end시 Slave Pod에서 종료 전 이중화 갭 제거 여부<br />1 이면 이중화 FLUSH ALL 구문을 통하여 이중화 갭을 제거하며, 0 이면 제거하지 않는다. |
-| REPLICATIONS/REPLICATION_NAME_PREFIX |  없음  | aku가 생성하는 Altibase 이중화 객체 이름의 접두사로, 최대 길이는 37바이트이다.<br/>*REPLICATION_NAME_PREFIX*_\[*파드번호*]\[*파드번호*\]  형태로 이중화 객체 이름을 생성한다.<sup>1</sup>[^1] |
+| REPLICATIONS/REPLICATION_NAME_PREFIX |  없음  | aku가 생성하는 Altibase 이중화 객체 이름의 접두사로, 최대 길이는 37바이트이다.<br/>*REPLICATION_NAME_PREFIX*_\[*파드번호*]\[*파드번호*\]  형태로 이중화 객체 이름을 생성한다.<sup>[이중화 객체 이름 생성 규칙](#rep_name_rules)</sup> |
 | REPLICATIONS/SYNC_PARALLEL_COUNT     |   1    | 이중화 SYNC 수행 시 송신/수신 쓰레드의 수.<br />1부터 100까지 설정할 수 있다. |
 | REPLICATIONS/USER_NAME               |  없음  | 이중화 대상 테이블의 소유자 이름.<br />여기에 명시한 데이터베이스 사용자는 `aku -p` 명령을 수행하기 전에 생성해야 한다. |
 | REPLICATIONS/TABLE_NAME              |  없음  | 이중화 대상 테이블 이름으로, [테이블](https://github.com/ALTIBASE/Documents/blob/master/Manuals/Altibase_trunk/kor/Administrator's%20Manual.md#테이블-table)과 [파티션드 테이블](https://github.com/ALTIBASE/Documents/blob/master/Manuals/Altibase_trunk/kor/Administrator's%20Manual.md#파티션드-테이블partitioned-table)을 명시할 수 있다. <br />여기에 명시한 테이블은 `aku -p`명령을 수행하기 전에 생성해야 한다. |
 
-> **Altibase 이중화 객체 이름 생성 규칙**
-
-[^1]: **Altibase 이중화 객체 이름 생성 규칙**
+> <a name="rep_name_rules"> **Altibase 이중화 객체 이름 생성 규칙**</a>
 
 aku에서 생성하는 Altibase 이중화 객체 이름은 *REPLICATION_NAME_PREFIX*_\[*파드번호*]\[*파드번호*\] 규칙으로 생성된다. 쿠버네티스 스테이트풀셋은 *pod_name*\_0, *pod_name*\_1, ..., *pod_name*\_*N*-1 순서로 순차적으로 파드를 생성하며 각 파드는 고유한 순번을 가진다. Altibase 이중화 객체 이름에서 파드 번호는 파드 이름에서 *pod_name*\_ 뒤의 파드 고유의 번호를 의미하며, 이중화 쌍이 되는 파드들의 번호들로 구성된다. 
 
