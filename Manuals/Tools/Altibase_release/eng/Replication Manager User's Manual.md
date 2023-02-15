@@ -90,11 +90,9 @@ Alitbase® Tools & Utilities
 
 
 
-
-
-
-
 <!-- PDF 변환을 위한 여백입니다. --> 
+
+<br><br>
 
 <pre>
 Altibase Tools & Utilities Replication Manager User’s Manual
