@@ -102,7 +102,9 @@ Alitbase® Tools & Utilities
 Altibase Tools & Utilities Replication Manager User’s Manual
 Copyright ⓒ 2001~2023 Altibase Corp. All Rights Reserved.
 <br>
-This manual contains proprietary information of Altibase Corporation; it is provided under a license agreement containing restrictions on use and disclosure and is also protected by copyright patent and other intellectual property law. Reverse engineering of the software is prohibited. All trademarks, registered or otherwise, are the property of their respective owners.
+This manual contains proprietary information of Altibase® Corporation; it is provided under a license agreement containing restrictions on use and disclosure and is also protected by copyright patent and other intellectual property law. Reverse engineering of the
+software is prohibited.
+All trademarks, registered or otherwise, are the property of their respective owners.
 <br>
 Altibase Corp
 10F, Daerung PostTower II,
