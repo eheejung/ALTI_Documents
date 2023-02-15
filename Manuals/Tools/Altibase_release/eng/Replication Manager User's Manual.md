@@ -102,7 +102,7 @@ Copyright ⓒ 2001~2023 Altibase Corp. All Rights Reserved.
 This manual contains proprietary information of Altibase® Corporation; it is provided under a license agreement containing restrictions on use and disclosure and is also protected by copyright patent and other intellectual property law. Reverse engineering of the
 software is prohibited.
 All trademarks, registered or otherwise, are the property of their respective owners.<br>
-<p>Altibase Corp</p>
+<b>Altibase Corp</b>
 10F, Daerung PostTower II,
 306, Digital-ro, Guro-gu, Seoul 08378, Korea
 Telephone : +82-2-2082-1000 
