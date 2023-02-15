@@ -101,71 +101,32 @@ Alitbase® Tools & Utilities
 <pre>
 Altibase Tools & Utilities Replication Manager User’s Manual
 Copyright ⓒ 2001~2023 Altibase Corp. All Rights Reserved.
+<br>
 This manual contains proprietary information of Altibase Corporation; it is provided under a license agreement containing restrictions on use and disclosure and is also protected by copyright patent and other intellectual property law. Reverse engineering of the software is prohibited. All trademarks, registered or otherwise, are the property of their respective owners.
 <br>
-Altibase Corp
-10F, Daerung PostTower II,
-306, Digital-ro, Guro-gu, Seoul 08378, Korea
-Telephone : +82-2-2082-1000 
-Fax       : 82-2-2082-1099</pre>
-
-</pre>
-
-Altibase Corp
-10F, Daerung PostTower II,
-306, Digital-ro, Guro-gu, Seoul 08378, Korea
-Telephone : +82-2-2082-1000 
-Fax       : 82-2-2082-1099
-Customer Service Portal : http://support.altibase.com/en/
-Homepage                :http://www.altibase.com</pre>
-
 Altibase Corp
 10F, Daerung PostTower II,
 306, Digital-ro, Guro-gu, Seoul 08378, Korea
 Telephone : +82-2-2082-1000 
 Fax       : 82-2-2082-1099
 Customer Service Portal : <a href='http://support.altibase.com/en/'>http://support.altibase.com/en/</a>
-Homepage                :<a href='http://www.altibase.com'>http://www.altibase.com</a></pre>
-
-
+Homepage                : <a href='http://www.altibase.com'>http://www.altibase.com</a></pre>
 
 <br>
 
-- [Replication Manager User’s Manual](#replication-manager-users-manual)
-  - [Preface](#preface)
-  - [1. Introduction](#1-introduction)
-    - [Overview](#overview)
-    - [System Requirements](#system-requirements)
-    - [Installation and Uninstallation](#installation-and-uninstallation)
-  - [2. Getting Started](#2-getting-started)
-    - [Understanding the User Interface](#understanding-the-user-interface)
-    - [Connecting to Altibase](#connecting-to-altibase)
-    - [Working with Replication](#working-with-replication)
+# Table Of Contents
 
-Altibase® Tools & Utilities
+- [Preface](#preface)
+- [1. Introduction](#1-introduction)
+  - [Overview](#overview)
+  - [System Requirements](#system-requirements)
+  - [Installation and Uninstallation](#installation-and-uninstallation)
+- [2. Getting Started](#2-getting-started)
+  - [Understanding the User Interface](#understanding-the-user-interface)
+  - [Connecting to Altibase](#connecting-to-altibase)
+  - [Working with Replication](#working-with-replication)
 
-Replication Manager User’s Manual
-=================================
 
-![e5cfb3761673686d093a3b00c062fe7a](media/ReplicationManager/e5cfb3761673686d093a3b00c062fe7a.png)
-
-Altibase Tools & Utilities Replication Manager User’s Manual
-
-Release 1.3
-
-Copyright ⓒ 2001\~2021 Altibase Corp. All Rights Reserved.
-
-This manual contains proprietary information of Altibase Corporation; it is provided under a license agreement containing restrictions on use and disclosure and is also protected by copyright patent and other intellectual property law. Reverse engineering of the software is prohibited. All trademarks, registered or otherwise, are the property of their respective owners.
-
-**Altibase Corp**
-
-10F, Daerung PostTower II,
-306, Digital-ro, Guro-gu, Seoul 08378, Korea
-Telephone: +82-2-2082-1000 Fax: 82-2-2082-1099
-
-Customer Service Portal: <http://support.altibase.com/en/>
-
-Homepage: [http://www.altibase.com]
 
 Preface
 ----
