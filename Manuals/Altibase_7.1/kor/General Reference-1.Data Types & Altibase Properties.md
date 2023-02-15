@@ -100,9 +100,7 @@ Altibase Administration General Reference
 <pre>
 Altibase Administration General Reference
 Copyright ⓒ 2001~2023 Altibase Corp. All Rights Reserved.
-<br>
-본 문서의 저작권은 ㈜알티베이스에 있습니다. 이 문서에 대하여 당사의 동의없이 무단으로 복제 또는 전용할 수 없습니다.
-<br>
+본 문서의 저작권은 ㈜알티베이스에 있습니다. 이 문서에 대하여 당사의 동의없이 무단으로 복제 또는 전용할 수 없습니다.<br>
 <b>㈜알티베이스</b>
 08378 서울시 구로구 디지털로 306 대륭포스트타워Ⅱ 10층
 전화 : 02-2082-1114
