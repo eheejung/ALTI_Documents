@@ -40,7 +40,7 @@ Alitbase® Tools & Utilities
 
 
 
-
+<!-- PDF 변환을 위한 여백입니다. --> 
 
 <div align="left">
     <img src="media/ReplicationManager/e5cfb3761673686d093a3b00c062fe7a.png">
@@ -94,9 +94,7 @@ Alitbase® Tools & Utilities
 
 
 
-
-
-<br><br>
+<!-- PDF 변환을 위한 여백입니다. --> 
 
 <pre>
 Altibase Tools & Utilities Replication Manager User’s Manual
@@ -110,7 +108,7 @@ Altibase Corp
 10F, Daerung PostTower II,
 306, Digital-ro, Guro-gu, Seoul 08378, Korea
 Telephone : +82-2-2082-1000 
-Fax       : 82-2-2082-1099
+Fax       : +82-2-2082-1099
 Customer Service Portal : <a href='http://support.altibase.com/en/'>http://support.altibase.com/en/</a>
 Homepage                : <a href='http://www.altibase.com'>http://www.altibase.com</a></pre>
 
