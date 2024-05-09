@@ -1,3 +1,5 @@
+test
+
 # Altibase 7.1 Korean manuals
 
 이 매뉴얼은 7.1.0.4.7 기준으로 업데이트 되었습니다.
